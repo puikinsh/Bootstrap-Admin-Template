@@ -1,0 +1,66 @@
+
+
+.btn {
+  .border-radius(0);
+}
+.btn-group .btn {
+  .border-radius(0) !important;
+}
+.btn-metis-1 {
+  .buttonBackground(@metis-1-color, @metis-1-highlight-color);
+}
+.btn-metis-2 {
+  .buttonBackground(@metis-2-color, @metis-2-highlight-color);
+}
+
+.btn-metis-3 {
+  .buttonBackground(@metis-3-color, @metis-3-highlight-color);
+}
+
+.btn-metis-4 {
+  .buttonBackground(@metis-4-color, @metis-4-highlight-color);
+}
+
+.btn-metis-5 {
+  .buttonBackground(@metis-5-color, @metis-5-highlight-color);
+}
+.btn-metis-6 {
+  .buttonBackground(@metis-6-color, @metis-6-highlight-color);
+}
+
+
+
+.btn-group.open {
+// Keep the hover's background when dropdown is open
+.btn-metis-1.dropdown-toggle {
+    background-color: @metis-1-highlight-color;
+  }
+.btn-metis-2.dropdown-toggle {
+    background-color: @metis-2-highlight-color;
+  }
+.btn-metis-3.dropdown-toggle {
+    background-color: @metis-3-highlight-color;
+  }
+.btn-metis-4.dropdown-toggle {
+    background-color: @metis-4-highlight-color;
+  }
+.btn-metis-5.dropdown-toggle {
+    background-color: @metis-5-highlight-color;
+  }
+.btn-metis-6.dropdown-toggle {
+    background-color: @metis-6-highlight-color;
+  }
+}
+
+// Account for other colors
+.btn-metis-1,
+.btn-metis-2,
+.btn-metis-3,
+.btn-metis-4,
+.btn-metis-5,
+.btn-metis-6 {
+  .caret {
+    border-top-color: #fff;
+    border-bottom-color: #fff;
+  }
+}

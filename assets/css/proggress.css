@@ -1,0 +1,23 @@
+.progress .bar.six-sec-ease-in-out {
+  -webkit-transition: width 6s ease-in-out;
+  -moz-transition: width 6s ease-in-out;
+  -ms-transition: width 6s ease-in-out;
+  -o-transition: width 6s ease-in-out;
+  transition: width 6s ease-in-out;
+}
+
+.progress.vertical .bar.six-sec-ease-in-out {
+  -webkit-transition: height 6s ease-in-out;
+  -moz-transition: height 6s ease-in-out;
+  -ms-transition: height 6s ease-in-out;
+  -o-transition: height 6s ease-in-out;
+  transition: height 6s ease-in-out;
+}
+
+.progress.wide {
+  width: 60px;
+}
+
+.vertical-progressbar-span {
+  height: 100px;
+}

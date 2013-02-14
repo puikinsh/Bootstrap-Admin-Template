@@ -1,0 +1,19 @@
+body {
+    background: url("../img/pattern/p27.png") repeat #444;
+}
+.tac {
+    text-align: center;
+}
+.signin {
+    margin: 50px auto 0;
+}
+
+#logo {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.signin {
+    background: url("../img/pattern/p23.png") repeat;
+    padding: 13px;
+    border-radius: 4px;
+}

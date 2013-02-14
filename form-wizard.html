@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Form Wizard</title>
+        <meta name="description" content="Metis: Bootstrap Responsive Admin Theme">
+        <meta name="viewport" content="width=device-width">
+        <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css"/>
+        <link type="text/css" rel="stylesheet" href="assets/css/bootstrap-responsive.min.css"/>
+        <link type="text/css" rel="stylesheet" href="assets/css/font-awesome.min.css"/>
+        <link type="text/css" rel="stylesheet" href="assets/css/style.css"/>
+        <link type="text/css" rel="stylesheet" href="assets/css/prettify.css"/>
+        <link id="active-color" type="text/css" rel="stylesheet" href="assets/css/default.min.css"/>
+        <link type="text/css" rel="stylesheet" href="assets/css/validationEngine.jquery.css"/>
+        <link type="text/css" rel="stylesheet" href="assets/css/jquery.plupload.queue.css"/>
+        <link type="text/css" rel="stylesheet" href="assets/css/jquery.gritter.css"/>
+        <link type="text/css" rel="stylesheet" href="assets/css/uniform.default.css"/>
+        <link rel="stylesheet" href="assets/css/jasny-bootstrap.min.css" />
+        <link rel="stylesheet" href="assets/css/jasny-bootstrap-responsive.min.css" />
+        <script type="text/javascript" src="assets/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <!--[if IE 7]>
+        <link type="text/css" rel="stylesheet" href="assets/css/font-awesome-ie7.min.css"/>
+        <![endif]-->
+    </head>
+    <body>
+        <!-- #wrap -->
+        <div id="wrap">
+            <!-- #top -->
+            <div id="top">
+                <!-- .navbar -->
+                <div class="navbar navbar-inverse navbar-static-top">
+                    <div class="navbar-inner">
+                        <div class="container-fluid">
+                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </a>
+                            <a class="brand" href="index.html">Metis</a> 
+                            <!-- .topnav -->
+                            <div class="btn-toolbar topnav">
+                                <div class="btn-group">
+                                    <a class="btn btn-inverse" rel="tooltip" data-original-title="E-mail" data-placement="bottom">
+                                        <i class="icon-envelope"></i>
+                                    </a>
+                                    <a class="btn btn-inverse" rel="tooltip" href="#" data-original-title="Messages"
+                                       data-placement="bottom">
+                                        <i class="icon-comments"></i>
+                                    </a>
+                                </div>
+                                <div class="btn-group">
+                                    <a class="btn btn-inverse" rel="tooltip" href="#" data-original-title="Document"
+                                       data-placement="bottom">
+                                        <i class="icon-file"></i>
+                                    </a>
+                                    <a href="#helpModal" class="btn btn-inverse" rel="tooltip" data-placement="bottom"
+                                       data-original-title="Help" data-toggle="modal">
+                                        <i class="icon-question-sign"></i>
+                                    </a>
+                                </div>
+                                <div class="btn-group">
+                                    <a class="btn btn-inverse" data-placement="bottom" data-original-title="Logout" rel="tooltip"
+                                       href="login.html"><i class="icon-off"></i></a></div>
+                            </div>
+                            <!-- /.topnav -->
+                            <div class="nav-collapse collapse">
+                                <!-- .nav -->
+                                <ul class="nav">
+                                    <li><a href="index.html">Dashboard</a></li>
+                                    <li><a href="table.html">Tables</a></li>
+                                    <li><a href="file.html">File Manager</a></li>
+                                    <li class="dropdown active">
+                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                            Form Elements <b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="form-general.html">General</a></li>
+                                            <li><a href="form-validation.html">Validation</a></li>
+                                            <li><a href="form-wysiwyg.html">WYSIWYG</a></li>
+                                            <li><a href="form-wizard.html">Wizard &amp; File Upload</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <!-- /.nav -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.navbar -->
+            </div>
+            <!-- /#top -->
+
+
+            <!-- BEGIN HEADER.head -->
+            <header class="head">
+                <div class="search-bar">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="search-bar-inner">
+                                <a id="menu-toggle" href="#menu" data-toggle="collapse"
+                                   class="accordion-toggle btn btn-inverse visible-phone"
+                                   rel="tooltip" data-placement="bottom" data-original-title="Show/Hide Menu">
+                                    <i class="icon-sort"></i>
+                                </a>
+
+                                <form class="main-search">
+                                    <input class="input-block-level" type="text" placeholder="Live search...">
+                                    <button id="searchBtn" type="submit" class="btn btn-inverse"><i class="icon-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- ."main-bar -->
+                <div class="main-bar">
+                    <div class="container-fluid">
+                        <div class="row-fluid">
+                            <div class="span7">
+                                <h3><i class="icon-angle-right"></i> Form Wizard</h3>
+                            </div>
+                            <div class="span5 hidden-phone">
+                                <!-- .sidebar-ctrl -->
+                                <div class="sidebar-ctrl">
+                                    <a class="btn btn-metis-4" id="sidebar-change" rel="tooltip" data-placement="bottom"
+                                       data-original-title="Change Sidebar Position">
+                                        <i class="icon-double-angle-right icon-large"></i>
+                                    </a>
+                                    <a class="btn btn-metis-3 hidden-phone hidden-tablet" id="mini-sidebar" rel="tooltip"
+                                       data-placement="bottom" data-original-title="Minimize/Maximize Sidebar">
+                                        <i class="icon-zoom-in"></i>
+                                    </a>
+                                    <a class="btn btn-metis-1" id="hide-sidebar" rel="tooltip" data-placement="bottom"
+                                       data-original-title="Show/Hide Sidebar" data-toggle="button">
+                                        <i class="icon-desktop"></i>
+                                    </a>
+                                    <a href="#colorModal" class="btn btn-metis-2" id="switch-color" rel="tooltip"
+                                       data-placement="bottom" data-original-title="Choose Style" data-toggle="modal">
+                                        <i class="icon-cogs"></i>
+                                    </a>
+
+                                    <div id="fixed-wide-cnt" class="btn-group">
+                                        <a rel="tooltip" data-body-class="fixed" class="btn btn-metis-5"
+                                           data-original-title="Fixed layout" data-placement="left">F</a>
+                                        <a rel="tooltip" data-body-class="wide" class="btn btn-metis-6"
+                                           data-original-title="Wide layout" data-placement="left">W</a>
+                                    </div>
+                                </div>
+                                <!-- /.sidebar-ctrl -->
+                            </div>
+                            <!-- /.span4.hidden-phone -->
+                        </div>
+                        <!-- /.row-fluid -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </div>
+                <!-- /.main-bar -->
+            </header>
+            <!-- END HEADER.head -->
+
+            <!-- #left -->
+            <div id="left">
+                <!-- .user-media -->
+                <div class="media user-media hidden-phone">
+                    <a href="" class="user-link">
+                        <img src="assets/img/user.gif" alt="" class="media-object img-polaroid user-img">
+                        <span class="label user-label">16</span>
+                    </a>
+
+                    <div class="media-body hidden-tablet">
+                        <h5 class="media-heading">Archie</h5>
+                        <ul class="unstyled user-info">
+                            <li><a href="">Administrator</a></li>
+                            <li>Last Access : <br/>
+                                <small><i class="icon-calendar"></i> 16 Mar 16:32</small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.user-media -->
+                <!-- #menu -->
+                <ul id="menu" class="unstyled accordion collapse in">
+                    <li class="accordion-group ">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#dashboard-nav">
+                            <i class="icon-dashboard icon-large"></i> Dashboard <span
+                                class="label label-inverse pull-right">2</span>
+                        </a>
+                        <ul class="collapse " id="dashboard-nav">
+                            <li><a href="index.html"><i class="icon-angle-right"></i> Default Style</a></li>
+                            <li><a href="alterne.html"><i class="icon-angle-right"></i> Alternative Style</a></li>
+                        </ul>
+                    </li>
+                    <li class="accordion-group ">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#component-nav">
+                            <i class="icon-tasks icon-large"></i> Components <span class="label label-inverse pull-right">2</span>
+                        </a>
+                        <ul class="collapse " id="component-nav">
+                            <li><a href="icon.html"><i class="icon-angle-right"></i> Icon & Button</a></li>
+                            <li><a href="progress.html"><i class="icon-angle-right"></i> Progress</a></li>
+                        </ul>
+                    </li>
+                    <li class="accordion-group active">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-nav">
+                            <i class="icon-pencil icon-large"></i> Forms <span class="label label-inverse pull-right">4</span>
+                        </a>
+                        <ul class="collapse in" id="form-nav">
+                            <li><a href="form-general.html"><i class="icon-angle-right"></i> General</a></li>
+                            <li><a href="form-validation.html"><i class="icon-angle-right"></i> Validation</a></li>
+                            <li><a href="form-wysiwyg.html"><i class="icon-angle-right"></i> WYSIWYG</a></li>
+                            <li><a href="form-wizard.html"><i class="icon-angle-right"></i> Wizard &amp; File Upload</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="table.html"><i class="icon-table icon-large"></i> Tables</a></li>
+                    <li><a href="file.html"><i class="icon-file icon-large"></i> File Manager</a></li>
+                    <li><a href="typography.html"><i class="icon-font icon-large"></i> Typography</a></li>
+                    <li><a href="maps.html"><i class="icon-map-marker icon-large"></i> Maps</a></li>
+                    <li><a href="calendar.html"><i class="icon-calendar icon-large"></i> Calendar</a></li>
+                    <li class="accordion-group ">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#error-nav">
+                            <i class="icon-warning-sign icon-large"></i> Error Pages 
+                            <span class="label label-inverse pull-right">7</span>
+                        </a>
+                        <ul class="collapse" id="error-nav">
+                            <li><a href="403.html"><i class="icon-angle-right"></i> 403</a></li>
+                            <li><a href="404.html"><i class="icon-angle-right"></i> 404</a></li>
+                            <li><a href="405.html"><i class="icon-angle-right"></i> 405</a></li>
+                            <li><a href="500.html"><i class="icon-angle-right"></i> 500</a></li>
+                            <li><a href="503.html"><i class="icon-angle-right"></i> 503</a></li>
+                            <li><a href="offline.html"><i class="icon-angle-right"></i> offline</a></li>
+                            <li><a href="countdown.html"><i class="icon-angle-right"></i> Under Construction</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="grid.html"><i class="icon-columns icon-large"></i> Grid</a></li>
+                    <li><a href="blank.html"><i class="icon-check-empty icon-large"></i> Blank Page</a></li>
+                    <li><a href="login.html"><i class="icon-signin icon-large"></i> Login Page</a></li>
+                </ul>
+                <!-- /#menu -->
+
+            </div>
+            <!-- /#left -->
+
+            <!-- #content -->
+            <div id="content" class="">
+                <!-- .outer -->
+                <div class="container-fluid outer">
+                    <div class="row-fluid">
+                        <!-- .inner -->
+                        <div class="span12 inner">
+                            <!-- BEGIN FILE UPLOAD -->
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+                                        <header class="dark">
+                                            <div class="icons"><i class="icon-cloud-upload"></i></div>
+                                            <h5>File Upload</h5>
+                                        </header>
+                                        <div class="body">
+                                            <form class="form-horizontal">
+                                                <div class="control-group">
+                                                    <label class="control-label">Browser Default</label>
+                                                    <div class="controls"><input type="file" /></div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label">Uniform Style</label>
+                                                    <div class="controls">
+                                                        <input type="file" id="fileUpload"/>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label">Bootstrap Style</label>
+                                                    <div class="controls">
+                                                        <div class="fileupload fileupload-new" data-provides="fileupload">
+                                                            <div class="input-append">
+                                                                <div class="uneditable-input span3">
+                                                                    <i class="icon-file fileupload-exists"></i>
+                                                                    <span class="fileupload-preview"></span>
+                                                                </div>
+                                                                <span class="btn btn-file">
+                                                                    <span class="fileupload-new">Select file</span>
+                                                                    <span class="fileupload-exists">Change</span>
+                                                                    <input type="file" />
+                                                                </span>
+                                                                <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="control-group">
+                                                    <label class="control-label">No Input</label>
+                                                    <div class="controls">
+                                                        <div class="fileupload fileupload-new" data-provides="fileupload">
+                                                            <span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" /></span>
+                                                            <span class="fileupload-preview"></span>
+                                                            <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label">Image Upload</label>
+                                                    <div class="controls">
+                                                        <div class="fileupload fileupload-new" data-provides="fileupload">
+                                                            <div class="fileupload-preview thumbnail" style="width: 200px; height: 150px;"></div>
+                                                            <div>
+                                                                <span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" /></span>
+                                                                <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label">Pre Defined Image</label>
+                                                    <div class="controls">
+                                                        <div class="fileupload fileupload-new" data-provides="fileupload">
+                                                            <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" /></div>
+                                                            <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                                            <div>
+                                                                <span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" /></span>
+                                                                <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="alert alert-warning"><strong>Notice!</strong> Image preview only works in IE10+, FF3.6+, Chrome6.0+ and Opera11.1+. In older browsers and Safari, the filename is shown instead.</div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END FILE UPLOAD -->
+
+                            <!-- BEGIN MULTIPLE FILE UPLOAD -->
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+                                        <header>
+                                            <h5>Multiple Uploader</h5>
+                                        </header>
+                                        <div id="collapse2" class="block">
+                                            <form>
+                                                <div id="uploader"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END MULTIPLE FILE UPLOAD -->
+
+
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+                                        <header>
+                                            <h5>Wizard with Validation</h5>
+                                        </header>
+                                        <div id="div-2" class="body">
+                                            <form id="wizardForm" method="post" action="" class="form-horizontal wizardForm">
+
+                                                <fieldset class="step" id="first">
+                                                    <h6 class="pull-right label label-important">Database Settings</h6>
+
+                                                    <div class="control-group">
+                                                        <label for="server_host" class="control-label">Database Server</label>
+
+                                                        <div class="controls">
+                                                            <input type="text" name="server_host" id="server_host">
+                                                        </div>
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <label for="server_name" class="control-label">Database Name</label>
+
+                                                        <div class="controls">
+                                                            <input type="text" name="server_name" id="server_name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <label for="server_user" class="control-label">Database User</label>
+
+                                                        <div class="controls">
+                                                            <input type="text" name="server_user" id="server_user">
+                                                        </div>
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <label for="server_password" class="control-label">User Password</label>
+
+                                                        <div class="controls">
+                                                            <input type="password" name="server_password" id="server_password">
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+
+                                                <fieldset class="step" id="second">
+                                                    <h6 class="pull-right label label-warning">Table Settings</h6>
+
+                                                    <div class="control-group">
+                                                        <label for="table_prefix" class="control-label">Table Prefix</label>
+
+                                                        <div class="controls">
+                                                            <input type="text" name="table_prefix" id="table_prefix" value="nuro_">
+                                                        </div>
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <label for="table_collation" class="control-label">Table Collation</label>
+
+                                                        <div class="controls">
+                                                            <select name="table_collation" id="table_collation">
+                                                                <option value="">Collation</option>
+                                                                <option value=""></option>
+                                                                <optgroup label="utf8" title="UTF-8 Unicode">
+                                                                    <option value="utf8_bin" title="Unicode (multilingual), Binary">
+                                                                        utf8_bin
+                                                                    </option>
+                                                                    <option value="utf8_czech_ci" title="Czech, case-insensitive">
+                                                                        utf8_czech_ci
+                                                                    </option>
+                                                                    <option value="utf8_danish_ci" title="Danish, case-insensitive">
+                                                                        utf8_danish_ci
+                                                                    </option>
+                                                                    <option value="utf8_esperanto_ci"
+                                                                            title="Esperanto, case-insensitive">utf8_esperanto_ci
+                                                                    </option>
+                                                                    <option value="utf8_estonian_ci"
+                                                                            title="Estonian, case-insensitive">utf8_estonian_ci
+                                                                    </option>
+                                                                    <option value="utf8_general_ci"
+                                                                            title="Unicode (multilingual), case-insensitive">
+                                                                        utf8_general_ci
+                                                                    </option>
+                                                                    <option value="utf8_general_mysql500_ci"
+                                                                            title="Unicode (multilingual)">utf8_general_mysql500_ci
+                                                                    </option>
+                                                                    <option value="utf8_hungarian_ci"
+                                                                            title="Hungarian, case-insensitive">utf8_hungarian_ci
+                                                                    </option>
+                                                                    <option value="utf8_icelandic_ci"
+                                                                            title="Icelandic, case-insensitive">utf8_icelandic_ci
+                                                                    </option>
+                                                                    <option value="utf8_latvian_ci"
+                                                                            title="Latvian, case-insensitive">utf8_latvian_ci
+                                                                    </option>
+                                                                    <option value="utf8_lithuanian_ci"
+                                                                            title="Lithuanian, case-insensitive">utf8_lithuanian_ci
+                                                                    </option>
+                                                                    <option value="utf8_persian_ci"
+                                                                            title="Persian, case-insensitive">utf8_persian_ci
+                                                                    </option>
+                                                                    <option value="utf8_polish_ci" title="Polish, case-insensitive">
+                                                                        utf8_polish_ci
+                                                                    </option>
+                                                                    <option value="utf8_roman_ci"
+                                                                            title="West European, case-insensitive">utf8_roman_ci
+                                                                    </option>
+                                                                    <option value="utf8_romanian_ci"
+                                                                            title="Romanian, case-insensitive">utf8_romanian_ci
+                                                                    </option>
+                                                                    <option value="utf8_sinhala_ci"
+                                                                            title="unknown, case-insensitive">utf8_sinhala_ci
+                                                                    </option>
+                                                                    <option value="utf8_slovak_ci" title="Slovak, case-insensitive">
+                                                                        utf8_slovak_ci
+                                                                    </option>
+                                                                    <option value="utf8_slovenian_ci"
+                                                                            title="Slovenian, case-insensitive">utf8_slovenian_ci
+                                                                    </option>
+                                                                    <option value="utf8_spanish2_ci"
+                                                                            title="Traditional Spanish, case-insensitive">
+                                                                        utf8_spanish2_ci
+                                                                    </option>
+                                                                    <option value="utf8_spanish_ci"
+                                                                            title="Spanish, case-insensitive">utf8_spanish_ci
+                                                                    </option>
+                                                                    <option value="utf8_swedish_ci"
+                                                                            title="Swedish, case-insensitive">utf8_swedish_ci
+                                                                    </option>
+                                                                    <option value="utf8_turkish_ci"
+                                                                            title="Turkish, case-insensitive">utf8_turkish_ci
+                                                                    </option>
+                                                                    <option value="utf8_unicode_ci"
+                                                                            title="Unicode (multilingual), case-insensitive">
+                                                                        utf8_unicode_ci
+                                                                    </option>
+                                                                </optgroup>
+                                                                <optgroup label="utf8mb4" title="UTF-8 Unicode">
+                                                                    <option value="utf8mb4_bin" title="unknown, Binary">
+                                                                        utf8mb4_bin
+                                                                    </option>
+                                                                    <option value="utf8mb4_czech_ci"
+                                                                            title="Czech, case-insensitive">utf8mb4_czech_ci
+                                                                    </option>
+                                                                    <option value="utf8mb4_danish_ci"
+                                                                            title="Danish, case-insensitive">utf8mb4_danish_ci
+                                                                    </option>
+                                                                    <option value="utf8mb4_esperanto_ci"
+                                                                            title="Esperanto, case-insensitive">utf8mb4_esperanto_ci
+                                                                    </option>
+                                                                    <option value="utf8mb4_estonian_ci"
+                                                                            title="Estonian, case-insensitive">utf8mb4_estonian_ci
+                                                                    </option>
+                                                                    <option value="utf8mb4_general_ci"
+                                                                            title="unknown, case-insensitive">utf8mb4_general_ci
+                                                                    </option>
+                                                                    <option value="utf8mb4_hungarian_ci"
+                                                                            title="Hungarian, case-insensitive">utf8mb4_hungarian_ci
+                                                                    </option>
+                                                                    <option value="utf8mb4_icelandic_ci"
+                                                                            title="Icelandic, case-insensitive">utf8mb4_icelandic_ci
+                                                                    </option>
+                                                                    <option value="utf8mb4_latvian_ci"
+                                                                            title="Latvian, case-insensitive">utf8mb4_latvian_ci
+                                                                    </option>
+                                                                    <option value="utf8mb4_lithuanian_ci"
+                                                                            title="Lithuanian, case-insensitive">
+                                                                        utf8mb4_lithuanian_ci
+                                                                    </option>
+                                                                    <option value="utf8mb4_persian_ci"
+                                                                            title="Persian, case-insensitive">utf8mb4_persian_ci
+                                                                    </option>
+                                                                    <option value="utf8mb4_polish_ci"
+                                                                            title="Polish, case-insensitive">utf8mb4_polish_ci
+                                                                    </option>
+                                                                    <option value="utf8mb4_roman_ci"
+                                                                            title="West European, case-insensitive">utf8mb4_roman_ci
+                                                                    </option>
+                                                                    <option value="utf8mb4_romanian_ci"
+                                                                            title="Romanian, case-insensitive">utf8mb4_romanian_ci
+                                                                    </option>
+                                                                    <option value="utf8mb4_sinhala_ci"
+                                                                            title="unknown, case-insensitive">utf8mb4_sinhala_ci
+                                                                    </option>
+                                                                    <option value="utf8mb4_slovak_ci"
+                                                                            title="Slovak, case-insensitive">utf8mb4_slovak_ci
+                                                                    </option>
+                                                                    <option value="utf8mb4_slovenian_ci"
+                                                                            title="Slovenian, case-insensitive">utf8mb4_slovenian_ci
+                                                                    </option>
+                                                                    <option value="utf8mb4_spanish2_ci"
+                                                                            title="Traditional Spanish, case-insensitive">
+                                                                        utf8mb4_spanish2_ci
+                                                                    </option>
+                                                                    <option value="utf8mb4_spanish_ci"
+                                                                            title="Spanish, case-insensitive">utf8mb4_spanish_ci
+                                                                    </option>
+                                                                    <option value="utf8mb4_swedish_ci"
+                                                                            title="Swedish, case-insensitive">utf8mb4_swedish_ci
+                                                                    </option>
+                                                                    <option value="utf8mb4_turkish_ci"
+                                                                            title="Turkish, case-insensitive">utf8mb4_turkish_ci
+                                                                    </option>
+                                                                    <option value="utf8mb4_unicode_ci"
+                                                                            title="Unicode (multilingual), case-insensitive">
+                                                                        utf8mb4_unicode_ci
+                                                                    </option>
+                                                                </optgroup>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+
+                                                <fieldset class="step" id="last">
+                                                    <h6 class="pull-right label label-info">User Settings</h6>
+
+                                                    <div class="control-group">
+                                                        <label for="username" class="control-label">Username</label>
+
+                                                        <div class="controls">
+                                                            <input type="text" name="username" id="username">
+                                                        </div>
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <label for="usermail" class="control-label">E-mail</label>
+
+                                                        <div class="controls">
+                                                            <input type="text" name="usermail" id="usermail">
+                                                        </div>
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <label for="pass" class="control-label">User Password</label>
+
+                                                        <div class="controls">
+                                                            <input type="password" name="pass" id="pass">
+                                                        </div>
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <label for="pass2" class="control-label">Confirm Password</label>
+
+                                                        <div class="controls">
+                                                            <input type="password" name="pass2" id="pass2">
+                                                        </div>
+                                                    </div>
+                                                    <div class="control-group">
+                                                        <div class="controls">
+                                                            <label class="checkbox">
+                                                                <input type="checkbox"> Remember me
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+
+                                                <div class="form-actions">
+                                                    <input class="navigation_button btn" id="back" value="Back" type="reset"/>
+                                                    <input class="navigation_button btn btn-primary" id="next" value="Next"
+                                                           type="submit"/>
+                                                </div>
+                                            </form>
+                                            <div id="data"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.inner -->
+                    </div>
+                    <!-- /.row-fluid -->
+                </div>
+                <!-- /.outer -->
+            </div>
+            <!-- /#content -->
+            <!-- #push do not remove -->
+            <div id="push"></div>
+            <!-- /#push -->
+        </div>
+        <!-- /#wrap -->
+
+        <div class="clearfix"></div>
+        <div id="footer">
+            <p>2013 © Metis Admin</p>
+        </div>
+
+
+        <!-- #helpModal -->
+        <div id="helpModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel"
+             aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="helpModalLabel"><i class="icon-external-link"></i> Help</h3>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                    ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                    anim id est laborum.
+                </p>
+            </div>
+            <div class="modal-footer">
+
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div>
+        </div>
+        <!-- /#helpModal -->
+        <!-- #colorModal -->
+        <div id="colorModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="colorModalLabel"
+             aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="colorModalLabel"><i class="icon-cog"></i> Choose Style</h3>
+            </div>
+            <div class="modal-body">
+                <p class="color-switcher">
+                    <button class="btn btn-large" data-color="default"><i class="icon-magic"></i></button>
+                    <button class="btn btn-large btn-metis-1" data-color="metis-1"><i class="icon-magic"></i></button>
+                    <button class="btn btn-large btn-metis-2" data-color="metis-2"><i class="icon-magic"></i></button>
+                    <button class="btn btn-large btn-metis-3" data-color="metis-3"><i class="icon-magic"></i></button>
+                    <button class="btn btn-large btn-metis-4" data-color="metis-4"><i class="icon-magic"></i></button>
+                    <button class="btn btn-large btn-metis-5" data-color="metis-5"><i class="icon-magic"></i></button>
+                    <button class="btn btn-large btn-metis-6" data-color="metis-6"><i class="icon-magic"></i></button>
+                </p>
+                <hr>
+                <p class="pattern-switcher">
+                    <a href="javascript:void(0)" class="p1" title="pattern 1"></a>
+                    <a href="javascript:void(0)" class="p2" title="pattern 2"></a>
+                    <a href="javascript:void(0)" class="p3" title="pattern 3"></a>
+                    <a href="javascript:void(0)" class="p4" title="pattern 4"></a>
+                    <a href="javascript:void(0)" class="p5" title="pattern 5"></a>
+                    <a href="javascript:void(0)" class="p6" title="pattern 6"></a>
+                    <a href="javascript:void(0)" class="p7" title="pattern 7"></a>
+                    <a href="javascript:void(0)" class="p8" title="pattern 8"></a>
+                    <a href="javascript:void(0)" class="p9" title="pattern 9"></a>
+                    <a href="javascript:void(0)" class="p10" title="pattern 10"></a>
+                    <a href="javascript:void(0)" class="p11" title="pattern 11"></a>
+                    <a href="javascript:void(0)" class="p12" title="pattern 12"></a>
+                    <a href="javascript:void(0)" class="p13" title="pattern 13"></a>
+                    <a href="javascript:void(0)" class="p14" title="pattern 14"></a>
+                    <a href="javascript:void(0)" class="p15" title="pattern 15"></a>
+                    <a href="javascript:void(0)" class="p16" title="pattern 16"></a>
+                    <a href="javascript:void(0)" class="p17" title="pattern 17"></a>
+                    <a href="javascript:void(0)" class="p18" title="pattern 18"></a>
+                    <a href="javascript:void(0)" class="p19" title="pattern 19"></a>
+                    <a href="javascript:void(0)" class="p20" title="pattern 20"></a>
+                    <a href="javascript:void(0)" class="p21" title="pattern 21"></a>
+                    <a href="javascript:void(0)" class="p22" title="pattern 22"></a>
+                    <a href="javascript:void(0)" class="p23" title="pattern 23"></a>
+                    <a href="javascript:void(0)" class="p24" title="pattern 24"></a>
+                    <a href="javascript:void(0)" class="p25" title="pattern 25"></a>
+                    <a href="javascript:void(0)" class="p26" title="pattern 26"></a>
+                    <a href="javascript:void(0)" class="p27" title="pattern 27"></a>
+                    <a href="javascript:void(0)" class="p28" title="pattern 28"></a>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div>
+        </div>
+        <!-- /#colorModal -->
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
+
+        <script src="assets/js/vendor/jquery-migrate-1.0.0.js"></script>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
+        <script>window.jQuery.ui || document.write('<script src="assets/js/vendor/jquery-ui-1.10.0.custom.min.js"><\/script>')</script>
+
+
+        <script src="assets/js/vendor/bootstrap.min.js"></script>
+
+        <script type="text/javascript" src="assets/js/lib/bootstrap-progressbar.min.js"></script>
+        <script src="assets/js/lib/jquery.tablesorter.min.js"></script>
+        <script type="text/javascript" src="assets/js/lib/jquery.mousewheel.js"></script>
+        <script type="text/javascript" src="assets/js/lib/jquery.nicescroll.min.js"></script>
+        <script type="text/javascript" src="assets/js/lib/prettify.js"></script>
+        <script type="text/javascript" src="assets/js/lib/jquery.sparkline.min.js"></script>
+        <script type="text/javascript" src="assets/js/lib/jquery.form.js"></script>
+        <script type="text/javascript" src="assets/js/lib/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="assets/js/lib/jquery.form.wizard-min.js"></script>
+        <script type="text/javascript" src="assets/js/lib/plupload.js"></script>
+        <script type="text/javascript" src="assets/js/lib/plupload.html5.js"></script>
+        <script type="text/javascript" src="assets/js/lib/plupload.html4.js"></script>
+        <script type="text/javascript" src="assets/js/lib/jquery.plupload.queue.js"></script>
+        <script type="text/javascript" src="assets/js/lib/jquery.gritter.min.js"></script>
+        <script type="text/javascript" src="assets/js/lib/jquery.uniform.min.js"></script>
+        <script type="text/javascript" src="assets/js/lib/jasny-bootstrap.min.js"></script>
+
+        <script type="text/javascript" src="assets/js/main.js"></script>
+
+        <script type="text/javascript">
+            $(function() {
+                formWizard();
+            });
+        </script>
+
+    </body>
+</html>

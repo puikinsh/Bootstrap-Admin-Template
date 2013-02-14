@@ -1,0 +1,123 @@
+.head .search-bar, #left, #right {
+  width:20%;
+}
+.head .main-bar, #content {width:80%; float: right; margin-left: 0;}
+#right {
+	background-color: transparent;
+	color:#fff;
+	> .container-fluid { padding: 10px;}
+}
+.side-right {
+  .head .main-bar, #content {
+    float: left;
+    margin-right: 0;
+  }
+  .head .search-bar, #left {
+     float: right;
+   }
+  #right {
+      float: right;
+    }
+}
+
+.mini-sidebar{
+  #content {
+    float: none;
+    width: auto;
+  }
+  #right {
+     display: none;
+   }
+}
+.hide-sidebar {
+  #content {
+    float: none;
+    width: 100% !important;
+  }
+  #right {
+     display: none;
+   }
+}
+
+.side-right.mini-sidebar #content {float: none; width: auto;}
+@media screen and (max-width: 767px) {
+  .head .search-bar,
+  .head .main-bar,
+  #left,
+    #content {
+        float: none;
+        width: 100%;
+        margin: 0;
+    }
+    #right {display: none;}
+}
+@media (min-width: 768px) and (max-width: 979px) {
+  .head .main-bar {
+    float: none;
+    width: 100%;
+  }
+    #left {width:100px;}
+    #right {width:0%; display:none;}
+    #content {
+        float: inherit;
+        margin-left: 100px;
+        width: auto;
+    }
+    .side-right #content {
+        float: none;
+        width: auto;
+        margin-right: 100px;
+    }
+}
+
+@iterations1: 980;
+
+// helper class, will never show up in resulting css
+// will be called as long the index is above 0
+.loopingClass1 (@index1) when (@index1 < 1280) {
+
+	@media (min-width: unit(@index1,px)) and (max-width: unit(@index1+99,px)) {
+      .head .search-bar, #left {width:percentage(220 /@index1);}
+      .head .main-bar, #content {width: 100-percentage(220 /@index1);margin-right: 0;}
+            #right {width:percentage(220 /@index1); }
+            .side-right #content {float: left;}
+
+        }
+
+	// next iteration
+	.loopingClass1(@index1 + 100);
+}
+
+// end the loop when index is 0
+.loopingClass1 (0) {}
+
+// "call" the loopingClass the first time with highest value
+.loopingClass1 (@iterations1);
+
+
+
+
+@iterations: 1280;
+
+// helper class, will never show up in resulting css
+// will be called as long the index is above 0
+.loopingClass (@index) when (@index < 3000) {
+
+	@media (min-width: unit(@index,px)) and (max-width: unit(@index+99,px)) {
+      .head .search-bar, #left {width:percentage(220 /@index);}
+      .head .main-bar{float: left; width: 100-percentage(220 /@index);}
+      #content {float: left; width: 100-percentage(2*220 /@index);}
+            #right {width:percentage(220 /@index); float: left; }
+            .side-right #content {float: left; width: 100-percentage(220 /@index); margin-right: 0;}
+            
+        }
+
+	// next iteration
+	.loopingClass(@index + 100);
+}
+
+// end the loop when index is 0
+.loopingClass (0) {}
+
+// "call" the loopingClass the first time with highest value
+.loopingClass (@iterations);

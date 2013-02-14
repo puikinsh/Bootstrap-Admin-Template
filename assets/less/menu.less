@@ -1,0 +1,94 @@
+
+
+#menu {
+  line-height: 1;
+  & li ul {
+    background: #fff;
+    li a {
+      border-top: 1px solid #EFEFF0 !important;
+      color: #888888;
+      display: block;
+      padding: 8px 10px;
+      position: relative;
+      text-decoration: none;
+      font-size: 11px;
+      &:hover {
+        color: #777;
+      }
+    }
+  }
+  &, & ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  & li, & ul li {
+    display: block;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+  &, & > li, & > li > a {
+    border: 0 none;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+  }
+  & > li > a {
+    border-bottom: 1px solid #252525;
+    .box-shadow(~"0 0 0 #999999, 0 1px 0 #666666 inset");
+    #gradient > .vertical(@startColor: #555, @endColor: #333);
+    color: #FFFFFF;
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 10px;
+    position: relative;
+    text-decoration: none;
+    text-shadow: 0 1px 1px #000000;
+
+    .lt-ie8 & > .label {
+      float: none;
+      position: absolute;
+      right: 2px;
+      top:10px;
+    }
+  }
+
+  & > li > a:hover, & > li.hover > a, & > li.active > a {
+    #gradient > .vertical(@startColor: #FF0080, @endColor: #800000);
+    .box-shadow(0 1px 0 0 #9a004d inset);
+    .transition(height 0.4s ease-out 0s);
+  }
+  .mini-sidebar & {
+    > li > a {
+      text-align: center;
+      & > i {
+        display: block;
+        font-size: 20px;
+        width: auto;
+      }
+    }
+    .label {
+      position: absolute;
+      right: 2px;
+      top: 2px;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 979px) {
+    > li > a {
+      text-align: center;
+      > i {
+        display: block;
+        font-size: 20px;
+        width: auto;
+      }
+    }
+    .label {
+      position: absolute;
+      right: 2px;
+      top: 2px;
+    }
+  }
+}

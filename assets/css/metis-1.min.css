@@ -1,0 +1,34 @@
+.dropdown-menu li > a:hover,
+.dropdown-menu li > a:focus,
+.dropdown-submenu:hover > a {
+  background-color: #a20051;
+  background-image: -moz-linear-gradient(top, #c60063, #6b0035);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#c60063), to(#6b0035));
+  background-image: -webkit-linear-gradient(top, #c60063, #6b0035);
+  background-image: -o-linear-gradient(top, #c60063, #6b0035);
+  background-image: linear-gradient(to bottom, #c60063, #6b0035);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc60063', endColorstr='#ff6b0035', GradientType=0);
+}
+ul#menu > li > a:hover,
+ul#menu > li:hover > a,
+ul#menu > li.active > a {
+  background-color: #a20051;
+  background-image: -moz-linear-gradient(top, #c60063, #6b0035);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#c60063), to(#6b0035));
+  background-image: -webkit-linear-gradient(top, #c60063, #6b0035);
+  background-image: -o-linear-gradient(top, #c60063, #6b0035);
+  background-image: linear-gradient(to bottom, #c60063, #6b0035);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc60063', endColorstr='#ff6b0035', GradientType=0);
+  -webkit-box-shadow: 0 1px 0 0 #a20051 inset;
+  -moz-box-shadow: 0 1px 0 0 #a20051 inset;
+  box-shadow: 0 1px 0 0 #a20051 inset;
+  -webkit-transition: height 0.4s ease-out 0s;
+  -moz-transition: height 0.4s ease-out 0s;
+  -o-transition: height 0.4s ease-out 0s;
+  transition: height 0.4s ease-out 0s;
+}
+#top > .navbar {
+  border-top: 3px solid #a20051;
+}

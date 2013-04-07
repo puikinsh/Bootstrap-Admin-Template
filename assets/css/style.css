@@ -39,8 +39,9 @@ body {
 /* -------- END Sticky footer styles ------------------ *//*********************************************************/
 /*                 Template Layout                       */
 /*********************************************************/
-body {
-  background: url("../img/pattern/p28.png");
+body.padTop44 {
+  padding-top: 44px;
+  overflow: visible;
 }
 /* BEGIN TOP bar */
 #top > .navbar {
@@ -336,7 +337,7 @@ body.fixed .pattern-switcher {
 /*********************************************************/
 /* Wrapper styles ------------------------------------*/
 #wrap {
-  background: url("../img/pattern/p2.png") repeat #444444;
+  background: url("../img/pattern/green-fibers.png") repeat #444444;
   *zoom: 1;
 }
 #wrap:before,
@@ -351,14 +352,8 @@ body.fixed .pattern-switcher {
 /* --------------- TOP BAR STYLES -------------------- */
 #top > .navbar {
   border-top: 3px solid #CD0067;
-  background-color: rgba(0, 0, 0, 0.6);
-  background-image: url("../img/bg.png");
-  background-repeat: repeat;
 }
-#top > .navbar > .navbar-inner {
-  background-color: transparent;
-  background-image: none;
-}
+
 /* --------------- HEADER.head STYLES -------------------- */
 .head {
   background-color: #444444;

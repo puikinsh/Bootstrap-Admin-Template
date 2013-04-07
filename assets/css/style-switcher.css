@@ -21,6 +21,7 @@ body {
   border-color: #121212;
   border-width: 0 0 1px;
   box-shadow: 0 1px #2A2A2A;
+  margin: 10px 0;
 }
 .style-switcher h5 {
   background-color: #333;
@@ -123,4 +124,20 @@ body {
   cursor: text;
   width: 520px;
   resize: none;
+}
+
+#sidebarPos {
+  display: none;
+}
+.side-right #sidebarPos {
+  display:block;
+}
+#sidebarWidth {
+  display: none;
+}
+.mini-sidebar #sidebarWidth {
+  display:block;
+}
+.hide-sidebar .sidebarOpt, .hide-sidebar .sidebarWidth, .hide-sidebar #sidebarPos{
+  display: none;
 }

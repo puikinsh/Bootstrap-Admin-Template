@@ -1,0 +1,29 @@
+@import "mixins";
+
+@baseColor :red;
+
+.mixin (@a) when (lightness(@a) >= 50%) {
+	#gradient > .horizontal(@a, darken(@a,15%));
+}
+.mixin (@a) when (lightness(@a) < 50%) {
+  #gradient > .horizontal(@a, lighten(@a,15%));
+}
+
+.dropdown-menu li > a:hover,
+.dropdown-menu li > a:focus,
+.dropdown-submenu:hover > a,
+ul#menu > li > a:hover,
+ul#menu > li:hover > a,
+ul#menu > li.active > a {
+	//.mixin(@baseColor);
+	#gradient > .striped(@baseColor, 45deg); 
+}
+ul#menu > li > a:hover,
+ul#menu > li:hover > a,
+ul#menu > li.active > a {
+	.box-shadow(0 1px 0 0 @baseColor inset);
+	.transition(height 0.4s ease-out 0s);
+}
+#top > .navbar {
+  border-top: 3px solid @baseColor;
+}

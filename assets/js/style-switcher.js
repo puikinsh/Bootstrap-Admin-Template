@@ -1,0 +1,359 @@
+/*
+ Name    : style-switcher.js
+ Author  : ono <http://onokumus.com />
+ Version : 1.0
+ */
+
+// Load lesscss files
+yepnope.addPrefix('less', function(resourceObj) {
+    resourceObj.forceCSS = true;
+    resourceObj.attrs = {
+        'rel': 'stylesheet/less',
+        'type': 'text/css'
+    };
+    return resourceObj;
+});
+var styleSwitcher = {
+    init: function() {
+        var $this = this;
+        less = {env: "development"};
+
+        // Style Switcher CSS
+        yepnope([
+            {load: 'assets/css/style-switcher.css'},
+            {load: 'assets/css/colorpicker.css'},
+            {load: 'assets/js/cssbeautify.js'},
+            {load: 'assets/js/bootstrap-colorpicker.js',
+                complete: function() {
+                    yepnope([
+                        {load: 'less!assets/less/theme.less'},
+                        {load: 'assets/js/less-1.3.3.min.js',
+                            complete: function() {
+
+
+                                $this.build();
+
+                                if (Modernizr.localstorage) {
+                                    if (localStorage.color) {
+                                        $this.colorSelectorA.css('background-color', localStorage.color);
+                                    }
+                                    if (localStorage.pattern) {
+                                        $this.patternImage = localStorage.pattern;
+                                    }
+                                }
+                            }
+                        }
+                    ]);
+
+                }
+            }
+        ]);
+
+    },
+    build: function() {
+        var $this = this;
+        var localStor = false;
+        if (Modernizr.localstorage) {
+            localStor = true;
+        }
+
+        if (Modernizr.localstorage) {
+            if (localStorage.layout) {
+                $('body').addClass(localStorage.layout);
+            }
+            if (localStorage.color) {
+                $this.setColor(localStorage.color);
+            }
+            if (localStorage.pattern) {
+                $('body').css({
+                    'background': 'url(assets/img/pattern/' + localStorage.pattern + '.png) repeat'
+                });
+            }
+        }
+
+        var modalHTML = '<div id="getCSSModal" class="modal hide fade">'
+                + '<div class="modal-header">'
+                + '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'
+                + '<h3>Theme CSS</h3>'
+                + '</div>'
+                + '<div class="modal-body">'
+                + '<div id="boxedBodyAlert" class="alert alert-info">'
+                + 'Please add the <strong>"fixed"</strong> class to the &lt;body&gt; element.</div>'
+                + '<textarea name="cssbeautify" id="cssbeautify" readonly></textarea></div>'
+                + '<div class="modal-footer">'
+                + '<button aria-hidden="true" data-dismiss="modal" class="btn">Close</button>'
+                + '</div></div>';
+
+
+        $("body").append(modalHTML);
+
+        var switchDiv = $('<div />').attr('id', 'style-switcher').addClass('style-switcher hidden-phone');
+
+        var h5Ai = $('<i />').addClass('icon-cogs icon-2x');
+        var h5A = $('<a />')
+                .attr({
+            'href': '#',
+            'id': 'switcher-link'
+        })
+                .on('click', function(e) {
+            e.preventDefault();
+            switchDiv.toggleClass('open');
+        })
+                .append(h5Ai);
+
+        var h5 = $('<h5 />').html('Style Switcher').append(h5A);
+
+
+        var colorList = $('<ul />').addClass('options').attr('data-type', 'colors');
+        var colors = [
+            {"Hex": "#0088CC", "colorName": "Blue"},
+            {"Hex": "#4EB25C", "colorName": "Green"},
+            {"Hex": "#4A5B7D", "colorName": "Navy"},
+            {"Hex": "#E05048", "colorName": "Red"},
+            {"Hex": "#B8A279", "colorName": "Beige"},
+            {"Hex": "#c71c77", "colorName": "Pink"},
+            {"Hex": "#734BA9", "colorName": "Purple"},
+            {"Hex": "#2BAAB1", "colorName": "Cyan"}
+        ];
+        $.each(colors, function(i) {
+            var listElement = $('<li/>')
+                    .append(
+                    $('<a/>')
+                    .css("background-color", colors[i].Hex)
+                    .attr({
+                "data-color-hex": colors[i].Hex,
+                "data-color-name": colors[i].colorName,
+                "href": "#",
+                "title": colors[i].colorName
+            }).tooltip({'placement': 'bottom'})
+                    );
+            colorList.append(listElement);
+        });
+
+
+        colorList.find('a').on('click', function(e) {
+            e.preventDefault();
+            $this.setColor($(this).data('colorHex'));
+
+            if (localStor) {
+                localStorage.color = $(this).data('colorHex');
+            }
+        });
+        var colorSelector = $('<div/>')
+                .addClass('color-picker')
+                .attr({
+            'id': 'colorSelector',
+            'data-color': colors[0].Hex,
+            'data-color-format': 'hex'
+        })
+                .append(
+                $('<a/>')
+                .css('background-color', colors[0].Hex)
+                .attr({
+            'href': '#',
+            'id': 'colorSelectorA'
+        }),
+        $("<span />")
+                .addClass("color-picker-icon")
+                );
+
+        colorSelector.colorpicker().on('changeColor', function(ev) {
+            colorSelector.find("a").css("background-color", ev.color.toHex());
+            $this.setColor(ev.color.toHex());
+            if (localStor) {
+                localStorage.color = $(this).data('colorHex');
+            }
+        });
+
+
+        var colorPicker = $('<li/>').append(colorSelector);
+
+        colorList.append(colorPicker);
+
+        var styleSwitcherWrap = $('<div />')
+                .addClass('style-switcher-wrap')
+                .append(
+                $('<h6 />').html('Colors'), colorList, $('<hr/>')
+                );
+
+        var boxLink = $('<a/>')
+                .attr({
+            'id': 'boxLink',
+            'href': '#',
+            'data-layout-type': 'fixed'
+        })
+                .html('Fixed')
+                .on('click', function(e) {
+            e.preventDefault();
+            $(this).addClass('active').siblings('a').removeClass('active');
+            $('body').removeClass('wide').addClass('fixed');
+            if (localStor) {
+                localStorage.layout = 'fixed';
+            }
+        });
+
+        var wideLink = $('<a/>')
+                .attr({
+            'href': '#',
+            'id': 'wideLink',
+            'data-layout-type': 'wide'
+        })
+                .html('Wide')
+                .on('click', function(e) {
+            e.preventDefault();
+            $(this).addClass('active').siblings('a').removeClass('active');
+            $('body').removeClass('fixed').addClass('wide').removeAttr('style');
+            if (localStor) {
+                localStorage.layout = 'wide';
+            }
+        });
+        if (localStor) {
+            if (localStorage.layout === 'fixed') {
+                boxLink.addClass('active');
+            } else {
+                wideLink.addClass('active');
+            }
+        }
+        styleSwitcherWrap.append(
+                $('<div/>').addClass('options-link').append(
+                $('<h6/>').html('Layout Style'),
+                boxLink,
+                wideLink
+                ),
+                $('<hr/>')
+                );
+
+        var patternList = $('<ul />').addClass('options').attr('data-type', 'pattern');
+
+        var patternImages = [
+            {'image': 'brillant', 'title': 'Brillant'},
+            {'image': 'always_grey', 'title': 'Always Grey'},
+            {'image': 'retina_wood', 'title': 'Retina Wood'},
+            {'image': 'low_contrast_linen', 'title': 'Low Constrat Linen'},
+            {'image': 'egg_shell', 'title': 'Egg Shel'},
+            {'image': 'cartographer', 'title': 'Cartographer'},
+            {'image': 'batthern', 'title': 'Batthern'},
+            {'image': 'noisy_grid', 'title': 'Noisy Grid'},
+            {'image': 'diamond_upholstery', 'title': 'Diamond Upholstery'},
+            {'image': 'greyfloral', 'title': 'Gray Floral'},
+            {'image': 'white_tiles', 'title': 'White Tiles'},
+            {'image': 'gplaypattern', 'title': 'GPlay'},
+            {'image': 'arches', 'title': 'Arches'},
+            {'image': 'purty_wood', 'title': 'Purty Wood'},
+            {'image': 'diagonal_striped_brick', 'title': 'Diagonal Striped Brick'},
+            {'image': 'large_leather', 'title': 'Large Leather'},
+            {'image': 'bo_play_pattern', 'title': 'BO Play'},
+            {'image': 'irongrip', 'title': 'Iron Grip'},
+            {'image': 'wood_1', 'title': 'Dark Wood'},
+            {'image': 'pool_table', 'title': 'Pool Table'},
+            {'image': 'crissXcross', 'title': 'crissXcross'},
+            {'image': 'rip_jobs', 'title': 'R.I.P Steve Jobs'},
+            {'image': 'random_grey_variations', 'title': 'Random Grey Variations'},
+            {'image': 'carbon_fibre', 'title': 'Carbon Fibre'},
+        ];
+
+        $.each(patternImages, function(i) {
+            var listElement = $('<li/>')
+                    .append(
+                    $('<a/>')
+                    .css({
+                'background': 'url(assets/img/pattern/' + patternImages[i].image + '.png) repeat'
+            })
+                    .attr({
+                'href': '#',
+                'title': patternImages[i].title,
+                'data-pattern-image': patternImages[i].image
+            }).tooltip({'placement': 'bottom'})
+                    );
+            patternList.append(listElement);
+        });
+
+        patternList.find('a').on('click', function(e) {
+            e.preventDefault();
+            $('body').css({
+                'background-image': 'url(assets/img/pattern/' + $(this).data('patternImage') + '.png)',
+                'background-repeat': ' repeat'
+            });
+            $this.patternImage = $(this).data('patternImage');
+            if (localStor) {
+                localStorage.pattern = $(this).data('patternImage');
+            }
+        });
+
+        styleSwitcherWrap.append(
+                $('<div/>').addClass('pattern').append(
+                $('<h6/>').html('Background Pattern'),
+                patternList,
+                $('<hr/>')
+                )
+                );
+
+        var resetLink = $('<a/>')
+                .html('Reset')
+                .attr('href', '#')
+                .on('click', function(e) {
+            e.preventDefault();
+            $this.reset();
+        });
+
+        var cssLink = $('<a/>')
+                .html('Get CSS')
+                .attr('href', '#').on('click', function(e) {
+            e.preventDefault();
+            $this.getCss();
+        });
+
+        styleSwitcherWrap.append(
+                $('<div/>').addClass('options-link').append(
+                resetLink,
+                cssLink
+                )
+                );
+
+        switchDiv.append(h5, styleSwitcherWrap);
+        $('body').append(switchDiv);
+
+        $this.colorSelectorA = $('#colorSelectorA');
+    },
+    setColor: function(color) {
+        $('#colorSelector').data('color', color);
+        $('#colorSelectorA').css('background-color', color);
+        less.modifyVars({'@baseColor': color});
+        if (Modernizr.localstorage) {
+            localStorage.color = color;
+        }
+    },
+    reset: function() {
+        if (Modernizr.localstorage) {
+            localStorage.removeItem('color');
+            localStorage.removeItem('layout');
+            localStorage.removeItem('pattern');
+        }
+        $('#wideLink').click();
+        window.location.reload();
+        return false;
+    },
+    getCss: function() {
+        var $this = this;
+        var raw = "", options;
+        var isBoxed = $('body').hasClass('fixed');
+
+        var cssBeautify = $('#cssbeautify');
+        if (isBoxed) {
+            raw = 'body { background-image: url("../img/pattern/' + $this.patternImage + '.png"); }';
+            $('#boxedBodyAlert').removeClass('hide');
+        } else {
+            $('#boxedBodyAlert').addClass('hide');
+        }
+        cssBeautify.text("");
+        raw = raw + $('style[id^="less:"]').text();
+        options = {
+            indent: "\t",
+            autosemicolon: true
+        };
+        cssBeautify.text(cssbeautify(raw, options));
+        $("#getCSSModal").modal("show");
+    }
+};
+
+styleSwitcher.init();

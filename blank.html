@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--><html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>       <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>          <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>          <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -91,51 +91,34 @@
             </div>
             <!-- /#top -->
             <!-- .head -->
-            <header class="head clearfix">
+            <header class="head">
                 <div class="search-bar">
-                    <a id="menu-toggle" href="#menu" data-toggle="collapse"
-                       class="accordion-toggle btn btn-inverse visible-phone" rel="tooltip" data-placement="bottom"
-                       data-original-title="Show/Hide Menu">
-                        <i class="icon-sort"></i>
-                    </a>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="search-bar-inner">
+                                <a id="menu-toggle" href="#menu" data-toggle="collapse"
+                                   class="accordion-toggle btn btn-inverse visible-phone"
+                                   rel="tooltip" data-placement="bottom" data-original-title="Show/Hide Menu">
+                                    <i class="icon-sort"></i>
+                                </a>
 
-                    <form class="main-search">
-                        <div class="input-append">
-                            <input type="text" autocomplete="off" name="" placeholder="Live search...">
-                            <button type="submit" class="btn btn-inverse btn-mini"><i class="icon-search"></i></button>
+                                <form class="main-search">
+                                    <input class="input-block-level" type="text" placeholder="Live search...">
+                                    <button id="searchBtn" type="submit" class="btn btn-inverse"><i class="icon-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+
                         </div>
-                    </form>
+                    </div>
                 </div>
                 <!-- ."main-bar -->
                 <div class="main-bar">
                     <div class="container-fluid">
                         <div class="row-fluid">
-                            <div class="span8">
+                            <div class="span12">
                                 <h3><i class="icon-check-empty"></i> Blank Page</h3>
                             </div>
-                            <div class="span4 hidden-phone">
-                                <!-- .sidebar-ctrl -->
-                                <div class="sidebar-ctrl">
-                                    <a class="btn btn-metis-4" id="sidebar-change" rel="tooltip" data-placement="bottom"
-                                       data-original-title="Change Sidebar Position">
-                                        <i class="icon-double-angle-right icon-large"></i>
-                                    </a>
-                                    <a class="btn btn-metis-3 hidden-phone hidden-tablet" id="mini-sidebar" rel="tooltip"
-                                       data-placement="bottom" data-original-title="Minimize/Maximize Sidebar">
-                                        <i class="icon-zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-metis-1" id="hide-sidebar" rel="tooltip" data-placement="bottom"
-                                       data-original-title="Show/Hide Sidebar" data-toggle="button">
-                                        <i class="icon-fullscreen"></i>
-                                    </a>
-                                    <a href="#colorModal" class="btn btn-metis-2" id="switch-color" rel="tooltip"
-                                       data-placement="bottom" data-original-title="Choose Style" data-toggle="modal">
-                                        <i class="icon-cogs"></i>
-                                    </a>
-                                </div>
-                                <!-- /.sidebar-ctrl -->
-                            </div>
-                            <!-- /.span4.hidden-phone -->
                         </div>
                         <!-- /.row-fluid -->
                     </div>
@@ -273,54 +256,19 @@
             </div>
         </div>
         <!-- /#helpModal -->
-        <!-- #colorModal -->
-        <div id="colorModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="colorModalLabel"
-             aria-hidden="true">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="colorModalLabel"><i class="icon-cog"></i> Choose Style</h3>
-            </div>
-            <div class="modal-body">
-                <p class="color-switcher">
-                    <a href="javascript:void(0)" class="btn btn-large" rel="default"><i class="icon-magic"></i></a>
-                    <a href="javascript:void(0)" class="btn btn-large btn-metis-1" rel="color1"><i class="icon-magic"></i></a>
-                    <a href="javascript:void(0)" class="btn btn-large btn-metis-2" rel="color2"><i class="icon-magic"></i></a>
-                    <a href="javascript:void(0)" class="btn btn-large btn-metis-3" rel="color3"><i class="icon-magic"></i></a>
-                    <a href="javascript:void(0)" class="btn btn-large btn-metis-4" rel="color4"><i class="icon-magic"></i></a>
-                    <a href="javascript:void(0)" class="btn btn-large btn-metis-5" rel="color5"><i class="icon-magic"></i></a>
-                    <a href="javascript:void(0)" class="btn btn-large btn-metis-6" rel="color6"><i class="icon-magic"></i></a>
-                </p>
-                <hr>
-                <p class="pattern-switcher">
-                    <a href="javascript:void(0)" class="p1" title="pattern 1"></a>
-                    <a href="javascript:void(0)" class="p2" title="pattern 2"></a>
-                    <a href="javascript:void(0)" class="p3" title="pattern 3"></a>
-                    <a href="javascript:void(0)" class="p4" title="pattern 4"></a>
-                    <a href="javascript:void(0)" class="p5" title="pattern 5"></a>
-                    <a href="javascript:void(0)" class="p6" title="pattern 6"></a>
-                    <a href="javascript:void(0)" class="p7" title="pattern 7"></a>
-                    <a href="javascript:void(0)" class="p8" title="pattern 8"></a>
-                    <a href="javascript:void(0)" class="p9" title="pattern 9"></a>
-                    <a href="javascript:void(0)" class="p10" title="pattern 10"></a>
-                    <a href="javascript:void(0)" class="p11" title="pattern 11"></a>
-                    <a href="javascript:void(0)" class="p12" title="pattern 12"></a>
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            </div>
-        </div>
-        <!-- /#colorModal -->
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 
-        <script src="assets/js/vendor/jquery-migrate-1.0.0.js"></script>
+        <script src="assets/js/vendor/jquery-migrate-1.1.1.min.js"></script>
         
         <script type="text/javascript" src="assets/js/vendor/bootstrap.min.js"></script>
         
         <script src="assets/js/lib/jquery.tablesorter.min.js"></script>
         
         <script type="text/javascript" src="assets/js/main.js"></script>
+        
+        
+        <script type="text/javascript" src="assets/js/style-switcher.js"></script>
     </body>
 </html>

@@ -10,7 +10,6 @@ Website: http://www.hemno.com
 html,
 body {
   height: 100%;
-  overflow: auto;
   /* The html and body elements cannot have any padding or margin. */
 
 }

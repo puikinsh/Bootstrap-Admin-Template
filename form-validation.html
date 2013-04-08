@@ -14,8 +14,10 @@
         <link type="text/css" rel="stylesheet" href="assets/css/font-awesome.min.css"/>
         <link type="text/css" rel="stylesheet" href="assets/css/style.css"/>
         <link type="text/css" rel="stylesheet" href="assets/css/prettify.css"/>
-        <link id="active-color" type="text/css" rel="stylesheet" href="assets/css/default.min.css"/>
         <link type="text/css" rel="stylesheet" href="assets/css/validationEngine.jquery.css"/>
+        
+        <link rel="stylesheet" href="assets/css/theme.css">
+        
         <script type="text/javascript" src="assets/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
@@ -41,12 +43,20 @@
                             <a class="brand" href="index.html">Metis</a> <!-- .topnav -->
                             <div class="btn-toolbar topnav">
                                 <div class="btn-group">
+                                    <a id="changeSidebarPos" class="btn btn-success" rel="tooltip"
+                                    data-original-title="Show / Hide Sidebar" data-placement="bottom">
+                                        <i class="icon-resize-horizontal"></i>
+                                    </a>
+                                </div>
+                                <div class="btn-group">
                                     <a class="btn btn-inverse" rel="tooltip" data-original-title="E-mail" data-placement="bottom">
                                         <i class="icon-envelope"></i>
+                                        <span class="label label-warning">5</span>
                                     </a>
                                     <a class="btn btn-inverse" rel="tooltip" href="#" data-original-title="Messages"
                                        data-placement="bottom">
                                         <i class="icon-comments"></i>
+                                        <span class="label label-important">4</span>
                                     </a>
                                 </div>
                                 <div class="btn-group">
@@ -231,7 +241,7 @@
                                                         <div class="btn-group">
                                                             <a class="accordion-toggle btn btn-mini minimize-box" data-toggle="collapse"
                                                                href="#collapse2">
-                                                                <i class="icon-plus"></i>
+                                                                <i class="icon-chevron-up"></i>
                                                             </a>
                                                             <button class="btn btn-mini btn-danger close-box"><i class="icon-remove"></i></button>
                                                         </div>
@@ -240,7 +250,7 @@
                                             </div>
 
                                         </header>
-                                        <div id="collapse2" class="body collapse">
+                                        <div id="collapse2" class="body collapse in">
                                             <form class="form-horizontal" id="popup-validation">
                                                 <div class="control-group">
                                                     <label class="control-label">Required</label>
@@ -388,7 +398,7 @@
                                                         <div class="btn-group">
                                                             <a class="accordion-toggle btn btn-mini minimize-box" data-toggle="collapse"
                                                                href="#collapseOne">
-                                                                <i class="icon-plus"></i>
+                                                                <i class="icon-chevron-up"></i>
                                                             </a>
                                                             <button class="btn btn-mini btn-danger close-box">
                                                                 <i class="icon-remove"></i>
@@ -399,7 +409,7 @@
                                             </div>
 
                                         </header>
-                                        <div id="collapseOne" class="accordion-body collapse body">
+                                        <div id="collapseOne" class="accordion-body collapse in body">
                                             <form action="#" class="form-horizontal" id="block-validate">
                                                 <div class="control-group">
                                                     <label class="control-label">Required</label>
@@ -487,7 +497,7 @@
                                                         <div class="btn-group">
                                                             <a class="accordion-toggle btn btn-mini minimize-box" data-toggle="collapse"
                                                                href="#collapse3">
-                                                                <i class="icon-plus"></i>
+                                                                <i class="icon-chevron-up"></i>
                                                             </a>
                                                             <button class="btn btn-mini btn-danger close-box"><i class="icon-remove"></i></button>
                                                         </div>
@@ -496,7 +506,7 @@
                                             </div>
 
                                         </header>
-                                        <div id="collapse3" class="accordion-body collapse body">
+                                        <div id="collapse3" class="accordion-body collapse in body">
                                             <form action="#" class="form-horizontal" id="inline-validate">
                                                 <div class="control-group">
                                                     <label class="control-label">Required</label>

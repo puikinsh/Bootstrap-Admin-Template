@@ -75,7 +75,7 @@ var styleSwitcher = {
                 + '<div class="modal-header">'
                 + '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'
                 + '<h3>Theme CSS</h3>'
-                + '</div>'
+                + '<p>Copy textarea content and paste into theme.css</p></div>'
                 + '<div class="modal-body">'
                 + '<div id="boxedBodyAlert" class="alert alert-info">'
                 + 'Please add the <strong>"fixed"</strong> class to the &lt;body&gt; element.</div>'
@@ -83,6 +83,10 @@ var styleSwitcher = {
                 + 'Plase add the <strong>"side-right"</strong> class to the &lt;body&gt; element.</div>'
                 + '<div id="sidebarWidth" class="alert alert-info">'
                 + 'Plase add the <strong>"mini-sidebar"</strong> class to the &lt;body&gt; element.</div>'
+                + '<div id="topNavStyle" class="alert alert-info">'
+                + 'Plase add the <strong>"padTop44"</strong> class to the &lt;body&gt; element.'
+                + ' Remove <strong>"navbar-static-top"</strong> class and add the <strong>"navbar-fixed-top"</strong> class'
+                + ' to the #top .navbar element.</div>'
                 + '<textarea name="cssbeautify" id="cssbeautify" readonly></textarea></div>'
                 + '<div class="modal-footer">'
                 + '<button aria-hidden="true" data-dismiss="modal" class="btn">Close</button>'
@@ -145,17 +149,17 @@ var styleSwitcher = {
         });
         var colorSelector = $('<div/>')
                 .addClass('color-picker').attr({
-                  'id': 'colorSelector',
-                  'data-color': colors[0].Hex,
-                  'data-color-format': 'hex'
-                }).append(
-                  $('<a/>')
-                  .css('background-color', colors[0].Hex)
-                  .attr({
-                    'href': '#',
-                    'id': 'colorSelectorA'
-                  }),
-                  $("<span />").addClass("color-picker-icon")
+            'id': 'colorSelector',
+            'data-color': colors[0].Hex,
+            'data-color-format': 'hex'
+        }).append(
+                $('<a/>')
+                .css('background-color', colors[0].Hex)
+                .attr({
+            'href': '#',
+            'id': 'colorSelectorA'
+        }),
+        $("<span />").addClass("color-picker-icon")
                 );
 
         colorSelector.colorpicker().on('changeColor', function(ev) {
@@ -221,24 +225,24 @@ var styleSwitcher = {
                 boxLink,
                 wideLink
                 ));
-				
-		var topNavBarStatic = $('<a/>').html('Static').attr('href','#').on('click', function(e){
-			e.preventDefault();
-			$(this).addClass('active').siblings('a').removeClass('active');
-			$('body').removeClass('padTop44');
-			$('#top .navbar').removeClass('navbar-fixed-top').addClass('navbar-static-top');
-		});
-		var topNavBarFixed = $('<a/>').html('Fixed').attr('href','#').on('click', function(e){
-			e.preventDefault();
-			$(this).addClass('active').siblings('a').removeClass('active');
-			$('body').addClass('padTop44');
-			$('#top .navbar').removeClass('navbar-static-top').addClass('navbar-fixed-top');
-		});
-		styleSwitcherWrap.append(
+
+        var topNavBarStatic = $('<a/>').html('Static').attr('href', '#').on('click', function(e) {
+            e.preventDefault();
+            $(this).addClass('active').siblings('a').removeClass('active');
+            $('body').removeClass('padTop44');
+            $('#top .navbar').removeClass('navbar-fixed-top').addClass('navbar-static-top');
+        });
+        var topNavBarFixed = $('<a/>').html('Fixed').attr('href', '#').on('click', function(e) {
+            e.preventDefault();
+            $(this).addClass('active').siblings('a').removeClass('active');
+            $('body').addClass('padTop44');
+            $('#top .navbar').removeClass('navbar-static-top').addClass('navbar-fixed-top');
+        });
+        styleSwitcherWrap.append(
                 $('<div/>').addClass('options-link').append(
                 $('<h6/>').html('Top Nav Bar Style'),
                 topNavBarStatic,
-				topNavBarFixed
+                topNavBarFixed
                 )
                 );
 
@@ -307,50 +311,50 @@ var styleSwitcher = {
                 );
 
 
-		var sideLeftLink = $('<a/>').html('Left').attr('href','#').on('click', function(e){
-			e.preventDefault();
-			$(this).addClass('active');
-			sideRightLink.removeClass('active');
-			$('body').removeClass('side-right');
-      $('#sidebarPos').addClass('')
-		});
-		var sideRightLink = $('<a/>').html('Right').attr('href','#').on('click', function(e){
-			e.preventDefault();
-			$(this).addClass('active');
-			sideLeftLink.removeClass('active');
-			$('body').addClass('side-right');
-		});
-		styleSwitcherWrap.append(
-				$('<hr/>'),
+        var sideLeftLink = $('<a/>').html('Left').attr('href', '#').on('click', function(e) {
+            e.preventDefault();
+            $(this).addClass('active');
+            sideRightLink.removeClass('active');
+            $('body').removeClass('side-right');
+            $('#sidebarPos').addClass('')
+        });
+        var sideRightLink = $('<a/>').html('Right').attr('href', '#').on('click', function(e) {
+            e.preventDefault();
+            $(this).addClass('active');
+            sideLeftLink.removeClass('active');
+            $('body').addClass('side-right');
+        });
+        styleSwitcherWrap.append(
+                $('<hr/>'),
                 $('<div/>').addClass('options-link sidebarOpt').append(
-					$('<h6/>').html('Side Bar Position'),
-					sideLeftLink,
-					sideRightLink
-					)
+                $('<h6/>').html('Side Bar Position'),
+                sideLeftLink,
+                sideRightLink
+                )
                 );
-		var sideMiniLink = $('<a/>').html('Mini').attr('href','#').on('click', function(e){
-			e.preventDefault();
-			$(this).addClass('active');
-			sideMaxiLink.removeClass('active');
-			$('body').addClass('mini-sidebar');
-		});
-		var sideMaxiLink = $('<a/>').html('Maxi').attr('href','#').on('click', function(e){
-			e.preventDefault();
-			$(this).addClass('active');
-			sideMiniLink.removeClass('active');
-			$('body').removeClass('mini-sidebar');
-		});
-		
-		styleSwitcherWrap.append(
-				$('<hr/>'),
+        var sideMiniLink = $('<a/>').html('Mini').attr('href', '#').on('click', function(e) {
+            e.preventDefault();
+            $(this).addClass('active');
+            sideMaxiLink.removeClass('active');
+            $('body').addClass('mini-sidebar');
+        });
+        var sideMaxiLink = $('<a/>').html('Maxi').attr('href', '#').on('click', function(e) {
+            e.preventDefault();
+            $(this).addClass('active');
+            sideMiniLink.removeClass('active');
+            $('body').removeClass('mini-sidebar');
+        });
+
+        styleSwitcherWrap.append(
+                $('<hr/>'),
                 $('<div/>').addClass('options-link sidebarOpt').append(
-					$('<h6/>').html('Side Bar Width'),
-					sideMiniLink,
-					sideMaxiLink
-					)
+                $('<h6/>').html('Side Bar Width'),
+                sideMiniLink,
+                sideMaxiLink
+                )
                 );
-		
-		        var resetLink = $('<a/>')
+
+        var resetLink = $('<a/>')
                 .html('Reset')
                 .attr('href', '#')
                 .on('click', function(e) {
@@ -372,7 +376,7 @@ var styleSwitcher = {
                 cssLink
                 )
                 );
-		
+
         switchDiv.append(h5, styleSwitcherWrap);
         $('body').append(switchDiv);
 

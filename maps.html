@@ -18,7 +18,9 @@
         <link type="text/css" rel="stylesheet" href="assets/css/font-awesome.min.css"/>
         <link type="text/css" rel="stylesheet" href="assets/css/style.css"/>
         <link type="text/css" rel="stylesheet" href="assets/css/prettify.css"/>
-        <link id="active-theme" type="text/css" rel="stylesheet" href="assets/css/default.min.css"/>
+        
+        <link rel="stylesheet" href="assets/css/theme.css">
+        
         <script type="text/javascript" src="assets/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
@@ -44,12 +46,20 @@
                             <a class="brand" href="index.html">Metis</a> <!-- .topnav -->
                             <div class="btn-toolbar topnav">
                                 <div class="btn-group">
+                                    <a id="changeSidebarPos" class="btn btn-success" rel="tooltip"
+                                    data-original-title="Show / Hide Sidebar" data-placement="bottom">
+                                        <i class="icon-resize-horizontal"></i>
+                                    </a>
+                                </div>
+                                <div class="btn-group">
                                     <a class="btn btn-inverse" rel="tooltip" data-original-title="E-mail" data-placement="bottom">
                                         <i class="icon-envelope"></i>
+                                        <span class="label label-warning">5</span>
                                     </a>
                                     <a class="btn btn-inverse" rel="tooltip" href="#" data-original-title="Messages"
                                        data-placement="bottom">
                                         <i class="icon-comments"></i>
+                                        <span class="label label-important">4</span>
                                     </a>
                                 </div>
                                 <div class="btn-group">

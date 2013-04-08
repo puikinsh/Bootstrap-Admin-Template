@@ -141,3 +141,7 @@ body {
 .hide-sidebar .sidebarOpt, .hide-sidebar .sidebarWidth, .hide-sidebar #sidebarPos{
   display: none;
 }
+#topNavStyle {display: none;}
+.padTop44 #topNavStyle {
+    display: block;
+}

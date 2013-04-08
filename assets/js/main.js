@@ -10,12 +10,33 @@ $(function() {
     $(".sortableTable").tablesorter();
     /*----------- END TABLESORTER CODE -------------------------*/
 
-    $('.minimize-box').click(function() {
-        $(this).children('i').toggleClass('icon-angle-down icon-angle-up');
+    
+    
+    $('.minimize-box').on('click', function(e){
+        e.preventDefault();
+        var $icon = $(this).children('i');
+        if($icon.hasClass('icon-chevron-down')) {
+            $icon.removeClass('icon-chevron-down').addClass('icon-chevron-up');
+        } else if($icon.hasClass('icon-chevron-up')) {
+            $icon.removeClass('icon-chevron-up').addClass('icon-chevron-down');
+        }
+    });
+    $('.minimize-box').on('click', function(e){
+        e.preventDefault();
+        var $icon = $(this).children('i');
+        if($icon.hasClass('icon-minus')) {
+            $icon.removeClass('icon-minus').addClass('icon-plus');
+        } else if($icon.hasClass('icon-plus')) {
+            $icon.removeClass('icon-plus').addClass('icon-minus');
+        }
     });
 
     $('.close-box').click(function() {
         $(this).closest('.box').hide('slow');
+    });
+
+    $('#changeSidebarPos').on('click', function(e) {
+        $('body').toggleClass('hide-sidebar');
     });
 });
 
@@ -263,7 +284,7 @@ function dashboard() {
 
 function progRess() {
     /* required bootstrap-progressbar.min.js*/
-    if (jQuery().progressbar) {
+    
         $('.progress .bar.text-no').progressbar();
         $('.progress .bar.text-filled').progressbar({
             display_text: 1
@@ -271,9 +292,6 @@ function progRess() {
         $('.progress .bar.text-centered').progressbar({
             display_text: 2
         });
-    } else {
-        console.log('could not load bootstrap-progressbar.min.js');
-    }
 }
 /*--------------------------------------------------------
  END PROGRESS.HTML SCRIPTS

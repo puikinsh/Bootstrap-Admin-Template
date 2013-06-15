@@ -19,3 +19,6 @@
 [submodule "assets/fuelux"]
 	path = assets/fuelux
 	url = https://github.com/ExactTarget/fuelux.git
+[submodule "assets/Font-awesome"]
+	path = assets/Font-awesome
+	url = https://github.com/FortAwesome/Font-Awesome.git

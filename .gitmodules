@@ -22,3 +22,6 @@
 [submodule "assets/Font-awesome"]
 	path = assets/Font-awesome
 	url = https://github.com/FortAwesome/Font-Awesome.git
+[submodule "assets/animate"]
+	path = assets/animate
+	url = https://github.com/daneden/animate.css.git

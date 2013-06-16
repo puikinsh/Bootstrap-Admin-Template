@@ -34,3 +34,6 @@
 [submodule "assets/pagedown-bootstrap"]
 	path = assets/pagedown-bootstrap
 	url = https://github.com/samwillis/pagedown-bootstrap.git
+[submodule "assets/formwizard"]
+	path = assets/formwizard
+	url = https://github.com/thecodemine/formwizard.git

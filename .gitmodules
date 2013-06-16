@@ -1,0 +1,3 @@
+[submodule "assets/magic"]
+	path = assets/magic
+	url = https://github.com/miniMAC/magic.git

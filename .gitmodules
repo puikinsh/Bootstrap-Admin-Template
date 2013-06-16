@@ -22,3 +22,6 @@
 [submodule "assets/animate"]
 	path = assets/animate
 	url = https://github.com/daneden/animate.css.git
+[submodule "assets/uniform"]
+	path = assets/uniform
+	url = https://github.com/pixelmatrix/uniform.git

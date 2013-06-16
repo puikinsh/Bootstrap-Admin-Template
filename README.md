@@ -1,8 +1,6 @@
 Free Admin Template with Twitter Bootstrap
 ------------------------------------------
 
-**Installation**
-=======
 ### Installation
 
     $ git clone https://github.com/onokumus/Bootstrap-Admin-Template.git yourfoldername

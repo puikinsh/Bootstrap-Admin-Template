@@ -4,3 +4,6 @@
 [submodule "assets/gmaps"]
 	path = assets/gmaps
 	url = https://github.com/HPNeo/gmaps.git
+[submodule "assets/chosen"]
+	path = assets/chosen
+	url = https://github.com/harvesthq/chosen.git

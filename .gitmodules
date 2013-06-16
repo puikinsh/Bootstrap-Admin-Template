@@ -28,3 +28,6 @@
 [submodule "assets/validation-engine"]
 	path = assets/validation-engine
 	url = https://github.com/posabsolute/jQuery-Validation-Engine.git
+[submodule "assets/validation"]
+	path = assets/validation
+	url = https://github.com/jzaefferer/jquery-validation.git

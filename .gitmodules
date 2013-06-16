@@ -31,3 +31,6 @@
 [submodule "assets/validation"]
 	path = assets/validation
 	url = https://github.com/jzaefferer/jquery-validation.git
+[submodule "assets/pagedown-bootstrap"]
+	path = assets/pagedown-bootstrap
+	url = https://github.com/samwillis/pagedown-bootstrap.git

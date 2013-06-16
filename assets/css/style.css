@@ -258,6 +258,16 @@ body.fixed #footer {
 body.fixed .pattern-switcher {
   display: block;
 }
+
+@media (min-width: 1280px) {
+    body.fixed #top > .navbar {
+    width:1280px;
+    margin:0 auto;
+  }
+}
+@media (max-width: 979px) {
+  body.padTop44 {padding: 0;}
+}
 @media (max-width: 1280px) {
   body.fixed #wrap,
   body.fixed #footer {

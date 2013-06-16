@@ -1,3 +1,6 @@
 [submodule "assets/magic"]
 	path = assets/magic
 	url = https://github.com/miniMAC/magic.git
+[submodule "assets/gmaps"]
+	path = assets/gmaps
+	url = https://github.com/HPNeo/gmaps.git

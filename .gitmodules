@@ -13,3 +13,6 @@
 [submodule "assets/wysihtml5"]
 	path = assets/wysihtml5
 	url = https://github.com/jhollingworth/bootstrap-wysihtml5.git
+[submodule "assets/plupload"]
+	path = assets/plupload
+	url = https://github.com/moxiecode/plupload.git

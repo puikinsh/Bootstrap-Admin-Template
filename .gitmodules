@@ -7,3 +7,6 @@
 [submodule "assets/chosen"]
 	path = assets/chosen
 	url = https://github.com/harvesthq/chosen.git
+[submodule "assets/flot"]
+	path = assets/flot
+	url = https://github.com/flot/flot.git

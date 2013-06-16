@@ -25,3 +25,6 @@
 [submodule "assets/uniform"]
 	path = assets/uniform
 	url = https://github.com/pixelmatrix/uniform.git
+[submodule "assets/validation-engine"]
+	path = assets/validation-engine
+	url = https://github.com/posabsolute/jQuery-Validation-Engine.git

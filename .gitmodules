@@ -37,3 +37,6 @@
 [submodule "assets/formwizard"]
 	path = assets/formwizard
 	url = https://github.com/thecodemine/formwizard.git
+[submodule "assets/bootstrap-timepicker"]
+	path = assets/bootstrap-timepicker
+	url = https://github.com/jdewit/bootstrap-timepicker.git

@@ -258,6 +258,16 @@ body.fixed #footer {
 body.fixed .pattern-switcher {
   display: block;
 }
+
+@media (min-width: 1280px) {
+    body.fixed #top > .navbar {
+    width:1280px;
+    margin:0 auto;
+  }
+}
+@media (max-width: 979px) {
+  body.padTop44 {padding: 0;}
+}
 @media (max-width: 1280px) {
   body.fixed #wrap,
   body.fixed #footer {
@@ -399,7 +409,7 @@ body.fixed .pattern-switcher {
   border-top: 2px solid #060606;
   color: #f9f9f9;
   background-color: #444;
-  background-image: url("../img/px_by_Gre3g.png");
+  background-image: url("../img/pattern/px_by_Gre3g.png");
   background-repeat: repeat;
 }
 #footer p {

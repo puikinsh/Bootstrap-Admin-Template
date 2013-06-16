@@ -40,3 +40,6 @@
 [submodule "assets/bootstrap-timepicker"]
 	path = assets/bootstrap-timepicker
 	url = https://github.com/jdewit/bootstrap-timepicker.git
+[submodule "assets/gritter"]
+	path = assets/gritter
+	url = https://github.com/jboesch/Gritter.git

@@ -10,3 +10,6 @@
 [submodule "assets/flot"]
 	path = assets/flot
 	url = https://github.com/flot/flot.git
+[submodule "assets/wysihtml5"]
+	path = assets/wysihtml5
+	url = https://github.com/jhollingworth/bootstrap-wysihtml5.git

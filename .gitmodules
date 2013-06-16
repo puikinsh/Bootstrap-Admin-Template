@@ -16,3 +16,6 @@
 [submodule "assets/plupload"]
 	path = assets/plupload
 	url = https://github.com/moxiecode/plupload.git
+[submodule "assets/Font-awesome"]
+	path = assets/Font-awesome
+	url = https://github.com/FortAwesome/Font-Awesome.git

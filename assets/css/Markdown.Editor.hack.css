@@ -1,6 +1,4 @@
-.wmd-panel {
-  width: 100%;
-}
+.wmd-panel {width: 100%;}
 .wmd-input {
   height: 300px;
   width: 100%;
@@ -21,27 +19,16 @@
   padding: 0;
   width: 100%;
 }
-/* Begin hack */
-.icon-list:before {
-  content: "\f0cb";
-}
-.icon-blockquote:before {
-  content: "\f10d";
-}
 
-.icon-bullet-list:before {
-  content: "\f0ca";
-}
-.icon-header:before {
-  content: "\f0fd";
-}
-.icon-hr-line:before {
-  content: "\f068";
-}
+/* Begin hack */
+.icon-list:before {content: "\f0cb";}
+.icon-blockquote:before {content: "\f10d";}
+.icon-bullet-list:before {content: "\f0ca";}
+.icon-header:before {content: "\f0fd";}
+.icon-hr-line:before {content: "\f068";}
 /* End hack */
-.wmd-prompt-background {
-  background-color: Black;
-}
+
+.wmd-prompt-background {background-color: #000;}
 .wmd-prompt-dialog {
   border: 1px solid #999999;
   background-color: #F5F5F5;

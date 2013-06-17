@@ -43,3 +43,8 @@
 [submodule "assets/gritter"]
 	path = assets/gritter
 	url = https://github.com/jboesch/Gritter.git
+[submodule "assets/mason2"]
+	url = https://github.com/DrewDahlman/Mason.git
+[submodule "assets/mason"]
+	path = assets/mason
+	url = https://github.com/DrewDahlman/Mason.git

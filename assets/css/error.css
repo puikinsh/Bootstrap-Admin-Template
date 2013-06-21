@@ -1,4 +1,3 @@
-
 body {
   padding-top: 40px;
   background: url("../img/pattern/always_grey.png") repeat rgba(68, 68, 68, .9);
@@ -47,6 +46,7 @@ form.relative {
 .submitBtn {
   position: absolute;
   right: 0;
+  top: 0;
   -webkit-border-top-left-radius: 0;
   -moz-border-radius-topleft: 0;
   border-top-left-radius: 0;

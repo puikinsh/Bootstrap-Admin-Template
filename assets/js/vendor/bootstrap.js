@@ -1188,7 +1188,6 @@
           .css({ top: 0, left: 0, display: 'block' })
 
         $tip.appendTo(this.options.container || this.$element.parent())
-        //this.options.container ? $tip.appendTo(this.options.container) : $tip.insertAfter(this.$element)
 
         pos = this.getPosition()
 

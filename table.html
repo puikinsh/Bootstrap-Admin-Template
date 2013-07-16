@@ -1018,7 +1018,7 @@
                                                         <td>@mdo</td>
                                                         <td>
                                                             <button class="btn edit"><i class="icon-edit"></i></button>
-                                                            <button class="btn btn-danger remove"><i class="icon-remove"></i></button>
+                                                            <button class="btn btn-danger remove" data-toggle="confirmation"><i class="icon-remove"></i></button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -1028,7 +1028,7 @@
                                                         <td>@fat</td>
                                                         <td>
                                                             <button class="btn edit"><i class="icon-edit"></i></button>
-                                                            <button class="btn btn-danger remove"><i class="icon-remove"></i></button>
+                                                            <button class="btn btn-danger remove" data-toggle="confirmation"><i class="icon-remove"></i></button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -1038,7 +1038,7 @@
                                                         <td>@twitter</td>
                                                         <td>
                                                             <button class="btn edit"><i class="icon-edit"></i></button>
-                                                            <button class="btn btn-danger remove"><i class="icon-remove"></i></button>
+                                                            <button class="btn btn-danger remove" data-toggle="confirmation"><i class="icon-remove"></i></button>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -1185,44 +1185,7 @@
             </div>
         </div>
         <!-- /#helpModal -->
-        <!-- #colorModal -->
-        <div id="colorModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="colorModalLabel"
-             aria-hidden="true">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="colorModalLabel"><i class="icon-cog"></i> Choose Style</h3>
-            </div>
-            <div class="modal-body">
-                <p class="color-switcher">
-                    <a href="javascript:void(0)" class="btn btn-large" rel="default"><i class="icon-magic"></i></a>
-                    <a href="javascript:void(0)" class="btn btn-large btn-metis-1" rel="color1"><i class="icon-magic"></i></a>
-                    <a href="javascript:void(0)" class="btn btn-large btn-metis-2" rel="color2"><i class="icon-magic"></i></a>
-                    <a href="javascript:void(0)" class="btn btn-large btn-metis-3" rel="color3"><i class="icon-magic"></i></a>
-                    <a href="javascript:void(0)" class="btn btn-large btn-metis-4" rel="color4"><i class="icon-magic"></i></a>
-                    <a href="javascript:void(0)" class="btn btn-large btn-metis-5" rel="color5"><i class="icon-magic"></i></a>
-                    <a href="javascript:void(0)" class="btn btn-large btn-metis-6" rel="color6"><i class="icon-magic"></i></a>
-                </p>
-                <hr>
-                <p class="pattern-switcher">
-                    <a href="javascript:void(0)" class="p1" title="pattern 1"></a>
-                    <a href="javascript:void(0)" class="p2" title="pattern 2"></a>
-                    <a href="javascript:void(0)" class="p3" title="pattern 3"></a>
-                    <a href="javascript:void(0)" class="p4" title="pattern 4"></a>
-                    <a href="javascript:void(0)" class="p5" title="pattern 5"></a>
-                    <a href="javascript:void(0)" class="p6" title="pattern 6"></a>
-                    <a href="javascript:void(0)" class="p7" title="pattern 7"></a>
-                    <a href="javascript:void(0)" class="p8" title="pattern 8"></a>
-                    <a href="javascript:void(0)" class="p9" title="pattern 9"></a>
-                    <a href="javascript:void(0)" class="p10" title="pattern 10"></a>
-                    <a href="javascript:void(0)" class="p11" title="pattern 11"></a>
-                    <a href="javascript:void(0)" class="p12" title="pattern 12"></a>
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            </div>
-        </div>
-        <!-- /#colorModal -->
+
 
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
@@ -1239,7 +1202,6 @@
         <script type="text/javascript" src="assets/js/lib/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="assets/js/lib/DT_bootstrap.js"></script>
         <script src="assets/js/lib/responsive-tables.js"></script>
-        <script src="assets/Bootstrap-Confirmation/bootstrap-confirmation.js"></script>
         <script type="text/javascript">
             $(function() {
                 metisTable();

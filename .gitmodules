@@ -43,3 +43,6 @@
 [submodule "assets/gritter"]
 	path = assets/gritter
 	url = https://github.com/jboesch/Gritter.git
+[submodule "assets/Bootstrap-Confirmation"]
+	path = assets/Bootstrap-Confirmation
+	url = https://github.com/ethaizone/Bootstrap-Confirmation.git

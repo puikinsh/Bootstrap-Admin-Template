@@ -19,3 +19,5 @@ Bootstrap Admin template is open-sourced software licensed under the [MIT Licens
 
   [1]: http://demo.onokumus.com/metis/index.html
   [2]: http://opensource.org/licenses/MIT
+
+[Buy me a coffee?][https://wrapbootstrap.com/theme/nuro-theme-WB0628X10]

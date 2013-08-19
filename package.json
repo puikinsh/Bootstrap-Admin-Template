@@ -1,0 +1,35 @@
+{
+    "name": "Bootstrap-Admin-Template",
+    "version": "2.0.0",
+    "author": {
+        "name": "Osman Nuri Okumuş",
+        "email": "onokumus@gmail.com",
+        "url": "https://github.com/onokumus"
+    },
+    "description": "Twitter Bootstrap Admin Template",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/onokumus/Bootstrap-Admin-Template"
+    },
+    "bugs": {
+        "url": "https://github.com/onokumus/Bootstrap-Admin-Template/issues"
+    },
+    "licenses": {
+        "type":"MIT",
+        "url":"https://github.com/onokumus/Bootstrap-Admin-Template/blob/2.0.0-dev/README.md"
+    },
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "assemble": "~0.4.4",
+	"grunt-contrib-connect": "~0.3.0",
+	"grunt-contrib-clean": "~0.5.0",
+	"grunt-contrib-concat": "~0.3.0",
+	"grunt-contrib-jshint": "~0.6.2",
+	"grunt-contrib-uglify": "~0.2.2",
+	"grunt-contrib-qunit": "~0.2.2",
+	"grunt-contrib-watch": "~0.5.1",
+	"grunt-recess": "~0.3.4",
+	"grunt-contrib-copy": "~0.4.1"
+    }
+}

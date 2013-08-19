@@ -1,0 +1,7 @@
+.limiterBox {
+	border: 1px solid #000;
+	border-top: none;
+	background-color: #ffc;
+	padding: 3px 6px;
+	font-size: 10px;
+}

@@ -1,0 +1,11 @@
+@import "mixins";
+
+@baseColor :#ff0000;
+@darkenColor: darken(@baseColor, 10%);
+
+#top > .navbar {
+  border-top: 3px solid @baseColor;
+  .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    #gradient > .vertical(@start-color:@baseColor; @start-percent: 0%; @end-color: @darkenColor; @end-percent: 100%);
+  }
+}

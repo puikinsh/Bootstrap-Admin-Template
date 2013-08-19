@@ -1,0 +1,71 @@
+/*********************************************************/
+/*          Begin LEFT Styles                           */
+/*********************************************************/
+
+
+.user-media {
+  display: none;
+  background: url("../img/pattern/green-fibers.png") repeat #444444;
+  
+  @media (min-width: @screen-tablet) {
+      display: block;
+      
+      .media-body {
+	  display: none;
+      }
+      
+      .user-link {
+	.center-block();
+	position: relative;
+	
+	.user-img {
+	  margin: 10px auto;
+	}
+	.user-label {
+	  position: absolute;
+	  top: -6px;
+	  right: 6px;
+	}
+      }
+  }
+  
+  @media (min-width: @screen-desktop) {
+    .user-link {
+      float: left;
+      .user-img {
+	  margin: 10px;
+	}
+	.user-label {
+	  top: 6px;
+	  right: 0;
+	}
+    }
+    .media-body {
+	  display: block;
+	  float: left;
+	  margin-left: 12px;
+	  h5.media-heading {
+	    color: #fff;
+	    padding-top: 8px;
+	    margin-bottom: 3px;
+	  }
+	  ul.user-info li {
+	    color: #ccc;
+	  }
+      }
+  }
+}
+
+@media (min-width: @screen-tablet) {
+  .mini-sidebar {
+    .media-body {display: none;}
+  }
+  .side-right {
+    .user-link .user-label {
+      left: 6px;
+      right: auto;
+    }
+  }
+}
+
+/* ============== END LEFT Styles ================= */

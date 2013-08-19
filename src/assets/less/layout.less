@@ -1,0 +1,83 @@
+/*********************************************************/
+/*                 Template Layout                       */
+/*********************************************************/
+body.padTop53 {
+    padding-top: 95px;
+    overflow: visible;
+    @media (min-width: 802px) {
+        padding-top: 53px;
+    }
+}
+
+
+#wrap, #top, .head, #footer {
+    .clearfix();
+}
+
+#wrap {background-color: #333;}
+
+#right {
+    display: none;
+}
+
+
+
+@media (min-width: @screen-tablet) {
+    #left {
+        width: @miniSidebarWidth;
+        float: left;
+        .side-right & {
+            float:right;
+        }
+    }
+    #content {
+        margin-left: @miniSidebarWidth;
+        .side-right & {
+            margin-left: 0;
+            margin-right: @miniSidebarWidth;
+        }
+    }
+    #left {
+        margin-bottom: -10px;
+    }
+}
+@media (min-width: @screen-desktop) {
+    #left {
+        width: @SidebarWidth;
+        .mini-sidebar & {
+            width: @miniSidebarWidth;
+        }
+    }
+    #content {
+        margin-left: @SidebarWidth;
+        .side-right & {
+            margin-right: @SidebarWidth;
+        }
+        .mini-sidebar &{
+            margin-left: @miniSidebarWidth;
+        }
+        .mini-sidebar.side-right & {
+            margin-left: 0;
+            margin-right: @miniSidebarWidth;
+        }
+    }
+}
+
+@media (min-width: @screen-tablet) {
+    .hide-sidebar {
+        #left, #right {display: none;}
+        #content {margin:0 !important; width: 100% !important;}
+    }
+}
+
+@media (min-width: 1200px) {
+  body.fixed {
+    #wrap, #footer, #top .navbar.navbar-fixed-top {
+      max-width: 1170px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+/* ================== END Template Layout ============== */

@@ -16,3 +16,30 @@
 [submodule "src/assets/submodule/Font-Awesome"]
 	path = src/assets/submodule/Font-Awesome
 	url = https://github.com/FortAwesome/Font-Awesome.git
+[submodule "src/assets/submodule/countdown"]
+	path = src/assets/submodule/countdown
+	url = https://github.com/kbwood/countdown.git
+[submodule "src/assets/submodule/uniform"]
+	path = src/assets/submodule/uniform
+	url = https://github.com/pixelmatrix/uniform.git
+[submodule "src/assets/submodule/cssbeautify"]
+	path = src/assets/submodule/cssbeautify
+	url = https://github.com/senchalabs/cssbeautify.git
+[submodule "src/assets/submodule/jasny"]
+	path = src/assets/submodule/jasny
+	url = https://github.com/jasny/bootstrap.git
+[submodule "src/assets/submodule/timepicker"]
+	path = src/assets/submodule/timepicker
+	url = https://github.com/jdewit/bootstrap-timepicker.git
+[submodule "src/assets/submodule/daterangepicker"]
+	path = src/assets/submodule/daterangepicker
+	url = https://github.com/dangrossman/bootstrap-daterangepicker.git
+[submodule "src/assets/submodule/autosize"]
+	path = src/assets/submodule/autosize
+	url = https://github.com/jackmoore/autosize.git
+[submodule "src/assets/submodule/validVal"]
+	path = src/assets/submodule/validVal
+	url = https://github.com/FrDH/jquery.validVal.git
+[submodule "src/assets/submodule/gritter"]
+	path = src/assets/submodule/gritter
+	url = https://github.com/FrDH/jquery.validVal.git

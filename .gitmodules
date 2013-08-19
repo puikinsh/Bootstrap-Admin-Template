@@ -4,3 +4,6 @@
 [submodule "src/assets/submodule/flot"]
 	path = src/assets/submodule/flot
 	url = https://github.com/flot/flot.git
+[submodule "src/assets/submodule/mousewheel"]
+	path = src/assets/submodule/mousewheel
+	url = https://github.com/brandonaaron/jquery-mousewheel.git

@@ -43,3 +43,24 @@
 [submodule "src/assets/submodule/gritter"]
 	path = src/assets/submodule/gritter
 	url = https://github.com/FrDH/jquery.validVal.git
+[submodule "src/assets/submodule/wysihtml5"]
+	path = src/assets/submodule/wysihtml5
+	url = https://github.com/jhollingworth/bootstrap-wysihtml5.git
+[submodule "src/assets/submodule/plupload"]
+	path = src/assets/submodule/plupload
+	url = https://github.com/moxiecode/plupload.git
+[submodule "src/assets/submodule/animate"]
+	path = src/assets/submodule/animate
+	url = https://github.com/daneden/animate.css.git
+[submodule "src/assets/submodule/validationengine"]
+	path = src/assets/submodule/validationengine
+	url = https://github.com/posabsolute/jQuery-Validation-Engine.git
+[submodule "src/assets/submodule/pagedown"]
+	path = src/assets/submodule/pagedown
+	url = https://github.com/samwillis/pagedown-bootstrap.git
+[submodule "src/assets/submodule/formwizard"]
+	path = src/assets/submodule/formwizard
+	url = https://github.com/thecodemine/formwizard.git
+[submodule "src/assets/submodule/touch-punch"]
+	path = src/assets/submodule/touch-punch
+	url = https://github.com/furf/jquery-ui-touch-punch.git

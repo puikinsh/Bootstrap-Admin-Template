@@ -1,0 +1,15 @@
+<div class="{{class}} {{modifier}}">
+  {{#if heading}}<div class="{{class}}-heading">{{{heading}}}</div>{{/if}}
+  {{#if bar}}<div class="progress-bar {{bar-modifier}}" style="width: {{bar}}%"></div>{{/if}}
+  {{{content}}}
+
+  <!-- List group -->
+  {{#if list}}
+  <hr>
+  <ul class="list-group list-group-flush">
+    {{#list}}
+      <li class="list-group-item">{{{item}}}</li>
+    {{/list}}
+  </ul>
+  {{/if}}
+</div>

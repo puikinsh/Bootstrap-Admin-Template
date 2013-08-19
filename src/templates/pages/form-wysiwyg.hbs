@@ -1,0 +1,142 @@
+---
+topTitle: Forms
+title: Form WYSIWYG
+icon: icon-edit
+stylesheets:
+- lib/wysihtml5/dist/bootstrap-wysihtml5-0.0.2.css
+- css/Markdown.Editor.hack.css
+- lib/CLEditor1_4_3/jquery.cleditor.css
+- css/jquery.cleditor-hack.css
+- css/bootstrap-wysihtml5-hack.css
+javascripts:
+- lib/wysihtml5/lib/js/wysihtml5-0.3.0.js
+- lib/bootstrap-wysihtml5-hack.js
+- lib/CLEditor1_4_3/jquery.cleditor.min.js
+- lib/pagedown/Markdown.Converter.js
+- lib/pagedown/Markdown.Sanitizer.js
+- lib/Markdown.Editor-hack.js
+scripts: $(function() { formWysiwyg(); });
+---
+<style>
+    ul.wysihtml5-toolbar > li {
+        position: relative;
+    }
+</style>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box">
+            <header>
+                <div class="icons"><i class="icon-th-large"></i></div>
+                <h5>Basic Editor</h5>
+                <ul class="nav pull-right">
+                    <li>
+                        <div class="btn-group">
+                            <a class="accordion-toggle btn btn-xs minimize-box" data-toggle="collapse"
+                               href="#div-1">
+                                <i class="icon-minus"></i>
+                            </a>
+                            <button class="btn btn-danger btn-xs close-box"><i
+                                    class="icon-remove"></i></button>
+                        </div>
+                    </li>
+                </ul>
+            </header>
+            <div id="div-1" class="body collapse in">
+                <form>
+                    <textarea id="wysihtml5" class="form-control" rows="10"></textarea>
+
+                    <div class="form-actions">
+                        <input type="submit" value="Submit" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box">
+            <header>
+                <div class="icons"><i class="icon-th-large"></i></div>
+                <h5>WYSIWYG Editor</h5>
+                <ul class="nav pull-right">
+                    <li>
+                        <div class="btn-group">
+                            <a class="accordion-toggle btn btn-xs minimize-box" data-toggle="collapse"
+                               href="#cleditorDiv">
+                                <i class="icon-minus"></i>
+                            </a>
+                            <button class="btn btn-xs btn-danger close-box"><i
+                                    class="icon-remove"></i></button>
+                        </div>
+                    </li>
+                </ul>
+            </header>
+
+            <div id="cleditorDiv" class="body collapse in">
+                <form>
+                    <textarea id="cleditor" class="form-control"></textarea>
+
+                    <div class="form-actions no-margin-bottom" id="cleditorForm">
+                        <input type="submit" value="Submit" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box">
+            <header>
+                <h5>Markdown Editor</h5>
+                <ul class="nav nav-tabs pull-right">
+                    <li class="active"><a href="#markdown" data-toggle="tab">Markdown</a></li>
+                    <li><a href="#preview" data-toggle="tab">Preview</a></li>
+                </ul>
+            </header>
+            <div id="div-3" class="body tab-content">
+                <div class="tab-pane fade active in" id="markdown">
+                    <div class="wmd-panel">
+                        <div id="wmd-button-bar" class="btn-toolbar"></div>
+                        <textarea class="form-control wmd-input" rows="10" name="description" id="wmd-input">
+Free Admin Template with Twitter Bootstrap
+------------------------------------------
+
+### Installation
+
+    $ git clone https://github.com/onokumus/Bootstrap-Admin-Template.git yourfoldername
+    $ cd yourfoldername
+    $ git submodule init
+    $ git submodule update
+    $ npm install
+    $ grunt
+    $ cd dist/
+    $ open index.html
+
+### Demo
+
+#### For 1.2 version
+http://demo.onokumus.com/metis/index.html
+
+#### For 2.0.0 version
+Not Yet
+                        </textarea>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="preview">
+                    <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->

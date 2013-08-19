@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ title }}</title>
+        <link rel="stylesheet" href="{{assets}}/lib/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="{{assets}}/css/main.css"/>
+        <link rel="stylesheet" href="{{assets}}/lib/Font-Awesome/css/font-awesome.css"/>
+
+        <link rel="stylesheet" href="{{assets}}/css/theme.css">
+
+        {{#if stylesheets}}
+        {{css stylesheets}}
+        {{/if}}
+
+        {{#if cdncss}}
+        {{cdn cdncss}}
+        {{/if}}
+        
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1669764-16', 'onokumus.com');
+  ga('send', 'pageview');
+
+</script>
+
+        <script src="{{assets}}/lib/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    <body>
+        <div id="wrap">
+
+            <div id="top">
+                {{> nav }}
+
+                <!-- header.head -->
+                <header class="head">
+                    <div class="search-bar">
+                        <a data-original-title="Show/Hide Menu" data-placement="bottom" data-tooltip="tooltip" class="accordion-toggle btn btn-primary btn-sm visible-xs" data-toggle="collapse" href="#menu" id="menu-toggle">
+                            <i class="icon-sort"></i>
+                        </a>
+
+                        <form class="main-search">
+                            <div class="input-group">
+                                <input type="text" class="input-small form-control" placeholder="Live Search ...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default btn-sm" type="button"><i class="icon-search"></i></button>
+                                </span>
+                            </div>
+                        </form>
+
+                    </div>
+                    <!-- ."main-bar -->
+                    <div class="main-bar">
+                        <h3><i class="{{ icon }}"></i> {{ title }}</h3>
+                    </div>
+                    <!-- /.main-bar -->
+                </header>
+                <!-- end header.head -->
+
+
+            </div>
+            <!-- /#top -->
+
+            <div id="left">
+                {{> left }}
+            </div>
+            <!-- /#left -->
+
+            <div id="content">
+                <div class="outer">
+                    <div class="inner">
+                        {{> body }}
+                    </div>
+                    <!-- end .inner -->
+                </div>
+                <!-- end .outer -->
+            </div>
+            <!-- end #content -->
+
+            {{#is title "Dashboard Alterne"}}
+            <div id="right">
+                            <div class="alert alert-danger">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Warning!</strong> Best check yo self, you're not looking too good.
+                            </div>
+                            <!-- .well well-small -->
+                            <div class="well well-small dark">
+                                <ul class="list-unstyled">
+                                    <li>Visitor <span class="inlinesparkline pull-right">1,4,4,7,5,9,10</span></li>
+                                    <li>Online Visitor <span class="dynamicsparkline pull-right">Loading..</span></li>
+                                    <li>Popularity <span class="dynamicbar pull-right">Loading..</span></li>
+                                    <li>New Users <span class="inlinebar pull-right">1,3,4,5,3,5</span></li>
+                                </ul>
+                            </div>
+                            <!-- /.well well-small -->
+                            <!-- .well well-small -->
+                            <div class="well well-small dark">
+                                <button class="btn btn-block">Default</button>
+                                <button class="btn btn-primary btn-block">Primary</button>
+                                <button class="btn btn-info btn-block">Info</button>
+                                <button class="btn btn-success btn-block">Success</button>
+                                <button class="btn btn-danger btn-block">Danger</button>
+                                <button class="btn btn-warning btn-block">Warning</button>
+                                <button class="btn btn-inverse btn-block">Inverse</button>
+                                <button class="btn btn-metis-1 btn-block">btn-metis-1</button>
+                                <button class="btn btn-metis-2 btn-block">btn-metis-2</button>
+                                <button class="btn btn-metis-3 btn-block">btn-metis-3</button>
+                                <button class="btn btn-metis-4 btn-block">btn-metis-4</button>
+                                <button class="btn btn-metis-5 btn-block">btn-metis-5</button>
+                                <button class="btn btn-metis-6 btn-block">btn-metis-6</button>
+                            </div>
+                            <!-- /.well well-small -->
+                            <!-- .well well-small -->
+                            <div class="well well-small dark">
+                                <span>Default</span><span class="pull-right"><small>20%</small></span>
+
+                                <div class="progress mini">
+                                    <div class="progress-bar progress-bar-info" style="width: 20%"></div>
+                                </div>
+                                <span>Success</span><span class="pull-right"><small>40%</small></span>
+
+                                <div class="progress mini">
+                                    <div class="progress-bar progress-bar-success" style="width: 40%"></div>
+                                </div>
+                                <span>warning</span><span class="pull-right"><small>60%</small></span>
+
+                                <div class="progress mini">
+                                    <div class="progress-bar progress-bar-warning" style="width: 60%"></div>
+                                </div>
+                                <span>Danger</span><span class="pull-right"><small>80%</small></span>
+
+                                <div class="progress mini">
+                                    <div class="progress-bar progress-bar-danger" style="width: 80%"></div>
+                                </div>
+                            </div>
+
+            </div>
+            <!-- /#right -->
+            {{/is}}
+
+        </div>
+        <!-- /#wrap -->
+
+
+        <div id="footer">
+            <p>2013 &copy; Metis Admin</p>
+        </div>
+
+
+        <!-- #helpModal -->        
+        <div id="helpModal" class="modal fade">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h4 class="modal-title">Modal title</h4>
+	      </div>
+	      <div class="modal-body">
+		<p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+	      </div>
+	      <div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->        
+        <!-- /#helpModal -->
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="{{assets}}/lib/jquery-1.10.2.min.js"><\/script>')</script> 
+
+
+
+
+        <script src="{{assets}}/lib/bootstrap/js/bootstrap.js"></script>
+
+
+
+
+
+        <script type="text/javascript" src="assets/js/style-switcher.js"></script>
+
+
+        {{#if cdnjs}}
+        {{cdn cdnjs}}
+        {{/if}}
+
+        {{#if javascripts}}
+        {{js javascripts}}
+        {{/if}}
+
+        <script src="{{assets}}/js/main.js"></script>
+
+        {{#if scripts}}
+        <script>
+            {{scripts}}
+        </script>
+        {{/if}}
+
+    </body>
+</html>

@@ -1,0 +1,88 @@
+<div class="media user-media">
+    <a class="user-link" href="">
+	<img class="media-object img-thumbnail user-img" alt="User Picture" src="assets/img/user.gif">
+	<span class="label label-danger user-label">16</span>
+    </a>
+
+    <div class="media-body">
+	<h5 class="media-heading">Archie</h5>
+	<ul class="list-unstyled user-info">
+	    <li><a href="">Administrator</a></li>
+	    <li>Last Access : <br>
+		<small><i class="icon-calendar"></i> 16 Mar 16:32</small>
+	    </li>
+	</ul>
+    </div>
+</div>
+<!-- #menu -->
+<ul id="menu" class="accordion collapse">
+    <li class="nav-header">Menu</li>
+    <li class="nav-divider"></li>
+    <li class="accordion-group {{#is topTitle 'Dashboard'}} active{{/is}}">
+	<a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#dashboard-nav">
+	    <i class="icon-dashboard"></i> Dashboard 
+	    <span class="pull-right">
+		<i class="icon-angle-left"></i>
+            </span>
+	</a>
+	<ul class="collapse{{#is topTitle 'Dashboard'}} in{{/is}}" id="dashboard-nav">
+	    <li class="{{#is title 'Dashboard'}}active{{/is}}"><a href="dashboard.html"><i class="icon-angle-right"></i> Default Style</a></li>
+	    <li class="{{#is title 'Dashboard Alterne'}}active{{/is}}"><a href="alterne.html"><i class="icon-angle-right"></i> Alternative Style</a></li>
+	</ul>
+    </li>
+    <li class="accordion-group{{#is topTitle 'Components'}} active{{/is}}">
+	<a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#component-nav">
+	    <i class="icon-tasks"></i> Components
+	    <span class="pull-right">
+		<i class="icon-angle-left"></i>
+            </span>
+	</a>
+	<ul class="collapse{{#is topTitle 'Components'}} in{{/is}}" id="component-nav">
+	    <li class="{{#is title "Icon"}}active{{/is}}"><a href="icon.html"><i class="icon-angle-right"></i> Icon </a></li>
+	    <li class="{{#is title "Buttons"}}active{{/is}}"><a href="button.html"><i class="icon-angle-right"></i> Button</a></li>            
+	    <li class="{{#is title "Progress"}}active{{/is}}"><a href="progress.html"><i class="icon-angle-right"></i> Progress</a></li>
+	</ul>
+    </li>
+    <li class="accordion-group{{#is topTitle "Forms"}} active{{/is}}">
+	<a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-nav">
+	    <i class="icon-pencil"></i> Forms
+	    <span class="pull-right">
+		<i class="icon-angle-left"></i>
+            </span>
+	</a>
+	<ul class="collapse{{#is topTitle "Forms"}} in{{/is}}" id="form-nav">
+	    <li class="{{#is title 'Form General'}}active{{/is}}"><a href="form-general.html"><i class="icon-angle-right"></i> General</a></li>
+	    <li class="{{#is title 'Form Validation'}}active{{/is}}"><a href="form-validation.html"><i class="icon-angle-right"></i> Validation</a></li>
+	    <li class="{{#is title 'Form WYSIWYG'}}active{{/is}}"><a href="form-wysiwyg.html"><i class="icon-angle-right"></i> WYSIWYG</a></li>
+	    <li class="{{#is title 'Form Wizard'}}active{{/is}}"><a href="form-wizard.html"><i class="icon-angle-right"></i> Wizard &amp; File Upload</a></li>
+	</ul>
+    </li>
+    <li{{#is title "Table"}} class="active"{{/is}}><a href="table.html"><i class="icon-table"></i> Tables</a></li>
+    <li{{#is title "File Manager"}} class="active"{{/is}}><a href="file.html"><i class="icon-file"></i> File Manager</a></li>
+    <li{{#is title "Typography"}} class="active" {{/is}}><a href="typography.html"><i class="icon-font"></i> Typography</a></li>
+    <li{{#is title "Maps"}} class="active" {{/is}}><a href="maps.html"><i class="icon-map-marker"></i> Maps</a></li>
+    <li{{#is title "Charts"}} class="active" {{/is}}><a href="chart.html"><i class="icon-bar-chart"></i> Charts</a></li>
+    <li{{#is title "Calendar"}} class="active" {{/is}}><a href="calendar.html"><i class="icon-calendar"></i> Calendar</a></li>
+    <li class="accordion-group ">
+	<a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#error-nav">
+	    <i class="icon-warning-sign"></i> Error Pages
+	    <span class="pull-right">
+		<i class="icon-angle-left"></i>
+            </span>
+	</a>
+	<ul class="collapse" id="error-nav">
+	    <li><a href="403.html"><i class="icon-angle-right"></i> 403</a></li>
+	    <li><a href="404.html"><i class="icon-angle-right"></i> 404</a></li>
+	    <li><a href="405.html"><i class="icon-angle-right"></i> 405</a></li>
+	    <li><a href="500.html"><i class="icon-angle-right"></i> 500</a></li>
+	    <li><a href="503.html"><i class="icon-angle-right"></i> 503</a></li>
+	    <li><a href="offline.html"><i class="icon-angle-right"></i> offline</a></li>
+	    <li><a href="countdown.html"><i class="icon-angle-right"></i> Under Construction</a></li>
+	</ul>
+    </li>
+    <li{{#is title "Grid"}} class="active" {{/is}}><a href="grid.html"><i class="icon-columns"></i> Grid</a></li>
+    <li{{#is title "Blank Page"}} class="active" {{/is}}><a href="blank.html"><i class="icon-check-empty"></i> Blank Page</a></li> 
+    <li class="nav-divider"></li>
+    <li><a href="login.html"><i class="icon-signin"></i> Login Page</a></li>
+</ul>
+<!-- /#menu -->

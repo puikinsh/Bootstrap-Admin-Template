@@ -1,0 +1,392 @@
+---
+topTitle: Forms
+title: Form Wizard
+icon: icon-magic
+stylesheets:
+- lib/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css
+- lib/gritter/css/jquery.gritter.css
+- lib/uniform/themes/default/css/uniform.default.min.css
+- css/bootstrap-fileupload.min.css
+cdnjs:
+- //ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js
+javascripts:
+- lib/plupload/js/jquery.plupload.queue/jquery.plupload.queue.min.js
+- lib/plupload/js/plupload.full.min.js
+- lib/gritter/js/jquery.gritter.min.js
+- lib/uniform/jquery.uniform.min.js
+- lib/jasny/js/bootstrap-fileupload.js
+- lib/formwizard/js/jquery.form.js
+- lib/formwizard/js/jquery.form.wizard.js
+- lib/validation/dist/jquery.validate.min.js
+- lib/validation/localization/messages_ja.js
+scripts: $(function() { formWizard(); });
+---
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box">
+            <header class="dark">
+                <div class="icons"><i class="icon-cloud-upload"></i></div>
+                <h5>File Upload</h5>
+            </header>
+            <div class="body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-lg-4">Browser Default</label>
+                        <div class="col-lg-8"><input type="file"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-4">Uniform Style</label>
+                        <div class="col-lg-8">
+                            <input type="file" id="fileUpload"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-4">Bootstrap Style</label>
+                        <div class="col-lg-8">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+
+
+
+                                <div class="input-group">
+                                    <div class="col-lg-3">
+                                        <i class="icon-file fileupload-exists"></i>
+                                        <span class="fileupload-preview"></span>
+                                    </div>
+                                    <span class="btn btn-file btn-info">
+                                        <span class="fileupload-new">Select file</span>
+                                        <span class="fileupload-exists">Change</span>
+                                        <input type="file" />
+                                    </span>
+                                    <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload">Remove</a>
+                                </div><!-- /input-group -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-lg-4">No Input</label>
+                        <div class="col-lg-8">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <span class="btn btn-file btn-default">
+                                    <span class="fileupload-new">Select file</span>
+                                    <span class="fileupload-exists">Change</span>
+                                    <input type="file" />
+                                </span>
+                                <span class="fileupload-preview"></span>
+                                <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-4">Image Upload</label>
+                        <div class="col-lg-8">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="fileupload-preview thumbnail" style="width: 200px; height: 150px;"></div>
+                                <div>
+                                    <span class="btn btn-file btn-success"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" /></span>
+                                    <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-4">Pre Defined Image</label>
+                        <div class="col-lg-8">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" /></div>
+                                <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                <div>
+                                    <span class="btn btn-file btn-primary"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" /></span>
+                                    <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-warning"><strong>Notice!</strong> Image preview only works in IE10+, FF3.6+, Chrome6.0+ and Opera11.1+. In older browsers and Safari, the filename is shown instead.</div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box">
+            <header>
+                <h5>Multiple Uploader</h5>
+            </header>
+            <div id="collapse2" class="block">
+                <form>
+                    <div id="uploader"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box">
+            <header>
+                <h5>Wizard with Validation</h5>
+            </header>
+            <div id="div-2" class="body">
+                <form id="wizardForm" method="post" action="" class="form-horizontal wizardForm">
+
+                    <fieldset class="step" id="first">
+                        <h4 class="text-danger pull-right">Database Settings</h4>
+                        <div class="clearfix"></div>
+                        <div class="form-group">
+                            <label for="server_host" class="control-label col-lg-4">Database Server</label>
+
+                            <div class="col-lg-8">
+                                <input type="text" name="server_host" id="server_host" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="server_name" class="control-label col-lg-4">Database Name</label>
+
+                            <div class="col-lg-8">
+                                <input type="text" name="server_name" id="server_name" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="server_user" class="control-label col-lg-4">Database User</label>
+
+                            <div class="col-lg-8">
+                                <input type="text" name="server_user" id="server_user" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="server_password" class="control-label col-lg-4">User Password</label>
+
+                            <div class="col-lg-8">
+                                <input type="password" name="server_password" id="server_password" class="form-control">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="step" id="second">
+                        <h4 class="text-warning pull-right">Table Settings</h4>
+                        <div class="clearfix"></div>
+                        <div class="form-group">
+                            <label for="table_prefix" class="control-label col-lg-4">Table Prefix</label>
+
+                            <div class="col-lg-8">
+                                <input type="text" name="table_prefix" id="table_prefix" value="nuro_" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="table_collation" class="control-label col-lg-4">Table Collation</label>
+
+                            <div class="col-lg-8">
+                                <select name="table_collation" id="table_collation" class="form-control">
+                                    <option value="">Collation</option>
+                                    <option value=""></option>
+                                    <optgroup label="utf8" title="UTF-8 Unicode">
+                                        <option value="utf8_bin" title="Unicode (multilingual), Binary">
+                                            utf8_bin
+                                        </option>
+                                        <option value="utf8_czech_ci" title="Czech, case-insensitive">
+                                            utf8_czech_ci
+                                        </option>
+                                        <option value="utf8_danish_ci" title="Danish, case-insensitive">
+                                            utf8_danish_ci
+                                        </option>
+                                        <option value="utf8_esperanto_ci"
+                                                title="Esperanto, case-insensitive">utf8_esperanto_ci
+                                        </option>
+                                        <option value="utf8_estonian_ci"
+                                                title="Estonian, case-insensitive">utf8_estonian_ci
+                                        </option>
+                                        <option value="utf8_general_ci"
+                                                title="Unicode (multilingual), case-insensitive">
+                                            utf8_general_ci
+                                        </option>
+                                        <option value="utf8_general_mysql500_ci"
+                                                title="Unicode (multilingual)">utf8_general_mysql500_ci
+                                        </option>
+                                        <option value="utf8_hungarian_ci"
+                                                title="Hungarian, case-insensitive">utf8_hungarian_ci
+                                        </option>
+                                        <option value="utf8_icelandic_ci"
+                                                title="Icelandic, case-insensitive">utf8_icelandic_ci
+                                        </option>
+                                        <option value="utf8_latvian_ci"
+                                                title="Latvian, case-insensitive">utf8_latvian_ci
+                                        </option>
+                                        <option value="utf8_lithuanian_ci"
+                                                title="Lithuanian, case-insensitive">utf8_lithuanian_ci
+                                        </option>
+                                        <option value="utf8_persian_ci"
+                                                title="Persian, case-insensitive">utf8_persian_ci
+                                        </option>
+                                        <option value="utf8_polish_ci" title="Polish, case-insensitive">
+                                            utf8_polish_ci
+                                        </option>
+                                        <option value="utf8_roman_ci"
+                                                title="West European, case-insensitive">utf8_roman_ci
+                                        </option>
+                                        <option value="utf8_romanian_ci"
+                                                title="Romanian, case-insensitive">utf8_romanian_ci
+                                        </option>
+                                        <option value="utf8_sinhala_ci"
+                                                title="unknown, case-insensitive">utf8_sinhala_ci
+                                        </option>
+                                        <option value="utf8_slovak_ci" title="Slovak, case-insensitive">
+                                            utf8_slovak_ci
+                                        </option>
+                                        <option value="utf8_slovenian_ci"
+                                                title="Slovenian, case-insensitive">utf8_slovenian_ci
+                                        </option>
+                                        <option value="utf8_spanish2_ci"
+                                                title="Traditional Spanish, case-insensitive">
+                                            utf8_spanish2_ci
+                                        </option>
+                                        <option value="utf8_spanish_ci"
+                                                title="Spanish, case-insensitive">utf8_spanish_ci
+                                        </option>
+                                        <option value="utf8_swedish_ci"
+                                                title="Swedish, case-insensitive">utf8_swedish_ci
+                                        </option>
+                                        <option value="utf8_turkish_ci"
+                                                title="Turkish, case-insensitive">utf8_turkish_ci
+                                        </option>
+                                        <option value="utf8_unicode_ci"
+                                                title="Unicode (multilingual), case-insensitive">
+                                            utf8_unicode_ci
+                                        </option>
+                                    </optgroup>
+                                    <optgroup label="utf8mb4" title="UTF-8 Unicode">
+                                        <option value="utf8mb4_bin" title="unknown, Binary">
+                                            utf8mb4_bin
+                                        </option>
+                                        <option value="utf8mb4_czech_ci"
+                                                title="Czech, case-insensitive">utf8mb4_czech_ci
+                                        </option>
+                                        <option value="utf8mb4_danish_ci"
+                                                title="Danish, case-insensitive">utf8mb4_danish_ci
+                                        </option>
+                                        <option value="utf8mb4_esperanto_ci"
+                                                title="Esperanto, case-insensitive">utf8mb4_esperanto_ci
+                                        </option>
+                                        <option value="utf8mb4_estonian_ci"
+                                                title="Estonian, case-insensitive">utf8mb4_estonian_ci
+                                        </option>
+                                        <option value="utf8mb4_general_ci"
+                                                title="unknown, case-insensitive">utf8mb4_general_ci
+                                        </option>
+                                        <option value="utf8mb4_hungarian_ci"
+                                                title="Hungarian, case-insensitive">utf8mb4_hungarian_ci
+                                        </option>
+                                        <option value="utf8mb4_icelandic_ci"
+                                                title="Icelandic, case-insensitive">utf8mb4_icelandic_ci
+                                        </option>
+                                        <option value="utf8mb4_latvian_ci"
+                                                title="Latvian, case-insensitive">utf8mb4_latvian_ci
+                                        </option>
+                                        <option value="utf8mb4_lithuanian_ci"
+                                                title="Lithuanian, case-insensitive">
+                                            utf8mb4_lithuanian_ci
+                                        </option>
+                                        <option value="utf8mb4_persian_ci"
+                                                title="Persian, case-insensitive">utf8mb4_persian_ci
+                                        </option>
+                                        <option value="utf8mb4_polish_ci"
+                                                title="Polish, case-insensitive">utf8mb4_polish_ci
+                                        </option>
+                                        <option value="utf8mb4_roman_ci"
+                                                title="West European, case-insensitive">utf8mb4_roman_ci
+                                        </option>
+                                        <option value="utf8mb4_romanian_ci"
+                                                title="Romanian, case-insensitive">utf8mb4_romanian_ci
+                                        </option>
+                                        <option value="utf8mb4_sinhala_ci"
+                                                title="unknown, case-insensitive">utf8mb4_sinhala_ci
+                                        </option>
+                                        <option value="utf8mb4_slovak_ci"
+                                                title="Slovak, case-insensitive">utf8mb4_slovak_ci
+                                        </option>
+                                        <option value="utf8mb4_slovenian_ci"
+                                                title="Slovenian, case-insensitive">utf8mb4_slovenian_ci
+                                        </option>
+                                        <option value="utf8mb4_spanish2_ci"
+                                                title="Traditional Spanish, case-insensitive">
+                                            utf8mb4_spanish2_ci
+                                        </option>
+                                        <option value="utf8mb4_spanish_ci"
+                                                title="Spanish, case-insensitive">utf8mb4_spanish_ci
+                                        </option>
+                                        <option value="utf8mb4_swedish_ci"
+                                                title="Swedish, case-insensitive">utf8mb4_swedish_ci
+                                        </option>
+                                        <option value="utf8mb4_turkish_ci"
+                                                title="Turkish, case-insensitive">utf8mb4_turkish_ci
+                                        </option>
+                                        <option value="utf8mb4_unicode_ci"
+                                                title="Unicode (multilingual), case-insensitive">
+                                            utf8mb4_unicode_ci
+                                        </option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="step" id="last">
+                        <h4 class="text-primary pull-right">User Settings</h4>
+                        <div class="clearfix"></div>
+                        <div class="form-group">
+                            <label for="username" class="control-label col-lg-4">Username</label>
+
+                            <div class="col-lg-8">
+                                <input type="text" name="username" id="username" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="usermail" class="control-label col-lg-4">E-mail</label>
+
+                            <div class="col-lg-8">
+                                <input type="text" name="usermail" id="usermail" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass" class="control-label col-lg-4">User Password</label>
+
+                            <div class="col-lg-8">
+                                <input type="password" name="pass" id="pass" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass2" class="control-label col-lg-4">Confirm Password</label>
+
+                            <div class="col-lg-8">
+                                <input type="password" name="pass2" id="pass2" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-8">
+                                <label class="checkbox">
+                                    <input type="checkbox" class="form-control"> Remember me
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="form-actions">
+                        <input class="navigation_button btn" id="back" value="Back" type="reset"/>
+                        <input class="navigation_button btn btn-primary" id="next" value="Next"
+                               type="submit"/>
+                    </div>
+                </form>
+                <div id="data"></div>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->

@@ -1,0 +1,20 @@
+<thead>
+    <tr>
+        <th>#<i class="icon-sort"></i><i class="icon-sort-down"></i> <i class="icon-sort-up"></i></th>
+        <th>First Name<i class="icon-sort"></i><i class="icon-sort-down"></i> <i class="icon-sort-up"></i></th>
+        <th>Last Name<i class="icon-sort"></i><i class="icon-sort-down"></i> <i class="icon-sort-up"></i></th>
+        <th>Score<i class="icon-sort"></i><i class="icon-sort-down"></i> <i class="icon-sort-up"></i></th>
+    </tr>
+</thead>
+<tbody>
+    {{#if tableBase}}
+    {{#each tableBase}}
+    <tr>
+        <td>{{Tid}}</td>
+        <td>{{First}}</td>
+        <td>{{Last}}</td>
+        <td>{{Score}}</td>
+    </tr>
+    {{/each}}
+    {{/if}}
+</tbody>

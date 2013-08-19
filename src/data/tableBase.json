@@ -1,0 +1,26 @@
+[
+    {
+        "Tid": "1",
+        "First": "Jill",
+        "Last": "Smith",
+        "Score": "50"
+    },
+    {
+        "Tid": "2",
+        "First": "Eve",
+        "Last": "Jackson",
+        "Score": "94"
+    },
+    {
+        "Tid": "3",
+        "First": "John",
+        "Last": "Doe",
+        "Score": "80"
+    },
+    {
+        "Tid": "4",
+        "First": "Adam",
+        "Last": "Johnson",
+        "Score": "67"
+    }
+]

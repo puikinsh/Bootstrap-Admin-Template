@@ -1,0 +1,127 @@
+{
+    "panel-base": {
+        "class": "panel",
+        "heading": "Panel Heading",
+        "content": "Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+        "list": [
+            {
+                "item": "Cras justo odio"
+            },
+            {
+                "item": "Dapibus ac facilisis in"
+            },
+            {
+                "item": "Morbi leo risus"
+            },
+            {
+                "item": "Porta ac consectetur ac"
+            },
+            {
+                "item": "Vestibulum at eros"
+            }
+        ]
+    },
+    "panel-primary": {
+        "class": "panel",
+        "heading": "Panel Heading",
+        "content": "Panel content...",
+        "modifier": "panel-primary"
+    },
+    "panel-info": {
+        "class": "panel",
+        "heading": "Panel Heading",
+        "content": "Panel content...",
+        "modifier": "panel-info"
+    },
+    "panel-success": {
+        "class": "panel",
+        "heading": "Panel Heading",
+        "content": "Panel content...",
+        "modifier": "panel-success"
+    },
+    "panel-warning": {
+        "class": "panel",
+        "heading": "Panel Heading",
+        "content": "Panel content...",
+        "modifier": "panel-warning"
+    },
+    "panel-danger": {
+        "class": "panel",
+        "heading": "Panel Heading",
+        "content": "Panel content...",
+        "modifier": "panel-danger"
+    },
+    "panel-query": {
+        "class": "panel",
+        "heading": "Panel Heading",
+        "content": "Panel content...",
+        "modifier": "panel-query"
+    },
+    "panel-inverse": {
+        "class": "panel",
+        "heading": "Panel Heading",
+        "content": "Panel content...",
+        "modifier": "panel-inverse"
+    },
+    "progress-info": {
+        "class": "progress progress-striped",
+        "bar": 20,
+        "bar-modifier": "progress-bar-info"
+    },
+    "progress-success": {
+        "class": "progress",
+        "bar": 40,
+        "bar-modifier": "progress-bar-success"
+    },
+    "progress-warning": {
+        "class": "progress progress-striped",
+        "bar": 60,
+        "bar-modifier": "progress-bar-warning"
+    },
+    "progress-danger": {
+        "class": "progress",
+        "bar": 80,
+        "bar-modifier": "progress-bar-danger"
+    },
+    "alert-info": {
+        "class": "alert",
+        "heading": "<strong>Heads up!</strong>",
+        "content": "This alert needs your attention, but it's not super important.",
+        "modifier": "alert-info"
+    },
+    "alert-success": {
+        "class": "alert",
+        "heading": "<strong>Well done!</strong>",
+        "content": "You successfully read this important alert message.",
+        "modifier": "alert-success"
+    },
+    "alert-warning": {
+        "class": "alert",
+        "heading": "<strong>Oh snap!</strong>",
+        "content": "<a href=\"#\" class=\"alert-link\">Change a few things up</a> and try submitting again.",
+        "modifier": "alert-warning"
+    },
+    "alert-danger": {
+        "class": "alert",
+        "heading": "<strong>Oh snap!</strong>",
+        "content": "Change a few things up and try submitting again.",
+        "modifier": "alert-danger"
+    },
+    "alert-block": {
+        "class": "alert alert-block",
+        "content": "<h4>Warning!</h4><p>Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>",
+        "modifier": "alert-warning"
+    },
+    "well": {
+        "class": "well",
+        "heading": "This is a well...",
+        "content": "Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+        "modifier": "well-large"
+    },
+    "well-alt": {
+        "class": "well",
+        "heading": "This is another well...",
+        "content": "Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+        "modifier": "well-large"
+    }
+}

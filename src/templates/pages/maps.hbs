@@ -1,0 +1,119 @@
+---
+title: Maps
+icon: icon-map-marker
+cdnjs:
+- http://maps.google.com/maps/api/js?sensor=true
+javascripts:
+- lib/gmaps/gmaps.js
+scripts: $(function() { metisMaps(); });
+---
+<div class="row">
+    <div class="col-lg-6">
+	<div class="box">
+	    <header><h5>Basic Maps</h5></header>
+	    <div class="body">
+		<div id="gmaps-basic" class="google-maps"></div>
+	    </div>
+	</div>
+    </div>
+    <div class="col-lg-6">
+	<!-- .box -->
+	<div class="box warning">
+	    <header>
+		<h5>Map with markers</h5>
+	    </header>
+	    <div class="body">
+		<div id="gmaps-marker" class="google-maps"></div>
+	    </div>
+	</div>
+	<!-- /.box -->
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+    <!-- .col-lg-6 -->
+    <div class="col-lg-6">
+	<!-- .box -->
+	<div class="box inverse">
+	    <header>
+		<h5>Geolocation</h5>
+	    </header>
+	    <!-- .body -->
+	    <div class="body">
+		<div id="gmaps-geolocation" class="google-maps"></div>
+	    </div>
+	    <!-- /.body -->
+	</div>
+	<!-- /.box -->
+    </div>
+    <!-- /.col-lg-6 -->
+    <!-- .col-lg-6 -->
+    <div class="col-lg-6">
+	<!-- .box -->
+	<div class="box primary">
+	    <header>
+		<h5>Polylines</h5>
+	    </header>
+	    <!-- .body -->
+	    <div class="body">
+		<div id="gmaps-polylines" class="google-maps"></div>
+	    </div>
+	    <!-- /.body -->
+	</div>
+	<!-- /.box -->
+    </div>
+    <!-- /.col-lg-6 -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+    <!-- .col-lg-6 -->
+    <div class="col-lg-6">
+	<!-- .box -->
+	<div class="box success">
+	    <header>
+		<h5>Routes</h5>
+	    </header>
+	    <!-- .body -->
+	    <div class="body">
+		<div id="gmaps-route" class="google-maps"></div>
+	    </div>
+	    <!-- /.body -->
+	</div>
+	<!-- /.box -->
+    </div>
+    <!-- /.col-lg-6 -->
+    <!-- .col-lg-6 -->
+    <div class="col-lg-6">
+	<!-- .box -->
+	<div class="box danger">
+	    <header>
+		<h5>Geocoding</h5>
+
+		<div class="toolbar">
+		    <form method="post" id="geocoding_form" class="form-search">
+		      <div class="input-group">
+		      <input id="address" name="address" class="form-control input-sm" type="text" placeholder="search ..">
+		      <span class="input-group-btn">
+			<button type="submit" class="btn btn-default btn-sm">Search</button>
+		      </span>
+		      </div>
+		    </form>
+		</div>
+	    </header>
+	    <!-- .body -->
+	    <div class="body">
+
+		<!-- #gmaps-geocoding.google-maps -->
+		<div id="gmaps-geocoding" class="google-maps"></div>
+		<!-- /#gmaps-geocoding.google-maps -->
+	    </div>
+	    <!-- /.body -->
+	</div>
+	<!-- /.box -->
+    </div>
+    <!-- /.col-lg-6 -->
+</div>
+<!-- /.row -->
+

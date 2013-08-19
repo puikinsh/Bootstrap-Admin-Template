@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{assets}}/bootstrap.css">
+  </head>
+  <body>
+    <!-- nav partial -->
+    {{> nav }}
+    <div class="container">
+      <!-- pages -->
+      <div class="post">
+        <h2>{{title}}</h2>
+        <p>Posted on: {{posted}}
+          {{#markdown}}
+            {{> body }}
+          {{/markdown}}
+        </p>
+      </div>
+      <script src="{{assets}}/highlight.js"></script>
+    </div>
+  </body>
+</html>

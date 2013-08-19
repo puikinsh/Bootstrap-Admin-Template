@@ -1,0 +1,20 @@
+<thead>
+    <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Score</th>
+    </tr>
+</thead>
+<tbody>
+    {{#if tableBase}}
+    {{#each tableBase}}
+    <tr>
+        <td>{{Tid}}</td>
+        <td>{{First}}</td>
+        <td>{{Last}}</td>
+        <td>{{Score}}</td>
+    </tr>
+    {{/each}}
+    {{/if}}
+</tbody>

@@ -7,3 +7,6 @@
 [submodule "src/assets/submodule/mousewheel"]
 	path = src/assets/submodule/mousewheel
 	url = https://github.com/brandonaaron/jquery-mousewheel.git
+[submodule "src/assets/submodule/tablesorter"]
+	path = src/assets/submodule/tablesorter
+	url = https://github.com/Mottie/tablesorter.git

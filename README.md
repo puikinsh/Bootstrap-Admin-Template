@@ -14,11 +14,13 @@ Free Admin Template with Twitter Bootstrap
 
 ### Demo
 
-#### For 1.2 version
-http://demo.onokumus.com/metis/index.html
-
 #### For 2.0.0 version
-http://demo.onokumus.com/metis/v2/
+http://demo.onokumus.com/metis/
+
+#### For 1.2 version 
+(not development)
+http://demo.onokumus.com/metis/v12
+
 
 ### Licensing
 

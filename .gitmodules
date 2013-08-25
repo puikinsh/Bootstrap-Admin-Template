@@ -64,3 +64,6 @@
 [submodule "src/assets/submodule/touch-punch"]
 	path = src/assets/submodule/touch-punch
 	url = https://github.com/furf/jquery-ui-touch-punch.git
+[submodule "src/assets/submodule/switch"]
+	path = src/assets/submodule/switch
+	url = https://github.com/nostalgiaz/bootstrap-switch.git

@@ -39,7 +39,7 @@ function metisCalendar() {
     var addEvent = function(title, priority) {
         title = title.length === 0 ? "Untitled Event" : title;
 
-        priority = priority.length === 0 ? "label" : priority;
+        priority = priority.length === 0 ? "label label-default" : priority;
 
         var html = $('<li class="external-event"><span class="' + priority + '">' + title + '</span></li>');
 

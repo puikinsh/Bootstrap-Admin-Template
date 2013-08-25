@@ -5,7 +5,7 @@
     position: relative;
     border: 1px solid #efefef;
     header {
-        #gradient > .vertical(@start-color:#fff; @end-color: #f2f2f2; @start-percent: 0%; @end-percent: 100%);
+        #gradient > .vertical(#fff; #f2f2f2);
         border-bottom: 1px solid #d4d4d4;
         .box-shadow(0 1px 4px rgba(0, 0, 0, 0.065));
         .clearfix();
@@ -28,7 +28,7 @@
         }
     }
     &.inverse header {
-        #gradient > .vertical(@start-color:#333; @end-color: #222; @start-percent: 0%;  @end-percent: 100%);
+        #gradient > .vertical(#333; #222);
         border-bottom: 1px solid #4d4d4d;
         color: #f5f5f5;
         .icons {
@@ -37,7 +37,7 @@
         }
     }
     &.primary header {
-        #gradient > .vertical(@start-color:@brand-primary; @end-color: darken(@brand-primary,10%); @start-percent: 0%; @end-percent: 100%);
+        #gradient > .vertical(@brand-primary; darken(@brand-primary,10%));
         border-bottom: 1px solid @brand-primary;
         color: #fff;
         .icons {
@@ -46,7 +46,7 @@
         }
     }
     &.success header {
-        #gradient > .vertical(@start-color:@brand-success; @end-color: darken(@brand-success,10%); @start-percent: 0%; @end-percent: 100%);
+        #gradient > .vertical(@brand-success; darken(@brand-success,10%));
         border-bottom: 1px solid @brand-success;
         color: #fff;
         .icons {
@@ -55,7 +55,7 @@
         }
     }
     &.warning header {
-        #gradient > .vertical(@start-color:@brand-warning; @end-color: darken(@brand-warning,10%); @start-percent: 0%; @end-percent: 100%);
+        #gradient > .vertical(@brand-warning; darken(@brand-warning,10%));
         border-bottom: 1px solid @brand-warning;
         color: #fff;
         .icons {
@@ -64,7 +64,7 @@
         }
     }
     &.danger header {
-        #gradient > .vertical(@start-color:@brand-danger; @end-color: darken(@brand-danger,10%); @start-percent: 0%; @end-percent: 100%);
+        #gradient > .vertical(@brand-danger; darken(@brand-danger,10%));
         border-bottom: 1px solid @brand-danger;
         color: #fff;
         .icons {
@@ -73,7 +73,7 @@
         }
     }
     &.info header {
-        #gradient > .vertical(@start-color:@brand-info; @end-color: darken(@brand-info,10%); @start-percent: 0%; @end-percent: 100%);
+        #gradient > .vertical(@brand-info; darken(@brand-info,10%));
         border-bottom: 1px solid @brand-info;
         color: #fff;
         .icons {
@@ -133,31 +133,31 @@
     &.danger {
         .dropdown-menu > li > a:hover,
             .dropdown-menu > li > a:focus {
-            #gradient > .vertical(@start-color:@brand-danger; @end-color: darken(@brand-danger,10%); @start-percent: 0%; @end-percent: 100%);
+            #gradient > .vertical(@brand-danger; darken(@brand-danger,10%));
         }
     }
     &.info {
         .dropdown-menu > li > a:hover,
             .dropdown-menu > li > a:focus {
-            #gradient > .vertical(@start-color:@brand-info; @end-color: darken(@brand-info,10%); @start-percent: 0%; @end-percent: 100%);
+            #gradient > .vertical(@brand-info; darken(@brand-info,10%));
         }
     }
     &.success {
         .dropdown-menu > li > a:hover,
             .dropdown-menu > li > a:focus {
-            #gradient > .vertical(@start-color:@brand-success; @end-color: darken(@brand-success,10%); @start-percent: 0%; @end-percent: 100%);
+            #gradient > .vertical(@brand-success; darken(@brand-success,10%));
         }
     }
     &.warning {
         .dropdown-menu > li > a:hover,
             .dropdown-menu > li > a:focus {
-            #gradient > .vertical(@start-color:@brand-warning; @end-color: darken(@brand-warning,10%); @start-percent: 0%; @end-percent: 100%);
+            #gradient > .vertical(@brand-warning; darken(@brand-warning,10%));
         }
     }
     &.inverse {
         .dropdown-menu > li > a:hover,
             .dropdown-menu > li > a:focus {
-           #gradient > .vertical(@start-color:#333; @end-color: #222; @start-percent: 0%; @end-percent: 100%);
+           #gradient > .vertical(#333; #222);
         }
     }
 }

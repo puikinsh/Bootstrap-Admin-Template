@@ -11,7 +11,7 @@ required [node.js](http://nodejs.org/) & [grunt](http://gruntjs.com/getting-star
     $ git submodule init
     $ git submodule update
     $ npm install
-    $ grunt (before npm install -g grunt-cli)
+    $ grunt
     $ cd dist/
     $ open index.html
     

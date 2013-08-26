@@ -6,6 +6,7 @@ Free Admin Template with Twitter Bootstrap
 #### 2.0 Version
 (required node.js[http://nodejs.org/])
 (required grunt[http://gruntjs.com/getting-started])
+
     $ git clone https://github.com/onokumus/Bootstrap-Admin-Template.git yourfoldername
     $ cd yourfoldername
     $ git submodule init

@@ -82,6 +82,9 @@ function metisChart() {
         }
     });
     $('#heart .legendLabel').addClass('animated pulse');
+    setInterval(function(){
+      $('#heart .legendLabel').toggleClass('animated');
+    },400);
 
 
     var bernoulli = [];

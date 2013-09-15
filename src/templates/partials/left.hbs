@@ -15,10 +15,10 @@
     </div>
 </div>
 <!-- #menu -->
-<ul id="menu" class="accordion collapse">
+<ul id="menu" class="collapse">
     <li class="nav-header">Menu</li>
     <li class="nav-divider"></li>
-    <li class="accordion-group {{#is topTitle 'Dashboard'}} active{{/is}}">
+    <li class="panel {{#is topTitle 'Dashboard'}} active{{/is}}">
 	<a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#dashboard-nav">
 	    <i class="icon-dashboard"></i> Dashboard 
 	    <span class="pull-right">
@@ -30,7 +30,7 @@
 	    <li class="{{#is title 'Dashboard Alterne'}}active{{/is}}"><a href="alterne.html"><i class="icon-angle-right"></i> Alternative Style</a></li>
 	</ul>
     </li>
-    <li class="accordion-group{{#is topTitle 'Components'}} active{{/is}}">
+    <li class="panel {{#is topTitle 'Components'}} active{{/is}}">
 	<a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#component-nav">
 	    <i class="icon-tasks"></i> Components
 	    <span class="pull-right">
@@ -43,7 +43,7 @@
 	    <li class="{{#is title "Progress"}}active{{/is}}"><a href="progress.html"><i class="icon-angle-right"></i> Progress</a></li>
 	</ul>
     </li>
-    <li class="accordion-group{{#is topTitle "Forms"}} active{{/is}}">
+    <li class="panel {{#is topTitle "Forms"}} active{{/is}}">
 	<a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-nav">
 	    <i class="icon-pencil"></i> Forms
 	    <span class="pull-right">
@@ -63,7 +63,7 @@
     <li{{#is title "Maps"}} class="active" {{/is}}><a href="maps.html"><i class="icon-map-marker"></i> Maps</a></li>
     <li{{#is title "Charts"}} class="active" {{/is}}><a href="chart.html"><i class="icon-bar-chart"></i> Charts</a></li>
     <li{{#is title "Calendar"}} class="active" {{/is}}><a href="calendar.html"><i class="icon-calendar"></i> Calendar</a></li>
-    <li class="accordion-group ">
+    <li class="panel">
 	<a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#error-nav">
 	    <i class="icon-warning-sign"></i> Error Pages
 	    <span class="pull-right">

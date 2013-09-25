@@ -46,7 +46,12 @@ module.exports = function(grunt) {
                 options: {banner: '<%= banner %>'},
                 src: ['src/assets/js/style-switcher.js'],
                 dest: 'dist/assets/js/style-switcher.js'
-            }
+            },
+	    emberApp: {
+		options: {banner: '<%= banner %>'},
+                src: ['src/assets/js/app.js'],
+                dest: 'dist/assets/js/app.js'
+	    }
         },
         uglify: {
             options: {
@@ -157,10 +162,23 @@ module.exports = function(grunt) {
                         cwd: 'src/assets/less',
                         src: ['theme.less','mixins.less'],
                         dest: 'dist/assets/less'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'src/ember',
+                        src: ['*.html'],
+                        dest: 'dist'
                     }
                 ]
             }
-        }
+        },
+	
+	watch: {
+	  scripts: {
+	    files: ['**/*.js','**/*.less','**/*.hbs','**/*.html'],
+	    tasks: ['default']
+	  },
+	}
 
     });
 

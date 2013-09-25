@@ -1,0 +1,23 @@
+// Row-desktop.responsive.less
+// Only show as a row on a desktop, not on a tablet
+// ------------------------------------------------
+
+@media (min-width: 768px) and (max-width: 979px) {
+  .row-desktop {
+    &.row-fluid {
+      width: 100%;
+    }
+    // Undo negative margin on rows
+    &.row {
+      margin-left: 0;
+    }
+    // Make all columns even
+    > [class*="span"],
+    > [class*="span"] {
+      float: none;
+      display: block;
+      width: auto;
+      margin: 0;
+    }
+  }
+}

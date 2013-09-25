@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <title>PageDown-Bootstrap Demo Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet/less" href="demo.less">
+    <script src="less/less-1.2.2.min.js"></script>
+    <style>
+        body {
+            background-color: White;
+            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        }
+    </style>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap-transition.js"></script>
+    <script src="bootstrap/js/bootstrap-modal.js"></script>
+    <script src="bootstrap/js/bootstrap-tooltip.js"></script>
+    <script type="text/javascript" src="../../Markdown.Converter.js"></script>
+    <script type="text/javascript" src="../../Markdown.Sanitizer.js"></script>
+    <script type="text/javascript" src="../../Markdown.Editor.js"></script>
+
+</head>
+<body>
+
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="#">PageDown-Bootstrap</a>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li><a href="https://github.com/samwillis/pagedown-bootstrap">Project on GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <h1>PageDown-Bootstrap Demo Page</h1>
+        <p>This is a demo of the pagedown editor styled to match bootstrap.</p>
+        
+        <hr />
+
+        <h2>1. This is the basic editor</h2>
+        <div class="wmd-panel">
+            <div id="wmd-button-bar"></div>
+<textarea class="wmd-input" id="wmd-input">
+This is the *first* editor.
+------------------------------
+
+Just plain **Markdown**, except that the input is sanitized:
+
+<marquee>I'm the ghost from the past!</marquee>
+</textarea>
+        </div>
+        <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
+        
+        <hr />
+
+        <h2>2. This is a custom editor</h2>
+        
+        <div class="wmd-panel">
+            <div id="wmd-button-bar-second"></div>
+<textarea class="wmd-input" id="wmd-input-second">
+This is the *second* editor.
+------------------------------
+
+It has a plugin hook registered that surrounds all words starting with the
+letter A with asterisks before doing the Markdown conversion. Another one gives bare links
+a nicer link text. User input isn't sanitized here:
+
+<marquee>I'm the ghost from the past!</marquee>
+
+http://google.com
+
+http://stackoverflow.com
+
+It also includes a help button.
+</textarea>
+        </div>
+        <div id="wmd-preview-second" class="wmd-panel wmd-preview"></div>
+
+    </div> 
+
+    <script type="text/javascript">
+        (function () {
+            var converter1 = Markdown.getSanitizingConverter();
+            var editor1 = new Markdown.Editor(converter1);
+            editor1.run();
+            
+            var converter2 = new Markdown.Converter();
+
+            converter2.hooks.chain("preConversion", function (text) {
+                return text.replace(/\b(a\w*)/gi, "*$1*");
+            });
+
+            converter2.hooks.chain("plainLinkText", function (url) {
+                return "This is a link to " + url.replace(/^https?:\/\//, "");
+            });
+            
+            var help = function () { alert("Do you need help?"); }
+            
+            var editor2 = new Markdown.Editor(converter2, "-second", { handler: help });
+            
+            editor2.run();
+        })();
+    </script>
+</body>
+</html>

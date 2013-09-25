@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Test Suite for CSS Beautify</title>
+<link rel="stylesheet" type="text/css" href="../assets/style.css"/>
+<script src="../cssbeautify.js" charset="utf-8"></script>
+<script src="test.js" charset="utf-8"></script>
+<script src="runner.js" charset="utf-8"></script>
+<style>
+pre {
+    margin-left: 20px;
+    padding: 5px;
+    display: block;
+    width: 500px;
+}
+
+.source {
+    background-color: #eee;
+}
+
+.ref {
+    border: 1px solid blue;
+}
+
+.result {
+    border: 1px solid red;
+}
+
+.fail {
+    color: red;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>Test Suite <small>for CSS Beautify</small></h1>
+
+<div id="result">
+</div>
+
+<script>
+window.onload = executeBrowser();
+</script>
+</body>
+</html>

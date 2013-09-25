@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8">
+	<title>jQuery plugin: Tablesorter 2.0 - Grouping Rows Widget</title>
+
+	<!-- jQuery -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+	<!-- Demo stuff -->
+	<link class="ui-theme" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/themes/cupertino/jquery-ui.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="css/jq.css">
+	<link href="../css/filter.formatter.css" rel="stylesheet">
+	<link href="css/prettify.css" rel="stylesheet">
+	<script src="js/prettify.js"></script>
+	<script src="js/docs.js"></script>
+
+	<style id="css">tr.group-header td {
+		background: #eee;
+	}
+	.group-name {
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+	.group-count {
+		color: #999;
+	}
+	.group-hidden {
+		display: none;
+	}
+	/* collapsed arrow */
+	tr.group-header td i {
+		display: inline-block;
+		width: 0;
+		height: 0;
+		border-top: 4px solid transparent;
+		border-bottom: 4px solid #888;
+		border-right: 4px solid #888;
+		border-left: 4px solid transparent;
+		margin-right: 7px;
+	}
+	tr.group-header.collapsed td i {
+		border-top: 5px solid transparent;
+		border-bottom: 5px solid transparent;
+		border-left: 5px solid #888;
+		border-right: 0;
+		margin-right: 10px;
+	}</style>
+
+	<!-- Tablesorter: required -->
+	<link rel="stylesheet" href="../css/theme.blue.css">
+	<script src="../js/jquery.tablesorter.js"></script>
+
+	<!-- grouping widget -->
+	<script src="../js/parsers/parser-input-select.js"></script>
+	<script src="../js/widgets/widget-grouping.js"></script>
+
+	<script id="js">$(function(){
+
+	$("table").tablesorter({
+		theme : 'blue',
+		headers: {
+			0: { sorter: 'checkbox' },
+			3: { sorter: 'select' },
+			6: { sorter: 'inputs' }
+		},
+		widgets: ['group'],
+		widgetOptions: {
+			group_collapsible : true, // make the group header clickable and collapse the rows below it.
+			group_count       : ' ({num})', // if not false, the "{num}" string is replaced with the number of rows in the group
+			// change these default date names based on your language preferences
+			group_months      : [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ],
+			group_week        : [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ],
+			group_time        : [ 'AM', 'PM' ],
+			group_formatter   : function(txt, col, table, c, wo) {
+				// txt = current text; col = current column
+				// table = current table (DOM); c = table.config; wo = table.config.widgetOptions
+				if (col === 7 && txt.indexOf('GMT') > 0) {
+					// remove "GMT-0000 (Xxxx Standard Time)" from the end of the full date
+					txt = txt.substring(0, txt.indexOf('GMT'));
+				}
+				// If there are empty cells, name the group "Empty"
+				return txt === "" ? "Empty" : txt;
+			}
+		}
+	});
+
+});</script>
+</head>
+<body id="group">
+<div id="banner">
+	<h1>table<em>sorter</em></h1>
+	<h2>Grouping Rows Widget</h2>
+	<h3>Flexible client-side table sorting</h3>
+	<a href="index.html">Back to documentation</a>
+</div>
+<div id="main">
+
+	<p class="tip">
+		<em>NOTE!</em>
+		<ul>
+			<li>This widget will <strong>only work</strong> in tablesorter version 2.8+ and jQuery version 1.7+.</li>
+			<li>Please do not use this widget in very large tables or when your table includes multiple tbodies.</li>
+			<li>Clicking on any of the sortable header cells will cause the column below it to sort and add a group header.</li>
+			<li>Group widget options include:
+				<ul>
+					<li><code>group_collapsible</code> - when <code>true</code> the group headers become clickable and collapse the rows below it.</li>
+					<li><code>group_count</code> - Allows you to add custom formatting, or remove, the group count within the group header. Set it to <code>false</code> or an empty string to remove the count.</li>
+					<li><code>group_months</code>, <code>group_week</code> and <code>group_time</code> - Name arrays included so that the language of the date groups can be modified easily.</li>
+					<li><code>group_formatter</code> - Use this function to modify the group header text before it gets applied. It provides various parameters to make it work for any of the table columns and data. See the comments in the example below for more details.</li>
+				</ul>
+			</li>
+			<li>Group header class names (when changing the grouping, notice that the <em>sort doesn't change, just the position and names of the group headers</em>):
+				<ul>
+					<li><code>"group-word"</code> (same as <code>"group-word-1"</code>) - group the rows using the first word it finds in the column's parsed data.</li>
+					<li><code>"group-word-n"</code> (<code>"n"</code> can be any number) - group the rows using the nth word in the column<span class="remark">*</span>.</li>
+					<li><code>"group-letter"</code> (same as <code>"group-letter-1"</code>) - group the rows using the first letter it finds in the column's parsed data.</li>
+					<li><code>"group-letter-n"</code> (<code>"n"</code> can be any number) - group the rows using letters 1 through n (if n = 2, then it's the first 2 letters) in the column's parsed data.</li>
+					<li><code>"group-number"</code> (same as <code>"group-number-1"</code>) - group the rows by the number it finds in the column (step of one).</li>
+					<li><code>"group-number-n"</code> (<code>"n"</code> can be any number) - group the rows into blocks of every n values. So, if n = 10, the groups will be 0-9, 10-19, 20-29, etc</li>
+					<li><code>"group-date"</code> - group the rows by full date (this shows the current UTC time corrected for your time zone)</li>
+					<li><code>"group-date-year"</code> - group the rows by year</li>
+					<li><code>"group-date-month"</code> - group the rows by month<span class="remark">*</span></li>
+					<li><code>"group-date-day"</code> - group the rows by month/day<span class="remark">*</span></li>
+					<li><code>"group-date-week"</code> - group the rows by day of the week<span class="remark">*</span></li>
+					<li><code>"group-date-time"</code> - group the rows by time<span class="remark">*</span></li>
+				</ul>
+
+				<span class="remark">*</span> When sorting some columns, different group headers with the same group name may exist (try "group-date-week" and "group-date-time"). To make these columns sort specifically by the group you want, you'll need to modify the parser.
+			</li>
+		</ul>
+
+	</p>
+
+<h1>Demo</h1>
+
+<span class="label">Numeric column:</span> <div id="slider0"></div> <span class="numberclass"></span><br>
+<span class="label">Animals column:</span> <div id="slider1"></div> <span class="animalclass"></span><br>
+<span class="label">Date column:</span> <div id="slider2"></div> <span class="dateclass"></span>
+
+<div id="demo"><table class="tablesorter">
+	<thead>
+		<tr>
+			<th class="group-word"></th> <!-- checkbox status -->
+			<th class="group-number">Quality (number)</th> <!-- notice this uses the same class name as the Numeric column, it's just left at 1 -->
+			<th class="group-number-10">Numeric (every <span>10</span>)</th>
+			<th class="group-letter-1">Priority (letter)</th>
+			<th class="group-letter-1">Animals (first <span>letter</span>)</th>
+			<th class="group-word-1">Natural Sort (first word)</th>
+			<th class="group-word-2">Inputs (second word)</th>
+			<!-- try "group-date", "group-date-year", "group-date-month", "group-date-day", "group-date-week" or "group-date-time" -->
+			<th class="group-date">Date (<span>Full</span>)</th>
+		</tr>
+	</thead>
+	<tfoot>
+		<tr>
+			<th></th>
+			<th>Quality</th>
+			<th>Numeric</th>
+			<th>Priority</th>
+			<th>Animals</th>
+			<th>Natural Sort</th>
+			<th>Inputs</th>
+			<th>Date</th>
+		</tr>
+	</tfoot>
+	<tbody>
+		<tr><td><input type="checkbox" checked></td><td>1</td><td>10</td><td><select><option selected>A</option><option>B</option><option>C</option></select></td><td>Koala</td><td>abc 123</td><td><input type="text" value="item: truck" /></td><td>1/13/2013 12:01 AM</td></tr>
+		<tr><td><input type="checkbox"></td><td>3</td><td>29</td><td><select><option>A</option><option>B</option><option selected>C</option></select></td><td>Kangaroo</td><td>abc 1</td><td><input type="text" value="item: car" /></td><td>1/15/2013</td></tr>
+		<tr><td><input type="checkbox"></td><td>2</td><td>10</td><td><select><option>A</option><option>B</option><option selected>C</option></select></td><td>Ant</td><td>abc 9</td><td><input type="text" value="item: motorcycle" /></td><td>1/13/2013</td></tr>
+		<tr><td><input type="checkbox"></td><td>3</td><td>81</td><td><select><option>A</option><option selected>B</option><option>C</option></select></td><td>Bee</td><td>zyx 24</td><td><input type="text" value="item: golf cart" /></td><td>1/11/2013</td></tr>
+		<tr><td><input type="checkbox" checked></td><td>3</td><td>21</td><td><select><option>A</option><option selected>B</option><option>C</option></select></td><td>Aardwolf</td><td>zyx 55</td><td><input type="text" value="item: scooter" /></td><td>1/13/2013 03:30 AM</td></tr>
+		<tr><td><input type="checkbox"></td><td>1</td><td>3</td><td><select><option selected>A</option><option>B</option><option>C</option></select></td><td>Bear</td><td>abc 11</td><td><input type="text" /></td><td>1/15/2013</td></tr>
+		<tr><td><input type="checkbox"></td><td>4</td><td>12</td><td><select><option>A</option><option selected>B</option><option>C</option></select></td><td>Armadillo</td><td>zyx 2</td><td><input type="text" /></td><td>1/15/2013 12:30 PM</td></tr>
+		<tr><td><input type="checkbox" checked></td><td>2</td><td>56</td><td><select><option selected>A</option><option>B</option><option>C</option></select></td><td>Aardvark</td><td>abc 2</td><td><input type="text" value="item: skateboard" /></td><td>1/22/2013</td></tr>
+		<tr><td><input type="checkbox"></td><td>1</td><td>55</td><td><select><option selected>A</option><option>B</option><option>C</option></select></td><td>Lion</td><td>abc 9</td><td><input type="text" /></td><td>2/15/2013</td></tr>
+		<tr><td><input type="checkbox" checked></td><td>4</td><td>87</td><td><select><option>A</option><option selected>B</option><option>C</option></select></td><td>Anteater</td><td>ABC 10</td><td><input type="text" value="item: skates" /></td><td>1/3/2013</td></tr>
+		<tr><td><input type="checkbox" checked></td><td>2</td><td>98</td><td><select><option>A</option><option>B</option><option selected>C</option></select></td><td>Lemur</td><td>zyx 1</td><td><input type="text" /></td><td>1/11/2013</td></tr>
+		<tr><td><input type="checkbox"></td><td>1</td><td>20</td><td><select><option>A</option><option>B</option><option selected>C</option></select></td><td>Llama</td><td>zyx 12</td><td><input type="text" /></td><td>12/13/2012</td></tr>
+	</tbody>
+</table>
+</div>
+
+	<h1>Page Header</h1>
+	<div>
+		<pre class="prettyprint lang-html">&lt;!-- Tablesorter: required --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;../css/theme.blue.css&quot;&gt;
+&lt;script src=&quot;../js/jquery.tablesorter.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Grouping widget --&gt;
+&lt;script src=&quot;../js/parsers/parser-input-select.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../js/widgets/widget-grouping.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+$(function(){
+
+  $(&quot;table&quot;).tablesorter({
+    theme : &#39;blue&#39;,
+    headers: {
+      0: { sorter: 'checkbox' },
+      3: { sorter: 'select' },
+      6: { sorter: 'inputs' }
+    },
+    widgets: [&#39;group&#39;],
+    widgetOptions: {
+      group_collapsible : true, // make the group header clickable and collapse the rows below it.
+      group_count       : &#39; ({num})&#39;, // if not false, the &quot;{num}&quot; string is replaced with the number of rows in the group
+      // change these default date names based on your language preferences
+      group_months      : [ &#39;Jan&#39;, &#39;Feb&#39;, &#39;Mar&#39;, &#39;Apr&#39;, &#39;May&#39;, &#39;Jun&#39;, &#39;Jul&#39;, &#39;Aug&#39;, &#39;Sep&#39;, &#39;Oct&#39;, &#39;Nov&#39;, &#39;Dec&#39; ],
+      group_week        : [ &#39;Sunday&#39;, &#39;Monday&#39;, &#39;Tuesday&#39;, &#39;Wednesday&#39;, &#39;Thursday&#39;, &#39;Friday&#39;, &#39;Saturday&#39; ],
+      group_time        : [ &#39;AM&#39;, &#39;PM&#39; ],
+      group_formatter   : function(txt, col, table, c, wo) {
+        // txt = current text; col = current column
+        // table = current table (DOM); c = table.config; wo = table.config.widgetOptions
+        if (col === 7) {
+          // remove &quot;GMT-0000 (xxxx Standard Time)&quot; from the end of the full date
+          txt = txt.substring(0, txt.indexOf(&#39;GMT&#39;));
+        }
+        return txt === &quot;&quot; ? &quot;Empty&quot; : txt;
+      }
+    }
+  });
+
+});
+&lt;/script&gt;</pre>
+	</div>
+	<h1>CSS</h1>
+	<div id="css">
+		<pre class="prettyprint lang-css"></pre>
+	</div>
+
+	<h1>HTML</h1>
+	<div id="html">
+		<pre class="prettyprint lang-html"></pre>
+	</div>
+
+	<script>
+	/* DEMO ONLY CODE */
+	$(function(){
+		var startBlock = 10,
+			startVal = 1,
+			curGroup = 0,
+			numcol = 2,
+			letcol = 4,
+			datecol = 7,
+			dateGroups = [ '', 'year', 'month', 'day', 'week', 'time' ];
+		// Numeric column slider
+		$( "#slider0" ).slider({
+			value: startBlock,
+			min: 10,
+			max: 50,
+			step: 10,
+			create: function(){
+				$('.numberclass').html(' "group-number-' + startBlock + '"');
+				$('.tablesorter-header-inner:eq(' + numcol + ')').find('span').html(startBlock);
+			},
+			slide: function( event, ui ) {
+				$('table')[0].config.$headers.eq(numcol)
+					.attr('class', function(i,v){
+						return v.replace(/group-number-\d+/, 'group-number-' + ui.value);
+					})
+					.trigger('sorton', [ [[numcol,0]] ]);
+				$('.numberclass').html(' "group-number-' + ui.value + '"');
+				$('.tablesorter-header-inner:eq(' + numcol + ')').find('span').html(ui.value);
+			}
+		});
+		// animal (letter) column slider
+		$( "#slider1" ).slider({
+			value: startVal,
+			min: 1,
+			max: 5,
+			step: 1,
+			create: function(){
+				$('.animalclass').html(' "group-letter-' + startVal + '"');
+				$('.tablesorter-header-inner:eq(' + letcol + ')').find('span').html(startVal === 1 ? 'letter' : startVal + ' letters');
+			},
+			slide: function( event, ui ) {
+				$('table')[0].config.$headers.eq(letcol)
+					.attr('class', function(i,v){
+						return v.replace(/group-letter-\d+/, 'group-letter-' + ui.value);
+					})
+					.trigger('sorton', [ [[letcol,0]] ]);
+				$('.animalclass').html(' "group-letter-' + ui.value + '"');
+				$('.tablesorter-header-inner:eq(' + letcol + ')').find('span').html(ui.value === 1 ? 'letter' : ui.value + ' letters');
+			}
+		});
+		// date column slider
+		$( "#slider2" ).slider({
+			value: curGroup,
+			min: 0,
+			max: 5,
+			step: 1,
+			create: function(){
+				$('.dateclass').html(' "group-date' + (curGroup > 0 ? '-' + dateGroups[curGroup] : '') + '"');
+				$('.tablesorter-header-inner:eq(' + datecol + ')').find('span').html(curGroup === 0 ? 'full' : dateGroups[curGroup]);
+			},
+			slide: function( event, ui ) {
+				$('table')[0].config.$headers.eq(datecol)
+					.attr('class', function(i,v){
+						return v.replace(/group-date(-\w+)?/, 'group-date' + (ui.value > 0 ? '-' + dateGroups[ui.value] : ''));
+					})
+					.trigger('sorton', [ [[datecol,0]] ]);
+				$('.dateclass').html(' "group-date' + (ui.value > 0 ? '-' + dateGroups[ui.value] : '') + '"');
+				$('.tablesorter-header-inner:eq(' + datecol + ')').find('span').html(ui.value === 0 ? 'full' : dateGroups[ui.value]);
+			}
+		});
+
+	});
+	</script>
+
+</div>
+
+</body>
+</html>

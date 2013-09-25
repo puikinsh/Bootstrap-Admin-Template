@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+  	<title>JQuery Form Wizard</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" ></meta>
+ 		<link rel="stylesheet" type="text/css" href="./css/ui-lightness/jquery-ui-1.8.2.custom.css" />  
+    <style type="text/css">
+			#demoWrapper, #demoWrapper2 {
+				padding : 1em;
+				width : 500px;
+				border-style: solid;
+			}
+
+			#demoNavigation, #demoNavigation2 {
+				margin-top : 0.5em;
+				margin-right : 1em;
+				text-align: right;
+			}
+
+			input {
+				margin-right: 0.1em;
+				margin-bottom: 0.5em;
+			}
+
+			.input_field_25em {
+				width: 2.5em;
+			}
+
+			.input_field_3em {
+				width: 3em;
+			}
+
+			.input_field_35em {
+				width: 3.5em;
+			}
+
+			.input_field_12em {
+				width: 12em;
+			}
+
+			label {
+				margin-bottom: 0.2em;
+				font-weight: bold;
+				font-size: 0.8em;
+			}
+
+			label.error {
+				color: red;
+				font-size: 0.8em;
+				margin-left : 0.5em;
+			}
+
+			.step span {
+				float: right;
+				font-weight: bold;
+				padding-right: 0.8em;
+			}
+
+			.navigation_button {
+				width : 70px;
+			}
+			
+			#data, #data2 {
+					overflow : auto;
+					font-size : 0.7em;
+			}
+		</style>
+	</head>
+  <body>
+		<div id="demoWrapper">
+			<h3>Example of a multiple wizards on the same page with browser back and forward buttons enabled</h3>
+			<ul>
+			<li>Multiple wizards.</li>
+			<li>BBQ plugin enabled via the historyEnabled option for both wizards.</li>
+			</ul>
+			<hr />
+			<h5 id="status"></h5>
+			<form id="demoForm" method="post" action="json.html" class="bbq">
+				<div id="fieldWrapper">
+				<div class="step" id="first">
+					<span class="font_normal_07em_black">First step - Name</span><br />
+					<label for="firstname">First name</label><br />
+					<input class="input_field_12em" name="firstname" id="firstname" /><br />
+					<label for="surname">Surname</label><br />
+					<input class="input_field_12em" name="surname" id="surname" /><br />
+				</div>
+				<div id="finland" class="step">
+					<span class="font_normal_07em_black">Step 2 - Personal information</span><br />
+					<label for="day_fi">Social Security Number</label><br />
+					<input class="input_field_25em" name="day" id="day_fi" value="DD" />
+					<input class="input_field_25em" name="month" id="month_fi" value="MM" />
+					<input class="input_field_3em" name="year" id="year_fi" value="YYYY" /> - 
+					<input class="input_field_3em" name="lastFour" id="lastFour_fi" value="XXXX" /><br />
+					<label for="countryPrefix_fi">Phone number</label><br />
+					<input class="input_field_35em" name="countryPrefix" id="countryPrefix_fi" value="+358" /> - 
+					<input class="input_field_3em" name="areaCode" id="areaCode_fi" /> - 
+					<input class="input_field_12em" name="phoneNumber" id="phoneNumber_fi" /><br />
+					<label for="email">*Email</label><br />
+					<input class="input_field_12em email required" name="myemail" id="myemail" /><br />	 						
+				</div>
+				<div id="confirmation" class="step">
+					<span class="font_normal_07em_black">Last step - Username</span><br />
+					<label for="username">User name</label><br />
+					<input class="input_field_12em" name="username" id="username" /><br />
+					<label for="password">Password</label><br />
+					<input class="input_field_12em" name="password" id="password" type="password" /><br />
+					<label for="retypePassword">Retype password</label><br />
+					<input class="input_field_12em" name="retypePassword" id="retypePassword" type="password" /><br />
+				</div>
+				</div>
+				<div id="demoNavigation"> 							
+					<input class="navigation_button" id="back" value="Back" type="reset" />
+					<input class="navigation_button" id="next" value="Next" type="submit" />
+				</div>
+			</form>
+			<hr />
+			
+			<p id="data"></p>
+		</div>
+
+
+		<div id="demoWrapper2">
+			<h5 id="status2"></h5>
+			<form id="demoForm2" method="post" action="json.html" class="bbq">
+				<div id="fieldWrapper2">
+				<span class="step" id="first2">
+					<span class="font_normal_07em_black">First step - Name</span><br />
+					<label for="firstname2">First name</label><br />
+					<input class="input_field_12em" name="firstname" id="firstname2" /><br />
+					<label for="surname2">Surname</label><br />
+					<input class="input_field_12em" name="surname" id="surname2" /><br />
+				</span>
+				<span id="finland2" class="step">
+					<span class="font_normal_07em_black">Step 2 - Personal information</span><br />
+					<label for="day_fi2">Social Security Number</label><br />
+					<input class="input_field_25em" name="day" id="day_fi2" value="DD" />
+					<input class="input_field_25em" name="month" id="month_fi2" value="MM" />
+					<input class="input_field_3em" name="year" id="year_fi2" value="YYYY" /> - 
+					<input class="input_field_3em" name="lastFour" id="lastFour_fi2" value="XXXX" /><br />
+					<label for="countryPrefix_fi2">Phone number</label><br />
+					<input class="input_field_35em" name="countryPrefix" id="countryPrefix_fi2" value="+358" /> - 
+					<input class="input_field_3em" name="areaCode" id="areaCode_fi2" /> - 
+					<input class="input_field_12em" name="phoneNumber" id="phoneNumber_fi2" /><br />
+					<label for="email2">*Email</label><br />
+					<input class="input_field_12em email required" name="myemail" id="myemail2" /><br />	 						
+				</span>
+				<span id="confirmation2" class="step">
+					<span class="font_normal_07em_black">Last step - Username</span><br />
+					<label for="username2">User name</label><br />
+					<input class="input_field_12em" name="username" id="username2" /><br />
+					<label for="password2">Password</label><br />
+					<input class="input_field_12em" name="password" id="password2" type="password" /><br />
+					<label for="retypePassword2">Retype password</label><br />
+					<input class="input_field_12em" name="retypePassword" id="retypePassword2" type="password" /><br />
+				</span>
+				</div>
+				<div id="demoNavigation2"> 							
+					<input class="navigation_button" id="back2" value="Back" type="reset" />
+					<input class="navigation_button" id="next2" value="Next" type="submit" />
+				</div>
+			</form>
+			<hr />
+			
+			<p id="data2"></p>
+		</div>
+    <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>		
+    <script type="text/javascript" src="../js/jquery.form.js"></script>
+    <script type="text/javascript" src="../js/jquery.validate.js"></script>
+    <script type="text/javascript" src="../js/bbq.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui-1.8.5.custom.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.form.wizard.js"></script>
+    
+    <script type="text/javascript">
+			$(function(){
+				$("#demoForm").formwizard({ 
+				 	formPluginEnabled: true,
+				 	validationEnabled: true,
+				 	historyEnabled: true,
+				 	focusFirstInput : true,
+				 	formOptions :{
+						success: function(data){$("#status").fadeTo(500,1,function(){ $(this).html("You are now registered!").fadeTo(5000, 0); })},
+						beforeSubmit: function(data){$("#data").html("data sent to the server: " + $.param(data));},
+						dataType: 'json',
+						resetForm: true
+				 	}	
+				 }
+				);
+				
+				$("#demoForm2").formwizard({ 
+				 	formPluginEnabled: true,
+				 	validationEnabled: true,
+				 	historyEnabled: true,				 	
+				 	focusFirstInput : true,
+				 	formOptions :{
+						success: function(data){$("#status2").fadeTo(500,1,function(){ $(this).html("You are now registered!").fadeTo(5000, 0); })},
+						beforeSubmit: function(data){$("#data2").html("data sent to the server: " + $.param(data));},
+						dataType: 'json',
+						resetForm: true
+				 	}	
+				 }
+				);
+  		});
+    </script>
+	</body>
+</html>

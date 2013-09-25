@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CSS Beautify</title>
+    <script src="assets/thirdparty/codemirror.js" charset="utf-8"></script>
+    <script src="assets/thirdparty/css.js" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="assets/thirdparty/codemirror.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/style.css"/>
+    <script src="cssbeautify.js" charset="utf-8"></script>
+    <script src="assets/format.js" charset="utf-8"></script>
+</head>
+<body>
+<div class="container">
+
+    <h1>CSS Beautify <small>automatically formats your style to be consistent and easy to read</small></h1>
+    <ul>
+        <li>Only one blank line between two rulesets</li>
+        <li>Closed curly brace is at its own line</li>
+        <li>There is no empty line between declarations inside a ruleset</li>
+        <li>No space between the property name and colon</li>
+        <li>One space between colon and the property value</li>
+        <li>Comments are preserved</li>
+    </ul>
+
+    <p>For a command-line use, install Node.js <a href="https://npmjs.org/package/cssbeautify">cssbeautify package</a>.</p>
+
+    <div class="raw">
+        <h3>Type any unformatted CSS:</h3>
+        <textarea id="raw" rows="22" autofocus="autofocus" spellcheck="false" onChange='format()' onKeyDown='format()'>menu{color:red} navigation{background-color:#333 /* darkgrey */}</textarea>
+    </div>
+
+    <div class="formatted">
+        <h3>Beautified CSS:</h3>
+        <textarea id="beautified" rows="22" readonly></textarea>
+    </div>
+
+    <div class="options">
+        <h3>Options:</h3>
+        <p>Indent with<br>
+        <label><input checked type="radio" name="indent" id="fourspaces" value="fourspaces" onChange='format()'>4 spaces</label><br>
+        <label><input type="radio" name="indent" id="twospaces" value="twospaces" onChange='format()'>2 spaces</label><br>
+        <label><input type="radio" name="indent" id="tab" value="tab" onChange='format()'>tab</label>
+        </p>
+        <p>Open curly brace:<br>
+        <label><input checked type="radio" name="openbrace" id="openbrace-end-of-line" onChange='format()'>end of line</label><br>
+        <label><input type="radio" name="openbrace" id="openbrace-separate-line" onChange='format()'>separate line</label>
+        </p>
+        <p><label><input checked type="checkbox" name="autosemicolon" id="autosemicolon" onChange='format()'>Automatic semicolon</label></p>
+    </div>
+
+    <br clear="all"/>
+    <div class="footer"><strong>CSS Beautify</strong> is an open-source project from <a href="http://senchalabs.org">Sencha Labs</a>.<br>Check the repository at <a href="http://github.com/senchalabs/cssbeautify">github.com/senchalabs/cssbeautify</a>.</div>
+
+</div>
+  <p><a href="http://github.com/senchalabs/cssbeautify"><img style="position: absolute; top: 0; right: 0; border: 0;" src="images/ribbon.png" alt="Fork me on GitHub"></a></p>
+  </div>
+
+  <script type="text/javascript">
+
+    if ('senchalabs.github.com' == document.location.hostname) {
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-1396058-12']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    }
+
+  </script>
+
+</body>
+
+</html>

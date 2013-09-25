@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Under Construction</title>
+        <link rel="stylesheet" 
+href="assets/lib/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="assets/css/countdown.css">
+        <link rel="stylesheet" 
+href="assets/lib/Font-Awesome/css/font-awesome.css">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1669764-16', 'onokumus.com');
+  ga('send', 'pageview');
+
+</script>
+    </head>
+    <body>
+        
+<div id="main"> <!-- div#main is vertical and horizontal centered-->
+      <div class="container">
+        <div class="clearfix">
+          <div class="logo">
+            <h1><span class="orange">UC</span></h1>
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="col-lg-12 title">
+            <h2>Our Site <span class="orange">U</span>nder <span class="orange">C</span>onstruction</h2>
+            <small>We are done with the backend just front end to go. The site will launch in:</small>
+          </div>
+        </div>
+        <!--counter is here-->
+        <div id="counter"></div>
+
+        <div id="counter-default" class="row">
+          <div class="col-lg-3 col-sm-6">
+            <div class="inner">
+	      <div id="day-number" class="timer-number"></div>
+            <div class="timer-text">DAYS</div>
+            <div class="progress mini progress-striped active">
+              <div id="day-bar" class="progress-bar progress-bar-warning"></div>
+            </div>
+            </div>
+            <!-- /.inner -->
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="inner">
+	      <div id="hour-number" class="timer-number"></div>
+            <div class="timer-text">HOURS</div>
+            <div class="progress mini progress-striped active">
+              <div id="hour-bar" class="progress-bar progress-bar-warning"></div>
+            </div>
+            </div>
+            <!-- /.inner -->
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="inner">
+	      <div id="minute-number" class="timer-number"></div>
+            <div class="timer-text">MINUTES</div>
+            <div class="progress mini progress-striped active">
+              <div id="minute-bar" class="progress-bar progress-bar-warning"></div>
+            </div>
+            </div>
+            <!-- /.inner -->
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="inner">
+            <div id="second-number" class="timer-number"></div>
+            <div class="timer-text">SECOND</div>
+
+            <div class="progress mini progress-striped active">
+              <div id="second-bar" class="progress-bar progress-bar-warning"></div>
+            </div>
+            
+            </div>
+            <!-- /.inner -->
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="progress progress-striped active" rel="tooltip" data-placement="bottom"
+                 data-original-title="Total Progress">
+              <div id="total-bar" class="progress-bar progress-bar-warning"></div>
+            </div>
+          </div>
+        </div>
+        <hr/>
+        <!-- .row -->
+        <div class="row">
+          <!-- .col-lg-6 -->
+          <div class="col-lg-6">
+            <form action="#" method="post" accept-charset="utf-8" id="emailForm">
+            
+		<div class="form-group">
+                    <label class="control-label" for="email1">E-mail</label>
+                      <input class="form-control" type="email" name="email1" id="email1"
+                             placeholder="Enter your email to subscribe" required="required">
+                  </div>
+                  <div class="row">
+		    <div class="form-group col-lg-6 col-sm-6 col-6">
+		      <button class="btn btn-warning btn-block" type="submit">Submit</button>
+		    </div>
+		    <div class="form-group col-lg-6 col-sm-6 col-6">
+		      <button class="btn btn-block btn-default" type="reset">Cancel</button>
+		    </div>
+                  </div>
+		  
+            </form>
+          </div>
+          <!-- /.col-lg-6 -->
+          <!-- .col-lg-6 -->
+          <div class="col-lg-6 contact">
+            <dl class="dl-horizontal">
+              <dt>Contact Us :</dt>
+              <dd>
+                <a href="#contact-area" class="accordion-toggle" data-toggle="collapse" rel="tooltip"
+                   data-placement="top" data-original-title="Fill the form">
+                  <i class="icon-envelope"></i>
+                </a>
+              </dd>
+              <dt>Follow Us :</dt>
+              <dd>
+                <a href="#" rel="tooltip" data-placement="bottom" data-original-title="facebook"><i
+                    class="icon-facebook"></i></a>
+                <a href="#" rel="tooltip" data-placement="bottom" data-original-title="Twitter"><i
+                    class="icon-twitter"></i></a>
+                <a href="#" rel="tooltip" data-placement="bottom" data-original-title="pinterest"><i
+                    class="icon-pinterest"></i></a>
+                <a href="#" rel="tooltip" data-placement="bottom" data-original-title="google"><i
+                    class="icon-google-plus"></i></a>
+                <a href="#" rel="tooltip" data-placement="bottom" data-original-title="github"><i
+                    class="icon-github"></i></a>
+              </dd>
+            </dl>
+          </div>
+          <!-- /.col-lg-6 -->
+        </div>
+        <!-- /.row -->
+        <!-- .row -->
+        <div id="contact-area" class="row collapse">
+          <!-- .col-lg-7 -->
+          <div class="col-lg-7">
+            <div class="well">
+              <form action="#" method="post" accept-charset="utf-8" id="messageForm">
+                <fieldset>
+                  <legend>Contact Form</legend>
+                  
+                  <div class="form-group">
+                    <label class="control-label" for="name">Name</label>
+                      <input class="form-control" type="text" name="name" id="name" placeholder="Enter yor name"
+                             required="required">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="email">E-mail</label>
+                      <input class="form-control" type="email" name="email" id="email"
+                             placeholder="Enter your e-mail" required="required">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="subject">Subject</label>
+                      <input class="form-control" type="text" name="subject" id="subject"
+                             placeholder="Enter your subject" required="required">
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" for="message">Message</label>
+                      <textarea class="form-control" name="messsage" id="message"
+                                placeholder="Enter your message" required="required"></textarea>
+                  </div>
+                  <div class="row">
+		    <div class="form-group col-lg-6 col-sm-6 col-6">
+		      <button class="btn btn-warning btn-block" type="submit">Submit</button>
+		    </div>
+		    <div class="form-group col-lg-6 col-sm-6 col-6">
+		      <button class="btn btn-block btn-default" type="reset">Cancel</button>
+		    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+
+          </div>
+          <!-- /.col-lg-7 -->
+          <!-- .col-lg-5 -->
+          <div class="col-lg-5">
+            <div class="page-header">
+              <h4>Contact info</h4>
+            </div>
+            <address>
+              <dl class="dl-horizontal">
+                <dt>Address :</dt>
+                <dd>
+                  123 Home Street NY US
+                </dd>
+                <dt>Telephone :</dt>
+                <dd>+0 123 456 78</dd>
+                <dt>E-mail :</dt>
+                <dd>mail@domain.com</dd>
+                <dt>Web :</dt>
+                <dd>http://domain.com</dd>
+              </dl>
+            </address>
+
+            <div id="map_canvas" style="height: 240px;"></div>
+
+          </div>
+          <!-- /.col-lg-5 -->
+        </div>
+        <!-- /.row -->
+      </div>
+    </div>
+
+	      
+	      
+      <script src="assets/lib/jquery-2.0.3.min.js"></script>
+      <script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+          <script type="text/javascript" 
+src="assets/lib/countdown/jquery.countdown.min.js"></script>
+            
+    <script type="text/javascript" 
+src="assets/lib/validation/dist/jquery.validate.min.js"></script>
+    <script type="text/javascript" 
+src="assets/lib/validation/localization/messages_zh.js"></script>
+    
+    <script type="text/javascript" src="assets/js/countdown.js"></script>
+
+    </body>
+</html>

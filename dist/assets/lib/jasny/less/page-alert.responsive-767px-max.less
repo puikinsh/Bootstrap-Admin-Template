@@ -1,0 +1,20 @@
+// Page-alert.responsive.less
+// Responsive CSS for page alerts - Landscape phone to desktop/tablet
+// ------------------------------------------------------------------
+
+@media (max-width: 480px) {
+  // Show page alert as normal alert
+  .page-alert {
+    position: static;
+    width: auto;
+    .alert {
+      width: auto;
+      margin-left: 0;
+      border-top-width: 1px;
+      .border-radius(4px);
+    }
+  }
+  body > .page-alert {
+    position: static;
+  }
+}

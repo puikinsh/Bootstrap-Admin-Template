@@ -1,0 +1,123 @@
+body {
+    min-width: 960px;
+    background-color: #ffffff;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 18px;
+    color: #444;
+}
+
+p {
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 18px;
+    margin-bottom: 9px;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: bold;
+    color: #444;
+}
+
+h1 small {
+    font-size: 18px;
+    color: #ccc;
+}
+
+h3 {
+    color: #555;
+}
+
+textarea {
+    font-family: Inconsolata, Monaco, Consolas, "Lucida Console", monospace;
+    font-size: 14px;
+    color: #555;
+    width: 340px;
+    padding: 7px;
+    -webkit-appearance: none;
+    outline: 0;
+    border: 1px solid #bbb;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 960px;
+}
+
+.container .raw {
+    width: 380px;
+    display: inline;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.container .raw textarea {
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: border linear 0.25s, box-shadow linear 0.25s;
+    -webkit-transition: border linear 0.25s, box-shadow linear 0.25s;
+    -moz-transition: border linear 0.25s, box-shadow linear 0.25s;
+    -o-transition: border linear 0.25s, box-shadow linear 0.25s;
+}
+
+.container .raw textarea:focus {
+    border-color: rgba(60, 200, 1, 0.8);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(60, 200, 1, 0.4);
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(60, 200, 1, 0.4);
+    -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(60, 200, 1, 0.4);
+}
+
+.container .formatted {
+    width: 380px;
+    display: inline;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.container .formatted textarea {
+    color: #000;
+}
+
+.container .options {
+    width: 140px;
+    display: inline;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.container .options input {
+    margin: 5px 5px 5px 0px;
+}
+
+.container .options input[type=radio] {
+    margin-left: 10px;
+}
+
+.footer {
+    margin-top: 25px;
+    color: #555;
+    text-align: center;
+}
+
+.CodeMirror {
+    padding: 0;
+    border: 1px solid #bbb;
+}
+
+.CodeMirror-scroll {
+    height: 320px;
+}

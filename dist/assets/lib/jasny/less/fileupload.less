@@ -1,0 +1,105 @@
+// Fileupload.less
+// CSS for file upload button and fileupload widget
+// ------------------------------------------------
+
+.btn-file {
+  overflow: hidden;
+  position: relative;
+  vertical-align: middle;
+  > input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    transform: translate(-300px, 0) scale(4);
+    font-size: 23px;
+    direction: ltr;
+    cursor: pointer;
+  }
+}
+
+.fileupload {
+  margin-bottom: 9px;
+  .uneditable-input {
+    display: inline-block;
+    margin-bottom: 0px;
+    vertical-align: middle;
+    cursor: text;
+  }
+  .thumbnail {
+    overflow: hidden;
+    display: inline-block;
+    margin-bottom: 5px;
+    vertical-align: middle;
+    text-align: center;
+    > img {
+      display: inline-block;
+      vertical-align: middle;
+      max-height: 100%;
+    }
+  }
+  .btn {
+    vertical-align: middle;
+  }
+}
+.fileupload-exists .fileupload-new,
+.fileupload-new .fileupload-exists {
+  display: none;
+}
+.fileupload-inline .fileupload-controls {
+  display: inline;
+}
+
+// Not 100% correct, but helps in typical use case
+.fileupload-new .input-append .btn-file {
+  .border-radius(0 3px 3px 0)
+}
+
+.thumbnail-borderless .thumbnail {
+  border: none;
+  padding: 0;
+  .border-radius(0);
+  .box-shadow(none);
+}
+.fileupload-new.thumbnail-borderless .thumbnail {
+  border: 1px solid #ddd;
+}
+
+.control-group.warning .fileupload {
+  .uneditable-input {
+    color: #a47e3c;
+    border-color: #a47e3c;
+  }
+  .fileupload-preview {
+    color: #a47e3c;
+  }
+  .thumbnail {
+    border-color: #a47e3c;
+  }
+}
+.control-group.error .fileupload {
+  .uneditable-input {
+    color: #b94a48;
+    border-color: #b94a48;
+  }
+  .fileupload-preview {
+    color: #b94a48;
+  }
+  .thumbnail {
+    border-color: #b94a48;
+  }
+}
+.control-group.success .fileupload {
+  .uneditable-input {
+    color: #468847;
+    border-color: #468847;
+  }
+  .fileupload-preview {
+    color: #468847;
+  }
+  .thumbnail {
+    border-color: #468847;
+  }
+}

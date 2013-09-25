@@ -1,0 +1,131 @@
+
+body {
+    padding-top: 40px;
+    background: url("../img/pattern/always_grey.png") repeat rgba(68, 68, 68, .9);
+}
+
+.orange {
+    color: orange;
+}
+
+#main {
+    width: 80%;
+    position: relative;
+    margin: 0 auto;
+    -moz-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
+    -webkit-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
+    -o-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
+    box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
+    color: #999;
+    padding: 20px 20px 0;
+}
+
+.logo {
+    position: relative;
+    -moz-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
+    -webkit-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
+    -o-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
+    box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
+    padding: 16px;
+    text-align: center;
+
+}
+.logo h1 {
+    color: #000;
+    font-size: 90px;
+    text-shadow: #202020 1px 1px 0px;
+}
+.title {
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 1px 1px 1px #111111;
+}
+.contact {
+    text-shadow: 1px 1px 1px #111111;
+}
+.contact a {
+    color: orange;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 12px;
+    padding: 0 3px;
+    text-decoration: none;
+}
+.contact a:hover {
+    background-color: #444;
+}
+
+hr {
+    border-bottom: 1px solid #121212;
+    border-top: medium none;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07);
+    margin-bottom: 40px;
+}
+.progress {
+    color: #000;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+.progress.mini {
+    height: 6px;
+}
+
+
+/* jQuery Countdown styles 1.6.1. */
+
+#counter {
+   display: none;
+}
+#counter-default {
+    margin: 20px auto;
+}
+#counter-default .inner {
+    font-size: large;
+    text-align: center;
+    color: #8c8c8c;
+    border: none;
+    background-color: #202020;
+    background-color: rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
+    -webkit-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
+    -o-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
+    box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
+    margin: 15px 0;
+    padding: 15px;
+    text-shadow: 0px 1px 2px #000;
+}
+#counter-default .timer-number {
+    font-size: 36px;
+    margin-bottom: 12px;
+    color: #EFEFF0;
+    font-weight: bold;
+}
+#counter-default  .timer-text {
+    padding: 12px;
+    color: #8c8c8c;
+}
+
+.well {
+    background-color: #202020;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: none;
+    color: #999;
+    -moz-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
+    -webkit-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
+    -o-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
+    box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
+}
+legend {
+    color: #999;
+    border-color: #333333;
+}
+.page-header {
+    border-bottom: 1px solid #333333;
+}
+
+@media (max-width: 767px) {
+    body {padding-top: 10px;}
+    #main {width:auto;}
+}

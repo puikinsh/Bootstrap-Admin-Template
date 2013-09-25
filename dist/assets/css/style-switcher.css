@@ -1,0 +1,156 @@
+body {
+  position: relative;
+}
+.style-switcher {
+  background-color: #222;
+  position: fixed;
+  left: -212px;
+  top: 50px;
+  width: 212px;
+  z-index: 1041;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+}
+.style-switcher.open {
+  left: 0;
+}
+
+.style-switcher hr {
+  border-color: #121212;
+  border-width: 0 0 1px;
+  box-shadow: 0 1px #2A2A2A;
+  margin: 10px 0;
+}
+.style-switcher h5 {
+  background-color: #333;
+  color: #fff;
+  margin: 0;
+  padding: 8px;
+  line-height: 23px;
+  text-shadow: 0 1px 0 #000;  
+  border-top: 1px solid #666;
+}
+.style-switcher h5 a {
+  background: #333;
+  border-radius: 0 4px 4px 0;
+  color: #E1E1E8;
+  right: -39px;
+  padding: 4px;
+  position: absolute;
+  text-decoration: none;
+  top: 0;  
+  border: 1px solid #666;
+}
+.style-switcher .style-switcher-wrap {
+  padding: 5px 10px;
+  border: 1px solid #666;
+  border-left-width: 0;
+}
+.style-switcher .style-switcher-wrap a {
+  font-size: 12px;
+}
+.style-switcher h6 {
+  color: #fff;
+  text-shadow: 0 1px 0 #000;
+}
+.style-switcher .options {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.style-switcher .options li {
+  float: left;
+  margin: 4px 4px 0 0;
+}
+.style-switcher .options li a {
+  cursor: pointer;
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+.style-switcher .options:after {
+  clear: both;
+  display: block;
+  content: "";
+}
+.style-switcher .color-switcher a,
+.style-switcher .pattern a {
+  display: inline-block;
+  margin-right: 2px;
+  margin-bottom: 2px;
+  width: 16px;
+  height: 16px;
+  text-decoration: none;
+}
+.style-switcher .pattern {
+  display: none;
+}
+.fixed .style-switcher .pattern {
+  display: block;
+}
+.style-switcher .options-link {
+  padding: 0 0 5px;
+}
+
+.style-switcher .options-link a {
+  background-color: #454545;
+  background-image: linear-gradient(-90deg, #303030 0%, #262626 100%);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+  color: #ccc;
+  padding: 6px;
+  border: 1px solid #141414;
+  text-decoration: none;
+  margin-right: 10px;
+}
+.style-switcher .options-link a.active, .style-switcher .options-link a:hover {
+  background-color: #3D3D3D;
+  background-image: linear-gradient(-90deg, #2F2F2F 0%, #343434 100%);
+  border: 1px solid #191919;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.09), 1px 1px 0 rgba(255, 255, 255, 0.05), -1px -1px 0 rgba(0, 0, 0, 0.02), 1px 1px 0 rgba(255, 255, 255, 0.05) inset;
+  color: #AFAFAF !important;
+}
+.style-switcher .color-picker {
+  position: relative;
+  margin-left: 6px;
+}
+.style-switcher .color-picker .color-picker-icon {
+  background: url("../img/cp.png") no-repeat scroll 0 0 transparent;
+  height: 24px;
+  left: -4px;
+  position: absolute;
+  top: -4px;
+  width: 24px;
+}
+#cssbeautify {
+  height: 233px;
+  cursor: text;
+  resize: none;
+}
+
+#sidebarPos {
+  display: none;
+}
+.side-right #sidebarPos {
+  display:block;
+}
+#sidebarWidth {
+  display: none;
+}
+.mini-sidebar #sidebarWidth {
+  display:block;
+}
+.hide-sidebar .sidebarOpt, .hide-sidebar .sidebarWidth, .hide-sidebar #sidebarPos{
+  display: none;
+}
+#topNavStyle {display: none;}
+.padTop53 #topNavStyle {
+    display: block;
+}
+
+.boxedFixedBody {display: none;}
+
+@media (min-width: 1200px) {
+.boxedFixedBody {display: block;}  
+}

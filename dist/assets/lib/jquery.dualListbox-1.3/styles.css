@@ -1,0 +1,15 @@
+﻿.countLabel 
+{
+    color:Gray;
+    font-style:italic;
+}
+
+.storageBox 
+{
+    display:none;
+}
+
+.copiedOption
+{
+    background-color:Yellow;
+}

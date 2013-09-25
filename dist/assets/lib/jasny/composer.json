@@ -1,0 +1,12 @@
+{
+    "name": "jasny/bootstrap"
+  , "description": "Sleek, intuitive, and powerful front-end framework for faster and easier web development."
+  , "keywords": ["bootstrap", "css"]
+  , "homepage": "http://jasny.github.com/bootstrap/"
+  , "authors": [
+       {"name": "Twitter Inc."}
+     , {"name": "Arnold Daniels", "email": "arnold@jasny.net", "homepage": "http://www.jasny.net"}
+  ]
+  , "license": "Apache-2.0"
+  , "replace": { "twitter/bootstrap" : "2.3.1" }
+}

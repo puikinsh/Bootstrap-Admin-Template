@@ -1,0 +1,57 @@
+// ACTION LINK STYLES
+// ------------------
+
+.act {
+  background: inherit;
+  border: none;
+  display: inline;
+  padding: 0;
+  color: #555555;
+  font-weight: bold;
+  .transition(text-shadow .1s linear);
+  &:hover {
+    color: #333333;
+    text-decoration: none;
+    text-shadow: 1px 1px 3px rgba(85, 85, 85, 0.5);
+  }
+}
+
+// Mixin for alternative styles
+.act-style(@normal, @hover) {
+  color: @normal;
+  &:hover {
+    color: @hover;
+    text-shadow: 1px 1px 3px hsla(hue(@normal), saturation(@normal), lightness(@normal), 0.5);
+  }
+}
+
+// Alternative styles
+.act-primary {
+  .act-style(#006DCC, #0044CC);
+}
+.act-info {
+  .act-style(#49AFCD, #2F96B4);
+}
+.act-success {
+  .act-style(#51A351, #468847);
+}
+.act-warning {
+  .act-style(#C09853, #F89406);
+}
+.act-danger {
+  .act-style(#B94A48, #BD362F);
+}
+
+.act.disabled, 
+.act[disabled] {
+  color: #AAAAAA;
+  cursor: not-allowed;
+  &:hover {
+    color: #AAAAAA;
+    text-shadow: none;
+  }
+}
+
+.form-actions .act {
+  line-height: 30px;
+}

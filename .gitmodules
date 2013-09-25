@@ -40,9 +40,6 @@
 [submodule "src/assets/submodule/validVal"]
 	path = src/assets/submodule/validVal
 	url = https://github.com/FrDH/jquery.validVal.git
-[submodule "src/assets/submodule/gritter"]
-	path = src/assets/submodule/gritter
-	url = https://github.com/FrDH/jquery.validVal.git
 [submodule "src/assets/submodule/wysihtml5"]
 	path = src/assets/submodule/wysihtml5
 	url = https://github.com/jhollingworth/bootstrap-wysihtml5.git
@@ -67,3 +64,9 @@
 [submodule "src/assets/submodule/switch"]
 	path = src/assets/submodule/switch
 	url = https://github.com/nostalgiaz/bootstrap-switch.git
+[submodule "src/assets/submodule/gritter"]
+	path = src/assets/submodule/gritter
+	url = https://github.com/jboesch/Gritter.git
+[submodule "src/assets/submodule/form"]
+	path = src/assets/submodule/form
+	url = https://github.com/malsup/form.git

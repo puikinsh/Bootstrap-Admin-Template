@@ -11,16 +11,16 @@
  */
 
 // Load lesscss files
-yepnope.addPrefix('less', function(resourceObj) {
+yepnope.addPrefix('less', function (resourceObj) {
     resourceObj.forceCSS = true;
     resourceObj.attrs = {
-        'rel': 'stylesheet/less',
+        'rel' : 'stylesheet/less',
         'type': 'text/css'
     };
     return resourceObj;
 });
 var styleSwitcher = {
-    init: function() {
+    init    : function () {
         var $this = this;
         less = {env: "development"};
 
@@ -29,12 +29,12 @@ var styleSwitcher = {
             {load: 'assets/css/style-switcher.css'},
             {load: 'assets/lib/colorpicker/css/colorpicker.css'},
             {load: 'assets/lib/cssbeautify/cssbeautify.js'},
-            {load: 'assets/lib/colorpicker/js/bootstrap-colorpicker.js',
-                complete: function() {
+            {load       : 'assets/lib/colorpicker/js/bootstrap-colorpicker.js',
+                complete: function () {
                     yepnope([
                         {load: 'less!assets/less/theme.less'},
-                        {load: 'assets/lib/less-1.4.2.min.js',
-                            complete: function() {
+                        {load       : 'assets/lib/less-1.4.2.min.js',
+                            complete: function () {
 
 
                                 $this.build();
@@ -56,7 +56,7 @@ var styleSwitcher = {
         ]);
 
     },
-    build: function() {
+    build   : function () {
         var $this = this;
         var localStor = false;
         if (Modernizr.localstorage) {
@@ -116,15 +116,15 @@ var styleSwitcher = {
 
         var h5Ai = $('<i />').addClass('icon-cogs icon-2x');
         var h5A = $('<a />')
-                .attr({
-            'href': '#',
-            'id': 'switcher-link'
-        })
-                .on('click', function(e) {
-            e.preventDefault();
-            switchDiv.toggleClass('open');
-        })
-                .append(h5Ai);
+            .attr({
+                'href': '#',
+                'id'  : 'switcher-link'
+            })
+            .on('click', function (e) {
+                e.preventDefault();
+                switchDiv.toggleClass('open');
+            })
+            .append(h5Ai);
 
         var h5 = $('<h5 />').html('Style Switcher').append(h5A);
 
@@ -140,23 +140,23 @@ var styleSwitcher = {
             {"Hex": "#734BA9", "colorName": "Purple"},
             {"Hex": "#2BAAB1", "colorName": "Cyan"}
         ];
-        $.each(colors, function(i) {
+        $.each(colors, function (i) {
             var listElement = $('<li/>')
-                    .append(
+                .append(
                     $('<a/>')
-                    .css("background-color", colors[i].Hex)
-                    .attr({
-                "data-color-hex": colors[i].Hex,
-                "data-color-name": colors[i].colorName,
-                "href": "#",
-                "title": colors[i].colorName
-            }).tooltip({'placement': 'bottom'})
-                    );
+                        .css("background-color", colors[i].Hex)
+                        .attr({
+                            "data-color-hex" : colors[i].Hex,
+                            "data-color-name": colors[i].colorName,
+                            "href"           : "#",
+                            "title"          : colors[i].colorName
+                        }).tooltip({'placement': 'bottom'})
+                );
             colorList.append(listElement);
         });
 
 
-        colorList.find('a').on('click', function(e) {
+        colorList.find('a').on('click', function (e) {
             e.preventDefault();
             $this.setColor($(this).data('colorHex'));
 
@@ -165,21 +165,21 @@ var styleSwitcher = {
             }
         });
         var colorSelector = $('<div/>')
-                .addClass('color-picker').attr({
-            'id': 'colorSelector',
-            'data-color': colors[0].Hex,
-            'data-color-format': 'hex'
-        }).append(
+            .addClass('color-picker').attr({
+                'id'               : 'colorSelector',
+                'data-color'       : colors[0].Hex,
+                'data-color-format': 'hex'
+            }).append(
                 $('<a/>')
-                .css('background-color', colors[0].Hex)
-                .attr({
-            'href': '#',
-            'id': 'colorSelectorA'
-        }),
-        $("<span />").addClass("color-picker-icon")
-                );
+                    .css('background-color', colors[0].Hex)
+                    .attr({
+                        'href': '#',
+                        'id'  : 'colorSelectorA'
+                    }),
+                $("<span />").addClass("color-picker-icon")
+            );
 
-        colorSelector.colorpicker().on('changeColor', function(ev) {
+        colorSelector.colorpicker().on('changeColor', function (ev) {
             colorSelector.find("a").css("background-color", ev.color.toHex());
             $this.setColor(ev.color.toHex());
             if (localStor) {
@@ -193,42 +193,42 @@ var styleSwitcher = {
         colorList.append(colorPicker);
 
         var styleSwitcherWrap = $('<div />')
-                .addClass('style-switcher-wrap')
-                .append(
+            .addClass('style-switcher-wrap')
+            .append(
                 $('<h6 />').html('Colors'), colorList, $('<hr/>')
-                );
+            );
 
         var boxLink = $('<a/>')
-                .attr({
-            'id': 'boxLink',
-            'href': '#',
-            'data-layout-type': 'fixed'
-        })
-                .html('Fixed')
-                .on('click', function(e) {
-            e.preventDefault();
-            $(this).addClass('active').siblings('a').removeClass('active');
-            $('body').removeClass('wide').addClass('fixed');
-            if (localStor) {
-                localStorage.layout = 'fixed';
-            }
-        });
+            .attr({
+                'id'              : 'boxLink',
+                'href'            : '#',
+                'data-layout-type': 'fixed'
+            })
+            .html('Fixed')
+            .on('click', function (e) {
+                e.preventDefault();
+                $(this).addClass('active').siblings('a').removeClass('active');
+                $('body').removeClass('wide').addClass('fixed');
+                if (localStor) {
+                    localStorage.layout = 'fixed';
+                }
+            });
 
         var wideLink = $('<a/>')
-                .attr({
-            'href': '#',
-            'id': 'wideLink',
-            'data-layout-type': 'wide'
-        })
-                .html('Wide')
-                .on('click', function(e) {
-            e.preventDefault();
-            $(this).addClass('active').siblings('a').removeClass('active');
-            $('body').removeClass('fixed').addClass('wide').removeAttr('style');
-            if (localStor) {
-                localStorage.layout = 'wide';
-            }
-        });
+            .attr({
+                'href'            : '#',
+                'id'              : 'wideLink',
+                'data-layout-type': 'wide'
+            })
+            .html('Wide')
+            .on('click', function (e) {
+                e.preventDefault();
+                $(this).addClass('active').siblings('a').removeClass('active');
+                $('body').removeClass('fixed').addClass('wide').removeAttr('style');
+                if (localStor) {
+                    localStorage.layout = 'wide';
+                }
+            });
         if (localStor) {
             if (localStorage.layout === 'fixed') {
                 boxLink.addClass('active');
@@ -237,31 +237,31 @@ var styleSwitcher = {
             }
         }
         styleSwitcherWrap.append(
-                $('<div/>').addClass('options-link boxedFixedBody').append(
+            $('<div/>').addClass('options-link boxedFixedBody').append(
                 $('<h6/>').html('Layout Style'),
                 boxLink,
                 wideLink
-                ));
+            ));
 
-        var topNavBarStatic = $('<a/>').html('Static').attr('href', '#').on('click', function(e) {
+        var topNavBarStatic = $('<a/>').html('Static').attr('href', '#').on('click', function (e) {
             e.preventDefault();
             $(this).addClass('active').siblings('a').removeClass('active');
             $('body').removeClass('padTop53');
             $('#top .navbar').removeClass('navbar-fixed-top').addClass('navbar-static-top');
         });
-        var topNavBarFixed = $('<a/>').html('Fixed').attr('href', '#').on('click', function(e) {
+        var topNavBarFixed = $('<a/>').html('Fixed').attr('href', '#').on('click', function (e) {
             e.preventDefault();
             $(this).addClass('active').siblings('a').removeClass('active');
             $('body').addClass('padTop53');
             $('#top .navbar').removeClass('navbar-static-top').addClass('navbar-fixed-top');
         });
         styleSwitcherWrap.append(
-                $('<div/>').addClass('options-link').append(
+            $('<div/>').addClass('options-link').append(
                 $('<h6/>').html('Top Nav Bar Style'),
                 topNavBarStatic,
                 topNavBarFixed
-                )
-                );
+            )
+        );
 
         var patternList = $('<ul />').addClass('options').attr('data-type', 'pattern');
 
@@ -292,26 +292,26 @@ var styleSwitcher = {
             {'image': 'carbon_fibre', 'title': 'Carbon Fibre'}
         ];
 
-        $.each(patternImages, function(i) {
+        $.each(patternImages, function (i) {
             var listElement = $('<li/>')
-                    .append(
+                .append(
                     $('<a/>')
-                    .css({
-                'background': 'url(assets/img/pattern/' + patternImages[i].image + '.png) repeat'
-            })
-                    .attr({
-                'href': '#',
-                'title': patternImages[i].title,
-                'data-pattern-image': patternImages[i].image
-            }).tooltip({'placement': 'bottom'})
-                    );
+                        .css({
+                            'background': 'url(assets/img/pattern/' + patternImages[i].image + '.png) repeat'
+                        })
+                        .attr({
+                            'href'              : '#',
+                            'title'             : patternImages[i].title,
+                            'data-pattern-image': patternImages[i].image
+                        }).tooltip({'placement': 'bottom'})
+                );
             patternList.append(listElement);
         });
 
-        patternList.find('a').on('click', function(e) {
+        patternList.find('a').on('click', function (e) {
             e.preventDefault();
             $('body').css({
-                'background-image': 'url(assets/img/pattern/' + $(this).data('patternImage') + '.png)',
+                'background-image' : 'url(assets/img/pattern/' + $(this).data('patternImage') + '.png)',
                 'background-repeat': ' repeat'
             });
             $this.patternImage = $(this).data('patternImage');
@@ -321,41 +321,46 @@ var styleSwitcher = {
         });
 
         styleSwitcherWrap.append(
-                $('<div/>').addClass('pattern').append(
+            $('<div/>').addClass('pattern').append(
                 $('<h6/>').html('Background Pattern'),
                 patternList
-                )
-                );
+            )
+        );
 
 
-        var sideLeftLink = $('<a/>').html('Left').attr('href', '#').on('click', function(e) {
+        var sideLeftLink = $('<a/>').html('Left').attr('href', '#').on('click', function (e) {
             e.preventDefault();
             $(this).addClass('active');
             sideRightLink.removeClass('active');
             $('body').removeClass('side-right');
             $('#sidebarPos').addClass('');
         });
-        var sideRightLink = $('<a/>').html('Right').attr('href', '#').on('click', function(e) {
+        var sideRightLink = $('<a/>').html('Right').attr('href', '#').on('click', function (e) {
             e.preventDefault();
             $(this).addClass('active');
             sideLeftLink.removeClass('active');
             $('body').addClass('side-right');
         });
+        var sideAffixLink = $('<a/>').html('Affix').attr('href', '#').on('click', function (e) {
+            e.preventDefault();
+            var $menuHeight = $(window).height();
+            $('#menu').affix({offset: {top: 200}}, 100).css({height: $menuHeight});
+        });
         styleSwitcherWrap.append(
-                $('<hr/>'),
-                $('<div/>').addClass('options-link sidebarOpt').append(
+            $('<hr/>'),
+            $('<div/>').addClass('options-link sidebarOpt').append(
                 $('<h6/>').html('Side Bar Position'),
                 sideLeftLink,
                 sideRightLink
-                )
-                );
-        var sideMiniLink = $('<a/>').html('Mini').attr('href', '#').on('click', function(e) {
+            )
+        );
+        var sideMiniLink = $('<a/>').html('Mini').attr('href', '#').on('click', function (e) {
             e.preventDefault();
             $(this).addClass('active');
             sideMaxiLink.removeClass('active');
             $('body').addClass('mini-sidebar');
         });
-        var sideMaxiLink = $('<a/>').html('Maxi').attr('href', '#').on('click', function(e) {
+        var sideMaxiLink = $('<a/>').html('Maxi').attr('href', '#').on('click', function (e) {
             e.preventDefault();
             $(this).addClass('active');
             sideMiniLink.removeClass('active');
@@ -363,43 +368,44 @@ var styleSwitcher = {
         });
 
         styleSwitcherWrap.append(
-                $('<hr/>'),
-                $('<div/>').addClass('options-link sidebarOpt visible-lg').append(
+            $('<hr/>'),
+            $('<div/>').addClass('options-link sidebarOpt visible-lg').append(
                 $('<h6/>').html('Side Bar Width'),
                 sideMiniLink,
-                sideMaxiLink
-                )
-                );
+                sideMaxiLink,
+		sideAffixLink
+            )
+        );
 
         var resetLink = $('<a/>')
-                .html('Reset')
-                .attr('href', '#')
-                .on('click', function(e) {
-            e.preventDefault();
-            $this.reset();
-        });
+            .html('Reset')
+            .attr('href', '#')
+            .on('click', function (e) {
+                e.preventDefault();
+                $this.reset();
+            });
 
         var cssLink = $('<a/>')
-                .html('Get CSS')
-                .attr('href', '#').on('click', function(e) {
-            e.preventDefault();
-            $this.getCss();
-        });
+            .html('Get CSS')
+            .attr('href', '#').on('click', function (e) {
+                e.preventDefault();
+                $this.getCss();
+            });
 
         styleSwitcherWrap.append(
-                $('<div/>').addClass('options-link').append(
+            $('<div/>').addClass('options-link').append(
                 $('<hr/>'),
                 resetLink,
                 cssLink
-                )
-                );
+            )
+        );
 
         switchDiv.append(h5, styleSwitcherWrap);
         $('body').append(switchDiv);
 
         $this.colorSelectorA = $('#colorSelectorA');
     },
-    setColor: function(color) {
+    setColor: function (color) {
         $('#colorSelector').data('color', color);
         $('#colorSelectorA').css('background-color', color);
         less.modifyVars({'@baseColor': color});
@@ -407,7 +413,7 @@ var styleSwitcher = {
             localStorage.color = color;
         }
     },
-    reset: function() {
+    reset   : function () {
         if (Modernizr.localstorage) {
             localStorage.removeItem('color');
             localStorage.removeItem('layout');
@@ -417,7 +423,7 @@ var styleSwitcher = {
         window.location.reload();
         return false;
     },
-    getCss: function() {
+    getCss  : function () {
         var $this = this;
         var raw = "", options;
         var isBoxed = $('body').hasClass('fixed');
@@ -432,7 +438,7 @@ var styleSwitcher = {
         cssBeautify.text("");
         raw = raw + $('style[id^="less:"]').text();
         options = {
-            indent: "\t",
+            indent       : "\t",
             autosemicolon: true
         };
         cssBeautify.text(cssbeautify(raw, options));

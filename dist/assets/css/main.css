@@ -44,6 +44,28 @@ Website: http://www.onokumus.com
 
 /*********************************************************/
 
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1em;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #999;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 1em;
+}
+
+::-webkit-scrollbar-track:hover {
+  background: rgba(110, 110, 110, 0.25);
+}
+
 body.padTop53 {
   padding-top: 95px;
   overflow: visible;
@@ -84,8 +106,27 @@ body.padTop53 {
 
 @media (min-width: 768px) {
   #left {
+    position: relative;
     float: left;
     width: 100px;
+  }
+  #left #menu.affix {
+    position: fixed;
+    top: 0;
+    width: 100px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  #left #menu.affix:hover {
+    overflow-y: scroll;
+  }
+  #left #menu.affix > li:last-child > a:last-child {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05), 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+  }
+  body.padTop53 #left #menu.affix {
+    top: 53px;
   }
   .side-right #left {
     float: right;
@@ -106,7 +147,13 @@ body.padTop53 {
   #left {
     width: 220px;
   }
+  #left #menu.affix {
+    width: 220px;
+  }
   .mini-sidebar #left {
+    width: 100px;
+  }
+  .mini-sidebar #left #menu.affix {
     width: 100px;
   }
   #content {
@@ -396,8 +443,7 @@ body.padTop53 {
 
 @media (min-width: 768px) {
   #menu.collapse {
-    display: block !important;
-    height: auto !important;
+    display: inherit !important;
   }
 }
 

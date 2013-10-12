@@ -17,19 +17,19 @@
     },
     "licenses": {
         "type":"MIT",
-        "url":"https://github.com/onokumus/Bootstrap-Admin-Template/blob/2.0.0-dev/README.md"
+        "url":"https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/README.md"
     },
     "devDependencies": {
         "grunt": "~0.4.1",
-        "assemble": "~0.4.4",
-	"grunt-contrib-connect": "~0.3.0",
+        "assemble": "~0.4.12",
+	"grunt-contrib-connect": "~0.5.0",
 	"grunt-contrib-clean": "~0.5.0",
 	"grunt-contrib-concat": "~0.3.0",
-	"grunt-contrib-jshint": "~0.6.2",
-	"grunt-contrib-uglify": "~0.2.2",
-	"grunt-contrib-qunit": "~0.2.2",
-	"grunt-contrib-watch": "~0.5.1",
-	"grunt-recess": "~0.3.4",
+	"grunt-contrib-jshint": "~0.6.4",
+	"grunt-contrib-uglify": "~0.2.4",
+	"grunt-contrib-qunit": "~0.3.0",
+	"grunt-contrib-watch": "~0.5.3",
+	"grunt-recess": "~0.4.0",
 	"grunt-contrib-copy": "~0.4.1"
     }
 }

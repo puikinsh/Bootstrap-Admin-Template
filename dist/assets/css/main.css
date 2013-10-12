@@ -2421,3 +2421,75 @@ fieldset[disabled] .btn-grad.btn-metis-6.active {
 /*COMMENTS*/
 
 /* --------------- END Component Styles -------------------- */
+
+/* BEGIN animated checkbox styles */
+
+.anim-checkbox {
+  /*adding some colors for fun*/
+
+}
+
+.anim-checkbox label {
+  position: relative;
+}
+
+.anim-checkbox label:before,
+.anim-checkbox label:after {
+  position: absolute;
+  left: -22px;
+  font-family: FontAwesome;
+}
+
+.anim-checkbox label:before {
+  content: '\f096';
+  /*unchecked*/
+
+}
+
+.anim-checkbox label:after {
+  max-width: 0;
+  overflow: hidden;
+  content: '\f046';
+  opacity: 0.5;
+  transition: all 0.35s;
+}
+
+.anim-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.anim-checkbox input[type="checkbox"]:checked + label:after {
+  max-width: 25px;
+  /*an arbitratry number more than the icon's width*/
+
+  opacity: 1;
+  /*for fade in effect*/
+
+}
+
+.anim-checkbox .primary:checked + label:before,
+.anim-checkbox .primary:checked + label:after {
+  color: #428bca;
+}
+
+.anim-checkbox .success:checked + label:before,
+.anim-checkbox .success:checked + label:after {
+  color: #5cb85c;
+}
+
+.anim-checkbox .warning:checked + label:before,
+.anim-checkbox .warning:checked + label:after {
+  color: #f0ad4e;
+}
+
+.anim-checkbox .danger:checked + label:before,
+.anim-checkbox .danger:checked + label:after {
+  color: #d9534f;
+}
+
+.anim-checkbox .info:checked + label:before,
+.anim-checkbox .info:checked + label:after {
+  color: #5bc0de;
+}
+
+/* END animated checkbox styles */

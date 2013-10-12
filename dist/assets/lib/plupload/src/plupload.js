@@ -290,6 +290,32 @@ var plupload = {
 	guid : o.guid,
 
 	/**
+	 * Get array of DOM Elements by their ids.
+	 * 
+	 * @method get
+	 * @for Utils
+	 * @param {String} id Identifier of the DOM Element
+	 * @return {Array}
+	*/
+	get : function get(ids) {
+		var els = [], el;
+
+		if (o.typeOf(ids) !== 'array') {
+			ids = [ids];
+		}
+
+		var i = ids.length;
+		while (i--) {
+			el = o.get(ids[i]);
+			if (el) {
+				els.push(el);
+			}
+		}
+
+		return els.length ? els : null;
+	},
+
+	/**
 	 * Executes the callback function for each item in array/object. If you return false in the
 	 * callback it will break the loop.
 	 *
@@ -609,7 +635,7 @@ var plupload = {
 
 
 plupload.addFileFilter('mime_types', (function() {
-	var _filters, _extRegExp;
+	var _extRegExp;
 
 	// Convert extensions to regexp
 	function getExtRegExp(filters) {
@@ -629,9 +655,8 @@ plupload.addFileFilter('mime_types', (function() {
 	}
 
 	return function(filters, file, cb) {
-		if (!_extRegExp || filters != _filters) { // make sure we do it only once, unless filters got changed
+		if (!_extRegExp) { // make sure we do it only once, unless filters got changed
 			_extRegExp = getExtRegExp(filters);
-			_filters = [].slice.call(filters);
 		}
 
 		if (!_extRegExp.test(file.name)) {
@@ -778,11 +803,19 @@ plupload.Uploader = function(settings) {
 	 */
 
 	/**
-	 * Fires while a file was removed from queue.
+	 * Fires when file is removed from the queue.
 	 *
 	 * @event FilesRemoved
 	 * @param {plupload.Uploader} uploader Uploader instance sending the event.
 	 * @param {Array} files Array of files that got removed.
+	 */
+
+	/**
+	 * Fires for every filtered file before it is added to the queue.
+	 * 
+	 * @event FileFiltered
+	 * @param {plupload.Uploader} uploader Uploader instance sending the event.
+	 * @param {plupload.File} file Another file that has to be added to the queue.
 	 */
 
 	/**
@@ -836,7 +869,7 @@ plupload.Uploader = function(settings) {
 	var uid = plupload.guid(),
 		files = [], required_caps = {},
 		startTime, total, disabled = false,
-		fileInput, fileDrop, xhr;
+		fileInputs = [], fileDrops = [], xhr;
 
 
 	// Private methods
@@ -913,7 +946,7 @@ plupload.Uploader = function(settings) {
 	}
 
 	function initControls() {
-		var self = this, initialized = 0;
+		var self = this, initialized = 0, queue = [];
 
 		// common settings
 		var options = {
@@ -931,15 +964,15 @@ plupload.Uploader = function(settings) {
 			}
 		});
 
-		o.inSeries([
-			function(cb) {
-				// Initialize file dialog trigger
-				if (settings.browse_button) {
-					fileInput = new o.FileInput(plupload.extend({}, options, {
+		// initialize file pickers - there can be many
+		if (settings.browse_button) {
+			plupload.each(settings.browse_button, function(el) {
+				queue.push(function(cb) {
+					var fileInput = new o.FileInput(plupload.extend({}, options, {
 						name: settings.file_data_name,
 						multiple: settings.multi_selection,
 						container: settings.container,
-						browse_button: settings.browse_button
+						browse_button: el
 					}));
 
 					fileInput.onready = function() {
@@ -953,6 +986,7 @@ plupload.Uploader = function(settings) {
 						});
 
 						initialized++;
+						fileInputs.push(this);
 						cb();
 					};
 
@@ -962,24 +996,20 @@ plupload.Uploader = function(settings) {
 
 					fileInput.bind('mouseenter mouseleave mousedown mouseup', function(e) {
 						if (!disabled) {
-							var bButton = o.get(settings.browse_button);
-							if (bButton) {
-								if (settings.browse_button_hover) {
-									if ('mouseenter' === e.type) {
-										o.addClass(bButton, settings.browse_button_hover);
-									} else if ('mouseleave' === e.type) {
-										o.removeClass(bButton, settings.browse_button_hover);
-									}
+							if (settings.browse_button_hover) {
+								if ('mouseenter' === e.type) {
+									o.addClass(el, settings.browse_button_hover);
+								} else if ('mouseleave' === e.type) {
+									o.removeClass(el, settings.browse_button_hover);
 								}
+							}
 
-								if (settings.browse_button_active) {
-									if ('mousedown' === e.type) {
-										o.addClass(bButton, settings.browse_button_active);
-									} else if ('mouseup' === e.type) {
-										o.removeClass(bButton, settings.browse_button_active);
-									}
+							if (settings.browse_button_active) {
+								if ('mousedown' === e.type) {
+									o.addClass(el, settings.browse_button_active);
+								} else if ('mouseup' === e.type) {
+									o.removeClass(el, settings.browse_button_active);
 								}
-								bButton = null;
 							}
 						}
 					});
@@ -990,24 +1020,25 @@ plupload.Uploader = function(settings) {
 					});
 
 					fileInput.init();
-				} else {
-					cb();
-				}
-			},
+				});
+			});
+		}
 
-			function(cb) {
-				// Initialize drag/drop interface if requested
-				if (settings.drop_element) {
-					fileDrop = new o.FileDrop(plupload.extend({}, options, {
-						drop_zone: settings.drop_element
+		// initialize drop zones
+		if (settings.drop_element) {
+			plupload.each(settings.drop_element, function(el) {
+				queue.push(function(cb) {
+					var fileDrop = new o.FileDrop(plupload.extend({}, options, {
+						drop_zone: el
 					}));
 
 					fileDrop.onready = function() {
 						var info = o.Runtime.getInfo(this.ruid);
 
-						self.features.dragdrop = info.can('drag_and_drop');
+						self.features.dragdrop = info.can('drag_and_drop'); // for backward compatibility
 
 						initialized++;
+						fileDrops.push(this);
 						cb();
 					};
 
@@ -1021,12 +1052,12 @@ plupload.Uploader = function(settings) {
 					});
 
 					fileDrop.init();
-				} else {
-					cb();
-				}
-			}
-		],
-		function() {
+				});
+			});
+		}
+
+
+		o.inSeries(queue, function() {
 			if (typeof(settings.init) == "function") {
 				settings.init(self);
 			} else {
@@ -1036,6 +1067,8 @@ plupload.Uploader = function(settings) {
 			}
 
 			if (initialized) {
+				self.runtime = o.Runtime.getInfo(getRUID()).type;
+				self.trigger('Init', { runtime: self.runtime });
 				self.trigger('PostInit');
 			} else {
 				self.trigger('Error', {
@@ -1044,6 +1077,14 @@ plupload.Uploader = function(settings) {
 				});
 			}
 		});
+	}
+
+	function getRUID() {
+		var ctrl = fileInputs[0] || fileDrops[0];
+		if (ctrl) {
+			return ctrl.getRuntime().uid;
+		}
+		return false;
 	}
 
 	function runtimeCan(file, cap) {
@@ -1161,7 +1202,7 @@ plupload.Uploader = function(settings) {
 		 * @property runtime
 		 * @type String
 		 */
-		runtime : o.Runtime.thatCan(required_caps, settings.runtimes), // predict runtime
+		runtime : null,
 
 		/**
 		 * Current upload queue, an array of File instances.
@@ -1197,10 +1238,10 @@ plupload.Uploader = function(settings) {
 		init : function() {
 			var self = this;
 
-			settings.browse_button = o.get(settings.browse_button);
+			settings.browse_button = plupload.get(settings.browse_button);
 			
 			// Check if drop zone requested
-			settings.drop_element = o.get(settings.drop_element);
+			settings.drop_element = plupload.get(settings.drop_element);
 
 
 			if (typeof(settings.preinit) == "function") {
@@ -1494,10 +1535,6 @@ plupload.Uploader = function(settings) {
 				}, 1);
 			});
 
-			// some dependent scripts hook onto Init to alter configuration options, raw UI, etc (like Queue Widget),
-			// therefore we got to fire this one, before we dive into the actual initializaion
-			self.trigger('Init', { runtime: this.runtime });
-
 			initControls.call(this);
 		},
 
@@ -1508,8 +1545,10 @@ plupload.Uploader = function(settings) {
 		 * @method refresh
 		 */
 		refresh : function() {
-			if (fileInput) {
-				fileInput.trigger("Refresh");
+			if (fileInputs.length) {
+				plupload.each(fileInputs, function(fileInput) {
+					fileInput.trigger("Refresh");
+				});
 			}
 			this.trigger("Refresh");
 		},
@@ -1551,8 +1590,10 @@ plupload.Uploader = function(settings) {
 		disableBrowse : function() {
 			disabled = arguments[0] !== undef ? arguments[0] : true;
 
-			if (fileInput) {
-				fileInput.disable(disabled);
+			if (fileInputs.length) {
+				plupload.each(fileInputs, function(fileInput) {
+					fileInput.disable(disabled);
+				});
 			}
 
 			this.trigger("DisableBrowse", disabled);
@@ -1589,14 +1630,6 @@ plupload.Uploader = function(settings) {
 			, files = []
 			, ruid
 			;
-
-			function getRUID() {
-				var ctrl = fileDrop || fileInput;
-				if (ctrl) {
-					return ctrl.getRuntime().uid;
-				}
-				return false;
-			}
 
 			function filterFile(file, cb) {
 				var queue = [];
@@ -1647,8 +1680,9 @@ plupload.Uploader = function(settings) {
 						filterFile(file, function(err) {
 							if (!err) {
 								files.push(file);
+								self.trigger("FileFiltered", file);
 							}
-							cb();
+							delay(cb, 1); // do not build up recursions or eventually we might hit the limits
 						});
 					});
 				} 
@@ -1711,12 +1745,14 @@ plupload.Uploader = function(settings) {
 			var removed = files.splice(start === undef ? 0 : start, length === undef ? files.length : length);
 
 			this.trigger("FilesRemoved", removed);
-			this.trigger("QueueChanged");
 
 			// Dispose any resources allocated by those files
 			plupload.each(removed, function(file) {
 				file.destroy();
 			});
+
+			this.trigger("QueueChanged");
+			this.refresh();
 
 			return removed;
 		},
@@ -1785,14 +1821,18 @@ plupload.Uploader = function(settings) {
 			});
 			files = [];
 
-			if (fileInput) {
-				fileInput.destroy();
-				fileInput = null;
+			if (fileInputs.length) {
+				plupload.each(fileInputs, function(fileInput) {
+					fileInput.destroy();
+				});
+				fileInputs = [];
 			}
 
-			if (fileDrop) {
-				fileDrop.destroy();
-				fileDrop = null;
+			if (fileDrops.length) {
+				plupload.each(fileDrops, function(fileDrop) {
+					fileDrop.destroy();
+				});
+				fileDrops = [];
 			}
 
 			required_caps = {};
@@ -1806,7 +1846,7 @@ plupload.Uploader = function(settings) {
 	});
 };
 
-plupload.Uploader.prototype = mOxie.EventTarget.instance;
+plupload.Uploader.prototype = o.EventTarget.instance;
 
 /**
  * Constructs a new file instance.

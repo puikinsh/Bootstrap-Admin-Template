@@ -9,7 +9,7 @@
 
 	<!-- Demo stuff -->
 	<link rel="stylesheet" href="css/jq.css">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 	<link href="css/prettify.css" rel="stylesheet">
 	<script src="js/prettify.js"></script>
 	<script src="js/docs.js"></script>
@@ -34,8 +34,8 @@
 		footerCells: '',
 		icons      : '', // add "icon-white" to make them white; this icon class is added to the <i> in the header
 		sortNone   : 'bootstrap-icon-unsorted',
-		sortAsc    : 'icon-chevron-up',
-		sortDesc   : 'icon-chevron-down',
+		sortAsc    : 'icon-chevron-up glyphicon glyphicon-chevron-up',     // includes classes for Bootstrap v2 & v3
+		sortDesc   : 'icon-chevron-down glyphicon glyphicon-chevron-down', // includes classes for Bootstrap v2 & v3
 		active     : '', // applied when column is sorted
 		hover      : '', // use custom css here - bootstrap class may not override it
 		filterRow  : '', // filter row class
@@ -74,7 +74,7 @@
 	.tablesorterPager({
 
 		// target the pager markup - see the HTML block below
-		container: $(".pager"),
+		container: $(".ts-pager"),
 
 		// target the pager page select dropdown - choose a page
 		cssGoto  : ".pagenum",
@@ -117,7 +117,7 @@
 			$(this)
 				.toggleClass('btn-danger btn-success')
 				.find('i')
-				.toggleClass('icon-ok icon-remove').end()
+				.toggleClass('icon-ok icon-remove glyphicon-ok glyphicon-remove').end()
 				.find('span')
 				.text(t ? 'disabled' : 'enabled');
 			$('table').trigger('refreshWidgets', [false]);
@@ -141,15 +141,24 @@
 	<p class="tip">
 		<span class="label label-info">NOTE!</span>
 		<ul>
+			<li><span class="label label-success">New!</span>In tablesorter v2.11+, The bootstrap theme now works with Bootstrap 3 and older versions.
+				<ul>
+					<li>Note the changes to the sorting icons in the <code>$.tablesorter.themes.bootstrap</code> defaults below.</li>
+					<li>Just use the appropriate icon class name (<code>icon-{name}</code> for Bootstrap v2, and <code>glyphicon glyphicon-{name}</code> for Bootstrap v3.</li>
+					<li>And of course include the necessary Bootstrap image or font).</li>
+					<li>Wrapped all of the <code>pager</code> controls in the tfoot within a div (don't use the class name <code>pager</code> as it adds a lot of padding) to keep the controls from being centered.</li>
+					<li>Pager control buttons in the tfoot have class names needed for both Bootstrap v2+ and v3, so there's no need for you to use both, just use the ones you need.</li>
+				</ul>
+			</li>
 			<li>As of tablesorter version 2.9+, this widget can no longer be applied to versions of tablesorter prior to version 2.8.</li>
 			<li>Make sure to include the <code>{icon}</code> in the <code>headerTemplate</code> to add a sorting arrow to the headers.</li>
-			<li><span class="label label-success">New!</span> v2.7!
+			<li>Added in v2.7!
 				<ul>
 					<li>You will need to modify the <code>headerTemplate</code> option to include the bootstrap icon! See the example in the code.</li>
 					<li>Setting <code>theme</code> option to <code>"Bootstrap"</code> will now override/ignore the <code>uitheme</code> value in the <code>widgetOptions</code>.</li>
 				</ul>
 			</li>
-			<li><span class="label label-success">New!</span> In tablesorter v2.4, the <code>uitheme</code> option has changed to indicate the theme instead of an array of icons to use:
+			<li>In tablesorter v2.4, the <code>uitheme</code> option has changed to indicate the theme instead of an array of icons to use:
 				<ul>
 					<li>All theme class names are now contained within <code>$.tablesorter.themes</code> with the Bootstrap theme saved to <code>$.tablesorter.themes.bootstrap</code>.</li>
 					<li>The themes variable allows you to modify the class names for the table, header, sort icons, active state, hover state, filter inputs and zebra striping. See the code below on how to extend these variables.</li>
@@ -158,9 +167,9 @@
 			</li>
 			<li>This demo shows how to get around an issue with the filter widget:
 				<ul>
-					<li>The <span class="label label-success">zebra widget button</span> below was added to show that when bootstrap's "table-striped" class is applied, the css defined zebra striping will not apply correctly because table rows are hidden but still accounted for by the css <code>nth-child()</code> selector.</li>
-					<li>To better understand this issue, disable the zebra widget (using the toggle button). Now <button type="button" class="filter btn btn-small btn-primary" data-column="5" data-filter=">80"><i class="icon-white icon-filter"></i> Filter ">80"</button> in the "Calculus" column.</li>
-					<li>Try other filter searches with the zebra widget disabled, like <button type="button" class="filter btn btn-small btn-primary" data-column="2" data-filter="male"><i class="icon-white icon-filter"></i> Filter "male"</button> in the "Sex" column.</li>
+					<li>The <span class="label label-info">zebra widget button</span> below was added to show that when bootstrap's "table-striped" class is applied, the css defined zebra striping will not apply correctly because table rows are hidden but still accounted for by the css <code>nth-child()</code> selector.</li>
+					<li>To better understand this issue, disable the zebra widget (using the toggle button). Now <button type="button" class="filter btn btn-small btn-primary" data-column="5" data-filter=">80"><i class="icon-white icon-filter glyphicon glyphicon-filter"></i> Filter ">80"</button> in the "Calculus" column.</li>
+					<li>Try other filter searches with the zebra widget disabled, like <button type="button" class="filter btn btn-small btn-primary" data-column="2" data-filter="male"><i class="icon-white icon-filter glyphicon glyphicon-filter"></i> Filter "male"</button> in the "Sex" column.</li>
 					<li>To solve this issue, just enable the zebra widget and the "even" and "odd" row class names <del>will</del> should over-ride the <code>nth-child()</code> styling.<br><span class="label label-warning">NOTE!</span> This doesn't seem to work in the latest Bootstrap version, so you'll have to remove the "table-striped" class completely from the table.</li>
 					<li>The only down side is that for custom bootstrap themes, you'll need to edit the "theme.bootstrap.css" file for bootstrap.</li>
 				</ul>
@@ -172,9 +181,9 @@
 	<h1>Demo</h1>
 	<!-- use the filter_reset : '.reset' option or include data-filter="" using the filter button demo code to reset the filters -->
 	<div class="bootstrap_buttons">
-		Reset filter : <button type="button" class="reset btn btn-primary" data-column="0" data-filter=""><i class="icon-white icon-refresh"></i> Reset filters</button>
+		Reset filter : <button type="button" class="reset btn btn-primary" data-column="0" data-filter=""><i class="icon-white icon-refresh glyphicon glyphicon-refresh"></i> Reset filters</button>
 		<br>
-		Zebra widget : <button type="button" class="zebra btn btn-success"><i class="icon-white icon-ok"></i> <span>enabled</span></button>
+		Zebra widget : <button type="button" class="zebra btn btn-success"><i class="icon-white icon-ok glyphicon glyphicon-ok"></i> <span>enabled</span></button>
 	</div>
 	<br>
 
@@ -197,14 +206,15 @@
 			<th>English</th>
 			<th>Japanese</th>
 			<th>Calculus</th>
-			<th>Geometry</th></tr>
+			<th>Geometry</th>
+		</tr>
 		<tr>
-			<th colspan="7" class="pager form-horizontal">
-				<button type="button" class="btn first"><i class="icon-step-backward"></i></button>
-				<button type="button" class="btn prev"><i class="icon-arrow-left"></i></button>
+			<th colspan="7" class="ts-pager form-horizontal">
+				<button type="button" class="btn first"><i class="icon-step-backward glyphicon glyphicon-step-backward"></i></button>
+				<button type="button" class="btn prev"><i class="icon-arrow-left glyphicon glyphicon-backward"></i></button>
 				<span class="pagedisplay"></span> <!-- this can be any element, including an input -->
-				<button type="button" class="btn next"><i class="icon-arrow-right"></i></button>
-				<button type="button" class="btn last"><i class="icon-step-forward"></i></button>
+				<button type="button" class="btn next"><i class="icon-arrow-right glyphicon glyphicon-forward"></i></button>
+				<button type="button" class="btn last"><i class="icon-step-forward glyphicon glyphicon-step-forward"></i></button>
 				<select class="pagesize input-mini" title="Select page size">
 					<option selected="selected" value="10">10</option>
 					<option value="20">20</option>

@@ -824,6 +824,10 @@ body.padTop53 {
           box-shadow: 1px 0px 0px #85d0e7;
 }
 
+.box:not(.dark) header .toolbar .nav > li > a {
+  color: #fff;
+}
+
 .box header .toolbar {
   display: inline-table;
   float: right;
@@ -849,7 +853,6 @@ body.padTop53 {
 
 .box header .toolbar .nav > li > a {
   padding-top: 9px;
-  color: #fff;
 }
 
 .box header .toolbar .nav > li > a:hover,

@@ -16,6 +16,7 @@
 	<!-- Tablesorter: required -->
 	<link rel="stylesheet" href="../css/theme.blue.css">
 	<script src="../js/jquery.tablesorter.js"></script>
+	<script src="../js/jquery.tablesorter.widgets.js"></script>
 
 	<!-- Tablesorter: optional -->
 	<link rel="stylesheet" href="../addons/pager/jquery.tablesorter.pager.css">
@@ -58,6 +59,9 @@
 
 		// Number of visible rows - default is 10
 		size: 10,
+
+		// Save pager page & size if the storage script is loaded (requires $.tablesorter.storage in jquery.tablesorter.widgets.js)
+		savePages : true,
 
 		// if true, the table will remain the same height no matter how many records are displayed. The space is made up by an empty
 		// table row set to a height to compensate; default is false
@@ -192,6 +196,7 @@
 			<ul>
 				<li>This pager plugin can be applied to the original tablesorter, but there is one exception - setting the <code>removeRows</code> option to false will break the sort.</li>
 				<li>There have been lots of changes made in version 2.1, please check out the <a href="https://github.com/Mottie/tablesorter/wiki/Change2">change log</a>.</li>
+				<li>In <span class="version">v2.11</span>, the <code>savePages</code> option was added to saves the current page size and number (requires storage script).</li>
 			</ul>
 		</p>
 

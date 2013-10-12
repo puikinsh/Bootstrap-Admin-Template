@@ -505,7 +505,14 @@ function formGeneral() {
     /*----------- END timepicker CODE -------------------------*/
 
     /*----------- BEGIN toggleButtons CODE -------------------------*/
-    $('.make-switch').bootstrapSwitch();
+    // Resets to the regular style
+$('#dimension-switch').bootstrapSwitch('setSizeClass', '');
+// Sets a mini switch
+$('#dimension-switch').bootstrapSwitch('setSizeClass', 'switch-mini');
+// Sets a small switch
+$('#dimension-switch').bootstrapSwitch('setSizeClass', 'switch-small');
+// Sets a large switch
+$('#dimension-switch').bootstrapSwitch('setSizeClass', 'switch-large');
     /*----------- END toggleButtons CODE -------------------------*/
 
     /*----------- BEGIN dualListBox CODE -------------------------*/

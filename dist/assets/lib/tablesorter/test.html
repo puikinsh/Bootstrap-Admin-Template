@@ -400,16 +400,16 @@
 		test( "testing header css & sortReset method", function(){
 			expect(7);
 			t = $(th0);
-			equal( $table1.hasClass(c1.tableClass), true, 'table class applied');
-			equal( t.hasClass(c1.cssHeader), true, 'Header class present' );
-			equal( t.parent().hasClass(c1.cssHeaderRow), true, 'Header row class present' );
+			equal( $table1.hasClass(ts.css.table), true, 'table class applied');
+			equal( t.hasClass(ts.css.header), true, 'Header class present' );
+			equal( t.parent().hasClass(ts.css.headerRow), true, 'Header row class present' );
 			equal( $table1.find('tbody:eq(1)').hasClass(c1.cssInfoBlock), true, 'Tbody info block class present' );
 			$table1.trigger('sorton', [[[ 0,1 ]]] );
-			equal( t.hasClass(c1.cssDesc), true, 'Descending class present' );
+			equal( t.hasClass(ts.css.sortDesc), true, 'Descending class present' );
 			$table1.trigger('sorton', [[[ 0,0 ]]] );
-			equal( t.hasClass(c1.cssAsc), true, 'Ascending class present' );
+			equal( t.hasClass(ts.css.sortAsc), true, 'Ascending class present' );
 			$table1.trigger('sortReset');
-			equal( t.hasClass(c1.cssAsc) || t.hasClass(c1.cssDesc), false, 'Testing sortReset' );
+			equal( t.hasClass(ts.css.sortAsc) || t.hasClass(ts.css.sortDesc), false, 'Testing sortReset' );
 		});
 
 		/************************************************

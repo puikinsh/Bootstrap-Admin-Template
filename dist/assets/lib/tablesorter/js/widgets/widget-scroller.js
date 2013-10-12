@@ -39,8 +39,9 @@
 $.fn.hasScrollBar = function(){
 	return this.get(0).scrollHeight > this.height();
 };
+var ts = $.tablesorter;
 
-$.tablesorter.window_resize = function(){
+ts.window_resize = function(){
 	if (this.resize_timer) {
 		clearTimeout(this.resize_timer); 
 	}
@@ -61,7 +62,7 @@ $(function(){
 	$(s).appendTo('body');
 });
 
-$.tablesorter.addWidget({
+ts.addWidget({
 	id: 'scroller',
 	priority: 60, // run after the filter widget
 	options: {
@@ -74,16 +75,16 @@ $.tablesorter.addWidget({
 		var $win = $(window);
 		//Setup window.resizeEnd event
 		$win
-			.bind('resize', $.tablesorter.window_resize)
+			.bind('resize', ts.window_resize)
 			.bind('resizeEnd', function(e) {
 				// init is run before format, so scroller_resizeWidth
 				// won't be defined within the "c" or "wo" parameters
 				if (typeof table.config.widgetOptions.scroller_resizeWidth === 'function') {
 					//IE calls resize when you modify content, so we have to unbind the resize event
 					//so we don't end up with an infinite loop. we can rebind after we're done.
-					$win.unbind('resize', $.tablesorter.window_resize);
+					$win.unbind('resize', ts.window_resize);
 					table.config.widgetOptions.scroller_resizeWidth();
-					$win.bind('resize', $.tablesorter.window_resize);
+					$win.bind('resize', ts.window_resize);
 				}
 			});
 	},
@@ -108,7 +109,7 @@ $.tablesorter.addWidget({
 
 			$cells = $hdr
 				.wrap('<div class="tablesorter-scroller-header" style="width:' + $tbl.width() + ';" />')
-				.find('.' + c.cssHeader)
+				.find('.' + ts.css.header)
 				.bind('mousedown', function(){
 					this.onselectstart = function(){ return false; };
 					return false;
@@ -123,17 +124,17 @@ $.tablesorter.addWidget({
 						t
 							.attr('class', $(this).attr('class'))
 							// remove processing icon
-							.removeClass(c.cssProcessing);
-						if (c.cssIcon){
+							.removeClass(ts.css.processing + ' ' + c.cssProcessing);
+						if (ts.css.icon){
 							t
-								.find('.' + c.cssIcon)
-								.attr('class', $(this).find('.' + c.cssIcon).attr('class'));
+								.find('.' + ts.css.icon)
+								.attr('class', $(this).find('.' + ts.css.icon).attr('class'));
 						}
 					});
 				});
 
 			// make scroller header sortable
-			c.$headers.find('*')[ $.fn.addBack ? 'addBack': 'andSelf' ]().filter(c.selectorSort).each(function(i){
+			c.$headers.find(c.selectorSort).add( c.$headers.filter(c.selectorSort) ).each(function(i){
 				var t = $(this);
 				$cells.eq(i)
 				// clicking on new header will trigger a sort

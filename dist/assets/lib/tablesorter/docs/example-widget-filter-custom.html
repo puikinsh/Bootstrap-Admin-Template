@@ -68,8 +68,8 @@
 
 		widgetOptions : {
 
-			// css class applied to the table row containing the filters & the inputs within that row
-			filter_cssFilter   : 'tablesorter-filter',
+			// extra css class applied to the table row containing the filters & the inputs within that row
+			filter_cssFilter   : '',
 
 			// If there are child rows in the table (rows with class name from "cssChildRow" option)
 			// and this option is true and a match is found anywhere in the child row, then it will make that row
@@ -112,28 +112,28 @@
 				// 0 : true,
 
 				// Exact match only
-				1 : function(e, n, f, i) {
+				1 : function(e, n, f, i, $r) {
 					return e === f;
 				},
 
 				// Add these options to the select dropdown (regex example)
 				2 : {
-					"A - D" : function(e, n, f, i) { return /^[A-D]/.test(e); },
-					"E - H" : function(e, n, f, i) { return /^[E-H]/.test(e); },
-					"I - L" : function(e, n, f, i) { return /^[I-L]/.test(e); },
-					"M - P" : function(e, n, f, i) { return /^[M-P]/.test(e); },
-					"Q - T" : function(e, n, f, i) { return /^[Q-T]/.test(e); },
-					"U - X" : function(e, n, f, i) { return /^[U-X]/.test(e); },
-					"Y - Z" : function(e, n, f, i) { return /^[Y-Z]/.test(e); }
+					"A - D" : function(e, n, f, i, $r) { return /^[A-D]/.test(e); },
+					"E - H" : function(e, n, f, i, $r) { return /^[E-H]/.test(e); },
+					"I - L" : function(e, n, f, i, $r) { return /^[I-L]/.test(e); },
+					"M - P" : function(e, n, f, i, $r) { return /^[M-P]/.test(e); },
+					"Q - T" : function(e, n, f, i, $r) { return /^[Q-T]/.test(e); },
+					"U - X" : function(e, n, f, i, $r) { return /^[U-X]/.test(e); },
+					"Y - Z" : function(e, n, f, i, $r) { return /^[Y-Z]/.test(e); }
 				},
 
 				// Add these options to the select dropdown (numerical comparison example)
 				// Note that only the normalized (n) value will contain numerical data
 				// If you use the exact text, you'll need to parse it (parseFloat or parseInt)
 				4 : {
-					"< $10"      : function(e, n, f, i) { return n < 10; },
-					"$10 - $100" : function(e, n, f, i) { return n >= 10 && n <=100; },
-					"> $100"     : function(e, n, f, i) { return n > 100; }
+					"< $10"      : function(e, n, f, i, $r) { return n < 10; },
+					"$10 - $100" : function(e, n, f, i, $r) { return n >= 10 && n <=100; },
+					"> $100"     : function(e, n, f, i, $r) { return n > 100; }
 				}
 			}
 
@@ -160,6 +160,7 @@
 		<h3><a href="#">Notes</a></h3>
 		<div>
 			<ul>
+				<li>In <span class="version">v2.11</span>, the filter functions provide an additional parameter <code>$r</code> providing a jQuery object of the current row being searched by the filter.</li> 
 				<li>For <span class="version">v2.10.8</span>, the Age column includes the new <code>data-value</code> set to <code>&lt;30</code> which sets the default (starting) filter value (see <a href="index.html#widget-filter-defaultattrib">filter_defaultAttrib</a> for more details).</li>
 				<li>As of tablesorter <span class="version">v2.9</span>, this widget can no longer be applied to versions of tablesorter prior to version 2.8.</li>
 				<li>Custom filter widget option <code>filter_functions</code> was added in version 2.3.6.</li>
@@ -191,7 +192,7 @@
 				<li>To enable this type of filter, add your custom function to the <code>filter_functions</code> option following this example:<pre class="prettyprint lang-javascript">filter_functions : {
 
   // Exact match only
-  1 : function(e, n, f, i) {
+  1 : function(e, n, f, i, $r) {
     return e === f;
   }
 
@@ -211,13 +212,13 @@
 
   // Add these options to the select dropdown (regex example)
   2 : {
-    &quot;A - D&quot; : function(e, n, f, i) { return /^[A-D]/.test(e); },
-    &quot;E - H&quot; : function(e, n, f, i) { return /^[E-H]/.test(e); },
-    &quot;I - L&quot; : function(e, n, f, i) { return /^[I-L]/.test(e); },
-    &quot;M - P&quot; : function(e, n, f, i) { return /^[M-P]/.test(e); },
-    &quot;Q - T&quot; : function(e, n, f, i) { return /^[Q-T]/.test(e); },
-    &quot;U - X&quot; : function(e, n, f, i) { return /^[U-X]/.test(e); },
-    &quot;Y - Z&quot; : function(e, n, f, i) { return /^[Y-Z]/.test(e); }
+    &quot;A - D&quot; : function(e, n, f, i, $r) { return /^[A-D]/.test(e); },
+    &quot;E - H&quot; : function(e, n, f, i, $r) { return /^[E-H]/.test(e); },
+    &quot;I - L&quot; : function(e, n, f, i, $r) { return /^[I-L]/.test(e); },
+    &quot;M - P&quot; : function(e, n, f, i, $r) { return /^[M-P]/.test(e); },
+    &quot;Q - T&quot; : function(e, n, f, i, $r) { return /^[Q-T]/.test(e); },
+    &quot;U - X&quot; : function(e, n, f, i, $r) { return /^[U-X]/.test(e); },
+    &quot;Y - Z&quot; : function(e, n, f, i, $r) { return /^[Y-Z]/.test(e); }
   }
 
 }</pre></li>
@@ -226,9 +227,9 @@
   // Note that only the normalized (n) value will contain numerical data
   // If you use the exact text, you'll need to parse it (parseFloat or parseInt)
   4 : {
-    &quot;< $10&quot;      : function(e, n, f, i) { return n < 10; },
-    &quot;$10 - $100&quot; : function(e, n, f, i) { return n >= 10 && n <=100; },
-    &quot;> $100&quot;     : function(e, n, f, i) { return n > 100; }
+    &quot;< $10&quot;      : function(e, n, f, i, $r) { return n < 10; },
+    &quot;$10 - $100&quot; : function(e, n, f, i, $r) { return n >= 10 && n <=100; },
+    &quot;> $100&quot;     : function(e, n, f, i, $r) { return n > 100; }
   }
 }</pre></li>
 				<li>See the &quot;Filter function information&quot; section below.</li>
@@ -255,7 +256,7 @@
 		<h3><a href="#"><strong>Filter function information</strong></a></h3>
 		<div>
 			<ul>
-				<li>The custom function must return a boolean value. If <code>true</code> is returned, the row will be shown if all other filters match; and if <code>false</code> is returned, the row will be hidden.<pre class="prettyprint lang-javascript">function(e, n, f, i) { return test; /* test should be a Boolean (true or false) */ }</pre></li>
+				<li>The custom function must return a boolean value. If <code>true</code> is returned, the row will be shown if all other filters match; and if <code>false</code> is returned, the row will be hidden.<pre class="prettyprint lang-javascript">function(e, n, f, i, $r) { return test; /* test should be a Boolean (true or false) */ }</pre></li>
 				<li>The <strong>exact text (e)</strong> of the table cell is a variable passed to the function. Note that numbers will need to be parsed to make comparisons.</li>
 				<li><strong>Normalized table cell data (n)</strong> is the next varibale passed to the function.
 					<ul>
@@ -268,6 +269,7 @@
 				</li>
 				<li>The <strong>filter input value (f)</strong> is the exact text entered by the user. If numerical, it will need to be parsed using parseFloat() or parseInt() to allow for making comparisons.</li>
 				<li>The <strong>column index (i)</strong> might be useful for obtaining more information from header, or something.</li>
+				<li>The <strong>row ($r)</strong> is the current table row (jQuery object) being searched (or filtered); this allows access to any extra information within. To access the current cell, just use <code>$r.children().eq(i)</code>.</li>
 			</ul>
 		</div>
 	</div>

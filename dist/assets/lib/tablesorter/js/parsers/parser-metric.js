@@ -47,7 +47,7 @@
 			b, t,
 			// process number here to get a numerical format (us or eu)
 			n = $.tablesorter.formatFloat(s.replace(/[^\w,. \-()]/g, ""), table),
-			$t = $(table).find('thead').children().children('[data-column="' + cellIndex + '"]'),
+			$t = table.config.$headers.filter('[data-column="' + cellIndex + '"]'),
 			m = $t.data('metric');
 			if (!m) {
 				// stored values

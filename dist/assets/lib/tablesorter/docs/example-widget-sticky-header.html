@@ -42,8 +42,8 @@
 
 		widgetOptions: {
 
-			// css class name applied to the sticky header row (tr)
-			stickyHeaders : 'tablesorter-stickyHeader',
+			// extra css class name applied to the sticky header row (tr) - changed in v2.11
+			stickyHeaders : '',
 
 			// adding zebra striping, using content and default styles - the ui css removes the background from default
 			// even and odd class names included for this demo to allow switching themes
@@ -107,7 +107,7 @@ $(function() {
 			<li>Table captions and any additional rows (filter widget row) will also be included in the sticky header (<span class="version">v2.9</span>).</li>
 			<li>You will need to modify the <code>headerTemplate</code> option to include the jQuery UI icon! See the example in the code (v2.7).</li>
 			<li>Scroll down the page to see the headers stick. Then sort the columns using the sticky headers!</li>
-			<li>Added a widget option named <code>stickyHeader</code> option which contains the css class name applied to the actual sticky header (v2.1).</li>
+			<li>Added a widget option named <code>stickyHeaders</code> option which contains the css class name applied to the actual sticky header (v2.1). Modified in <span class="version">v2.11</span> so that "tablesorter-stickyHeader" class is always added and this option only adds additional classes.</li>
 			<li>Multiple rows in the header will become sticky (v2.1.17).</li>
 			<li>The filter widget adds a row to the table header, but that row will not be included in the sticky header.</li>
 			<li>Add the class name <code>sticky-false</code> to any header rows you don't want to become sticky (v2.1.18).</li>

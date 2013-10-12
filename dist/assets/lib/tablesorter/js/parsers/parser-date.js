@@ -14,7 +14,7 @@
 			return false;
 		},
 		format: function(s) {
-			return Date.create ? Date.create(s).getTime() || s : s;
+			return Date.create ? Date.create(s).getTime() || s : new Date(s).getTime() || s;
 		},
 		type: "numeric"
 	});

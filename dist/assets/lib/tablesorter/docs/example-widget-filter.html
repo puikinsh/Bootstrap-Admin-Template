@@ -55,8 +55,8 @@
 			// if you set this to false, make sure you perform a search using the second method below
 			filter_columnFilters : true,
 
-			// css class applied to the table row containing the filters & the inputs within that row
-			filter_cssFilter : 'tablesorter-filter',
+			// extra css class applied to the table row containing the filters & the inputs within that row
+			filter_cssFilter : '',
 
 			// class added to filtered rows (rows that are not showing); needed by pager plugin
 			filter_filteredRow   : 'filtered',
@@ -71,7 +71,7 @@
 
 			// if true, filters are collapsed initially, but can be revealed by hovering over the grey bar immediately
 			// below the header row. Additionally, tabbing through the document will open the filter row when an input gets focus
-			filter_hideFilters : false, // true, (see note in the options section above)
+			filter_hideFilters : true,
 
 			// Set this option to false to make the searches case sensitive
 			filter_ignoreCase : true,
@@ -219,7 +219,7 @@ $(function(){
 			<ul>
 				<li><code>filter_childRows : false</code> - if true, filter includes child row content in the search.</li>
 				<li><code>filter_columnFilters : true</code> - if true, a filter will be added to the top of each table column.</li>
-				<li><code>filter_cssFilter : 'tablesorter-filter'</code> - css class name added to the filter row & each input in the row.</li>
+				<li><code>filter_cssFilter : ''</code> - extra css class name added to the filter row & each input in the row.</li>
 				<li><code>filter_filteredRow : 'filtered'</code> - css class name added to filtered rows (rows that are not showing); needed by pager plugin.</li>
 				<li><code>filter_formatter : null</code> - add custom filter elements to the filter row.</li>
 				<li><code>filter_functions : null</code> - add custom filter functions using this option.</li>
@@ -233,7 +233,7 @@ $(function(){
 				<li><code>filter_startsWith : false</code> - if true, filter start from the beginning of the cell contents.</li>
 				<li><code>filter_useParsedData : false</code> - filter all data using parsed content.</li>
 			</ul>
-			<span class="alert">Caution</span>: In my testing, it appears that Chrome does not properly render a previously hidden search input text properly (<a href="http://jsfiddle.net/Mottie/Mjbab/1/">demo</a>), so for now, I'm changing this demo's <code>filter_hideFilters</code> option to <code>false</code> until the source of this problem is determined.
+			<!-- <span class="alert">Caution</span>: In my testing, it appears that Chrome does not properly render a previously hidden search input text properly (<a href="http://jsfiddle.net/Mottie/Mjbab/1/">demo</a>), so for now, I'm changing this demo's <code>filter_hideFilters</code> option to <code>false</code> until the source of this problem is determined. -->
 		</div>
 
 		<h3><a href="#">Classes</a></h3>

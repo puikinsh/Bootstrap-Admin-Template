@@ -9,22 +9,9 @@
 .tablesorter-bootstrap tfoot th,
 .tablesorter-bootstrap tfoot td {
 	font: bold 14px/20px Arial, Sans-serif;
-	position: relative;
-	padding: 8px;
+	padding: 4px;
 	margin: 0 0 18px;
-	list-style: none;
-	background-color: #FBFBFB;
-	background-image: -moz-linear-gradient(top, white, #efefef);
-	background-image: -ms-linear-gradient(top, white, #efefef);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#efefef));
-	background-image: -webkit-linear-gradient(top, white, #efefef);
-	background-image: -o-linear-gradient(top, white, #efefef);
-	background-image: linear-gradient(to bottom, white, #efefef);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#efefef', GradientType=0);
-	background-repeat: repeat-x;
-	-webkit-box-shadow: inset 0 1px 0 white;
-	-moz-box-shadow: inset 0 1px 0 #ffffff;
-	box-shadow: inset 0 1px 0 white;
+	background-color: #eee;
 }
 
 .tablesorter-bootstrap .tablesorter-header {
@@ -38,6 +25,7 @@
 
 /* bootstrap uses <i> for icons */
 .tablesorter-bootstrap .tablesorter-header i {
+	font-size: 11px;
 	position: absolute;
 	right: 2px;
 	top: 50%;
@@ -97,7 +85,7 @@ caption {
 	cursor: not-allowed;
 }
 .tablesorter-bootstrap .tablesorter-filter-row td {
-	background: #eee;
+	background: #efefef;
 	line-height: normal;
 	text-align: center;
 	padding: 4px 6px;
@@ -130,6 +118,10 @@ caption {
 }
 .tablesorter-bootstrap .tablesorter-pager .pagedisplay {
 	border: 0;
+}
+/* tfoot i for pager controls */
+.tablesorter-bootstrap tfoot i {
+	font-size: 11px;
 }
 
 /* ajax error row */

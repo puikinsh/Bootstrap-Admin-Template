@@ -311,6 +311,24 @@ var tests = {
         ]
     },
 
+    '@media directive (auto-semicolon)': {
+        input: [
+            '@media screen {',
+            '  menu { color: navy }',
+            '}'
+        ],
+        options: {
+            autosemicolon: true
+        },
+        expected: [
+            '@media screen {',
+            '    menu {',
+            '        color: navy;',
+            '    }',
+            '}'
+        ]
+    },
+
     'URL': {
         input: [
             'menu { background-image: url(data:image/png;base64,AAAAAAA); }'

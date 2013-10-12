@@ -594,13 +594,13 @@
             }
 
             if (isLeft) {
-                var start = this.startDate;
+                var start = this.startDate.clone();
                 start.hour(hour);
                 start.minute(minute);
                 this.startDate = start;
                 this.leftCalendar.month.hour(hour).minute(minute);
             } else {
-                var end = this.endDate;
+                var end = this.endDate.clone();
                 end.hour(hour);
                 end.minute(minute);
                 this.endDate = end;
@@ -663,13 +663,14 @@
             if (dayOfWeek == this.locale.firstDay)
                 startDay = daysInLastMonth - 6;
 
-            var curDate = moment([lastYear, lastMonth, startDay, hour, minute]);
-            for (var i = 0, col = 0, row = 0; i < 42; i++, col++, curDate = moment(curDate).add('day', 1)) {
+            var curDate = moment([lastYear, lastMonth, startDay, 12, minute]);
+            for (var i = 0, col = 0, row = 0; i < 42; i++, col++, curDate = moment(curDate).add('hour', 24)) {
                 if (i > 0 && col % 7 == 0) {
                     col = 0;
                     row++;
                 }
-                calendar[row][col] = curDate;
+                calendar[row][col] = curDate.clone().hour(hour);
+                curDate.hour(12);
             }
 
             return calendar;
@@ -694,7 +695,7 @@
             var currentYear = selected.year();
             var maxYear = (maxDate && maxDate.year()) || (currentYear + 5);
             var minYear = (minDate && minDate.year()) || (currentYear - 50);
-            var yearHtml = '<select class="yearselect">'
+            var yearHtml = '<select class="yearselect">';
 
             for (var y = minYear; y <= maxYear; y++) {
                 yearHtml += '<option value="' + y + '"' +

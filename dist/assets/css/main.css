@@ -2493,3 +2493,161 @@ fieldset[disabled] .btn-grad.btn-metis-6.active {
 }
 
 /* END animated checkbox styles */
+/* BEGIN Pricing Table */
+
+.pricing-table {
+  padding: 0;
+  margin: 30px 0;
+  line-height: 150%;
+  text-align: center;
+}
+
+.pricing-table li {
+  list-style: none;
+}
+
+.pricing-table > li {
+  color: #444;
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#ebeef5), to(#ffffff));
+  background-image: -webkit-linear-gradient(top, #ebeef5, 0%, #ffffff, 100%);
+  background-image: -moz-linear-gradient(top, #ebeef5 0%, #ffffff 100%);
+  background-image: linear-gradient(to bottom, #ebeef5 0%, #ffffff 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffebeef5', endColorstr='#ffffffff', GradientType=0);
+  -webkit-transition: all 0.2s;
+          transition: all 0.2s;
+}
+
+.pricing-table.dark > li {
+  color: #fff;
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#666666), to(#444444));
+  background-image: -webkit-linear-gradient(top, #666666, 0%, #444444, 100%);
+  background-image: -moz-linear-gradient(top, #666666 0%, #444444 100%);
+  background-image: linear-gradient(to bottom, #666666 0%, #444444 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff666666', endColorstr='#ff444444', GradientType=0);
+}
+
+.pricing-table > li.active {
+  z-index: 1;
+  color: #fff;
+  -webkit-box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 768px) {
+  .pricing-table > li.active {
+    -webkit-transform: scale(1.03);
+        -ms-transform: scale(1.03);
+            transform: scale(1.03);
+  }
+}
+
+.pricing-table > li.active.primary {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#357ebd), to(#428bca));
+  background-image: -webkit-linear-gradient(top, #357ebd, 0%, #428bca, 100%);
+  background-image: -moz-linear-gradient(top, #357ebd 0%, #428bca 100%);
+  background-image: linear-gradient(to bottom, #357ebd 0%, #428bca 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff357ebd', endColorstr='#ff428bca', GradientType=0);
+}
+
+.pricing-table > li.active.success {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#4cae4c), to(#5cb85c));
+  background-image: -webkit-linear-gradient(top, #4cae4c, 0%, #5cb85c, 100%);
+  background-image: -moz-linear-gradient(top, #4cae4c 0%, #5cb85c 100%);
+  background-image: linear-gradient(to bottom, #4cae4c 0%, #5cb85c 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff4cae4c', endColorstr='#ff5cb85c', GradientType=0);
+}
+
+.pricing-table > li.active.warning {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#eea236), to(#f0ad4e));
+  background-image: -webkit-linear-gradient(top, #eea236, 0%, #f0ad4e, 100%);
+  background-image: -moz-linear-gradient(top, #eea236 0%, #f0ad4e 100%);
+  background-image: linear-gradient(to bottom, #eea236 0%, #f0ad4e 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeea236', endColorstr='#fff0ad4e', GradientType=0);
+}
+
+.pricing-table > li.active.danger {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#d43f3a), to(#d9534f));
+  background-image: -webkit-linear-gradient(top, #d43f3a, 0%, #d9534f, 100%);
+  background-image: -moz-linear-gradient(top, #d43f3a 0%, #d9534f 100%);
+  background-image: linear-gradient(to bottom, #d43f3a 0%, #d9534f 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd43f3a', endColorstr='#ffd9534f', GradientType=0);
+}
+
+.pricing-table > li.active.info {
+  background-image: -webkit-gradient(linear, left 0%, left 100%, from(#46b8da), to(#5bc0de));
+  background-image: -webkit-linear-gradient(top, #46b8da, 0%, #5bc0de, 100%);
+  background-image: -moz-linear-gradient(top, #46b8da 0%, #5bc0de 100%);
+  background-image: linear-gradient(to bottom, #46b8da 0%, #5bc0de 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff46b8da', endColorstr='#ff5bc0de', GradientType=0);
+}
+
+.pricing-table .footer {
+  padding: 15px;
+  margin: 15px -15px 0;
+  background: #eee;
+}
+
+.pricing-table.dark .footer {
+  background: #333;
+}
+
+.pricing-table h3 {
+  padding: 15px 0;
+  text-transform: uppercase;
+}
+
+.pricing-table .price-body {
+  display: table;
+  width: 125px;
+  height: 125px;
+  margin: 0 auto 15px auto;
+  border: 2px solid #444;
+  border-radius: 100%;
+}
+
+.pricing-table.dark .price-body {
+  border-color: #fff;
+}
+
+.pricing-table > li.active.primary .price-body,
+.pricing-table > li.active.success .price-body,
+.pricing-table > li.active.warning .price-body,
+.pricing-table > li.active.danger .price-body,
+.pricing-table > li.active.info .price-body {
+  border-color: #fff;
+}
+
+.pricing-table .price {
+  display: table-cell;
+  font-size: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.pricing-table .price .price-figure {
+  display: block;
+}
+
+.pricing-table .price .price-term {
+  font-size: 11px;
+  font-weight: normal;
+}
+
+.pricing-table .features ul {
+  padding: 0;
+  margin: 0;
+}
+
+.pricing-table .features ul li {
+  padding: 5px 0;
+}
+
+/* END Pricing Table */

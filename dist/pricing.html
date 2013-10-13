@@ -2,15 +2,13 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Typography</title>
+        <title>Pricing Table</title>
         <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="assets/css/main.css"/>
         <link rel="stylesheet" href="assets/lib/Font-Awesome/css/font-awesome.css"/>
 
         <link rel="stylesheet" href="assets/css/theme.css">
 
-        
-        <link rel="stylesheet" href="assets/lib/prettify/prettify.css">
         
 
         
@@ -131,7 +129,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
                     </div>
                     <!-- ."main-bar -->
                     <div class="main-bar">
-                        <h3><i class="icon-font"></i> Typography</h3>
+                        <h3><i class="icon-credit-card"></i> Pricing Table</h3>
                     </div>
                     <!-- /.main-bar -->
                 </header>
@@ -174,18 +172,18 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	    <li class=""><a href="alterne.html"><i class="icon-angle-right"></i> Alternative Style</a></li>
 	</ul>
     </li>
-    <li class="panel ">
+    <li class="panel  active">
 	<a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#component-nav">
 	    <i class="icon-tasks"></i> Components
 	    <span class="pull-right">
 		<i class="icon-angle-left"></i>
             </span>
 	</a>
-	<ul class="collapse" id="component-nav">
+	<ul class="collapse in" id="component-nav">
 	    <li class=""><a href="icon.html"><i class="icon-angle-right"></i> Icon </a></li>
 	    <li class=""><a href="button.html"><i class="icon-angle-right"></i> Button</a></li>            
 	    <li class=""><a href="progress.html"><i class="icon-angle-right"></i> Progress</a></li>
-	    <li class=""><a href="pricing.html"><i class="icon-credit-card"></i> Pricing Table</a></li>
+	    <li class="active"><a href="pricing.html"><i class="icon-credit-card"></i> Pricing Table</a></li>
 	</ul>
     </li>
     <li class="panel ">
@@ -204,7 +202,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     </li>
     <li><a href="table.html"><i class="icon-table"></i> Tables</a></li>
     <li><a href="file.html"><i class="icon-file"></i> File Manager</a></li>
-    <li class="active" ><a href="typography.html"><i class="icon-font"></i> Typography</a></li>
+    <li><a href="typography.html"><i class="icon-font"></i> Typography</a></li>
     <li><a href="maps.html"><i class="icon-map-marker"></i> Maps</a></li>
     <li><a href="chart.html"><i class="icon-bar-chart"></i> Charts</a></li>
     <li><a href="calendar.html"><i class="icon-calendar"></i> Calendar</a></li>
@@ -239,282 +237,158 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
                     <div class="inner">
                         
 <div class="row">
-    <div class="col-lg-4">
-        <div class="box">
-            <header>
-                <h5>Heading</h5>
-                <div class="toolbar">
-                    <span class="label label-info">
-                        &lt;h1&gt;Heading 1&lt;/h1&gt;
-                    </span>
-                </div>
-            </header>
-            <div class="body">
-                <h1 class="text-muted">Heading 1</h1>
-                <h2 class="text-primary">Heading 2</h2>
-                <h3 class="text-warning">Heading 3</h3>
-                <h4 class="text-danger">Heading 4</h4>
-                <h5 class="text-success">Heading 5</h5>
-                <h6 class="text-info">Heading 6</h6>
-            </div>
-        </div>
-    </div>
-    <!-- /.col-lg-4 -->
-    <div class="col-lg-8">
-        <div class="box">
-            <header>
-                <h5>Paragraph</h5>
-                <div class="toolbar">
-                    <span class="label label-warning">
-                        &lt;p&gt;paragraph&lt;/p&gt;
-                    </span>
-                </div>
-            </header>
-            <div class="body">
-                <p>Default paragraph</p>
-                <p class="lead">lead paragraph</p>
-                <p class="text-muted">Muted paragraph</p>
-                <p class="text-warning">warning paragraph</p>
-                <p class="text-primary">primary paragraph</p>
-                <p class="text-info">info paragraph</p>
-                <p class="text-success">success paragraph</p>
-                <p class="text-danger">danger paragraph</p>
-            </div>
-        </div>
-    </div>
-    <!-- /.col-lg-8 -->
+  <div class="col-lg-12">
+  <h2>Dark <small>primary</small> </h2>
+    <ul class="pricing-table dark" contenteditable>
+	<li class="col-lg-4">
+		<h3>Starter</h3>
+		<div class="price-body">
+			<div class="price">
+				Free
+			</div>
+		</div>
+		<div class="features">
+			<ul>
+				<li>Premium Profile Listing</li>
+				<li>Unlimited File Access</li>
+				<li>Free Appointments</li>
+				<li><strong>5 Bonus Points</strong> every month</li>
+				<li>Customizable Profile Page</li>
+				<li><strong>2 months</strong> support</li>
+			</ul>
+		</div>
+		<div class="footer">
+			<a href="#" class="btn btn-info btn-rect">Get Started</a>
+		</div>
+	</li>
+	<!-- Active/Hover styles -->
+	<li class="active primary col-lg-4">
+		<h3>Basic</h3>
+		<div class="price-body">
+			<div class="price">
+				<span class="price-figure"><sup>$</sup>24<small>.99</small></span>
+				<span class="price-term">per month</span>
+			</div>
+		</div>
+		<div class="features">
+			<ul>
+				<li>Premium Profile Listing</li>
+				<li>Unlimited File Access</li>
+				<li>Free Appointments</li>
+				<li><strong>20 Bonus Points</strong> every month</li>
+				<li>Customizable Profile Page</li>
+				<li><strong>6 months</strong> support</li>
+			</ul>
+		</div>
+		<div class="footer">
+			<a href="#" class="btn btn-metis-1 btn-lg btn-rect">Get Started</a>
+		</div>
+	</li>
+	<li class="col-lg-4">
+		<h3>Premium</h3>
+		<div class="price-body">
+			<div class="price">
+				<span class="price-figure"><sup>$</sup>49<small>.99</small></span>
+				<span class="price-term">per month</span>
+			</div>
+		</div>
+		<div class="features">
+			<ul>
+				<li>Premium Profile Listing</li>
+				<li>Unlimited File Access</li>
+				<li>Free Appointments</li>
+				<li><strong>50 Bonus Points</strong> every month</li>
+				<li>Customizable Profile Page</li>
+				<li><strong>Lifetime</strong> support</li>
+			</ul>
+		</div>
+		<div class="footer">
+			<a href="#" class="btn btn-info btn-rect">Get Started</a>
+		</div>
+	</li>
+	<div class="clearfix"></div>
+</ul>
+
+  </div>
+  <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
 
 <div class="row">
-    <div class="col-lg-6">
-        <div class="box">
-            <header>
-                <h5>Blockquotes</h5>
-                <div class="toolbar">
-                    <span class="label label-danger">
-                        blockquotes
-                    </span>
-                </div>
-            </header>
-            <div class="body clearfix">
-                <blockquote>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id eleifend nunc. Sed
-                        fringilla pellentesque consequat.
-                    </p>
-                </blockquote>
-                <blockquote class="pull-right">
-                    <p class="text-muted">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id eleifend nunc.
-                        <small>Sed fringilla pellentesque consequat.</small>
-                    </p>
-                </blockquote>
-            </div>
-        </div>
-    </div>
-    <!-- /.col-lg-6 -->
-    <div class="col-lg-6">
-        <div class="box">
-            <header>
-                <div class="icons"><i class="icon-list"></i></div>
-                <h5>List</h5>
-                <div class="toolbar">
-                    <span class="label label-default">
-                        <i class="icon-list-alt"></i>
-                    </span>
-                </div>
-            </header>
-            <div class="body">
-                <h3>Unordered</h3>
-                <ul>
-                    <li>Lorem ipsum dolor sit amet</li>
-                    <li class="label label-default">Consectetur adipiscing elit</li>
-                    <li class="text-success">Integer molestie lorem at massa</li>
-                    <li class="label label-danger">Facilisis in pretium nisl aliquet</li>
-                    <li>Nulla volutpat aliquam velit
-                        <ul>
-                            <li>Phasellus iaculis neque</li>
-                            <li class="badge badge-success">Purus sodales ultricies</li>
-                            <li>Vestibulum laoreet porttitor sem</li>
-                            <li>Ac tristique libero volutpat at</li>
-                        </ul>
-                    </li>
-                    <li>Faucibus porta lacus fringilla vel</li>
-                    <li>Aenean sit amet erat nunc</li>
-                    <li>Eget porttitor lorem</li>
-                </ul>
+  <div class="col-lg-12">
+  <h2>Light <small>warning</small> </h2>
+    <ul class="pricing-table" contenteditable>
+	<li class="col-lg-4">
+		<h3>Starter</h3>
+		<div class="price-body">
+			<div class="price">
+				Free
+			</div>
+		</div>
+		<div class="features">
+			<ul>
+				<li>Premium Profile Listing</li>
+				<li>Unlimited File Access</li>
+				<li>Free Appointments</li>
+				<li><strong>5 Bonus Points</strong> every month</li>
+				<li>Customizable Profile Page</li>
+				<li><strong>2 months</strong> support</li>
+			</ul>
+		</div>
+		<div class="footer">
+			<a href="#" class="btn btn-info btn-rect">Get Started</a>
+		</div>
+	</li>
+	<!-- Active/Hover styles -->
+	<li class="active danger col-lg-4">
+		<h3>Basic</h3>
+		<div class="price-body">
+			<div class="price">
+				<span class="price-figure"><sup>$</sup>24<small>.99</small></span>
+				<span class="price-term">per month</span>
+			</div>
+		</div>
+		<div class="features">
+			<ul>
+				<li>Premium Profile Listing</li>
+				<li>Unlimited File Access</li>
+				<li>Free Appointments</li>
+				<li><strong>20 Bonus Points</strong> every month</li>
+				<li>Customizable Profile Page</li>
+				<li><strong>6 months</strong> support</li>
+			</ul>
+		</div>
+		<div class="footer">
+			<a href="#" class="btn btn-metis-1 btn-lg btn-rect">Get Started</a>
+		</div>
+	</li>
+	<li class="col-lg-4">
+		<h3>Premium</h3>
+		<div class="price-body">
+			<div class="price">
+				<span class="price-figure"><sup>$</sup>49<small>.99</small></span>
+				<span class="price-term">per month</span>
+			</div>
+		</div>
+		<div class="features">
+			<ul>
+				<li>Premium Profile Listing</li>
+				<li>Unlimited File Access</li>
+				<li>Free Appointments</li>
+				<li><strong>50 Bonus Points</strong> every month</li>
+				<li>Customizable Profile Page</li>
+				<li><strong>Lifetime</strong> support</li>
+			</ul>
+		</div>
+		<div class="footer">
+			<a href="#" class="btn btn-info btn-rect">Get Started</a>
+		</div>
+	</li>
+	<div class="clearfix"></div>
+</ul>
 
-                <h3>Ordered</h3>
-                <ol>
-                    <li>Lorem ipsum dolor sit amet</li>
-                    <li>Consectetur adipiscing elit</li>
-                    <li>Integer molestie lorem at massa</li>
-                    <li>Facilisis in pretium nisl aliquet</li>
-                    <li>Nulla volutpat aliquam velit
-                        <ul>
-                            <li>Phasellus iaculis neque</li>
-                            <li>Purus sodales ultricies</li>
-                            <li>Vestibulum laoreet porttitor sem</li>
-                            <li>Ac tristique libero volutpat at</li>
-                        </ul>
-                    </li>
-                    <li>Faucibus porta lacus fringilla vel</li>
-                    <li>Aenean sit amet erat nunc</li>
-                    <li>Eget porttitor lorem</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-    <!-- /.col-lg-6 -->
-</div>
-<!-- /.row -->
-
-<div class="row">
-    <div class="col-lg-6">
-        <div class="box">
-            <header>
-                <h5>Box > Body
-                    <small>10px padding</small>
-                </h5>
-            </header>
-            <div class="body">
-                <pre class="prettyprint linenums">
-&lt;div class=&quot;box&quot;&gt;
- &lt;header&gt;
-  &lt;h5&gt;Title&lt;/h5&gt;
- &lt;/header&gt;
- &lt;div class=&quot;body&quot;&gtContent;&lt;/div&gt;
-&lt;/div&gt;</pre>
-            </div>
-        </div>
-    </div>
-    <!-- /.col-lg-6 -->
-    <div class="col-lg-6">
-        <div class="box">
-            <header>
-                <h5>Box > Block
-                    <small>No padding</small>
-                </h5>
-            </header>
-            <div class="block">
-                <pre class="prettyprint linenums">
-&lt;div class=&quot;box&quot;&gt;
-  &lt;header&gt;
-    &lt;h5&gt;Title&lt;/h5&gt;
-  &lt;/header&gt;
-    &lt;div class=&quot;block&quot;&gt;Content&lt;/div&gt;
-&lt;/div&gt;</pre>
-            </div>
-        </div>
-    </div>
-    <!-- /.col-lg-6 -->
-</div>
-<!-- /.row -->
-
-<div class="row">
-    <div class="col-lg-12">
-        <div class="box">
-            <header>
-                <h5>Label</h5>
-                <div class="toolbar">
-                    <span class="label label-default">label</span>
-                </div>                
-            </header>
-            <div class="body">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Labels</th>
-                            <th>Markup</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <span class="label label-default">Default</span>
-                            </td>
-                            <td>
-                                <code>&lt;span class="label label-default"&gt;Default&lt;/span&gt;</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="label label-success">Success</span>
-                            </td>
-                            <td>
-                                <code>&lt;span class="label label-success"&gt;Success&lt;/span&gt;</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="label label-warning">Warning</span>
-                            </td>
-                            <td>
-                                <code>&lt;span class="label label-warning"&gt;Warning&lt;/span&gt;</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="label label-danger">Danger</span>
-                            </td>
-                            <td>
-                                <code>&lt;span class="label label-danger"&gt;Important&lt;/span&gt;</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="label label-info">Info</span>
-                            </td>
-                            <td>
-                                <code>&lt;span class="label label-info"&gt;Info&lt;/span&gt;</code>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </div>
-        </div>
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="box">
-            <header>
-                <h5>Badge</h5>
-                <div class="toolbar">
-                    <span class="badge">badge</span>
-                </div>
-            </header>
-            <div class="body">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Example</th>
-                            <th>Markup</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                Default
-                            </td>
-                            <td>
-                                <span class="badge">1</span>
-                            </td>
-                            <td>
-                                <code>&lt;span class="badge"&gt;1&lt;/span&gt;</code>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
                     </div>
@@ -573,8 +447,6 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 
         
 
-        
-        <script src="assets/lib/prettify/prettify.js"></script>
         
 
         <script src="assets/js/main.js"></script>

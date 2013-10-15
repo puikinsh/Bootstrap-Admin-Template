@@ -24,9 +24,9 @@ function metisChart() {
         hoverable: true,
         series: {
             lines: {show: true, fill: true, fillColor: {colors: [
-                        {opacity: 0.5},
-                        {opacity: 0.15}
-                    ]}},
+                {opacity: 0.5},
+                {opacity: 0.15}
+            ]}},
             points: {show: true}
         }
     });
@@ -43,7 +43,7 @@ function metisChart() {
     });
 
     var parabola = [],
-            parabola2 = [];
+        parabola2 = [];
     for (var i = -5; i <= 5; i += 0.5) {
         parabola.push([i, Math.pow(i, 2) - 25]);
         parabola2.push([i, -Math.pow(i, 2) + 25]);
@@ -82,18 +82,21 @@ function metisChart() {
         }
     });
     $('#heart .legendLabel').addClass('animated pulse');
-    setInterval(function(){
-      $('#heart .legendLabel').toggleClass('animated');
-    },400);
+    setInterval(function () {
+        $('#heart .legendLabel').toggleClass('animated');
+    }, 400);
 
 
     var bernoulli = [];
+
     function lemniscatex(i) {
         return Math.sqrt(2) * Math.cos(i) / (Math.pow(Math.sin(i), 2) + 1);
     }
+
     function lemniscatey(i) {
         return Math.sqrt(2) * Math.cos(i) * Math.sin(i) / (Math.pow(Math.sin(i), 2) + 1);
     }
+
     for (var k = 0; k <= 2 * Math.PI; k += 0.01) {
         bernoulli.push([lemniscatex(k), lemniscatey(k)]);
     }

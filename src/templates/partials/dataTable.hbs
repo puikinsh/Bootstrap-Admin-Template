@@ -1,22 +1,22 @@
 <thead>
-    <tr>
-        <th>Rendering engine</th>
-        <th>Browser</th>
-        <th>Platform(s)</th>
-        <th>Engine version</th>
-        <th>CSS grade</th>
-    </tr>
+<tr>
+    <th>Rendering engine</th>
+    <th>Browser</th>
+    <th>Platform(s)</th>
+    <th>Engine version</th>
+    <th>CSS grade</th>
+</tr>
 </thead>
 <tbody>
-    {{#if dataTable}}
+{{#if dataTable}}
     {{#each dataTable}}
-    <tr>
-        <td>{{engine}}</td>
-        <td>{{browser}}</td>
-        <td>{{platform}}</td>
-        <td>{{version}}</td>
-        <td>{{cssVer}}</td>
-    </tr>
+        <tr>
+            <td>{{engine}}</td>
+            <td>{{browser}}</td>
+            <td>{{platform}}</td>
+            <td>{{version}}</td>
+            <td>{{cssVer}}</td>
+        </tr>
     {{/each}}
-    {{/if}}
+{{/if}}
 </tbody>

@@ -1,5 +1,5 @@
 /* jshint node: true */
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     "use strict";
 
     // Project configuration.
@@ -7,11 +7,11 @@ module.exports = function(grunt) {
         // Metadata
         pkg: grunt.file.readJSON('package.json'),
         banner: '/**\n' +
-                '* <%=pkg.name %> by <%= pkg.author.email %>\n' +
-                '* Version : <%= pkg.version %> \n' +
-                '* Author : <%= pkg.author.name %> \n' +
-                '* Copyright <%= grunt.template.today("yyyy") %>\n' +
-                '*/\n',
+            '* <%=pkg.name %> by <%= pkg.author.email %>\n' +
+            '* Version : <%= pkg.version %> \n' +
+            '* Author : <%= pkg.author.name %> \n' +
+            '* Copyright <%= grunt.template.today("yyyy") %>\n' +
+            '*/\n',
         clean: {dist: ['dist']},
         concat: {
             options: {
@@ -32,7 +32,7 @@ module.exports = function(grunt) {
                     'src/assets/js/metisMaps.js',
                     'src/assets/js/metisTable.js',
                     'src/assets/js/progress.js',
-                    'src/assets/js/button.js',		    
+                    'src/assets/js/button.js',
                     'src/assets/js/metisSortable.js'
                 ],
                 dest: 'dist/assets/js/main.js'
@@ -47,11 +47,11 @@ module.exports = function(grunt) {
                 src: ['src/assets/js/style-switcher.js'],
                 dest: 'dist/assets/js/style-switcher.js'
             },
-	    emberApp: {
-		options: {banner: '<%= banner %>'},
+            emberApp: {
+                options: {banner: '<%= banner %>'},
                 src: ['src/assets/js/app.js'],
                 dest: 'dist/assets/js/app.js'
-	    }
+            }
         },
         uglify: {
             options: {
@@ -76,14 +76,14 @@ module.exports = function(grunt) {
             },
             main: {
                 files: {
-                    'dist/assets/css/main.css': ['src/assets/less/style.less']		
-		}
+                    'dist/assets/css/main.css': ['src/assets/less/style.less']
+                }
             },
             min: {
                 options: {compress: true},
-                files: {                
-                    'dist/assets/css/main.min.css': ['src/assets/less/style.less']		
-		}
+                files: {
+                    'dist/assets/css/main.min.css': ['src/assets/less/style.less']
+                }
             }
         },
         assemble: {
@@ -160,7 +160,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         cwd: 'src/assets/less',
-                        src: ['theme.less','mixins.less'],
+                        src: ['theme.less', 'mixins.less'],
                         dest: 'dist/assets/less'
                     },
                     {
@@ -172,13 +172,13 @@ module.exports = function(grunt) {
                 ]
             }
         },
-	
-	watch: {
-	  scripts: {
-	    files: ['**/*.js','**/*.less','**/*.hbs','**/*.html'],
-	    tasks: ['default']
-	  },
-	}
+
+        watch: {
+            scripts: {
+                files: ['**/*.js', '**/*.less', '**/*.hbs', '**/*.html'],
+                tasks: ['default']
+            },
+        }
 
     });
 

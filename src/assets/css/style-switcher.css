@@ -5,9 +5,9 @@ body {
   background-color: #222;
   position: fixed;
   left: -212px;
-  top: 50px;
+  top: 54px;
   width: 212px;
-  z-index: 1041;
+  z-index: 999;
   -webkit-transition: all 1s;
   -moz-transition: all 1s;
   -o-transition: all 1s;

@@ -1,0 +1,112 @@
+/* BEGIN Pricing Table */
+
+.pricing-table {
+
+  text-align: center;
+  padding: 0;
+  margin: 30px 0;
+  line-height: 150%;
+
+  li {
+    list-style: none;
+  }
+  > li {
+    #gradient > .vertical(#EBEEF5; #fff);
+    color: #444;
+    .transition(all 0.2s);
+  }
+  &.dark > li {
+    #gradient > .vertical(#666; #444);
+    color: #fff;
+    &.active.default {
+      color:#fff;
+    }
+  }
+
+  > li.active {
+    color: #fff;
+    
+    &.default {color:#444;}
+    
+    @media (min-width: @screen-tablet) {
+      .scale(1.03);
+    }
+
+    .box-shadow(0 0 15px 1px rgba(0, 0, 0, 0.5));
+    z-index: 1;
+    &.primary {
+      #gradient > .vertical(darken(@brand-primary, 5%); @brand-primary);
+    }
+    &.success {
+      #gradient > .vertical(darken(@brand-success, 5%); @brand-success);
+    }
+    &.warning {
+      #gradient > .vertical(darken(@brand-warning, 5%); @brand-warning);
+    }
+    &.danger {
+      #gradient > .vertical(darken(@brand-danger, 5%); @brand-danger);
+    }
+    &.info {
+      #gradient > .vertical(darken(@brand-info, 5%); @brand-info);
+    }
+  }
+
+  .footer {
+    padding: 15px;
+    margin: 15px -15px 0;
+    background: #eee;
+  }
+  &.dark .footer {
+    background: #333;
+  }
+
+  h3 {
+    text-transform: uppercase;
+    padding: 15px 0;
+  }
+
+  .price-body {
+    .square(125px);
+    margin: 0 auto 15px auto;
+    border: 2px solid #444;
+    border-radius: 100%;
+    display: table;
+  }
+  &.dark .price-body {
+    border-color: #fff;
+  }
+
+  > li.active {
+    &.primary, &.success, &.warning, &.danger, &.info {
+      .price-body {
+        border-color: #fff;
+      }
+    }
+  }
+  .price {
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    /*Lets vertically center align the price now*/
+    vertical-align: middle;
+    display: table-cell;
+
+    .price-figure {
+      display: block;
+    }
+    .price-term {
+      font-size: 11px;
+      font-weight: normal;
+    }
+  }
+  .features ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      padding: 5px 0;
+    }
+  }
+}
+
+/* END Pricing Table */

@@ -4,20 +4,19 @@
 * Author : Osman Nuri Okumuş 
 * Copyright 2013
 */
-$(function() {
+$(function () {
     "use strict";
 
-    $('a[href=#]').on('click', function(e){
-      e.preventDefault();
+    $('a[href=#]').on('click', function (e) {
+        e.preventDefault();
     });
-    
-    
-    
+
+
     $('a[data-toggle=tooltip]').tooltip();
     $('a[data-tooltip=tooltip]').tooltip();
 
 
-    $('.minimize-box').on('click', function(e) {
+    $('.minimize-box').on('click', function (e) {
         e.preventDefault();
         var $icon = $(this).children('i');
         if ($icon.hasClass('icon-chevron-down')) {
@@ -26,18 +25,136 @@ $(function() {
             $icon.removeClass('icon-chevron-up').addClass('icon-chevron-down');
         }
     });
-    $('.close-box').click(function() {
+    $('.close-box').click(function () {
         $(this).closest('.box').hide('slow');
     });
 
-    $('#changeSidebarPos').on('click', function(e) {
+    $('#changeSidebarPos').on('click', function (e) {
         $('body').toggleClass('hide-sidebar');
     });
-    
-     $('li.accordion-group > a').on('click',function(e){
+
+    $('li.accordion-group > a').on('click', function (e) {
         $(this).children('span').children('i').toggleClass('icon-angle-down');
     });
 });
+function metisButton() {
+    window.prettyPrint && prettyPrint();
+    $.each($('.inner a.btn'), function () {
+        $(this).popover({
+            placement: 'bottom',
+            title: this.innerHTML,
+            content: this.outerHTML,
+            trigger: 'hover'
+        });
+    });
+}
+
+function metisChart() {
+    "use strict";
+    var d2 = [
+        [0, 3],
+        [1, 8],
+        [2, 5],
+        [3, 13],
+        [4, 1]
+    ];
+
+    // a null signifies separate line segments
+    var d3 = [
+        [0, 12],
+        [2, 2],
+        [3, 9],
+        [4, 4]
+    ];
+
+    $.plot($("#trigo"), [
+        {data: d2, label: 'MAN'},
+        {data: d3, label: 'WOMAN'}
+    ], {
+        clickable: true,
+        hoverable: true,
+        series: {
+            lines: {show: true, fill: true, fillColor: {colors: [
+                {opacity: 0.5},
+                {opacity: 0.15}
+            ]}},
+            points: {show: true}
+        }
+    });
+
+    $.plot($("#trigo2"), [
+        {data: d2, label: 'BAR'}
+    ], {
+        clickable: true,
+        hoverable: true,
+        series: {
+            bars: {show: true, barWidth: 0.6},
+            points: {show: true}
+        }
+    });
+
+    var parabola = [],
+        parabola2 = [];
+    for (var i = -5; i <= 5; i += 0.5) {
+        parabola.push([i, Math.pow(i, 2) - 25]);
+        parabola2.push([i, -Math.pow(i, 2) + 25]);
+    }
+
+    var circle = [];
+
+    for (var c = -2; c <= 2.1; c += 0.1) {
+        circle.push([c, Math.sqrt(400 - c * c * 100)]);
+        circle.push([c, -Math.sqrt(400 - c * c * 100)]);
+    }
+    var daire = [3];
+    $.plot($("#eye"), [
+        {data: parabola2, lines: {show: true, fill: true}},
+        {data: parabola, lines: {show: true, fill: true}},
+        {data: circle, lines: {show: true}}
+    ]);
+
+    var heart = [];
+    for (i = -2; i <= 5; i += 0.01) {
+        heart.push([16 * Math.pow(Math.sin(i), 3), 13 * Math.cos(i) - 5 * Math.cos(2 * i) - 2 * Math.cos(3 * i) - Math.cos(4 * i)]);
+    }
+    $.plot($("#heart"), [
+        {data: heart, label: '<i class="icon-heart icon-2x"></i>', color: '#9A004D'}
+    ], {
+        series: {
+            lines: {show: true, fill: true},
+            points: {show: false}
+
+        },
+        yaxis: {
+            show: true
+        },
+        xaxis: {
+            show: true
+        }
+    });
+    $('#heart .legendLabel').addClass('animated pulse');
+    setInterval(function () {
+        $('#heart .legendLabel').toggleClass('animated');
+    }, 400);
+
+
+    var bernoulli = [];
+
+    function lemniscatex(i) {
+        return Math.sqrt(2) * Math.cos(i) / (Math.pow(Math.sin(i), 2) + 1);
+    }
+
+    function lemniscatey(i) {
+        return Math.sqrt(2) * Math.cos(i) * Math.sin(i) / (Math.pow(Math.sin(i), 2) + 1);
+    }
+
+    for (var k = 0; k <= 2 * Math.PI; k += 0.01) {
+        bernoulli.push([lemniscatex(k), lemniscatey(k)]);
+    }
+    $.plot($("#bernoilli"), [
+        {data: bernoulli, label: 'Lemniscate of Bernoulli', lines: {show: true, fill: true}}
+    ]);
+}
 function dashboard() {
     "use strict";
 
@@ -266,109 +383,6 @@ function dashboard() {
     $(".sortableTable").tablesorter();
     /*----------- END TABLESORTER CODE -------------------------*/
 
-}
-function metisChart() {
-    "use strict";
-    var d2 = [
-        [0, 3],
-        [1, 8],
-        [2, 5],
-        [3, 13],
-        [4, 1]
-    ];
-
-    // a null signifies separate line segments
-    var d3 = [
-        [0, 12],
-        [2, 2],
-        [3, 9],
-        [4, 4]
-    ];
-
-    $.plot($("#trigo"), [
-        {data: d2, label: 'MAN'},
-        {data: d3, label: 'WOMAN'}
-    ], {
-        clickable: true,
-        hoverable: true,
-        series: {
-            lines: {show: true, fill: true, fillColor: {colors: [
-                        {opacity: 0.5},
-                        {opacity: 0.15}
-                    ]}},
-            points: {show: true}
-        }
-    });
-
-    $.plot($("#trigo2"), [
-        {data: d2, label: 'BAR'}
-    ], {
-        clickable: true,
-        hoverable: true,
-        series: {
-            bars: {show: true, barWidth: 0.6},
-            points: {show: true}
-        }
-    });
-
-    var parabola = [],
-            parabola2 = [];
-    for (var i = -5; i <= 5; i += 0.5) {
-        parabola.push([i, Math.pow(i, 2) - 25]);
-        parabola2.push([i, -Math.pow(i, 2) + 25]);
-    }
-
-    var circle = [];
-
-    for (var c = -2; c <= 2.1; c += 0.1) {
-        circle.push([c, Math.sqrt(400 - c * c * 100)]);
-        circle.push([c, -Math.sqrt(400 - c * c * 100)]);
-    }
-    var daire = [3];
-    $.plot($("#eye"), [
-        {data: parabola2, lines: {show: true, fill: true}},
-        {data: parabola, lines: {show: true, fill: true}},
-        {data: circle, lines: {show: true}}
-    ]);
-
-    var heart = [];
-    for (i = -2; i <= 5; i += 0.01) {
-        heart.push([16 * Math.pow(Math.sin(i), 3), 13 * Math.cos(i) - 5 * Math.cos(2 * i) - 2 * Math.cos(3 * i) - Math.cos(4 * i)]);
-    }
-    $.plot($("#heart"), [
-        {data: heart, label: '<i class="icon-heart icon-2x"></i>', color: '#9A004D'}
-    ], {
-        series: {
-            lines: {show: true, fill: true},
-            points: {show: false}
-
-        },
-        yaxis: {
-            show: true
-        },
-        xaxis: {
-            show: true
-        }
-    });
-    $('#heart .legendLabel').addClass('animated pulse');
-    setInterval(function(){
-      $('#heart .legendLabel').toggleClass('animated');
-    },400);
-
-
-    var bernoulli = [];
-    function lemniscatex(i) {
-        return Math.sqrt(2) * Math.cos(i) / (Math.pow(Math.sin(i), 2) + 1);
-    }
-    function lemniscatey(i) {
-        return Math.sqrt(2) * Math.cos(i) * Math.sin(i) / (Math.pow(Math.sin(i), 2) + 1);
-    }
-    for (var k = 0; k <= 2 * Math.PI; k += 0.01) {
-        bernoulli.push([lemniscatex(k), lemniscatey(k)]);
-    }
-    $.plot($("#bernoilli"), [
-        {data: bernoulli, label: 'Lemniscate of Bernoulli', lines: {show: true, fill: true}}
-    ]);
 }
 function formGeneral() {
     "use strict";
@@ -974,6 +988,14 @@ function metisMaps() {
     });
 
 }
+function metisSortable() {
+    
+  $('.inner .row').sortable({
+    
+  });
+  
+}
+
 function metisTable() {
     "use strict";
 
@@ -1018,40 +1040,32 @@ function metisTable() {
     /*----------- END action table CODE -------------------------*/
 
 }
+function metisPricing(){
+  $("#dark-toggle label").on("click", function(){	      
+		var $this = $(this);
+		$("ul.dark li.active").removeClass("primary success danger warning info default").addClass($this.find("input").val());
+	      });
+	      
+	      $("#light-toggle label").on("click", function(){	      
+		var $this = $(this);
+		$("ul#light li.active").removeClass("primary success danger warning info default").addClass($this.find("input").val());
+	      });
+};
 function progRess() {
-  
+
     window.prettyPrint && prettyPrint();
-  
-    $.each($('.progress .progress-bar'), function() {
-      
-      $(this).animate({
-	width: $(this).attr('aria-valuenow')+'%'
-      });
-      
-      $(this).popover({
-	placement: 'bottom',
-	title: 'Source',
-	content: this.outerHTML
-      });
-      
-    });
-}
-function metisButton() {
-    window.prettyPrint && prettyPrint();
-    $.each($('.inner a.btn'), function () {
+
+    $.each($('.progress .progress-bar'), function () {
+
+        $(this).animate({
+            width: $(this).attr('aria-valuenow') + '%'
+        });
+
         $(this).popover({
             placement: 'bottom',
-            title: this.innerHTML,
-            content: this.outerHTML,
-            trigger: 'hover'
+            title: 'Source',
+            content: this.outerHTML
         });
-    });
-}
 
-function metisSortable() {
-    
-  $('.inner .row').sortable({
-    
-  });
-  
+    });
 }

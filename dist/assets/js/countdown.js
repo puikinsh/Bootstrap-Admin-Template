@@ -14,7 +14,7 @@ var difToSecond = dif / 1000;
 var defaultPercent = 0;
 
 
-$(function() {
+$(function () {
     $('#counter').countdown({
         until: endDate,
         layout: '<div></div>',
@@ -85,7 +85,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 /* Start Form validation*/
 
-$(function() {
+$(function () {
 
     $('#emailForm').validate({
         rules: {
@@ -96,10 +96,10 @@ $(function() {
         },
         errorClass: 'help-block',
         errorElement: 'span',
-        highlight: function(element, errorClass, validClass) {
+        highlight: function (element, errorClass, validClass) {
             $(element).parents('.form-group').removeClass('has-success').addClass('has-error');
         },
-        unhighlight: function(element, errorClass, validClass) {
+        unhighlight: function (element, errorClass, validClass) {
             $(element).parents('.form-group').removeClass('has-error').addClass('has-success');
         }
     });
@@ -121,10 +121,10 @@ $(function() {
         },
         errorClass: 'help-block',
         errorElement: 'span',
-        highlight: function(element, errorClass, validClass) {
+        highlight: function (element, errorClass, validClass) {
             $(element).parents('.form-group').removeClass('has-success').addClass('has-error');
         },
-        unhighlight: function(element, errorClass, validClass) {
+        unhighlight: function (element, errorClass, validClass) {
             $(element).parents('.form-group').removeClass('has-error').addClass('has-success');
         }
     });

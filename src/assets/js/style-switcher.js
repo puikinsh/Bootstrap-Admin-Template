@@ -57,7 +57,7 @@ var styleSwitcher = {
             localStor = true;
         }
 
-        if (Modernizr.localstorage) {
+        if (localStor) {
             if (localStorage.layout) {
                 $('body').addClass(localStorage.layout);
             }

@@ -19,36 +19,18 @@ module.exports = function (grunt) {
                 stripBanners: false
             },
             main: {
-                src: [
-                    'src/assets/js/base.js',
-                    'src/assets/js/dashboard.js',
-                    'src/assets/js/chart.js',
-                    'src/assets/js/formGeneral.js',
-                    'src/assets/js/formValidation.js',
-                    'src/assets/js/formWizard.js',
-                    'src/assets/js/formWysiwyg.js',
-                    'src/assets/js/metisCalendar.js',
-                    'src/assets/js/metisFile.js',
-                    'src/assets/js/metisMaps.js',
-                    'src/assets/js/metisTable.js',
-                    'src/assets/js/progress.js',
-                    'src/assets/js/button.js',
-                    'src/assets/js/metisSortable.js'
-                ],
+                src: ['src/assets/js/app/*.js'],
                 dest: 'dist/assets/js/main.js'
             },
             countdown: {
-                options: {banner: '<%= banner %>'},
                 src: ['src/assets/js/countdown.js'],
                 dest: 'dist/assets/js/countdown.js'
             },
             styleSwitcher: {
-                options: {banner: '<%= banner %>'},
                 src: ['src/assets/js/style-switcher.js'],
                 dest: 'dist/assets/js/style-switcher.js'
             },
             emberApp: {
-                options: {banner: '<%= banner %>'},
                 src: ['src/assets/js/app.js'],
                 dest: 'dist/assets/js/app.js'
             }
@@ -68,22 +50,6 @@ module.exports = function (grunt) {
             },
             main: {
                 src: ['src/assets/js/*.js']
-            }
-        },
-        recess: {
-            options: {
-                compile: true
-            },
-            main: {
-                files: {
-                    'dist/assets/css/main.css': ['src/assets/less/style.less']
-                }
-            },
-            min: {
-                options: {compress: true},
-                files: {
-                    'dist/assets/css/main.min.css': ['src/assets/less/style.less']
-                }
             }
         },
         assemble: {
@@ -160,7 +126,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: 'src/assets/less',
-                        src: ['theme.less', 'mixins.less'],
+                        src: ['theme.less'],
                         dest: 'dist/assets/less'
                     },
                     {
@@ -177,7 +143,7 @@ module.exports = function (grunt) {
             scripts: {
                 files: ['**/*.js', '**/*.less', '**/*.hbs', '**/*.html'],
                 tasks: ['default']
-            },
+            }
         }
 
     });
@@ -191,7 +157,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     //grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-recess');
+    
+    
+    //grunt.loadNpmTasks('grunt-recess');
+    // remove grunt-recess modules. because not supported my code
+    
     grunt.loadNpmTasks('assemble');
 
     // Test task.
@@ -201,10 +171,10 @@ module.exports = function (grunt) {
     grunt.registerTask('dist-js', ['concat', 'jshint', 'uglify']);
 
     // CSS distribution task.
-    grunt.registerTask('dist-css', ['recess']);
+    //grunt.registerTask('dist-css', ['recess']);
 
     // Full distribution task.
-    grunt.registerTask('dist', ['clean', 'dist-css', 'dist-js', 'copy']);
+    grunt.registerTask('dist', ['clean', 'dist-js', 'copy']);
 
     // Default task.
     //grunt.registerTask('default', ['test', 'dist']);

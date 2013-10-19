@@ -1,52 +1,76 @@
-/*
-Template Name: Metis Responsive Admin Template build with Twitter Bootstrap 3.0.0
-Version: 2.0.0
-Author: onokumus
-Website: http://www.onokumus.com
+/**
+* Bootstrap-Admin-Template by onokumus@gmail.com
+* Version : 2.0.0
+* Author : Osman Nuri Okumuş
+* Copyright 2013
 */
-
 // Core variables and mixins
-@import "variables.less"; // Modify this for custom value
-@import "variable.less";
-@import "mixins.less";
+@import "bootstrap/variables"; // Modify this for custom value
+@import "main/variable";
+@import "bootstrap/mixins";
 
 
-// Sticky Footer and page structure
-@import "sticky.less";
-@import "layout.less";
+/*********************************************************/
+/*                 Layout Styles                         */
+/*********************************************************/
+@import "main/layout/sticky";
+@import "main/layout/layout";
 
 // if you want use 3 column layout
-// @import "layout2.less";
+@import "main/layout/layout2";
 
 // top bar styles
-@import "top.less";
+@import "main/general/top";
 
 // head bar styles
-@import "head.less";
+@import "main/general/head";
 
 // LEFT styles
-@import "left.less";
+@import "main/general/left";
 
 // main navigation menu styles
-@import "menu.less";
+@import "main/general/menu";
 
 // Content styles
-@import "content.less";
+@import "main/general/content";
 
 // Footer syles
-@import "footer.less";
+@import "main/general/footer";
 
+
+
+/*********************************************************/
+/*                 Component Styles                      */
+/*********************************************************/
 // box styles
-@import "box.less";
+@import "main/components/box";
 
 // custom button styles
-@import "button.less";
-
-// Component styles
-@import "component.less";
+@import "main/components/button";
 
 // Animated Checkbox
-@import "checkbox.less";
+@import "main/components/checkbox";
 
 // Pricing Table
-@import "pricing.less";
+@import "main/components/pricing";
+
+@import "main/components/innerHR";
+@import "main/components/progressbar";
+@import "main/components/quick-btn";
+@import "main/components/simple-table";
+@import "main/components/sortable-table";
+@import "main/components/sparkline";
+@import "main/components/stats-box";
+@import "main/components/wellDark";
+@import "main/components/scroll-bar";
+@import "main/components/calendar";
+
+@import "main/helper/padding";
+@import "main/helper/margin";
+@import "main/helper/background";
+@import "main/helper/bg-image";
+
+
+
+@import "error/error";
+@import "login/login";

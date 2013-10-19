@@ -1,0 +1,26 @@
+/* BEGIN SORTABLETABLE STYLES */
+
+.sortableTable th {
+  #gradient > .vertical(@header-color; @start-percent:0%; @header-highlight-color; 100%);
+  cursor: pointer;
+  i {
+    display: none;
+    float: right;
+  }
+  &:hover {
+    color: #888;
+  }
+  &.tablesorter-header {
+    i.icon-sort {display: inline-block;}
+    &.tablesorter-headerDesc {
+      i.icon-sort {display: none;}
+      i.icon-sort-up {display: inline-block;}
+    }
+    &.tablesorter-headerAsc {
+      i.icon-sort {display: none;}
+      i.icon-sort-down {display: inline-block;}
+    }
+  }
+
+}
+/* END SORTABLETABLE STYLES */

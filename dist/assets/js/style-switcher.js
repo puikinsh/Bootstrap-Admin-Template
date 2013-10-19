@@ -14,13 +14,13 @@
 yepnope.addPrefix('less', function (resourceObj) {
     resourceObj.forceCSS = true;
     resourceObj.attrs = {
-        'rel' : 'stylesheet/less',
+        'rel': 'stylesheet/less',
         'type': 'text/css'
     };
     return resourceObj;
 });
 var styleSwitcher = {
-    init    : function () {
+    init: function () {
         var $this = this;
         less = {env: "development"};
 
@@ -29,11 +29,11 @@ var styleSwitcher = {
             {load: 'assets/css/style-switcher.css'},
             {load: 'assets/lib/colorpicker/css/colorpicker.css'},
             {load: 'assets/lib/cssbeautify/cssbeautify.js'},
-            {load       : 'assets/lib/colorpicker/js/bootstrap-colorpicker.js',
+            {load: 'assets/lib/colorpicker/js/bootstrap-colorpicker.js',
                 complete: function () {
                     yepnope([
                         {load: 'less!assets/less/theme.less'},
-                        {load       : 'assets/lib/less-1.4.2.min.js',
+                        {load: 'assets/lib/less-1.4.2.min.js',
                             complete: function () {
 
 
@@ -56,14 +56,14 @@ var styleSwitcher = {
         ]);
 
     },
-    build   : function () {
+    build: function () {
         var $this = this;
         var localStor = false;
         if (Modernizr.localstorage) {
             localStor = true;
         }
 
-        if (Modernizr.localstorage) {
+        if (localStor) {
             if (localStorage.layout) {
                 $('body').addClass(localStorage.layout);
             }
@@ -118,7 +118,7 @@ var styleSwitcher = {
         var h5A = $('<a />')
             .attr({
                 'href': '#',
-                'id'  : 'switcher-link'
+                'id': 'switcher-link'
             })
             .on('click', function (e) {
                 e.preventDefault();
@@ -146,10 +146,10 @@ var styleSwitcher = {
                     $('<a/>')
                         .css("background-color", colors[i].Hex)
                         .attr({
-                            "data-color-hex" : colors[i].Hex,
+                            "data-color-hex": colors[i].Hex,
                             "data-color-name": colors[i].colorName,
-                            "href"           : "#",
-                            "title"          : colors[i].colorName
+                            "href": "#",
+                            "title": colors[i].colorName
                         }).tooltip({'placement': 'bottom'})
                 );
             colorList.append(listElement);
@@ -166,15 +166,15 @@ var styleSwitcher = {
         });
         var colorSelector = $('<div/>')
             .addClass('color-picker').attr({
-                'id'               : 'colorSelector',
-                'data-color'       : colors[0].Hex,
+                'id': 'colorSelector',
+                'data-color': colors[0].Hex,
                 'data-color-format': 'hex'
             }).append(
                 $('<a/>')
                     .css('background-color', colors[0].Hex)
                     .attr({
                         'href': '#',
-                        'id'  : 'colorSelectorA'
+                        'id': 'colorSelectorA'
                     }),
                 $("<span />").addClass("color-picker-icon")
             );
@@ -200,8 +200,8 @@ var styleSwitcher = {
 
         var boxLink = $('<a/>')
             .attr({
-                'id'              : 'boxLink',
-                'href'            : '#',
+                'id': 'boxLink',
+                'href': '#',
                 'data-layout-type': 'fixed'
             })
             .html('Fixed')
@@ -216,8 +216,8 @@ var styleSwitcher = {
 
         var wideLink = $('<a/>')
             .attr({
-                'href'            : '#',
-                'id'              : 'wideLink',
+                'href': '#',
+                'id': 'wideLink',
                 'data-layout-type': 'wide'
             })
             .html('Wide')
@@ -300,8 +300,8 @@ var styleSwitcher = {
                             'background': 'url(assets/img/pattern/' + patternImages[i].image + '.png) repeat'
                         })
                         .attr({
-                            'href'              : '#',
-                            'title'             : patternImages[i].title,
+                            'href': '#',
+                            'title': patternImages[i].title,
                             'data-pattern-image': patternImages[i].image
                         }).tooltip({'placement': 'bottom'})
                 );
@@ -311,7 +311,7 @@ var styleSwitcher = {
         patternList.find('a').on('click', function (e) {
             e.preventDefault();
             $('body').css({
-                'background-image' : 'url(assets/img/pattern/' + $(this).data('patternImage') + '.png)',
+                'background-image': 'url(assets/img/pattern/' + $(this).data('patternImage') + '.png)',
                 'background-repeat': ' repeat'
             });
             $this.patternImage = $(this).data('patternImage');
@@ -373,7 +373,7 @@ var styleSwitcher = {
                 $('<h6/>').html('Side Bar Width'),
                 sideMiniLink,
                 sideMaxiLink,
-		sideAffixLink
+                sideAffixLink
             )
         );
 
@@ -413,7 +413,7 @@ var styleSwitcher = {
             localStorage.color = color;
         }
     },
-    reset   : function () {
+    reset: function () {
         if (Modernizr.localstorage) {
             localStorage.removeItem('color');
             localStorage.removeItem('layout');
@@ -423,7 +423,7 @@ var styleSwitcher = {
         window.location.reload();
         return false;
     },
-    getCss  : function () {
+    getCss: function () {
         var $this = this;
         var raw = "", options;
         var isBoxed = $('body').hasClass('fixed');
@@ -438,7 +438,7 @@ var styleSwitcher = {
         cssBeautify.text("");
         raw = raw + $('style[id^="less:"]').text();
         options = {
-            indent       : "\t",
+            indent: "\t",
             autosemicolon: true
         };
         cssBeautify.text(cssbeautify(raw, options));

@@ -1,4 +1,4 @@
-Free Admin Template with Twitter Bootstrap https://travis-ci.org/onokumus/Bootstrap-Admin-Template.png
+Free Admin Template with Twitter Bootstrap [![Build Status]https://travis-ci.org/onokumus/Bootstrap-Admin-Template.png)](http://travis-ci.org/onokumus/Bootstrap-Admin-Template)
 ------------------------------------------
 
 ### Installation

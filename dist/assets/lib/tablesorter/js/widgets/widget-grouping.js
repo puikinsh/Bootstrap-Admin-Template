@@ -1,4 +1,4 @@
-/*! tablesorter Grouping widget - updated 10/1/2013
+/*! tablesorter Grouping widget - updated 10/18/2013
  * Requires tablesorter v2.8+ and jQuery 1.7+
  * by Rob Garrison
  */
@@ -39,8 +39,8 @@ ts.grouping = {
 			part === 'month' ? wo.group_months[t.getMonth()] :
 			part === 'day' ? wo.group_months[t.getMonth()] + ' ' + t.getDate() :
 			part === 'week' ? wo.group_week[t.getDay()] :
-			part === 'time' ? ('00' + (t2 > 12 ? t2 - 12 : t2 === 0 ? t2 + 12 : t2)).slice(-2) + ':' + ('00' + t.getMinutes()).slice(-2) + ' ' +
-				('00' + wo.group_time[t2 >= 12 ? 1 : 0]).slice(-2) :
+			part === 'time' ? ('00' + (t2 > 12 ? t2 - 12 : t2 === 0 ? t2 + 12 : t2)).slice(-2) + ':' +
+				('00' + t.getMinutes()).slice(-2) + ' ' + ('00' + wo.group_time[t2 >= 12 ? 1 : 0]).slice(-2) :
 			t.toString();
 	}
 };
@@ -57,7 +57,9 @@ ts.addWidget({
 		group_months      : [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ],
 		group_week        : [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ],
 		group_time        : [ 'AM', 'PM' ],
-		group_formatter   : null // function(curr, col, table, c, wo) { return curr; }
+		group_formatter   : null, // function(txt, col, table, c, wo) { return txt; }
+		group_callback    : null, // function($cell, $rows, column, table){}, callback allowing modification of the group header labels
+		group_complete    : 'groupingComplete' // event triggered on the table when the grouping widget has finished work
 	},
 	init: function(table, thisWidget, c, wo){
 		if (wo.group_collapsible) {
@@ -117,11 +119,23 @@ ts.addWidget({
 				}
 			}
 			$tr = c.$table.find('tr.group-header').bind('selectstart', false);
-			if (wo.group_count) {
+			if (wo.group_count || $.isFunction(wo.group_callback)) {
 				$tr.each(function(){
-					$(this).find('.group-count').html( wo.group_count.replace(/\{num\}/g, $(this).nextUntil('tr.group-header').filter(':visible').length) );
+					var $rows,
+						$row = $(this),
+						$label = $row.find('.group-count');
+					if ($label.length) {
+						$rows = $(this).nextUntil('tr.group-header').filter(':visible');
+						if (wo.group_count) {
+							$label.html( wo.group_count.replace(/\{num\}/g, $rows.length) );
+						}
+						if ($.isFunction(wo.group_callback)) {
+							wo.group_callback($row.find('td'), $rows, col, table);
+						}
+					}
 				});
 			}
+			c.$table.trigger(wo.group_complete);
 			if (c.debug) {
 				$.tablesorter.benchmark("Applying groups widget: ", time);
 			}

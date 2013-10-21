@@ -1,8 +1,13 @@
 # Mouse Wheel ChangeLog
 
+## 3.1.4
+
+* Always set the deltaY
+* Add back in the deltaX and deltaY support for older Firefox versions
+
 ## 3.1.3
 
-* Include MozMousePixelScroll in the to fix list to avoid inconsistent behavior in older Firefox
+* Include `MozMousePixelScroll` in the to fix list to avoid inconsistent behavior in older Firefox
 
 ## 3.1.2
 
@@ -40,7 +45,7 @@
 
 ## 3.0.3
 
-* Added deltaX and deltaY for horizontal scrolling support (Thanks to Seamus Leahy)
+* Added `deltaX` and `deltaY` for horizontal scrolling support (Thanks to Seamus Leahy)
 
 
 ## 3.0.2
@@ -71,7 +76,7 @@
 ## 2.1.1
 
 * Updated to work with jQuery 1.1.3
-* Used one instead of bind to do unload event for clean up.
+* Used one instead of bind to do unload event for clean up
 
 
 ## 2.1

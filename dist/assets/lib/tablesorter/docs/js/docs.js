@@ -126,7 +126,7 @@ var addParsedValues = function($t, cols, format){
 	$r.each(function(i){
 		r = this;
 		$.each(cols, function(v,j){
-			r.cells[j].innerHTML += ' <span class="val hidden">(<span class="results">' + (format ? format(c[i][j]) : c[i][j]) + '</span>)</span>';
+			r.cells[j].innerHTML += ' <span class="val hidden removeme">(<span class="results">' + (format ? format(c[i][j]) : c[i][j]) + '</span>)</span>';
 		});
 	});
 

@@ -13,7 +13,8 @@
 			editable_columns       : [],
 			editable_enterToAccept : true,
 			editable_autoResort    : false,
-			editable_noEdit        : 'no-edit'
+			editable_noEdit        : 'no-edit',
+			editable_editComplete  : 'editComplete'
 		},
 		init: function(table, thisWidget, c, wo){
 			if (!wo.editable_columns.length) { return; }
@@ -57,7 +58,9 @@
 						if (t) {
 							c.$table
 								.data('contentFocused', false)
-								.trigger('updateCell', [ $this, wo.editable_autoResort ]);
+								.trigger('updateCell', [ $this, wo.editable_autoResort, function(table){
+									$this.trigger( wo.editable_editComplete );
+								} ]);
 							$this.trigger('blur.tseditable');
 						}
 					}

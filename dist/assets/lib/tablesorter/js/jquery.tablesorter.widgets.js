@@ -1,4 +1,4 @@
-/*! tableSorter 2.8+ widgets - updated 6/4/2013
+/*! tableSorter 2.8+ widgets - updated 10/18/2013
  *
  * Column Styles
  * Column Filters
@@ -66,10 +66,11 @@ ts.themes = {
    val = (v && v.hasOwnProperty('mywidget')) ? v.mywidget : '';
    alert(val); // "data1" if saved, or "" if not
 */
-ts.storage = function(table, key, val){
+ts.storage = function(table, key, val, options){
 	var d, k, ls = false, v = {},
-	id = table.id || $('.tablesorter').index( $(table) ),
-	url = window.location.pathname;
+	c = table.config,
+	id = options && options.id || $(table).attr(options && options.group || 'data-table-group') || table.id || $('.tablesorter').index( $(table) ),
+	url = options && options.url || $(table).attr(options && options.page || 'data-table-page') || c && c.fixedUrl || window.location.pathname;
 	// https://gist.github.com/paulirish/5558557
 	if ("localStorage" in window) {
 		try {
@@ -355,7 +356,9 @@ ts.addWidget({
 		}
 	},
 	format: function(table, c, wo){
-		if (c.parsers && !c.$table.hasClass('hasFilters')){
+		if (c.$table.hasClass('hasFilters')) { return; }
+		// allow filter widget to work if it is being used 
+		if (c.parsers || !c.parsers && wo.filter_serversideFiltering){
 			var i, j, k, l, val, ff, x, xi, st, sel, str,
 			ft, ft2, $th, rg, s, t, dis, col,
 			fmt = ts.formatFloat,
@@ -363,7 +366,8 @@ ts.addWidget({
 			$ths = c.$headers,
 			$t = c.$table.addClass('hasFilters'),
 			b = c.$tbodies,
-			cols = c.parsers.length,
+			// c.columns defined in computeThIndexes()
+			cols = c.columns || c.$headers.filter('th').length,
 			parsed, time, timer,
 
 			// dig fer gold
@@ -572,7 +576,7 @@ ts.addWidget({
 				arry = $.grep(arry, function(v, k){
 					return $.inArray(v, arry) === k;
 				});
-				arry = (ts.sortText) ? arry.sort(function(a, b){ return ts.sortText(table, a, b, i); }) : arry.sort(true);
+				arry = (ts.sortNatural) ? arry.sort(function(a, b){ return ts.sortNatural(a, b); }) : arry.sort(true);
 
 				// Get curent filter value
 				currentVal = $t.find('thead').find('select.tablesorter-filter[data-column="' + i + '"]').val();
@@ -615,6 +619,7 @@ ts.addWidget({
 			wo.filter_regex.child = new RegExp(c.cssChildRow);
 			wo.filter_regex.filtered = new RegExp(wo.filter_filteredRow);
 			// don't build filter row if columnFilters is false or all columns are set to "filter-false" - issue #156
+
 			if (wo.filter_columnFilters !== false && $ths.filter('.filter-false').length !== $ths.length){
 				// build filter row
 				t = '<tr class="tablesorter-filter-row">';

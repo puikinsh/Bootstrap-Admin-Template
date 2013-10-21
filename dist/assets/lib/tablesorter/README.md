@@ -36,12 +36,66 @@ tablesorter can successfully parse and sort many types of data including linked 
 ### Special Thanks
 
 * Big shout-out to [Nick Craver](https://github.com/NickCraver) for getting rid of the `eval()` function that was previously needed for multi-column sorting.
-* Also big thanks to [thezoggy](https://github.com/thezoggy) for helping with code, themes and providing valuable feedback.
-* And, thanks to everyone else that has contributed, and continues to contribute to this forked project!
+* Big thanks to [thezoggy](https://github.com/thezoggy) for helping with code, themes and providing valuable feedback.
+* Big thanks to [ThsSin-](https://github.com/TheSin-) for taking over for a while and also providing valuable feedback.
+* And, of course thanks to everyone else that has contributed, and continues to contribute to this forked project!
 
 ### Change Log
 
 View the [complete listing here](https://github.com/Mottie/tablesorter/wiki/Change).
+
+#### <a name="v2.12">Version 2.12</a> (10/18/2013)
+
+**Core**
+* Added `numberSorter` option allowing you to modify the overall numeric sorter.
+* Updated the `textSorter` option to allow setting a text sorter for each column.
+  * The `textSorter` functon parameters have changed from `(a, b, table, column)` to `(a, b, direction, column, table)`.
+  * Restructured &amp; combined sorting functions internally so that tablesorter will always sort empty cells no matter what sorting algorithm is used by the `textSorter`.
+  * Renamed `$.tablesorter.sortText()` to `$.tablesorter.sortNatural()`
+  * Added a new basic alphabetical sort algorithm `$.tablesorter.sortText = function(a, b) { return a > b ? 1 : (a < b ? -1 : 0); };` which can be set using the `textSorter` option.
+  * New examples can be found in the updated [custom sort demo](http://mottie.github.io/tablesorter/docs/example-option-custom-sort.html).
+
+* Added `fixedUrl` option for use with the `$.tablesorter.storage()` function.
+  * Setting this with a fixed name (it doesn't need to be a url) allows saving table data (`saveSort` widget, `savePages` in pager widget) for tables on multiple pages in a domain.
+  * Additional storage options are described below under "Storage".
+* An accurate number of table columns is now contained within `table.config.columns`. This accounts for multiple header rows, tds, ths, etc.
+* Replaced `.innerHTML` with jQuery's `.html()` to fix issues in IE8. Fixes [issue #385](https://github.com/Mottie/tablesorter/issues/385).
+* Version numbers should now all be accurate, even in the comments.. at least this time ;). Fixes [issue #386](https://github.com/Mottie/tablesorter/issues/386).
+
+**Pager**
+* In attempts to initialize the pager after the filter widget:
+  * Added a pager widget (still beta testing) to allow initializing the pager after certain widgets (filter widget).
+  * Updated tablesorter core (properly count table columns) &amp; filter widget code to allow it to initialize on an empty table (thanks @stanislavprokopov!).
+  * Hopefully one or both of these changes fixes [issue #388](https://github.com/Mottie/tablesorter/issues/388).
+  * New pager widget demos: [basic](http://mottie.github.io/tablesorter/docs/example-widget-pager.html) & [ajax](http://mottie.github.io/tablesorter/docs/example-widget-pager-ajax.html).
+* `savePages` option
+  * Should no longer cause an error if stored data is malformed or unrecognized. Fixes [issue #387](https://github.com/Mottie/tablesorter/issues/387).
+  * The stored size and page is now cleared if the table is destroyed.
+* Fixed an error occuring in IE when trying to determine if a variable is an array (`toString` function call not recognized). Fixes [issue #390](https://github.com/Mottie/tablesorter/issues/390).
+* Updated pager rendering to prevent multiple ajax calls.
+* During this update, the pager page size would return as zero and set the totalPages value to inifinity. Yeah, it doesn't do that anymore; but you can still set the pager size to zero if you want!
+
+**Widgets**
+* Filter widget:
+  * Should now properly initialize when the pager plugin/widget is used with ajax and/or the `filter_serversideFiltering` option is `true`. Fixes [issue #388](https://github.com/Mottie/tablesorter/issues/388).
+  * Please note that the select dropdowns still sort using the natural sort algorithm, but since it is using the function directly, empty cells will not sort based on the `emptyTo` option. If this is a big problem, let me know!
+* Grouping widget:
+  * Added `group_callback` option - this sets a callback function which allows  modification of each group header label - like adding a subtotal for each group, or something. See the [updated demo](http://mottie.github.io/tablesorter/docs/example-widget-grouping.html).
+  * Added `group_complete` option which is `"groupingComplete"` by default. This is the name of the event that is triggered once the grouping widget has completed updating.
+* Updated the editable widget:
+  * Added `editable_editComplete` option which names the event that is triggered after tablesorter has completed updating the recent edit.
+  * You can also bind to the `change` event for that editable element, but it may occur before tablesorter has updated its internal data cache.
+* Storage
+  * The `$.tablesorter.storage()` function now has options including the `fixedUrl` option described in the core section above.
+  * Also added storage options which can be used for custom widgets: `$.tablesorter.storage(table, key, value, { url : 'mydomain', id : 'table-group' })`.
+  * Additionally, for already build-in widgets, you can apply data-attributes to the table: `<table class="tablesorter" data-table-page="mydomain" data-table-group="financial">...</table>`.
+  * For more details, please see [issue #389](https://github.com/Mottie/tablesorter/issues/389).
+
+**Parsers**
+* Added an IPv6 parser
+  * This parser will auto-detect (the `is` function checks for valid IPv6 addresses).
+  * Added a new [IPv6 parser demo](http://mottie.github.io/tablesorter/docs/example-parsers-ip-address.html).
+  * Included rather extensive unit tests for just this parser o.O.
 
 #### <a name="v2.11.1">Version 2.11.1</a> (10/11/2013)
 
@@ -165,11 +219,3 @@ View the [complete listing here](https://github.com/Mottie/tablesorter/wiki/Chan
     * [External filters using Select2 plugin](http://mottie.github.io/tablesorter/beta-testing/example-external-filters-using-select2.html) - should be working properly.
     * [Column reorder widget](http://mottie.github.io/tablesorter/beta-testing/example-widget-column-reorder.html) - not working 100% with sticky headers.
     * [Column sum widget](http://mottie.github.io/tablesorter/beta-testing/example-widget-sum-columns.html) - still needs LOTS of work!
-
-#### <a name="v2.10.6">Version 2.10.6</a> (5/30/2013)
-
-* Added `skipTest` options to the HTML5 filter formatter functions. Fixes [issue #307](https://github.com/Mottie/tablesorter/issues/307).
-
-#### <a name="v2.10.5">Version 2.10.5</a> (5/30/2013)
-
-* Filter formatter functions now works properly within sticky headers. Fixes issues [#290](https://github.com/Mottie/tablesorter/issues/290) &amp; [#317](https://github.com/Mottie/tablesorter/issues/317).

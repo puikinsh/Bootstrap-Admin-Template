@@ -54,6 +54,7 @@ span.tip em {padding: 0 2px;background-color: #00ce53; color: #fff; font-size:90
 span.tip.old em { background-color: #cfd; color: #000; }
 .beta:before { content: "Beta"; background: #888; border-radius: 3px; color: #fff; padding: 0 2px; margin: 0 4px 0 0; font-style: italic; }
 span.warn em { background-color: #ce5300; }
+tr td.lookhere, span.lookhere { background-color: rgba(230,191,153,0.5); }
 .ui-slider .ui-slider-handle { width: 0.8em; height: 0.8em; }
 div.digg {float: right;}
 .next-up { padding-top: 10px; font-size: 90%; }

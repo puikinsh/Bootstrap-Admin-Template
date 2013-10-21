@@ -11,7 +11,9 @@
 	<script src="testing/jquery-1.8.3.min.js"></script>
 	<script src="js/jquery.tablesorter.js"></script>
 	<script src="js/jquery.metadata.js"></script>
+	<script src="js/parsers/parser-ipv6.js"></script>
 	<script src="testing/testing.js"></script>
+	<script src="testing/testing-ipv6.js"></script>
 
 	<script>
 	/*
@@ -277,7 +279,7 @@
 			test parser cache
 		************************************************/
 		test( "parser cache; sorton methods; empty & string", function() {
-			expect(15);
+			expect(17);
 			$table1.trigger('sortReset');
 			// lower case because table was parsed before c1.ignoreCase was changed
 			tester.cacheCompare( table1, 'all', [ 'test2', 'x2', 'test1', 'x3', 'test3', 'x1', '', '', 'testb', 'x5', 'testc', 'x4', 'testa', 'x6' ], 'unsorted' );
@@ -329,6 +331,12 @@
 
 			$table3.trigger('sorton', [[[ 3,0 ]]]);
 			tester.cacheCompare( table3, 3, [ -8.4, -2.2, -0.1, 'n/a #1', 'n/a #2', 5.2, 11.4, 23.6, 97.4, '' ], 'asc sort; empty to zero; string to none/zero' );
+
+			t = [ 'x', 'X', 'y', 'Y', 'z', 'Z', 'a', 'A', 'b', 'B', 'c', 'C' ];
+			deepEqual( t.sort($.tablesorter.sortText), [ 'A', 'B', 'C', 'X', 'Y', 'Z', 'a', 'b', 'c', 'x', 'y', 'z' ], 'test sortText function directly' );
+
+			t = [ 'a02', 'a10', 'a43', 'a255', 'a102', 'a33', '', 'a1', 'a55', 'a87' ];
+			deepEqual( t.sort($.tablesorter.sortNatural), [ '', 'a1', 'a02', 'a10', 'a33', 'a43', 'a55', 'a87', 'a102', 'a255' ], 'test sortNatural function directly' );
 
 		});
 
@@ -450,6 +458,11 @@
 
 			$table2.tablesorter();
 		});
+
+		/************************************************
+			ipv6 parser testing
+		************************************************/
+		ipv6tests();
 
 	});
 	</script>

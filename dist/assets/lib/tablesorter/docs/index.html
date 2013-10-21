@@ -273,7 +273,7 @@
 		<li><a href="example-option-selectorsort.html">Using selectorSort option</a> (v2.4)</li>
 		<li><a href="example-option-sort-empty.html">Sorting empty cells</a> (v2.1.11)</li>
 		<li><a href="example-option-sort-key.html">Change the default multi-sorting key</a></li>
-		<li><a href="example-option-custom-sort.html">Custom sort script</a> (v2.2)</li>
+		<li><a href="example-option-custom-sort.html">Custom sort script</a> (v2.2; <span class="version updated">v2.12</span>)</li>
 		<li><a href="example-locale-sort.html">Sorting Accented Characters</a> (v2.24; <a href="https://github.com/Mottie/tablesorter/wiki/Language">languages</a>)</li>
 		<li><a href="example-multiple-tbodies.html">Sorting with Multiple Tbodies</a> (v2.2)</li>
 		<li><a href="example-header-column-span.html">Sorting Across Multiple Columns</a> (v2.3)</li>
@@ -305,7 +305,7 @@
 			</ul>
 		</li>
 		<li><a href="example-widget-build-table.html">Build Table Widget</a> (<span class="version">v2.11</span>).</li>
-		<li><a href="example-widget-grouping.html">Grouping rows Widget</a> (<span class="version">v2.8</span>).</li>
+		<li><a href="example-widget-grouping.html">Grouping rows Widget</a> (v2.8; <span class="version updated">v2.12</span>).</li>
 		<li><a href="example-widgets.html">Repeat Headers widget</a> (v2.0.5; <span class="version updated">v2.9</span>)</li>
 		<li><a href="example-widget-resizable.html">Resizable Columns widget</a> (v2.0.23.1; <span class="version updated">v2.8.3</span>)</li>
 		<li><a href="example-widget-savesort.html">Save sort widget</a> (v2.0.27)</li>
@@ -381,10 +381,11 @@
 		<li><a href="http://jsfiddle.net/Mottie/abkNM/325/">tablesorter basic demo using jQuery UI theme</a></li>
 		<li><a href="http://jsfiddle.net/Mottie/4mVfu/1/">tablesorter basic demo with pager plugin</a></li>
 		<li><a href="http://codepen.io/Mottie/pen/eqBbn">tableSorter LESS theme; modify the colors dynamically in this LESS theme demo!</a></li>
-		<li class="beta"> <a href="http://mottie.github.io/tablesorter/beta-testing/example-pager-custom-controls.html">Custom pager control script</a></li>
-		<li class="beta"> <a href="http://mottie.github.io/tablesorter/beta-testing/example-external-filters-using-select2.html">External filters using Select2 plugin</a></li>
-		<li class="beta"> <a href="http://mottie.github.io/tablesorter/beta-testing/example-widget-column-reorder.html">Column reorder widget</a> - not working 100% with sticky headers</li>
-		<li class="beta"> <a href="http://mottie.github.io/tablesorter/beta-testing/example-widget-sum-columns.html">Column sum widget</a> - still needs LOTS of work!</li>
+		<li class="beta"> pager widget (<a href="example-widget-pager.html">basic</a> &amp; <a href="example-widget-pager-ajax.html">ajax</a> demos) (<span class="version">v2.12</span>).</li>
+		<li class="beta"> <a href="../beta-testing/example-pager-custom-controls.html">Custom pager control script</a></li>
+		<li class="beta"> <a href="../beta-testing/example-external-filters-using-select2.html">External filters using Select2 plugin</a></li>
+		<li class="beta"> <a href="../beta-testing/example-widget-column-reorder.html">Column reorder widget</a> - not working 100% with sticky headers</li>
+		<li class="beta"> <a href="../beta-testing/example-widget-sum-columns.html">Column sum widget</a> - still needs LOTS of work!</li>
 		<li>Check out the <a href="https://github.com/Mottie/tablesorter/wiki">home wiki page</a> <span class="tip"><em>more demos</em></span>!</li>
 	</ul>
 
@@ -704,6 +705,23 @@
 					</div>
 				</td>
 				<td><a href="example-option-sort-empty.html">Example</a></td>
+			</tr>
+
+			<tr id="fixedurl">
+				<td><a href="#" class="toggle2">fixedUrl</a></td>
+				<td>String</td>
+				<td>Undefined</td>
+				<td>
+					This option was added to set a specific page when storing data using the <code>$.tablesorter.storage</code> code. <span class="version">v2.12</span>.
+					<div class="collapsible"><br>
+						More specifically, when the storage function is used, it attempts to give every table a unique identifier using both the page <strong>url</strong> and table <strong>ID</strong> (or index on the page if no id exists). This option allows you to override the current page url (<em>it doesn't need to be a url, just some constant value</em>) and save data for multiple tables across a domain.<br>
+						<br>
+						The table url &amp; id can also be overridden by setting table data attributes <code>data-table-page</code> (url) and <code>data-table-group</code> (id)<br>(e.g. <code>&lt;table class=&quot;tablesorter&quot; data-table-page=&quot;mydomain&quot; data-table-group=&quot;financial&quot;&gt;...&lt;/table&gt;</code>)<br>
+						<br>
+						For a bit more detail, specifically on how to use the new storage function options for a custom widget, please refer to <a href="https://github.com/Mottie/tablesorter/issues/389#issuecomment-26594259">issue #389</a>.
+					</div>
+				</td>
+				<td></td>
 			</tr>
 
 			<tr id="headerlist">
@@ -1209,12 +1227,35 @@ $(function(){
 				<td><a href="example-option-text-extraction.html">Example</a></td>
 			</tr>
 
+			<tr id="numbersorter">
+				<td><a href="#" class="toggle2">numberSorter</a></td>
+				<td>Function</td>
+				<td>null</td>
+				<td>
+					Replace the default number sorting algorithm with a custom one using this option <span class="version">v2.12</span>.
+					<div class="collapsible">
+					<br>
+					Here is an example:
+					<pre class="prettyprint lang-javascript">$(function(){
+  $("table").tablesorter({
+    numberSorter : function(a, b, direction, maxColumnValue){
+      // direction; true = ascending; false = descending
+      // maxColumnValue = the maximum value of that column (ignoring its sign)
+      return a - b;
+    }
+  });
+});</pre>The direction parameter (boolean) is merely for informational purposes as the plugin automatically switches `a` and `b` depending on the sort direction ( i.e. there's no need to worry about reverse sorting, it's taken care of by the plugin ).
+					</div>
+				</td>
+				<td></td>
+			</tr>
+
 			<tr id="textsorter">
 				<td><a href="#" class="toggle2">textSorter</a></td>
 				<td>Function</td>
 				<td>null</td>
 				<td>
-					Replace the default sorting algorithm with a custom one using this option.
+					Replace the default sorting algorithm with a custom one using this option (<span class="version updated">v2.12</span>) - <span class="alert">*NOTE*</span> The parameters have changed!!.
 					<div class="collapsible">
 					<br>
 					Include a script like <a href="https://github.com/overset/javascript-natural-sort">naturalSort.js</a> as follows:
@@ -1226,11 +1267,33 @@ $(function(){
 					or use the localeCompare sort
 					<pre class="prettyprint lang-javascript">$(function(){
   $("table").tablesorter({
-    textSorter: function(a,b) {
+    // replace the OVERALL text sorter function
+    textSorter: function(a, b, direction, columnIndex, table){
+      // direction: true = ascending; false = descending
+      // columnIndex: zero-based index of the current table column being sorted
+      // table: table DOM element (access options by using table.config)
       return a.localeCompare(b);
     }
   });
-});</pre>There's no need to worry about reverse sorting, it's taken care of by the plugin.
+});</pre>In <span class="version updated">v2.12</span>, the <code>textSorter</code> option will now accept a text sorter per column:
+					<pre class="prettyprint lang-javascript">$(function(){
+  $("table").tablesorter({
+    textSorter : {
+      // replace INDIVIDUAL COLUMN text sorter functions
+      0 : function(a, b, direction, columnIndex, table){
+        // same as $.tablesorter.sortText
+        // direction: true = ascending; false = descending
+        // columnIndex: zero-based index of the current table column being sorted
+        // table: table DOM element (access options by using table.config)
+        return a > b ? 1 : (a < b ? -1 : 0);
+      },
+      1 : $.tablesorter.sortText,    // same as the function in column 0 above (modified in v2.12)
+      2 : $.tablesorter.sortNatural, // renamed v2.12 from $.tablesorter.sortText - performs natural sort
+      3 : Array.AlphanumericSort     // alphanumeric sort from sugar (http://sugarjs.com/arrays#sorting)
+    }
+  });
+});</pre>The direction parameter (boolean) is merely for informational purposes as the plugin automatically switches `a` and `b` depending on the sort direction ( i.e. there's no need to worry about reverse sorting, it's taken care of by the plugin ).
+
 					</div>
 				</td>
 				<td><a href="example-option-custom-sort.html">Example</a></td>
@@ -1491,8 +1554,8 @@ $(function(){
 		<p></p>
 		tablesorter widgets have many options, and to better organize them, they now are grouped together inside of the <code>widgetOptions</code>. Thanks to thezoggy for putting together this jQuery-widget compatibility table, but please note:
 		<ul>
-			<li>The applied order will not change depending on the widgets applied, but the numbers will change.</li>
-			<li>The widgets are actually applied in reverse alphabetical order. This includes any custom widget names, so a custom widget named &quot;zoom&quot; will be the first applied widget. The only exception is the zebra widget which will always be the last widget applied.</li>
+			<li>The applied order of widget is dependent of the widget priority, from low to high.</li>
+			<li>Widget priority values do not need to be unique. Any new widget without a defined priority will automatically have a priority of <code>10</code>.</li>
 			<li>The pager, being a plugin, is actually initialized after tablesorter has initialized and all selected widgets applied.</li>
 			<li>* The <code>saveSort</code> and <code>resizable</code> widgets use the <code>$.tablesorter.storage</code> function by default and thus need the <code>parseJSON</code> function which is available in jQuery 1.4.1+.</li>
 		</ul>

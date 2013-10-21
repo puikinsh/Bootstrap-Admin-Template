@@ -97,7 +97,22 @@
 				}
 				// If there are empty cells, name the group "Empty"
 				return txt === "" ? "Empty" : txt;
-			}
+			},
+			group_callback    : function($cell, $rows, column, table){
+				// callback allowing modification of the group header labels
+				// $cell = current table cell (containing group header cells '.group-name' & '.group-count'
+				// $rows = all of the table rows for the current group; table = current table (DOM)
+				// column = current column being sorted/grouped
+				if (column === 2) {
+					var subtotal = 0;
+					$rows.each(function(){
+						subtotal += parseInt( $(this).find('td').eq(column).text() );
+					});
+					$cell.find('.group-count').append('; subtotal: ' + subtotal );
+				}
+			},
+			// event triggered on the table when the grouping widget has finished work
+			group_complete    : 'groupingComplete'
 		}
 	});
 
@@ -122,6 +137,7 @@
 		<ul>
 			<li>This widget will <strong>only work</strong> in tablesorter version 2.8+ and jQuery version 1.7+.</li>
 			<li>Please do not use this widget in very large tables (it might be really slow) <del>or when your table includes multiple tbodies</del>.</li>
+			<li>In <span class="version">v2.12</span>, added <code>group_callback</code> &amp; <code>group_complete</code> options. See options section below for details.</li>
 			<li>In <span class="version">v2.11</span>:
 				<ul>
 					<li>The grouping widget now works across multiple tbodies.</li>
@@ -139,11 +155,35 @@
 		<div>
 			<h3>Group widget default options (added inside of tablesorter <code>widgetOptions</code>)</h3>
 			<ul>
-				<li><code>group_collapsible</code> - when <code>true</code> the group headers become clickable and collapse the rows below it.</li>
-				<li><code>group_collapsed</code> - when <code>true</code> and <code>group_collapsible</code> is also <code>true</code>, all groups will start collapsed (<span class="version">v2.11</span>).</li>
-				<li><code>group_count</code> - Allows you to add custom formatting, or remove, the group count within the group header. Set it to <code>false</code> or an empty string to remove the count.</li>
-				<li><code>group_months</code>, <code>group_week</code> and <code>group_time</code> - Name arrays included so that the language of the date groups can be modified easily.</li>
-				<li><code>group_formatter</code> - Use this function to modify the group header text before it gets applied. It provides various parameters to make it work for any of the table columns and data. See the comments in the example below for more details.</li>
+				<li><code>group_collapsible</code> (<code>true</code>) - when <code>true</code>, the group headers become clickable and collapse the rows below it.</li>
+				<li><code>group_collapsed</code> (<code>false</code>) - when <code>true</code> and <code>group_collapsible</code> is also <code>true</code>, all groups will start collapsed (<span class="version">v2.11</span>).</li>
+				<li><code>group_count</code> (<code>&quot; ({num})&quot;</code>) - allows you to add custom formatting, or remove, the group count within the group header. Set it to <code>false</code> or an empty string to remove the count.</li>
+				<li>group date/time options - Name arrays included so that the language of the date groups can be modified easily. Defaults (English):
+					<ul>
+						<li><code>group_months</code> (<code>[ &quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;, &quot;Aug&quot;, &quot;Sep&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dec&quot; ]</code>) - Month names.</li>
+						<li><code>group_week</code> (<code>[ &quot;Sunday&quot;, &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot; ]</code>) - Named days of the week.</li>
+						<li><code>group_time</code> (<code>[ &quot;AM&quot;, &quot;PM&quot; ]</code>) - Time of day.</li>
+					</ul>
+				</li>
+				<li><code>group_formatter</code> (<code>null</code>) - use this function to modify the group header text before it gets applied. It provides various parameters (<code>txt, col, table, c, wo</code>) to make it work for any of the table columns and data. See the comments in the example below for more details.
+					<ul>
+						<li><code>txt</code> - current text of the group header.</li>
+						<li><code>col</code> - current table column being grouped (zero-based index).</li>
+						<li><code>table</code> - current table (DOM).</li>
+						<li><code>c</code> - table data from <code>table.config</code>.</li>
+						<li><code>wo</code> - table widget options from <code>table.config.widgetOptions</code>.</li>
+					</ul>
+				</li>
+				<li><code>group_callback</code> (<code>null</code>) - use this function to further modify the group header to include more information (i.e. group totals). Parameters include (<code>$cell, $rows, column, table</code>). See the example below for more details <span clss="version">v2.12</span>.
+					<ul>
+						<li><code>$cell</code> - current group header table cell (jQuery object).</li>
+						<li><code>$rows</code> - current group rows (jQuery object).</li>
+						<li><code>column</code> - current table column being grouped (zero-based index).</li>
+						<li><code>table</code> - current table (DOM).</li>
+					</ul>
+				</li>
+				</li>
+				<li><code>group_complete</code> (<code>&quot;groupingComplete&quot;</code>) - event triggered on the table when the grouping widget has finished work <span clss="version">v2.12</span>.</li>
 			</ul>
 		</div>
 
@@ -151,19 +191,19 @@
 		<div>
 			<h3>Group header class names (when changing the grouping, notice that the <em>sort doesn't change, just the position and names of the group headers</em>):</h3>
 			<ul>
-				<li><code>"group-word"</code> (same as <code>"group-word-1"</code>) - group the rows using the first word it finds in the column's parsed data.</li>
-				<li><code>"group-word-n"</code> (<code>"n"</code> can be any number) - group the rows using the nth word in the column<span class="remark">*</span>.</li>
-				<li><code>"group-letter"</code> (same as <code>"group-letter-1"</code>) - group the rows using the first letter it finds in the column's parsed data.</li>
-				<li><code>"group-letter-n"</code> (<code>"n"</code> can be any number) - group the rows using letters 1 through n (if n = 2, then it's the first 2 letters) in the column's parsed data.</li>
-				<li><code>"group-number"</code> (same as <code>"group-number-1"</code>) - group the rows by the number it finds in the column (step of one).</li>
-				<li><code>"group-number-n"</code> (<code>"n"</code> can be any number) - group the rows into blocks of every n values. So, if n = 10, the groups will be 0-9, 10-19, 20-29, etc</li>
-				<li><code>"group-date"</code> - group the rows by full date (this shows the current UTC time corrected for your time zone)</li>
-				<li><code>"group-date-year"</code> - group the rows by year</li>
-				<li><code>"group-date-month"</code> - group the rows by month<span class="remark">*</span></li>
-				<li><code>"group-date-day"</code> - group the rows by month/day<span class="remark">*</span></li>
-				<li><code>"group-date-week"</code> - group the rows by day of the week<span class="remark">*</span></li>
-				<li><code>"group-date-time"</code> - group the rows by time<span class="remark">*</span></li>
-				<li><code>"group-false"</code> - disable grouping of rows for a column (<span class="version">v2.11</span>).</li>
+				<li><code>&quot;group-word&quot;</code> (same as <code>&quot;group-word-1&quot;</code>) - group the rows using the first word it finds in the column's parsed data.</li>
+				<li><code>&quot;group-word-n&quot;</code> (<code>&quot;n&quot;</code> can be any number) - group the rows using the nth word in the column<span class="remark">*</span>.</li>
+				<li><code>&quot;group-letter&quot;</code> (same as <code>&quot;group-letter-1&quot;</code>) - group the rows using the first letter it finds in the column's parsed data.</li>
+				<li><code>&quot;group-letter-n&quot;</code> (<code>&quot;n&quot;</code> can be any number) - group the rows using letters 1 through n (if n = 2, then it's the first 2 letters) in the column's parsed data.</li>
+				<li><code>&quot;group-number&quot;</code> (same as <code>&quot;group-number-1&quot;</code>) - group the rows by the number it finds in the column (step of one).</li>
+				<li><code>&quot;group-number-n&quot;</code> (<code>&quot;n&quot;</code> can be any number) - group the rows into blocks of every n values. So, if n = 10, the groups will be 0-9, 10-19, 20-29, etc</li>
+				<li><code>&quot;group-date&quot;</code> - group the rows by full date (this shows the current UTC time corrected for your time zone)</li>
+				<li><code>&quot;group-date-year&quot;</code> - group the rows by year</li>
+				<li><code>&quot;group-date-month&quot;</code> - group the rows by month<span class="remark">*</span></li>
+				<li><code>&quot;group-date-day&quot;</code> - group the rows by month/day<span class="remark">*</span></li>
+				<li><code>&quot;group-date-week&quot;</code> - group the rows by day of the week<span class="remark">*</span></li>
+				<li><code>&quot;group-date-time&quot;</code> - group the rows by time<span class="remark">*</span></li>
+				<li><code>&quot;group-false&quot;</code> - disable grouping of rows for a column (<span class="version">v2.11</span>).</li>
 			</ul>
 			<span class="remark">*</span> When sorting some columns, different group headers with the same group name may exist (try "group-date-week" and "group-date-time"). To make these columns sort specifically by the group you want, you'll need to modify the parser.
 		</div>
@@ -173,7 +213,7 @@
 
 <h1>Demo</h1>
 
-<span class="label">Numeric column:</span> <div id="slider0"></div> <span class="numberclass"></span><br>
+<span class="label">Numeric column:</span> <div id="slider0"></div> <span class="numberclass"></span> (includes subtotals)<br>
 <span class="label">Animals column:</span> <div id="slider1"></div> <span class="animalclass"></span><br>
 <span class="label">Date column:</span> <div id="slider2"></div> <span class="dateclass"></span>
 
@@ -256,8 +296,25 @@ $(function(){
           // remove &quot;GMT-0000 (xxxx Standard Time)&quot; from the end of the full date
           txt = txt.substring(0, txt.indexOf(&#39;GMT&#39;));
         }
+        // If there are empty cells, name the group "Empty"
         return txt === &quot;&quot; ? &quot;Empty&quot; : txt;
-      }
+      },
+      // add a group total to the "Numeric" column
+      group_callback    : function($cell, $rows, column, table){
+        // callback allowing modification of the group header labels
+        // $cell = current table cell (containing group header cells '.group-name' & '.group-count'
+        // $rows = all of the table rows for the current group; table = current table (DOM)
+        // column = current column being sorted/grouped
+        if (column === 2) {
+          var subtotal = 0;
+          $rows.each(function(){
+            subtotal += parseInt( $(this).find('td').eq(column).text() );
+          });
+          $cell.find('.group-count').append('; subtotal: ' + subtotal );
+        }
+      },
+      // event triggered on the table when the grouping widget has finished work
+      group_complete    : 'groupingComplete'
     }
   });
 

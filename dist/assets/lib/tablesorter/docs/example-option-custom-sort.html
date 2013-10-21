@@ -17,15 +17,30 @@
 	<link rel="stylesheet" href="../css/theme.blue.css">
 	<script src="../js/jquery.tablesorter.js"></script>
 
+	<!-- http://sugarjs.com/dates#comparing_dates -->
+	<script src="http://sugarjs.com/release/current/sugar.min.js"></script>
+
 	<script id="js">$(function() {
+	// define sugar.js Icelandic sort order
+	Array.AlphanumericSortOrder = 'AaÁáBbCcDdÐðEeÉéĘęFfGgHhIiÍíJjKkLlMmNnOoÓóPpQqRrSsTtUuÚúVvWwXxYyÝýZzÞþÆæÖö';
+	Array.AlphanumericSortIgnoreCase = true;
+	
 	$("table").tablesorter({
 		theme : 'blue',
 		// table = table object; get config options from table.config
 		// column is the column index (zero-based)
-		textSorter : function(a, b, table, column){
-			// this is the original sort method from tablesorter 2.0.3
-			if (table.config.sortLocaleCompare) { return a.localeCompare(b); }
-			return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+		ignoreCase : false,
+		textSorter : {
+			1 : Array.AlphanumericSort,     // alphanumeric sort from sugar (http://sugarjs.com/arrays#sorting)
+			// function parameters were previously (a, b, table, column) - *** THEY HAVE CHANGED!!! ***
+			2 : function(a, b, direction, column, table){
+				// this is the original sort method from tablesorter 2.0.3
+				if (table.config.sortLocaleCompare) { return a.localeCompare(b); }
+				return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+			},
+			// no need to set this as it is the default sorter
+			// renamed v2.12 from $.tablesorter.sortText - performs natural sort
+			3 : $.tablesorter.sortNatural,
 		}
 	});
 });</script>
@@ -38,102 +53,72 @@
 	<a href="index.html">Back to documentation</a>
 </div>
 <div id="main">
-<h1>Demo</h1>
 
 	<p class="tip">
 		<em>NOTE!</em>
 		<ul>
-			<li>The custom sort used here is from the original tablesorter plugin v2.0.3. Sort the first column to see how it sorts alphanumeric data.</li>
+			<li>Modified the <code>textSorter</code> option to allow setting the sorter per column <span class="version">v2.12</span>:
+				<ul>
+					<li><span class="alert">*NOTE*</span> The <code>textSorter</code> function parameters have changed! It is now <code>function(a, b, direction, column, table)</code> (previously <code>function(a, b, table, column)</code>).</li>
+					<li>The &quot;Icelandic Alphabet&quot; column is using the <a href="http://sugarjs.com/arrays#sorting">Sugar</a> library to sort - please note that at the time of this writing, there is an issue with it not sorting properly (<a href="https://github.com/andrewplummer/Sugar/issues/382">ref</a>) - you can tell when it starts working properly when you sort the Icelandic Alphabet column and the numeric column numbers are sequential (<span class="lookhere">see row #37</span>).</li>
+					<li>The &quot;Plain Text Sort&quot; column is using a basic alphabetical sort (with localeCompare if set). Sort that column, then the last column to see how it differs from an alphanumeric sort.</li>
+					<li>The sorting of empty cells still occurs regardless of the custom <code>textSorter</code> setting.</li>
+				</ul>
+			</li>
+			<li>One custom sort used here is from the original tablesorter plugin v2.0.3. Sort the <del>first</del> "Plain Text Sort" column to see how it sorts alphanumeric data.</li>
 			<li>This option is not part of the original plugin (v2.2).</li>
 		</ul>
 	</p>
+<h1>Demo</h1>
 
 <div id="demo"><table class="tablesorter">
-	<thead>
-		<tr>
-			<th>Account #</th>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>Age</th>
-			<th>Total</th>
-			<th>Discount</th>
-			<th>Diff</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>a1a10</td>
-			<td>Peter</td>
-			<td>Parker</td>
-			<td>28</td>
-			<td>9.99</td>
-			<td>20.3%</td>
-			<td>+3</td>
-		</tr>
-		<tr>
-			<td>a1a2</td>
-			<td>John</td>
-			<td>Hood</td>
-			<td>33</td>
-			<td>19.99</td>
-			<td>25.1%</td>
-			<td>-7</td>
-		</tr>
-		<tr>
-			<td>A1a1</td>
-			<td>Clark</td>
-			<td>Kent</td>
-			<td>18</td>
-			<td>2.89</td>
-			<td>44.2%</td>
-			<td>-15</td>
-		</tr>
-		<tr>
-			<td>A2b2</td>
-			<td>Bruce</td>
-			<td>Almighty</td>
-			<td>45</td>
-			<td>153.19</td>
-			<td>44%</td>
-			<td>+19</td>
-		</tr>
-		<tr>
-			<td>A1d2</td>
-			<td>Bruce</td>
-			<td>Evans</td>
-			<td>56</td>
-			<td>$153.19</td>
-			<td>23%</td>
-			<td>+9</td>
-		</tr>
-		<tr>
-			<td>a2b11</td>
-			<td>John</td>
-			<td>Clark</td>
-			<td>44</td>
-			<td>($19.89)</td>
-			<td>25.1%</td>
-			<td>(5)</td>
-		</tr>
-		<tr>
-			<td>A2b1</td>
-			<td>Elvis</td>
-			<td>Presley</td>
-			<td>24</td>
-			<td>($9.99)</td>
-			<td>50%</td>
-			<td>(22)</td>
-		</tr>
-		<tr>
-			<td>A1b0</td>
-			<td>Frank</td>
-			<td>Carter</td>
-			<td>40</td>
-			<td>-12.99</td>
-			<td>20%</td>
-			<td>(6)</td>
-		</tr>
-	</tbody>
+<thead>
+	<tr>
+		<th>Numeric</th>
+		<th>Icelandic Alphabet</th>
+		<th>Plain Text Sort</th>
+		<th>Alphanumeric Sort</th>
+	</tr>
+</thead>
+<tbody>
+	<tr><td>01</td><td>A</td><td>a1a10</td><td>a1a10</td></tr>
+	<tr><td>02</td><td>Á</td><td>a1a1</td><td>a1a1</td></tr>
+	<tr><td>03</td><td>B</td><td>a2b2</td><td>a2b2</td></tr>
+	<tr><td>04</td><td>C</td><td>a1a3</td><td>a1a3</td></tr>
+	<tr><td>05</td><td>D</td><td>a2b10</td><td>a2b10</td></tr>
+	<tr><td>06</td><td>Ð</td><td>a1a20</td><td>a1a20</td></tr>
+	<tr><td>07</td><td>E</td><td>a1b04</td><td>a1b04</td></tr>
+	<tr><td>08</td><td>É</td><td>a1a0</td><td>a1a0</td></tr>
+	<tr><td>09</td><td>Ę</td><td>a1a4</td><td>a1a4</td></tr>
+	<tr><td>10</td><td>F</td><td>a1a6</td><td>a1a6</td></tr>
+	<tr><td>11</td><td>G</td><td>a1b5</td><td>a1b5</td></tr>
+	<tr><td>12</td><td>H</td><td>a1b99</td><td>a1b99</td></tr>
+	<tr><td>13</td><td>I</td><td>a2b5</td><td>a2b5</td></tr>
+	<tr><td>14</td><td>Í</td><td>b10</td><td>b10</td></tr>
+	<tr><td>15</td><td>J</td><td>b3</td><td>b3</td></tr>
+	<tr><td>16</td><td>K</td><td>b5</td><td>b5</td></tr>
+	<tr><td>17</td><td>L</td><td>b7</td><td>b7</td></tr>
+	<tr><td>18</td><td>M</td><td>b9</td><td>b9</td></tr>
+	<tr><td>19</td><td>N</td><td>b12</td><td>b12</td></tr>
+	<tr><td>20</td><td>O</td><td>b30</td><td>b30</td></tr>
+	<tr><td>21</td><td>Ó</td><td>b45</td><td>b45</td></tr>
+	<tr><td>22</td><td>P</td><td>b78</td><td>b78</td></tr>
+	<tr><td>23</td><td>Q</td><td>b67</td><td>b67</td></tr>
+	<tr><td>24</td><td>R</td><td>b62</td><td>b62</td></tr>
+	<tr><td>25</td><td>S</td><td>b01</td><td>b01</td></tr>
+	<tr><td>26</td><td>T</td><td>b0</td><td>b0</td></tr>
+	<tr><td>27</td><td>U</td><td>b77</td><td>b77</td></tr>
+	<tr><td>28</td><td>Ú</td><td>b96</td><td>b96</td></tr>
+	<tr><td>29</td><td>V</td><td>a1b55</td><td>a1b55</td></tr>
+	<tr><td>30</td><td>W</td><td>a1b84</td><td>a1b84</td></tr>
+	<tr><td>31</td><td>X</td><td>b25</td><td>b25</td></tr>
+	<tr><td>32</td><td>Y</td><td>b41</td><td>b41</td></tr>
+	<tr><td>33</td><td>Ý</td><td>b79</td><td>b79</td></tr>
+	<tr><td>34</td><td>Z</td><td>b49</td><td>b49</td></tr>
+	<tr><td>35</td><td>Þ</td><td>b94</td><td>b94</td></tr>
+	<tr><td>36</td><td>Æ</td><td>b118</td><td>b118</td></tr>
+	<tr><td>37</td><td class="lookhere">Ö</td><td>b80</td><td>b80</td></tr>
+</tbody>
 </table></div>
 
 	<h1>Javascript</h1>

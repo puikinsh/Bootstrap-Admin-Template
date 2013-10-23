@@ -67,7 +67,7 @@ function metisChart() {
         heart.push([16 * Math.pow(Math.sin(i), 3), 13 * Math.cos(i) - 5 * Math.cos(2 * i) - 2 * Math.cos(3 * i) - Math.cos(4 * i)]);
     }
     $.plot($("#heart"), [
-        {data: heart, label: '<i class="icon-heart icon-2x"></i>', color: '#9A004D'}
+        {data: heart, label: '<i class="fa fa-heart fa-2x"></i>', color: '#9A004D'}
     ], {
         series: {
             lines: {show: true, fill: true},

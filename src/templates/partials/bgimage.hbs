@@ -1,0 +1,13 @@
+<style>
+  .bgimage {
+    display: inline-block;
+    width:150px;
+    height:150px;
+    margin:10px;
+  }
+</style>
+{{#if bgimage}}
+    {{#each bgimage}}
+        <div class="bgimage bg-{{.}}" alt="{{.}}"></div>
+    {{/each}}
+{{/if}}

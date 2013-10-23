@@ -114,7 +114,7 @@ var styleSwitcher = {
 
         var switchDiv = $('<div />').attr('id', 'style-switcher').addClass('style-switcher hidden-xs');
 
-        var h5Ai = $('<i />').addClass('icon-cogs icon-2x');
+        var h5Ai = $('<i />').addClass('fa fa-cogs fa-2x');
         var h5A = $('<a />')
             .attr({
                 'href': '#',

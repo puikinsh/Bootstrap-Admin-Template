@@ -1,4 +1,4 @@
-#[Font Awesome v3.2.1](http://fontawesome.io)
+#[Font Awesome v4.0.0](http://fontawesome.io)
 ###the iconic font designed for Bootstrap
 
 Font Awesome is a full suite of 361 pictographic icons for easy scalable vector graphics on websites, created and
@@ -25,6 +25,7 @@ Get started at http://fontawesome.io!
 - [v3.1.1 GitHub milestones](https://github.com/FortAwesome/Font-Awesome/issues?milestone=4&page=1&state=closed)
 - [v3.2.0 GitHub milestones](https://github.com/FortAwesome/Font-Awesome/issues?milestone=3&page=1&state=closed)
 - [v3.2.1 GitHub milestones](https://github.com/FortAwesome/Font-Awesome/issues?milestone=5&page=1&state=closed)
+- [v4.0.0 GitHub milestones](https://github.com/FortAwesome/Font-Awesome/issues?milestone=2&page=1&state=closed)
 
 ##Versioning
 
@@ -45,6 +46,17 @@ For more information on SemVer, please visit http://semver.org.
 - Twitter: http://twitter.com/davegandy
 - GitHub: https://github.com/davegandy
 - Work: Lead Product Designer @ http://kyru.us
+
+##Component
+To include as a [component](http://github.com/component/component), just run
+
+    $ component install FortAwesome/Font-Awesome
+
+Or add
+
+    "FortAwesome/Font-Awesome": "*"
+
+to the `dependencies` in your `component.json`.
 
 ## Hacking on Font Awesome
 

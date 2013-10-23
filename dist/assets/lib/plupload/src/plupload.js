@@ -1269,17 +1269,15 @@ plupload.Uploader = function(settings) {
 			}
 
 
-			self.bind("FilesAdded", function(up, filteredFiles) {
+			self.bind('FilesAdded', function(up, filteredFiles) {
 				// Add files to queue				
 				[].push.apply(files, filteredFiles);
 
-				delay(function() {
-					self.trigger("QueueChanged");
-					self.refresh();
-				}, 1);		
+				up.trigger('QueueChanged');
+				up.refresh();
 			});
 
-			self.bind("CancelUpload", function() {
+			self.bind('CancelUpload', function() {
 				if (xhr) {
 					xhr.abort();
 				}
@@ -1287,7 +1285,7 @@ plupload.Uploader = function(settings) {
 
 			// Generate unique target filenames
 			if (settings.unique_names) {
-				self.bind("BeforeUpload", function(up, file) {
+				self.bind('BeforeUpload', function(up, file) {
 					var matches = file.name.match(/\.([^.]+)$/), ext = "part";
 					if (matches) {
 						ext = matches[1];
@@ -1296,10 +1294,14 @@ plupload.Uploader = function(settings) {
 				});
 			}
 
-			self.bind("UploadFile", function(up, file) {
-				var url = up.settings.url, features = up.features, chunkSize = settings.chunk_size,
-					retries = settings.max_retries,
-					blob, offset = 0;
+			self.bind('UploadFile', function(up, file) {
+				var url = up.settings.url
+				, chunkSize = up.settings.chunk_size
+				, retries = up.settings.max_retries
+				, features = up.features
+				, offset = 0
+				, blob
+				;
 
 				// make sure we start at a predictable offset
 				if (file.loaded) {
@@ -1308,7 +1310,7 @@ plupload.Uploader = function(settings) {
 
 				function handleError() {
 					if (retries-- > 0) {
-						delay(uploadNextChunk, 1);
+						delay(uploadNextChunk, 1000);
 					} else {
 						file.loaded = offset; // reset all progress
 
@@ -1345,7 +1347,7 @@ plupload.Uploader = function(settings) {
 					// If chunking is enabled add corresponding args, no matter if file is bigger than chunk or smaller
 					if (chunkSize && features.chunks) {
 						// Setup query string arguments
-						if (settings.send_chunk_number) {
+						if (up.settings.send_chunk_number) {
 							args.chunk = Math.ceil(offset / chunkSize);
 							args.chunks = Math.ceil(blob.size / chunkSize);
 						} else { // keep support for experimental chunk format, just in case
@@ -1370,6 +1372,9 @@ plupload.Uploader = function(settings) {
 							handleError();
 							return;
 						}
+
+						// reset the counter for retries
+						retries = up.settings.max_retries;
 
 						// Handle chunk response
 						if (curChunkSize < blob.size) {
@@ -1516,16 +1521,16 @@ plupload.Uploader = function(settings) {
 
 			self.bind('QueueChanged', calc);
 
-			self.bind("Error", function(up, err) {
+			self.bind('Error', function(up, err) {
 				// Set failed status if an error occured on a file
 				if (err.file) {
 					err.file.status = plupload.FAILED;
-
 					calcFile(err.file);
 
 					// Upload next file but detach it from the error event
 					// since other custom listeners might want to stop the queue
-					if (up.state == plupload.STARTED) {
+					if (up.state == plupload.STARTED) { // upload in progress
+						up.trigger('CancelUpload');
 						delay(function() {
 							uploadNext.call(self);
 						}, 1);
@@ -1533,7 +1538,7 @@ plupload.Uploader = function(settings) {
 				}
 			});
 
-			self.bind("FileUploaded", function() {
+			self.bind('FileUploaded', function() {
 				calc();
 
 				// Upload next file but detach it from the error event
@@ -1555,10 +1560,10 @@ plupload.Uploader = function(settings) {
 		refresh : function() {
 			if (fileInputs.length) {
 				plupload.each(fileInputs, function(fileInput) {
-					fileInput.trigger("Refresh");
+					fileInput.trigger('Refresh');
 				});
 			}
-			this.trigger("Refresh");
+			this.trigger('Refresh');
 		},
 
 		/**
@@ -1569,7 +1574,7 @@ plupload.Uploader = function(settings) {
 		start : function() {
 			if (this.state != plupload.STARTED) {
 				this.state = plupload.STARTED;
-				this.trigger("StateChanged");
+				this.trigger('StateChanged');
 
 				uploadNext.call(this);
 			}
@@ -1583,8 +1588,8 @@ plupload.Uploader = function(settings) {
 		stop : function() {
 			if (this.state != plupload.STOPPED) {
 				this.state = plupload.STOPPED;
-				this.trigger("StateChanged");
-				this.trigger("CancelUpload");
+				this.trigger('StateChanged');
+				this.trigger('CancelUpload');
 			}
 		},
 
@@ -1604,7 +1609,7 @@ plupload.Uploader = function(settings) {
 				});
 			}
 
-			this.trigger("DisableBrowse", disabled);
+			this.trigger('DisableBrowse', disabled);
 		},
 
 		/**
@@ -1796,7 +1801,7 @@ plupload.Uploader = function(settings) {
 			plupload.Uploader.prototype.bind.call(this, name, function() {
 				var args = [].slice.call(arguments);
 				args.splice(0, 1, self); // replace event object with uploader instance
-				func.apply(this, args);
+				return func.apply(this, args);
 			}, 0, scope);
 		},
 

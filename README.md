@@ -31,6 +31,13 @@ http://demo.onokumus.com/metis/
 (not development)
 http://demo.onokumus.com/metis/v12
 
+### Release History
+
+ * 2013-10-23   v2.1.1 Adds `bgimage.html` and `bgcolor.html` option.
+ * 2013 [02-15, 10-22] v1.0 - v2.1 I don't remember. Whatever I did.
+ * 2013-02-14   v1.0   First Commit.
+
+
 
 ### Licensing
 

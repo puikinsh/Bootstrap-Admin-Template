@@ -225,6 +225,10 @@ body.padTop53 {
 #top .topnav {
   margin: 10px 15px 10px auto;
 }
+#top .topnav .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
 @media (min-width: 768px) {
   #top .topnav {
     float: right;

@@ -235,7 +235,6 @@ body.padTop53 {
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.05) inset;
   text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
-  background: #404040;
 }
 .head .search-bar {
   margin: 0 auto;
@@ -622,12 +621,10 @@ body.padTop53 {
 }
 /* END CONTENT STYLES *//* BEGIN FOOTER */
 #footer {
-  background: url("../img/pattern/px_by_Gre3g.png") repeat #444444;
+  background-image: url("../img/pattern/px_by_Gre3g.png");
+  background-repeat: repeat;
   color: #f9f9f9;
   margin: 0 auto;
-  -webkit-box-shadow: 0px -1px 0px 0px rgba(0, 0, 0, 0.05);
-  box-shadow: 0px -1px 0px 0px rgba(0, 0, 0, 0.05);
-  border-top: 1px solid #222;
 }
 #footer p {
   padding: 12px 0 0;
@@ -2640,3 +2637,77 @@ body.error .logo h1 {
   border-radius: 0;
 }
 /* END LOGIN PAGE STYLES */
+#menu {
+  border-bottom-color: rgba(125, 138, 46, 0.3);
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+  background-color: #7d8a2e;
+}
+#menu > li > a {
+  color: #ffffff;
+  border-top-color: #c9d787;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  text-shadow: none;
+}
+#menu > li > a:hover,
+#menu > li > a:focus {
+  background-color: #c9d787;
+  color: #ffffff;
+}
+#menu > li.active > a {
+  background-color: #ffc0a9;
+  color: #ffffff;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#menu ul {
+  border-top: 1px solid rgba(125, 138, 46, 0.3);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#menu ul li a {
+  color: #ffffff;
+}
+#menu ul li.active a {
+  color: #ffffff;
+}
+#menu .nav-header {
+  color: #ffffff;
+  border-top: 1px solid #c9d787;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  text-shadow: none;
+  background: #7d8a2e;
+}
+#menu .nav-divider {
+  border-top-color: rgba(255, 255, 255, 0.01);
+  background: #383d14;
+  box-shadow: none;
+}
+#menu > li.panel.active ul > li.active > a:after {
+  border-right-color: #ffffff;
+}
+@media (min-width: 768px) {
+  #menu:after,
+  .mini-sidebar #menu:after {
+    -webkit-box-shadow: 97px 1px 5px 2px rgba(0, 0, 0, 0.6);
+    box-shadow: 97px 1px 5px 2px rgba(0, 0, 0, 0.6);
+    background: #333;
+  }
+}
+@media (min-width: 992px) {
+  #menu:after {
+    -webkit-box-shadow: 217px 1px 5px 2px rgba(0, 0, 0, 0.6);
+    box-shadow: 217px 1px 5px 2px rgba(0, 0, 0, 0.6);
+  }
+  .mini-sidebar #menu:after {
+    -webkit-box-shadow: 97px 1px 5px 2px rgba(0, 0, 0, 0.6);
+    box-shadow: 97px 1px 5px 2px rgba(0, 0, 0, 0.6);
+  }
+}
+#wrap,
+#footer {
+  background: #5a6421;
+  background-image: none;
+}

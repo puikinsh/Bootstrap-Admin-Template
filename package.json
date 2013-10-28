@@ -20,6 +20,7 @@
         "url": "https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/README.md"
     },
     "devDependencies": {
+	"grunt-cli": "~0.1.9",
         "grunt": "~0.4.1",
         "assemble": "~0.4.13",
         "grunt-contrib-connect": "~0.5.0",

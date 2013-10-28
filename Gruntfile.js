@@ -141,9 +141,17 @@ module.exports = function (grunt) {
 
         watch: {
             scripts: {
-                files: ['**/*.js', '**/*.less', '**/*.hbs', '**/*.html'],
-                tasks: ['default']
-            }
+                files: ['**/*.js'],
+                tasks: ['dist-js']
+            },
+	    css: {
+	      files: ['**/*.css'],
+	      tasks: ['copy']
+	    },
+	    assemble: {
+	      files: ['**/*.hbs','**/*.html'],
+	      tasks: ['assemble']
+	    }
         }
 
     });

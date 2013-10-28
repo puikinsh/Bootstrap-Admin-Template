@@ -1,6 +1,6 @@
 /**
 * Bootstrap-Admin-Template by onokumus@gmail.com
-* Version : 2.0.0 
+* Version : 2.1.0 
 * Author : Osman Nuri Okumuş 
 * Copyright 2013
 */
@@ -33,7 +33,7 @@ var styleSwitcher = {
                 complete: function () {
                     yepnope([
                         {load: 'less!assets/less/theme.less'},
-                        {load: 'assets/lib/less-1.4.2.min.js',
+                        {load: 'assets/lib/less-1.5.0.min.js',
                             complete: function () {
 
 

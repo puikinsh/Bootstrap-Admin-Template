@@ -134,9 +134,41 @@ module.exports = function (grunt) {
                         cwd: 'src/ember',
                         src: ['*.html'],
                         dest: 'dist'
-                    }
+                    },
+		     {
+		       expand: true,
+		cwd: 'node_modules/less/dist/',
+		src: ['less-1.5.0.min.js'],
+		dest: 'dist/assets/lib'
+		    },
+		     {
+		       expand: true,
+		cwd: 'bower_components/jquery/',
+		src: ['./**/jquery*.min.*'],
+		dest: 'dist/assets/lib'
+		    },
+		     {
+		       expand: true,
+		cwd: 'bower_components/bootstrap/dist/',
+		src: ['./**/*.*'],
+		dest: 'dist/assets/lib/bootstrap'
+		    },
+		     {
+		       expand: true,
+		cwd: 'bower_components/font-awesome/',
+		src: ['./css/*.*','./fonts/*.*'],
+		dest: 'dist/assets/lib/Font-Awesome'
+		    }
+		    ,
+		     {
+		       expand: true,
+		cwd: 'bower_components/gmaps/',
+		src: ['./**/gmaps.js'],
+		dest: 'dist/assets/lib/gmaps'
+		    }
                 ]
             }
+	    
         },
 
         watch: {

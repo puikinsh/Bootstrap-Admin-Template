@@ -6,7 +6,7 @@ Bootstrap 2.3.2 [V.1.2](https://github.com/onokumus/Bootstrap-Admin-Template/arc
 ready for use
 
 Bootstrap 3.0.0 [V2.1.1](https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip)
-ready dist folder your use
+ready `dist` folder your use
 
 
 

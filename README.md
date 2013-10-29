@@ -1,7 +1,16 @@
 Metis Admin Template with Twitter Bootstrap [![Build Status](https://travis-ci.org/onokumus/Bootstrap-Admin-Template.png)](http://travis-ci.org/onokumus/Bootstrap-Admin-Template)
 ------------------------------------------
 
-### Installation
+### Download
+Bootstrap 2.3.2 [V.1.2](https://github.com/onokumus/Bootstrap-Admin-Template/archive/v1.2.zip)
+ready for use
+
+Bootstrap 3.0.0 [V2.1.1](https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip)
+ready dist folder your use
+
+
+
+### Building
 
 #### 2.1.1 Version
 required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](http://gruntjs.com/getting-started)

@@ -20,8 +20,8 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
     $ git submodule init
     $ git submodule update
     $ npm install
-    $ bower install
-    $ grunt
+    $ bower install (./node_modulesode_modules/bower/bin/bower install)
+    $ grunt (./node_modules/grunt-cli/bin/grunt)
     $ cd dist/
     $ open index.html
     

@@ -17,7 +17,7 @@ module.exports = function(grunt) {
     'bump': {
       options: {
         push: false,
-        files: ['package.json', 'component.json', 'composer.json']
+        files: ['package.json', 'bower.json', 'composer.json']
       }
     },
     'jasmine': {

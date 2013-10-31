@@ -1,7 +1,7 @@
 {
   "name": "bootstrap-timepicker",
   "description": "Timepicker widget for Twitter Bootstrap 2.*",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "homepage": "http://jdewit.github.com/bootstrap-timepicker",
   "author": {
     "name": "Joris de Wit",

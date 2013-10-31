@@ -28,9 +28,6 @@
 [submodule "src/assets/submodule/autosize"]
 	path = src/assets/submodule/autosize
 	url = https://github.com/jackmoore/autosize.git
-[submodule "src/assets/submodule/validVal"]
-	path = src/assets/submodule/validVal
-	url = https://github.com/FrDH/jquery.validVal.git
 [submodule "src/assets/submodule/wysihtml5"]
 	path = src/assets/submodule/wysihtml5
 	url = https://github.com/jhollingworth/bootstrap-wysihtml5.git
@@ -64,3 +61,6 @@
 [submodule "src/assets/submodule/tagsinput"]
 	path = src/assets/submodule/tagsinput
 	url = https://github.com/xoxco/jQuery-Tags-Input.git
+[submodule "src/assets/submodule/validVal"]
+	path = src/assets/submodule/validVal
+	url = https://github.com/BeSite/jQuery.validVal.git

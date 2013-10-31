@@ -1,4 +1,4 @@
-/*! tableSorter 2.8+ widgets - updated 10/18/2013
+/*! tableSorter 2.8+ widgets - updated 10/30/2013
  *
  * Column Styles
  * Column Filters
@@ -123,7 +123,7 @@ ts.addHeaderResizeEvent = function(table, disable, options){
 		wo.resize_flag = true;
 		headers = [];
 		c.$headers.each(function(){
-			var d = $.data(this, 'savedSizes'),
+			var d = $.data(this, 'savedSizes') || [0,0], // fixes #394
 				w = this.offsetWidth,
 				h = this.offsetHeight;
 			if (w !== d[0] || h !== d[1]) {
@@ -134,14 +134,14 @@ ts.addHeaderResizeEvent = function(table, disable, options){
 		if (headers.length) { c.$table.trigger('resize', [ headers ]); }
 		wo.resize_flag = false;
 	};
+	c.$headers.each(function(){
+		$.data(this, 'savedSizes', [ this.offsetWidth, this.offsetHeight ]);
+	});
 	clearInterval(wo.resize_timer);
 	if (disable) {
 		wo.resize_flag = false;
 		return false;
 	}
-	c.$headers.each(function(){
-		$.data(this, 'savedSizes', [ this.offsetWidth, this.offsetHeight ]);
-	});
 	wo.resize_timer = setInterval(function(){
 		if (wo.resize_flag) { return; }
 		checkSizes();
@@ -820,7 +820,7 @@ ts.addWidget({
 			$tb.children().removeClass(wo.filter_filteredRow).show();
 			ts.processTbody(table, $tb, false); // restore tbody
 		}
-		if (wo.filterreset) { $(document).undelegate(wo.filter_reset, 'click.tsfilter'); }
+		if (wo.filter_reset) { $(document).undelegate(wo.filter_reset, 'click.tsfilter'); }
 	}
 });
 ts.getFilters = function(table) {
@@ -835,7 +835,7 @@ ts.setFilters = function(table, filter, apply) {
 		c = $t.length ? $t[0].config : {},
 		valid = c && c.$filters ? c.$filters.find('.tablesorter-filter').each(function(i, el) {
 			$(el).val(filter[i] || '');
-		}).trigger('change.tsfilter') || false : false;
+		}) || false : false;
 	if (apply) { $t.trigger('search', [filter, false]); }
 	return !!valid;
 };

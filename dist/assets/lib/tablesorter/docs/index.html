@@ -305,7 +305,7 @@
 			</ul>
 		</li>
 		<li><a href="example-widget-build-table.html">Build Table Widget</a> (<span class="version">v2.11</span>).</li>
-		<li><a href="example-widget-grouping.html">Grouping rows Widget</a> (v2.8; <span class="version updated">v2.12</span>).</li>
+		<li><a href="example-widget-grouping.html">Grouping rows Widget</a> (v2.8; <span class="version updated">v2.13</span>).</li>
 		<li><a href="example-widgets.html">Repeat Headers widget</a> (v2.0.5; <span class="version updated">v2.9</span>)</li>
 		<li><a href="example-widget-resizable.html">Resizable Columns widget</a> (v2.0.23.1; <span class="version updated">v2.8.3</span>)</li>
 		<li><a href="example-widget-savesort.html">Save sort widget</a> (v2.0.27)</li>
@@ -326,6 +326,8 @@
 		<li><a href="example-widget-grouping.html">Input/select parsers</a> (used by Grouping rows widget) (<span class="version">v2.8</span>).</li>
 		<li><a href="example-parsers-metric.html">Metric parser</a> (<span class="version">v2.8</span>).</li>
 		<li><a href="example-parsers-feet-inch-fraction.html">Feet-inch-fraction parser</a> (<span class="version">v2.8</span>).</li>
+		<li><a href="example-parsers-ip-address.html">IPv6 address parser</a> (<span class="version">v2.12</span>).</li>
+		<li><a href="example-parsers-file-type.html">File type parser</a> (<span class="version">v2.13</span>).</li>
 	</ul>
 
 	</div>
@@ -2777,6 +2779,23 @@ $.extend($.tablesorter.themes.jui, {
 					</div>
 				</td>
 				<td><a href="example-pager.html">Example</a></td>
+			</tr>
+
+			<tr id="pager-countchildrows">
+				<td><a href="#" class="toggle2">countChildRows</a></td>
+				<td>Boolean</td>
+				<td>false</td>
+				<td>
+					If <code>true</code>, child rows will be counted towards the pager set size (<span class="version">v2.13</span>).
+					<div class="collapsible">
+					<br>
+					Caution: when <code>true</code>, child row(s) may not appear to be attached to its parent row, may be split across pages or
+					may distort the table if rowspan or cellspans are included within the child row.<br>
+					<br>
+					If this option is <code>false</code>, child row(s) will always appear on the same page as its parent.
+					</div>
+				</td>
+				<td></td>
 			</tr>
 
 			<tr id="pager-removerows">

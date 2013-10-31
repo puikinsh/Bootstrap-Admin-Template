@@ -17,6 +17,9 @@
     },
     "licenses": "MIT",
     "devDependencies": {
+	"bower":"~1.2.7",
+	"less":"~1.5.0",
+	"grunt-cli": "~0.1.9",
         "grunt": "~0.4.1",
         "assemble": "~0.4.17",
         "grunt-contrib-connect": "~0.5.0",

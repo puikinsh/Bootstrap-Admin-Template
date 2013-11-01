@@ -398,7 +398,7 @@ div#{$class-wrapper}#{$class-radio} {
 
 	@include whenActive {
 		span {
-			background-position: (-1 * $radio-width)-18px $radio-voffset;
+			background-position: (-1 * $radio-width) $radio-voffset;
 
 			@include whenChecked {
 				background-position: (-5 * $radio-width) $radio-voffset;
@@ -408,7 +408,7 @@ div#{$class-wrapper}#{$class-radio} {
 
 	@include whenHover {
 		span {
-			background-position: (-2 * $radio-width)-36px $radio-voffset;
+			background-position: (-2 * $radio-width) $radio-voffset;
 
 			@include whenChecked {
 				background-position: (-6 * $radio-width) $radio-voffset;

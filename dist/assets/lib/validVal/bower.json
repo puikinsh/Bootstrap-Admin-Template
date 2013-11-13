@@ -1,7 +1,7 @@
 {
   "name": "jQuery.validVal",
   "main": "js/jquery.validVal.js",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "homepage": "http://validval.frebsite.nl/",
   "authors": [
     "Fred Heusschen <info@frebsite.nl>"

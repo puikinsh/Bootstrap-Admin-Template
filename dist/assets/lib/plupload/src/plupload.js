@@ -24,7 +24,6 @@ function normalizeCaps(settings) {
 		// Feature notation is deprecated, use caps (this thing here is required for backward compatibility)
 		var map = { 
 			chunks: 'slice_blob',
-			resize: 'send_binary_string',
 			jpgresize: 'send_binary_string',
 			pngresize: 'send_binary_string',
 			progress: 'report_upload_progress',
@@ -60,6 +59,10 @@ function normalizeCaps(settings) {
 
 		if (settings.chunk_size > 0) {
 			caps.slice_blob = true;
+		}
+
+		if (settings.resize.enabled) {
+			caps.send_binary_string = true;
 		}
 		
 		plupload.each(settings, function(value, feature) {
@@ -606,12 +609,10 @@ var plupload = {
 	 * @return {String} Type of compatible runtime
 	 */
 	predictRuntime : function(config, runtimes) {
-		var up, runtime; 
-		if (runtimes) {
-			config.runtimes = runtimes;
-		}
+		var up, runtime;
+
 		up = new plupload.Uploader(config);
-		runtime = up.runtime;
+		runtime = o.Runtime.thatCan(up.getOption().required_features, runtimes || config.runtimes);
 		up.destroy();
 		return runtime;
 	},
@@ -1690,7 +1691,6 @@ plupload.Uploader = function(options) {
 
 			bindEventListeners.call(this);
 
-
 			initControls.call(this, settings, function(inited) {
 				if (typeof(settings.init) == "function") {
 					settings.init(self);
@@ -1722,7 +1722,7 @@ plupload.Uploader = function(options) {
 		 * @param {Mixed} [value] Value for the option (is ignored, if first argument is object)
 		 */
 		setOption: function(option, value) {
-			setOption.call(this, option, value);
+			setOption.call(this, option, value, !this.runtime); // until runtime not set we do not need to reinitialize
 		},
 
 		/**

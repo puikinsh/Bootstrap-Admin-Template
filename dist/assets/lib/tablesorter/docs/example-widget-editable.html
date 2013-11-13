@@ -38,7 +38,7 @@ td.no-edit, span.no-edit {
 			editable_columns       : [0,1,2],  // point to the columns to make editable (zero-based index)
 			editable_enterToAccept : true,     // press enter to accept content, or click outside if false
 			editable_autoResort    : false,    // auto resort after the content has changed.
-			editable_noEdit        : 'no-edit' // class name of cell that is no editable
+			editable_noEdit        : 'no-edit' // class name of cell that is not editable
 		}
 	});
 
@@ -57,7 +57,9 @@ td.no-edit, span.no-edit {
 		<em>NOTE!</em>
 		<ul>
 			<li>This widget can not be applied to the original plugin and requires jQuery 1.7+ and a browser that supports <a href="http://caniuse.com/#feat=contenteditable"><code>contenteditable</code> attributes</a> (almost all modern browsers).</li>
-			<li>Additional CSS is needed to highlight a focused editable table cell. See the CSS block below.</li>
+			<li><span class="alert">Note</span>: In Internet Explorer, please wrap the cell content with a DIV or SPAN as <a href="http://msdn.microsoft.com/en-us/library/ie/ms533690(v=vs.85).aspx">it is not possible to make table cells directly contenteditable</a>. Wrapping the content in the markup is much more efficient than using javascript to do it for you (especially in IE).</li>
+			<li>Updated <span class="version updated">v2.13.2</span>, because of the limitation in IE, if a table cell contains any DIV or SPAN immediately inside the cell, it will be targeted instead of the table cell itself and made content editable. So, if you don't care about IE support, there is no need to include the extra markup.</li>
+			<li>In some browsers, additional CSS is needed to highlight a focused editable table cell. See the CSS block below.</li>
 			<li>Editable widget options include (defaults in parenthesis):
 				<ul>
 					<li><code>editable_column</code> (<code>[]</code>) - Contains an array of columns numbers you want to have editable content (zero-based index). <code>contenteditable="true"</code> is added to cells within these columns.</li>
@@ -99,40 +101,40 @@ td.no-edit, span.no-edit {
 	<tbody>
 		<tr>
 			<td class="no-edit">Peter</td>
-			<td>Parker</td>
-			<td>28</td>
+			<td><div>Parker</div></td>
+			<td><div>28</div></td>
 			<td>$9.99</td>
 			<td>20%</td>
 			<td>Jul 6, 2006 8:14 AM</td>
 		</tr>
 		<tr>
-			<td>John</td>
-			<td>Hood</td>
-			<td>33</td>
+			<td><div>John</div></td>
+			<td><div>Hood</div></td>
+			<td><div>33</div></td>
 			<td>$19.99</td>
 			<td>25%</td>
 			<td>Dec 10, 2002 5:14 AM</td>
 		</tr>
 		<tr>
-			<td>Clark</td>
-			<td>Kent</td>
-			<td>18</td>
+			<td><div>Clark</div></td>
+			<td><div>Kent</div></td>
+			<td><div>18</div></td>
 			<td>$15.89</td>
 			<td>44%</td>
 			<td>Jan 12, 2003 11:14 AM</td>
 		</tr>
 		<tr>
-			<td>Bruce</td>
-			<td>Almighty</td>
-			<td>45</td>
+			<td><div>Bruce</div></td>
+			<td><div>Almighty</div></td>
+			<td><div>45</div></td>
 			<td>$153.19</td>
 			<td>44%</td>
 			<td>Jan 18, 2001 9:12 AM</td>
 		</tr>
 		<tr>
-			<td>Bruce</td>
-			<td>Evans</td>
-			<td>22</td>
+			<td><div>Bruce</div></td>
+			<td><div>Evans</div></td>
+			<td><div>22</div></td>
 			<td>$13.19</td>
 			<td>11%</td>
 			<td>Jan 18, 2007 9:12 AM</td>

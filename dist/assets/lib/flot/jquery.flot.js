@@ -735,9 +735,11 @@ Licensed under the MIT license.
             // since the rest of the code assumes that they exist.
 
             var i, axisOptions, axisCount,
+                fontSize = placeholder.css("font-size"),
+                fontSizeDefault = fontSize ? +fontSize.replace("px", "") : 13,
                 fontDefaults = {
                     style: placeholder.css("font-style"),
-                    size: Math.round(0.8 * (+placeholder.css("font-size").replace("px", "") || 13)),
+                    size: Math.round(0.8 * fontSizeDefault),
                     variant: placeholder.css("font-variant"),
                     weight: placeholder.css("font-weight"),
                     family: placeholder.css("font-family")
@@ -1250,7 +1252,9 @@ Licensed under the MIT license.
             // from a previous plot in this container that we'll try to re-use.
 
             placeholder.css("padding", 0) // padding messes up the positioning
-                .children(":not(.flot-base,.flot-overlay)").remove();
+                .children().filter(function(){
+                    return !$(this).hasClass("flot-overlay") && !$(this).hasClass('flot-base');
+                }).remove();
 
             if (placeholder.css("position") == 'static')
                 placeholder.css("position", "relative"); // for positioning labels and overlay
@@ -2626,10 +2630,15 @@ Licensed under the MIT license.
 
         function insertLegend() {
 
-            placeholder.find(".legend").remove();
+            if (options.legend.container != null) {
+                $(options.legend.container).html("");
+            } else {
+                placeholder.find(".legend").remove();
+            }
 
-            if (!options.legend.show)
+            if (!options.legend.show) {
                 return;
+            }
 
             var fragments = [], entries = [], rowStarted = false,
                 lf = options.legend.labelFormatter, s, label;

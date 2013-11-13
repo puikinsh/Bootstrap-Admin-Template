@@ -8,7 +8,6 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 
 	<!-- Demo stuff -->
-	<link class="ui-theme" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/themes/cupertino/jquery-ui.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
 	<link rel="stylesheet" href="css/jq.css">
 	<link href="css/prettify.css" rel="stylesheet">
@@ -18,8 +17,20 @@
 	th { width: 15%; }
 	</style>
 
-	<!-- Tablesorter: required -->
-	<link href="../css/theme.blue.css" rel="stylesheet">
+	<!-- jQuery UI theme switcher: https://github.com/pontikis/jui_theme_switch/ -->
+	<style>
+	th { width: 15%; }
+	.reset { margin: 4px; }
+	#switcher { float: left; }
+	.switcher_container { padding: 5px; }
+	.switcher_list { padding: 2px; }
+	.switcher_label { margin-right: 5px; }
+	</style>
+	<script src="js/jquery.jui_theme_switch.min.js"></script>
+
+	<!-- Tablesorter: required; also include any of the jQuery UI themes -->
+	<link id="ui-theme" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/cupertino/jquery-ui.css">
+	<link href="../css/theme.jui.css" rel="stylesheet">
 	<link href="../css/filter.formatter.css" rel="stylesheet">
 	<script src="../js/jquery.tablesorter.js"></script>
 	<script src="../js/jquery.tablesorter.widgets.js"></script>
@@ -30,17 +41,23 @@
 			heightStyle: 'content',
 			collapsible : true
 		});
+
+		$('#switcher').jui_theme_switch({
+			stylesheet_link_id : 'ui-theme',
+			datasource_url     : 'assets/theme_switcher.json'
+		});
+
 	});
 	</script>
 	<script id="js">$(function() {
 
 	// call the tablesorter plugin
 	$("table").tablesorter({
-		theme: 'blue',
+		theme: 'jui',
 		// hidden filter input/selects will resize the columns, so try to minimize the change
 		widthFixed : true,
 		// initialize zebra striping and filter widgets
-		widgets: ["zebra", "filter", "stickyHeaders"],
+		widgets: ["zebra", "filter", "stickyHeaders", "uitheme"],
 		widgetOptions : {
 			// jQuery selector string of an element used to reset the filters
 			filter_reset : 'button.reset',
@@ -151,11 +168,11 @@
 				<li>Add the following code to apply a slider to filter a column:<pre class="prettyprint lang-javascript">$(function() {
 
   $("table").tablesorter({
-    theme: 'blue',
+    theme: 'jui',
     // hidden filter input/selects will resize the columns, so try to minimize the change
     widthFixed : true,
     // initialize zebra striping and filter widgets
-    widgets: ["zebra", "filter"],
+    widgets: ["zebra", "filter", "uitheme"],
     widgetOptions : {
       // jQuery selector string of an element used to reset the filters
       filter_reset : 'button.reset',
@@ -213,11 +230,11 @@
 				<li>Add the following code to apply a range slider to filter a column:<pre class="prettyprint lang-javascript">$(function() {
 
   $("table").tablesorter({
-    theme: 'blue',
+    theme: 'jui',
     // hidden filter input/selects will resize the columns, so try to minimize the change
     widthFixed : true,
     // initialize zebra striping and filter widgets
-    widgets: ["zebra", "filter"],
+    widgets: ["zebra", "filter", "uitheme"],
     widgetOptions : {
       // jQuery selector string of an element used to reset the filters
       filter_reset : 'button.reset',
@@ -256,11 +273,11 @@
 				<li>Add the following code to apply a spinner to filter a column:<pre class="prettyprint lang-javascript">$(function() {
 
   $("table").tablesorter({
-    theme: 'blue',
+    theme: 'jui',
     // hidden filter input/selects will resize the columns, so try to minimize the change
     widthFixed : true,
     // initialize zebra striping and filter widgets
-    widgets: ["zebra", "filter"],
+    widgets: ["zebra", "filter", "uitheme"],
     widgetOptions : {
       // jQuery selector string of an element used to reset the filters
       filter_reset : 'button.reset',
@@ -299,11 +316,11 @@
 				<li>Add the following code to apply a datepicker comparison selector to the filter row:<pre class="prettyprint lang-javascript">$(function() {
 
   $("table").tablesorter({
-    theme: 'blue',
+    theme: 'jui',
     // hidden filter input/selects will resize the columns, so try to minimize the change
     widthFixed : true,
     // initialize zebra striping and filter widgets
-    widgets: ["zebra", "filter"],
+    widgets: ["zebra", "filter", "uitheme"],
     widgetOptions : {
       // jQuery selector string of an element used to reset the filters
       filter_reset : 'button.reset',
@@ -345,11 +362,11 @@
 				<li>Add the following code to apply a datepicker range selector to the filter row:<pre class="prettyprint lang-javascript">$(function() {
 
   $("table").tablesorter({
-    theme: 'blue',
+    theme: 'jui',
     // hidden filter input/selects will resize the columns, so try to minimize the change
     widthFixed : true,
     // initialize zebra striping and filter widgets
-    widgets: ["zebra", "filter"],
+    widgets: ["zebra", "filter", "uitheme"],
     widgetOptions : {
       // jQuery selector string of an element used to reset the filters
       filter_reset : 'button.reset',
@@ -418,7 +435,9 @@
 	</div>
 
 	<h1>Demo</h1>
+	<div id="switcher"></div>
 	<button type="button" class="reset">Reset Search</button>
+	<br>
 	<div id="demo"><table class="tablesorter">
 	<thead>
 		<tr>

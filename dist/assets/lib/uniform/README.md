@@ -3,7 +3,7 @@ Uniform
 
 Sexy form elements with jQuery. Now with HTML5 attributes!
 
-Version 2.1.1
+Version 2.1.2
 
 Works well with jQuery 1.6+, but we've received patches and heard that this works with jQuery 1.3.
 

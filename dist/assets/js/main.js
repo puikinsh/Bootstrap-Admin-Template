@@ -758,7 +758,7 @@ function metisCalendar() {
     var hdr = {};
 
     if ($(window).width() <= 767) {
-        hdr = {left: 'title', center: '', right: 'prev,today,month,agendaWeek,agendaDay,next'};
+        hdr = {left: 'title', center: 'month,agendaWeek,agendaDay', right: 'prev,today,next'};
     } else {
         hdr = {left: '', center: 'title', right: 'prev,today,month,agendaWeek,agendaDay,next'};
     }
@@ -815,8 +815,8 @@ function metisCalendar() {
     $('#calendar').fullCalendar({
         header: hdr,
         buttonText: {
-            prev: '<i class="icon-chevron-left"></i>',
-            next: '<i class="icon-chevron-right"></i>'
+            prev: '<i class="fa fa-chevron-left"></i>',
+            next: '<i class="fa fa-chevron-right"></i>'
         },
         editable: true,
         droppable: true, // this allows things to be dropped onto the calendar !!!

@@ -1,4 +1,4 @@
-/*! Filter widget formatter functions - updated 10/30/2013
+/*! Filter widget formatter functions - updated 11/9/2013
  * requires: tableSorter 2.7.7+ and jQuery 1.4.3+
  *
  * uiSpinner (jQuery UI spinner)
@@ -92,7 +92,7 @@ $.tablesorter.filterFormatter = {
 			.val(o.value)
 			.appendTo($cell)
 			.spinner(o)
-			.bind('change keyup', function(e){
+			.bind('change keyup', function(){
 				updateSpinner();
 			});
 
@@ -113,7 +113,7 @@ $.tablesorter.filterFormatter = {
 				.val(o.value)
 				.appendTo($shcell)
 				.spinner(o)
-				.bind('change keyup', function(e){
+				.bind('change keyup', function(){
 					$cell.find('.spinner').val( this.value );
 					updateSpinner();
 				});
@@ -228,7 +228,7 @@ $.tablesorter.filterFormatter = {
 			.val(o.value)
 			.appendTo($shcell)
 			.slider(o)
-			.bind('change keyup', function(e){
+			.bind('change keyup', function(){
 				$cell.find('.slider').val( this.value );
 				updateSlider();
 			});
@@ -337,7 +337,7 @@ $.tablesorter.filterFormatter = {
 			.val(o.value)
 			.appendTo($shcell)
 			.slider(o)
-			.bind('change keyup', function(e){
+			.bind('change keyup', function(){
 				$cell.find('.range').val( this.value );
 				updateUiRange();
 			});
@@ -630,8 +630,7 @@ $.tablesorter.filterFormatter = {
 			var compare = ( $cell.find('.compare').val() || o.compare);
 			$cell.find('input[type=hidden]')
 				// add equal to the beginning, so we filter exact numbers
-				.val( !o.addToggle || chkd ? (o.compare ? o.compare : o.exactMatch ? '=' : '') + v : '' )
-				.val( !o.addToggle || chkd ? compare + v : '' )
+				.val( !o.addToggle || chkd ? (compare ? compare : o.exactMatch ? '=' : '') + v : '' )
 				.trigger('search', delayed ? delayed : o.delayed).end()
 				.find('.number').val(v);
 			if ($cell.find('.number').length) {
@@ -732,7 +731,7 @@ $.tablesorter.filterFormatter = {
 	HTML5 range slider
 	\**********************/
 	html5Range : function($cell, indx, def5Range) {
-		var t, o = $.extend({
+		var o = $.extend({
 			value : 0,
 			min : 0,
 			max : 100,

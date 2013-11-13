@@ -33,7 +33,7 @@ pre.normal {background-color:transparent;border:none;border-left-width:0;overflo
 #start,#case,.bright {color:#007baa;}
 #demo strong {color:#a00;}
 hr {height:1px;}
-ul {color:#333;list-style:square;}
+ul {list-style:square;}
 #banner {margin:20px 20px 5px 20px;padding:0;text-align:left;}
 #banner *,.demo h1,.demo h1 em {color:#232121;font-family:Georgia, Palatino, Times New Roman;font-size:30px;font-style:normal;font-weight:400;margin:0;padding:0;}
 #banner h1 {display:block;float:left;}

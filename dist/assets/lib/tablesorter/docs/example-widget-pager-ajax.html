@@ -34,6 +34,7 @@
 			theme: 'blue',
 			widthFixed: true,
 			sortLocaleCompare: true, // needed for accented characters in the data
+			sortList: [ [0,1] ],
 			widgets: ['zebra', 'filter', 'pager'],
 			widgetOptions: {
 
@@ -175,6 +176,7 @@
 						<li>See the Javascript code below for a full example of how to use this widget with <strong>ajax</strong>.</li>
 					</ul>
 				</li>
+				<li>The "ID" column has a default filter setting of "&gt;30" and a descending sort, but neither is applied as this demo is not connected a server (just a basic JSON file).</li>
 			</ul>
 	</p>
 
@@ -198,7 +200,7 @@ Current Ajax url: <span id="url"></span>
 			</td>
 		</tr>
 		<tr>
-			<th>1</th>
+			<th data-value=">30">1</th>
 			<th>2</th>
 			<th>3</th>
 			<th>4</th>

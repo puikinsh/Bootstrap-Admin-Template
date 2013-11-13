@@ -79,8 +79,8 @@
 }
 
 /* caption */
-caption {
-	background: #fff;
+.tablesorter-jui caption {
+	border: 0;
 }
 
 /* filter widget */

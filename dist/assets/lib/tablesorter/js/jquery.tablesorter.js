@@ -1,5 +1,5 @@
 /**!
-* TableSorter 2.13.1 - Client-side table sorting with ease!
+* TableSorter 2.13.3 - Client-side table sorting with ease!
 * @requires jQuery v1.2.6+
 *
 * Copyright (c) 2007 Christian Bach
@@ -24,7 +24,7 @@
 
 			var ts = this;
 
-			ts.version = "2.13.1";
+			ts.version = "2.13.3";
 
 			ts.parsers = [];
 			ts.widgets = [];
@@ -122,7 +122,8 @@
 			};
 
 			/* debuging utils */
-			function log(s) {
+			function log() {
+				var s = arguments.length > 1 ? Array.prototype.slice.call(arguments) : arguments[0];
 				if (typeof console !== "undefined" && typeof console.log !== "undefined") {
 					console.log(s);
 				} else {
@@ -201,9 +202,12 @@
 				var c = table.config,
 					// update table bodies in case we start with an empty table
 					tb = c.$tbodies = c.$table.children('tbody:not(.' + c.cssInfoBlock + ')'),
-					rows, list, l, i, h, ch, p, parsersDebug = "";
+					rows, list, l, i, h, ch, p, time, parsersDebug = "";
 				if ( tb.length === 0) {
 					return c.debug ? log('*Empty table!* Not building a parser cache') : '';
+				} else if (c.debug) {
+					time = new Date();
+					log('Detecting parsers for each column');
 				}
 				rows = tb[0].rows;
 				if (rows[0]) {
@@ -233,6 +237,7 @@
 				}
 				if (c.debug) {
 					log(parsersDebug);
+					benchmark("Completed detecting parsers", time);
 				}
 				c.parsers = list;
 			}
@@ -301,11 +306,12 @@
 			// init flag (true) used by pager plugin to prevent widget application
 			function appendToTable(table, init) {
 				var c = table.config,
-				b = table.tBodies,
-				rows = [],
-				c2 = c.cache,
-				r, n, totalRows, checkCell, $bk, $tb,
-				i, j, k, l, pos, appendTime;
+					wo = c.widgetOptions,
+					b = table.tBodies,
+					rows = [],
+					c2 = c.cache,
+					r, n, totalRows, checkCell, $bk, $tb,
+					i, j, k, l, pos, appendTime;
 				if (isEmptyObject(c2)) { return; } // empty table - fixes #206/#346
 				if (c.debug) {
 					appendTime = new Date();
@@ -322,8 +328,8 @@
 						for (i = 0; i < totalRows; i++) {
 							pos = n[i][checkCell];
 							rows.push(r[pos]);
-							// removeRows used by the pager plugin
-							if (!c.appender || !c.removeRows) {
+							// removeRows used by the pager plugin; don't render if using ajax - fixes #411
+							if (!c.appender || (c.pager && (!c.pager.removeRows || !wo.pager_removeRows) && !c.pager.ajax)) {
 								l = r[pos].length;
 								for (j = 0; j < l; j++) {
 									$tb.append(r[pos][j]);
@@ -340,8 +346,8 @@
 				if (c.debug) {
 					benchmark("Rebuilt table", appendTime);
 				}
-				// apply table widgets
-				if (!init) { ts.applyWidget(table); }
+				// apply table widgets; but not before ajax completes
+				if (!init && !c.appender) { ts.applyWidget(table); }
 				// trigger sortend
 				$(table).trigger("sortEnd", table);
 				$(table).trigger("updateComplete", table);
@@ -517,7 +523,7 @@
 					// ensure all sortList values are numeric - fixes #127
 					s = [ parseInt(v[0], 10), parseInt(v[1], 10) ];
 					// make sure header exists
-					o = c.headerList[s[0]];
+					o = c.$headers[s[0]];
 					if (o) { // prevents error if sorton array is wrong
 						c.sortList.push(s);
 						t = $.inArray(s[1], o.order); // fixes issue #167
@@ -584,12 +590,13 @@
 					}
 					// the user has clicked on an already sorted column
 					if (ts.isValueInArray(i, c.sortList)) {
-						// reverse the sorting direction for all tables
+						// reverse the sorting direction
 						for (j = 0; j < c.sortList.length; j++) {
 							s = c.sortList[j];
-							o = c.headerList[s[0]];
+							o = c.$headers[s[0]];
 							if (s[0] === i) {
-								s[1] = o.order[o.count];
+								// o.count seems to be incorrect when compared to cell.count
+								s[1] = o.order[cell.count];
 								if (s[1] === 2) {
 									c.sortList.splice(j,1);
 									o.count = -1;

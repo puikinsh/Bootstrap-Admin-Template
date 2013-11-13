@@ -1,0 +1,27 @@
+.fc-header-left, .fc-header-center, .fc-header-right {
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+/* Header
+------------------------------------------------------------------------*/
+
+@media (min-width:768px){
+    .fc-header-left, .fc-header-center, .fc-header-right {
+        display: table-cell;
+    }
+    .fc-header-left {
+        width: 25%;
+        text-align: left;
+    }
+
+    .fc-header-center {
+        text-align: center;
+    }
+
+    .fc-header-right {
+        width: 25%;
+        text-align: right;
+    }
+}

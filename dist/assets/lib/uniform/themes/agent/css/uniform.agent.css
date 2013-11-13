@@ -173,11 +173,11 @@ div.radio {
     zoom: 1;
     text-align: center; }
   div.radio.active span {
-    background-position: -23px -18px -343px; }
+    background-position: -23px -343px; }
     div.radio.active span.checked {
       background-position: -115px -343px; }
   div.radio.hover span, div.radio.focus span {
-    background-position: -46px -36px -343px; }
+    background-position: -46px -343px; }
     div.radio.hover span.checked, div.radio.focus span.checked {
       background-position: -138px -343px; }
   div.radio.hover.active span, div.radio.focus.active span {

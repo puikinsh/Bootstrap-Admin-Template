@@ -44,6 +44,7 @@
 			theme: 'blue',
 			widthFixed: true,
 			sortLocaleCompare: true, // needed for accented characters in the data
+			sortList: [ [0,1] ],
 			widgets: ['zebra', 'filter']
 		})
 
@@ -180,6 +181,7 @@
 		<h3><a href="#">Notes</a></h3>
 		<div>
 			<ul>
+				<li>In <span class="version">v2.13.3</span>, the "ID" column has a default filter setting of "&gt;30" and a descending sort, but neither is applied as this demo is not connected a server (just a basic JSON file).</li>
 				<li>In <span class="version">v2.11</span>, the pager now stores any object returned by the `ajaxProcessing` function in `table.config.pager.ajaxData` (see the ajaxProcessing section below for more details).</li>
 				<li>In <span class="version updated">v2.10</span>, the <code>ajaxProcessing</code> function was updated to only require a total number of rows to be returned, also instead of returning an array of table rows, you can build the table yourself and just return the jQuery object containing those rows. The addon triggers an update.</li>
 				<li><code>{filterList:fcol}</code> was added to the <code>ajaxUrl</code> in version 2.6.</li>
@@ -268,9 +270,6 @@
 			</ul>
 		</div>
 
-
-
-
 	</div>
 
 	<h1>Demo</h1>
@@ -292,7 +291,7 @@ Current Ajax url: <span id="url"></span>
 			</td>
 		</tr>
 		<tr>
-			<th>1</th>
+			<th data-value="&gt;30">1</th>
 			<th>2</th>
 			<th>3</th>
 			<th>4</th>
@@ -389,7 +388,7 @@ td.pager {
       &lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;th&gt;1&lt;/th&gt; &lt;!-- thead text will be updated from the JSON; make sure the number of columns matches the JSON data --&gt;
+      &lt;th&gt;1 data-value=&quot;&amp;gt;30&quot;&lt;/th&gt; &lt;!-- thead text will be updated from the JSON; make sure the number of columns matches the JSON data --&gt;
       &lt;th&gt;2&lt;/th&gt;
       &lt;th&gt;3&lt;/th&gt;
       &lt;th&gt;4&lt;/th&gt;
@@ -439,7 +438,7 @@ $('table')
 		$url.html(url);
 	})
 
-	.on('pagerInitialized', function(){ console.log('pager init');
+	.on('pagerInitialized', function(){
 		// allow THIS demo to sort the content; this variable is automatically set to true when ajax
 		// is used as there isn't any way to sort the server side data from the client side.
 		this.config.serverSideSorting = false;

@@ -14,6 +14,10 @@
 	<link href="css/prettify.css" rel="stylesheet">
 	<script src="js/prettify.js"></script>
 	<script src="js/docs.js"></script>
+	<style>
+	/* override the vertical-align top in the blue theme */
+	.notes.tablesorter-blue tbody td { vertical-align: middle; }
+	</style>
 
 	<!-- Tablesorter: required -->
 	<link rel="stylesheet" href="../css/theme.blue.css">
@@ -104,13 +108,14 @@
 
 	// External search
 	// buttons set up like this:
-	// <button type="button" class="search" data-filter-column="4" data-filter-text="2?%">Saved Search</button>
-	$('button.search').click(function(){
+	// <button type="button" data-filter-column="4" data-filter-text="2?%">Saved Search</button>
+	$('button[data-filter-column]').click(function(){
 		/*** first method *** data-filter-column="1" data-filter-text="!son"
 			add search value to Discount column (zero based index) input */
 		var filters = [],
-			col = $(this).data('filter-column'), // zero-based index
-			txt = $(this).data('filter-text'); // text to add to filter
+			$t = $(this),
+			col = $t.data('filter-column'), // zero-based index
+			txt = $t.data('filter-text') || $t.text(); // text to add to filter
 
 		filters[col] = txt;
 		// using "table.hasFilters" here to make sure we aren't targetting a sticky header
@@ -139,12 +144,15 @@
 
 <script>
 $(function(){
-
-	$('.firstname').click(function(){
-		$.tablesorter.setFilters( $('table.tablesorter'), ['', 'alex|br*|c'], true );
+/*
+	$('button').not('.toggle').click(function(){
+		var $t = $(this),
+			filter = [];
+		filter[$t.attr('data-filter-column')] = $t.attr('data-filter-column') || $t.text();
+		$.tablesorter.setFilters( $('table.tablesorter'), filter, true );
 		return false;
 	});
-
+*/
 	// *** widgetfilter_startsWith toggle button ***
 	$('button.toggle').click(function(){
 		var c = $('table.tablesorter')[0].config,
@@ -191,19 +199,20 @@ $(function(){
 				<li>This widget uses jQuery's <code>.nextUntil()</code> function which is only available is jQuery version 1.4+.</li>
 				<li>This widget does work with tablesorter v2.0.5.</li>
 				<li>Using the filters:
-					<table class="tablesorter-blue">
-						<thead><tr><th>Type <small class="bright">(1)</small></th><td>Description</th><th>Example</th></tr></thead>
+					<table class="tablesorter-blue notes">
+						<thead><tr><th>Type <small class="bright">(1)</small></th><td>Description</th><th>Examples</th></tr></thead>
 						<tbody>
-							<tr><td class="center">text</td><td>Any text entered in the filter will <strong>match</strong> text found within the column</td><td><code>abc</code> (finds &quot;abc&quot;, &quot;abcd&quot;, &quot;abcde&quot;, etc)</td></tr>
-							<tr><td class="center"><code>&quot;</code></td><td>To exactly match the search query, add a quote, apostrophe or equal sign to the beginning and/or end of the query</td><td><code>abc&quot;</code> or <code>abc=</code> (exactly match &quot;abc&quot;)</td></tr>
-							<tr><td class="center"><code>?</code></td><td>Wildcard for a single, non-space character.</td><td><code>J?n</code> (finds &quot;Jan&quot; and &quot;Jun&quot;, but not &quot;Joan&quot;)</td></tr>
-							<tr><td class="center"><code>*</code></td><td>Wildcard for zero or more non-space characters.</td><td><code>B*k</code> (matches &quot;Black&quot; and &quot;Book&quot;)</td></tr>
-							<tr><td class="center"><code>/\d/</code></td><td>Add any regex to the query to use in the query</td><td><code>/b[aeiou]g/i</code> (finds &quot;bag&quot;, &quot;beg&quot;, &quot;BIG&quot;, &quot;Bug&quot;, etc)</td></tr>
-							<tr><td class="center"><code>&lt; &lt;= &gt;= &gt;</code></td><td>Find alphabetical or numerical values less than or greater than or equal to the filtered query <small class="bright">(2)</small>.</td><td><code>&gt;= 10</code> (find values greater than or equal to 10)</td></tr>
-							<tr><td class="center"><code>!</code></td><td>Not operator. Filter the column with content that <strong>do not</strong> match the query.</td><td><code>!fe</code> (hide rows with &quot;female&quot; in that column, but shows rows with &quot;male&quot;)</td></tr>
-							<tr><td class="center"><code>&nbsp;&&&nbsp;</code> or <code>&nbsp;AND&nbsp;</code></td><td>Logical &quot;and&quot;. Filter the column for content that matches text from either side of the operator.</td><td><code>box && bat</code> (matches a column cell that contains both &quot;box&quot; and &quot;bat&quot;)</td></tr>
-							<tr><td class="center"><code>|</code> or <code>&nbsp;OR&nbsp;</code></td><td>Logical &quot;or&quot; (Vertical bar). Filter the column for content that matches text from either side of the bar <small class="bright">(3)</small>.</td><td><code>box|bat</code> (matches a column cell with either &quot;box&quot; or &quot;bat&quot;)</td></tr>
-							<tr><td class="center"><code>&nbsp;-&nbsp;</code> or <code>&nbsp;to&nbsp;</code></td><td>Find a range of values. Make sure there is a space before and after the dash (or the word &quot;to&quot;) <small class="bright">(2)</small>.</td><td><code>10 - 30</code> or <code>10 to 30</code> (match values between 10 and 30)</td></tr>
+							<tr><td class="center">text</td><td>Any text entered in the filter will <strong>match</strong> text found within the column</td><td><code>abc</code> (finds &quot;abc&quot;, &quot;abcd&quot;, &quot;abcde&quot;, etc); <button data-filter-column="1">Aaron</button> (finds &quot;Aaron&quot; and &quot;Philip Aaron Wong&quot;)</td></tr>
+							<tr><td class="center"><code>~</code></td><td>Fuzzy search (matches sequential characters) the query by adding a tilde to the beginning of the query (<span class="version">v2.13.3</span>)</td><td><button data-filter-column="1">~bee</button> (matches &quot;Bruce Lee&quot; and &quot;Brenda Dexter&quot;) or <button data-filter-column="1">~piano</button> (matches &quot;Philip Aaron Wong&quot;)</td></tr>
+							<tr><td class="center"><code>&quot;</code></td><td>To exactly match the search query, add a quote, apostrophe or equal sign to the beginning and/or end of the query</td><td><code>abc&quot;</code> or <code>abc=</code> (exactly match &quot;abc&quot;); <button data-filter-column="1">John&quot;</button> or <button data-filter-column="1">John=</button> (exactly match &quot;John&quot;)</td></tr>
+							<tr><td class="center"><code>?</code></td><td>Wildcard for a single, non-space character.</td><td><code>J?n</code> (finds &quot;Jan&quot; and &quot;Jun&quot;, but not &quot;Joan&quot;); <button data-filter-column="2">a?s</button> (finds &quot;Dumass&quot; and &quot;Evans&quot;, but not &quot;McMasters&quot;)</td></tr>
+							<tr><td class="center"><code>*</code></td><td>Wildcard for zero or more non-space characters.</td><td><code>B*k</code> (matches &quot;Black&quot; and &quot;Book&quot;); <button data-filter-column="2">a*s</button> (matches &quot;Dumass&quot;, &quot;Evans&quot; and &quot;McMasters&quot;)</td></tr>
+							<tr><td class="center"><code>/\d/</code></td><td>Add any regex to the query to use in the query</td><td><code>/b[aeiou]g/i</code> (finds &quot;bag&quot;, &quot;beg&quot;, &quot;BIG&quot;, &quot;Bug&quot;, etc); <button data-filter-column="1">/r$/</button> (matches text that ends with an &quot;r&quot;)</td></tr>
+							<tr><td class="center"><code>&lt; &lt;= &gt;= &gt;</code></td><td>Find alphabetical or numerical values less than or greater than or equal to the filtered query <small class="bright">(2)</small>.</td><td><button data-filter-column="5">&gt;= 10</button> (find values greater than or equal to 10)</td></tr>
+							<tr><td class="center"><code>!</code></td><td>Not operator. Filter the column with content that <strong>do not</strong> match the query.</td><td><code>!fe</code> (hide rows with &quot;female&quot; in that column, but shows rows with &quot;male&quot;); <button data-filter-column="1">!a</button> (find text that doesn't contain an &quot;a&quot;)</td></tr>
+							<tr><td class="center"><code>&nbsp;&&&nbsp;</code> or <code>&nbsp;AND&nbsp;</code></td><td>Logical &quot;and&quot;. Filter the column for content that matches text from either side of the operator.</td><td><code>box && bat</code> (matches a column cell that contains both &quot;box&quot; and &quot;bat&quot;); <button data-filter-column="1">Br && c</button> (Find text that contains both &quot;br&quot; and &quot;c&quot;)</td></tr>
+							<tr><td class="center"><code>|</code> or <code>&nbsp;OR&nbsp;</code></td><td>Logical &quot;or&quot; (Vertical bar). Filter the column for content that matches text from either side of the bar <small class="bright">(3)</small>.</td><td><code>box|bat</code> (matches a column cell with either &quot;box&quot; or &quot;bat&quot;); <button data-filter-column="1">Alex|Peter</button> (Find text that contains either &quot;Alex&quot; or &quot;Peter&quot;)</td></tr>
+							<tr><td class="center"><code>&nbsp;-&nbsp;</code> or <code>&nbsp;to&nbsp;</code></td><td>Find a range of values. Make sure there is a space before and after the dash (or the word &quot;to&quot;) <small class="bright">(2)</small>.</td><td><button data-filter-column="3">10 - 30</button> or <button data-filter-column="4">10 to 30</button> (match values between 10 and 30)</td></tr>
 						</tbody>
 					</table>
 					<span class="bright">(1)</span> You cannot combine these operators with each other (except for the wildcards).<br>
@@ -217,9 +226,11 @@ $(function(){
 		<div>
 			<h3>Filter widget defaults (added inside of tablesorter <code>widgetOptions</code>)</h3>
 			<ul>
+				<li><code>filter_anyMatch : false</code> - if true, a match in any column will show the row (see <a href="example-widget-filter-any-match.html">the demo</a> for exceptions).</li>
 				<li><code>filter_childRows : false</code> - if true, filter includes child row content in the search.</li>
 				<li><code>filter_columnFilters : true</code> - if true, a filter will be added to the top of each table column.</li>
 				<li><code>filter_cssFilter : ''</code> - extra css class name added to the filter row & each input in the row.</li>
+				<li><code>filter_defaultAttrib : 'data-value'</code> - this option contains the name of the data-attribute which contains the default (starting) filter value.</li>
 				<li><code>filter_filteredRow : 'filtered'</code> - css class name added to filtered rows (rows that are not showing); needed by pager plugin.</li>
 				<li><code>filter_formatter : null</code> - add custom filter elements to the filter row.</li>
 				<li><code>filter_functions : null</code> - add custom filter functions using this option.</li>
@@ -286,6 +297,24 @@ $.tablesorter.setFilters( $('table'), [ '', '', '', '', '', '2?%' ] );
 $.tablesorter.setFilters( $('table'), [ '', '', '', '', '', '2?%' ], true );</pre>
 			This method returns <code>true</code> if the filters were sucessfully applied, or <code>false</code> if the table does have a filter row.
 		</blockquote>
+
+		<h3>Bind External filter</h3>
+		<blockquote>
+		Use this method in conjunction with the <code>filter_anyMatch</code> option (set to <code>true</code> (<span class="version">v2.13.3</span>).
+		<pre class="prettyprint lang-javascript">// Target the $('.search') input using built in functioning
+// this binds to the search using "search" and "keyup"
+// Allows using filter_liveSearch or delayed search &
+// pressing escape to cancel the search
+$.tablesorter.filter.bindSearch( $table, $('.search') );</pre>
+		If you don't care about the enhanced search filter, then bind to both the &quot;keyup&quot; and &quot;search&quot; events
+		<pre class="prettyprint lang-javascript">// Basic search binding, alternate to the above
+// bind to search - pressing enter and clicking on "x" to clear (Webkit)
+// keyup allows dynamic searching
+$(".search").bind('search keyup', function (e) {
+  $('table').trigger('search', [ [this.value] ]);
+});
+</pre></blockquote>
+
 		</div>
 
 		<h3><a href="#">Events</a></h3>
@@ -306,12 +335,12 @@ $.tablesorter.setFilters( $('table'), [ '', '', '', '', '', '2?%' ], true );</pr
 	<h1>Demo</h1>
 	<button type="button" class="toggle fsw">Toggle</button> filter_startsWith : <span id="start">false</span> (if true, search from beginning of cell content only)<br>
 	<button type="button" class="toggle fic">Toggle</button> filter_ignoreCase : <span id="case">true</span> (if false, the search will be case sensitive)<br>
-	<button type="button" class="toggle ffm">Toggle</button> filter-match (if class name added to the "First Name" column, all "or" searches will only match the content; Search <button type="button" class="firstname">alex|br*|c</button> in the First Name column (<span class="version">2.10.1</span>).
+	<button type="button" class="toggle ffm">Toggle</button> filter-match (if class name added to the "First Name" column, all "or" searches will only match the content; Search <button data-filter-column="1">alex|br*|c</button> in the First Name column (<span class="version">2.10.1</span>).
 	<hr>
 
 	<div id="demo">
-	<button type="button" class="search" data-filter-column="5" data-filter-text="2?%">Saved Search</button> (search the Discount column for &quot;2?%&quot;)<br>
-	<button type="button" class="reset">Reset Search</button> <!-- targetted by the "filter_reset" option -->
+	<button type="button" data-filter-column="5" data-filter-text="2?%">Saved Search</button> (search the Discount column for &quot;2?%&quot;)<br>
+	<button type="button" class="reset">Reset Search</button> <!-- targeted by the "filter_reset" option -->
 
 	<table class="tablesorter">
 	<thead>
@@ -327,7 +356,7 @@ $.tablesorter.setFilters( $('table'), [ '', '', '', '', '', '2?%' ], true );</pr
 		</tr>
 	</thead>
 	<tbody>
-		<tr><td>1</td><td>Philip Aaron</td><td>Johnson Sr Esq</td><td>25</td><td>$5.95</td><td>22%</td><td>Jun 26, 2004 7:22 AM</td></tr>
+		<tr><td>1</td><td>Philip Aaron Wong</td><td>Johnson Sr Esq</td><td>25</td><td>$5.95</td><td>22%</td><td>Jun 26, 2004 7:22 AM</td></tr>
 		<tr><td>11</td><td>Aaron</td><td>Hibert</td><td>12</td><td>$2.99</td><td>5%</td><td>Aug 21, 2009 12:21 PM</td></tr>
 		<tr><td>12</td><td>Brandon Clark</td><td>Henry Jr</td><td>51</td><td>$42.29</td><td>18%</td><td>Oct 13, 2000 1:15 PM</td></tr>
 		<tr><td>111</td><td>Peter</td><td>Parker</td><td>28</td><td>$9.99</td><td>20%</td><td>Jul 6, 2006 8:14 AM</td></tr>
@@ -337,7 +366,7 @@ $.tablesorter.setFilters( $('table'), [ '', '', '', '', '', '2?%' ], true );</pr
 		<tr><td>10</td><td>Alex</td><td>Dumass</td><td>13</td><td>$5.29</td><td>4%</td><td>Jan 8, 2012 5:11 PM</td></tr>
 		<tr><td>16</td><td>Jim</td><td>Franco</td><td>24</td><td>$14.19</td><td>14%</td><td>Jan 14, 2004 11:23 AM</td></tr>
 		<tr><td>166</td><td>Bruce Lee</td><td>Evans</td><td>22</td><td>$13.19</td><td>11%</td><td>Jan 18, 2007 9:12 AM</td></tr>
-		<tr><td>100</td><td>Brenda Lee</td><td>McMasters</td><td>18</td><td>$55.20</td><td>15%</td><td>Feb 12, 2010 7:23 PM</td></tr>
+		<tr><td>100</td><td>Brenda Dexter</td><td>McMasters</td><td>18</td><td>$55.20</td><td>15%</td><td>Feb 12, 2010 7:23 PM</td></tr>
 		<tr><td>55</td><td>Dennis</td><td>Bronson</td><td>65</td><td>$123.00</td><td>32%</td><td>Jan 20, 2001 1:12 PM</td></tr>
 		<tr><td>9</td><td>Martha</td><td>delFuego</td><td>25</td><td>$22.09</td><td>17%</td><td>Jun 11, 2011 10:55 AM</td></tr>
 	</tbody>
@@ -426,7 +455,7 @@ $.tablesorter.setFilters( $('table'), [ '', '', '', '', '', '2?%' ], true );</pr
 
 <div class="next-up">
 	<hr />
-	Next up: <a href="example-widget-filter-custom.html">jQuery custom filter widget &rsaquo;&rsaquo;</a>
+	Next up: <a href="example-widget-filter-any-match.html">jQuery Any Match filter widget &rsaquo;&rsaquo;</a>
 </div>
 
 </div>

@@ -44,6 +44,51 @@ tablesorter can successfully parse and sort many types of data including linked 
 
 View the [complete listing here](https://github.com/Mottie/tablesorter/wiki/Change).
 
+#### <a name="v2.13.3">Version 2.13.3</a> (11/9/2013)
+
+* Pager (plugin/widget)
+  * Fixed initial filter settings when using pager ajax. Fixes [issue #388](https://github.com/Mottie/tablesorter/issues/388).
+  * Fixed ajax pager not recognizing column sorting. Fixes [issue #408](https://github.com/Mottie/tablesorter/issues/408).
+  * The core plugin now remove rows from table when using pager ajax. Fixes [issue #411](https://github.com/Mottie/tablesorter/issues/411).
+
+* Filter widget
+  * Renamed all variables &amp; restructured the entire widget.
+  * Added better integration with the pager plugin/widget to minimize ajax server calls by getting default filter settings. Fixes [issue #388](https://github.com/Mottie/tablesorter/issues/388).
+  * Fixed filter formatter HTML5 spinner to properly find exact matches.
+  * Added a new fuzzy search parameter
+    * Fuzzy searches match sequential characters, similar to how Sublime Text searches work
+    * Start the search with a tilde `~` followed by any sequential characters to match.
+    * Examples: `~bee` will match both "Bruce Lee" and "Brenda Lee", `~bcd` will find "Brandon Clark" and `~piano` will find "Philip Aaron Wong"
+  * Added `filter_anyMatch`
+    * Set this option to `true` when using an external search filter.
+    * Setting this option should work properly with or without the column filters. The only issue you would have is if you triggered a search on the table using an array with undefined or null array values.
+    * Some limitations are applied when using any match. Search operators, range queries and not-matches are not allowed.
+    * See [the demo](http://mottie.github.io/tablesorter/docs/example-widget-filter-any-match.html) for examples &amp; more details.
+    * Thanks to [@prainho](https://github.com/prainho) for the suggestion, code and feedback in [issue #405](https://github.com/Mottie/tablesorter/issues/405)!
+  * Modified the `bindSearch` function to allow using it on external filters:
+    * Use as follows: `$.tablesorter.filter.bindSearch( $('table'), $('.search') );`
+    * Binding the search input using this method allows the search to use `filter_liveSearch`, delayed searching and pressing escape to clear the search.
+    * See the [filter any match demo](http://mottie.github.io/tablesorter/docs/example-widget-filter-any-match.html) for example usage.
+
+* UITheme widget
+  * Added caption styling
+  * Updated css for jQuery UI theme and Bootstrap theme.
+
+* Theme, demo &amp; doc updates
+  * Added jQuery UI theme switcher to [jQuery UI theme demo](http://mottie.github.io/tablesorter/docs/example-widget-ui-theme.html) &amp; [jQuery UI filter formatter demo](http://mottie.github.io/tablesorter/docs/example-widget-filter-formatter-1.html).
+  * Added ignore articles parser to [saveSort widget demo](http://mottie.github.io/tablesorter/docs/example-widget-savesort.html).
+  * Updated history of changes made to `cssAsc`, `cssDesc` &amp; `cssHeader` on the main documentation page. See [issue #407](https://github.com/Mottie/tablesorter/issues/407).
+
+#### <a name="v2.13.2">Version 2.13.2</a> (11/2/2013)
+
+* Updated pager &amp; filter widget to work when the pager `countChildRows` option is `true`:
+  * Filter widget now properly added a "filtered" class to child rows
+  * Pager plugin & widget now properly calculate a correct total number of rows
+  * See [issue #396](https://github.com/Mottie/tablesorter/issues/396).
+* Updated editable widget to target table cell children if they exist
+  * This fixes the issue in IE where making a table element contenteditable is not allowed.
+  * See [issue #404](https://github.com/Mottie/tablesorter/issues/404) for further details.
+
 #### <a name="v2.13.1">Version 2.13.1</a> (10/31/2013)
 
 * Fixed filter widget issues

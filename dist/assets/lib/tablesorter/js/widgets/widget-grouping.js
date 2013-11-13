@@ -99,7 +99,7 @@ ts.addWidget({
 			for (k = 0; k < c.$tbodies.length; k++) {
 				n = c.cache[k].normalized;
 				group = ''; // clear grouping across tbodies
-				$tr = c.$tbodies.eq(k).children('tr');
+				$tr = c.$tbodies.eq(k).children('tr').not('.' + c.cssChildRow );
 				if (wo.group_collapsed && wo.group_collapsible) {
 					$tr.addClass('group-hidden');
 				}
@@ -119,7 +119,7 @@ ts.addWidget({
 								curr = wo.group_formatter((curr || '').toString(), col, table, c, wo) || curr;
 							}
 							$tr.eq(j).before('<tr class="group-header ' + c.selectorRemove.slice(1) + (wo.group_collapsed && wo.group_collapsible ? ' collapsed' : '') +
-								'" unselectable="on"><td colspan="' + (c.columns+1) + '">' + (wo.group_collapsible ? '<i/>' : '') + '<span class="group-name">' +
+								'" unselectable="on"><td colspan="' + (c.columns) + '">' + (wo.group_collapsible ? '<i/>' : '') + '<span class="group-name">' +
 								curr + '</span><span class="group-count"></span></td></tr>');
 						}
 					}

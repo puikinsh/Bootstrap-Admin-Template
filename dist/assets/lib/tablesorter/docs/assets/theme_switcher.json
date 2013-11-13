@@ -1,0 +1,321 @@
+[
+	{
+		"theme_name": "base",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "black-tie",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/black-tie/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "blitzer",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/blitzer/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "cupertino",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/cupertino/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "dark-hive",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/dark-hive/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "dot-luv",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/dot-luv/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "eggplant",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/eggplant/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "excite-bike",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/excite-bike/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "flick",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/flick/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "hot-sneaks",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/hot-sneaks/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "humanity",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/humanity/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "le-frog",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/le-frog/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "mint-choc",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/mint-choc/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "overcast",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/overcast/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "pepper-grinder",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/pepper-grinder/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "redmond",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/redmond/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "smoothness",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/smoothness/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "south-street",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/south-street/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "start",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/start/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "sunny",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/sunny/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "swanky-purse",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/swanky-purse/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "trontastic",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/trontastic/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "ui-darkness",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/ui-darkness/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "ui-lightness",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/ui-lightness/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+	{
+		"theme_name": "vader",
+		"theme_url": "http://code.jquery.com/ui/1.10.0/themes/vader/jquery-ui.css",
+		"group": "Official",
+		"active": "yes",
+		"author": "jQuery Project",
+		"license": "http://jquery.org/license"
+	},
+
+
+	{
+		"theme_name": "aristo",
+		"theme_url": "http://taitems.github.com/Aristo-jQuery-UI-Theme/css/Aristo/Aristo.css",
+		"group": "3rd-party",
+		"active": "yes",
+		"author": "https://github.com/taitems/Aristo-jQuery-UI-Theme",
+		"license": "MIT"
+	},
+	{
+		"theme_name": "jquery-ui-bootstrap",
+		"theme_url": "http://addyosmani.github.com/jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.8.16.custom.css",
+		"group": "3rd-party",
+		"active": "yes",
+		"author": "http://addyosmani.github.com/jquery-ui-bootstrap",
+		"license": "Copyright 2012, Addy Osmani - Dual licensed under the MIT or GPL Version 2 licenses"
+	},
+	{
+		"theme_name": "Absolution",
+		"hosted_locally": "yes",
+		"theme_url": "/lib/jquery-ui-1.10.0.custom/css/3rd-party/Absolution/absolution.css",
+		"group": "3rd-party",
+		"active": "yes",
+		"author": "http://www.michaelvanderheeren.be/archives/382",
+		"license": "https://github.com/michaelvanderheeren/Absolution/blob/master/README.md",
+		"notes": "You are free to redistribute or change the theme. You can change the theme, but you should keep the references to contributors!"
+	},
+	{
+		"theme_name": "Selene",
+		"theme_url": "http://gravityonmars.github.com/Selene/css/ui-selene/jquery-ui-1.8.17.custom.css",
+		"group": "3rd-party",
+		"active": "yes",
+		"author": "https://github.com/gravityonmars/Selene",
+		"license": "MIT"
+	},
+	{
+		"theme_name": "kiandra-delta",
+		"theme_url": "http://kiandra.github.com/Delta-jQuery-UI-Theme/theme/jquery-ui.css",
+		"group": "3rd-party",
+		"active": "yes",
+		"author": "https://github.com/kiandra/Delta-jQuery-UI-Theme",
+		"license": "Dual licensed under the MIT or GPL Version 2 licenses."
+	},
+
+
+	{
+		"theme_name": "arctic",
+		"theme_url": "http://cdn.wijmo.com/themes/arctic/jquery-wijmo.css",
+		"group": "Wijmo",
+		"active": "yes",
+		"author": "http://wijmo.com",
+		"license": "http://wijmo.com/license"
+	},
+	{
+		"theme_name": "midnight",
+		"theme_url": "http://cdn.wijmo.com/themes/midnight/jquery-wijmo.css",
+		"group": "Wijmo",
+		"active": "yes",
+		"author": "http://wijmo.com",
+		"license": "http://wijmo.com/license"
+	},
+	{
+		"theme_name": "rocket",
+		"theme_url": "http://cdn.wijmo.com/themes/rocket/jquery-wijmo.css",
+		"group": "Wijmo",
+		"active": "yes",
+		"author": "http://wijmo.com",
+		"license": "http://wijmo.com/license"
+	},
+	{
+		"theme_name": "cobalt",
+		"theme_url": "http://cdn.wijmo.com/themes/cobalt/jquery-wijmo.css",
+		"group": "Wijmo",
+		"active": "yes",
+		"author": "http://wijmo.com",
+		"license": "http://wijmo.com/license"
+	},
+	{
+		"theme_name": "sterling",
+		"theme_url": "http://cdn.wijmo.com/themes/sterling/jquery-wijmo.css",
+		"group": "Wijmo",
+		"active": "yes",
+		"author": "http://wijmo.com",
+		"license": "http://wijmo.com/license"
+	},
+	{
+		"theme_name": "metro",
+		"theme_url": "http://cdn.wijmo.com/themes/metro/jquery-wijmo.css",
+		"group": "Wijmo",
+		"active": "yes",
+		"author": "http://wijmo.com",
+		"license": "http://wijmo.com/license"
+	},
+	{
+		"theme_name": "metro-dark",
+		"theme_url": "http://cdn.wijmo.com/themes/metro-dark/jquery-wijmo.css",
+		"group": "Wijmo",
+		"active": "yes",
+		"author": "http://wijmo.com",
+		"license": "http://wijmo.com/license"
+	},
+	{
+		"theme_name": "bootstrap-wijmo",
+		"theme_url": "http://cdn.wijmo.com/themes/bootstrap/jquery-ui.css",
+		"group": "Wijmo",
+		"active": "yes",
+		"author": "http://addyosmani.github.com/jquery-ui-bootstrap",
+		"license": "Copyright 2012, Addy Osmani - Dual licensed under the MIT or GPL Version 2 licenses"
+	},
+	{
+		"theme_name": "aristo-wijmo",
+		"theme_url": "http://cdn.wijmo.com/themes/aristo/jquery-wijmo.css",
+		"group": "Wijmo",
+		"active": "yes",
+		"author": "http://wijmo.com",
+		"license": "http://wijmo.com/license",
+		"notes": "Based on the Aristo theme concept created by 280 North and Pinvoke (https://github.com/280north/aristo)"
+	}
+]

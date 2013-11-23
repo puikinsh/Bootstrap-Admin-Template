@@ -33,7 +33,9 @@
 	// call the tablesorter plugin
 	$("table").tablesorter({
 		theme : 'blue',
-		widgets : ["zebra"]
+		widgets : ["zebra"],
+		// date range used by the two-digit year parser (added v2.14.0)
+		dateRange : 30
 	});
 
 });</script>
@@ -62,6 +64,7 @@
 							<li>So if the current year is <code>2020</code>, and the listed two digit year is <code>80</code> (<code>2080 - 2020 > 50</code>), it becomes <code>1980</code>.</li>
 							<li>If the listed two digit year is <code>50</code> (<code>2050 - 2020 < 50</code>), then it becomes <code>2050</code>. I hope that makes it clearer.</li>
 							<li>Try out the two digit year calculator below the table.</li>
+							<li>In <span class="version">v2.14.0</span>, the range can be set using the <code>dateRange</code> option (see the initialization code below).</li>
 						</ul>
 					</li>
 					<li>The "Time" column is using the built-in time parser which has been always been included with tablesorter .</li>

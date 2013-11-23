@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>jQuery plugin: Tablesorter 2.0 - Filter Widget Any Match</title>
+	<title>jQuery plugin: Tablesorter 2.0 - Filter Widget External Inputs</title>
 
 	<!-- jQuery -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.js"></script>
@@ -27,7 +27,7 @@
 		widgets: ["zebra", "filter"],
 		widgetOptions : {
 			// if true overrides default find rows behaviours and if any column matches query it returns that row
-			filter_anyMatch : true,
+			// filter_anyMatch : true,
 			filter_columnFilters: false,
 			filter_reset: '.reset'
 		}
@@ -54,7 +54,7 @@
 <body>
 <div id="banner">
 	<h1>table<em>sorter</em></h1>
-	<h2>Filter Widget Any Match</h2>
+	<h2>Filter Widget External Inputs</h2>
 	<h3>Flexible client-side table sorting</h3>
 	<a href="index.html">Back to documentation</a>
 </div>
@@ -63,40 +63,23 @@
 	<p class="tip">
 		<em>NOTE!</em>
 		<ul>
-			<li>This is a demo of the <code>filter_anyMatch</code> option (<span class="version">v2.13.3</span>).</li>
-			<li>This method has limitations in that it does not support all of the per column search features! So, at this time, the following types of queries are not allowed as the results will cause confusion:
+			<li>This demo shows how to use multiple external search filters to filter the table.</li>
+			<li>The <code>$.tablesorter.filter.bindSearch()</code> function now allows binding multiple external search filters (<span class="version updated">v2.14</span>):
+			<li>The advantage of using this function over your own is:
 				<ul>
-					<li>Search operators - A search for values equal, greater or less than values (<code>&gt &gt= &lt;= &lt;</code>) is not allowed because tables that contain both numbers and text (in separate columns). For example:
-						<pre class="prettyprint lang-javascript">&quot;Fred&quot; > &quot;1&quot;  // true*
-&quot;Fred&quot; < &quot;10&quot; // false
-&quot;Fred&quot; > 1    // false (numeric comparisons occur with parsed table data)
-&quot;Fred&quot; > 1    // false
-&quot;Fred&quot; < 10   // false</pre>* For comparisons, letters have a greater <a href="http://en.wikipedia.org/wiki/Ascii#ASCII_printable_characters">ASCII value</a> than numbers.
-					</li>
-					<li>Range query - A search for any number range (<code>1 - 10</code>) is not allowed because, if any columns contain text, then no rows will result. The examples are the same as the search operators examples above.</li>
-					<li>Not Match query - A search for not matches (<code>!a</code>) is not allowed because tables that contain both numbers and text (in separate columns) will always show all rows. For example:
-						<pre class="prettyprint lang-javascript">&quot;Frank&quot;.search(&quot;a&quot;)    //  2 (a match, so this row "may" be hidden)
-&quot;Fred&quot;.search(&quot;a&quot;)      // -1 (a not match! so this row will always show)
-&quot;25&quot;.search(&quot;a&quot;)        // -1 (a not match! so this row will always show)
-&quot;1/1/2014&quot;.search(&quot;a&quot;)  // -1 (a not match! so this row will always show)</pre>
-					</li>
-					<li>Allowed filters include plain text matching, fuzzy search (<code>~</code>), exact match (<code>&quot;</code>), wild card matches( <code>?</code> or <code>*</code>), regex (<code>/\d/g</code>), and logical and (<code>a &amp;&amp; b</code>)/or (<code>a|b</code>) matches.</li>
+					<li>Inputs behave the same as internal filters; searches adhere to the <code>filter_liveSearch</code> and <code>filter_searchDelay</code> options.</li>
+					<li>When pressing the <kbd>Esc</kbd> key, the filter resets.</li>
 				</ul>
-				<li>Setting this option should work properly with or without the column filters. The only issue you would have is if you triggered a search on the table using an array with undefined or null array values, like this:
-					<pre class="prettyprint lang-javascript">// apply "2?%" filter to the fifth column (zero-based index)
-var columns = [];
-columns[5] = '2?%';
-// anyMatch will kick in on undefined column filters,
-// unless the array looks like this: columns = [ '', '', '', '', '', '2?%' ]
-$('table').trigger('search', [ columns ]);</pre></li>
 			</li>
+			<li>Include a <code>data-column="#"</code> attribute to specify to which column the search should apply.</li>
 		</ul>
 	</p>
 
 	<h1>Demo</h1>
 
 	<div id="demo">
-	<input class="search" type="search">
+	<input class="search" type="search" placeholder="first name" data-column="1">
+	<input class="search" type="search" placeholder="last name" data-column="2">
 	<button type="button" class="reset">Reset Search</button> <!-- targeted by the "filter_reset" option -->
 
 	<table class="tablesorter">

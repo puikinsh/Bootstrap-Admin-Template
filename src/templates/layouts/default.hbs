@@ -6,9 +6,9 @@
         <meta name="msapplication-TileColor" content="#5bc0de"/>
         <meta name="msapplication-TileImage" content="{{assets}}/img/metis-tile.png"/>
         
-        <link rel="stylesheet" href="{{assets}}/lib/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="{{assets}}/lib/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{assets}}/css/main.css"/>
-        <link rel="stylesheet" href="{{assets}}/lib/Font-Awesome/css/font-awesome.css"/>
+        <link rel="stylesheet" href="{{assets}}/lib/Font-Awesome/css/font-awesome.min.css"/>
 
         <link rel="stylesheet" href="{{assets}}/css/theme.css">
 
@@ -19,18 +19,6 @@
         {{#if cdncss}}
         {{cdn cdncss}}
         {{/if}}
-        
-        <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-1669764-16', 'onokumus.com');
-  ga('send', 'pageview');
-
-</script>
 
         <script src="{{assets}}/lib/modernizr-build.min.js"></script>
     </head>
@@ -44,14 +32,14 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
                 <header class="head">
                     <div class="search-bar">
                         <a data-original-title="Show/Hide Menu" data-placement="bottom" data-tooltip="tooltip" class="accordion-toggle btn btn-primary btn-sm visible-xs" data-toggle="collapse" href="#menu" id="menu-toggle">
-                            <i class="fa fa-resize-full"></i>
+                            <i class="fa fa-expand"></i>
                         </a>
 
                         <form class="main-search">
                             <div class="input-group">
                                 <input type="text" class="input-small form-control" placeholder="Live Search ...">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default btn-sm" type="button"><i class="fa fa-search"></i></button>
+                                    <button class="btn btn-default btn-sm text-muted" type="button"><i class="fa fa-search"></i></button>
                                 </span>
                             </div>
                         </form>
@@ -176,13 +164,12 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	</div><!-- /.modal -->        
         <!-- /#helpModal -->
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="{{assets}}/lib/jquery.min.js"><\/script>')</script> 
+        <script src="{{assets}}/lib/jquery.min.js"></script>
 
 
 
 
-        <script src="{{assets}}/lib/bootstrap/js/bootstrap.js"></script>
+        <script src="{{assets}}/lib/bootstrap/js/bootstrap.min.js"></script>
 
 
 
@@ -199,7 +186,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         {{js javascripts}}
         {{/if}}
 
-        <script src="{{assets}}/js/main.js"></script>
+        <script src="{{assets}}/js/main.min.js"></script>
 
         {{#if scripts}}
         <script>

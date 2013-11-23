@@ -86,6 +86,9 @@
 			// jQuery selector string of an element used to reset the filters
 			filter_reset : 'button.reset',
 
+			// Use the $.tablesorter.storage utility to save the most recent filters (default setting is false)
+			filter_saveFilters : true,
+
 			// Delay in milliseconds before the filter widget starts searching; This option prevents searching for
 			// every character while typing and should make searching large tables faster.
 			filter_searchDelay : 300,
@@ -195,6 +198,7 @@ $(function(){
 		<h3><a href="#">Notes</a></h3>
 		<div>
 			<ul>
+				<li>Added &amp; set <code>filter_saveFilters</code> to <code>true</code> (default is <code>false</code>) in this demo (<span class="version">v2.14</span>).</li>
 				<li>Hover over the grey bar below the table header to open the filter row. Disable this by setting <code>filter_hideFilters</code> option to <code>false</code>.</li>
 				<li>This widget uses jQuery's <code>.nextUntil()</code> function which is only available is jQuery version 1.4+.</li>
 				<li>This widget does work with tablesorter v2.0.5.</li>
@@ -239,6 +243,7 @@ $(function(){
 				<li><code>filter_liveSearch : true</code> - if true, search column content while the user types (with a delay). If false, the user must press enter to start the search. If set to a number, when the length of the input text reaches this minimum length, a search will initiate.</li>
 				<li><code>filter_onlyAvail : 'filter-onlyAvail'</code> - a header with a select dropdown &amp; this class name will only show available (visible) options within that drop down.</li>
 				<li><code>filter_reset : null</code> - jQuery selector string of an element used to reset the filters.</li>
+				<li><code>filter_saveFilters : false</code> - Uses the <code>$.tablesorter.storage</code> utility to save the most recent filters.</li>
 				<li><code>filter_searchDelay : 300</code> - typing delay in milliseconds before starting a search.</li>
 				<li><code>filter_serversideFiltering : false</code> - if true, filter will be done server-side. The client-side filtering will be disabled, but the ui and events will still be used.</li>
 				<li><code>filter_startsWith : false</code> - if true, filter start from the beginning of the cell contents.</li>
@@ -339,8 +344,8 @@ $(".search").bind('search keyup', function (e) {
 	<hr>
 
 	<div id="demo">
-	<button type="button" data-filter-column="5" data-filter-text="2?%">Saved Search</button> (search the Discount column for &quot;2?%&quot;)<br>
-	<button type="button" class="reset">Reset Search</button> <!-- targeted by the "filter_reset" option -->
+	Search <button type="button" data-filter-column="5" data-filter-text="2?%">2?%</button> in the Discount column<br>
+	<button type="button" class="reset">Reset</button> <!-- targeted by the "filter_reset" option -->
 
 	<table class="tablesorter">
 	<thead>

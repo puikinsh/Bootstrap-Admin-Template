@@ -1,5 +1,5 @@
 $(function(){
-	var $t, t, v, animate,
+	var $t, t, v, animate, clicked,
 
 	cleanupCode = function(code){
 		return code.replace(/[<>\"\'\t\n]/g, function(m) { return {
@@ -42,22 +42,26 @@ $(function(){
 	});
 
 	animating = false;
-
+	clicked = false;
 	$('.collapsible').hide();
-	$('.toggle2')
-		.click(function(e){
-			if (!animating) {
+
+	$('a.permalink').click(function(e){
+		var $el = $(this);
+		setTimeout(function(){
+			if (!animating && !clicked) {
 				animating = true;
-				$(this).closest('tr').find('.collapsible').slideToggle();
+				$el.closest('tr').find('.collapsible').slideToggle();
 				setTimeout(function(){ animating = false; }, 200);
 			}
-			return false;
-		});
-	$('.toggle2, span.permalink')
-		.dblclick(function(){
-			window.location.hash = '#' + $(this).closest('tr')[0].id;
-			return false;
-		});
+		}, 200);
+		return false;
+	});
+	$('.permalink').dblclick(function(){
+		clicked = true;
+		window.location.hash = '#' + $(this).closest('tr')[0].id;
+		setTimeout(function(){ clicked = false; }, 500);
+		return false;
+	});
 
 	$('.toggleAll, .showAll, .hideAll').click(function(){
 		t = $.trim($(this).text());
@@ -80,7 +84,8 @@ $(function(){
 		i = $t.text().replace(/(v|version|\+)/g, '').split('.');
 		t = [ parseInt(i[0], 10) || 1, parseInt(i[1], 10) || 0 ];
 		if (t[0] === v[0] && t[1] >= v[1] - 1 ) {
-			$t.prepend('<span class="tip' + ( t[0] === v[0] && t[1] < v[1] ? ' old' : '' ) + '"><em>'+ ($t.hasClass('updated') ? 'Updated' : 'New') + '</em></span> ');
+			$t.prepend('<span class="label ' + ( t[0] === v[0] && t[1] < v[1] ? ' label-default' : ' label-success' ) +
+				'">'+ ($t.hasClass('updated') ? 'Updated' : 'New') + '</span> ');
 		}
 	});
 
@@ -98,7 +103,7 @@ function showProperty(){
 			// move below sticky header; added delay as there could be some lag
 			setTimeout(function(){
 				if (/options/.test(prop.closest('table').attr('id') || '')) {
-					$(window).scrollTop( prop.position().top - 28 );
+					$('body').scrollTop( prop.position().top - 28 );
 				}
 			}, 200);
 		}

@@ -1,27 +1,28 @@
 {
-    "name": "Bootstrap-Admin-Template",
-    "version": "2.1.0",
-    "author": {
-        "name": "Osman Nuri Okumuş",
-        "email": "onokumus@gmail.com",
-        "url": "https://github.com/onokumus"
-    },
-    "description": "Twitter Bootstrap Admin Template",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/onokumus/Bootstrap-Admin-Template.git"
-    },
-    "bugs": {
-        "url": "https://github.com/onokumus/Bootstrap-Admin-Template/issues"
-    },
-    "licenses": {
-        "type": "MIT",
-        "url": "https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/README.md"
-    },
-    "dependencies": {
-	"bootstrap": "~3.0.0",
-	"font-awesome": "~4.0.1",
-	"gmaps": "~0.4.6"
-    }
+  "name": "Bootstrap-Admin-Template",
+  "version": "2.1.1",
+  "author": {
+    "name": "Osman Nuri Okumuş",
+    "email": "onokumus@gmail.com",
+    "url": "https://github.com/onokumus"
+  },
+  "description": "Twitter Bootstrap Admin Template",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onokumus/Bootstrap-Admin-Template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/onokumus/Bootstrap-Admin-Template/issues"
+  },
+  "licenses": {
+    "type": "MIT",
+    "url": "https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/README.md"
+  },
+  "dependencies": {
+    "bootstrap": "~3.0.2",
+    "font-awesome": "~4.0.3",
+    "gmaps": "~0.4.8",
+    "html5shiv": "~3.7.0"
+  }
 }

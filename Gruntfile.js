@@ -13,6 +13,28 @@ module.exports = function (grunt) {
             '* Copyright <%= grunt.template.today("yyyy") %>\n' +
             '*/\n',
         clean: {dist: ['dist']},
+        less: {
+            options: {
+                metadata: 'src/*.{json,yml}',
+                paths: 'bower_components/bootstrap/less',
+                imports: {
+                    less: ['mixins.less', 'variables.less']
+                }
+            },
+            development: {
+                files: {
+                    'dist/assets/css/main.css': ['src/assets/less/style.less']
+                }
+            },
+            production: {
+                options: {
+                    compress: true
+                },
+                files: {
+                    'dist/assets/css/main.min.css': ['src/assets/less/style.less']
+                }
+            }
+        },
         concat: {
             options: {
                 banner: '<%= banner %>',
@@ -56,6 +78,7 @@ module.exports = function (grunt) {
             // Task-level options
             options: {
                 flattern: true,
+                postprocess: require('pretty'),
                 assets: 'dist/assets',
                 data: 'src/data/*.{json,yml}',
                 partials: ['src/templates/partials/**/*.hbs'],
@@ -135,40 +158,45 @@ module.exports = function (grunt) {
                         src: ['*.html'],
                         dest: 'dist'
                     },
-		     {
-		       expand: true,
-		cwd: 'node_modules/less/dist/',
-		src: ['less-1.5.0.min.js'],
-		dest: 'dist/assets/lib'
-		    },
-		     {
-		       expand: true,
-		cwd: 'bower_components/jquery/',
-		src: ['./**/jquery*.min.*'],
-		dest: 'dist/assets/lib'
-		    },
-		     {
-		       expand: true,
-		cwd: 'bower_components/bootstrap/dist/',
-		src: ['./**/*.*'],
-		dest: 'dist/assets/lib/bootstrap'
-		    },
-		     {
-		       expand: true,
-		cwd: 'bower_components/font-awesome/',
-		src: ['./css/*.*','./fonts/*.*'],
-		dest: 'dist/assets/lib/Font-Awesome'
-		    }
-		    ,
-		     {
-		       expand: true,
-		cwd: 'bower_components/gmaps/',
-		src: ['./**/gmaps.js'],
-		dest: 'dist/assets/lib/gmaps'
-		    }
+                    {
+                        expand: true,
+                        cwd: 'node_modules/assemble-less/node_modules/less/dist/',
+                        src: ['less-1.5.1.min.js'],
+                        dest: 'dist/assets/lib'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'bower_components/jquery/',
+                        src: ['./**/jquery*.min.*'],
+                        dest: 'dist/assets/lib'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'bower_components/bootstrap/dist/',
+                        src: ['./**/*.*'],
+                        dest: 'dist/assets/lib/bootstrap'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'bower_components/font-awesome/',
+                        src: ['./css/*.*', './fonts/*.*'],
+                        dest: 'dist/assets/lib/Font-Awesome'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'bower_components/gmaps/',
+                        src: ['./**/gmaps.js'],
+                        dest: 'dist/assets/lib/gmaps'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'bower_components/html5hiv',
+                        src: ['./dist/html5shiv.js'],
+                        dest: 'dist/assets/lib'
+                    }
                 ]
             }
-	    
+
         },
 
         watch: {
@@ -176,14 +204,14 @@ module.exports = function (grunt) {
                 files: ['**/*.js'],
                 tasks: ['dist-js']
             },
-	    css: {
-	      files: ['**/*.css'],
-	      tasks: ['copy']
-	    },
-	    assemble: {
-	      files: ['**/*.hbs','**/*.html'],
-	      tasks: ['assemble']
-	    }
+            css: {
+                files: ['**/*.css'],
+                tasks: ['copy']
+            },
+            assemble: {
+                files: ['**/*.hbs', '**/*.html'],
+                tasks: ['assemble']
+            }
         }
 
     });
@@ -197,11 +225,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     //grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    
-    
+    grunt.loadNpmTasks('assemble-less');
+
+
     //grunt.loadNpmTasks('grunt-recess');
     // remove grunt-recess modules. because not supported my code
-    
+
     grunt.loadNpmTasks('assemble');
 
     // Test task.
@@ -210,11 +239,9 @@ module.exports = function (grunt) {
     // JS distribution task.
     grunt.registerTask('dist-js', ['concat', 'jshint', 'uglify']);
 
-    // CSS distribution task.
-    //grunt.registerTask('dist-css', ['recess']);
 
     // Full distribution task.
-    grunt.registerTask('dist', ['clean', 'dist-js', 'copy']);
+    grunt.registerTask('dist', ['clean', 'less', 'dist-js', 'copy']);
 
     // Default task.
     //grunt.registerTask('default', ['test', 'dist']);

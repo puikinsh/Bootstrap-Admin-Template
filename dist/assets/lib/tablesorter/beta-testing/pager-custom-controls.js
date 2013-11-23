@@ -1,15 +1,23 @@
-﻿/*
+/*!
  * custom pager controls - beta testing
+  initialize custom pager script BEFORE initializing tablesorter/tablesorter pager
+  custom pager looks like this:
+  1 | 2 … 5 | 6 | 7 … 99 | 100
+    _       _   _        _     adjacentSpacer
+        _           _          distanceSpacer
+  _____               ________ ends (2 default)
+          _________            aroundCurrent (1 default)
+
  */
 /*jshint browser:true, jquery:true, unused:false, loopfunc:true */
-/*global jQuery: false, localStorage: false, navigator: false */
+/*global jQuery: false */
 
 ;(function($){
 "use strict";
 
 $.tablesorter = $.tablesorter || {};
 
-$.tablesorter.customPagerControls = function(options) {
+$.tablesorter.customPagerControls = function(settings) {
 	var defaults = {
 		table          : 'table',
 		pager          : '.pager',
@@ -23,63 +31,64 @@ $.tablesorter.customPagerControls = function(options) {
 		distanceSpacer : ' &#133; ',               // spacer for page numbers away from each other (ellipsis)
 		addKeyboard    : true                      // add left/right keyboard arrows to change current page
 	},
-	o = $.extend({}, defaults, options),
-	$table = $(o.table);
+	options = $.extend({}, defaults, settings),
+	$table = $(options.table);
 
 	$table
 		.on('pagerInitialized pagerComplete', function (e, c) {
-			var i, pages = $('<div/>'), t = [],
+			var indx, pages = $('<div/>'), pageArray = [],
 			cur = c.page + 1,
-			start = cur > 1 ? (c.totalPages - cur < o.aroundCurrent ? -(o.aroundCurrent + 1) + (c.totalPages - cur) : -o.aroundCurrent) : 0,
-			end = cur < o.aroundCurrent + 1 ? o.aroundCurrent + 3 - cur : o.aroundCurrent + 1;
-			for (i = start; i < end; i++) {
-				if (cur + i >= 1 && cur + i < c.totalPages) { t.push( cur + i ); }
+			start = cur > 1 ? (c.totalPages - cur < options.aroundCurrent ? -(options.aroundCurrent + 1) + (c.totalPages - cur) : -options.aroundCurrent) : 0,
+			end = cur < options.aroundCurrent + 1 ? options.aroundCurrent + 3 - cur : options.aroundCurrent + 1;
+			for (indx = start; indx < end; indx++) {
+				if (cur + indx >= 1 && cur + indx < c.totalPages) { pageArray.push( cur + indx ); }
 			}
 			// include first and last pages (ends) in the pagination
-			for (i = 0; i < o.ends; i++){
-				if ($.inArray(i + 1, t) === -1) { t.push(i + 1); }
-				if ($.inArray(c.totalPages - i, t) === -1) { t.push(c.totalPages - i); }
+			for (indx = 0; indx < options.ends; indx++){
+				if ($.inArray(indx + 1, pageArray) === -1) { pageArray.push(indx + 1); }
+				if ($.inArray(c.totalPages - indx, pageArray) === -1) { pageArray.push(c.totalPages - indx); }
 			}
 			// sort the list
-			t = t.sort(function(a, b){ return a - b; });
+			pageArray = pageArray.sort(function(a, b){ return a - b; });
 			// make links and spacers
-			$.each(t, function(j, v){
+			$.each(pageArray, function(indx, value){
 				pages
-					.append( $(o.link.replace(/\{page\}/g, v)).toggleClass(o.currentClass, v === cur).attr('data-page', v) )
-					.append( '<span>' + (j < t.length - 1 && ( t[j+1] - 1 !== v ) ? o.distanceSpacer : ( j >= t.length - 1 ? '' : o.adjacentSpacer )) + '</span>' );
+					.append( $(options.link.replace(/\{page\}/g, value)).toggleClass(options.currentClass, value === cur).attr('data-page', value) )
+					.append( '<span>' + (indx < pageArray.length - 1 && ( pageArray[ indx + 1 ] - 1 !== value ) ? options.distanceSpacer :
+						( indx >= pageArray.length - 1 ? '' : options.adjacentSpacer )) + '</span>' );
 			});
 			$('.pagecount').html(pages.html());
 		});
 
 	// set up pager controls
-	$(o.pager).find(o.pageSize).on('click', function () {
+	$(options.pager).find(options.pageSize).on('click', function () {
 		$(this)
-		.addClass(o.currentClass)
+		.addClass(options.currentClass)
 		.siblings()
-		.removeClass(o.currentClass);
+		.removeClass(options.currentClass);
 		$table.trigger('pageSize', $(this).html());
 		return false;
 	}).end()
-	.on('click', o.currentPage, function(){
+	.on('click', options.currentPage, function(){
 		$(this)
-		.addClass(o.currentClass)
+		.addClass(options.currentClass)
 		.siblings()
-		.removeClass(o.currentClass);
+		.removeClass(options.currentClass);
 		$table.trigger('pageSet', $(this).attr('data-page'));
 		return false;
 	});
 
 	// make right/left arrow keys work
-	if (o.addKeyboard) {
-		$(document).on('keydown', function(e){
+	if (options.addKeyboard) {
+		$(document).on('keydown', function(events){
 			// ignore arrows inside form elements
-			if (/input|select|textarea/i.test(e.target.tagName)) { return; }
-			if (e.which === 37) {
+			if (/input|select|textarea/i.test(events.target.tagName)) { return; }
+			if (events.which === 37) {
 				// left
-				$(o.pager).find(o.currentPage).filter('.' + o.currentClass).prevAll(':not(span):first').click();
-			} else if (e.which === 39) {
+				$(options.pager).find(options.currentPage).filter('.' + options.currentClass).prevAll(':not(span):first').click();
+			} else if (events.which === 39) {
 				// right
-				$(o.pager).find(o.currentPage).filter('.' + o.currentClass).nextAll(':not(span):first').click();
+				$(options.pager).find(options.currentPage).filter('.' + options.currentClass).nextAll(':not(span):first').click();
 			}
 		});
 	}

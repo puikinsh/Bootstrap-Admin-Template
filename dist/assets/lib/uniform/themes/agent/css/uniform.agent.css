@@ -272,7 +272,7 @@ div.button {
     background-position: right -622px;
     height: 24px;
     margin-left: 13px;
-    padding: 9px 15px 0 2px; }
+    padding: 5px 15px 5px 2px; }
   div.button.active {
     background-position: 0 -782px; }
     div.button.active span {

@@ -1,24 +1,13 @@
 
 body {
     padding-top: 40px;
-    background: url("../img/pattern/always_grey.png") repeat rgba(68, 68, 68, .9);
 }
 
 .orange {
     color: orange;
 }
 
-#main {
-    width: 80%;
-    position: relative;
-    margin: 0 auto;
-    -moz-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
-    -webkit-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
-    -o-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
-    box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
-    color: #999;
-    padding: 20px 20px 0;
-}
+
 
 .logo {
     position: relative;

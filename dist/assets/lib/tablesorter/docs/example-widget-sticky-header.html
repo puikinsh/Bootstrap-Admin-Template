@@ -60,7 +60,7 @@
 });</script>
 <script>
 $(function() {
-	$('link.theme').each(function(){ this.disabled = true; });
+	$('link.theme, link.ui-theme').each(function(){ this.disabled = true; });
 
 	var themes = 'default blue green grey ice black-ice dark dropbox',
 		i, o = '', t = themes.split(' ');
@@ -72,13 +72,18 @@ $(function() {
 		.append(o)
 		.change(function(){
 			var theme = $(this).val().toLowerCase(),
-				files = $('link.theme, link.ui-theme'); // ui-theme is added by the themeswitcher
-			files.each(function(){ this.disabled = true; });
-			files.filter('[href*="' + (theme === 'jui' ? 'ui' : theme) + '"]').each(function(){ this.disabled = false; });
+				name = theme === 'jui' ? 'ui' : 'theme.' + theme,
+				// ui-theme is added by the themeswitcher
+				files = $('link.theme, link.ui-theme').each(function(){
+					this.disabled = true;
+				})
+			files.filter('[href$="' + name + '.css"]').each(function(){
+				this.disabled = false;
+			});
 			$('table')
 				.removeClass('tablesorter-' + t.join(' tablesorter-') + ' tablesorter-jui')
 				.addClass('tablesorter-' + theme.replace(/-/,''));
-		});
+		}).change();
 });
 </script>
 </head>

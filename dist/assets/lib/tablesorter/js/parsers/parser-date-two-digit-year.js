@@ -17,7 +17,7 @@
 		regyyxxxx: /(\d{2})[\/\s](\d{1,2})[\/\s](\d{1,2})/
 	});
 
-	ts.formatDate = function(s, regex, format){
+	ts.formatDate = function(s, regex, format, table){
 		s = s
 			// replace separators
 			.replace(/\s+/g," ").replace(/[-.,]/g, "/")
@@ -25,10 +25,11 @@
 			.replace(regex, format);
 		var d = new Date(s),
 			y = d.getFullYear(),
+			rng = table && table.config.dateRange || range,
 			now = new Date().getFullYear();
 		// if date > 50 years old (set range), add 100 years
 		// this will work when people start using "50" and mean "2050"
-		while (now - y > range) {
+		while (now - y > rng) {
 			y += 100;
 		}
 		return d.setFullYear(y);
@@ -39,9 +40,9 @@
 		is: function() {
 			return false;
 		},
-		format: function(s) {
+		format: function(s, table) {
 			// reformat dd/mm/yy to mm/dd/19yy;
-			return ts.formatDate(s, ts.dates.regxxxxyy, "$2/$1/19$3");
+			return ts.formatDate(s, ts.dates.regxxxxyy, "$2/$1/19$3", table);
 		},
 		type: "numeric"
 	});
@@ -51,9 +52,9 @@
 		is: function() {
 			return false;
 		},
-		format: function(s) {
+		format: function(s, table) {
 			// reformat mm/dd/yy to mm/dd/19yy
-			return ts.formatDate(s, ts.dates.regxxxxyy, "$1/$2/19$3");
+			return ts.formatDate(s, ts.dates.regxxxxyy, "$1/$2/19$3", table);
 		},
 		type: "numeric"
 	});
@@ -63,9 +64,9 @@
 		is: function() {
 			return false;
 		},
-		format: function(s) {
+		format: function(s, table) {
 			// reformat yy/mm/dd to mm/dd/19yy
-			return ts.formatDate(s, ts.dates.regyyxxxx, "$2/$3/19$1");
+			return ts.formatDate(s, ts.dates.regyyxxxx, "$2/$3/19$1", table);
 		},
 		type: "numeric"
 	});

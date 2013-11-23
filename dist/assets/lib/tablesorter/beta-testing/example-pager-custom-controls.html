@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
- <meta charset="utf-8">
+	<meta charset="utf-8">
 	<title>jQuery plugin: Tablesorter 2.0 - Pager plugin, Custom Pagination</title>
 
 	<!-- jQuery -->
@@ -110,26 +110,10 @@
 
 <table class="tablesorter">
 	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Major</th>
-			<th>Sex</th>
-			<th>English</th>
-			<th>Japanese</th>
-			<th>Calculus</th>
-			<th>Geometry</th>
-		</tr>
+		<tr><th>Name</th><th>Major</th><th>Sex</th><th>English</th><th>Japanese</th><th>Calculus</th><th>Geometry</th></tr>
 	</thead>
 	<tfoot>
-		<tr>
-			<th>Name</th>
-			<th>Major</th>
-			<th>Sex</th>
-			<th>English</th>
-			<th>Japanese</th>
-			<th>Calculus</th>
-			<th>Geometry</th>
-		</tr>
+		<tr><th>Name</th><th>Major</th><th>Sex</th><th>English</th><th>Japanese</th><th>Calculus</th><th>Geometry</th></tr>
 		<tr>
 			<td colspan="7">
 				<div class="pager"> <span class="left">
@@ -176,7 +160,6 @@
 		<tr><td>Student21</td><td>Languages</td><td>male</td><td>50</td><td>45</td><td>100</td><td>100</td></tr>
 		<tr><td>Student22</td><td>Mathematics</td><td>male</td><td>100</td><td>99</td><td>100</td><td>90</td></tr>
 		<tr><td>Student23</td><td>Languages</td><td>female</td><td>85</td><td>80</td><td>80</td><td>80</td></tr>
-		<tr><td>student23</td><td>Mathematics</td><td>male</td><td>82</td><td>77</td><td>0</td><td>79</td></tr>
 		<tr><td>student24</td><td>Languages</td><td>female</td><td>100</td><td>91</td><td>13</td><td>82</td></tr>
 		<tr><td>student25</td><td>Mathematics</td><td>male</td><td>22</td><td>96</td><td>82</td><td>53</td></tr>
 		<tr><td>student26</td><td>Languages</td><td>female</td><td>37</td><td>29</td><td>56</td><td>59</td></tr>
@@ -1153,6 +1136,7 @@
 		<tr><td>student997</td><td>Mathematics</td><td>male</td><td>73</td><td>33</td><td>42</td><td>53</td></tr>
 		<tr><td>student998</td><td>Languages</td><td>female</td><td>64</td><td>10</td><td>2</td><td>31</td></tr>
 		<tr><td>student999</td><td>Mathematics</td><td>male</td><td>91</td><td>93</td><td>16</td><td>35</td></tr>
+		<tr><td>student1000</td><td>Mathematics</td><td>male</td><td>82</td><td>77</td><td>0</td><td>79</td></tr>
 	</tbody>
 </table>
 
@@ -1162,7 +1146,50 @@
 	</div>
 	<h1>HTML</h1>
 	<div>
-		<pre class="prettyprint lang-html"></pre>
+		<pre class="prettyprint lang-html">&lt;table class=&quot;tablesorter&quot;&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Major&lt;/th&gt;&lt;th&gt;Sex&lt;/th&gt;&lt;th&gt;English&lt;/th&gt;&lt;th&gt;Japanese&lt;/th&gt;&lt;th&gt;Calculus&lt;/th&gt;&lt;th&gt;Geometry&lt;/th&gt;&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tfoot&gt;
+		&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Major&lt;/th&gt;&lt;th&gt;Sex&lt;/th&gt;&lt;th&gt;English&lt;/th&gt;&lt;th&gt;Japanese&lt;/th&gt;&lt;th&gt;Calculus&lt;/th&gt;&lt;th&gt;Geometry&lt;/th&gt;&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td colspan=&quot;7&quot;&gt;
+				&lt;div class=&quot;pager&quot;&gt;
+					&lt;nav class=&quot;left&quot;&gt;
+						# per page:
+						&lt;a href=&quot;#&quot; class=&quot;current&quot;&gt;10&lt;/a&gt; |
+						&lt;a href=&quot;#&quot;&gt;25&lt;/a&gt; |
+						&lt;a href=&quot;#&quot;&gt;50&lt;/a&gt; |
+						&lt;a href=&quot;#&quot;&gt;100&lt;/a&gt;
+					&lt;/nav&gt;
+					&lt;nav class=&quot;right&quot;&gt;
+						&lt;span class=&quot;prev&quot;&gt;
+							&lt;img src=&quot;icons/prev.png&quot; /&gt; Prev&amp;nbsp;
+						&lt;/span&gt;
+						&lt;span class=&quot;pagecount&quot;&gt;&lt;/span&gt;
+						&amp;nbsp;&lt;span class=&quot;next&quot;&gt;Next
+							&lt;img src=&quot;icons/next.png&quot; /&gt;
+						&lt;/span&gt;
+					&lt;/nav&gt;
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tfoot&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;&lt;td&gt;Student01&lt;/td&gt;&lt;td&gt;Languages&lt;/td&gt;&lt;td&gt;male&lt;/td&gt;&lt;td&gt;80&lt;/td&gt;&lt;td&gt;70&lt;/td&gt;&lt;td&gt;75&lt;/td&gt;&lt;td&gt;80&lt;/td&gt;&lt;/tr&gt;
+		&lt;tr&gt;&lt;td&gt;Student02&lt;/td&gt;&lt;td&gt;Mathematics&lt;/td&gt;&lt;td&gt;male&lt;/td&gt;&lt;td&gt;90&lt;/td&gt;&lt;td&gt;88&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;td&gt;90&lt;/td&gt;&lt;/tr&gt;
+		&lt;tr&gt;&lt;td&gt;Student03&lt;/td&gt;&lt;td&gt;Languages&lt;/td&gt;&lt;td&gt;female&lt;/td&gt;&lt;td&gt;85&lt;/td&gt;&lt;td&gt;95&lt;/td&gt;&lt;td&gt;80&lt;/td&gt;&lt;td&gt;85&lt;/td&gt;&lt;/tr&gt;
+		&lt;tr&gt;&lt;td&gt;Student04&lt;/td&gt;&lt;td&gt;Languages&lt;/td&gt;&lt;td&gt;male&lt;/td&gt;&lt;td&gt;60&lt;/td&gt;&lt;td&gt;55&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;/tr&gt;
+		&lt;tr&gt;&lt;td&gt;Student05&lt;/td&gt;&lt;td&gt;Languages&lt;/td&gt;&lt;td&gt;female&lt;/td&gt;&lt;td&gt;68&lt;/td&gt;&lt;td&gt;80&lt;/td&gt;&lt;td&gt;95&lt;/td&gt;&lt;td&gt;80&lt;/td&gt;&lt;/tr&gt;
+		&lt;tr&gt;&lt;td&gt;Student06&lt;/td&gt;&lt;td&gt;Mathematics&lt;/td&gt;&lt;td&gt;male&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;td&gt;99&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;td&gt;90&lt;/td&gt;&lt;/tr&gt;
+		&lt;tr&gt;&lt;td&gt;Student07&lt;/td&gt;&lt;td&gt;Mathematics&lt;/td&gt;&lt;td&gt;male&lt;/td&gt;&lt;td&gt;85&lt;/td&gt;&lt;td&gt;68&lt;/td&gt;&lt;td&gt;90&lt;/td&gt;&lt;td&gt;90&lt;/td&gt;&lt;/tr&gt;
+		&lt;tr&gt;&lt;td&gt;Student08&lt;/td&gt;&lt;td&gt;Languages&lt;/td&gt;&lt;td&gt;male&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;td&gt;90&lt;/td&gt;&lt;td&gt;90&lt;/td&gt;&lt;td&gt;85&lt;/td&gt;&lt;/tr&gt;
+		&lt;tr&gt;&lt;td&gt;Student09&lt;/td&gt;&lt;td&gt;Mathematics&lt;/td&gt;&lt;td&gt;male&lt;/td&gt;&lt;td&gt;80&lt;/td&gt;&lt;td&gt;50&lt;/td&gt;&lt;td&gt;65&lt;/td&gt;&lt;td&gt;75&lt;/td&gt;&lt;/tr&gt;
+		&lt;tr&gt;&lt;td&gt;Student10&lt;/td&gt;&lt;td&gt;Languages&lt;/td&gt;&lt;td&gt;male&lt;/td&gt;&lt;td&gt;85&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;td&gt;90&lt;/td&gt;&lt;/tr&gt;
+		&lt;!-- ... --&gt;
+		&lt;tr&gt;&lt;td&gt;student999&lt;/td&gt;&lt;td&gt;Mathematics&lt;/td&gt;&lt;td&gt;male&lt;/td&gt;&lt;td&gt;91&lt;/td&gt;&lt;td&gt;93&lt;/td&gt;&lt;td&gt;16&lt;/td&gt;&lt;td&gt;35&lt;/td&gt;&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</pre>
 	</div>
 
 </div>

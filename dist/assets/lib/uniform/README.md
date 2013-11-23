@@ -67,6 +67,13 @@ You can pass in extra parameters to control certain aspects of Uniform. To pass 
       param3: value
     });
 
+For example to translate upload button text and input holder to German:
+
+    $("select").uniform({
+      fileDefaultText: 'Keine Datei ausgewählt',
+      fileBtnText: 'Wählen Sie Datei',
+    });
+
 There is a separate listing of global defaults.  You access them by using the `defaults` property.  *Note: This property name changed in v2.0.*
 
     $.uniform.defaults.checkedClass = "uniformCheckedClass";

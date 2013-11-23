@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
- <meta charset="utf-8">
+	<meta charset="utf-8">
 	<title>jQuery plugin: Tablesorter 2.0 - Grouping Rows Widget</title>
 
 	<!-- jQuery -->
@@ -54,8 +54,9 @@
 	}</style>
 
 	<!-- Tablesorter: required -->
-	<link rel="stylesheet" href="../css/theme.blue.css">
+	<link href="../css/theme.blue.css" rel="stylesheet">
 	<script src="../js/jquery.tablesorter.js"></script>
+	<script src="../js/jquery.tablesorter.widgets.js"></script>
 
 	<!-- grouping widget -->
 	<script src="../js/parsers/parser-input-select.js"></script>
@@ -73,46 +74,56 @@
 	<script id="js">$(function(){
 
 	$("table").tablesorter({
-		theme : 'blue',
+		theme : "blue",
 		headers: {
-			0: { sorter: 'checkbox' },
-			3: { sorter: 'select' },
-			6: { sorter: 'inputs' }
+			0: { sorter: "checkbox" },
+			3: { sorter: "select" },
+			6: { sorter: "inputs" }
 		},
-		widgets: ['group'],
+		widgets: [ "group", "columns", "zebra" ],
 		widgetOptions: {
 			group_collapsible : true,  // make the group header clickable and collapse the rows below it.
 			group_collapsed   : false, // start with all groups collapsed (if true)
-			group_count       : ' ({num})', // if not false, the "{num}" string is replaced with the number of rows in the group
+			group_count       : " ({num})", // if not false, the "{num}" string is replaced with the number of rows in the group
+
 			// change these default date names based on your language preferences
-			group_months      : [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ],
-			group_week        : [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ],
-			group_time        : [ 'AM', 'PM' ],
+			group_months      : [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ],
+			group_week        : [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ],
+			group_time        : [ "AM", "PM" ],
+
+			// this function is used when "group-date" is set to create the date string
+			// you can just return date, date.toLocaleString(), date.toLocaleDateString() or d.toLocaleTimeString()
+			// reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#Conversion_getter
+			group_dateString  : function(date) {
+				return date.toLocaleString();
+			},
+
 			group_formatter   : function(txt, col, table, c, wo) {
 				// txt = current text; col = current column
 				// table = current table (DOM); c = table.config; wo = table.config.widgetOptions
-				if (col === 7 && txt.indexOf('GMT') > 0) {
+				if (col === 7 && txt.indexOf("GMT") > 0) {
 					// remove "GMT-0000 (Xxxx Standard Time)" from the end of the full date
-					txt = txt.substring(0, txt.indexOf('GMT'));
+					txt = txt.substring(0, txt.indexOf("GMT"));
 				}
 				// If there are empty cells, name the group "Empty"
 				return txt === "" ? "Empty" : txt;
 			},
+
 			group_callback    : function($cell, $rows, column, table){
 				// callback allowing modification of the group header labels
-				// $cell = current table cell (containing group header cells '.group-name' & '.group-count'
+				// $cell = current table cell (containing group header cells ".group-name" & ".group-count"
 				// $rows = all of the table rows for the current group; table = current table (DOM)
 				// column = current column being sorted/grouped
 				if (column === 2) {
 					var subtotal = 0;
 					$rows.each(function(){
-						subtotal += parseInt( $(this).find('td').eq(column).text() );
+						subtotal += parseInt( $(this).find("td").eq(column).text() );
 					});
-					$cell.find('.group-count').append('; subtotal: ' + subtotal );
+					$cell.find(".group-count").append("; subtotal: " + subtotal );
 				}
 			},
 			// event triggered on the table when the grouping widget has finished work
-			group_complete    : 'groupingComplete'
+			group_complete    : "groupingComplete"
 		}
 	});
 
@@ -137,6 +148,14 @@
 		<ul>
 			<li>This widget will <strong>only work</strong> in tablesorter version 2.8+ and jQuery version 1.7+.</li>
 			<li>Please do not use this widget in very large tables (it might be really slow) <del>or when your table includes multiple tbodies</del>.</li>
+			<li>In <span class="version">v2.14</span>, added
+				<ul>
+					<li><code>group_dateString</code> option which is a function that allows you to format the date string when using the <code>group-date</code> header class name. This is the default function:
+						<pre class="prettyprint lang-js">group_dateString  : function(date) { return date.toLocaleString(); }</pre>
+					Other functions that can be used are <code>date</code> (alone), <code>date.toLocaleString()</code>, <code>date.toLocaleDateString()</code> or <code>d.toLocaleTimeString()</code>. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#Conversion_getter">this reference</a> for more details.</li>
+				</ul>
+			</li>
+
 			<li>In <span class="version">v2.13</span>, added <code>group_separator</code> option &amp; <code>group-separator-#</code> header class name. To see this in action, check out the <a href="example-parsers-file-type.html">file type parser demo</a>.</li>
 			<li>In <span class="version">v2.12</span>, added <code>group_callback</code> &amp; <code>group_complete</code> options. See options section below for details.</li>
 			<li>In <span class="version">v2.11</span>:
@@ -144,7 +163,7 @@
 					<li>The grouping widget now works across multiple tbodies.</li>
 					<li>Added <code>group-false</code> header option which disables the grouping widget for a specific column.</li>
 					<li>Added the <code>group_collapsed</code> option - get more details in the options block below.</li>
-					<li>You can now toggle <strong>all</strong> group rows by holding down the shift key while clicking on a group header.</li>
+					<li>You can now toggle <strong>all</strong> group rows by holding down the <kbd>Shift</kbd> key while clicking on a group header.</li>
 					<li>This widget now works properly with the pager addon (pager addon updated).</li>
 				</ul>
 			</li>
@@ -216,9 +235,9 @@
 
 <h1>Demo</h1>
 
-<span class="label">Numeric column:</span> <div id="slider0"></div> <span class="numberclass"></span> (includes subtotals)<br>
-<span class="label">Animals column:</span> <div id="slider1"></div> <span class="animalclass"></span><br>
-<span class="label">Date column:</span> <div id="slider2"></div> <span class="dateclass"></span>
+<span class="demo-label">Numeric column:</span> <div id="slider0"></div> <span class="numberclass"></span> (includes subtotals)<br>
+<span class="demo-label">Animals column:</span> <div id="slider1"></div> <span class="animalclass"></span><br>
+<span class="demo-label">Date column:</span> <div id="slider2"></div> <span class="dateclass"></span>
 
 <div id="demo"><table class="tablesorter">
 	<thead>
@@ -266,64 +285,20 @@
 	<h1>Page Header</h1>
 	<div>
 		<pre class="prettyprint lang-html">&lt;!-- Tablesorter: required --&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;../css/theme.blue.css&quot;&gt;
+&lt;link href=&quot;../css/theme.blue.css&quot; rel=&quot;stylesheet&quot;&gt;
 &lt;script src=&quot;../js/jquery.tablesorter.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../js/jquery.tablesorter.widgets.js&quot;&gt;&lt;/script&gt;
 
 &lt;!-- Grouping widget --&gt;
 &lt;script src=&quot;../js/parsers/parser-input-select.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;../js/widgets/widget-grouping.js&quot;&gt;&lt;/script&gt;
-
-&lt;script&gt;
-$(function(){
-
-  $(&quot;table&quot;).tablesorter({
-    theme : &#39;blue&#39;,
-    headers: {
-      0: { sorter: 'checkbox' },
-      3: { sorter: 'select' },
-      6: { sorter: 'inputs' }
-    },
-    widgets: [&#39;group&#39;],
-    widgetOptions: {
-      group_collapsible : true,       // make the group header clickable and collapse the rows below it.
-      group_collapsed   : false,      // start with all groups collapsed
-      group_count       : &#39; ({num})&#39;, // if not false, the &quot;{num}&quot; string is replaced with the number of rows in the group
-      // change these default date names based on your language preferences
-      group_months      : [ &#39;Jan&#39;, &#39;Feb&#39;, &#39;Mar&#39;, &#39;Apr&#39;, &#39;May&#39;, &#39;Jun&#39;, &#39;Jul&#39;, &#39;Aug&#39;, &#39;Sep&#39;, &#39;Oct&#39;, &#39;Nov&#39;, &#39;Dec&#39; ],
-      group_week        : [ &#39;Sunday&#39;, &#39;Monday&#39;, &#39;Tuesday&#39;, &#39;Wednesday&#39;, &#39;Thursday&#39;, &#39;Friday&#39;, &#39;Saturday&#39; ],
-      group_time        : [ &#39;AM&#39;, &#39;PM&#39; ],
-      group_formatter   : function(txt, col, table, c, wo) {
-        // txt = current text; col = current column
-        // table = current table (DOM); c = table.config; wo = table.config.widgetOptions
-        if (col === 7 && txt.indexOf('GMT') &gt; 0) {
-          // remove &quot;GMT-0000 (xxxx Standard Time)&quot; from the end of the full date
-          txt = txt.substring(0, txt.indexOf(&#39;GMT&#39;));
-        }
-        // If there are empty cells, name the group "Empty"
-        return txt === &quot;&quot; ? &quot;Empty&quot; : txt;
-      },
-      // add a group total to the "Numeric" column
-      group_callback    : function($cell, $rows, column, table){
-        // callback allowing modification of the group header labels
-        // $cell = current table cell (containing group header cells '.group-name' & '.group-count'
-        // $rows = all of the table rows for the current group; table = current table (DOM)
-        // column = current column being sorted/grouped
-        if (column === 2) {
-          var subtotal = 0;
-          $rows.each(function(){
-            subtotal += parseInt( $(this).find('td').eq(column).text() );
-          });
-          $cell.find('.group-count').append('; subtotal: ' + subtotal );
-        }
-      },
-      // event triggered on the table when the grouping widget has finished work
-      group_complete    : 'groupingComplete'
-    }
-  });
-
-});
-&lt;/script&gt;</pre>
+&lt;script src=&quot;../js/widgets/widget-grouping.js&quot;&gt;&lt;/script&gt;</pre>
 	</div>
+
+	<h1>Script</h1>
+	<div id="javascript">
+		<pre class="prettyprint lang-js"></pre>
+	</div>
+
 	<h1>CSS</h1>
 	<div id="css">
 		<pre class="prettyprint lang-css"></pre>

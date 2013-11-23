@@ -61,7 +61,7 @@ scripts: $(function() { dashboard(); });
 	<span class="label label-danger">2</span>
     </a>
     <a class="quick-btn" href="#">
-	<i class="fa fa-building fa-2x"></i>
+	<i class="fa fa-building-o fa-2x"></i>
 	<span>No Label</span>
     </a>
     <a class="quick-btn" href="#">
@@ -107,13 +107,13 @@ scripts: $(function() { dashboard(); });
 		<table class="table table-condensed table-hovered sortableTable">
 		    <thead>
 			<tr>
-			    <th>Country <i class="icon-sort"></i><i class="icon-sort-down"></i><i class="icon-sort-up"></i></th>
-			    <th>Visit <i class="icon-sort"></i><i class="icon-sort-down"></i><i class="icon-sort-up"></i></th>
-			    <th>Time <i class="icon-sort"></i><i class="icon-sort-down"></i><i class="icon-sort-up"></i></th>
+			    <th>Country <i class="fa fa-sort"></i><i class="fa fa-sort-asc"></i><i class="fa fa-sort-desc"></i></th>
+			    <th>Visit <i class="fa fa-sort"></i><i class="fa fa-sort-asc"></i><i class="fa fa-sort-desc"></i></th>
+			    <th>Time <i class="fa fa-sort"></i><i class="fa fa-sort-asc"></i><i class="fa fa-sort-desc"></i></th>
 			</tr>
 		    </thead>
 		    <tbody>
-			<tr>
+			<tr class="active">
 			    <td>Andorra</td>
 			    <td>1126</td>
 			    <td>00:00:15</td>
@@ -123,12 +123,12 @@ scripts: $(function() { dashboard(); });
 			    <td>350</td>
 			    <td>00:01:20</td>
 			</tr>
-			<tr class="error">
+			<tr class="danger">
 			    <td>Paraguay</td>
 			    <td>43</td>
 			    <td>00:00:30</td>
 			</tr>
-			<tr class="info">
+			<tr class="warning">
 			    <td>Malta</td>
 			    <td>547</td>
 			    <td>00:10:20</td>

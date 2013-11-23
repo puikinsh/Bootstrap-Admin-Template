@@ -33,7 +33,7 @@ var styleSwitcher = {
                 complete: function () {
                     yepnope([
                         {load: 'less!assets/less/theme.less'},
-                        {load: 'assets/lib/less-1.5.0.min.js',
+                        {load: 'assets/lib/less-1.5.1.min.js',
                             complete: function () {
 
 

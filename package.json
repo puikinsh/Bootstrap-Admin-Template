@@ -1,34 +1,35 @@
 {
-    "name": "Bootstrap-Admin-Template",
-    "version": "2.1.0",
-    "author": {
-        "name": "Osman Nuri Okumuş",
-        "email": "onokumus@gmail.com",
-        "url": "https://github.com/onokumus"
-    },
-    "description": "Twitter Bootstrap Admin Template",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/onokumus/Bootstrap-Admin-Template"
-    },
-    "bugs": {
-        "url": "https://github.com/onokumus/Bootstrap-Admin-Template/issues"
-    },
-    "licenses": "MIT",
-    "devDependencies": {
-	"bower":"~1.2.7",
-	"less":"~1.5.0",
-	"grunt-cli": "~0.1.9",
-        "grunt": "~0.4.1",
-        "assemble": "~0.4.17",
-        "grunt-contrib-connect": "~0.5.0",
-        "grunt-contrib-clean": "~0.5.0",
-        "grunt-contrib-concat": "~0.3.0",
-        "grunt-contrib-jshint": "~0.7.0",
-        "grunt-contrib-uglify": "~0.2.5",
-        "grunt-contrib-qunit": "~0.3.0",
-        "grunt-contrib-watch": "~0.5.3",
-        "grunt-contrib-copy": "~0.4.1"
-    }
+  "name": "Bootstrap-Admin-Template",
+  "version": "2.1.0",
+  "author": {
+    "name": "Osman Nuri Okumuş",
+    "email": "onokumus@gmail.com",
+    "url": "https://github.com/onokumus"
+  },
+  "description": "Twitter Bootstrap Admin Template",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onokumus/Bootstrap-Admin-Template"
+  },
+  "bugs": {
+    "url": "https://github.com/onokumus/Bootstrap-Admin-Template/issues"
+  },
+  "licenses": "MIT",
+  "devDependencies": {
+    "bower": "~1.2.7",
+    "grunt-cli": "~0.1.11",
+    "grunt": "~0.4.1",
+    "assemble": "~0.4.27",
+    "grunt-contrib-connect": "~0.5.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-jshint": "~0.7.0",
+    "grunt-contrib-uglify": "~0.2.5",
+    "grunt-contrib-qunit": "~0.3.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-copy": "~0.4.1",
+    "assemble-less": "~0.5.3",
+    "pretty": "~0.1.1"
+  }
 }

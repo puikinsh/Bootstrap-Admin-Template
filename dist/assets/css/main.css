@@ -1,6 +1,6 @@
 /**
 * Bootstrap-Admin-Template by onokumus@gmail.com
-* Version : 2.1.0
+* Version : 2.1.1
 * Author : Osman Nuri Okumuş
 * Copyright 2013
 */
@@ -639,7 +639,7 @@ body.padTop53 {
 }
 .box header {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#ffffff), to(#f2f2f2));
-  background-image: -webkit-linear-gradient(top, #ffffff, 0%, #f2f2f2, 100%);
+  background-image: -webkit-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
   background-image: -moz-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
   background-image: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 100%);
   background-repeat: repeat-x;
@@ -680,7 +680,7 @@ body.padTop53 {
 }
 .box.inverse header {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#333333), to(#222222));
-  background-image: -webkit-linear-gradient(top, #333333, 0%, #222222, 100%);
+  background-image: -webkit-linear-gradient(top, #333333 0%, #222222 100%);
   background-image: -moz-linear-gradient(top, #333333 0%, #222222 100%);
   background-image: linear-gradient(to bottom, #333333 0%, #222222 100%);
   background-repeat: repeat-x;
@@ -695,7 +695,7 @@ body.padTop53 {
 }
 .box.primary header {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#428bca), to(#3071a9));
-  background-image: -webkit-linear-gradient(top, #428bca, 0%, #3071a9, 100%);
+  background-image: -webkit-linear-gradient(top, #428bca 0%, #3071a9 100%);
   background-image: -moz-linear-gradient(top, #428bca 0%, #3071a9 100%);
   background-image: linear-gradient(to bottom, #428bca 0%, #3071a9 100%);
   background-repeat: repeat-x;
@@ -710,7 +710,7 @@ body.padTop53 {
 }
 .box.success header {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#5cb85c), to(#449d44));
-  background-image: -webkit-linear-gradient(top, #5cb85c, 0%, #449d44, 100%);
+  background-image: -webkit-linear-gradient(top, #5cb85c 0%, #449d44 100%);
   background-image: -moz-linear-gradient(top, #5cb85c 0%, #449d44 100%);
   background-image: linear-gradient(to bottom, #5cb85c 0%, #449d44 100%);
   background-repeat: repeat-x;
@@ -725,7 +725,7 @@ body.padTop53 {
 }
 .box.warning header {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#f0ad4e), to(#ec971f));
-  background-image: -webkit-linear-gradient(top, #f0ad4e, 0%, #ec971f, 100%);
+  background-image: -webkit-linear-gradient(top, #f0ad4e 0%, #ec971f 100%);
   background-image: -moz-linear-gradient(top, #f0ad4e 0%, #ec971f 100%);
   background-image: linear-gradient(to bottom, #f0ad4e 0%, #ec971f 100%);
   background-repeat: repeat-x;
@@ -740,7 +740,7 @@ body.padTop53 {
 }
 .box.danger header {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#d9534f), to(#c9302c));
-  background-image: -webkit-linear-gradient(top, #d9534f, 0%, #c9302c, 100%);
+  background-image: -webkit-linear-gradient(top, #d9534f 0%, #c9302c 100%);
   background-image: -moz-linear-gradient(top, #d9534f 0%, #c9302c 100%);
   background-image: linear-gradient(to bottom, #d9534f 0%, #c9302c 100%);
   background-repeat: repeat-x;
@@ -755,7 +755,7 @@ body.padTop53 {
 }
 .box.info header {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#5bc0de), to(#31b0d5));
-  background-image: -webkit-linear-gradient(top, #5bc0de, 0%, #31b0d5, 100%);
+  background-image: -webkit-linear-gradient(top, #5bc0de 0%, #31b0d5 100%);
   background-image: -moz-linear-gradient(top, #5bc0de 0%, #31b0d5 100%);
   background-image: linear-gradient(to bottom, #5bc0de 0%, #31b0d5 100%);
   background-repeat: repeat-x;
@@ -767,9 +767,6 @@ body.padTop53 {
   border-right: 1px solid #2390b0;
   -webkit-box-shadow: 1px 0px 0px #85d0e7;
   box-shadow: 1px 0px 0px #85d0e7;
-}
-.box:not(.dark) header .toolbar .nav > li > a {
-  color: #fff;
 }
 .box header .toolbar {
   float: right;
@@ -791,10 +788,6 @@ body.padTop53 {
 }
 .box header .toolbar .nav > li > a {
   padding-top: 9px;
-}
-.box header .toolbar .nav > li > a:hover,
-.box header .toolbar .nav > li > a:focus {
-  color: #222;
 }
 .box header .toolbar > .btn {
   margin-right: 4px;
@@ -824,7 +817,7 @@ body.padTop53 {
 .box.danger .dropdown-menu > li > a:hover,
 .box.danger .dropdown-menu > li > a:focus {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#d9534f), to(#c9302c));
-  background-image: -webkit-linear-gradient(top, #d9534f, 0%, #c9302c, 100%);
+  background-image: -webkit-linear-gradient(top, #d9534f 0%, #c9302c 100%);
   background-image: -moz-linear-gradient(top, #d9534f 0%, #c9302c 100%);
   background-image: linear-gradient(to bottom, #d9534f 0%, #c9302c 100%);
   background-repeat: repeat-x;
@@ -833,7 +826,7 @@ body.padTop53 {
 .box.info .dropdown-menu > li > a:hover,
 .box.info .dropdown-menu > li > a:focus {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#5bc0de), to(#31b0d5));
-  background-image: -webkit-linear-gradient(top, #5bc0de, 0%, #31b0d5, 100%);
+  background-image: -webkit-linear-gradient(top, #5bc0de 0%, #31b0d5 100%);
   background-image: -moz-linear-gradient(top, #5bc0de 0%, #31b0d5 100%);
   background-image: linear-gradient(to bottom, #5bc0de 0%, #31b0d5 100%);
   background-repeat: repeat-x;
@@ -842,7 +835,7 @@ body.padTop53 {
 .box.success .dropdown-menu > li > a:hover,
 .box.success .dropdown-menu > li > a:focus {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#5cb85c), to(#449d44));
-  background-image: -webkit-linear-gradient(top, #5cb85c, 0%, #449d44, 100%);
+  background-image: -webkit-linear-gradient(top, #5cb85c 0%, #449d44 100%);
   background-image: -moz-linear-gradient(top, #5cb85c 0%, #449d44 100%);
   background-image: linear-gradient(to bottom, #5cb85c 0%, #449d44 100%);
   background-repeat: repeat-x;
@@ -851,7 +844,7 @@ body.padTop53 {
 .box.warning .dropdown-menu > li > a:hover,
 .box.warning .dropdown-menu > li > a:focus {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#f0ad4e), to(#ec971f));
-  background-image: -webkit-linear-gradient(top, #f0ad4e, 0%, #ec971f, 100%);
+  background-image: -webkit-linear-gradient(top, #f0ad4e 0%, #ec971f 100%);
   background-image: -moz-linear-gradient(top, #f0ad4e 0%, #ec971f 100%);
   background-image: linear-gradient(to bottom, #f0ad4e 0%, #ec971f 100%);
   background-repeat: repeat-x;
@@ -860,7 +853,7 @@ body.padTop53 {
 .box.inverse .dropdown-menu > li > a:hover,
 .box.inverse .dropdown-menu > li > a:focus {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#333333), to(#222222));
-  background-image: -webkit-linear-gradient(top, #333333, 0%, #222222, 100%);
+  background-image: -webkit-linear-gradient(top, #333333 0%, #222222 100%);
   background-image: -moz-linear-gradient(top, #333333 0%, #222222 100%);
   background-image: linear-gradient(to bottom, #333333 0%, #222222 100%);
   background-repeat: repeat-x;
@@ -1137,7 +1130,7 @@ fieldset[disabled] .btn-metis-6.active {
 }
 .btn-grad.btn-default {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#ffffff), to(#e0e0e0));
-  background-image: -webkit-linear-gradient(top, #ffffff, 0%, #e0e0e0, 100%);
+  background-image: -webkit-linear-gradient(top, #ffffff 0%, #e0e0e0 100%);
   background-image: -moz-linear-gradient(top, #ffffff 0%, #e0e0e0 100%);
   background-image: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe0e0e0', GradientType=0);
@@ -1158,7 +1151,7 @@ fieldset[disabled] .btn-metis-6.active {
 }
 .btn-grad.btn-primary {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#428bca), to(#2d6ca2));
-  background-image: -webkit-linear-gradient(top, #428bca, 0%, #2d6ca2, 100%);
+  background-image: -webkit-linear-gradient(top, #428bca 0%, #2d6ca2 100%);
   background-image: -moz-linear-gradient(top, #428bca 0%, #2d6ca2 100%);
   background-image: linear-gradient(to bottom, #428bca 0%, #2d6ca2 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca', endColorstr='#ff2d6ca2', GradientType=0);
@@ -1177,7 +1170,7 @@ fieldset[disabled] .btn-metis-6.active {
 }
 .btn-grad.btn-success {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#5cb85c), to(#419641));
-  background-image: -webkit-linear-gradient(top, #5cb85c, 0%, #419641, 100%);
+  background-image: -webkit-linear-gradient(top, #5cb85c 0%, #419641 100%);
   background-image: -moz-linear-gradient(top, #5cb85c 0%, #419641 100%);
   background-image: linear-gradient(to bottom, #5cb85c 0%, #419641 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5cb85c', endColorstr='#ff419641', GradientType=0);
@@ -1196,7 +1189,7 @@ fieldset[disabled] .btn-metis-6.active {
 }
 .btn-grad.btn-warning {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#f0ad4e), to(#eb9316));
-  background-image: -webkit-linear-gradient(top, #f0ad4e, 0%, #eb9316, 100%);
+  background-image: -webkit-linear-gradient(top, #f0ad4e 0%, #eb9316 100%);
   background-image: -moz-linear-gradient(top, #f0ad4e 0%, #eb9316 100%);
   background-image: linear-gradient(to bottom, #f0ad4e 0%, #eb9316 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff0ad4e', endColorstr='#ffeb9316', GradientType=0);
@@ -1215,7 +1208,7 @@ fieldset[disabled] .btn-metis-6.active {
 }
 .btn-grad.btn-danger {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#d9534f), to(#c12e2a));
-  background-image: -webkit-linear-gradient(top, #d9534f, 0%, #c12e2a, 100%);
+  background-image: -webkit-linear-gradient(top, #d9534f 0%, #c12e2a 100%);
   background-image: -moz-linear-gradient(top, #d9534f 0%, #c12e2a 100%);
   background-image: linear-gradient(to bottom, #d9534f 0%, #c12e2a 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9534f', endColorstr='#ffc12e2a', GradientType=0);
@@ -1234,7 +1227,7 @@ fieldset[disabled] .btn-metis-6.active {
 }
 .btn-grad.btn-info {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#5bc0de), to(#2aabd2));
-  background-image: -webkit-linear-gradient(top, #5bc0de, 0%, #2aabd2, 100%);
+  background-image: -webkit-linear-gradient(top, #5bc0de 0%, #2aabd2 100%);
   background-image: -moz-linear-gradient(top, #5bc0de 0%, #2aabd2 100%);
   background-image: linear-gradient(to bottom, #5bc0de 0%, #2aabd2 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff2aabd2', GradientType=0);
@@ -1253,7 +1246,7 @@ fieldset[disabled] .btn-metis-6.active {
 }
 .btn-grad.btn-metis-1 {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#ee465a), to(#e2152d));
-  background-image: -webkit-linear-gradient(top, #ee465a, 0%, #e2152d, 100%);
+  background-image: -webkit-linear-gradient(top, #ee465a 0%, #e2152d 100%);
   background-image: -moz-linear-gradient(top, #ee465a 0%, #e2152d 100%);
   background-image: linear-gradient(to bottom, #ee465a 0%, #e2152d 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffee465a', endColorstr='#ffe2152d', GradientType=0);
@@ -1272,7 +1265,7 @@ fieldset[disabled] .btn-metis-6.active {
 }
 .btn-grad.btn-metis-2 {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#9fd256), to(#81b931));
-  background-image: -webkit-linear-gradient(top, #9fd256, 0%, #81b931, 100%);
+  background-image: -webkit-linear-gradient(top, #9fd256 0%, #81b931 100%);
   background-image: -moz-linear-gradient(top, #9fd256 0%, #81b931 100%);
   background-image: linear-gradient(to bottom, #9fd256 0%, #81b931 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff9fd256', endColorstr='#ff81b931', GradientType=0);
@@ -1291,7 +1284,7 @@ fieldset[disabled] .btn-metis-6.active {
 }
 .btn-grad.btn-metis-3 {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#fbb450), to(#fa9a14));
-  background-image: -webkit-linear-gradient(top, #fbb450, 0%, #fa9a14, 100%);
+  background-image: -webkit-linear-gradient(top, #fbb450 0%, #fa9a14 100%);
   background-image: -moz-linear-gradient(top, #fbb450 0%, #fa9a14 100%);
   background-image: linear-gradient(to bottom, #fbb450 0%, #fa9a14 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffbb450', endColorstr='#fffa9a14', GradientType=0);
@@ -1310,7 +1303,7 @@ fieldset[disabled] .btn-metis-6.active {
 }
 .btn-grad.btn-metis-4 {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#a264e7), to(#822fdf));
-  background-image: -webkit-linear-gradient(top, #a264e7, 0%, #822fdf, 100%);
+  background-image: -webkit-linear-gradient(top, #a264e7 0%, #822fdf 100%);
   background-image: -moz-linear-gradient(top, #a264e7 0%, #822fdf 100%);
   background-image: linear-gradient(to bottom, #a264e7 0%, #822fdf 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffa264e7', endColorstr='#ff822fdf', GradientType=0);
@@ -1329,7 +1322,7 @@ fieldset[disabled] .btn-metis-6.active {
 }
 .btn-grad.btn-metis-5 {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#777777), to(#585858));
-  background-image: -webkit-linear-gradient(top, #777777, 0%, #585858, 100%);
+  background-image: -webkit-linear-gradient(top, #777777 0%, #585858 100%);
   background-image: -moz-linear-gradient(top, #777777 0%, #585858 100%);
   background-image: linear-gradient(to bottom, #777777 0%, #585858 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff777777', endColorstr='#ff585858', GradientType=0);
@@ -1348,7 +1341,7 @@ fieldset[disabled] .btn-metis-6.active {
 }
 .btn-grad.btn-metis-6 {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#00b4f5), to(#0087b8));
-  background-image: -webkit-linear-gradient(top, #00b4f5, 0%, #0087b8, 100%);
+  background-image: -webkit-linear-gradient(top, #00b4f5 0%, #0087b8 100%);
   background-image: -moz-linear-gradient(top, #00b4f5 0%, #0087b8 100%);
   background-image: linear-gradient(to bottom, #00b4f5 0%, #0087b8 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff00b4f5', endColorstr='#ff0087b8', GradientType=0);
@@ -1846,7 +1839,7 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
 }
 .pricing-table > li {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#ebeef5), to(#ffffff));
-  background-image: -webkit-linear-gradient(top, #ebeef5, 0%, #ffffff, 100%);
+  background-image: -webkit-linear-gradient(top, #ebeef5 0%, #ffffff 100%);
   background-image: -moz-linear-gradient(top, #ebeef5 0%, #ffffff 100%);
   background-image: linear-gradient(to bottom, #ebeef5 0%, #ffffff 100%);
   background-repeat: repeat-x;
@@ -1857,7 +1850,7 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
 }
 .pricing-table.dark > li {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#666666), to(#444444));
-  background-image: -webkit-linear-gradient(top, #666666, 0%, #444444, 100%);
+  background-image: -webkit-linear-gradient(top, #666666 0%, #444444 100%);
   background-image: -moz-linear-gradient(top, #666666 0%, #444444 100%);
   background-image: linear-gradient(to bottom, #666666 0%, #444444 100%);
   background-repeat: repeat-x;
@@ -1885,7 +1878,7 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
 }
 .pricing-table > li.active.primary {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#357ebd), to(#428bca));
-  background-image: -webkit-linear-gradient(top, #357ebd, 0%, #428bca, 100%);
+  background-image: -webkit-linear-gradient(top, #357ebd 0%, #428bca 100%);
   background-image: -moz-linear-gradient(top, #357ebd 0%, #428bca 100%);
   background-image: linear-gradient(to bottom, #357ebd 0%, #428bca 100%);
   background-repeat: repeat-x;
@@ -1893,7 +1886,7 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
 }
 .pricing-table > li.active.success {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#4cae4c), to(#5cb85c));
-  background-image: -webkit-linear-gradient(top, #4cae4c, 0%, #5cb85c, 100%);
+  background-image: -webkit-linear-gradient(top, #4cae4c 0%, #5cb85c 100%);
   background-image: -moz-linear-gradient(top, #4cae4c 0%, #5cb85c 100%);
   background-image: linear-gradient(to bottom, #4cae4c 0%, #5cb85c 100%);
   background-repeat: repeat-x;
@@ -1901,7 +1894,7 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
 }
 .pricing-table > li.active.warning {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#eea236), to(#f0ad4e));
-  background-image: -webkit-linear-gradient(top, #eea236, 0%, #f0ad4e, 100%);
+  background-image: -webkit-linear-gradient(top, #eea236 0%, #f0ad4e 100%);
   background-image: -moz-linear-gradient(top, #eea236 0%, #f0ad4e 100%);
   background-image: linear-gradient(to bottom, #eea236 0%, #f0ad4e 100%);
   background-repeat: repeat-x;
@@ -1909,7 +1902,7 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
 }
 .pricing-table > li.active.danger {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#d43f3a), to(#d9534f));
-  background-image: -webkit-linear-gradient(top, #d43f3a, 0%, #d9534f, 100%);
+  background-image: -webkit-linear-gradient(top, #d43f3a 0%, #d9534f 100%);
   background-image: -moz-linear-gradient(top, #d43f3a 0%, #d9534f 100%);
   background-image: linear-gradient(to bottom, #d43f3a 0%, #d9534f 100%);
   background-repeat: repeat-x;
@@ -1917,7 +1910,7 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
 }
 .pricing-table > li.active.info {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#46b8da), to(#5bc0de));
-  background-image: -webkit-linear-gradient(top, #46b8da, 0%, #5bc0de, 100%);
+  background-image: -webkit-linear-gradient(top, #46b8da 0%, #5bc0de 100%);
   background-image: -moz-linear-gradient(top, #46b8da 0%, #5bc0de 100%);
   background-image: linear-gradient(to bottom, #46b8da 0%, #5bc0de 100%);
   background-repeat: repeat-x;
@@ -2037,7 +2030,7 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
 /* BEGIN SORTABLETABLE STYLES */
 .sortableTable th {
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#ffffff), to(#f2f2f2));
-  background-image: -webkit-linear-gradient(top, #ffffff, 0%, #f2f2f2, 100%);
+  background-image: -webkit-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
   background-image: -moz-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
   background-image: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 100%);
   background-repeat: repeat-x;
@@ -2051,19 +2044,19 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
 .sortableTable th:hover {
   color: #888;
 }
-.sortableTable th.tablesorter-header i.icon-sort {
+.sortableTable th.tablesorter-header i.fa-sort {
   display: inline-block;
 }
-.sortableTable th.tablesorter-header.tablesorter-headerDesc i.icon-sort {
+.sortableTable th.tablesorter-header.tablesorter-headerDesc i.fa-sort {
   display: none;
 }
-.sortableTable th.tablesorter-header.tablesorter-headerDesc i.icon-sort-up {
+.sortableTable th.tablesorter-header.tablesorter-headerDesc i.fa-sort-desc {
   display: inline-block;
 }
-.sortableTable th.tablesorter-header.tablesorter-headerAsc i.icon-sort {
+.sortableTable th.tablesorter-header.tablesorter-headerAsc i.fa-sort {
   display: none;
 }
-.sortableTable th.tablesorter-header.tablesorter-headerAsc i.icon-sort-down {
+.sortableTable th.tablesorter-header.tablesorter-headerAsc i.fa-sort-asc {
   display: inline-block;
 }
 /* END SORTABLETABLE STYLES */
@@ -2341,19 +2334,19 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
   color: #ffffff;
 }
 .bg-primary.dker,
-.bg-primary .dker {
+.bg-primary > .dker {
   background-color: #3276b1;
 }
 .bg-primary.dk,
-.bg-primary .dk {
+.bg-primary > .dk {
   background-color: #3681c1;
 }
 .bg-primary.lt,
-.bg-primary .lt {
+.bg-primary > .lt {
   background-color: #5295ce;
 }
 .bg-primary.lter,
-.bg-primary .lter {
+.bg-primary > .lter {
   background-color: #629fd3;
 }
 .bg-success {
@@ -2361,19 +2354,19 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
   color: #ffffff;
 }
 .bg-success.dker,
-.bg-success .dker {
+.bg-success > .dker {
   background-color: #47a447;
 }
 .bg-success.dk,
-.bg-success .dk {
+.bg-success > .dk {
   background-color: #4eb24e;
 }
 .bg-success.lt,
-.bg-success .lt {
+.bg-success > .lt {
   background-color: #6abe6a;
 }
 .bg-success.lter,
-.bg-success .lter {
+.bg-success > .lter {
   background-color: #78c478;
 }
 .bg-danger {
@@ -2381,19 +2374,19 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
   color: #ffffff;
 }
 .bg-danger.dker,
-.bg-danger .dker {
+.bg-danger > .dker {
   background-color: #d2322d;
 }
 .bg-danger.dk,
-.bg-danger .dk {
+.bg-danger > .dk {
   background-color: #d5433e;
 }
 .bg-danger.lt,
-.bg-danger .lt {
+.bg-danger > .lt {
   background-color: #dd6360;
 }
 .bg-danger.lter,
-.bg-danger .lter {
+.bg-danger > .lter {
   background-color: #e07471;
 }
 .bg-warning {
@@ -2401,19 +2394,19 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
   color: #ffffff;
 }
 .bg-warning.dker,
-.bg-warning .dker {
+.bg-warning > .dker {
   background-color: #ed9c28;
 }
 .bg-warning.dk,
-.bg-warning .dk {
+.bg-warning > .dk {
   background-color: #eea43b;
 }
 .bg-warning.lt,
-.bg-warning .lt {
+.bg-warning > .lt {
   background-color: #f2b661;
 }
 .bg-warning.lter,
-.bg-warning .lter {
+.bg-warning > .lter {
   background-color: #f3be74;
 }
 .bg-info {
@@ -2421,19 +2414,19 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
   color: #ffffff;
 }
 .bg-info.dker,
-.bg-info .dker {
+.bg-info > .dker {
   background-color: #39b3d7;
 }
 .bg-info.dk,
-.bg-info .dk {
+.bg-info > .dk {
   background-color: #4ab9db;
 }
 .bg-info.lt,
-.bg-info .lt {
+.bg-info > .lt {
   background-color: #6cc7e1;
 }
 .bg-info.lter,
-.bg-info .lter {
+.bg-info > .lter {
   background-color: #7dcde5;
 }
 .bg-black {
@@ -2441,19 +2434,19 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
   color: #ffffff;
 }
 .bg-black.dker,
-.bg-black .dker {
+.bg-black > .dker {
   background-color: #0e0e0e;
 }
 .bg-black.dk,
-.bg-black .dk {
+.bg-black > .dk {
   background-color: #181818;
 }
 .bg-black.lt,
-.bg-black .lt {
+.bg-black > .lt {
   background-color: #2c2c2c;
 }
 .bg-black.lter,
-.bg-black .lter {
+.bg-black > .lter {
   background-color: #363636;
 }
 .bg-dark {
@@ -2461,19 +2454,19 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
   color: #ffffff;
 }
 .bg-dark.dker,
-.bg-dark .dker {
+.bg-dark > .dker {
   background-color: #303030;
 }
 .bg-dark.dk,
-.bg-dark .dk {
+.bg-dark > .dk {
   background-color: #3a3a3a;
 }
 .bg-dark.lt,
-.bg-dark .lt {
+.bg-dark > .lt {
   background-color: #4e4e4e;
 }
 .bg-dark.lter,
-.bg-dark .lter {
+.bg-dark > .lter {
   background-color: #585858;
 }
 .bg-light {
@@ -2481,19 +2474,19 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
   color: #333333;
 }
 .bg-light.dker,
-.bg-light .dker {
+.bg-light > .dker {
   background-color: #dadada;
 }
 .bg-light.dk,
-.bg-light .dk {
+.bg-light > .dk {
   background-color: #e4e4e4;
 }
 .bg-light.lt,
-.bg-light .lt {
+.bg-light > .lt {
   background-color: #f8f8f8;
 }
 .bg-light.lter,
-.bg-light .lter {
+.bg-light > .lter {
   background-color: #ffffff;
 }
 .bg-brillant {

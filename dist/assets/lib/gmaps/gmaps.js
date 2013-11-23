@@ -1,5 +1,5 @@
 /*!
- * GMaps.js v0.4.6
+ * GMaps.js v0.4.8
  * http://hpneo.github.com/gmaps/
  *
  * Copyright 2013, Gustavo Leon
@@ -92,7 +92,7 @@ var arrayToLatLng = function(coords, useGeoJSON) {
   var i;
 
   for (i = 0; i < coords.length; i++) {
-    if (coords[i].length > 0 && typeof(coords[i][0]) != "number") {
+    if (coords[i].length > 0 && typeof(coords[i][0]) == "object") {
       coords[i] = arrayToLatLng(coords[i], useGeoJSON);
     }
     else {
@@ -666,6 +666,10 @@ GMaps.prototype.removeMarker = function(marker) {
       this.markers[i].setMap(null);
       this.markers.splice(i, 1);
 
+      if(this.markerClusterer) {
+        this.markerClusterer.removeMarker(marker);
+      }
+
       GMaps.fire('marker_removed', marker, this);
 
       break;
@@ -1223,6 +1227,7 @@ GMaps.prototype.getRoutes = function(options) {
   request_options.unitSystem = unitSystem;
 
   delete request_options.callback;
+  delete request_options.error;
 
   var self = this,
       service = new google.maps.DirectionsService();
@@ -1234,10 +1239,15 @@ GMaps.prototype.getRoutes = function(options) {
           self.routes.push(result.routes[r]);
         }
       }
-    }
 
-    if (options.callback) {
-      options.callback(self.routes);
+      if (options.callback) {
+        options.callback(self.routes);
+      }
+    }
+    else {
+      if (options.error) {
+        options.error(result, status);
+      }
     }
   });
 };
@@ -1300,6 +1310,7 @@ GMaps.prototype.drawRoute = function(options) {
     travelMode: options.travelMode,
     waypoints: options.waypoints,
     unitSystem: options.unitSystem,
+    error: options.error,
     callback: function(e) {
       if (e.length > 0) {
         self.drawPolyline({
@@ -1324,6 +1335,7 @@ GMaps.prototype.travelRoute = function(options) {
       destination: options.destination,
       travelMode: options.travelMode,
       waypoints : options.waypoints,
+      error: options.error,
       callback: function(e) {
         //start callback
         if (e.length > 0 && options.start) {
@@ -1369,6 +1381,7 @@ GMaps.prototype.drawSteppedRoute = function(options) {
       destination: options.destination,
       travelMode: options.travelMode,
       waypoints : options.waypoints,
+      error: options.error,
       callback: function(e) {
         //start callback
         if (e.length > 0 && options.start) {
@@ -1444,6 +1457,7 @@ GMaps.Route.prototype.getRoute = function(options) {
     destination : this.destination,
     travelMode : options.travelMode,
     waypoints : this.waypoints || [],
+    error: options.error,
     callback : function() {
       self.route = e[0];
 

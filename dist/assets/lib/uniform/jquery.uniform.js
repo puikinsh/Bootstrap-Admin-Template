@@ -163,7 +163,7 @@ Enjoy!
 
     /**
      * Set or remove the "disabled" class for disabled elements, based on
-     * if the 
+     * if the element is detected to be disabled.
      *
      * @param jQuery $tag Our Uniform span/div
      * @param jQuery $el Original form element

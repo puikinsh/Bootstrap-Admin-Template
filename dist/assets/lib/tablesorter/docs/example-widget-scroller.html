@@ -48,7 +48,7 @@
 });</script>
 <script>
 $(function() {
-	$('link.theme').each(function(){ this.disabled = true; });
+	$('link.theme, link.ui-theme').each(function(){ this.disabled = true; });
 
 	var b = true, $tbl,
 		$c = $('#case'),
@@ -62,15 +62,20 @@ $(function() {
 		.append(o)
 		.change(function(){
 			var theme = $(this).val().toLowerCase(),
-				files = $('link.theme, link.ui-theme'); // ui-theme is added by the themeswitcher
-			files.each(function(){ this.disabled = true; });
-			files.filter('[href*="' + (theme === 'jui' ? 'ui' : theme) + '"]').each(function(){ this.disabled = false; });
+				name = theme === 'jui' ? 'ui' : 'theme.' + theme,
+				// ui-theme is added by the themeswitcher
+				files = $('link.theme, link.ui-theme').each(function(){
+					this.disabled = true;
+				});
+			files.filter('[href$="' + name + '.css"]').each(function(){
+				this.disabled = false;
+			});
 			$('table')
 				.removeClass('tablesorter-' + t.join(' tablesorter-') + ' tablesorter-jui')
 				.addClass('tablesorter-' + theme.replace(/-/,''));
 			// make sure columns align
 			$(window).trigger('resize');
-		});
+		}).change();
 
 	$tbl = $('.tablesorter-scroller-table table');
 	$('button').click(function(){

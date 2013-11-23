@@ -53,11 +53,12 @@
 
 	// call the tablesorter plugin
 	$("table").tablesorter({
-		theme: 'jui',
+		theme : 'jui',
+		headerTemplate : '{content}{icon}',
 		// hidden filter input/selects will resize the columns, so try to minimize the change
 		widthFixed : true,
 		// initialize zebra striping and filter widgets
-		widgets: ["zebra", "filter", "stickyHeaders", "uitheme"],
+		widgets : ["zebra", "filter", "stickyHeaders", "uitheme"],
 		widgetOptions : {
 			// jQuery selector string of an element used to reset the filters
 			filter_reset : 'button.reset',

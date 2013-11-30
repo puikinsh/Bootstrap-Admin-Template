@@ -182,6 +182,12 @@
     content: "\f107";
   }
   
+  @media (min-width: @screen-tablet){
+        > li > a > .fa.arrow {
+    display: none;
+    visibility: hidden;
+  }
+  
     li > ul {
       position: absolute;
       width: 200px;
@@ -201,11 +207,6 @@
       left: auto;
       right: 100%;
     }
-  @media (min-width: @screen-tablet){
-        > li > a > .fa.arrow {
-    display: none;
-    visibility: hidden;
-  }
   }
   @media (min-width: @screen-desktop){
     > li > a > .fa.arrow {

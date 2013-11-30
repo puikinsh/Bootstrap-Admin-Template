@@ -589,27 +589,27 @@ body.padTop53 {
 #menu .active > a > .fa.arrow:before {
   content: "\f107";
 }
-#menu li > ul {
-  position: absolute;
-  width: 200px;
-  top: 0;
-  left: 100%;
-  z-index: 1000;
-  background: #444;
-  border-top-width: 0;
-  padding: 5px 0;
-}
-#menu > li ul > li {
-  padding: 5px 10px;
-}
-.side-right #menu li > ul {
-  left: auto;
-  right: 100%;
-}
 @media (min-width: 768px) {
   #menu > li > a > .fa.arrow {
     display: none;
     visibility: hidden;
+  }
+  #menu li > ul {
+    position: absolute;
+    width: 200px;
+    top: 0;
+    left: 100%;
+    z-index: 1000;
+    background: #444;
+    border-top-width: 0;
+    padding: 5px 0;
+  }
+  #menu > li ul > li {
+    padding: 5px 10px;
+  }
+  .side-right #menu li > ul {
+    left: auto;
+    right: 100%;
   }
 }
 @media (min-width: 992px) {

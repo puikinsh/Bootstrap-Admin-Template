@@ -1,4 +1,4 @@
-/*! tablesorter Grouping widget - updated 10/18/2013
+/*! tablesorter Grouping widget - updated 11/25/2013 (core v2.14.2)
  * Requires tablesorter v2.8+ and jQuery 1.7+
  * by Rob Garrison
  */
@@ -114,23 +114,26 @@ ts.addWidget({
 						groupClass = (c.$headers.eq(column).attr('class') || '').match(/(group-\w+(-\w+)?)/g);
 						// grouping = [ 'group', '{word/separator/letter/number/date/false}', '{#/year/month/day/week/time}' ]
 						grouping = groupClass ? groupClass[0].split('-') : ['','letter',1]; // default to letter 1
-						currentGroup = cache[rowIndex] ? 
-							ts.grouping[grouping[1]]( c, c.$headers.eq(column), cache[rowIndex][column], /date/.test(groupClass) ?
-							grouping[2] : parseInt(grouping[2] || 1, 10) || 1, group, lang ) : currentGroup;
-						if (group !== currentGroup) {
-							group = currentGroup;
-							// show range if number > 1
-							if (grouping[1] === 'number' && grouping[2] > 1 && currentGroup !== '') {
-								currentGroup += ' - ' + (parseInt(currentGroup, 10) +
-									((parseInt(grouping[2],10) - 1) * (c.$headers.eq(column).hasClass(ts.css.sortAsc) ? 1 : -1)));
+						// fixes #438
+						if (ts.grouping[grouping[1]]) {
+							currentGroup = cache[rowIndex] ? 
+								ts.grouping[grouping[1]]( c, c.$headers.eq(column), cache[rowIndex][column], /date/.test(groupClass) ?
+								grouping[2] : parseInt(grouping[2] || 1, 10) || 1, group, lang ) : currentGroup;
+							if (group !== currentGroup) {
+								group = currentGroup;
+								// show range if number > 1
+								if (grouping[1] === 'number' && grouping[2] > 1 && currentGroup !== '') {
+									currentGroup += ' - ' + (parseInt(currentGroup, 10) +
+										((parseInt(grouping[2],10) - 1) * (c.$headers.eq(column).hasClass(ts.css.sortAsc) ? 1 : -1)));
+								}
+								if ($.isFunction(wo.group_formatter)) {
+									currentGroup = wo.group_formatter((currentGroup || '').toString(), column, table, c, wo) || currentGroup;
+								}
+								$rows.eq(rowIndex).before('<tr class="group-header ' + c.selectorRemove.slice(1) +
+									(wo.group_collapsed && wo.group_collapsible ? ' collapsed' : '') + '" unselectable="on"><td colspan="' +
+									c.columns + '">' + (wo.group_collapsible ? '<i/>' : '') + '<span class="group-name">' +
+									currentGroup + '</span><span class="group-count"></span></td></tr>');
 							}
-							if ($.isFunction(wo.group_formatter)) {
-								currentGroup = wo.group_formatter((currentGroup || '').toString(), column, table, c, wo) || currentGroup;
-							}
-							$rows.eq(rowIndex).before('<tr class="group-header ' + c.selectorRemove.slice(1) +
-								(wo.group_collapsed && wo.group_collapsible ? ' collapsed' : '') + '" unselectable="on"><td colspan="' +
-								c.columns + '">' + (wo.group_collapsible ? '<i/>' : '') + '<span class="group-name">' +
-								currentGroup + '</span><span class="group-count"></span></td></tr>');
 						}
 					}
 				}

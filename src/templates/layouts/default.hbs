@@ -3,13 +3,18 @@
     <head>
         <meta charset="UTF-8">
         <title>{{ title }}</title>
-        <meta name="msapplication-TileColor" content="#5bc0de"/>
-        <meta name="msapplication-TileImage" content="{{assets}}/img/metis-tile.png"/>
-        
+	<!--Mobile first-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--IE Compatibility modes-->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="msapplication-TileColor" content="#5bc0de">
+        <meta name="msapplication-TileImage" content="{{assets}}/img/metis-tile.png">
+        <!-- Bootstrap -->
         <link rel="stylesheet" href="{{assets}}/lib/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{assets}}/css/main.css"/>
-        <link rel="stylesheet" href="{{assets}}/lib/Font-Awesome/css/font-awesome.min.css"/>
-
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{{assets}}/lib/Font-Awesome/css/font-awesome.min.css">
+	<!-- Metis core stylesheet -->
+        <link rel="stylesheet" href="{{assets}}/css/main.css">
         <link rel="stylesheet" href="{{assets}}/css/theme.css">
 
         {{#if stylesheets}}
@@ -19,7 +24,13 @@
         {{#if cdncss}}
         {{cdn cdncss}}
         {{/if}}
-
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	  <script src="{{assets}}/lib/html5shiv/html5shiv.js"></script>
+	  <script src="{{assets}}/lib/respond/respond.min.js"></script>
+	<![endif]-->
+	<!--Modernizr 3.0-->
         <script src="{{assets}}/lib/modernizr-build.min.js"></script>
     </head>
     <body {{#is title "Dashboard Alterne"}} class="three-columns" {{/is}}>
@@ -110,22 +121,22 @@
                             <div class="well well-small dark">
                                 <span>Default</span><span class="pull-right"><small>20%</small></span>
 
-                                <div class="progress mini">
+                                <div class="progress xs">
                                     <div class="progress-bar progress-bar-info" style="width: 20%"></div>
                                 </div>
                                 <span>Success</span><span class="pull-right"><small>40%</small></span>
 
-                                <div class="progress mini">
+                                <div class="progress xs">
                                     <div class="progress-bar progress-bar-success" style="width: 40%"></div>
                                 </div>
                                 <span>warning</span><span class="pull-right"><small>60%</small></span>
 
-                                <div class="progress mini">
+                                <div class="progress xs">
                                     <div class="progress-bar progress-bar-warning" style="width: 60%"></div>
                                 </div>
                                 <span>Danger</span><span class="pull-right"><small>80%</small></span>
 
-                                <div class="progress mini">
+                                <div class="progress xs">
                                     <div class="progress-bar progress-bar-danger" style="width: 80%"></div>
                                 </div>
                             </div>

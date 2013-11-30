@@ -38,6 +38,10 @@
 	margin-top: -8px; /* half the icon height; older IE doesn't like this */
 }
 
+.tablesorter-jui thead .sorter-false {
+	cursor: default;
+}
+
 /* tfoot */
 .tablesorter-jui tfoot th,
 .tablesorter-jui tfoot td {

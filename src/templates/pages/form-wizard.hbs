@@ -7,6 +7,7 @@ stylesheets:
 - lib/gritter/css/jquery.gritter.css
 - lib/uniform/themes/default/css/uniform.default.min.css
 - css/bootstrap-fileupload.min.css
+- lib/jasny/css/jasny-bootstrap.min.css
 cdnjs:
 - //ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js
 javascripts:
@@ -14,7 +15,7 @@ javascripts:
 - lib/plupload/js/plupload.full.min.js
 - lib/gritter/js/jquery.gritter.min.js
 - lib/uniform/jquery.uniform.min.js
-- lib/jasny/js/bootstrap-fileupload.js
+- lib/jasny/js/jasny-bootstrap.min.js
 - lib/form/jquery.form.js
 - lib/formwizard/js/jquery.form.wizard.js
 - lib/jquery-validation-1.11.1/dist/jquery.validate.min.js
@@ -43,63 +44,59 @@ scripts: $(function() { formWizard(); });
                     <div class="form-group">
                         <label class="control-label col-lg-4">Bootstrap Style</label>
                         <div class="col-lg-8">
-                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+			      <div class="input-group">
+				<div class="form-control uneditable-input span3" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+				<span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+				<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+			      </div>
+			    </div>
 
-
-
-                                <div class="input-group">
-                                    <div class="col-lg-3">
-                                        <i class="fa fa-file fileupload-exists"></i>
-                                        <span class="fileupload-preview"></span>
-                                    </div>
-                                    <span class="btn btn-file btn-info">
-                                        <span class="fileupload-new">Select file</span>
-                                        <span class="fileupload-exists">Change</span>
-                                        <input type="file" />
-                                    </span>
-                                    <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload">Remove</a>
-                                </div><!-- /input-group -->
-                            </div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label col-lg-4">No Input</label>
                         <div class="col-lg-8">
-                            <div class="fileupload fileupload-new" data-provides="fileupload">
-                                <span class="btn btn-file btn-default">
-                                    <span class="fileupload-new">Select file</span>
-                                    <span class="fileupload-exists">Change</span>
-                                    <input type="file" />
-                                </span>
-                                <span class="fileupload-preview"></span>
-                                <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
-                            </div>
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+			      <span class="btn btn-default btn-file">
+				<span class="fileinput-new">Select file</span>
+				<span class="fileinput-exists">Change</span>
+				<input type="file" name="...">
+			      </span>
+			      <span class="fileinput-filename"></span>
+			      <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
+			    </div>
+
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">Image Upload</label>
                         <div class="col-lg-8">
-                            <div class="fileupload fileupload-new" data-provides="fileupload">
-                                <div class="fileupload-preview thumbnail" style="width: 200px; height: 150px;"></div>
-                                <div>
-                                    <span class="btn btn-file btn-success"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" /></span>
-                                    <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload">Remove</a>
-                                </div>
-                            </div>
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+				<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+				<div>
+				  <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+				  <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+				</div>
+			      </div>
+
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-lg-4">Pre Defined Image</label>
                         <div class="col-lg-8">
-                            <div class="fileupload fileupload-new" data-provides="fileupload">
-                                <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" /></div>
-                                <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
-                                <div>
-                                    <span class="btn btn-file btn-primary"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" /></span>
-                                    <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload">Remove</a>
-                                </div>
-                            </div>
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+				<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+				  <img data-src="holder.js/100%x100%" alt="...">
+				</div>
+				<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+				<div>
+				  <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+				  <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+				</div>
+			      </div>
+
                         </div>
                     </div>
                     <div class="alert alert-warning"><strong>Notice!</strong> Image preview only works in IE10+, FF3.6+, Chrome6.0+ and Opera11.1+. In older browsers and Safari, the filename is shown instead.</div>

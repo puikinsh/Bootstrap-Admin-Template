@@ -51,7 +51,7 @@ div#main h1 {border-bottom:1px solid #cdcdcd;display:block;padding:4px 0 2px;}
 table#tablesorter-demo {margin: 10px 0 0 0;}
 table, p.small {font-size:small;}
 p.small {padding-left: 25px;}
-p.tip em, div.tip em {padding: 2px; background-color: #6cf; color: #fff;}
+p.tip em, div.tip em,.label-info {padding: 2px; background-color: #5bc0de; color: #fff; border-radius: .25em;}
 .label { padding: 0.1em 0.6em 0.1em; font-size: 75%; color: #fff; border-radius: .25em; }
 span.tip em, .label-success { background-color: #5cb85c; }
 span.tip.old em, .label-default { background-color: #999; }

@@ -36,6 +36,10 @@
 	position: relative;
 	padding: 4px 15px 4px 4px;
 }
+.tablesorter-grey .header,
+.tablesorter-grey .tablesorter-header {
+	cursor: pointer;
+}
 .tablesorter-grey .header i,
 .tablesorter-grey .tablesorter-header i {
 	width: 18px;
@@ -50,7 +54,6 @@
 	background-position: center right;
 	padding: 4px;
 	white-space: normal;
-	cursor: pointer;
 }
 .tablesorter-grey th.headerSortUp,
 .tablesorter-grey th.tablesorter-headerSortUp,
@@ -77,6 +80,9 @@
 .tablesorter-grey .tablesorter-headerDesc i {
 	/* white desc arrow */
 	background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
+}
+.tablesorter-grey thead .sorter-false {
+	cursor: default;
 }
 .tablesorter-grey thead .sorter-false i {
 	background-image: none;

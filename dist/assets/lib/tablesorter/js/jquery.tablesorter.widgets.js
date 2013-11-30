@@ -1,4 +1,4 @@
-/*! tableSorter 2.8+ widgets - updated 11/19/2013
+/*! tableSorter 2.8+ widgets - updated 11/24/2013 (v2.14.2)
  *
  * Column Styles
  * Column Filters
@@ -635,13 +635,14 @@ ts.filter = {
 		c.$table.trigger('filterInit');
 	},
 	setDefaults: function(table, c, wo) {
-		var indx,
+		var indx, isArray,
 			filters = [],
 			columns = c.columns;
 		if (wo.filter_saveFilters && ts.storage) {
 			filters = ts.storage( table, 'tablesorter-filters' ) || [];
+			isArray = $.isArray(filters);
 			// make sure we're not just saving an empty array
-			if (filters.join('') === '') { filters = []; }
+			if (isArray && filters.join('') === '' || !isArray ) { filters = []; }
 		}
 		// if not filters saved, then check default settings
 		if (!filters.length) {
@@ -709,7 +710,8 @@ ts.filter = {
 	bindSearch: function(table, $el) {
 		table = $(table)[0];
 		var external, wo = table.config.widgetOptions;
-		$el.unbind('keyup search').bind('keyup search', function(event, filter) {
+		$el.unbind('keyup search filterReset')
+		.bind('keyup search', function(event, filter) {
 			// emulate what webkit does.... escape clears the filter
 			if (event.which === 27) {
 				this.value = '';
@@ -730,6 +732,9 @@ ts.filter = {
 				});
 			}
 			ts.filter.searching(table, filter, external);
+		})
+		.bind('filterReset', function(){
+			$el.val('');
 		});
 	},
 	checkFilters: function(table, filter) {
@@ -799,6 +804,7 @@ ts.filter = {
 			});
 	},
 	findRows: function(table, filters, combinedFilters) {
+		if (table.config.lastCombinedFilter === combinedFilters) { return; }
 		var cached, len, $rows, rowIndex, tbodyIndex, $tbody, $cells, columnIndex,
 			childRow, childRowText, exact, iExact, iFilter, lastSearch, matches, result,
 			searchFiltered, filterMatched, showRow, time,
@@ -886,7 +892,7 @@ ts.filter = {
 								// cycle through the different filters
 								// filters return a boolean or null if nothing matches
 								$.each(ts.filter.types, function(type, typeFunction) {
-									if (!wo.filter_anyMatch || (wo.filter_anyMatch && anyMatchNotAllowedTypes.indexOf(type) < 0)) {
+									if (!wo.filter_anyMatch || (wo.filter_anyMatch && $.inArray(type, anyMatchNotAllowedTypes) < 0)) {
 										matches = typeFunction( filters[columnIndex], iFilter, exact, iExact, cached, columnIndex, table, wo, parsed );
 										if (matches !== null) {
 											filterMatched = matches;
@@ -1078,12 +1084,13 @@ ts.addWidget({
 			laststate = '',
 			spacing = 0,
 			updatingStickyFilters = false,
+			nonwkie = $table.css('border-collapse') !== 'collapse' && !/(webkit|msie)/i.test(navigator.userAgent),
 			resizeHeader = function() {
 				stickyOffset = $stickyOffset.length ? $stickyOffset.height() || 0 : parseInt(wo.stickyHeaders_offset, 10) || 0;
 				spacing = 0;
 				// yes, I dislike browser sniffing, but it really is needed here :(
 				// webkit automatically compensates for border spacing
-				if ($table.css('border-collapse') !== 'collapse' && !/(webkit|msie)/i.test(navigator.userAgent)) {
+				if (nonwkie) {
 					// Firefox & Opera use the border-spacing
 					// update border-spacing here because of demos that switch themes
 					spacing = parseInt($header.eq(0).css('border-left-width'), 10) * 2;
@@ -1093,13 +1100,15 @@ ts.addWidget({
 					width: $table.width()
 				});
 				$stickyCells.filter(':visible').each(function(i) {
-					var $cell = $header.filter(':visible').eq(i);
+					var $cell = $header.filter(':visible').eq(i),
+						// some wibbly-wobbly... timey-wimey... stuff, to make columns line up in Firefox
+						offset = nonwkie && $(this).attr('data-column') === ( '' + parseInt(c.columns/2, 10) ) ? 1 : 0;
 					$(this)
 						.css({
 							width: $cell.width() - spacing,
 							height: $cell.height()
 						})
-						.find(innerHeader).width( $cell.find(innerHeader).width() );
+						.find(innerHeader).width( $cell.find(innerHeader).width() - offset );
 				});
 			};
 		// fix clone ID, if it exists - fixes #271
@@ -1109,6 +1118,8 @@ ts.addWidget({
 		$stickyTable.find('thead:gt(0), tr.sticky-false, tbody, tfoot').remove();
 		if (!wo.stickyHeaders_includeCaption) {
 			$stickyTable.find('caption').remove();
+		} else {
+			$stickyTable.find('caption').css( 'margin-left', '-1px' );
 		}
 		// issue #172 - find td/th in sticky header
 		$stickyCells = $stickyThead.children().children();

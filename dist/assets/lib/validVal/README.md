@@ -26,3 +26,8 @@ It is highly customizable, very feature rich and can easily be dropped on any ty
 + [Configuration options](http://validval.frebsite.nl/options.php)
 + [Custom events](http://validval.frebsite.nl/events.php)
 + [Full documentation](http://validval.frebsite.nl)
+
+### Licence
+The jQuery.validVal plugin is dual licensed under the MIT and GPL licenses:
++ http://en.wikipedia.org/wiki/MIT_License
++ http://en.wikipedia.org/wiki/GNU_General_Public_License

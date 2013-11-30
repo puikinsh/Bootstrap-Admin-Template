@@ -29,18 +29,34 @@ td.no-edit, span.no-edit {
 
 	<script id="js">$(function() {
 
-	// call the tablesorter plugin
-	$("table").tablesorter({
-		theme : 'blue',
+	$("table")
+		.tablesorter({
+			theme : 'blue',
 
-		widgets: ['editable'],
-		widgetOptions: {
-			editable_columns       : [0,1,2],  // point to the columns to make editable (zero-based index)
-			editable_enterToAccept : true,     // press enter to accept content, or click outside if false
-			editable_autoResort    : false,    // auto resort after the content has changed.
-			editable_noEdit        : 'no-edit' // class name of cell that is not editable
-		}
-	});
+			widgets: ['editable'],
+			widgetOptions: {
+				editable_columns       : [0,1,2],       // or "0-2" (v2.14.2); point to the columns to make editable (zero-based index)
+				editable_enterToAccept : true,          // press enter to accept content, or click outside if false
+				editable_autoResort    : false,         // auto resort after the content has changed.
+				editable_noEdit        : 'no-edit',     // class name of cell that is not editable
+				editable_editComplete  : 'editComplete' // event fired after the table content has been edited
+			}
+		})
+		.children('tbody').on('editComplete', 'td', function(){
+			var $this = $(this),
+				$allRows = $this.closest('table')[0].config.$tbodies.children('tr'),
+
+				newContent = $this.text(),
+				cellIndex = this.cellIndex, // there shouldn't be any colspans in the tbody
+				rowIndex = $allRows.index( $this.closest('tr') );
+			/*
+			$.post("mysite.php", {
+				"row"     : rowIndex,
+				"cell"    : cellIndex,
+				"content" : newContent
+			});
+			*/
+		});
 
 });</script>
 </head>
@@ -62,10 +78,16 @@ td.no-edit, span.no-edit {
 			<li>In some browsers, additional CSS is needed to highlight a focused editable table cell. See the CSS block below.</li>
 			<li>Editable widget options include (defaults in parenthesis):
 				<ul>
-					<li><code>editable_column</code> (<code>[]</code>) - Contains an array of columns numbers you want to have editable content (zero-based index). <code>contenteditable="true"</code> is added to cells within these columns.</li>
+					<li><code>editable_column</code> (<code>[]</code>)
+						<ul>
+							<li>In tablesorter core <span class="version">v2.14.2</span>, this widget was updated to allow passing a range string in this option, i.e. <code>"0-2"</code> instead of <code>[0,1,2]</code>.</li>
+							<li>Contains an array of columns numbers you want to have editable content (zero-based index). <code>contenteditable="true"</code> is added to cells within these columns.</li>
+						</ul>
+					</li>
 					<li><code>editable_enterToAccept</code> (<code>true</code>) - Makes the user press enter to accept the content within the editable table cell; if <code>false</code>, clicking outside the cell will accept the content.</li>
 					<li><code>editable_autoResort</code> (<code>false</code>) - If <code>true</code> the column will resort (only if already sorted) after the content has been changed.</li>
 					<li><code>editable_noEdit</code> (<code>'no-edit'</code>) - Class name on table cells to search for that are not to become editable. The search is only done within the columns set by the <code>editable_column</code> option.</li>
+					<li><code>editable_editComplete</code> (<code>'editComplete'</code>) - Event fired after the table content has been edited.</li>
 				</ul>
 			</li>
 			<li>Pressing escape while editing will cancel any changes.</li>

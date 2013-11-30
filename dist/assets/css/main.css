@@ -427,6 +427,9 @@ body.padTop53 {
   margin: 0;
   list-style: none;
 }
+#menu li {
+  position: relative;
+}
 @media (min-width: 768px) {
   #menu.collapse {
     display: inherit !important;
@@ -434,9 +437,6 @@ body.padTop53 {
 }
 #menu > li {
   display: block;
-  position: relative;
-  border-width: 0;
-  border-radius: 0;
   margin: 0;
 }
 #menu > li > a {
@@ -465,9 +465,6 @@ body.padTop53 {
   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3) inset;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3) inset;
 }
-#menu > li.panel {
-  background-color: transparent;
-}
 #menu li > a {
   text-decoration: none;
 }
@@ -481,8 +478,9 @@ body.padTop53 {
   padding: 2px 0;
   color: #ccc;
   display: block;
-  font-size: 12px;
+  font-size: 13px;
   margin-left: 15px;
+  margin-right: 15px;
 }
 #menu .nav-header {
   padding: 3px 15px;
@@ -506,7 +504,7 @@ body.padTop53 {
 #menu > li.active > a {
   position: relative;
 }
-#menu > li.panel.active ul > li.active > a:after {
+#menu > li.active ul > li.active > a:after {
   border-style: solid;
   position: absolute;
   right: 0px;
@@ -519,6 +517,9 @@ body.padTop53 {
   right: auto;
 }
 @media (min-width: 768px) {
+  #menu {
+    overflow: visible;
+  }
   .mini-sidebar #menu > li > a,
   #menu > li > a {
     text-align: center;
@@ -576,6 +577,73 @@ body.padTop53 {
   .mini-sidebar #menu:after {
     -webkit-box-shadow: 97px 1px 5px 2px rgba(0, 0, 0, 0.6);
     box-shadow: 97px 1px 5px 2px rgba(0, 0, 0, 0.6);
+  }
+}
+#menu .fa.arrow {
+  float: right;
+  padding-top: 3px;
+}
+#menu .fa.arrow:before {
+  content: "\f104";
+}
+#menu .active > a > .fa.arrow:before {
+  content: "\f107";
+}
+#menu li > ul {
+  position: absolute;
+  width: 200px;
+  top: 0;
+  left: 100%;
+  z-index: 1000;
+  background: #444;
+  border-top-width: 0;
+  padding: 5px 0;
+}
+#menu > li ul > li {
+  padding: 5px 10px;
+}
+.side-right #menu li > ul {
+  left: auto;
+  right: 100%;
+}
+@media (min-width: 768px) {
+  #menu > li > a > .fa.arrow {
+    display: none;
+    visibility: hidden;
+  }
+}
+@media (min-width: 992px) {
+  #menu > li > a > .fa.arrow {
+    display: inherit;
+    visibility: visible;
+  }
+  #menu li > ul {
+    position: relative;
+    width: auto;
+    top: auto;
+    left: auto;
+    z-index: auto;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+  }
+  .side-right #menu li > ul {
+    left: 0;
+    right: 0;
+  }
+  .mini-sidebar #menu > li > a > .fa.arrow {
+    display: none;
+    visibility: hidden;
+  }
+  .mini-sidebar #menu li > ul {
+    position: absolute;
+    width: 200px;
+    top: 0;
+    left: 100%;
+    z-index: 1000;
+    border-top-width: 0;
+  }
+  .mini-sidebar.side-right #menu li > ul {
+    left: auto;
+    right: 100%;
   }
 }
 /* BEGIN CONTENT STYLES */

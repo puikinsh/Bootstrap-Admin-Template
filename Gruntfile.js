@@ -190,9 +190,15 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
-                        cwd: 'bower_components/html5hiv',
-                        src: ['./dist/html5shiv.js'],
-                        dest: 'dist/assets/lib'
+                        cwd: 'bower_components/html5shiv/dist',
+                        src: ['./html5shiv.js'],
+                        dest: 'dist/assets/lib/html5shiv'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'bower_components/respond',
+                        src: ['./respond.min.js'],
+                        dest: 'dist/assets/lib/respond'
                     }
                 ]
             }

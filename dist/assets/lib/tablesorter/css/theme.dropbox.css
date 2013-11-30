@@ -35,7 +35,6 @@
 	background-color: #f0f9ff;
 	border-bottom: 1px solid #96c4ea;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 0 0 #000000 inset;
-	cursor: pointer;
 	white-space: normal;
 }
 .tablesorter-dropbox .tablesorter-headerSortUp,
@@ -44,11 +43,14 @@
 .tablesorter-dropbox .tablesorter-headerDesc {
 	font-weight: 600;
 }
+.tablesorter-dropbox .tablesorter-header {
+	cursor: pointer;
+}
 .tablesorter-dropbox .tablesorter-header i {
 	width: 9px;
 	height: 9px;
-	padding: 4px 20px 4px 4px;
-	cursor: pointer;
+	padding: 0 10px 0 4px;
+	display: inline-block;
 	background-position: center right;
 	background-repeat: no-repeat;
 	content: "";
@@ -73,6 +75,10 @@
 	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAALNJREFUeNpi/P//PwMhwBJf3uP879e3PUzMzBiS//7+ZWBi43JhBJmU2z7nIzMzEx8jIyNcAUj8799/nyZXpvCzgARYuXjTWBkZVjCzIEz7++cvw+//DGkgNiPMTWVT1l5hZvynDTINbMp/pqtdOcE6IDkmmM5fv3/5//v37z9QBQOIBvFhcnBFEwoj7/5jZFnz9+8fBhAN4sN9h+ybH9++JrGxscr/+vE1CVmckZhwAggwANvlUyq5Dd1wAAAAAElFTkSuQmCC');
 	/* background-image: url(images/dropbox-desc-hovered.png); */
 }
+.tablesorter-dropbox thead .sorter-false {
+	cursor: default;
+}
+
 .tablesorter-dropbox thead .sorter-false i,
 .tablesorter-dropbox thead .sorter-false:hover i {
 	background-image: none;

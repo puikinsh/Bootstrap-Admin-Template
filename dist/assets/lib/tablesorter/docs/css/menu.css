@@ -6,7 +6,7 @@ a{text-decoration:none;}
 .main-nav{position:fixed;top:0;width:0;height:100%;background:#3B3B3B;color:#fff;overflow:hidden;transition:width .3s ease;}
 .main-nav h2{color:#fff;font-size:20px;margin:0 0 15px 30px;}
 .main-nav em{color:#6cf;font-style:normal;}
-.main-nav a{display:block;background:linear-gradient(#3e3e3e,#383838);border-top:1px solid #484848;border-bottom:1px solid #2E2E2E;color:#FFF;white-space:nowrap;text-overflow:ellipsis;padding:10px;}
+.main-nav .page-links a{display:block;background:linear-gradient(#3e3e3e,#383838);border-top:1px solid #484848;border-bottom:1px solid #2E2E2E;color:#FFF;white-space:nowrap;text-overflow:ellipsis;padding:10px;}
 .main-nav a:hover,.main-nav a:focus{background:linear-gradient(#484848,#383838);color:#FFF;text-decoration:none;}
 #main-nav-check:checked + #main-nav{width:250px;}
 #main-nav-check:checked ~ #main{margin-left:250px;overflow:hidden;}
@@ -40,7 +40,7 @@ a{text-decoration:none;}
 #main-nav-check:checked ~ #main .main-header span:before{margin-top:0;-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg);-webkit-transition-delay:0 .2s;-moz-transition-delay:0 .2s;-o-transition-delay:0 .2s;transition-delay:0 .2s;}
 #main-nav-check:checked ~ #main .main-header span:after{margin-top:0;-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transition-delay:0 .2s;-moz-transition-delay:0 .2s;-o-transition-delay:0 .2s;transition-delay:0 .2s;}
 /* http://www.cssflow.com/snippets/toggle-switches */
-.search-options{padding-left:12px;}
+.search-options{padding-left:6px;}
 .switch{position:relative;display:inline-block;height:26px;width:100px;margin-top:5px;background:rgba(0,0,0,0.25);border-radius:3px;-webkit-border-radius:3px;background-clip:padding-box;-webkit-box-shadow:inset 0 1px 3px rgba(0,0,0,0.3), 0 1px rgba(255,255,255,0.1);box-shadow:inset 0 1px 3px rgba(0,0,0,0.3), 0 1px rgba(255,255,255,0.1);}
 .switch-label{position:relative;z-index:2;float:left;width:48px;line-height:26px;font-size:11px;color:rgba(255,255,255,0.35);text-align:center;text-shadow:0 1px 1px rgba(0,0,0,0.45);cursor:pointer;}
 .switch-label:active{font-weight:700;}
@@ -51,6 +51,9 @@ a{text-decoration:none;}
 .main-nav-check,.switch-input{display:none;}
 .switch-selection-right{left:50px;} /* separated from next line or IE ignores it */
 .switch-input:checked + .switch-label-on ~ .switch-selection{left:50px;}
+.glyphicon-question-sign{top:-6px;}
+.glyphicon-question-sign:before{color: #666;text-shadow:#222 0 -1px 1px;}
+.glyphicon-question-sign:before:hover{color: #357ebd;}
 /* tipsy */
 .tipsy{font-size:12px;position:absolute;z-index:100000;padding:5px;}
 .tipsy-inner{background-color:#000;color:#FFF;max-width:250px;text-align:center;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;padding:5px 8px 4px;}

@@ -60,6 +60,7 @@
 }
 .tablesorter-ice thead .sorter-false {
 	background-image: none;
+	cursor: default;
 	padding: 4px;
 }
 
@@ -120,6 +121,12 @@
 }
 .tablesorter-ice tr.even td.tertiary {
 	background-color: #ebfafa;
+}
+
+/* sticky headers */
+.tablesorter-ice.containsStickyHeaders thead tr:nth-child(1) th,
+.tablesorter-ice.containsStickyHeaders thead tr:nth-child(1) td {
+	border-top: #ccc 1px solid;
 }
 
 /* caption */

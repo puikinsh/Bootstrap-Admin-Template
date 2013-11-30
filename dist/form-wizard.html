@@ -3,16 +3,40 @@
   <head>
     <meta charset="UTF-8">
     <title>Form Wizard</title>
-    <meta name="msapplication-TileColor" content="#5bc0de" />
-    <meta name="msapplication-TileImage" content="assets/img/metis-tile.png" />
+
+    <!--Mobile first-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--IE Compatibility modes-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-TileColor" content="#5bc0de">
+    <meta name="msapplication-TileImage" content="assets/img/metis-tile.png">
+
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/lib/Font-Awesome/css/font-awesome.min.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/lib/Font-Awesome/css/font-awesome.min.css">
+
+    <!-- Metis core stylesheet -->
+    <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/theme.css">
     <link rel="stylesheet" href="assets/lib/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css">
     <link rel="stylesheet" href="assets/lib/gritter/css/jquery.gritter.css">
     <link rel="stylesheet" href="assets/lib/uniform/themes/default/css/uniform.default.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap-fileupload.min.css">
+    <link rel="stylesheet" href="assets/lib/jasny/css/jasny-bootstrap.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+    <!--[if lt IE 9]>
+      <script src="assets/lib/html5shiv/html5shiv.js"></script>
+	      <script src="assets/lib/respond/respond.min.js"></script>
+	    <![endif]-->
+
+    <!--Modernizr 3.0-->
     <script src="assets/lib/modernizr-build.min.js"></script>
   </head>
   <body>
@@ -127,7 +151,7 @@
               <li>Last Access :
                 <br>
                 <small>
-                  <i class="fa fa-calendar"></i>16 Mar 16:32</small>
+                  <i class="fa fa-calendar"></i>&nbsp;16 Mar 16:32</small>
               </li>
             </ul>
           </div>
@@ -137,163 +161,198 @@
         <ul id="menu" class="collapse">
           <li class="nav-header">Menu</li>
           <li class="nav-divider"></li>
-          <li class="panel ">
-            <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#dashboard-nav">
-              <i class="fa fa-dashboard"></i>Dashboard
-              <span class="pull-right">
-		<i class="fa fa-angle-left"></i>
-            </span>
+          <li class="">
+            <a href="javascript:;">
+              <i class="fa fa-dashboard"></i>
+              <span class="link-title">Dashboard</span>
+              <span class="fa arrow"></span>
             </a>
-            <ul class="collapse" id="dashboard-nav">
+            <ul>
               <li class="">
                 <a href="dashboard.html">
-                  <i class="fa fa-angle-right"></i>
-                  Default Style</a>
+                  <i class="fa fa-angle-right"></i>&nbsp;Default Style
+                </a>
               </li>
               <li class="">
                 <a href="alterne.html">
-                  <i class="fa fa-angle-right"></i>Alternative Style</a>
+                  <i class="fa fa-angle-right"></i>&nbsp;Alternative Style
+                </a>
               </li>
             </ul>
           </li>
-          <li class="panel ">
-            <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#component-nav">
-              <i class="fa fa-tasks"></i>Components
-              <span class="pull-right">
-		<i class="fa fa-angle-left"></i>
-            </span>
+          <li class="">
+            <a href="javascript:;">
+              <i class="fa fa-tasks"></i>&nbsp;Components
+              <span class="fa arrow"></span>
             </a>
-            <ul class="collapse" id="component-nav">
+            <ul>
               <li class="">
                 <a href="icon.html">
-                  <i class="fa fa-angle-right"></i>Icon</a>
+                  <i class="fa fa-angle-right"></i>&nbsp;Icon</a>
               </li>
               <li class="">
                 <a href="button.html">
-                  <i class="fa fa-angle-right"></i>
-                  Button</a>
+                  <i class="fa fa-angle-right"></i>&nbsp;Button</a>
               </li>
               <li class="">
                 <a href="progress.html">
-                  <i class="fa fa-angle-right"></i>
-                  Progress</a>
+                  <i class="fa fa-angle-right"></i>&nbsp;Progress</a>
               </li>
               <li class="">
                 <a href="pricing.html">
-                  <i class="fa fa-credit-card"></i>Pricing Table</a>
+                  <i class="fa fa-credit-card"></i>&nbsp;Pricing Table</a>
               </li>
               <li class="">
                 <a href="bgimage.html">
-                  <i class="fa fa-angle-right"></i>Bg Image</a>
+                  <i class="fa fa-angle-right"></i>&nbsp;Bg Image</a>
               </li>
               <li class="">
                 <a href="bgcolor.html">
-                  <i class="fa fa-angle-right"></i>Bg Color</a>
+                  <i class="fa fa-angle-right"></i>&nbsp;Bg Color</a>
               </li>
             </ul>
           </li>
-          <li class="panel  active">
-            <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-nav">
-              <i class="fa fa-pencil"></i>Forms
-              <span class="pull-right">
-		<i class="fa fa-angle-left"></i>
-            </span>
+          <li class="active">
+            <a href="javascript:;">
+              <i class="fa fa-pencil"></i>&nbsp;Forms
+              <span class="fa arrow"></span>
             </a>
-            <ul class="collapse in" id="form-nav">
+            <ul>
               <li class="">
                 <a href="form-general.html">
-                  <i class="fa fa-angle-right"></i>General</a>
+                  <i class="fa fa-angle-right"></i>&nbsp;General</a>
               </li>
               <li class="">
                 <a href="form-validation.html">
-                  <i class="fa fa-angle-right"></i>Validation</a>
+                  <i class="fa fa-angle-right"></i>&nbsp;Validation</a>
               </li>
               <li class="">
                 <a href="form-wysiwyg.html">
-                  <i class="fa fa-angle-right"></i>WYSIWYG</a>
+                  <i class="fa fa-angle-right"></i>&nbsp;WYSIWYG</a>
               </li>
               <li class="active">
                 <a href="form-wizard.html">
-                  <i class="fa fa-angle-right"></i>Wizard &amp; File Upload</a>
+                  <i class="fa fa-angle-right"></i>&nbsp;Wizard &amp; File Upload</a>
               </li>
             </ul>
           </li>
           <li>
             <a href="table.html">
-              <i class="fa fa-table"></i>Tables</a>
+              <i class="fa fa-table"></i>&nbsp; Tables</a>
           </li>
           <li>
             <a href="file.html">
-              <i class="fa fa-file"></i>File Manager</a>
+              <i class="fa fa-file"></i>&nbsp;File Manager</a>
           </li>
           <li>
             <a href="typography.html">
-              <i class="fa fa-font"></i>Typography</a>
+              <i class="fa fa-font"></i>&nbsp; Typography</a>
           </li>
           <li>
             <a href="maps.html">
-              <i class="fa fa-map-marker"></i>Maps</a>
+              <i class="fa fa-map-marker"></i>&nbsp;Maps</a>
           </li>
           <li>
             <a href="chart.html">
-              <i class="fa fa fa-bar-chart-o"></i>Charts</a>
+              <i class="fa fa fa-bar-chart-o"></i>&nbsp;Charts</a>
           </li>
           <li>
             <a href="calendar.html">
-              <i class="fa fa-calendar"></i>
-              Calendar</a>
+              <i class="fa fa-calendar"></i>&nbsp;Calendar</a>
           </li>
-          <li class="panel">
-            <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#error-nav">
-              <i class="fa fa-exclamation-triangle"></i>Error Pages
-              <span class="pull-right">
-		<i class="fa fa-angle-left"></i>
-            </span>
+          <li>
+            <a href="javascript:;">
+              <i class="fa fa-exclamation-triangle"></i>&nbsp;Error Pages
+              <span class="fa arrow"></span>
             </a>
-            <ul class="collapse" id="error-nav">
+            <ul>
               <li>
                 <a href="403.html">
-                  <i class="fa fa-angle-right"></i>403</a>
+                  <i class="fa fa-angle-right"></i>&nbsp;403</a>
               </li>
               <li>
                 <a href="404.html">
-                  <i class="fa fa-angle-right"></i>404</a>
+                  <i class="fa fa-angle-right"></i>&nbsp;404</a>
               </li>
               <li>
                 <a href="405.html">
-                  <i class="fa fa-angle-right"></i>405</a>
+                  <i class="fa fa-angle-right"></i>&nbsp;405</a>
               </li>
               <li>
                 <a href="500.html">
-                  <i class="fa fa-angle-right"></i>500</a>
+                  <i class="fa fa-angle-right"></i>&nbsp;500</a>
               </li>
               <li>
                 <a href="503.html">
-                  <i class="fa fa-angle-right"></i>503</a>
+                  <i class="fa fa-angle-right"></i>&nbsp;503</a>
               </li>
               <li>
                 <a href="offline.html">
-                  <i class="fa fa-angle-right"></i>offline</a>
+                  <i class="fa fa-angle-right"></i>&nbsp;offline</a>
               </li>
               <li>
                 <a href="countdown.html">
-                  <i class="fa fa-angle-right"></i>Under Construction</a>
+                  <i class="fa fa-angle-right"></i>&nbsp;Under Construction</a>
               </li>
             </ul>
           </li>
           <li>
             <a href="grid.html">
-              <i class="fa fa-columns"></i>Grid</a>
+              <i class="fa fa-columns"></i>&nbsp;Grid</a>
           </li>
           <li>
             <a href="blank.html">
-              <i class="fa fa-square-o"></i>Blank Page
-            </a>
+              <i class="fa fa-square-o"></i>&nbsp;Blank Page</a>
           </li>
           <li class="nav-divider"></li>
           <li>
             <a href="login.html">
-              <i class="fa fa-sign-in"></i>Login Page</a>
+              <i class="fa fa-sign-in"></i>&nbsp;Login Page</a>
+          </li>
+          <li>
+            <a href="javascript:;">Unlimited Level Menu  <span class="fa arrow"></span> </a>
+            <ul>
+              <li>
+                <a href="javascript:;">Level 1  <span class="fa arrow"></span> </a>
+                <ul>
+                  <li> <a href="javascript:;">Level 2</a> </li>
+                  <li> <a href="javascript:;">Level 2</a> </li>
+                  <li>
+                    <a href="javascript:;">Level 2  <span class="fa arrow"></span> </a>
+                    <ul>
+                      <li> <a href="javascript:;">Level 3</a> </li>
+                      <li> <a href="javascript:;">Level 3</a> </li>
+                      <li>
+                        <a href="javascript:;">Level 3  <span class="fa arrow"></span> </a>
+                        <ul>
+                          <li> <a href="javascript:;">Level 4</a> </li>
+                          <li> <a href="javascript:;">Level 4</a> </li>
+                          <li>
+                            <a href="javascript:;">Level 4  <span class="fa arrow"></span> </a>
+                            <ul>
+                              <li> <a href="javascript:;">Level 5</a> </li>
+                              <li> <a href="javascript:;">Level 5</a> </li>
+                              <li> <a href="javascript:;">Level 5</a> </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li> <a href="javascript:;">Level 4</a> </li>
+                    </ul>
+                  </li>
+                  <li> <a href="javascript:;">Level 2</a> </li>
+                </ul>
+              </li>
+              <li> <a href="javascript:;">Level 1</a> </li>
+              <li>
+                <a href="javascript:;">Level 1  <span class="fa arrow"></span> </a>
+                <ul>
+                  <li> <a href="javascript:;">Level 2</a> </li>
+                  <li> <a href="javascript:;">Level 2</a> </li>
+                  <li> <a href="javascript:;">Level 2</a> </li>
+                </ul>
+              </li>
+            </ul>
           </li>
         </ul><!-- /#menu -->
       </div><!-- /#left -->
@@ -326,46 +385,43 @@
                       <div class="form-group">
                         <label class="control-label col-lg-4">Bootstrap Style</label>
                         <div class="col-lg-8">
-                          <div class="fileupload fileupload-new" data-provides="fileupload">
+                          <div class="fileinput fileinput-new" data-provides="fileinput">
                             <div class="input-group">
-                              <div class="col-lg-3">
-                                <i class="fa fa-file fileupload-exists"></i>
-                                <span class="fileupload-preview"></span>
+                              <div class="form-control uneditable-input span3" data-trigger="fileinput">
+                                <i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span>
                               </div>
-                              <span class="btn btn-file btn-info">
-                                        <span class="fileupload-new">Select file</span>
-                              <span class="fileupload-exists">Change</span>
-                                <input type="file" />
+                              <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span>
+                                <input type="file" name="...">
                               </span>
-                              <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload">Remove</a>
-                            </div><!-- /input-group -->
+                              <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                            </div>
                           </div>
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-lg-4">No Input</label>
                         <div class="col-lg-8">
-                          <div class="fileupload fileupload-new" data-provides="fileupload">
-                            <span class="btn btn-file btn-default">
-                                    <span class="fileupload-new">Select file</span>
-                            <span class="fileupload-exists">Change</span>
-                              <input type="file" />
+                          <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <span class="btn btn-default btn-file">
+				<span class="fileinput-new">Select file</span>
+                            <span class="fileinput-exists">Change</span>
+                              <input type="file" name="...">
                             </span>
-                            <span class="fileupload-preview"></span>
-                            <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                            <span class="fileinput-filename"></span>
+                            <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
                           </div>
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-lg-4">Image Upload</label>
                         <div class="col-lg-8">
-                          <div class="fileupload fileupload-new" data-provides="fileupload">
-                            <div class="fileupload-preview thumbnail" style="width: 200px; height: 150px;"></div>
+                          <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
                             <div>
-                              <span class="btn btn-file btn-success"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span>
-                                <input type="file" />
+                              <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>
+                                <input type="file" name="...">
                               </span>
-                              <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload">Remove</a>
+                              <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                             </div>
                           </div>
                         </div>
@@ -373,16 +429,16 @@
                       <div class="form-group">
                         <label class="control-label col-lg-4">Pre Defined Image</label>
                         <div class="col-lg-8">
-                          <div class="fileupload fileupload-new" data-provides="fileupload">
-                            <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                              <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" />
+                          <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                              <img data-src="holder.js/100%x100%" alt="...">
                             </div>
-                            <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                             <div>
-                              <span class="btn btn-file btn-primary"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span>
-                                <input type="file" />
+                              <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>
+                                <input type="file" name="...">
                               </span>
-                              <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload">Remove</a>
+                              <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                             </div>
                           </div>
                         </div>
@@ -655,7 +711,7 @@
     <script src="assets/lib/plupload/js/plupload.full.min.js"></script>
     <script src="assets/lib/gritter/js/jquery.gritter.min.js"></script>
     <script src="assets/lib/uniform/jquery.uniform.min.js"></script>
-    <script src="assets/lib/jasny/js/bootstrap-fileupload.js"></script>
+    <script src="assets/lib/jasny/js/jasny-bootstrap.min.js"></script>
     <script src="assets/lib/form/jquery.form.js"></script>
     <script src="assets/lib/formwizard/js/jquery.form.wizard.js"></script>
     <script src="assets/lib/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>

@@ -71,6 +71,7 @@
 }
 .tablesorter-blue thead .sorter-false {
 	background-image: none;
+	cursor: default;
 	padding: 4px;
 }
 

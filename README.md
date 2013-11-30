@@ -5,14 +5,14 @@ Metis Admin Template with Twitter Bootstrap [![Build Status](https://travis-ci.o
 Bootstrap 2.3.2 [V.1.2](https://github.com/onokumus/Bootstrap-Admin-Template/archive/v1.2.zip)
 ready for use
 
-Bootstrap 3.0.0 [V2.1.1](https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip)
+Bootstrap 3.0.0 [V2.1.2](https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip)
 ready `dist` folder your use
 
 
 
 ### Building
 
-#### 2.1.1 Version
+#### 2.1.2 Version
 required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](http://gruntjs.com/getting-started)
 
     $ git clone https://github.com/onokumus/Bootstrap-Admin-Template.git yourfoldername
@@ -34,7 +34,7 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
 
 ### Demo
 
-#### For 2.1.1 version
+#### For 2.1.2 version
 http://demo.onokumus.com/metis/
 
 #### For 1.2 version 
@@ -42,6 +42,7 @@ http://demo.onokumus.com/metis/
 http://demo.onokumus.com/metis/v12
 
 ### Release History
+ * 2013-11-30   v2.1.2 create menu plugin, rewrite menu.less
  * 2013-10-28   v2.1.1 add bower 
  * 2013-10-28   v2.1.1 remove bootsrap, font awesome, gmaps submodule.
  * 2013-10-23   v2.1.1 Adds `bgimage.html` and `bgcolor.html` pages.

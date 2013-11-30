@@ -1,6 +1,6 @@
 {
   "name": "Bootstrap-Admin-Template",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "author": {
     "name": "Osman Nuri Okumuş",
     "email": "onokumus@gmail.com",
@@ -23,6 +23,7 @@
     "bootstrap": "~3.0.2",
     "font-awesome": "~4.0.3",
     "gmaps": "~0.4.8",
-    "html5shiv": "~3.7.0"
+    "html5shiv": "~3.7.0",
+    "respond": "~1.4.0"
   }
 }

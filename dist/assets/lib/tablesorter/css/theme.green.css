@@ -6,15 +6,14 @@
 	width: 100%;
 	text-align: left;
 	border-spacing: 0;
+	border: #cdcdcd 1px solid;
+	border-width: 1px 0 0 1px;
 }
-.tablesorter-green,
 .tablesorter-green th,
 .tablesorter-green td {
 	font: 12px/18px Arial, Sans-serif;
 	border: #cdcdcd 1px solid;
-	border-spacing: 0;
-	padding: 0;
-	text-align: left;
+	border-width: 0 1px 1px 0;
 }
 
 /* header */
@@ -58,6 +57,7 @@
 }
 .tablesorter-green thead .tablesorter-header.sorter-false {
 	background-image: none;
+	cursor: default;
 	padding: 4px;
 }
 

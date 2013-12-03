@@ -73,7 +73,7 @@
                     "alertText": "* Número de cartão de crédito inválido"
                 },
                 "phone": {
-                    "regex": /^([\+][0-9]{1,3}[ \.\-])?([\(]{1}[0-9]{2,6}[\)])?([0-9 \.\-\/]{3,20})((x|ext|extension)[ ]?[0-9]{1,4})?$/,
+                    "regex": /^([\+][0-9]{1,3}([ \.\-])?)?([\(][0-9]{1,6}[\)])?([0-9 \.\-]{1,32})(([A-Za-z \:]{1,11})?[0-9]{1,4}?)$/,
                     "alertText": "* Número de telefone inválido"
                 },
                 "email": {
@@ -116,6 +116,30 @@
                 	// Brazilian (Real - R$) money format
                 	"regex": /^([1-9]{1}[\d]{0,2}(\.[\d]{3})*(\,[\d]{0,2})?|[1-9]{1}[\d]{0,}(\,[\d]{0,2})?|0(\,[\d]{0,2})?|(\,[\d]{1,2})?)$/,
                     "alertText": "* Número decimal inválido"
+                },
+                "cpf": {
+                    // CPF is the Brazilian ID
+                    "func": function(field, rules, i, options){
+                        cpf = field.val().replace(/[^0-9]+/g, '');
+                        while(cpf.length < 11) cpf = "0"+ cpf;
+
+                        var expReg = /^0+$|^1+$|^2+$|^3+$|^4+$|^5+$|^6+$|^7+$|^8+$|^9+$/;
+                        var a = cpf.split('');
+                        var b = new Number;
+                        var c = 11;
+                        b += (a[9] * --c);
+                        if ((x = b % 11) < 2) { a[9] = 0 } else { a[9] = 11-x }
+                        b = 0;
+                        c = 11;
+                        for (y=0; y<10; y++) b += (a[y] * c--);
+                        if ((x = b % 11) < 2) { a[10] = 0; } else { a[10] = 11-x; }
+
+                        var error = false;
+                        if ((cpf.charAt(9) != a[9]) || (cpf.charAt(10) != a[10]) || cpf.match(expReg)) error = true;
+                        return !error;
+                    },
+                    "alertText": "CPF inválido",
+                    "alertTextOK": "CPF válido"
                 }
             };
             

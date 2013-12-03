@@ -1,6 +1,6 @@
 /*!
  * tablesorter pager plugin
- * updated 11/22/2013 (v2.14.1)
+ * updated 12/2/2013 (v2.14.3)
  */
 /*jshint browser:true, jquery:true, unused:false */
 ;(function($) {
@@ -29,8 +29,6 @@
 			ajaxObject: {
 				dataType: 'json'
 			},
-			
-			ajaxCounter: 0,
 
 			// process ajax so that the following information is returned:
 			// [ total_rows (number), rows (array of arrays), headers (array; optional) ]
@@ -94,6 +92,7 @@
 			totalPages: 0,
 			filteredRows: 0,
 			filteredPages: 0,
+			ajaxCounter: 0,
 			currentFilters: [],
 			startRow: 0,
 			endRow: 0,
@@ -140,8 +139,12 @@
 					})
 					// {totalPages}, {extra}, {extra:0} (array) or {extra : key} (object)
 					.replace(/\{\w+(\s*:\s*\w+)?\}/gi, function(m){
-						var t = m.replace(/[{}\s]/g,''), a = t.split(':'), d = p.ajaxData;
-						return a.length > 1 && d && d[a[0]] ? d[a[0]][a[1]] : p[t] || (d ? d[t] : '') || '';
+						var str = m.replace(/[{}\s]/g,''),
+							extra = str.split(':'),
+							data = p.ajaxData,
+							// return zero for default page/row numbers
+							deflt = /(rows?|pages?)$/i.test(str) ? 0 : '';
+						return extra.length > 1 && data && data[extra[0]] ? data[extra[0]][extra[1]] : p[str] || (data ? data[str] : deflt) || deflt;
 					});
 				if (out.length) {
 					out[ (out[0].tagName === 'INPUT') ? 'val' : 'html' ](s);
@@ -280,12 +283,8 @@
 						for ( i = 0; i < l; i++ ) {
 							tds += '<tr>';
 							for ( j = 0; j < d[i].length; j++ ) {
-								// build tbody cells
-								var temp = $("<td>").html(d[i][j]);
-								var inner = temp.find("td");
-								temp = inner.length ? inner : temp.wrap("<div>").parent();
-								
-								tds += temp.wrap("<div>").parent().html();
+								// build tbody cells; watch for data containing HTML markup - see #434
+								tds += /^\s*<td/.test(d[i][j]) ? $.trim(d[i][j]) : '<td>' + d[i][j] + '</td>';
 							}
 							tds += '</tr>';
 						}
@@ -346,6 +345,7 @@
 		getAjax = function(table, p){
 			var url = getAjaxUrl(table, p),
 			$doc = $(document),
+			counter,
 			c = table.config;
 			if ( url !== '' ) {
 				if (c.showProcessing) {
@@ -356,16 +356,14 @@
 					$doc.unbind('ajaxError.pager');
 				});
 
-				var counter = ++p.ajaxCounter;
+				counter = ++p.ajaxCounter;
 
 				p.ajaxObject.url = url; // from the ajaxUrl option and modified by customAjaxUrl
-				p.ajaxObject.success = function(data)
-				{
-					//	Refuse to process old ajax commands that were overwritten by new ones
-					if(counter != p.ajaxCounter){
+				p.ajaxObject.success = function(data) {
+					// Refuse to process old ajax commands that were overwritten by new ones - see #443
+					if (counter < p.ajaxCounter){
 						return;
 					}
-					
 					renderAjax(data, table, p);
 					$doc.unbind('ajaxError.pager');
 					if (typeof p.oldAjaxSuccess === 'function') {

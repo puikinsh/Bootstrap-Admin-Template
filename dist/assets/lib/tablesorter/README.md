@@ -44,6 +44,35 @@ tablesorter can successfully parse and sort many types of data including linked 
 
 View the [complete listing here](https://github.com/Mottie/tablesorter/wiki/Change).
 
+#### <a name="v2.14.3">Version 2.14.3</a> (12/2/2013)
+
+* Core
+  * Refreshing widgets now only applies to previously installed widgets. Fixes [issue #442](https://github.com/Mottie/tablesorter/issues/442).
+* Pager
+  * Ajax arrays now accept html instead of cell contents, e.g. `<td class="red">- 10</td>`. Thanks [@christhomas](https://github.com/christhomas); fixes [issue #434](https://github.com/Mottie/tablesorter/pull/434).
+  * Add ajax counter to only allow the most recent request to process. Thanks [@christhomas](https://github.com/christhomas); fixes [issue #443](https://github.com/Mottie/tablesorter/pull/443).
+  * When filtering rows, the output will now show zeros for row &amp; page counts instead of empty strings.
+  * No more `fixedHeight` pager errors. Thanks [@hempel](https://github.com/hempel); fixes [issue #448](https://github.com/Mottie/tablesorter/issues/448).
+* Filter widget
+  * Exact filter matches now properly override other queries. Fixes [issue #441](https://github.com/Mottie/tablesorter/issues/441).
+  * Reverse range `20 - 10` work properly, again. See [issue #441](https://github.com/Mottie/tablesorter/issues/441).
+  * Updated docs to show the filter precendence. See [footnote (2) under Notes](http://mottie.github.io/tablesorter/docs/example-widget-filter.html).
+* Sticky Headers widget
+  * Now uses the filter widget `bindSearch` function allowing live search, delayed searching and escape to cancel on sticky header filters.
+  * Thanks to [@haraldkrischner](https://github.com/haraldkrischner) for his help!
+  * Fixes issues [#439](https://github.com/Mottie/tablesorter/issues/439) &amp; [#440](https://github.com/Mottie/tablesorter/pull/440).
+* CSS Sticky Headers widget (beta)
+  * Now works properly in IE9+.
+  * Thanks [@gakreol](https://github.com/gakreol)
+  * Fixes [issue #447](https://github.com/Mottie/tablesorter/issues/447).
+* Added Semantic version sorting demo
+  * See the [demo here](http://mottie.github.io/tablesorter/docs/example-option-textsorter-semver.html).
+  * This demo does not use a custom parser nor widget, it requires a modified [`semver.js` for node](https://github.com/isaacs/node-semver) file to sort the column using the `textSorter` option.
+  * The modified `semver-mod.js` file is contained within the new "extras" folder (tablesorter/js/extras) along with the original unmodified `semver.js` file.
+  * Extra code is also included to highlight invalid semantic versions within the table.
+  * Fixes [issue #395](https://github.com/Mottie/tablesorter/issues/395).
+* Sorry I didn't get around to finding solutions for some of the other issues that I promised to have done this patch :(
+
 #### <a name="v2.14.2">Version 2.14.2</a> (11/25/2013)
 
 * Removed Bootstrap filter cell background color. Fixes [issue #425](https://github.com/Mottie/tablesorter/issues/425).

@@ -401,6 +401,7 @@
 		<li><a href="example-parsers-feet-inch-fraction.html">Feet-inch-fraction parser</a> (<span class="version">v2.8</span>).</li>
 		<li><a href="example-parsers-ip-address.html">IPv6 address parser</a> (<span class="version">v2.12</span>).</li>
 		<li><a href="example-parsers-file-type.html">File type parser</a> (<span class="version">v2.13</span>).</li>
+		<li><a href="example-option-textsorter-semver.html">Semantic Versioning (Semver) sorting</a> (<span class="version">v2.14.3</span>).</li>
 	</ul>
 
 	</div>
@@ -1372,7 +1373,7 @@ $(function(){
 
 					</div>
 				</td>
-				<td><a href="example-option-custom-sort.html">Example</a></td>
+				<td>Ex:<a href="example-option-custom-sort.html">1</a> <a href="example-option-textsorter-semver.html">2</a></td>
 			</tr>
 
 			<tr id="usnumberformat">
@@ -2734,7 +2735,7 @@ $.extend($.tablesorter.themes.jui, {
 				<td>Function</td>
 				<td>null</td>
 				<td>
-					This function is required to return the ajax data obtained from your server into a useable format for tablesorter to apply to the table (v2.1, <span class="version updated">v2.10</span>).
+					This function is required to return the ajax data obtained from your server into a useable format for tablesorter to apply to the table (v2.1, <span class="version updated">v2.14.3</span>).
 					<div class="collapsible">
 					<br>
 					In <span class="version">v2.10</span>, the returned rows is now optional. And it can either be an array of arrays or a jQuery object (not attached to the table)
@@ -2753,7 +2754,8 @@ $.extend($.tablesorter.themes.jui, {
     [ "rowNcell1", "rowNcell2", ... "rowNcellN" ]
   ],
   [ "header1", "header2", ... "headerN" ] // optional
-]</pre>Here is some example JSON (comments added, but not allowed in JSON) which is contained in the <a href="https://github.com/Mottie/tablesorter/blob/master/docs/assets/City0.json">City0.json</a> file:
+]</pre><span class="label label-info">Note</span>: In <span class="version">v2.14.3</span>, the contents of the array can also contain table cell markup (i.e. <code>&quot;&lt;td class='green'&gt;+ 10%&lt;/td&gt;&quot;</code>).<br>
+<br>Here is some example JSON (comments added, but not allowed in JSON) which is contained in the <a href="https://github.com/Mottie/tablesorter/blob/master/docs/assets/City0.json">City0.json</a> file:
 <pre class="prettyprint lang-javascript">{
   // total rows
   "total_rows": 80,

@@ -314,7 +314,7 @@ Name of the event triggering field validation, defaults to *blur*.
 Determines if we should scroll the page to the first error, defaults to *true*.
 
 ### binded
-If set to true, it remove blur events and only validate on submit.
+If set to false, it removes blur events and only validates on submit.
 
 ### promptPosition
 Where should the prompt show? Possible values are "topLeft", "topRight", "bottomLeft", "centerRight", "bottomRight". Defaults to *"topRight"*.
@@ -414,6 +414,12 @@ Determines if the prompt should hide itself automatically after a set period. De
 
 ### autoHideDelay
 Sets the number of ms that the prompt should appear for if autoHidePrompt is set to *true*. Defaults to *10000*. 
+
+### showArrow
+Show the arrow in the validation popup. Defaults to *true*
+
+### showArrowOnRadioAndCheckbox
+Show the arrow in the validation popup when validating checkboxes and radio buttons. Defaults to *false*
 
 Validators
 ---

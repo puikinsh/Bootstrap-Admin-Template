@@ -602,7 +602,7 @@ body.padTop53 {
     z-index: 1000;
     background: #444;
     border-top-width: 0;
-    padding: 5px 0;
+    padding: 0;
   }
   #menu > li ul > li {
     padding: 5px 10px;
@@ -2277,6 +2277,9 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
   background-color: #c9302c;
 }
 /* END FULLCALENDAR STYLES */
+.google-maps {
+  min-height: 300px;
+}
 .p-xs {
   padding: 10px;
 }

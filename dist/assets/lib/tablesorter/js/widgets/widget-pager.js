@@ -1,4 +1,4 @@
-/* Pager widget (beta) for TableSorter 11/9/2013 (v2.14.1) */
+/* Pager widget (beta) for TableSorter 12/2/2013 (v2.14.3) */
 /*jshint browser:true, jquery:true, unused:false */
 ;(function($){
 "use strict";
@@ -124,6 +124,7 @@ tsp = ts.pager = {
 				size: wo.pager_size,
 				startRow: 0,
 				endRow: 0,
+				ajaxCounter: 0,
 				$size: null,
 				last: {}
 			}, c.pager);
@@ -326,8 +327,12 @@ tsp = ts.pager = {
 				})
 				// {totalPages}, {extra}, {extra:0} (array) or {extra : key} (object)
 				.replace(/\{\w+(\s*:\s*\w+)?\}/gi, function(m){
-					var t = m.replace(/[{}\s]/g,''), a = t.split(':'), d = p.ajaxData;
-					return a.length > 1 && d && d[a[0]] ? d[a[0]][a[1]] : p[t] || (d ? d[t] : '') || '';
+					var str = m.replace(/[{}\s]/g,''),
+						extra = str.split(':'),
+						data = p.ajaxData,
+						// return zero for default page/row numbers
+						deflt = /(rows?|pages?)$/i.test(str) ? 0 : '';
+					return extra.length > 1 && data && data[extra[0]] ? data[extra[0]][extra[1]] : p[str] || (data ? data[str] : deflt) || deflt;
 				});
 			if (out.length) {
 				out[ (out[0].tagName === 'INPUT') ? 'val' : 'html' ](s);
@@ -464,8 +469,8 @@ tsp = ts.pager = {
 					for ( i = 0; i < l; i++ ) {
 						tds += '<tr>';
 						for ( j = 0; j < d[i].length; j++ ) {
-							// build tbody cells
-							tds += '<td>' + d[i][j] + '</td>';
+							// build tbody cells; watch for data containing HTML markup - see #434
+							tds += /^\s*<td/.test(d[i][j]) ? $.trim(d[i][j]) : '<td>' + d[i][j] + '</td>';
 						}
 						tds += '</tr>';
 					}
@@ -524,10 +529,11 @@ tsp = ts.pager = {
 	},
 
 	getAjax: function(table, c){
-		var url = tsp.getAjaxUrl(table, c),
-		$doc = $(document),
-		wo = c.widgetOptions,
-		p = c.pager;
+		var counter,
+			url = tsp.getAjaxUrl(table, c),
+			$doc = $(document),
+			wo = c.widgetOptions,
+			p = c.pager;
 		if ( url !== '' ) {
 			if (c.showProcessing) {
 				ts.isProcessing(table, true); // show loading icon
@@ -536,8 +542,13 @@ tsp = ts.pager = {
 				tsp.renderAjax(null, table, c, xhr, exception);
 				$doc.unbind('ajaxError.pager');
 			});
+			counter = ++p.ajaxCounter;
 			wo.pager_ajaxObject.url = url; // from the ajaxUrl option and modified by customAjaxUrl
 			wo.pager_ajaxObject.success = function(data) {
+				// Refuse to process old ajax commands that were overwritten by new ones - see #443
+				if (counter < p.ajaxCounter){
+					return;
+				}
 				tsp.renderAjax(data, table, c);
 				$doc.unbind('ajaxError.pager');
 				if (typeof p.oldAjaxSuccess === 'function') {

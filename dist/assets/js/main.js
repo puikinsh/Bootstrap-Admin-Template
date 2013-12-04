@@ -968,7 +968,7 @@ function metisMaps() {
         strokeWeight: 6
     });
 
-    map6 = new GMaps({
+    addressMap = new GMaps({
         el: '#gmaps-geocoding',
         lat: -12.043333,
         lng: -77.028333
@@ -980,8 +980,8 @@ function metisMaps() {
             callback: function(results, status) {
                 if (status === 'OK') {
                     var latlng = results[0].geometry.location;
-                    map6.setCenter(latlng.lat(), latlng.lng());
-                    map6.addMarker({
+                    addressMap.setCenter(latlng.lat(), latlng.lng());
+                    addressMap.addMarker({
                         lat: latlng.lat(),
                         lng: latlng.lng()
                     });

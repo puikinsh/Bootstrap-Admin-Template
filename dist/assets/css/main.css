@@ -106,11 +106,7 @@ body.padTop53 {
     top: 53px;
   }
   #content {
-    margin-left: 100px;
-  }
-  .side-right #content {
-    margin-left: 0;
-    margin-right: 100px;
+    overflow: hidden;
   }
   #left {
     margin-bottom: -10px;
@@ -129,28 +125,11 @@ body.padTop53 {
   .mini-sidebar #left #menu.affix {
     width: 100px;
   }
-  #content {
-    margin-left: 220px;
-  }
-  .side-right #content {
-    margin-right: 220px;
-  }
-  .mini-sidebar #content {
-    margin-left: 100px;
-  }
-  .mini-sidebar.side-right #content {
-    margin-left: 0;
-    margin-right: 100px;
-  }
 }
 @media (min-width: 768px) {
   .hide-sidebar #left,
   .hide-sidebar #right {
     display: none;
-  }
-  .hide-sidebar #content {
-    margin: 0 !important;
-    width: 100% !important;
   }
 }
 @media (min-width: 1200px) {

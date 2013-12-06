@@ -57,11 +57,7 @@ rgba(255,255,255,.05) inset;
       }
   }
     #content {
-        margin-left: @miniSidebarWidth;
-        .side-right & {
-            margin-left: 0;
-            margin-right: @miniSidebarWidth;
-        }
+      overflow: hidden;
     }
     #left {
         margin-bottom: -10px;
@@ -76,25 +72,11 @@ rgba(255,255,255,.05) inset;
             #menu.affix{width: @miniSidebarWidth;}
         }
     }
-    #content {
-        margin-left: @SidebarWidth;
-        .side-right & {
-            margin-right: @SidebarWidth;
-        }
-        .mini-sidebar &{
-            margin-left: @miniSidebarWidth;
-        }
-        .mini-sidebar.side-right & {
-            margin-left: 0;
-            margin-right: @miniSidebarWidth;
-        }
-    }
 }
 
 @media (min-width: @screen-tablet) {
     .hide-sidebar {
         #left, #right {display: none;}
-        #content {margin:0 !important; width: 100% !important;}
     }
 }
 

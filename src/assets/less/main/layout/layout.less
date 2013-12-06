@@ -25,10 +25,14 @@ body.padTop53 {
 
 
 @media (min-width: @screen-tablet) {
-    #left {
-        width: @miniSidebarWidth;
-        position: relative;
-        #menu.affix{
+  #left {
+    
+	width: @miniSidebarWidth;
+    position: relative;
+	float: left;
+    .side-right & {float:right;}
+    
+	#menu.affix{
 	  position: fixed;
 	  top:0;
 	  width: @miniSidebarWidth;
@@ -36,19 +40,22 @@ body.padTop53 {
 	  overflow-y:hidden;
 	  -webkit-overflow-scrolling: touch;
 	  &:hover {overflow-y:scroll;}
+	  
+	  li > ul {
+		position: relative;
+		width: auto;
+		left:auto;
+		top:auto;
+	  }
+	  
 	  > li:last-child > a:last-child {
-	    box-shadow: 0 1px 0 rgba(255,255,255,.05), 0 1px 0 rgba(255,255,255,.05) inset;
-	    border-bottom: 1px solid rgba(0,0,0,.3);
+		  box-shadow: 0 1px 0 rgba(255,255,255,.05), 0 1px 0 
+rgba(255,255,255,.05) inset;
+		  border-bottom: 1px solid rgba(0,0,0,.3);
 	    }
-	    body.padTop53 & {
-	      top:53px;
-	    }
-        }
-        float: left;
-        .side-right & {
-            float:right;
-        }
-    }
+	    body.padTop53 & {top:53px;}
+      }
+  }
     #content {
         margin-left: @miniSidebarWidth;
         .side-right & {

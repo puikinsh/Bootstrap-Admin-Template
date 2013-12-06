@@ -78,6 +78,9 @@ body.padTop53 {
     position: relative;
     float: left;
   }
+  .side-right #left {
+    float: right;
+  }
   #left #menu.affix {
     position: fixed;
     top: 0;
@@ -89,15 +92,18 @@ body.padTop53 {
   #left #menu.affix:hover {
     overflow-y: scroll;
   }
+  #left #menu.affix li > ul {
+    position: relative;
+    width: auto;
+    left: auto;
+    top: auto;
+  }
   #left #menu.affix > li:last-child > a:last-child {
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05), 0 1px 0 rgba(255, 255, 255, 0.05) inset;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   }
   body.padTop53 #left #menu.affix {
     top: 53px;
-  }
-  .side-right #left {
-    float: right;
   }
   #content {
     margin-left: 100px;
@@ -648,8 +654,8 @@ body.padTop53 {
 }
 /* BEGIN CONTENT STYLES */
 #content {
-  -webkit-transition: margin 0.4s;
-  transition: margin 0.4s;
+  -webkit-transition: width 0.4s;
+  transition: width 0.4s;
 }
 .outer {
   padding: 10px;

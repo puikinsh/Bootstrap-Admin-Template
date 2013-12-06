@@ -77,7 +77,7 @@ module.exports = function (grunt) {
         assemble: {
             // Task-level options
             options: {
-                flattern: true,
+                flatten: true,
                 postprocess: require('pretty'),
                 assets: 'dist/assets',
                 data: 'src/data/*.{json,yml}',

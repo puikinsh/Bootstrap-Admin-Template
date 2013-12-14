@@ -418,7 +418,7 @@ body.padTop53 {
 @media (min-width: 768px) {
   #menu.collapse {
     display: inherit !important;
-    height: auto;
+    height: auto !important;
   }
 }
 #menu > li {
@@ -503,9 +503,6 @@ body.padTop53 {
   right: auto;
 }
 @media (min-width: 768px) {
-  #menu {
-    overflow: visible;
-  }
   .mini-sidebar #menu > li > a,
   #menu > li > a {
     text-align: center;
@@ -546,6 +543,9 @@ body.padTop53 {
   }
 }
 @media (min-width: 992px) {
+  #menu {
+    overflow: visible;
+  }
   #menu > li > a {
     text-align: left;
   }

@@ -16,7 +16,7 @@
   @media (min-width: @screen-tablet) {
     &.collapse {
       display: inherit !important;
-      height: auto;
+      height: auto !important;
     }
   }
 
@@ -107,7 +107,6 @@
 
 @media (min-width: @screen-tablet) {
   #menu {
-    overflow: visible;
     .mini-sidebar &, & {
       > li > a {
         text-align: center;
@@ -148,7 +147,8 @@
 }
 
 @media (min-width: @screen-desktop) {
-
+    #menu{
+    overflow: visible;}
   #menu > li > a {
     text-align: left;
     > i {

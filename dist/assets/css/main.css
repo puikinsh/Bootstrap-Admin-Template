@@ -418,6 +418,7 @@ body.padTop53 {
 @media (min-width: 768px) {
   #menu.collapse {
     display: inherit !important;
+    height: auto;
   }
 }
 #menu > li {

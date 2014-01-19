@@ -7,18 +7,22 @@ module.exports = function (grunt) {
         // Metadata
         pkg: grunt.file.readJSON('package.json'),
         banner: '/**\n' +
-            '* <%=pkg.name %> by <%= pkg.author.email %>\n' +
-            '* Version : <%= pkg.version %> \n' +
-            '* Author : <%= pkg.author.name %> \n' +
+            '* <%=pkg.name %> v<%= pkg.version %>\n' +
+            '* Author : <%= pkg.author %> \n' +
             '* Copyright <%= grunt.template.today("yyyy") %>\n' +
+            '* Licensed under <%= _.pluck(pkg.licenses, "type") %> (<%= _.pluck(pkg.licenses, "url") %>)\n' +
             '*/\n',
         clean: {dist: ['dist']},
         less: {
             options: {
+		banner: '<%= banner %>',
                 metadata: 'src/*.{json,yml}',
+// 		sourceMap: true,
+//              sourceMapFilename: "dist/assets/css/style.css.map",
+//              sourceMapURL: 'style.css.map',
                 paths: 'bower_components/bootstrap/less',
                 imports: {
-                    less: ['mixins.less', 'variables.less']
+                    reference: ['mixins.less', 'variables.less']
                 }
             },
             development: {
@@ -148,12 +152,6 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
-                        cwd: 'src/assets/less',
-                        src: ['theme.less'],
-                        dest: 'dist/assets/less'
-                    },
-                    {
-                        expand: true,
                         cwd: 'src/ember',
                         src: ['*.html'],
                         dest: 'dist'
@@ -161,7 +159,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: 'node_modules/assemble-less/node_modules/less/dist/',
-                        src: ['less-1.5.1.min.js'],
+                        src: ['less-1.6.1.min.js'],
                         dest: 'dist/assets/lib'
                     },
                     {
@@ -196,13 +194,24 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
-                        cwd: 'bower_components/respond',
+                        cwd: 'bower_components/respond/dest',
                         src: ['./respond.min.js'],
                         dest: 'dist/assets/lib/respond'
-                    }
+                    },
+		     {
+                        expand: true,
+                        cwd: 'src/assets/less',
+                        src: ['./**/theme.less'],
+                        dest: 'dist/assets/less'
+                    },
+		     {
+		       expand: true,
+		     cwd: 'node_modules/epiceditor/epiceditor',
+		     src: ['./**/*.*'],
+		     dest: 'dist/assets/lib/epiceditor'
+		    }
                 ]
             }
-
         },
 
         watch: {
@@ -245,9 +254,9 @@ module.exports = function (grunt) {
     // JS distribution task.
     grunt.registerTask('dist-js', ['concat', 'jshint', 'uglify']);
 
-
+    
     // Full distribution task.
-    grunt.registerTask('dist', ['clean', 'less', 'dist-js', 'copy']);
+    grunt.registerTask('dist', ['clean', 'copy', 'less', 'dist-js']);
 
     // Default task.
     //grunt.registerTask('default', ['test', 'dist']);

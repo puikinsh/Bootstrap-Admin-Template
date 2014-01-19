@@ -25,9 +25,13 @@
 	<link class="theme" rel="stylesheet" href="../css/theme.dark.css">
 	<link class="theme" rel="stylesheet" href="../css/theme.dropbox.css">
 
-	<style>
-	
-	</style>
+	<style id="css">/* wrapper of table 2 */
+.wrapper {
+	position: relative;
+	top: 50px;
+	height: 250px;
+	overflow-x: auto;
+}</style>
 
 	<!-- Tablesorter script: required -->
 	<script src="../js/jquery.tablesorter.js"></script>
@@ -36,21 +40,26 @@
 
 	<script id="js">$(function(){
 
-	$("table").tablesorter({
-
+	var options = {
 		widthFixed : true,
 		showProcessing: true,
-
 		headerTemplate: '{content} {icon}', // Add icon for jui theme; new in v2.7!
 
 		widgets: [ 'uitheme', 'zebra', 'cssStickyHeaders', 'filter' ],
 
 		widgetOptions: {
-			cssStickyHeaders_offsetX : 0,
-			cssStickyHeaders_offsetY : 0
+			cssStickyHeaders_offset     : 0,
+			cssStickyHeaders_addCaption : true,
+			cssStickyHeaders_attachTo   : null
 		}
 
-	});
+	};
+
+	$("#table1").tablesorter(options);
+
+	/* make second table scroll within its wrapper */
+	options.widgetOptions.cssStickyHeaders_attachTo = '.wrapper' // or $('.wrapper')
+	$("#table2").tablesorter(options);
 
 });</script>
 <script>
@@ -86,7 +95,7 @@ $(function() {
 
 <div id="banner">
 	<h1>table<em>sorter</em></h1>
-	<h2>CSS Sticky Header Widget (beta)</h2>
+	<h2>CSS Sticky Header Widget</h2>
 	<h3>Flexible client-side table sorting</h3>
 	<a href="index.html">Back to documentation</a>
 </div>
@@ -96,13 +105,23 @@ $(function() {
 	<p class="tip">
 		<em>NOTE!</em>
 		<ul>
-			<li>This demo uses the CSS Sticky Headers widget (beta) which uses CSS transforms to reposition the table head.</li>
+			<li>This demo uses the CSS Sticky Headers widget which uses CSS transforms to reposition the table head.</li>
 			<li><a href="http://caniuse.com/#search=transform">CSS transforms</a> are supported by most modern browsers (not IE8 and older).</li>
-			<li>The jQuery UI themed table does not stick to the top of the page due to the extra padding. Adjust the <code>cssStickyHeaders_offsetY</code> option as desired. I didn't bother in this demo because it shows more than just the jQuery UI theme.</li>
-			<li><strong>It doesn't seem to work in Internet Explorer v10, but it should</strong>.</li>
-			<li>This widget is still in <span class="label label-info">Beta</span> (<span class="version">v2.14.2</span>)</li>
+			<li>In <span class="version">v2.14.4</span>:
+				<ul>
+					<li>Added <code>cssStickyHeaders_attachTo</code> (default set to <code>null</code>). Setting this option with either a jQuery selector string (<code>&quot;.wrapper&quot;</code>) or jQuery object (<code>$(&quot;.wrapper&quot;)</code>) to attach the sticky header to this element - see the second example below.</li>
+					<li>Removed <code>cssStickyHeaders_offsetX</code> option &amp; renamed <code>cssStickyHeaders_offsetY</code> to <code>cssStickyHeaders_offset</code> as the horizontal offset is not required.</li>
+				</ul>
+			</li>
+			<li>The jQuery UI themed table does not stick to the top of the page due to the extra padding. Adjust the <code>cssStickyHeaders_offset</code> option as desired. I didn't bother in this demo because it includes more than just the jQuery UI theme.</li>
+			<li>This widget <em>will not work</em> with the original tablesorter, but works optimally with tablesorter v2.8+ (Added <span class="version">v2.14.2</span>; Updated <span class="version updated">v2.14.4</span>)</li>
 		</ul>
 	</p>
+
+	<h1>CSS</h1>
+	<div id="css">
+		<pre class="prettyprint lang-css"></pre>
+	</div>
 
 	<h1>Javascript</h1>
 	<div id="javascript">
@@ -115,9 +134,9 @@ $(function() {
 		<option value="jui">Jquery UI</option>
 	</select>
 	<br><br>
-
-	<table class="tablesorter">
-	<!-- <caption>Student Grades</caption> -->
+	<h1>Attach sticky header to browser window</h1>
+	<table id="table1" class="tablesorter">
+	<caption>Student Grades</caption>
 	<thead>
 		<tr><th>Name</th><th>Major</th><th>Sex</th><th>English</th><th>Japanese</th><th>Calculus</th><th class="filter-false sorter-false">Geometry</th></tr>
 	</thead>
@@ -179,8 +198,10 @@ $(function() {
 	</tbody>
 	</table>
 
-	<div class="narrow-block">
-	<table class="tablesorter">
+	<h1>Attach sticky header to its parent</h1>
+	<div class="narrow-block wrapper">
+	<table id="table2" class="tablesorter">
+		<caption>Student Grades</caption>
 		<thead>
 			<tr><th>Account #</th><th>First Name</th><th>Last Name</th><th>Age</th><th>Total</th><th>Discount</th><th>Diff</th></tr>
 		</thead>

@@ -1,8 +1,8 @@
 /**
-* Bootstrap-Admin-Template by onokumus@gmail.com
-* Version : 2.1.2 
-* Author : Osman Nuri Okumuş 
-* Copyright 2013
+* Bootstrap-Admin-Template v2.1.3
+* Author : [object Object] 
+* Copyright 2014
+* Licensed under ,, (,,)
 */
 /* Start Countdown Settings */
 
@@ -71,17 +71,22 @@ function fillTotalbar(percent) {
 /* Start Google Map*/
 
 var map;
-function initialize() {
-    var mapOptions = {
-        zoom: 7,
-        center: new google.maps.LatLng(40.711614, -73.995323),
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        scrollwheel: false
-    };
-    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-}
 
-google.maps.event.addDomListener(window, 'load', initialize);
+map = new GMaps({
+        el: '#map_canvas',
+        lat: -12.043333,
+        lng: -77.028333,
+        zoomControl: true,
+        zoomControlOpt: {
+            style: 'SMALL',
+            position: 'TOP_LEFT'
+        },
+        panControl: false,
+        streetViewControl: false,
+        mapTypeControl: false,
+        overviewMapControl: false
+    });
+
 
 /* Start Form validation*/
 

@@ -15,7 +15,8 @@ javascripts:
 - lib/pagedown/Markdown.Converter.js
 - lib/pagedown/Markdown.Sanitizer.js
 - lib/Markdown.Editor-hack.js
-scripts: $(function() { formWysiwyg(); });
+- lib/epiceditor/js/epiceditor.min.js
+scripts: $(function() {formWysiwyg();});
 ---
 <style>
     ul.wysihtml5-toolbar > li {
@@ -31,12 +32,12 @@ scripts: $(function() { formWysiwyg(); });
                 <ul class="nav pull-right">
                     <li>
                         <div class="btn-group">
-                            <a class="accordion-toggle btn btn-xs minimize-box" data-toggle="collapse"
+                            <a class="accordion-toggle btn btn-default btn-xs minimize-box" data-toggle="collapse"
                                href="#div-1">
                                 <i class="fa fa-minus"></i>
                             </a>
                             <button class="btn btn-danger btn-xs close-box"><i
-                                    class="fa fa-remove"></i></button>
+                                    class="fa fa-times"></i></button>
                         </div>
                     </li>
                 </ul>
@@ -66,12 +67,13 @@ scripts: $(function() { formWysiwyg(); });
                 <ul class="nav pull-right">
                     <li>
                         <div class="btn-group">
-                            <a class="accordion-toggle btn btn-xs minimize-box" data-toggle="collapse"
+                            <a class="accordion-toggle btn btn-default btn-xs minimize-box" data-toggle="collapse"
                                href="#cleditorDiv">
                                 <i class="fa fa-minus"></i>
                             </a>
-                            <button class="btn btn-xs btn-danger close-box"><i
-                                    class="fa fa-remove"></i></button>
+                            <button class="btn btn-xs btn-danger close-box">
+			      <i class="fa fa-times"></i>
+			   </button>
                         </div>
                     </li>
                 </ul>
@@ -107,27 +109,6 @@ scripts: $(function() { formWysiwyg(); });
                     <div class="wmd-panel">
                         <div id="wmd-button-bar" class="btn-toolbar"></div>
                         <textarea class="form-control wmd-input" rows="10" name="description" id="wmd-input">
-Free Admin Template with Twitter Bootstrap
-------------------------------------------
-
-### Installation
-
-    $ git clone https://github.com/onokumus/Bootstrap-Admin-Template.git yourfoldername
-    $ cd yourfoldername
-    $ git submodule init
-    $ git submodule update
-    $ npm install
-    $ grunt
-    $ cd dist/
-    $ open index.html
-
-### Demo
-
-#### For 1.2 version
-http://demo.onokumus.com/metis/index.html
-
-#### For 2.0.0 version
-Not Yet
                         </textarea>
                     </div>
                 </div>
@@ -138,5 +119,37 @@ Not Yet
         </div>
     </div>
     <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="box">
+      <header>
+	<div class="icons"><i class="fa fa-edit"></i></div>
+	<h5>epiceditor</h5>
+	<ul class="nav pull-right">
+	    <li>
+		<div class="btn-group">
+		    <a class="accordion-toggle btn btn-default btn-xs minimize-box" data-toggle="collapse" href="#cleditorDiv">
+			<i class="fa fa-minus"></i>
+		    </a>
+		    <button class="btn btn-xs btn-danger close-box">
+		      <i class="fa fa-times"></i>
+		    </button>
+		</div>
+	    </li>
+	</ul>
+    </header>
+    <div id="epiceditorDiv" class="body collapse in">
+      <div id="epiceditor"></div>
+      <!-- /#epiceditor -->
+    </div>
+    <!-- /#epiceditorDiv.body collapse in -->
+    
+    </div>
+    <!-- /.box -->
+  </div>
+  <!-- /.col-md-12 -->
 </div>
 <!-- /.row -->

@@ -2,11 +2,10 @@
 title: Under Construction
 ---
 <style>
-#map_canvas, #map_canvas {
-  -webkit-box-sizing: content-box;
-     -moz-box-sizing: content-box;
-          box-sizing: content-box;
-}
+  #map_canvas {    
+    width: 100% !important;
+    height: 100% !important;
+  }
 </style>
     <div class="container">
         <div class="clearfix">
@@ -191,9 +190,16 @@ title: Under Construction
                         <dd>http://domain.com</dd>
                     </dl>
                 </address>
-
-                <div id="map_canvas" style="height: 240px;"></div>
-
+		    <div class="row">
+		    	<div class="col-xs-12">
+			  <div class="FlexEmbed FlexEmbed--4by3">
+			    <div id="map_canvas" class="FlexEmbed-item"></div>
+			  </div>
+		    	</div>
+		    	<!-- /.col-xs-12 -->
+		    </div>
+		    <!-- /.row -->
+<div class="clearfix"></div>
             </div>
             <!-- /.col-lg-5 -->
         </div>
@@ -201,16 +207,11 @@ title: Under Construction
     </div>
 
 
-
 <script src="{{assets}}/lib/jquery.min.js"></script>
 <script src="{{assets}}/lib/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript"
-        src="{{assets}}/lib/countdown/jquery.countdown.min.js"></script>
-
-<script type="text/javascript"
-        src="{{assets}}/lib/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
-<script type="text/javascript"
-        src="{{assets}}/lib/jquery-validation-1.11.1/localization/messages_zh.js"></script>
-
-<script type="text/javascript" src="{{assets}}/js/countdown.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="{{assets}}/lib/gmaps/gmaps.js"></script>
+<script src="{{assets}}/lib/countdown/jquery.countdown.min.js"></script>
+<script src="{{assets}}/lib/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
+<script src="{{assets}}/lib/jquery-validation-1.11.1/localization/messages_zh.js"></script>
+<script src="{{assets}}/js/countdown.js"></script>

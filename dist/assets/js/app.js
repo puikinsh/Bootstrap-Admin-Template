@@ -1,8 +1,8 @@
 /**
-* Bootstrap-Admin-Template by onokumus@gmail.com
-* Version : 2.1.2 
-* Author : Osman Nuri Okumuş 
-* Copyright 2013
+* Bootstrap-Admin-Template v2.1.3
+* Author : [object Object] 
+* Copyright 2014
+* Licensed under ,, (,,)
 */
 window.App = Ember.Application.create();
 

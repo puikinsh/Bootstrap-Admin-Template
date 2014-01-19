@@ -64,7 +64,7 @@
 		c.filter_childRows = o;
 		$('.state').html(o.toString());
 		// update filter; include false parameter to force a new search
-		$('input.tablesorter-filter').trigger('search', false);
+		$('table').trigger('search', false);
 		return false;
 	});
 

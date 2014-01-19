@@ -1,12 +1,8 @@
 $(function() {
-  $('#mySwitch').on('switch-change', function (e, data) {
-    var $el = $(data.el),
-        value = data.value;
+  // initialize all the inputs
+  $('input[type="checkbox"],[type="radio"]').not('#create-switch').bootstrapSwitch();
 
-    console.log(e, $el, value);
-  });
-
-  // DIMENSION
+  // dimension
   $('#btn-size-regular-switch').on('click', function () {
     $('#dimension-switch').bootstrapSwitch('setSizeClass', '');
   });
@@ -20,7 +16,7 @@ $(function() {
     $('#dimension-switch').bootstrapSwitch('setSizeClass', 'switch-large');
   });
 
-  // STATE
+  // state
   $('#toggle-state-switch-button').on('click', function () {
     $('#toggle-state-switch').bootstrapSwitch('toggleState');
   });
@@ -30,36 +26,52 @@ $(function() {
   $('#toggle-state-switch-button-off').on('click', function () {
     $('#toggle-state-switch').bootstrapSwitch('setState', false);
   });
-  $('#toggle-state-switch-button-status').on('click', function () {
-    alert($('#toggle-state-switch').bootstrapSwitch('status'));
+  $('#toggle-state-switch-button-state').on('click', function () {
+    alert($('#toggle-state-switch').bootstrapSwitch('state'));
   });
 
-  // DESTROY
+  // destroy
   $('#btn-destroy-switch').on('click', function () {
     $('#destroy-switch').bootstrapSwitch('destroy');
     $(this).remove();
   });
   // CREATE
   $('#btn-create').on('click', function () {
-    $('#create-switch').wrap('<div class="make-switch" />').parent().bootstrapSwitch();
-    $(this).remove()
+    $('#create-switch').bootstrapSwitch();
+    $(this).remove();
   });
 
-  // ACTIVATION
-  $('#btn-is-active-switch').on('click', function () {
-    alert($('#disable-switch').bootstrapSwitch('isActive'));
+  // activation
+  var $disable = $('#disable-switch');
+  $('#btn-disable-is').on('click', function () {
+    alert($disable.bootstrapSwitch('isDisabled'));
   });
-  $('#btn-toggle-activation-switch').on('click', function () {
-    $('#disable-switch').bootstrapSwitch('toggleActivation');
+  $('#btn-disable-toggle').on('click', function () {
+    $disable.bootstrapSwitch('toggleDisabled');
   });
-  $('#btn-disable-switch').on('click', function () {
-    $('#disable-switch').bootstrapSwitch('setActive', false);
+  $('#btn-disable-set').on('click', function () {
+    $disable.bootstrapSwitch('setDisabled', true);
   });
-  $('#btn-activate-switch').on('click', function () {
-    $('#disable-switch').bootstrapSwitch('setActive', true);
+  $('#btn-disable-remove').on('click', function () {
+    $disable.bootstrapSwitch('setDisabled', false);
   });
 
-  // LABEL
+  // readonly
+  var $readonly = $('#readonly-switch');
+  $('#btn-readonly-is').on('click', function () {
+    alert($readonly.bootstrapSwitch('isReadOnly'));
+  });
+  $('#btn-readonly-toggle').on('click', function () {
+    $readonly.bootstrapSwitch('toggleReadOnly');
+  });
+  $('#btn-readonly-set').on('click', function () {
+    $readonly.bootstrapSwitch('setReadOnly', true);
+  });
+  $('#btn-readonly-remove').on('click', function () {
+    $readonly.bootstrapSwitch('setReadOnly', false);
+  });
+
+  // label
   $('#btn-label-on-switch').on('click', function() {
     $('#label-switch').bootstrapSwitch('setOnLabel', 'I');
   });
@@ -73,11 +85,16 @@ $(function() {
   $('.label-toggle-switch').on('switch-change', function(e, data) {
     alert(data.value);
   });
-  $('#label2-toggle-switch').on('switch-change', function(e, data) {
-    alert(data.value);
+
+  // event handler
+  $('#switch-change').on('switch-change', function (e, data) {
+    var $element = $(data.el),
+      value = data.value;
+
+    console.log(e, $element, value);
   });
 
-  // COLOR
+  // color
   $('#btn-color-on-switch').on('click', function() {
     $('#change-color-switch').bootstrapSwitch('setOnClass', 'success');
   });
@@ -85,7 +102,7 @@ $(function() {
     $('#change-color-switch').bootstrapSwitch('setOffClass', 'danger');
   });
 
-  // ANIMATION
+  // animation
   $('#btn-animate-switch').on('click', function() {
     $('#animated-switch').bootstrapSwitch('setAnimated', true);
   });
@@ -93,7 +110,7 @@ $(function() {
     $('#animated-switch').bootstrapSwitch('setAnimated', false);
   });
 
-  // RADIO
+  // radio
   $('.radio1').on('switch-change', function () {
     $('.radio1').bootstrapSwitch('toggleRadioState');
   });

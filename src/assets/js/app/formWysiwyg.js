@@ -24,5 +24,11 @@ function formWysiwyg() {
         editor.refresh();
     });
     /*----------- END cleditor CODE -------------------------*/
-
+    
+    /*----------- BEGIN epiceditor CODE -------------------------*/
+    var opts={
+      basePath: 'assets/lib/epiceditor',
+    };
+    var editor = new EpicEditor(opts).load();
+    /*----------- END epiceditor CODE -------------------------*/
 }

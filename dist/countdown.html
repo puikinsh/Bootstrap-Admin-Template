@@ -27,27 +27,25 @@
   </head>
   <body class="bg-dark lter">
     <style>
-      #map_canvas,
       #map_canvas {
-        -webkit-box-sizing: content-box;
-        -moz-box-sizing: content-box;
-        box-sizing: content-box;
+        width: 100% !important;
+        height: 100% !important;
       }
     </style>
     <div class="container">
       <div class="clearfix">
         <div class="logo">
           <h1>
-            <span class="text-warning">UC</span>
+            <span class="text-warning">UC</span> 
           </h1>
         </div>
       </div>
       <div class="clearfix">
         <div class="col-lg-12 title">
-          <h2>Our Site <span class="orange">U</span>nder 
-            <span class="orange">C</span>onstruction
+          <h2>Our Site <span class="orange">U</span> nder 
+            <span class="orange">C</span> onstruction
           </h2>
-          <small>We are done with the backend just front end to go. The site will launch in:</small>
+          <small>We are done with the backend just front end to go. The site will launch in:</small> 
         </div>
       </div>
 
@@ -128,25 +126,25 @@
             <dd>
               <a href="#contact-area" class="accordion-toggle" data-toggle="collapse" rel="tooltip" data-placement="top" data-original-title="Fill the form">
                 <i class="fa fa-envelope"></i>
-              </a>
+              </a> 
             </dd>
             <dt>Follow Us :</dt>
             <dd>
               <a href="#" rel="tooltip" data-placement="bottom" data-original-title="facebook">
                 <i class="fa fa-facebook"></i>
-              </a>
+              </a> 
               <a href="#" rel="tooltip" data-placement="bottom" data-original-title="Twitter">
                 <i class="fa fa-twitter"></i>
-              </a>
+              </a> 
               <a href="#" rel="tooltip" data-placement="bottom" data-original-title="pinterest">
                 <i class="fa fa-pinterest"></i>
-              </a>
+              </a> 
               <a href="#" rel="tooltip" data-placement="bottom" data-original-title="google">
                 <i class="fa fa-google-plus"></i>
-              </a>
+              </a> 
               <a href="#" rel="tooltip" data-placement="bottom" data-original-title="github">
                 <i class="fa fa-github"></i>
-              </a>
+              </a> 
             </dd>
           </dl>
         </div><!-- /.col-lg-6 -->
@@ -209,16 +207,24 @@
               <dd>http://domain.com</dd>
             </dl>
           </address>
-          <div id="map_canvas" style="height: 240px;"></div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="FlexEmbed FlexEmbed--4by3">
+                <div id="map_canvas" class="FlexEmbed-item"></div>
+              </div>
+            </div><!-- /.col-xs-12 -->
+          </div><!-- /.row -->
+          <div class="clearfix"></div>
         </div><!-- /.col-lg-5 -->
       </div><!-- /.row -->
     </div>
     <script src="assets/lib/jquery.min.js"></script>
     <script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script type="text/javascript" src="assets/lib/countdown/jquery.countdown.min.js"></script>
-    <script type="text/javascript" src="assets/lib/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="assets/lib/jquery-validation-1.11.1/localization/messages_zh.js"></script>
-    <script type="text/javascript" src="assets/js/countdown.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="assets/lib/gmaps/gmaps.js"></script>
+    <script src="assets/lib/countdown/jquery.countdown.min.js"></script>
+    <script src="assets/lib/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
+    <script src="assets/lib/jquery-validation-1.11.1/localization/messages_zh.js"></script>
+    <script src="assets/js/countdown.js"></script>
   </body>
 </html>

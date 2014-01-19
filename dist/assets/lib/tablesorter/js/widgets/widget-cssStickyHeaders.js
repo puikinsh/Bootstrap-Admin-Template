@@ -1,7 +1,7 @@
-/*! tablesorter CSS Sticky Headers widget (beta) - updated 12/2/2013 (v2.14.3)
-* Requires a modern browser, tablesorter v2.8+ and jQuery 1.7+
+/*! tablesorter CSS Sticky Headers widget - updated 12/17/2013 (v2.14.6)
+* Requires a modern browser, tablesorter v2.8+
 */
-/*global jQuery: false */
+/*global jQuery: false, unused:false */
 ;(function($){
 	"use strict";
 
@@ -9,36 +9,53 @@
 		id: "cssStickyHeaders",
 		priority: 10,
 		options: {
-			cssStickyHeaders_offsetX : 0,
-			cssStickyHeaders_offsetY : 0
+			cssStickyHeaders_offset     : 0,
+			cssStickyHeaders_addCaption : false,
+			cssStickyHeaders_attachTo   : null,
+			cssStickyHeaders_zIndex     : 10
 		},
 		init : function(table, thisWidget, c, wo) {
-			var offset, bottom,
+			var $attach = $(wo.cssStickyHeaders_attachTo),
 				namespace = '.cssstickyheader',
-				$win = $(window),
 				$thead = c.$table.children('thead'),
-				left = 0;
-			$win
-				.bind('scroll resize '.split(' ').join(namespace + ' '), function() {
-					var offset = c.$table.offset(),
-						bottom = c.$table.height() - $thead.height() - (c.$table.find('tfoot').height() || 0),
-						deltaY = $win.scrollTop() - offset.top - 1, // subtract out top border
-						deltaX = $win.scrollLeft() + offset.left;
-					// IE can only transform header cells - fixes #447 thanks to @gakreol!
-					$thead.children().children().css({
-						// this non-prefixed transform has cross-browser support in jQuery 1.8+
-						"transform": "translate(" +
-							(deltaX > 0 && deltaX <= left ? deltaX - wo.cssStickyHeaders_offsetX : 0) + "px," +
-							(deltaY > 0 && deltaY <= bottom ? deltaY - wo.cssStickyHeaders_offsetY : 0) + "px)"
-					});
+				$caption = c.$table.find('caption'),
+				$win = $attach.length ? $attach : $(window);
+			$win.bind('scroll resize '.split(' ').join(namespace + ' '), function() {
+				var top = $attach.length ? $attach.offset().top : $win.scrollTop(),
+				// add caption height; include table padding top & border-spacing or text may be above the fold (jQuery UI themes)
+				// border-spacing needed in Firefox, but not webkit... not sure if I should account for that
+				captionTop = wo.cssStickyHeaders_addCaption ? $caption.outerHeight(true) +
+					(parseInt(c.$table.css('padding-top'), 10) || 0) + (parseInt(c.$table.css('border-spacing'), 10) || 0) : 0,
+				bottom = c.$table.height() - $thead.height() - (c.$table.find('tfoot').height() || 0) - captionTop,
+				deltaY = top - $thead.offset().top + (parseInt(c.$table.css('border-top-width'), 10) || 0) +
+					(wo.cssStickyHeaders_offset || 0) + captionTop,
+				finalY = (deltaY > 0 && deltaY <= bottom ? deltaY : 0),
+				// IE can only transform header cells - fixes #447 thanks to @gakreol!
+				$cells = $thead.children().children();
+				if (wo.cssStickyHeaders_addCaption) {
+					$cells = $cells.add($caption);
+				}
+				$cells.css({
+					"position" : "relative",
+					"z-index" : wo.cssStickyHeaders_zIndex,
+					"transform" : finalY === 0 ? "" : "translate(0px," + finalY + "px)",
+					"-ms-transform" : finalY === 0 ? "" : "translate(0px," + finalY + "px)",
+					"-webkit-transform" : finalY === 0 ? "" : "translate(0px," + finalY + "px)"
 				});
+			});
 		},
 		remove: function(table, c, wo){
 			var namespace = '.cssstickyheader';
 			$(window).unbind('scroll resize '.split(' ').join(namespace + ' '));
 			c.$table
 				.unbind('update updateAll '.split(' ').join(namespace + ' '))
-				.children('thead').css({ "transform": "translate(0px, 0px)" });
+				.children('thead, caption').css({
+					"position" : "",
+					"z-index" : "",
+					"transform" : "",
+					"-ms-transform" : "",
+					"-webkit-transform" : ""
+				});
 		}
 	});
 

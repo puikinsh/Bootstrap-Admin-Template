@@ -1,8 +1,8 @@
 /**
-* Bootstrap-Admin-Template by onokumus@gmail.com
-* Version : 2.1.2 
-* Author : Osman Nuri Okumuş 
-* Copyright 2013
+* Bootstrap-Admin-Template v2.1.3
+* Author : [object Object] 
+* Copyright 2014
+* Licensed under ,, (,,)
 */
 $(function () {
     "use strict";
@@ -748,7 +748,13 @@ function formWysiwyg() {
         editor.refresh();
     });
     /*----------- END cleditor CODE -------------------------*/
-
+    
+    /*----------- BEGIN epiceditor CODE -------------------------*/
+    var opts={
+      basePath: 'assets/lib/epiceditor',
+    };
+    var editor = new EpicEditor(opts).load();
+    /*----------- END epiceditor CODE -------------------------*/
 }
 function metisCalendar() {
     "use strict";

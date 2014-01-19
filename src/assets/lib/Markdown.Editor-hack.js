@@ -1370,38 +1370,38 @@
             }
 
             group1 = makeGroup(1);
-            buttons.bold = makeButton("wmd-bold-button", "Bold - Ctrl+B", "icon-bold", bindCommand("doBold"), group1);
-            buttons.italic = makeButton("wmd-italic-button", "Italic - Ctrl+I", "icon-italic", bindCommand("doItalic"), group1);
+            buttons.bold = makeButton("wmd-bold-button", "Bold - Ctrl+B", "glyphicon glyphicon-bold", bindCommand("doBold"), group1);
+            buttons.italic = makeButton("wmd-italic-button", "Italic - Ctrl+I", "glyphicon glyphicon-italic", bindCommand("doItalic"), group1);
             
             group2 = makeGroup(2);
-            buttons.link = makeButton("wmd-link-button", "Link - Ctrl+L", "icon-link", bindCommand(function (chunk, postProcessing) {
+            buttons.link = makeButton("wmd-link-button", "Link - Ctrl+L", "glyphicon glyphicon-link", bindCommand(function (chunk, postProcessing) {
                 return this.doLinkOrImage(chunk, postProcessing, false);
             }), group2);
-            buttons.quote = makeButton("wmd-quote-button", "Blockquote - Ctrl+Q", "icon-blockquote", bindCommand("doBlockquote"), group2);
-            buttons.code = makeButton("wmd-code-button", "Code Sample - Ctrl+K", "icon-code", bindCommand("doCode"), group2);
-            buttons.image = makeButton("wmd-image-button", "Image - Ctrl+G", "icon-picture", bindCommand(function (chunk, postProcessing) {
+            buttons.quote = makeButton("wmd-quote-button", "Blockquote - Ctrl+Q", "glyphicon glyphicon-book", bindCommand("doBlockquote"), group2);
+            buttons.code = makeButton("wmd-code-button", "Code Sample - Ctrl+K", "glyphicon glyphicon-qrcode", bindCommand("doCode"), group2);
+            buttons.image = makeButton("wmd-image-button", "Image - Ctrl+G", "glyphicon glyphicon-picture", bindCommand(function (chunk, postProcessing) {
                 return this.doLinkOrImage(chunk, postProcessing, true);
             }), group2);
 
             group3 = makeGroup(3);
-            buttons.olist = makeButton("wmd-olist-button", "Numbered List - Ctrl+O", "icon-list", bindCommand(function (chunk, postProcessing) {
+            buttons.olist = makeButton("wmd-olist-button", "Numbered List - Ctrl+O", "glyphicon glyphicon-list", bindCommand(function (chunk, postProcessing) {
                 this.doList(chunk, postProcessing, true);
             }), group3);
-            buttons.ulist = makeButton("wmd-ulist-button", "Bulleted List - Ctrl+U", "icon-bullet-list", bindCommand(function (chunk, postProcessing) {
+            buttons.ulist = makeButton("wmd-ulist-button", "Bulleted List - Ctrl+U", "glyphicon glyphicon-th-list", bindCommand(function (chunk, postProcessing) {
                 this.doList(chunk, postProcessing, false);
             }), group3);
-            buttons.heading = makeButton("wmd-heading-button", "Heading - Ctrl+H", "icon-header", bindCommand("doHeading"), group3);
-            buttons.hr = makeButton("wmd-hr-button", "Horizontal Rule - Ctrl+R", "icon-hr-line", bindCommand("doHorizontalRule"), group3);
+            buttons.heading = makeButton("wmd-heading-button", "Heading - Ctrl+H", "glyphicon glyphicon-header", bindCommand("doHeading"), group3);
+            buttons.hr = makeButton("wmd-hr-button", "Horizontal Rule - Ctrl+R", "glyphicon glyphicon-minus", bindCommand("doHorizontalRule"), group3);
             
             group4 = makeGroup(4);
-            buttons.undo = makeButton("wmd-undo-button", "Undo - Ctrl+Z", "icon-undo", null, group4);
+            buttons.undo = makeButton("wmd-undo-button", "Undo - Ctrl+Z", "glyphicon glyphicon-trash", null, group4);
             buttons.undo.execute = function (manager) { if (manager) manager.undo(); };
 
             var redoTitle = /win/.test(nav.platform.toLowerCase()) ?
                 "Redo - Ctrl+Y" :
                 "Redo - Ctrl+Shift+Z"; // mac and other non-Windows platforms
 
-            buttons.redo = makeButton("wmd-redo-button", redoTitle, "icon-share-alt", null, group4);
+            buttons.redo = makeButton("wmd-redo-button", redoTitle, "glyphicon glyphicon-share-alt", null, group4);
             buttons.redo.execute = function (manager) { if (manager) manager.redo(); };
 
             if (helpOptions) {
@@ -1409,7 +1409,7 @@
                 group5.className = group5.className + " pull-right";
                 var helpButton = document.createElement("button");
                 var helpButtonImage = document.createElement("i");
-                helpButtonImage.className = "icon-question-sign";
+                helpButtonImage.className = "glyphicon glyphicon-question-sign";
                 helpButton.appendChild(helpButtonImage);
                 helpButton.className = "btn";
                 helpButton.id = "wmd-help-button" + postfix;

@@ -110,7 +110,7 @@ _jQuery UI_ widget factory, there are some specifics. See examples below for mor
 	@param {Boolean} [settings.multiple_queues=true] Re-activate the widget after each upload procedure.
 	@param {Number} [settings.max_file_count=0] Limit the number of files user is able to upload in one go, autosets _multiple_queues_ to _false_ (default is 0 - no limit).
 */
-(function(window, document, plupload, $) {
+;(function(window, document, plupload, o, $) {
 
 /**
 Dispatched when the widget is initialized and ready.
@@ -210,11 +210,11 @@ function renderUI(obj) {
 				'<div class="ui-state-default ui-widget-header plupload_header">' +
 					'<div class="plupload_header_content">' +
 						'<div class="plupload_logo"> </div>' +
-						'<div class="plupload_header_title">' + _('Select files') + '</div>' +
-						'<div class="plupload_header_text">' + _('Add files to the upload queue and click the start button.') + '</div>' +
+						'<div class="plupload_header_title">' + _("Select files") + '</div>' +
+						'<div class="plupload_header_text">' + _("Add files to the upload queue and click the start button.") + '</div>' +
 						'<div class="plupload_view_switch">' +
-							'<input type="radio" id="'+obj.id+'_view_list" name="view_mode_'+obj.id+'" checked="checked" /> <label class="plupload_button" for="'+obj.id+'_view_list" data-view="list">' + _('List') + '</label>' +
-							'<input type="radio" id="'+obj.id+'_view_thumbs" name="view_mode_'+obj.id+'" /> <label class="plupload_button"  for="'+obj.id+'_view_thumbs" data-view="thumbs">' + _('Thumbnails') + '</label>' +
+							'<input type="radio" id="'+obj.id+'_view_list" name="view_mode_'+obj.id+'" checked="checked" /><label class="plupload_button" for="'+obj.id+'_view_list" data-view="list">' + _('List') + '</label>' +
+							'<input type="radio" id="'+obj.id+'_view_thumbs" name="view_mode_'+obj.id+'" /><label class="plupload_button"  for="'+obj.id+'_view_thumbs" data-view="thumbs">' + _('Thumbnails') + '</label>' +
 						'</div>' +
 					'</div>' +
 				'</div>' +
@@ -238,9 +238,9 @@ function renderUI(obj) {
 				'<tr>' +
 					'<td class="plupload_cell plupload_file_name">' +
 						'<div class="plupload_buttons"><!-- Visible -->' +
-							'<a class="plupload_button plupload_add">' + _('Add Files') + '</a>&nbsp;' +
-							'<a class="plupload_button plupload_start">' + _('Start Upload') + '</a>&nbsp;' +
-							'<a class="plupload_button plupload_stop plupload_hidden">'+_('Stop Upload') + '</a>&nbsp;' +
+							'<a class="plupload_button plupload_add">' + _("Add Files") + '</a>&nbsp;' +
+							'<a class="plupload_button plupload_start">' + _("Start Upload") + '</a>&nbsp;' +
+							'<a class="plupload_button plupload_stop plupload_hidden">'+_("Stop Upload") + '</a>&nbsp;' +
 						'</div>' +
 
 						'<div class="plupload_started plupload_hidden"><!-- Hidden -->' +
@@ -398,11 +398,34 @@ $.widget("ui.plupload", {
 			options.drop_element = this.id + '_dropbox';
 		}
 
+
 		uploader = this.uploader = uploaders[id] = new plupload.Uploader($.extend(this.options, options));
 
 		if (self.options.views.thumbs) {
 			uploader.settings.required_features.display_media = true;
 		}
+
+		if (self.options.max_file_count) {
+			plupload.extend(uploader.getOption('filters'), {
+				max_file_count: self.options.max_file_count
+			});
+		}
+
+		plupload.addFileFilter('max_file_count', function(maxCount, file, cb) {
+			if (maxCount <= this.files.length - (this.total.uploaded + this.total.failed)) {
+				self.browse_button.button('disable');
+				this.disableBrowse();
+				
+				this.trigger('Error', {
+					code : self.FILE_COUNT_ERROR,
+					message : _("File count error."),
+					file : file
+				});
+				cb(false);
+			} else {
+				cb(true);
+			}
+		});
 
 
 		uploader.bind('Error', function(up, err) {			
@@ -502,27 +525,6 @@ $.widget("ui.plupload", {
 			self._trigger('ready', null, { up: up });
 		});
 		
-		
-		// check if file count doesn't exceed the limit
-		if (self.options.max_file_count) {
-			self.options.multiple_queues = false; // one go only
-
-			uploader.bind('FilesAdded', function(up, selectedFiles) {
-				var selectedCount = selectedFiles.length
-				, extraCount = up.files.length + selectedCount - self.options.max_file_count
-				;
-				
-				if (extraCount > 0) {
-					selectedFiles.splice(selectedCount - extraCount, extraCount);
-					
-					up.trigger('Error', {
-						code : self.FILE_COUNT_ERROR,
-						message : _('File count error.')
-					});
-				}
-			});
-		}
-		
 		// uploader internal events must run first 
 		uploader.init();
 
@@ -549,6 +551,25 @@ $.widget("ui.plupload", {
 		});
 		
 		uploader.bind('FilesRemoved', function(up, files) {
+			// destroy sortable if enabled
+			if ($.ui.sortable && self.options.sortable) {
+				$('tbody', self.filelist).sortable('destroy');	
+			}
+
+			$.each(files, function(i, file) {
+				$('#' + file.id).toggle("highlight", function() {
+					$(this).remove();
+				});
+			});
+			
+			if (up.files.length) {
+				// re-initialize sortable
+				if (self.options.sortable && $.ui.sortable) {
+					self._enableSortingList();	
+				}
+			}
+
+			self._trigger('updatelist', null, { filelist: self.filelist });
 			self._trigger('removed', null, { up: up, files: files } );
 		});
 		
@@ -692,7 +713,7 @@ $.widget("ui.plupload", {
 		if (plupload.typeOf(file) === 'string') {
 			file = this.getFile(file);
 		}
-		this._removeFiles(file);
+		this.uploader.removeFile(file);
 	},
 
 	
@@ -765,9 +786,7 @@ $.widget("ui.plupload", {
 
 	@method destroy
 	*/
-	destroy: function() {
-		this._removeFiles([].slice.call(this.uploader.files));
-		
+	destroy: function() {		
 		// destroy uploader instance
 		this.uploader.destroy();
 
@@ -801,39 +820,47 @@ $.widget("ui.plupload", {
 	
 	
 	_handleState: function() {
-		var up = this.uploader;
+		var up = this.uploader
+		, filesPending = up.files.length - (up.total.uploaded + up.total.failed)
+		, maxCount = up.getOption('filters').max_file_count || 0
+		;
 						
-		if (up.state === plupload.STARTED) {
-			$(this.start_button).button('disable');
-								
+		if (plupload.STARTED === up.state) {			
 			$([])
 				.add(this.stop_button)
 				.add('.plupload_started')
 					.removeClass('plupload_hidden');
+
+			this.start_button.button('disable');
+
+			if (!this.options.multiple_queues) {
+				this.browse_button.button('disable');
+				up.disableBrowse();
+			}
 							
 			$('.plupload_upload_status', this.element).html(o.sprintf(_('Uploaded %d/%d files'), up.total.uploaded, up.files.length));
 			$('.plupload_header_content', this.element).addClass('plupload_header_content_bw');
-		} else if (up.state === plupload.STOPPED) {
+		} 
+		else if (plupload.STOPPED === up.state) {
 			$([])
 				.add(this.stop_button)
 				.add('.plupload_started')
 					.addClass('plupload_hidden');
+
+			if (filesPending) {
+				this.start_button.button('enable');
+			} else {
+				this.start_button.button('disable');
+			}
 			
 			if (this.options.multiple_queues) {
 				$('.plupload_header_content', this.element).removeClass('plupload_header_content_bw');
-			} else {
-				$([])
-					.add(this.browse_button)
-					.add(this.start_button)
-						.button('disable');
+			} 
 
-				up.disableBrowse();
-			}
-
-			if (up.files.length === (up.total.uploaded + up.total.failed)) {
-				this.start_button.button('disable');
-			} else {
-				this.start_button.button('enable');
+			// if max_file_count defined, only that many files can be queued at once
+			if (this.options.multiple_queues && maxCount && maxCount > filesPending) {
+				this.browse_button.button('enable');
+				up.disableBrowse(false);
 			}
 
 			this._updateTotalProgress();
@@ -847,7 +874,7 @@ $.widget("ui.plupload", {
 
 		up.refresh();
 	},
-	
+
 	
 	_handleFileStatus: function(file) {
 		var self = this, actionClass, iconClass;
@@ -910,7 +937,7 @@ $.widget("ui.plupload", {
 			.filter('.plupload_delete, .plupload_done, .plupload_failed')
 				.find('.ui-icon')
 					.click(function(e) {
-						self._removeFiles(file);
+						self.removeFile(file);
 						e.preventDefault();
 					});
 	},
@@ -1020,21 +1047,16 @@ $.widget("ui.plupload", {
 					width: 100, 
 					height: 60, 
 					crop: true,
-					swf_url: mOxie.resolveUrl(self.options.flash_swf_url),
-					xap_url: mOxie.resolveUrl(self.options.silverlight_xap_url)
+					swf_url: o.resolveUrl(self.options.flash_swf_url),
+					xap_url: o.resolveUrl(self.options.silverlight_xap_url)
 				});
 			};
 
-			img.onembedded = function() {
+			img.bind("embedded error", function() {
 				$('#' + file.id, self.filelist).addClass('plupload_file_thumb_loaded');
 				this.destroy();
 				setTimeout(cb, 1); // detach, otherwise ui might hang (in SilverLight for example)
-			};
-
-			img.onerror = function() {
-				this.destroy();
-				setTimeout(cb, 1);
-			};
+			});
 
 			img.load(file.getSource());
 		}
@@ -1073,7 +1095,7 @@ $.widget("ui.plupload", {
 			'<div class="plupload_file_thumb">' +
 				'<div class="plupload_file_dummy ui-widget-content"><span class="ui-state-disabled">%ext%</span></div>' +
 			'</div>' +
-			'<div class="plupload_file_name" title="%name%"><span class="plupload_file_namespan">%name%</span></div>' +						
+			'<div class="plupload_file_name" title="%name%"><span class="plupload_file_name_wrapper">%name%</span></div>' +						
 			'<div class="plupload_file_action"><div class="ui-icon"> </div></div>' +
 			'<div class="plupload_file_size">%size% </div>' +
 			'<div class="plupload_file_status">' +
@@ -1102,35 +1124,6 @@ $.widget("ui.plupload", {
 
 			self._handleFileStatus(file);
 		});
-	},
-
-
-	_removeFiles: function(files) {
-		var self = this, up = this.uploader;
-
-		if (plupload.typeOf(files) !== 'array') {
-			files = [files];
-		}
-
-		// destroy sortable if enabled
-		if ($.ui.sortable && this.options.sortable) {
-			$('tbody', self.filelist).sortable('destroy');	
-		}
-
-		$.each(files, function(i, file) {
-			$('#' + file.id).remove();
-			up.removeFile(file);
-		});
-
-		
-		if (up.files.length) {
-			// re-initialize sortable
-			if (this.options.sortable && $.ui.sortable) {
-				this._enableSortingList();	
-			}
-		}
-
-		this._trigger('updatelist', null, { filelist: this.filelist });
 	},
 
 
@@ -1165,7 +1158,7 @@ $.widget("ui.plupload", {
 		} 
 	
 		// ugly fix for IE6 - make content area stretchable
-		if (mOxie.Env.browser === 'IE' && mOxie.Env.version < 7) {
+		if (o.Env.browser === 'IE' && o.Env.version < 7) {
 			this.content.attr('style', 'height:expression(document.getElementById("' + this.id + '_container' + '").clientHeight - ' + (view === 'list' ? 133 : 103) + ');');
 		}
 
@@ -1239,7 +1232,7 @@ $.widget("ui.plupload", {
 		this.filelist.dblclick(function(e) {
 			var nameSpan = $(e.target), nameInput, file, parts, name, ext = "";
 
-			if (!nameSpan.hasClass('plupload_file_namespan')) {
+			if (!nameSpan.hasClass('plupload_file_name_wrapper')) {
 				return;
 			}
 		
@@ -1307,4 +1300,4 @@ $.widget("ui.plupload", {
 	}
 });
 
-} (window, document, plupload, jQuery));
+} (window, document, plupload, mOxie, jQuery));

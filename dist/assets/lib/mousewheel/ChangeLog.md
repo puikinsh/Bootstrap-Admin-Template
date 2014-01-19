@@ -1,5 +1,21 @@
 # Mouse Wheel ChangeLog
 
+## 3.1.9
+
+* Fix bower.json file
+* Updated how the deltas are adjusted for older mousewheel based events that have deltas that are factors of 120.
+* Add $.event.special.mousewheel.settings.adjustOldDeltas (defaults to true) to turn off adjusting of old deltas that are factors of 120. You'd turn this off if you want to be as close to native scrolling as possible.
+
+## 3.1.8
+
+* Even better handling of older browsers that use a wheelDelta based on 120
+* And fix version reported by `$.event.special.mousewheel`
+
+## 3.1.7
+
+* Better handle the `deltaMode` values 1 (lines) and 2 (pages)
+* Attempt to better handle older browsers that use a wheelDelta based on 120
+
 ## 3.1.6
 
 * Deprecating `delta`, `deltaX`, and `deltaY` event handler arguments

@@ -1,6 +1,6 @@
 {
   "name": "Bootstrap-Admin-Template",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "author": {
     "name": "Osman Nuri Okumuş",
     "email": "onokumus@gmail.com",
@@ -29,7 +29,10 @@
     "grunt-contrib-qunit": "~0.3.0",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-contrib-copy": "~0.4.1",
-    "assemble-less": "~0.5.3",
-    "pretty": "~0.1.1"
+    "assemble-less": "~0.7.0",
+    "pretty": "~0.1.2"
+  },
+  "dependencies": {
+    "epiceditor": "~0.2.0"
   }
 }

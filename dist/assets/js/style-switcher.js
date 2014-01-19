@@ -1,8 +1,8 @@
 /**
-* Bootstrap-Admin-Template by onokumus@gmail.com
-* Version : 2.1.2 
-* Author : Osman Nuri Okumuş 
-* Copyright 2013
+* Bootstrap-Admin-Template v2.1.3
+* Author : [object Object] 
+* Copyright 2014
+* Licensed under ,, (,,)
 */
 /*
  Name    : style-switcher.js
@@ -43,7 +43,7 @@ var styleSwitcher = {
                     load: 'less!assets/less/theme.less'
                 },
                 {
-                    load: 'assets/lib/less-1.5.1.min.js',
+                    load: 'assets/lib/less-1.6.1.min.js',
                     complete: function () {
                         $this.build();
                         if (Modernizr.localstorage) {

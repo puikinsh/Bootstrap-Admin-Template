@@ -44,6 +44,7 @@
 
 			var filters,
 			select2Column = 0,
+			select2TagColumn = 1,
 			$t = $(this),
 			$filterCells = $t.find('.tablesorter-filter-row').children(),
 			$ext = $('#external_controls'),
@@ -57,6 +58,8 @@
 					// specific method for select2
 					if (i === select2Column) {
 						v = '/(' + ($this.find('.selector').select2('val') || []).join('$|') + '$)/';
+					} else if(i === select2TagColumn){
+						v = '/(' + ($this.find('.selectorTag').select2('val') || []).join('|') + ')/';
 					}
 					if (i !== select2Column) {
 						// search for numbers > value
@@ -80,14 +83,44 @@
 				.appendTo( $ext.find('.select2') );
 			// replace select with an input
 			$filterCells.eq(select2Column).html('<input type="search" class="tablesorter-filter">');
-			// turn off built-in filter-select
-			$t.find('.filter-select').removeClass('filter-select') // turn off filter select
-			this.config.widgetOptions.filter_functions[select2Column] = null;
+			
 			// removed first option (it's just a placeholder)
 			$ext.find('.selector').find('option:first').remove();
 			// set up select2 input
-			$ext.find('.selector').select2();
+			$ext.find('.selector').select2({
+				placeholder : 'AlphaNumeric'
+			});
 
+			
+			// /******* Select2 Tag Cloud ********/
+			// as with above AlphaNumeric filter get the option values from original select
+			var optionValues = [];
+			$filterCells.eq(select2TagColumn).find('select option').each(function() {
+			   optionValues.push($(this).text());
+			});
+			
+			// removed first option (it's just a placeholder)
+			optionValues = optionValues.slice(1);
+			
+			//Create a new hidden input for select2 tag cloud and append it to its external filter cell
+			var $selectInput = $('<input type="hidden" class="selectorTag" style="width:200px"/>')
+				.appendTo( $ext.find('.select2tag') );
+				
+			//Replace the original select filter with a search input
+			$filterCells.eq(select2TagColumn).html('<input type="search" class="tablesorter-filter">');
+			
+			// set up select2 tag cloud input
+			$selectInput.select2({
+				tags : optionValues,
+				tokenSeparators : [","],
+				placeholder : 'AlphaNumeric Tag'
+			});
+			
+			// turn off built-in filter-select
+			$t.find('.filter-select').removeClass('filter-select') // turn off filter select
+			this.config.widgetOptions.filter_functions[select2Column] = null;
+			this.config.widgetOptions.filter_functions[select2TagColumn] = null;
+			
 			// input changes trigger a new search
 			$ext.find('select, input').on('change', function () {
 				startSearch();
@@ -128,6 +161,7 @@
 	<tbody>
 		<tr>
 			<td class="select2">filters: </td>
+			<td class="select2tag"></td>
 			<td>
 				<input type="search" placeholder="num" />
 			</td>
@@ -144,22 +178,23 @@
 	<thead>
 		<tr>
 			<th class="filter-select">AlphaNumeric</th>
+			<th class="filter-select">AlphaNumeric Tag</th>
 			<th>Numeric</th>
 			<th>Animals</th>
 			<th>Sites</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr><td>abc 123</td><td>10</td><td>Koala</td><td>http://www.google.com</td></tr>
-		<tr><td>abc 1</td><td>34</td><td>Ox</td><td>http://www.yahoo.com</td></tr>
-		<tr><td>abc 9</td><td>10</td><td>Girafee</td><td>http://www.facebook.com</td></tr>
-		<tr><td>zyx 24</td><td>67</td><td>Bison</td><td>http://www.whitehouse.gov/</td></tr>
-		<tr><td>abc 11</td><td>3</td><td>Chimp</td><td>http://www.ucla.edu/</td></tr>
-		<tr><td>abc 2</td><td>56</td><td>Elephant</td><td>http://www.wikipedia.org/</td></tr>
-		<tr><td>abc 9</td><td>75</td><td>Lion</td><td>http://www.nytimes.com/</td></tr>
-		<tr><td>abc 10</td><td>87</td><td>Zebra</td><td>http://www.google.com</td></tr>
-		<tr><td>zyx 1</td><td>99</td><td>Koala</td><td>http://www.mit.edu/</td></tr>
-		<tr><td>zyx 12</td><td>0</td><td>Llama</td><td>http://www.nasa.gov/</td></tr>
+		<tr><td>abc 123</td><td>abc 123</td><td>10</td><td>Koala</td><td>http://www.google.com</td></tr>
+		<tr><td>abc 1</td><td>abc 1</td><td>34</td><td>Ox</td><td>http://www.yahoo.com</td></tr>
+		<tr><td>abc 9</td><td>abc 9</td><td>10</td><td>Girafee</td><td>http://www.facebook.com</td></tr>
+		<tr><td>zyx 24</td><td>zyx 24</td><td>67</td><td>Bison</td><td>http://www.whitehouse.gov/</td></tr>
+		<tr><td>abc 11</td><td>abc 11</td><td>3</td><td>Chimp</td><td>http://www.ucla.edu/</td></tr>
+		<tr><td>abc 2</td><td>abc 2</td><td>56</td><td>Elephant</td><td>http://www.wikipedia.org/</td></tr>
+		<tr><td>abc 9</td><td>abc 9</td><td>75</td><td>Lion</td><td>http://www.nytimes.com/</td></tr>
+		<tr><td>abc 10</td><td>abc 10</td><td>87</td><td>Zebra</td><td>http://www.google.com</td></tr>
+		<tr><td>zyx 1</td><td>zyx 1</td><td>99</td><td>Koala</td><td>http://www.mit.edu/</td></tr>
+		<tr><td>zyx 12</td><td>zyx 12</td><td>0</td><td>Llama</td><td>http://www.nasa.gov/</td></tr>
 	</tbody>
 </table>
 
@@ -169,6 +204,7 @@
 	&lt;tbody&gt;
 		&lt;tr&gt;
 			&lt;td class=&quot;select2&quot;&gt;filters: &lt;/td&gt;
+			&lt;td class=&quot;select2tag&quot;&gt;&lt;/td&gt;
 			&lt;td&gt;
 				&lt;input type=&quot;search&quot; placeholder=&quot;num&quot; /&gt;
 			&lt;/td&gt;
@@ -192,4 +228,3 @@
 
 </body>
 </html>
-

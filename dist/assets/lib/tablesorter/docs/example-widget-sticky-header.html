@@ -25,37 +25,58 @@
 	<link class="theme" rel="stylesheet" href="../css/theme.dark.css">
 	<link class="theme" rel="stylesheet" href="../css/theme.dropbox.css">
 
+	<style id="css">/* wrapper of table 2 */
+.wrapper {
+	position: relative;
+	padding: 0 5px;
+	height: 250px;
+	overflow-y: auto;
+}</style>
+
 	<!-- Tablesorter script: required -->
 	<script src="../js/jquery.tablesorter.js"></script>
 	<script src="../js/jquery.tablesorter.widgets.js"></script>
 
 	<script id="js">$(function(){
 
-	$("table").tablesorter({
-
+	var options = {
 		widthFixed : true,
 		showProcessing: true,
-
 		headerTemplate : '{content} {icon}', // Add icon for jui theme; new in v2.7!
 
 		widgets: [ 'uitheme', 'zebra', 'stickyHeaders', 'filter' ],
 
 		widgetOptions: {
 
-			// extra css class name applied to the sticky header row (tr) - changed in v2.11
+			// extra class name added to the sticky header row
 			stickyHeaders : '',
+			// number or jquery selector targeting the position:fixed element
+			stickyHeaders_offset : 0,
+			// added to table ID, if it exists
+			stickyHeaders_cloneId : '-sticky',
+			// trigger "resize" event on headers
+			stickyHeaders_addResizeEvent : true,
+			// if false and a caption exist, it won't be included in the sticky header
+			stickyHeaders_includeCaption : true,
+			// The zIndex of the stickyHeaders, allows the user to adjust this to their needs
+			stickyHeaders_zIndex : 2,
+			// jQuery selector or object to attach sticky header to
+			stickyHeaders_attachTo : null,
 
 			// adding zebra striping, using content and default styles - the ui css removes the background from default
 			// even and odd class names included for this demo to allow switching themes
 			zebra   : ["ui-widget-content even", "ui-state-default odd"],
-
 			// use uitheme widget to apply defauly jquery ui (jui) class names
 			// see the uitheme demo for more details on how to change the class names
 			uitheme : 'jui'
-
 		}
+	};
 
-	});
+	$("#table1").tablesorter(options);
+
+	/* make second table scroll within its wrapper */
+	options.widgetOptions.stickyHeaders_attachTo = '.wrapper'; // or $('.wrapper')
+	$("#table2").tablesorter(options);
 
 });</script>
 <script>
@@ -102,6 +123,12 @@ $(function() {
 		<em>NOTE!</em>
 		<ul>
 			<li>As of tablesorter version 2.9+, this widget can no longer be applied to versions of tablesorter prior to version 2.8.</li>
+			<li>Added <code>cssStickyHeaders_attachTo</code> option (default set to <code>null</code>) in <span class="version">v2.14.4</span>.
+				<ul>
+					<li>Setting this option with either a jQuery selector string (<code>&quot;.wrapper&quot;</code>) or jQuery object (<code>$(&quot;.wrapper&quot;)</code>).</li>
+					<li>This option contains the target to which the sticky header will attach - see the <a href="#table2">second example</a> below.</li>
+				</ul>
+			</li>
 			<li>Added a widget option named <code>stickyHeaders_cloneId</code> (<span class="version">v2.9</span>)
 				<ul>
 					<li>It contains a suffix to add to any table id.</li>
@@ -120,6 +147,11 @@ $(function() {
 		</ul>
 	</p>
 
+	<h1>CSS</h1>
+	<div id="css">
+		<pre class="prettyprint lang-css"></pre>
+	</div>
+
 	<h1>Javascript</h1>
 	<div id="javascript">
 		<pre class="prettyprint lang-javascript"></pre>
@@ -132,7 +164,7 @@ $(function() {
 	</select>
 	<br><br>
 
-	<table class="tablesorter">
+	<table id="table1" class="tablesorter">
 	<caption>Student Grades</caption>
 	<thead>
 		<tr><th>Name</th><th>Major</th><th>Sex</th><th>English</th><th>Japanese</th><th>Calculus</th><th class="filter-false sorter-false">Geometry</th></tr>
@@ -195,8 +227,9 @@ $(function() {
 	</tbody>
 	</table>
 
-	<div class="narrow-block">
-	<table class="tablesorter">
+	<div class="narrow-block wrapper">
+	<table id="table2" class="tablesorter">
+		<caption>Student Grades</caption>
 		<thead>
 			<tr><th>Account #</th><th>First Name</th><th>Last Name</th><th>Age</th><th>Total</th><th>Discount</th><th>Diff</th></tr>
 		</thead>

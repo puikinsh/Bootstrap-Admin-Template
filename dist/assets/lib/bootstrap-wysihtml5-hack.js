@@ -33,10 +33,10 @@
             var size = (options && options.size) ? ' btn-' + options.size : '';
             return "<li>" +
                     "<div class='btn-group'>" +
-                    "<a class='btn btn-default" + size + "' data-wysihtml5-command='insertUnorderedList' title='" + locale.lists.unordered + "' tabindex='-1'><i class='icon-list'></i></a>" +
-                    "<a class='btn btn-default" + size + "' data-wysihtml5-command='insertOrderedList' title='" + locale.lists.ordered + "' tabindex='-1'><i class='icon-th-list'></i></a>" +
-                    "<a class='btn btn-default" + size + "' data-wysihtml5-command='Outdent' title='" + locale.lists.outdent + "' tabindex='-1'><i class='icon-indent-right'></i></a>" +
-                    "<a class='btn btn-default" + size + "' data-wysihtml5-command='Indent' title='" + locale.lists.indent + "' tabindex='-1'><i class='icon-indent-left'></i></a>" +
+                    "<a class='btn btn-default" + size + "' data-wysihtml5-command='insertUnorderedList' title='" + locale.lists.unordered + "' tabindex='-1'><i class='glyphicon glyphicon-list'></i></a>" +
+                    "<a class='btn btn-default" + size + "' data-wysihtml5-command='insertOrderedList' title='" + locale.lists.ordered + "' tabindex='-1'><i class='glyphicon glyphicon-th-list'></i></a>" +
+                    "<a class='btn btn-default" + size + "' data-wysihtml5-command='Outdent' title='" + locale.lists.outdent + "' tabindex='-1'><i class='glyphicon glyphicon-align-right'></i></a>" +
+                    "<a class='btn btn-default" + size + "' data-wysihtml5-command='Indent' title='" + locale.lists.indent + "' tabindex='-1'><i class='glyphicon glyphicon-align-left'></i></a>" +
                     "</div>" +
                     "</li>";
         },
@@ -60,7 +60,7 @@
                     "</div>" +
                     "</div>" +
                     "</div>" +
-                    "<a class='btn btn-default' data-wysihtml5-command='createLink' title='" + locale.link.insert + "'><i class='icon-share'></i></a>" +
+                    "<a class='btn btn-default' data-wysihtml5-command='createLink' title='" + locale.link.insert + "'><i class='glyphicon glyphicon-share'></i></a>" +
                     "</li>";
         },
         "image": function(locale, options) {
@@ -83,14 +83,14 @@
                     "</div>" +
                     "</div>" +
                     "</div>" +
-                    "<a class='btn btn-default' data-wysihtml5-command='insertImage' title='" + locale.image.insert + "'><i class='icon-picture'></i></a>" +
+                    "<a class='btn btn-default' data-wysihtml5-command='insertImage' title='" + locale.image.insert + "'><i class='glyphicon glyphicon-picture'></i></a>" +
                     "</li>";
         },
         "html": function(locale, options) {
             var size = (options && options.size) ? ' btn-' + options.size : '';
             return "<li>" +
                     "<div class='btn-group'>" +
-                    "<a class='btn btn-default" + size + "' data-wysihtml5-action='change_view' title='" + locale.html.edit + "' tabindex='-1'><i class='icon-pencil'></i></a>" +
+                    "<a class='btn btn-default" + size + "' data-wysihtml5-action='change_view' title='" + locale.html.edit + "' tabindex='-1'><i class='glyphicon glyphicon-pencil'></i></a>" +
                     "</div>" +
                     "</li>";
         },

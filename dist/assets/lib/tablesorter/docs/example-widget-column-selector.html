@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8">
+	<title>jQuery plugin: Tablesorter 2.0 - Column Selector Widget (beta)</title>
+
+	<!-- jQuery -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+	<!-- Demo stuff -->
+	<link class="ui-theme" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/themes/cupertino/jquery-ui.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="css/jq.css">
+	<link href="css/prettify.css" rel="stylesheet">
+	<script src="js/prettify.js"></script>
+	<script src="js/docs.js"></script>
+
+	<!-- Tablesorter: required -->
+	<link rel="stylesheet" href="../css/theme.blue.css">
+	<script src="../js/jquery.tablesorter.js"></script>
+	<script src="../js/jquery.tablesorter.widgets.js"></script>
+
+	<script src="../js/widgets/widget-columnSelector.js"></script>
+
+	<script>
+	$(function(){
+		$('.accordion').accordion({
+			heightStyle: 'content',
+			collapsible : true
+		});
+	});
+	</script>
+
+<style id="css">.columnSelectorWrapper {
+  position: relative;
+  margin: 10px 0;
+}
+.columnSelector, .hidden {
+  display: none;
+}
+.columnSelectorButton {
+  background: #99bfe6;
+  border: #888 1px solid;
+  color: #111;
+  border-radius: 5px;
+  padding: 5px;
+}
+#colSelect1:checked + label {
+  background: #5797d7;
+  border-color: #555;
+}
+#colSelect1:checked ~ #columnSelector {
+  display: block;
+}
+.columnSelector {
+  position: absolute;
+  top: 30px;
+  padding: 10px;
+  background: #fff;
+  border: #99bfe6 1px solid;
+  border-radius: 5px;
+}
+.columnSelector label {
+  display: block;
+}
+.columnSelector label:nth-child(1) {
+  border-bottom: #99bfe6 solid 1px;
+  margin-bottom: 5px;
+}
+.columnSelector .disabled {
+  color: #ddd;
+}</style>
+
+<script id="js">$(function() {
+
+	$("table").tablesorter({
+		theme: 'blue',
+		widgets: ['zebra', 'columnSelector', 'stickyHeaders'],
+		widgetOptions : {
+			// target the column selector markup
+			columnSelector_container : $('#columnSelector'),
+			// column status, true = display, false = hide
+			// disable = do not display on list
+			columnSelector_columns : {
+				0: 'disable' /* set to disabled no allowed to unselect it */
+			},
+			// remember selected columns
+			columnSelector_saveColumns: true,
+
+			// container layout
+			columnSelector_layout : '<label><input type="checkbox">{name}</label>',
+			// data attribute containing column name to use in the selector container
+			columnSelector_name  : 'data-selector-name',
+
+			/* Responsive Media Query settings */
+			// enable/disable mediaquery breakpoints
+			columnSelector_mediaquery: true,
+			// toggle checkbox name
+			columnSelector_mediaqueryName: 'Auto: ',
+			// breakpoints checkbox initial setting
+			columnSelector_mediaqueryState: true,
+			// responsive table hides columns with priority 1-6 at these breakpoints
+			// see http://view.jquerymobile.com/1.3.2/dist/demos/widgets/table-column-toggle/#Applyingapresetbreakpoint
+			// *** set to false to disable ***
+			columnSelector_breakpoints : [ '20em', '30em', '40em', '50em', '60em', '70em' ],
+			// data attribute containing column priority
+			// duplicates how jQuery mobile uses priorities:
+			// http://view.jquerymobile.com/1.3.2/dist/demos/widgets/table-column-toggle/
+			columnSelector_priority : 'data-priority'
+
+		}
+	});
+
+});
+</script>
+</head>
+<body>
+
+<div id="banner">
+	<h1>table<em>sorter</em></h1>
+	<h2>Column Selector Widget (beta)</h2>
+	<h3>Flexible client-side table sorting</h3>
+	<a href="index.html">Back to documentation</a>
+</div>
+
+<div id="main">
+
+	<p></p>
+	<br>
+
+	<div class="accordion">
+
+		<h3><a href="#">Notes</a></h3>
+		<div>
+		<ul>
+			<li>This widget will <strong>only work</strong> in tablesorter version 2.8+ and jQuery version 1.7+.</li>
+			<li>This widget may not work properly if the table header includes rows with row or column spans.</li>
+			<li>The responsive part of this widget
+				<ul>
+					<li>Uses similar parameters as those used by jQuery mobile to set <a href="http://view.jquerymobile.com/1.3.2/dist/demos/widgets/table-column-toggle/#Settingcolumnpriority">column priority</a>.</li>
+					<li>Any named data-priority, other than the numbers 1 - 6, (e.g. "critical" or "persistent") will be treated as a column which <em>will not be included</em> in the column selector.</li>
+					<li>Note that this widget uses media queries, which <a href="http://caniuse.com/#search=media">will not work in IE8 and older browsers</a>.</li>
+				</ul>
+			</li>
+			<li>The selector code uses css selectors, for optimal speed, to hide/show columns. These selectors <a href="http://caniuse.com/#search=nth-child">will not work in IE8 and older browsers</a>.</li>
+			<li>The column button &amp; popup is completely customizable, and in this demo it includes css that may not work properly in older versions of IE.</li>
+		</ul>
+		</div>
+
+		<h3><a href="#">Options</a></h3>
+		<div>
+			<h3>Column selector widget default options (added inside of tablesorter <code>widgetOptions</code>)</h3>
+			<ul>
+				<li><code>columnSelector_container</code> (<code>null</code>) - Target an element within the current page where the column selector will be inserted.
+					<ul>
+						<li>This can be either a jQuery selector string ( e.g. <code>'#columnSelector'</code> )</li>
+						<li>or, a jQuery object ( e.g. <code>$('#columnSelector')</code> ).</li>
+					</ul>
+				</li>
+				<li><code>columnSelector_columns</code> (<code>{}</code>; empty object) - Assigns a column status for each selector:
+					<ul>
+						<li>To disable, or remove a column from the column selector, include the key word <code>&quot;disable&quot;</code> - this is one of many ways to remove a column from the column selector popup</li>
+						<li>Set a column status to <code>true</code> to initially display a column. This is the default for undefined columns.</li>
+						<li>Set a column status to <code>false</code> to initially hide a column.</li>
+						<li>Examples:
+							<pre class="prettyprint lang-js">widgetOptions : {
+  columnSelector_columns : {
+    0 : &quot;disable&quot;, /* disable; i.e. remove column from selector */
+    1 : false,     /* start with column hidden */
+    2 : true,      /* start with column visible; default for undefined columns */
+  }
+}</pre></li>
+				<li><code>columnSelector_saveColumns</code> (<code>true</code>) - Save the current manually set column status (not the column's responsive state). This option requires the storage utility contained within the tablesorter widgets file (<code>jquery.tablesorter.widgets.js</code>).</li>
+				<li><code>columnSelector_layout</code> (<code>'&lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt;{name}&lt;/label&gt;'</code>) - This option defines the markup used for each column selector within the popup. The only required parameter is the <code>{name}</code> string which will be replaced with the appropriate column name/title.</li>
+
+				<li><code>columnSelector_name</code> (<code>&quot;data-selector-name&quot;</code>) - The data-attribute within the table header cell which contains an alternate column selector name.
+					<ul>
+						<li>If the header cell does not have this attribute defined, the column selector name will be taken from the header cell internal text.</li>
+						<li>If defined, the text contained within this attribute will replace the <code>{name}</code> string within the layout option above.</li>
+					</ul>
+				</li>
+
+				<li><code>columnSelector_mediaquery</code> (<code>true</code>) - Set this option to add (<code>true</code>) or not add (<code>false</code>) the media query functionality of this widget.</li>
+				<li><code>columnSelector_mediaqueryName</code> (<code>&quot;Auto: &quot;</code>) - When the media query checkbox is added (it also uses the <code>columnSelector_layout</code> markup), this is the name that is added. Set as "Auto" to signify to the user that columns disappearing and/or reappearing is automatically done.</li>
+				<li><code>columnSelector_mediaqueryState</code> (<code>true</code>) - Set this option to <code>false</code> to start with the media query disabled (manual column selection mode).</li>
+				<li><code>columnSelector_breakpoints</code> (<code>[ &quot;20em&quot;, &quot;30em&quot;, &quot;40em&quot;, &quot;50em&quot;, &quot;60em&quot;, &quot;70em&quot; ]</code>)
+					<ul>
+						<li>This option defines the media query breakpoints with which to use when a column with the associated priority is hidden or revealed.</li>
+						<li>For example, the last entry &quot;70em&quot; (1,120px) is assigned to data-priority 6. When the browser width is below this dimension, all columns with a 	data-priority of six will be hidden. Then when a browser width less than &quot;60em&quot; (960px) is reached, all columns of data-priority 5 and above will be hidden. At &quot;50em&quot; (800px), all columns of data-priority 4 and above are hidden, etc.</li>
+						<li>Adjust these values as desired, but a <em>maximum</em> of six data-priorities is set.</li>
+					</ul>
+				</li>
+				<li><code>columnSelector_priority</code> (<code>&quot;data-priority&quot;</code>) - This is the assigned data-attribute which contains the defined data priority for a table column.
+					<ul>
+						<li>Values of 1 through 6 set the breakpoints of that particular column.</li>
+						<li>A value of 1 has the highest priority, meaning it is the last column(s) to be hidden when the browser width goes below &quot;20em&quot; (320px).</li>
+						<li>A value of 7 has the lowest priority, meaning it is the first column(s) to be hidden when the browser width goes below &quot;70em&quot; (1,120px).</li>
+						<li>Any named priority value, (e.g. "critical" or "persistent") will flag the widget to remove that column from the selector list.</li>
+						<li>Undefined priorities will default to a priority value of 1.</li> 
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<h3><a href="#">Removing a column from the selector</a></h3>
+		<div>
+			This is probably overkill, but there are numerous ways to remove a column from the selection popup:
+			<ul>
+				<li>Setting the <code>data-priority</code> to any non-numerical name (e.g. "critical" or "persistent").</li>
+				<li>Setting the column selector widget columns option <code>columnSelector_columns : { 0 : 'disable' }</code>.</li>
+				<li>The following methods in order of priority:
+					<ul>
+						<li>jQuery data <code>data-columnSelector="false"</code>.</li>
+						<li>metadata <code>class=&quot;{ columnSelector : false }&quot;</code>.</li>
+						<li>headers option <code>headers : { 0 : { columnSelector: false } }</code>.</li>
+						<li>header class name <code>class=&quot;columnSelector-false&quot;</code>.</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	</p>
+
+<h1>Demo</h1>
+
+<!-- This selector markup is completely customizable -->
+<div class="columnSelectorWrapper">
+	<input id="colSelect1" type="checkbox" class="hidden">
+	<label class="columnSelectorButton" for="colSelect1">Column</label>
+	<div id="columnSelector" class="columnSelector">
+		<!-- this div is where the column selector is added -->
+	</div>
+</div>
+
+<table class="tablesorter">
+	<thead>
+		<tr>
+			<th data-priority="critical">Name</th>
+			<!-- Remove column from selection popup by including -->
+			<!-- data-priority="Anything other than 1-6" OR data-column-selector="false" OR  class="columnSelector-false" -->
+			<th class="columnSelector-false">Major</th>
+			<th data-priority="6">Sex</th>
+			<th data-priority="4">English</th>
+			<th data-priority="5">Japanese</th>
+			<th data-priority="3">Calculus</th>
+			<th data-priority="2">Geometry</th>
+		</tr>
+	</thead>
+	<tfoot>
+		<tr><th>Name</th><th>Major</th><th>Sex</th><th>English</th><th>Japanese</th><th>Calculus</th><th>Geometry</th></tr>
+	</tfoot>
+	<tbody>
+		<tr><td>Student12</td><td>Mathematics</td><td>female</td><td>100</td><td>75</td><td>70</td><td>85</td></tr>
+		<tr><td>Student13</td><td>Languages</td><td>female</td><td>100</td><td>80</td><td>100</td><td>90</td></tr>
+		<tr><td>Student14</td><td>Languages</td><td>female</td><td>50</td><td>45</td><td>55</td><td>90</td></tr>
+		<tr><td>Student15</td><td>Languages</td><td>male</td><td>95</td><td>35</td><td>100</td><td>90</td></tr>
+		<tr><td>Student16</td><td>Languages</td><td>female</td><td>100</td><td>50</td><td>30</td><td>70</td></tr>
+		<tr><td>Student17</td><td>Languages</td><td>female</td><td>80</td><td>100</td><td>55</td><td>65</td></tr>
+		<tr><td>Student18</td><td>Mathematics</td><td>male</td><td>30</td><td>49</td><td>55</td><td>75</td></tr>
+		<tr><td>Student19</td><td>Languages</td><td>male</td><td>68</td><td>90</td><td>88</td><td>70</td></tr>
+		<tr><td>Student20</td><td>Mathematics</td><td>male</td><td>40</td><td>45</td><td>40</td><td>80</td></tr>
+		<tr><td>Student21</td><td>Languages</td><td>male</td><td>50</td><td>45</td><td>100</td><td>100</td></tr>
+		<tr><td>Student22</td><td>Mathematics</td><td>male</td><td>100</td><td>99</td><td>100</td><td>90</td></tr>
+		<tr><td>Student23</td><td>Languages</td><td>female</td><td>85</td><td>80</td><td>80</td><td>80</td></tr>
+		<tr><td>Student01</td><td>Languages</td><td>male</td><td>80</td><td>70</td><td>75</td><td>80</td></tr>
+		<tr><td>Student02</td><td>Mathematics</td><td>male</td><td>90</td><td>88</td><td>100</td><td>90</td></tr>
+		<tr><td>Student03</td><td>Languages</td><td>female</td><td>85</td><td>95</td><td>80</td><td>85</td></tr>
+		<tr><td>Student04</td><td>Languages</td><td>male</td><td>60</td><td>55</td><td>100</td><td>100</td></tr>
+		<tr><td>Student05</td><td>Languages</td><td>female</td><td>68</td><td>80</td><td>95</td><td>80</td></tr>
+		<tr><td>Student06</td><td>Mathematics</td><td>male</td><td>100</td><td>99</td><td>100</td><td>90</td></tr>
+		<tr><td>Student07</td><td>Mathematics</td><td>male</td><td>85</td><td>68</td><td>90</td><td>90</td></tr>
+		<tr><td>Student08</td><td>Languages</td><td>male</td><td>100</td><td>90</td><td>90</td><td>85</td></tr>
+		<tr><td>Student09</td><td>Mathematics</td><td>male</td><td>80</td><td>50</td><td>65</td><td>75</td></tr>
+		<tr><td>Student10</td><td>Languages</td><td>male</td><td>85</td><td>100</td><td>100</td><td>90</td></tr>
+		<tr><td>Student11</td><td>Languages</td><td>male</td><td>86</td><td>85</td><td>100</td><td>100</td></tr>
+		<tr><td>Student24</td><td>Languages</td><td>female</td><td>100</td><td>91</td><td>13</td><td>82</td></tr>
+	</tbody>
+</table>
+
+	<h1>Css</h1>
+	<div id="css">
+		<pre class="prettyprint lang-css"></pre>
+	</div>
+
+	<h1>HTML</h1>
+	<div>
+		<pre class="prettyprint lang-html">&lt;!-- This selector markup is completely customizable --&gt;
+&lt;div class=&quot;columnSelectorWrapper&quot;&gt;
+	&lt;input id=&quot;colSelect1&quot; type=&quot;checkbox&quot; class=&quot;hidden&quot;&gt;
+	&lt;label class=&quot;columnSelectorButton&quot; for=&quot;colSelect1&quot;&gt;Column&lt;/label&gt;
+	&lt;div id=&quot;columnSelector&quot; class=&quot;columnSelector&quot;&gt;
+		&lt;!-- this div is where the column selector is added --&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;table class=&quot;tablesorter&quot;&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th data-priority=&quot;critical&quot;&gt;Name&lt;/th&gt;
+			&lt;!-- Remove column from selection popup by including --&gt;
+			&lt;!-- data-priority=&quot;Anything other than 1-6&quot; OR data-column-selector=&quot;false&quot; OR  class=&quot;columnSelector-false&quot; --&gt;
+			&lt;th class=&quot;columnSelector-false&quot;&gt;Major&lt;/th&gt;
+			&lt;th data-priority=&quot;6&quot;&gt;Sex&lt;/th&gt;
+			&lt;th data-priority=&quot;4&quot;&gt;English&lt;/th&gt;
+			&lt;th data-priority=&quot;5&quot;&gt;Japanese&lt;/th&gt;
+			&lt;th data-priority=&quot;3&quot;&gt;Calculus&lt;/th&gt;
+			&lt;th data-priority=&quot;2&quot;&gt;Geometry&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tfoot&gt;
+		&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Major&lt;/th&gt;&lt;th&gt;Sex&lt;/th&gt;&lt;th&gt;English&lt;/th&gt;&lt;th&gt;Japanese&lt;/th&gt;&lt;th&gt;Calculus&lt;/th&gt;&lt;th&gt;Geometry&lt;/th&gt;&lt;/tr&gt;
+	&lt;/tfoot&gt;
+	&lt;tbody&gt;
+		&lt;!-- ... --&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</pre>
+	</div>
+
+	<h1>Javascript</h1>
+	<div id="javascript">
+		<pre class="prettyprint lang-js"></pre>
+	</div>
+
+</div>
+
+</body>
+</html>
+

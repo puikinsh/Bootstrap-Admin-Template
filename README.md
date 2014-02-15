@@ -12,7 +12,7 @@ ready `dist` folder your use
 
 ### Building
 
-#### 2.1.3 Version
+#### 2.1.4 Version
 required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](http://gruntjs.com/getting-started)
 
     $ git clone https://github.com/onokumus/Bootstrap-Admin-Template.git yourfoldername

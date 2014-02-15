@@ -847,6 +847,10 @@ body.padTop53 {
   height: 6px;
   margin: 16px 4px;
 }
+.full-screen-box {
+  height: 100% !important;
+  width: 100% !important;
+}
 .box.danger .dropdown-menu > li > a:hover,
 .box.danger .dropdown-menu > li > a:focus {
   background-image: -webkit-linear-gradient(top, #d9534f 0%, #c9302c 100%);
@@ -892,9 +896,6 @@ body.padTop53 {
 .box .body hr {
   margin-left: -10px;
   margin-right: -10px;
-}
-.box .body.full-screen-box {
-  height: 100% !important;
 }
 .body.collapse:not(.in) {
   padding: 0;

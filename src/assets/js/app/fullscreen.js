@@ -18,15 +18,12 @@ toggleFullScreen.init();
 var boxFullScreen = {
     init: function() {
         if ((window.screenfull !== undefined) && screenfull.enabled) {
-            var $toggleButton = $('.full-box'),
-                $toggledPanel = $toggleButton.parents('.box')[0],
-                $toggledPanelBody = $toggleButton.parents('.box').children('.body'),
-                $toggleButtonImage = $toggleButton.children('i');
-
-            $toggleButton.on('click', function(e) {
+            $('.full-box').on('click', function(e) {
+              var $toggledPanel = $(this).parents('.box')[0];
                 screenfull.toggle($toggledPanel);
-                $toggledPanelBody.toggleClass('full-screen-box');
-                $toggleButtonImage.toggleClass('fa-compress');
+                $(this).parents('.box').toggleClass('full-screen-box');
+                $(this).parents('.box').children('.body').toggleClass('full-screen-box');
+                $(this).children('i').toggleClass('fa-compress');
                 e.preventDefault();
             });
         } else {

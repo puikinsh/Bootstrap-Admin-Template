@@ -60,6 +60,11 @@
           <div class="topnav">
             <div class="btn-toolbar">
               <div class="btn-group">
+                <a data-placement="bottom" data-original-title="Fullscreen" data-toggle="tooltip" class="btn btn-default btn-sm" id="toggleFullScreen">
+                  <i class="glyphicon glyphicon-fullscreen"></i>
+                </a> 
+              </div>
+              <div class="btn-group">
                 <a data-placement="bottom" data-original-title="Show / Hide Sidebar" data-toggle="tooltip" class="btn btn-success btn-sm" id="changeSidebarPos">
                   <i class="fa fa-expand"></i>
                 </a> 
@@ -409,15 +414,18 @@
     </div><!-- /.modal --><!-- /#helpModal -->
     <script src="assets/lib/jquery.min.js"></script>
     <script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="assets/js/style-switcher.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="assets/lib/elfinder-2.0-rc1/js/elfinder.min.js"></script>
-    <script src="assets/js/main.min.js"></script>
     <script>
       $(function() {
         metisFile();
       });
     </script>
+    <script src="assets/lib/screenfull/screenfull.js"></script>
+    <script src="assets/js/main.min.js"></script>
+
+    <!--For Demo Only. Not required -->
+    <script type="text/javascript" src="assets/js/style-switcher.js"></script>
   </body>
 </html>

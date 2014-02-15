@@ -1,6 +1,6 @@
 {
     "name": "Bootstrap-Admin-Template",
-    "version": "2.1.2",
+    "version": "2.1.4",
     "author": {
         "name": "Osman Nuri Okumuş",
         "email": "onokumus@gmail.com",
@@ -20,7 +20,7 @@
         "url": "https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/README.md"
     },
     "dependencies": {
-        "bootstrap": "~3.0.2",
+        "bootstrap": "~3.1.1",
         "font-awesome": "~4.0.3",
         "gmaps": "~0.4.8",
         "html5shiv": "~3.7.0",

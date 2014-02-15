@@ -209,7 +209,13 @@ module.exports = function (grunt) {
 		     cwd: 'node_modules/epiceditor/epiceditor',
 		     src: ['./**/*.*'],
 		     dest: 'dist/assets/lib/epiceditor'
-		    }
+		    },
+                     {
+                       expand: true,
+                     cwd: 'node_modules/screenfull/dist/',
+                     src: ['./**/*.*'],
+                     dest: 'dist/assets/lib/screenfull/'
+                    }
                 ]
             }
         },

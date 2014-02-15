@@ -1,5 +1,5 @@
 /**
-* Bootstrap-Admin-Template v2.1.3
+* Bootstrap-Admin-Template v2.1.4
 * Author : [object Object] 
 * Copyright 2014
 * Licensed under ,, (,,)
@@ -419,20 +419,20 @@ function formGeneral() {
     /*----------- END chosen CODE -------------------------*/
 
     /*----------- BEGIN spinner CODE -------------------------*/
-
-    $('#spin1').spinner();
-    $("#spin2").spinner({
-        step: 0.01,
-        numberFormat: "n"
-    });
-    $("#spin3").spinner({
-        culture: 'en-US',
-        min: 5,
-        max: 2500,
-        step: 25,
-        start: 1000,
-        numberFormat: "C"
-    });
+//     DEPRECATED
+//     $('#spin1').spinner();
+//     $("#spin2").spinner({
+//         step: 0.01,
+//         numberFormat: "n"
+//     });
+//     $("#spin3").spinner({
+//         culture: 'en-US',
+//         min: 5,
+//         max: 2500,
+//         step: 25,
+//         start: 1000,
+//         numberFormat: "C"
+//     });
     /*----------- END spinner CODE -------------------------*/
 
     /*----------- BEGIN uniform CODE -------------------------*/
@@ -465,8 +465,8 @@ function formGeneral() {
     $('#dpMonths').datepicker();
 
 
-    var startDate = new Date(2012, 1, 20);
-    var endDate = new Date(2012, 1, 25);
+    var startDate = new Date(2014, 1, 20);
+    var endDate = new Date(2014, 1, 25);
     $('#dp4').datepicker()
             .on('changeDate', function(ev) {
         if (ev.date.valueOf() > endDate.valueOf()) {
@@ -756,6 +756,88 @@ function formWysiwyg() {
     var editor = new EpicEditor(opts).load();
     /*----------- END epiceditor CODE -------------------------*/
 }
+// Define toggleFullScreen
+var toggleFullScreen = {
+    init: function() {
+        if ((window.screenfull !== undefined) && screenfull.enabled) {
+            $('#toggleFullScreen').on('click', function(e) {
+                screenfull.toggle(window.document[0]);
+                $('body').toggleClass('fullScreen');
+                e.preventDefault();
+            });
+        } else {
+            $('#toggleFullScreen').addClass('hidden');
+        }
+    }
+};
+// toggleFullScreen init
+toggleFullScreen.init();
+
+var boxFullScreen = {
+    init: function() {
+        if ((window.screenfull !== undefined) && screenfull.enabled) {
+            var $toggleButton = $('.full-box'),
+                $toggledPanel = $toggleButton.parents('.box')[0],
+                $toggledPanelBody = $toggleButton.parents('.box').children('.body'),
+                $toggleButtonImage = $toggleButton.children('i');
+
+            $toggleButton.on('click', function(e) {
+                screenfull.toggle($toggledPanel);
+                $toggledPanelBody.toggleClass('full-screen-box');
+                $toggleButtonImage.toggleClass('fa-compress');
+                e.preventDefault();
+            });
+        } else {
+            $('.full-box').addClass('hidden');
+        }
+    }
+};
+// boxFullScreen init
+boxFullScreen.init();
+
+var panelBodyCollapse = {
+    init: function() {
+        var $collapseButton = $('.collapse-box'),
+            $collapsedPanelBody = $collapseButton.closest('.box').children('.body');
+
+        $collapsedPanelBody.collapse('show');
+        
+        $collapseButton.on('click', function (e) {
+          var $collapsePanelBody = $(this).closest('.box').children('.body'),
+              $toggleButtonImage = $(this).children('i');
+            $collapsePanelBody.on('show.bs.collapse', function () {
+              $toggleButtonImage.removeClass('fa-minus fa-plus').addClass('fa-spinner fa-spin');
+            });
+            $collapsePanelBody.on('shown.bs.collapse', function () {
+              $toggleButtonImage.removeClass('fa-spinner fa-spin').addClass('fa-minus');
+            });
+            
+            $collapsePanelBody.on('hide.bs.collapse', function () {
+              $toggleButtonImage.removeClass('fa-minus fa-plus').addClass('fa-spinner fa-spin');
+            });
+            
+            $collapsePanelBody.on('hidden.bs.collapse', function () {
+              $toggleButtonImage.removeClass('fa-spinner fa-spin').addClass('fa-plus');
+            });
+
+            $collapsePanelBody.collapse('toggle');
+          
+          e.preventDefault();
+        });
+    }
+};
+// panelBodyCollapse init
+panelBodyCollapse.init();
+
+
+var boxHiding = {
+  init: function () {
+    $('.close-box').click(function () {
+        $(this).closest('.box').hide('slow');
+    });
+  }
+};
+boxHiding.init();
 function metisCalendar() {
     "use strict";
 

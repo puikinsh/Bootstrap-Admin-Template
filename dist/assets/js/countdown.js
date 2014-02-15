@@ -1,5 +1,5 @@
 /**
-* Bootstrap-Admin-Template v2.1.3
+* Bootstrap-Admin-Template v2.1.4
 * Author : [object Object] 
 * Copyright 2014
 * Licensed under ,, (,,)

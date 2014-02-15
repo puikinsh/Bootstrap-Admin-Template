@@ -30,20 +30,20 @@ function formGeneral() {
     /*----------- END chosen CODE -------------------------*/
 
     /*----------- BEGIN spinner CODE -------------------------*/
-
-    $('#spin1').spinner();
-    $("#spin2").spinner({
-        step: 0.01,
-        numberFormat: "n"
-    });
-    $("#spin3").spinner({
-        culture: 'en-US',
-        min: 5,
-        max: 2500,
-        step: 25,
-        start: 1000,
-        numberFormat: "C"
-    });
+//     DEPRECATED
+//     $('#spin1').spinner();
+//     $("#spin2").spinner({
+//         step: 0.01,
+//         numberFormat: "n"
+//     });
+//     $("#spin3").spinner({
+//         culture: 'en-US',
+//         min: 5,
+//         max: 2500,
+//         step: 25,
+//         start: 1000,
+//         numberFormat: "C"
+//     });
     /*----------- END spinner CODE -------------------------*/
 
     /*----------- BEGIN uniform CODE -------------------------*/
@@ -76,8 +76,8 @@ function formGeneral() {
     $('#dpMonths').datepicker();
 
 
-    var startDate = new Date(2012, 1, 20);
-    var endDate = new Date(2012, 1, 25);
+    var startDate = new Date(2014, 1, 20);
+    var endDate = new Date(2014, 1, 25);
     $('#dp4').datepicker()
             .on('changeDate', function(ev) {
         if (ev.date.valueOf() > endDate.valueOf()) {

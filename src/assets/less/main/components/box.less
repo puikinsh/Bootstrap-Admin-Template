@@ -167,10 +167,15 @@
 .box .body {
     padding:10px;
     .box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.05));
+    width: 100%;
+    background-color: #fff;
     
     hr {
         margin-left: -10px;
         margin-right: -10px;
+    }
+    &.full-screen-box {
+      height: 100% !important;
     }
 }
 .body.collapse:not(.in) {

@@ -185,10 +185,6 @@
 
 
 
-
-        <script type="text/javascript" src="assets/js/style-switcher.js"></script>
-
-
         {{#if cdnjs}}
         {{cdn cdnjs}}
         {{/if}}
@@ -197,13 +193,17 @@
         {{js javascripts}}
         {{/if}}
 
-        <script src="{{assets}}/js/main.min.js"></script>
-
         {{#if scripts}}
         <script>
             {{scripts}}
         </script>
         {{/if}}
+        
+        <script src="{{assets}}/lib/screenfull/screenfull.js"></script>
+        <script src="{{assets}}/js/main.min.js"></script>
+        
+        <!--For Demo Only. Not required -->
+        <script type="text/javascript" src="assets/js/style-switcher.js"></script>
 
     </body>
 </html>

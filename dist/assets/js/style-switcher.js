@@ -1,8 +1,8 @@
 /**
-* Bootstrap-Admin-Template v2.1.4
-* Author : [object Object] 
+* Metis - Bootstrap-Admin-Template v2.1.4
+* Author : Osman Nuri Okumuş 
 * Copyright 2014
-* Licensed under ,, (,,)
+* Licensed under MIT
 */
 /*
  Name    : style-switcher.js
@@ -43,7 +43,7 @@ var styleSwitcher = {
                     load: 'less!assets/less/theme.less'
                 },
                 {
-                    load: 'assets/lib/less-1.6.1.min.js',
+                    load: 'assets/lib/less-1.7.0.min.js',
                     complete: function () {
                         $this.build();
                         if (Modernizr.localstorage) {

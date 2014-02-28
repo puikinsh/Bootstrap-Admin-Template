@@ -1,8 +1,8 @@
 /**
-* Bootstrap-Admin-Template v2.1.4
-* Author : [object Object] 
+* Metis - Bootstrap-Admin-Template v2.1.4
+* Author : Osman Nuri Okumuş 
 * Copyright 2014
-* Licensed under ,, (,,)
+* Licensed under MIT
 */
 /* Start Countdown Settings */
 

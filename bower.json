@@ -22,7 +22,7 @@
     "dependencies": {
         "bootstrap": "~3.1.1",
         "font-awesome": "~4.0.3",
-        "gmaps": "~0.4.8",
+        "gmaps": "~0.4.9",
         "html5shiv": "~3.7.0",
         "respond": "~1.4.0"
     }

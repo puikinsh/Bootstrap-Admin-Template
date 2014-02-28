@@ -1,7 +1,7 @@
 function metisMaps() {
     "use strict";
 
-    var map1, map2, map3, map4, map5, map6, path;
+    var map1, map2, map3, map4, map5, map6, path, addressMap;
 
     map1 = new GMaps({
         el: '#gmaps-basic',

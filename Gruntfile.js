@@ -7,10 +7,10 @@ module.exports = function (grunt) {
         // Metadata
         pkg: grunt.file.readJSON('package.json'),
         banner: '/**\n' +
-            '* <%=pkg.name %> v<%= pkg.version %>\n' +
-            '* Author : <%= pkg.author %> \n' +
+            '* Metis - <%=pkg.name %> v<%= pkg.version %>\n' +
+            '* Author : <%= pkg.author.name %> \n' +
             '* Copyright <%= grunt.template.today("yyyy") %>\n' +
-            '* Licensed under <%= _.pluck(pkg.licenses, "type") %> (<%= _.pluck(pkg.licenses, "url") %>)\n' +
+            '* Licensed under <%= pkg.licenses %>\n' +
             '*/\n',
         clean: {dist: ['dist']},
         less: {
@@ -159,12 +159,12 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: 'node_modules/assemble-less/node_modules/less/dist/',
-                        src: ['less-1.6.1.min.js'],
+                        src: ['less-1.7.0.min.js'],
                         dest: 'dist/assets/lib'
                     },
                     {
                         expand: true,
-                        cwd: 'bower_components/jquery/',
+                        cwd: 'bower_components/jquery/dist',
                         src: ['./**/jquery*.min.*'],
                         dest: 'dist/assets/lib'
                     },

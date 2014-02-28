@@ -1,8 +1,8 @@
 /**
-* Bootstrap-Admin-Template v2.1.4
-* Author : [object Object] 
+* Metis - Bootstrap-Admin-Template v2.1.4
+* Author : Osman Nuri Okumuş 
 * Copyright 2014
-* Licensed under ,, (,,)
+* Licensed under MIT
 */
 $(function () {
     "use strict";
@@ -951,7 +951,7 @@ function metisFile() {
 function metisMaps() {
     "use strict";
 
-    var map1, map2, map3, map4, map5, map6, path;
+    var map1, map2, map3, map4, map5, map6, path, addressMap;
 
     map1 = new GMaps({
         el: '#gmaps-basic',

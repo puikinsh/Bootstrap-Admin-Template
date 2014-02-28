@@ -1,4 +1,5 @@
-Metis Admin Template with Twitter Bootstrap [![Build Status](https://travis-ci.org/onokumus/Bootstrap-Admin-Template.png)](http://travis-ci.org/onokumus/Bootstrap-Admin-Template)
+Metis Admin Template with Twitter Bootstrap 
+[![Build Status](https://travis-ci.org/onokumus/Bootstrap-Admin-Template.png)](http://travis-ci.org/onokumus/Bootstrap-Admin-Template) [![Dependency Status](https://david-dm.org/onokumus/Bootstrap-Admin-Template.svg?theme=shields.io)](https://david-dm.org/onokumus/Bootstrap-Admin-Template) [![devDependency Status](https://david-dm.org/onokumus/Bootstrap-Admin-Template/dev-status.svg?theme=shields.io)](https://david-dm.org/onokumus/Bootstrap-Admin-Template#info=devDependencies)
 ------------------------------------------
 
 ### Download

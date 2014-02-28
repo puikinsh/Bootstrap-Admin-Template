@@ -122,8 +122,8 @@
         <!-- header.head -->
         <header class="head">
           <div class="search-bar">
-            <a data-original-title="Show/Hide Menu" data-placement="bottom" data-tooltip="tooltip" class="accordion-toggle btn btn-primary btn-sm visible-xs" data-toggle="collapse" href="#menu" id="menu-toggle">
-              <i class="fa fa-expand"></i>
+            <a data-original-title="Show/Hide Menu" data-placement="bottom" data-tooltip="tooltip" class="accordion-toggle btn btn-primary btn-sm visible-xs visible-sm" id="menu-toggle">
+              <i class="fa fa-bars"></i>
             </a> 
             <form class="main-search">
               <div class="input-group">
@@ -146,25 +146,30 @@
       </div><!-- /#top -->
       <div id="left">
         <div class="media user-media">
-          <a class="user-link" href="">
-            <img class="media-object img-thumbnail user-img" alt="User Picture" src="assets/img/user.gif">
-            <span class="label label-danger user-label">16</span> 
-          </a> 
-          <div class="media-body">
-            <h5 class="media-heading">Archie</h5>
-            <ul class="list-unstyled user-info">
-              <li> <a href="">Administrator</a>  </li>
-              <li>Last Access :
-                <br>
-                <small>
-                  <i class="fa fa-calendar"></i>&nbsp;16 Mar 16:32</small> 
-              </li>
-            </ul>
+          <div class="user-media-toggleHover">
+            <span class="fa fa-user"></span> 
+          </div>
+          <div class="user-wrapper">
+            <a class="user-link" href="">
+              <img class="media-object img-thumbnail user-img" alt="User Picture" src="assets/img/user.gif">
+              <span class="label label-danger user-label">16</span> 
+            </a> 
+            <div class="media-body">
+              <h5 class="media-heading">Archie</h5>
+              <ul class="list-unstyled user-info">
+                <li> <a href="">Administrator</a>  </li>
+                <li>Last Access :
+                  <br>
+                  <small>
+                    <i class="fa fa-calendar"></i>&nbsp;16 Mar 16:32</small> 
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
         <!-- #menu -->
-        <ul id="menu" class="collapse">
+        <ul id="menu" class="">
           <li class="nav-header">Menu</li>
           <li class="nav-divider"></li>
           <li class="">
@@ -188,7 +193,10 @@
           </li>
           <li class="">
             <a href="javascript:;">
-              <i class="fa fa-tasks"></i>&nbsp;Components
+              <i class="fa fa-tasks"></i>
+              <span class="link-title">
+              Components
+            </span> 
               <span class="fa arrow"></span> 
             </a> 
             <ul>
@@ -220,7 +228,10 @@
           </li>
           <li class="">
             <a href="javascript:;">
-              <i class="fa fa-pencil"></i>&nbsp;Forms
+              <i class="fa fa-pencil"></i>
+              <span class="link-title">
+            Forms
+	  </span> 
               <span class="fa arrow"></span> 
             </a> 
             <ul>
@@ -244,31 +255,55 @@
           </li>
           <li>
             <a href="table.html">
-              <i class="fa fa-table"></i>&nbsp; Tables</a> 
+              <i class="fa fa-table"></i>
+              <span class="link-title">Tables</span> 
+            </a> 
           </li>
           <li class="active">
             <a href="file.html">
-              <i class="fa fa-file"></i>&nbsp;File Manager</a> 
+              <i class="fa fa-file"></i>
+              <span class="link-title">
+      File Manager
+          </span> 
+            </a> 
           </li>
           <li>
             <a href="typography.html">
-              <i class="fa fa-font"></i>&nbsp; Typography</a> 
+              <i class="fa fa-font"></i>
+              <span class="link-title">
+            Typography
+          </span>  
+            </a> 
           </li>
           <li>
             <a href="maps.html">
-              <i class="fa fa-map-marker"></i>&nbsp;Maps</a> 
+              <i class="fa fa-map-marker"></i><span class="link-title">
+            Maps
+          </span> 
+            </a> 
           </li>
           <li>
             <a href="chart.html">
-              <i class="fa fa fa-bar-chart-o"></i>&nbsp;Charts</a> 
+              <i class="fa fa fa-bar-chart-o"></i>
+              <span class="link-title">
+            Charts
+          </span> 
+            </a> 
           </li>
           <li>
             <a href="calendar.html">
-              <i class="fa fa-calendar"></i>&nbsp;Calendar</a> 
+              <i class="fa fa-calendar"></i>
+              <span class="link-title">
+            Calendar
+          </span> 
+            </a> 
           </li>
           <li>
             <a href="javascript:;">
-              <i class="fa fa-exclamation-triangle"></i>&nbsp;Error Pages
+              <i class="fa fa-exclamation-triangle"></i>
+              <span class="link-title">
+              Error Pages
+            </span> 
               <span class="fa arrow"></span> 
             </a> 
             <ul>
@@ -304,19 +339,37 @@
           </li>
           <li>
             <a href="grid.html">
-              <i class="fa fa-columns"></i>&nbsp;Grid</a> 
+              <i class="fa fa-columns"></i>
+              <span class="link-title">
+    Grid
+    </span> 
+            </a> 
           </li>
           <li>
             <a href="blank.html">
-              <i class="fa fa-square-o"></i>&nbsp;Blank Page</a> 
+              <i class="fa fa-square-o"></i>
+              <span class="link-title">
+    Blank Page
+    </span> 
+            </a> 
           </li>
           <li class="nav-divider"></li>
           <li>
             <a href="login.html">
-              <i class="fa fa-sign-in"></i>&nbsp;Login Page</a> 
+              <i class="fa fa-sign-in"></i>
+              <span class="link-title">
+    Login Page
+    </span> 
+            </a> 
           </li>
           <li>
-            <a href="javascript:;">Unlimited Level Menu  <span class="fa arrow"></span>  </a> 
+            <a href="javascript:;">
+              <i class="fa fa-code"></i>
+              <span class="link-title">
+    	Unlimited Level Menu 
+    	</span> 
+              <span class="fa arrow"></span> 
+            </a> 
             <ul>
               <li>
                 <a href="javascript:;">Level 1  <span class="fa arrow"></span>  </a> 
@@ -423,7 +476,7 @@
       });
     </script>
     <script src="assets/lib/screenfull/screenfull.js"></script>
-    <script src="assets/js/main.min.js"></script>
+    <script src="assets/js/main.js"></script>
 
     <!--For Demo Only. Not required -->
     <script type="text/javascript" src="assets/js/style-switcher.js"></script>

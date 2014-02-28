@@ -4,15 +4,10 @@
 
 
 .user-media {
-  display: none;
   background-color: #444444;
-  
-  @media (min-width: @screen-tablet) {
-      display: block;
+
       
-      .media-body {
-	  display: none;
-      }
+      
       
       .user-link {
 	.center-block();
@@ -27,9 +22,9 @@
 	  right: 6px;
 	}
       }
-  }
+
   
-  @media (min-width: @screen-desktop) {
+
     .user-link {
       float: left;
       .user-img {
@@ -54,18 +49,36 @@
 	  }
       }
   }
-}
 
-@media (min-width: @screen-tablet) {
-  .mini-sidebar {
-    .media-body {display: none;}
-  }
   .side-right {
     .user-link .user-label {
       left: 6px;
       right: auto;
     }
   }
+.mini-sidebar .user-wrapper {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    display: none;
+    min-width: @SidebarWidth;
 }
-
+.user-media-toggleHover {display: none;}
+.mini-sidebar .user-media-toggleHover {
+    font-size: 18px;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    display: inherit;
+}
+.mini-sidebar .user-media:hover .user-wrapper {
+    background: #333;
+        left: 100%;
+        display: inherit;
+}
+.mini-sidebar.side-right .user-media:hover .user-wrapper {
+    left: auto;
+    right: 100%;
+}
 /* ============== END LEFT Styles ================= */

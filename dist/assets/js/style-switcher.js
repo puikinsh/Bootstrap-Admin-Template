@@ -1,5 +1,5 @@
 /**
-* Metis - Bootstrap-Admin-Template v2.1.4
+* Metis - Bootstrap-Admin-Template v2.2.0
 * Author : Osman Nuri Okumuş 
 * Copyright 2014
 * Licensed under MIT
@@ -384,6 +384,7 @@ var styleSwitcher = {
             $('body') .addClass('side-right');
         });
         var sideAffixLink = $('<a/>') .html('Affix') .attr('href', '#') .on('click', function (e) {
+            $('body').removeClass('mini-sidebar');
             e.preventDefault();
             var $menuHeight = $(window) .height();
             $('#menu') .affix({

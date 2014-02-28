@@ -62,25 +62,20 @@
 }
 @media (min-width: @screen-tablet) {
     .search-bar {
-        width: @miniSidebarWidth;
+        //width: @miniSidebarWidth;
         float: left;
         
         .side-right & {
             float:right;
         }
 	      padding: 10px 4px;
-	      .input-group-btn {
-		display:none;
-	      }
+	      
 	      .input-small.form-control {border-radius: 3px;}
 	  
     }
     .main-bar {
-        margin-left: @miniSidebarWidth;
-        .side-right & {
-            margin-left: 0;
-            margin-right: @miniSidebarWidth;
-        }
+        display: block;
+        overflow: hidden;
     }
 }
 @media (min-width: @screen-desktop) {
@@ -92,23 +87,8 @@
 	      }
 	      .input-small.form-control {border-radius: 3px 0 0 3px;}
         .mini-sidebar & {
-            width: @miniSidebarWidth;
-            padding: 10px 4px;
-	      .input-group-btn {
-		display:none;
-	      }
 	      .input-small.form-control {border-radius: 3px;}
         }
-    }
-    .main-bar {
-        margin-left: @SidebarWidth;
-        .side-right & {
-            margin-right: @SidebarWidth;
-        }
-        .mini-sidebar & {
-            margin-left: @miniSidebarWidth;
-        }
-        .side-right.mini-sidebar & {margin-left:0;}
     }
 }
 /** END header.head bar */

@@ -378,6 +378,7 @@ var styleSwitcher = {
             $('body') .addClass('side-right');
         });
         var sideAffixLink = $('<a/>') .html('Affix') .attr('href', '#') .on('click', function (e) {
+            $('body').removeClass('mini-sidebar');
             e.preventDefault();
             var $menuHeight = $(window) .height();
             $('#menu') .affix({

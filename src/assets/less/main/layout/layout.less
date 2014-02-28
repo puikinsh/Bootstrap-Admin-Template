@@ -22,56 +22,48 @@ body.padTop53 {
     display: none;
 }
 
+#left {
+  position: absolute;
+  width: @SidebarWidth;
+  .transition(left .3s ease-in-out 0s);
+  z-index: 1;
+  background: #333;
+  left: -@SidebarWidth;
+}
+.side-right #left {
+    left: auto;
+    right: -@SidebarWidth;
+    
+  .transition(right .3s ease-in-out 0s);
+}
+#left.opened {
+    left:0;
+}
+.side-right #left.opened {
+    left: auto;
+    right:0;
+}
 
-
-@media (min-width: @screen-tablet) {
+@media (min-width: @screen-md-min) {
   #left {
+        position: relative;
+    float: left;
     
-	width: @miniSidebarWidth;
-    position: relative;
-	float: left;
+  left: auto;
+    
     .side-right & {float:right;}
-    
-	#menu.affix{
-	  position: fixed;
-	  top:0;
-	  width: @miniSidebarWidth;
-	  overflow-x:hidden;
-	  overflow-y:hidden;
-	  -webkit-overflow-scrolling: touch;
-	  &:hover {overflow-y:scroll;}
-	  
-	  li > ul {
-		position: relative;
-		width: auto;
-		left:auto;
-		top:auto;
-	  }
-	  
-	  > li:last-child > a:last-child {
-		  box-shadow: 0 1px 0 rgba(255,255,255,.05), 0 1px 0 
-rgba(255,255,255,.05) inset;
-		  border-bottom: 1px solid rgba(0,0,0,.3);
-	    }
-	    body.padTop53 & {top:53px;}
-      }
+    body.padTop53 & {top:53px;}
+
   }
     #content {
-      overflow: hidden;
+      .text-overflow();
     }
     #left {
         margin-bottom: -10px;
     }
+    .side-right #left {
+    right: 0;
 }
-@media (min-width: @screen-desktop) {
-    #left {
-        width: @SidebarWidth;
-        #menu.affix{width: @SidebarWidth;}
-        .mini-sidebar & {
-            width: @miniSidebarWidth;
-            #menu.affix{width: @miniSidebarWidth;}
-        }
-    }
 }
 
 @media (min-width: @screen-tablet) {
@@ -88,6 +80,10 @@ rgba(255,255,255,.05) inset;
       margin-right: auto;
     }
   }
+}
+.mini-sidebar #left {
+    width: @miniSidebarWidth;
+    
 }
 
 /* ================== END Template Layout ============== */

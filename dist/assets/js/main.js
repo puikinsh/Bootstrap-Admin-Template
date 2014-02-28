@@ -1,5 +1,5 @@
 /**
-* Metis - Bootstrap-Admin-Template v2.1.4
+* Metis - Bootstrap-Admin-Template v2.2.0
 * Author : Osman Nuri Okumuş 
 * Copyright 2014
 * Licensed under MIT
@@ -37,9 +37,30 @@ $(function () {
         $(this).children('span').children('i').toggleClass('icon-angle-down');
     });
     
-    $('#menu').metisMenu();
+    $('#menu-toggle').on('click', function(e){
+        $('#left').toggleClass('opened');
+        e.preventDefault();
+    });
     
+    $('#menu').metisMenu();
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function metisButton() {
     window.prettyPrint && prettyPrint();
     $.each($('.inner a.btn'), function () {
@@ -1080,9 +1101,10 @@ function metisMaps() {
 
     var pluginName = "metisMenu",
         defaults = {
-            toggle: true
+            toggle: true,
+            hidingClass: 'u-isHiddenVisually'
         };
-        
+
     function Plugin(element, options) {
         this.element = element;
         this.settings = $.extend({}, defaults, options);
@@ -1095,20 +1117,68 @@ function metisMaps() {
         init: function () {
 
             var $this = $(this.element),
-                $toggle = this.settings.toggle;
-
-            $this.find('li.active').has('ul').children('ul').addClass('collapse in');
+                $toggle = this.settings.toggle,
+                $hidingClass = this.settings.hidingClass,
+                resizeTimer;
+            
+            function resizedw(){
+                $('body').removeClass('mini-sidebar');
+                
+                $this.find('li.active').has('ul').children('ul').addClass('collapse in');
             $this.find('li').not('.active').has('ul').children('ul').addClass('collapse');
-
+            
             $this.find('li').has('ul').children('a').on('click', function (e) {
                 e.preventDefault();
 
-                $(this).parent('li').toggleClass('active').children('ul').collapse('toggle');
+                $(this).parent('li').toggleClass('opened').children('ul').collapse('toggle');
 
                 if ($toggle) {
-                    $(this).parent('li').siblings().removeClass('active').children('ul.in').collapse('hide');
+                    $(this).parent('li').siblings().removeClass('opened').children('ul.in').collapse('hide');
                 }
             });
+            }
+            function removeHidden() {
+                $this.find('li').has('ul').children('ul').removeClass('collapse in').css('height','inherit');
+                if(!$this.hasClass('affix')) {
+                    $this.find('li').has('ul').children('a').off('click');
+                }
+            }
+            
+            function allFunc() {
+                if($(window).width() < 992) {
+                    resizedw();
+                } else {
+                    removeHidden();
+                }
+            }
+            
+            allFunc();
+            
+            $this.on('affix.bs.affix', function(){
+                //resizedw();
+                console.log('affix.bs.affix');
+            });
+            
+            $this.on('affix-top.bs.affix',function(){
+                //removeHidden();
+                console.log('affix-top.bs.affix');
+            });
+            
+            $this.on('affixed.bs.affix', function(){
+                resizedw();
+                console.log('affixed.bs.affix');
+            });
+            
+            $this.on('affixed-top.bs.affix',function(){
+                removeHidden();
+                console.log('affixed-top.bs.affix');
+            });
+            
+            $(window).resize(function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(allFunc, 250);
+            });
+
         }
     };
 

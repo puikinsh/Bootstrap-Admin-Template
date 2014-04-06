@@ -1,6 +1,3 @@
-[submodule "src/assets/submodule/timepicker"]
-	path = src/assets/submodule/timepicker
-	url = https://github.com/jdewit/bootstrap-timepicker.git
 [submodule "src/assets/submodule/daterangepicker"]
 	path = src/assets/submodule/daterangepicker
 	url = https://github.com/dangrossman/bootstrap-daterangepicker.git

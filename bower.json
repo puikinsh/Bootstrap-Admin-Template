@@ -1,29 +1,53 @@
 {
-    "name": "Bootstrap-Admin-Template",
-    "version": "2.2.1",
-    "author": {
-        "name": "Osman Nuri Okumuş",
-        "email": "onokumus@gmail.com",
-        "url": "https://github.com/onokumus"
-    },
-    "description": "Twitter Bootstrap Admin Template",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/onokumus/Bootstrap-Admin-Template.git"
-    },
-    "bugs": {
-        "url": "https://github.com/onokumus/Bootstrap-Admin-Template/issues"
-    },
-    "licenses": {
-        "type": "MIT",
-        "url": "https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/README.md"
-    },
-    "dependencies": {
-        "bootstrap": "~3.1.1",
-        "font-awesome": "~4.0.3",
-        "gmaps": "~0.4.11",
-        "html5shiv": "~3.7.0",
-        "respond": "~1.4.2"
-    }
+  "name": "Bootstrap-Admin-Template",
+  "version": "2.2.1",
+  "author": {
+    "name": "Osman Nuri Okumuş",
+    "email": "onokumus@gmail.com",
+    "url": "https://github.com/onokumus"
+  },
+  "description": "Twitter Bootstrap Admin Template",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onokumus/Bootstrap-Admin-Template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/onokumus/Bootstrap-Admin-Template/issues"
+  },
+  "licenses": {
+    "type": "MIT",
+    "url": "https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/README.md"
+  },
+  "dependencies": {
+    "bootstrap": "~3.1.1",
+    "font-awesome": "~4.0.3",
+    "gmaps": "~0.4.11",
+    "html5shiv": "~3.7.0",
+    "respond": "~1.4.2",
+    "jquery.tablesorter": "~2.15.13",
+    "jquery-autosize": "~1.18.6",
+    "flot": "~0.8.2",
+    "jquery-mousewheel": "~3.1.9",
+    "kbwood_countdown": "~2.0.0",
+    "jquery.uniform": "~2.1.2",
+    "bootstrap-timepicker": "~0.2.6",
+    "bootstrap-daterangepicker": "~1.3.4",
+    "jQuery.validVal": "~5.0.2",
+    "jquery.gritter": "*",
+    "plupload": "~2.1.1",
+    "animate.css": "~3.1.0",
+    "bootstrap-switch": "~3.0.0",
+    "validationEngine": "~2.6.4",
+    "jquery-form": "~3.46.0",
+    "jquery.tagsinput": "~1.3.2",
+    "bootstrap-wysihtml5": "https://github.com/jhollingworth/bootstrap-wysihtml5.git",
+    "magic": "https://github.com/miniMAC/magic.git",
+    "pagedown-bootstrap": "https://github.com/samwillis/pagedown-bootstrap.git",
+    "formwizard": "https://github.com/thecodemine/formwizard.git#~3.0.7",
+    "jquery-ui-touch-punch": "https://github.com/furf/jquery-ui-touch-punch.git",
+    "2.x": "https://github.com/Studio-42/elFinder/archive/2.x.zip",
+    "jquery-validation-1.12.0": "http://jqueryvalidation.org/files/jquery-validation-1.12.0.zip",
+    "chosen_v1.1.0": "https://github.com/harvesthq/chosen/releases/download/v1.1.0/chosen_v1.1.0.zip"
+  }
 }

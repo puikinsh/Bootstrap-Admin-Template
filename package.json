@@ -33,6 +33,7 @@
     "pretty": "~0.1.2"
   },
   "dependencies": {
-    "screenfull": "~1.1.1"
+    "screenfull": "~1.1.1",
+    "cssbeautify": "^0.3.1"
   }
 }

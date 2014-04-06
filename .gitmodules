@@ -1,6 +1,3 @@
-[submodule "src/assets/submodule/daterangepicker"]
-	path = src/assets/submodule/daterangepicker
-	url = https://github.com/dangrossman/bootstrap-daterangepicker.git
 [submodule "src/assets/submodule/wysihtml5"]
 	path = src/assets/submodule/wysihtml5
 	url = https://github.com/jhollingworth/bootstrap-wysihtml5.git

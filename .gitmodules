@@ -1,6 +1,3 @@
-[submodule "src/assets/submodule/form"]
-	path = src/assets/submodule/form
-	url = https://github.com/malsup/form.git
 [submodule "src/assets/submodule/tagsinput"]
 	path = src/assets/submodule/tagsinput
 	url = https://github.com/xoxco/jQuery-Tags-Input.git

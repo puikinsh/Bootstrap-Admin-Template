@@ -1,6 +1,3 @@
-[submodule "src/assets/submodule/cssbeautify"]
-	path = src/assets/submodule/cssbeautify
-	url = https://github.com/senchalabs/cssbeautify.git
 [submodule "src/assets/submodule/timepicker"]
 	path = src/assets/submodule/timepicker
 	url = https://github.com/jdewit/bootstrap-timepicker.git

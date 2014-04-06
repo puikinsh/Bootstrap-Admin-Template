@@ -28,6 +28,3 @@
 [submodule "src/assets/submodule/tagsinput"]
 	path = src/assets/submodule/tagsinput
 	url = https://github.com/xoxco/jQuery-Tags-Input.git
-[submodule "src/assets/submodule/validVal"]
-	path = src/assets/submodule/validVal
-	url = https://github.com/BeSite/jQuery.validVal.git

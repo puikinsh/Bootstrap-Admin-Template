@@ -1,6 +1,3 @@
-[submodule "src/assets/submodule/countdown"]
-	path = src/assets/submodule/countdown
-	url = https://github.com/kbwood/countdown.git
 [submodule "src/assets/submodule/uniform"]
 	path = src/assets/submodule/uniform
 	url = https://github.com/pixelmatrix/uniform.git

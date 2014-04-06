@@ -51,6 +51,14 @@
     "chosen_v1.1.0": "https://github.com/harvesthq/chosen/releases/download/v1.1.0/chosen_v1.1.0.zip",
     "fullcalendar-1.6.4": "https://github.com/arshaw/fullcalendar/releases/download/v1.6.4/fullcalendar-1.6.4.zip",
     "datatables": "~1.9.4",
-    "datatables-plugins": "*"
+    "datatables-plugins": "*",
+    "cleditor": "https://github.com/cleditor/cleditor.git#~1.3.0",
+    "colorpicker": "http://www.eyecon.ro/bootstrap-colorpicker/colorpicker.zip",
+    "datepicker": "http://www.eyecon.ro/bootstrap-datepicker/datepicker.zip",
+    "jasny-bootstrap": "~3.1.1",
+    "blueimp-md5": "~1.1.0",
+    "jquery-inputlimiter": "*",
+    "bootstrap-duallistbox": "~3.0.1",
+    "jquery.sparkline.min": "http://omnipotent.net/jquery.sparkline/2.1.2/jquery.sparkline.min.js"
   }
 }

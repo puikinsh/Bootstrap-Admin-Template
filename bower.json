@@ -49,6 +49,8 @@
     "2.x": "https://github.com/Studio-42/elFinder/archive/2.x.zip",
     "jquery-validation-1.12.0": "http://jqueryvalidation.org/files/jquery-validation-1.12.0.zip",
     "chosen_v1.1.0": "https://github.com/harvesthq/chosen/releases/download/v1.1.0/chosen_v1.1.0.zip",
-    "fullcalendar-1.6.4": "https://github.com/arshaw/fullcalendar/releases/download/v1.6.4/fullcalendar-1.6.4.zip"
+    "fullcalendar-1.6.4": "https://github.com/arshaw/fullcalendar/releases/download/v1.6.4/fullcalendar-1.6.4.zip",
+    "datatables": "~1.9.4",
+    "datatables-plugins": "*"
   }
 }

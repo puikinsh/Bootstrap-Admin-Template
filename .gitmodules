@@ -1,6 +1,3 @@
-[submodule "src/assets/submodule/formwizard"]
-	path = src/assets/submodule/formwizard
-	url = https://github.com/thecodemine/formwizard.git
 [submodule "src/assets/submodule/touch-punch"]
 	path = src/assets/submodule/touch-punch
 	url = https://github.com/furf/jquery-ui-touch-punch.git

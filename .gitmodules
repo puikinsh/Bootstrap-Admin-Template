@@ -1,6 +1,3 @@
-[submodule "src/assets/submodule/switch"]
-	path = src/assets/submodule/switch
-	url = https://github.com/nostalgiaz/bootstrap-switch.git
 [submodule "src/assets/submodule/form"]
 	path = src/assets/submodule/form
 	url = https://github.com/malsup/form.git

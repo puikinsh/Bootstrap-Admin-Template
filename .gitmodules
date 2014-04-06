@@ -1,6 +1,3 @@
-[submodule "src/assets/submodule/magic"]
-	path = src/assets/submodule/magic
-	url = https://github.com/miniMAC/magic.git
 [submodule "src/assets/submodule/flot"]
 	path = src/assets/submodule/flot
 	url = https://github.com/flot/flot.git

@@ -1,6 +1,3 @@
-[submodule "src/assets/submodule/mousewheel"]
-	path = src/assets/submodule/mousewheel
-	url = https://github.com/brandonaaron/jquery-mousewheel.git
 [submodule "src/assets/submodule/countdown"]
 	path = src/assets/submodule/countdown
 	url = https://github.com/kbwood/countdown.git

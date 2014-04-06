@@ -1,6 +1,3 @@
-[submodule "src/assets/submodule/wysihtml5"]
-	path = src/assets/submodule/wysihtml5
-	url = https://github.com/jhollingworth/bootstrap-wysihtml5.git
 [submodule "src/assets/submodule/plupload"]
 	path = src/assets/submodule/plupload
 	url = https://github.com/moxiecode/plupload.git

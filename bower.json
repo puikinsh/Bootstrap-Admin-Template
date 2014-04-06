@@ -60,5 +60,8 @@
     "jquery-inputlimiter": "*",
     "bootstrap-duallistbox": "~3.0.1",
     "jquery.sparkline.min": "http://omnipotent.net/jquery.sparkline/2.1.2/jquery.sparkline.min.js"
+  },
+  "devDependencies": {
+    "SubtlePatterns": "https://github.com/subtlepatterns/SubtlePatterns.git"
   }
 }

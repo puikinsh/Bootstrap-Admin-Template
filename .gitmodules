@@ -1,6 +1,3 @@
-[submodule "src/assets/submodule/pagedown"]
-	path = src/assets/submodule/pagedown
-	url = https://github.com/samwillis/pagedown-bootstrap.git
 [submodule "src/assets/submodule/formwizard"]
 	path = src/assets/submodule/formwizard
 	url = https://github.com/thecodemine/formwizard.git

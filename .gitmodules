@@ -1,6 +1,3 @@
-[submodule "src/assets/submodule/animate"]
-	path = src/assets/submodule/animate
-	url = https://github.com/daneden/animate.css.git
 [submodule "src/assets/submodule/validationengine"]
 	path = src/assets/submodule/validationengine
 	url = https://github.com/posabsolute/jQuery-Validation-Engine.git

@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ember & Metis</title>
+
+    <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/lib/Font-Awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <style>
+        body > .ember-view {
+            height: 100%;
+            width: 100%;
+        }
+
+        li.ember-view > a {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<!-- BEGIN EMBER APPLICATION SCRIPT -->
+<script type="text/x-handlebars">
+    <!-- BEGIN WRAP -->
+    <div id="wrap">
+
+        <!-- BEGIN TOP -->
+        <div id="top">
+            <nav class="navbar navbar-inverse navbar-static-top">
+                <header class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="index.html" class="navbar-brand"><img src="assets/img/logo.png" alt=""></a>
+                </header>
+            </nav>
+        </div>
+        <!-- END TOP -->
+
+        <!-- BEGIN LEFT -->
+        <div id="left">
+            <ul id="menu">
+                <li class="nav-header">Menu</li>
+                <li class="nav-divider"></li>
+                {{#link-to "index" tagName="li"}}
+                <a {{bindAttr href="view.href"}}> <i class="icon-home"></i> Ember</a>
+                {{/link-to}}
+                {{#link-to "contacts" tagName="li"}}
+                <a {{bind-attr href="view.href"}}> <i class="icon-user"></i> Contacts</a>
+                {{/link-to}}
+
+                {{#link-to "flickr" tagName="li"}}
+                <a {{bind-attr href="view.href"}}> <i class="icon-flickr"></i> Flickr</a>
+                {{/link-to}}
+
+            </ul>
+        </div>
+        <!-- END LEFT -->
+
+        <!-- BEGIN CONTENT -->
+        <div id="content">
+
+            <!-- BEGIN OUTER -->
+            <div class="outer">
+
+                <!-- BEGIN INNER -->
+                <div class="inner">
+                    {{outlet}}
+                </div>
+                <!-- END INNER -->
+
+            </div>
+            <!-- END OUTER -->
+
+        </div>
+        <!-- END CONTENT -->
+
+    </div>
+    <!-- END WRAP -->
+
+    <footer id="footer"><p>&copy; 2013 Metis</p></footer>
+    <!-- /#footer -->
+</script>
+<!-- END EMBER APPLICATION SCRIPT -->
+
+
+<!-- BEGIN INDEX ROUTE -->
+<script type="text/x-handlebars" data-template-name="index">
+    <h1>Welcome to Metis & Ember</h1>
+</script>
+<!-- END INDEX ROUTE -->
+
+<script type="text/x-handlebars" data-template-name="contacts">
+    <div class="col-lg-3">
+        <h3>Contacts (<span class="text-danger">{{countContact}}</span>)</h3>
+        {{#link-to "new" class="btn btn-metis-1 btn-line"}}New Contact{{/link-to}}
+        <br><br>
+
+        <div class="list-group">
+
+            {{#each}}
+            {{#link-to "contact" this class="list-group-item"}}<i class="icon-circle text-success text-xs"></i>
+            {{last}}, {{name}}
+            <br>{{email}}
+            {{/link-to}}
+            {{/each}}
+
+        </div>
+    </div>
+    <!-- /.col-lg-3 -->
+    <div class="col-lg-9">
+        <h3>Contact Detail</h3>
+        {{outlet}}
+    </div>
+    <!-- /.col-lg-9 -->
+</script>
+
+
+<script type="text/x-handlebars" data-template-name="contact">
+    {{#if isEditing}}
+    {{input type="text" class="form-control" value=name}}
+    {{input type="text" class="form-control" value=last}}
+    {{input type="email" class="form-control" value=email}}
+    <button class="btn btn-primary"
+    {{action "doneEditing"}}>SAVE</button>
+    {{else}}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">{{last}}, {{name}}</h4>
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <img {{bind-attr src=gravatarImage}} class="pull-left">
+            <p>
+
+            <dl class="dl-horizontal pull-right">
+                <dt>First Name</dt>
+                <dd>{{name}}</dd>
+                <dt>Last Name</dt>
+                <dd>{{last}}</dd>
+                <dt>E-mail</dt>
+                <dd>{{email}}</dd>
+            </dl>
+
+            </p>
+        </div>
+        <!-- /.panel-body -->
+        <div class="panel-footer">
+            <button class="btn btn-success"
+            {{action "edit"}}>EDIT</button>
+            <button
+            {{action "deleteContact"}} class="btn btn-danger">DELETE</button>
+        </div>
+        <!-- /.panel-footer -->
+    </div>
+    <!-- /.panel panel-default -->
+    {{/if}}
+</script>
+
+<script type="text/x-handlebars" data-template-name="new">
+    <form role="form">
+        <div class="form-group">
+            <label>First Name</label>
+            {{input type="text" class="form-control" placeholder="first name" value=newFirst}}
+        </div>
+        <div class="form-group">
+            <label>Last</label>
+            {{input type="text" class="form-control" placeholder="last name" value=newLast}}
+        </div>
+        <div class="form-group">
+            <label>E-mail</label>
+            {{input type="email" class="form-control" placeholder="e-mail" required="required" value=newEmail}}
+        </div>
+        <button type="submit" class="btn btn-default"
+        {{action "createContact"}}>Submit</button>
+    </form>
+
+</script>
+
+<script type="text/x-handlebars" data-template-name="flickr">
+    <h2>Flickr Photos</h2>
+    {{#each}}
+    <h3>{{title}}</h3>
+
+    <div class="row">
+
+        {{#each items}}
+        <div class="col-sm-6 col-md-3">
+            <a {{bind-attr href=link}} class="thumbnail">
+            <img {{bind-attr src=media.m}} class="img-responsive">
+            </a>
+        </div>
+        {{/each}}
+
+    </div>
+    {{/each}}
+</script>
+
+
+<script src="assets/lib/jquery.min.js"></script>
+<script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>
+
+<script src="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v1.1.2.js"></script>
+<script src="http://builds.emberjs.com/canary/ember.min.js"></script>
+<script src="http://builds.emberjs.com/canary/ember-data.min.js"></script>
+
+
+<script src="assets/lib/jshash/md5-min.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

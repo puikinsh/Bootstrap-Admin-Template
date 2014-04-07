@@ -4,31 +4,31 @@ title: Form General
 icon: fa fa-pencil
 styleName: alterne
 stylesheets:
-- lib/uniform/themes/default/css/uniform.default.css
-- lib/inputlimiter/jquery.inputlimiter.1.0.css
+- lib/jquery.uniform/themes/default/css/uniform.default.css
+- lib/inputlimiter/jquery.inputlimiter.css
 - lib/chosen/chosen.min.css
 - lib/colorpicker/css/colorpicker.css
+- css/colorpicker_hack.css
 - lib/tagsinput/jquery.tagsinput.css
 - lib/daterangepicker/daterangepicker-bs3.css
 - lib/datepicker/css/datepicker.css
 - lib/timepicker/css/bootstrap-timepicker.min.css
-- lib/switch/build/css/bootstrap3/bootstrap-switch.min.css
-- lib/jasny/css/jasny-bootstrap.min.css
+- lib/switch/css/bootstrap3/bootstrap-switch.min.css
+- lib/jasny-bootstrap/css/jasny-bootstrap.min.css
 javascripts:
-- lib/uniform/jquery.uniform.min.js
-- lib/inputlimiter/jquery.inputlimiter.1.3.1.min.js
+- lib/jquery.uniform/jquery.uniform.min.js
+- lib/inputlimiter/jquery.inputlimiter.js
 - lib/chosen/chosen.jquery.min.js
 - lib/colorpicker/js/bootstrap-colorpicker.js
-- lib/tagsinput/jquery.tagsinput.min.js
-- lib/validVal/src/js/jquery.validVal.min.js
+- lib/tagsinput/jquery.tagsinput.js
+- lib/validVal/js/jquery.validVal.min.js
+- lib/moment/moment.min.js
 - lib/daterangepicker/daterangepicker.js
-- lib/daterangepicker/moment.min.js
 - lib/datepicker/js/bootstrap-datepicker.js
 - lib/timepicker/js/bootstrap-timepicker.min.js
-- lib/switch/build/js/bootstrap-switch.min.js
-- lib/jquery.dualListbox-1.3/jquery.dualListBox-1.3.min.js
+- lib/switch/js/bootstrap-switch.min.js
 - lib/autosize/jquery.autosize.min.js
-- lib/jasny/js/jasny-bootstrap.min.js
+- lib/jasny-bootstrap/js/jasny-bootstrap.min.js
 scripts: $(function() { formGeneral(); });
 ---
 <!--BEGIN INPUT TEXT FIELDS-->
@@ -975,107 +975,3 @@ scripts: $(function() { formGeneral(); });
     </div>
 </div>
 <!--END GRID INPUTS-->
-
-<!-- BEGIN DUAL SELECT WITH FILTER-->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="box">
-            <header>
-                <h5><i class="fa fa-th-large"></i> Dual Select With Filtering</h5>
-
-                <!-- .toolbar -->
-                {{> toolbar}}
-                <!-- /.toolbar -->
-
-            </header>
-            <div id="div-3" class="body">
-                <div class="row">
-                    <div class="col-lg-5">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input id="box1Filter" type="text" placeholder="Filter" class="form-control">
-                                <span class="input-group-btn">
-                                    <button id="box1Clear" class="btn btn-warning" type="button">x</button>
-                                </span>
-                            </div>
-                            <!-- /input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                        <div class="form-group">
-                            <select id="box1View" multiple="multiple" class="form-control" size="16">
-                                <option value="501649">2008-2009 "Mini" Baja</option>
-                                <option value="501497">AAPA - Asian American Psychological Association</option>
-                                <option value="501053">Academy of Film Geeks</option>
-                                <option value="500001">Accounting Association</option>
-                                <option value="501227">ACLU</option>
-                                <option value="501610">Active Minds</option>
-                                <option value="501514">Activism with A Reel Edge (A.W.A.R.E.)</option>
-                                <option value="501656">Adopt a Grandparent Program</option>
-                                <option value="501050">Africa Awareness Student Organization</option>
-                                <option value="501075">African Diasporic Cultural RC Interns</option>
-                                <option value="501493">Agape</option>
-                                <option value="501562">AGE-Alliance for Graduate Excellence</option>
-                                <option value="500676">AICHE (American Inst of Chemical Engineers)</option>
-                                <option value="501460">AIDS Sensitivity Awareness Project ASAP</option>
-                                <option value="500004">Aikido Club</option>
-                                <option value="500336">Akanke</option>
-                            </select>
-                            <hr>
-                            <div class="alert alert-block">
-                                <span id="box1Counter" class="countLabel"></span>
-                                <select id="box1Storage" class="form-control"></select>
-                            </div>
-                        </div>
-                        <!-- /.form-group -->
-                    </div>
-                    <!-- /.col-lg-5 -->
-
-                    <div class="col-lg-2">
-                      <div class="text-center">
-                        <div class="btn-group-vertical">
-                            <button id="to2" type="button" class="btn btn-primary">
-                                <i class="fa fa-chevron-right"></i>
-                            </button>
-                            <button id="allTo2" type="button" class="btn btn-primary">
-                                <i class="fa fa-forward"></i>
-                            </button>
-                            <button id="allTo1" type="button" class="btn btn-danger">
-                                <i class="fa fa-backward"></i>
-                            </button>
-                            <button id="to1" type="button" class="btn btn-danger">
-                                <i class=" fa fa-chevron-left fa fa-white"></i>
-                            </button>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- /.col-lg-2 -->
-
-                    <div class="col-lg-5">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input id="box2Filter" type="text" placeholder="Filter" class="form-control">
-                                <span class="input-group-btn">
-                                    <button id="box2Clear" class="btn btn-warning" type="button">x</button>
-                                </span>
-                            </div>
-                            <!-- /input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                        <div class="form-group">
-                            <select id="box2View" multiple="multiple" class="form-control" size="16"></select>
-                        </div>
-                        <!-- /.form-group -->
-                        <hr>
-
-                        <div class="alert alert-block">
-                            <span id="box2Counter" class="countLabel"></span>
-                            <select id="box2Storage" class="form-control"> </select>
-                        </div>
-                    </div>
-                    <!-- /.col-lg-5 -->
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--END DUAL SELECT WITH FILTER-->

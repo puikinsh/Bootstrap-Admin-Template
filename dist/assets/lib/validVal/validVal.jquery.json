@@ -1,0 +1,21 @@
+{
+	"name": "validVal",
+	"version": "5.0.2",
+	"title": "jQuery validVal",
+	"description": "A highly customizable and feature rich jQuery form validator plugin that embraces the power of HTML5.",
+	"homepage": "http://validval.frebsite.nl",
+	"author": {
+		"name": "Fred Heusschen",
+		"url": "http://www.frebsite.nl"
+	},
+	"licenses": [{
+		"type": "MIT",
+		"url": "http://opensource.org/licenses/MIT"
+	}, {
+		"type": "GPL-3.0",
+		"url": "http://opensource.org/licenses/GPL-3.0"
+	}],
+	"dependencies": {
+		"jquery": ">= 1.6.0"
+	}
+}

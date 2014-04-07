@@ -46,7 +46,7 @@
     "pagedown-bootstrap": "https://github.com/samwillis/pagedown-bootstrap.git",
     "formwizard": "https://github.com/thecodemine/formwizard.git#~3.0.7",
     "jquery-ui-touch-punch": "https://github.com/furf/jquery-ui-touch-punch.git",
-    "2.x": "https://github.com/Studio-42/elFinder/archive/2.x.zip",
+    "elfinder": "https://github.com/downloads/Studio-42/elFinder/elfinder-2.0-rc1.tar.gz",
     "jquery-validation-1.12.0": "http://jqueryvalidation.org/files/jquery-validation-1.12.0.zip",
     "chosen_v1.1.0": "https://github.com/harvesthq/chosen/releases/download/v1.1.0/chosen_v1.1.0.zip",
     "fullcalendar-1.6.4": "https://github.com/arshaw/fullcalendar/releases/download/v1.6.4/fullcalendar-1.6.4.zip",

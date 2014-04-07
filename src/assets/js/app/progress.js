@@ -1,7 +1,5 @@
 function progRess() {
 
-    window.prettyPrint && prettyPrint();
-
     $.each($('.progress .progress-bar'), function () {
 
         $(this).animate({

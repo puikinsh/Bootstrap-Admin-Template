@@ -5,15 +5,18 @@ icon: fa fa-edit
 stylesheets:
 - lib/wysihtml5/dist/bootstrap-wysihtml5-0.0.2.css
 - css/Markdown.Editor.hack.css
-- lib/CLEditor1_4_3/jquery.cleditor.css
+- lib/cleditor/jquery.cleditor.css
 - css/jquery.cleditor-hack.css
 - css/bootstrap-wysihtml5-hack.css
+cdnjs:
+- //ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js
+- http://code.jquery.com/jquery-migrate-1.2.1.min.js
 javascripts:
-- lib/wysihtml5/lib/js/wysihtml5-0.3.0.js
+- lib/wysihtml5/lib/js/wysihtml5-0.3.0.min.js
 - lib/bootstrap-wysihtml5-hack.js
-- lib/CLEditor1_4_3/jquery.cleditor.min.js
-- lib/pagedown/Markdown.Converter.js
-- lib/pagedown/Markdown.Sanitizer.js
+- lib/cleditor/jquery.cleditor.js
+- lib/pagedown-bootstrap/Markdown.Converter.js
+- lib/pagedown-bootstrap/Markdown.Sanitizer.js
 - lib/Markdown.Editor-hack.js
 - lib/epiceditor/js/epiceditor.min.js
 scripts: $(function() {formWysiwyg();});
@@ -142,7 +145,7 @@ scripts: $(function() {formWysiwyg();});
 	</ul>
     </header>
     <div id="epiceditorDiv" class="body collapse in">
-      <div id="epiceditor"></div>
+      <div id="epiceditor"><textarea id="my-edit-area"></textarea></div>
       <!-- /#epiceditor -->
     </div>
     <!-- /#epiceditorDiv.body collapse in -->

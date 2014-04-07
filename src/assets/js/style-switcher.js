@@ -27,6 +27,9 @@ var styleSwitcher = {
             load: 'assets/lib/colorpicker/css/colorpicker.css'
         },
         {
+            load: 'assets/css/colorpicker_hack.css'
+        },
+        {
             load: 'assets/lib/cssbeautify/cssbeautify.js'
         },
         {
@@ -37,7 +40,7 @@ var styleSwitcher = {
                     load: 'less!assets/less/theme.less'
                 },
                 {
-                    load: 'assets/lib/less-1.7.0.min.js',
+                    load: 'assets/lib/less-1.6.3.min.js',
                     complete: function () {
                         $this.build();
                         if (Modernizr.localstorage) {

@@ -1,0 +1,22 @@
+/*!
+* Colorpicker for Bootstrap
+*
+* Copyright 2012 Stefan Petre
+* Licensed under the Apache License v2.0
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+*/
+.colorpicker-saturation {
+	background-image: url(../lib/colorpicker/img/saturation.png) !important;
+}
+
+.colorpicker-hue {
+	background-image: url(../lib/colorpicker/img/hue.png) !important;
+}
+.colorpicker-alpha {
+	background-image: url(../lib/colorpicker/img/alpha.png) !important;
+}
+
+.colorpicker-color {
+	background-image: url(../lib/colorpicker/img/alpha.png) !important;
+}

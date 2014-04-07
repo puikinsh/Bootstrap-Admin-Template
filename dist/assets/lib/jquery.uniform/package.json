@@ -1,0 +1,9 @@
+{
+	"name": "Uniform.js",
+	"version": "2.1.2",
+	"homepage": "http://uniformjs.com",
+	"dependencies": {
+		"marked": "*",
+		"uglify-js": "*"
+	}
+}

@@ -15,7 +15,7 @@ module.exports = function (grunt) {
         clean: {dist: ['dist']},
         less: {
             options: {
-		banner: '<%= banner %>',
+                banner: '<%= banner %>',
                 metadata: 'src/*.{json,yml}',
 // 		sourceMap: true,
 //              sourceMapFilename: "dist/assets/css/style.css.map",
@@ -124,6 +124,226 @@ module.exports = function (grunt) {
             }
         },
         copy: {
+            lib: {
+                files: [
+                    {
+                        expand:true,
+                        cwd:'bower_components/jquery.tablesorter/js',
+                        src:['./**/jquery.tablesorter.min.js'],
+                        dest: 'dist/assets/lib/jquery.tablesorter'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/fullcalendar-1.6.4/fullcalendar',
+                        src:['./**/*.*'],
+                        dest: 'dist/assets/lib/fullcalendar'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/jquery.sparkline.min',
+                        src:['./**/*.js'],
+                        dest: 'dist/assets/lib/jquery.sparkline.min'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/flot',
+                        src:['./jquery.flot.js','./jquery.flot.selection.js','./jquery.flot.resize.js','./jquery.flot.pie.js'],
+                        dest: 'dist/assets/lib/flot'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/colorpicker',
+                        src:['./**/*.*'],
+                        dest: 'dist/assets/lib/colorpicker'
+                    },
+                    {
+                        expand:true,
+                        cwd:'node_modules/cssbeautify',
+                        src:['./*.js'],
+                        dest: 'dist/assets/lib/cssbeautify'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/SubtlePatterns/',
+                        src:['./*.{png,jpg}'],
+                        dest: 'dist/assets/img/pattern'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/validationEngine/',
+                        src:['./js/**/*.*','./css/**/*.*'],
+                        dest: 'dist/assets/lib/validationEngine'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/jquery-validation-1.12.0/',
+                        src:['./dist/jquery.validate.min.js','./src/localization/*.js'],
+                        dest: 'dist/assets/lib/jquery-validation'
+                    },
+                    {
+                        expand:true,
+                        cwd:'node_modules/epiceditor/epiceditor',
+                        src:['./**/*.*'],
+                        dest: 'dist/assets/lib/epiceditor'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/bootstrap-wysihtml5',
+                        src:['./**/*.*'],
+                        dest: 'dist/assets/lib/wysihtml5'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/cleditor',
+                        src:['./**/*.*'],
+                        dest: 'dist/assets/lib/cleditor'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/pagedown-bootstrap',
+                        src:['./*.js'],
+                        dest: 'dist/assets/lib/pagedown-bootstrap'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/jasny-bootstrap/dist/',
+                        src:['./**/*.*'],
+                        dest: 'dist/assets/lib/jasny-bootstrap'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/plupload/js',
+                        src:['./**/*.*'],
+                        dest: 'dist/assets/lib/plupload'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/jquery.uniform/',
+                        src:['./**/*.*'],
+                        dest: 'dist/assets/lib/jquery.uniform'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/jquery.gritter/',
+                        src:['./**/*.*'],
+                        dest: 'dist/assets/lib/jquery.gritter'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/jquery-form/',
+                        src:['./**/*.*'],
+                        dest: 'dist/assets/lib/jquery-form'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/formwizard/js/',
+                        src:['./jquery.form.wizard.js'],
+                        dest: 'dist/assets/lib/formwizard'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/datatables/',
+                        src:['./**/*.*'],
+                        dest: 'dist/assets/lib/datatables'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/datatables-plugins/integration/bootstrap/',
+                        src:['./**/*.*'],
+                        dest: 'dist/assets/lib/datatables'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/jquery-ui-touch-punch/',
+                        src:['./**/*.*'],
+                        dest: 'dist/assets/lib/jquery-ui-touch-punch'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/elfinder',
+                        src:['./**/*.*'],
+                        dest: 'dist/assets/lib/elfinder'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/animate.css',
+                        src:['./animate.min.css'],
+                        dest: 'dist/assets/lib/animate.css'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/kbwood_countdown/',
+                        src:['./**/*.*'],
+                        dest: 'dist/assets/lib/kbwood_countdown'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/magic',
+                        src:['./**/*.*'],
+                        dest: 'dist/assets/lib/magic'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/chosen_v1.1.0/',
+                        src:['./**/*.*'],
+                        dest: 'dist/assets/lib/chosen'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/jQuery.validVal/',
+                        src:['./**/*.*'],
+                        dest: 'dist/assets/lib/validVal'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/jquery-inputlimiter/',
+                        src:['./jquery.inputlimiter.{js,css}'],
+                        dest: 'dist/assets/lib/inputlimiter'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/jquery.tagsinput',
+                        src:['./jquery.tagsinput.{js,css}'],
+                        dest: 'dist/assets/lib/tagsinput'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/bootstrap-daterangepicker',
+                        src:['./daterangepicker*.{js,css}'],
+                        dest: 'dist/assets/lib/daterangepicker'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/datepicker',
+                        src:['./**/*.*'],
+                        dest: 'dist/assets/lib/datepicker'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/bootstrap-timepicker',
+                        src:['./css/**/*.*','./js/**/*.*'],
+                        dest: 'dist/assets/lib/timepicker'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/bootstrap-switch/dist/',
+                        src:['./**/*.*',],
+                        dest: 'dist/assets/lib/switch'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/momentjs/min/',
+                        src:['./**/*.*',],
+                        dest: 'dist/assets/lib/moment'
+                    },
+                    {
+                        expand:true,
+                        cwd:'bower_components/jquery-autosize/',
+                        src:['./**/*.js',],
+                        dest: 'dist/assets/lib/autosize'
+                    }
+                ]
+            },
             main: {
                 files: [
                     {
@@ -159,7 +379,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: 'node_modules/assemble-less/node_modules/less/dist/',
-                        src: ['less-1.7.0.min.js'],
+                        src: ['less-1.6.3.min.js'],
                         dest: 'dist/assets/lib'
                     },
                     {
@@ -198,23 +418,23 @@ module.exports = function (grunt) {
                         src: ['./respond.min.js'],
                         dest: 'dist/assets/lib/respond'
                     },
-		     {
+                    {
                         expand: true,
                         cwd: 'src/assets/less',
                         src: ['./**/theme.less'],
                         dest: 'dist/assets/less'
                     },
-		     {
-		       expand: true,
-		     cwd: 'node_modules/epiceditor/epiceditor',
-		     src: ['./**/*.*'],
-		     dest: 'dist/assets/lib/epiceditor'
-		    },
-                     {
-                       expand: true,
-                     cwd: 'node_modules/screenfull/dist/',
-                     src: ['./**/*.*'],
-                     dest: 'dist/assets/lib/screenfull/'
+                    {
+                        expand: true,
+                        cwd: 'node_modules/epiceditor/epiceditor',
+                        src: ['./**/*.*'],
+                        dest: 'dist/assets/lib/epiceditor'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'node_modules/screenfull/dist/',
+                        src: ['./**/*.*'],
+                        dest: 'dist/assets/lib/screenfull/'
                     }
                 ]
             }
@@ -260,7 +480,7 @@ module.exports = function (grunt) {
     // JS distribution task.
     grunt.registerTask('dist-js', ['concat', 'jshint', 'uglify']);
 
-    
+
     // Full distribution task.
     grunt.registerTask('dist', ['clean', 'copy', 'less', 'dist-js']);
 

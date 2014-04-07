@@ -3,22 +3,17 @@
 .sortableTable th {
   #gradient > .vertical(@header-color; @start-percent:0%; @header-highlight-color; 100%);
   cursor: pointer;
-  i {
-    display: none;
-    float: right;
-  }
+  
   &:hover {
     color: #888;
   }
   &.tablesorter-header {
-    i.fa-sort {display: inline-block;}
+    .fa.sort:before {content: "\f0dc";}
     &.tablesorter-headerDesc {
-      i.fa-sort {display: none;}
-      i.fa-sort-desc {display: inline-block;}
+      .fa.sort:before {content: "\f0de";}
     }
     &.tablesorter-headerAsc {
-      i.fa-sort {display: none;}
-      i.fa-sort-asc {display: inline-block;}
+      .fa.sort:before {content: "\f0dd";}
     }
   }
 

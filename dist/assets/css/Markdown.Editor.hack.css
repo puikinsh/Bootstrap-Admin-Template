@@ -1,0 +1,49 @@
+.wmd-panel {width: 100%;}
+.wmd-input {
+  height: 300px;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+}
+.wmd-preview {
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+}
+.wmd-panel .btn-toolbar {
+  margin-bottom: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* Begin hack */
+.icon-list:before {content: "\f0cb";}
+.icon-blockquote:before {content: "\f10d";}
+.icon-bullet-list:before {content: "\f0ca";}
+.icon-header:before {content: "\f0fd";}
+.icon-hr-line:before {content: "\f068";}
+/* End hack */
+
+.wmd-prompt-background {background-color: #000;}
+.wmd-prompt-dialog {
+  border: 1px solid #999999;
+  background-color: #F5F5F5;
+}
+.wmd-prompt-dialog > div {
+  font-size: 0.8em;
+  font-family: arial, helvetica, sans-serif;
+}
+.wmd-prompt-dialog > form > input[type="text"] {
+  border: 1px solid #999999;
+  color: black;
+}
+.wmd-prompt-dialog > form > input[type="button"] {
+  border: 1px solid #888888;
+  font-family: trebuchet MS, helvetica, sans-serif;
+  font-size: 0.8em;
+  font-weight: bold;
+}

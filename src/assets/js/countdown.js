@@ -1,7 +1,7 @@
 /* Start Countdown Settings */
 
-var startDate = new Date("01/01/2013");
-var endDate = new Date("04/06/2014");
+var startDate = new Date("01/01/2014");
+var endDate = new Date("04/06/2015");
 
 var dif = endDate.getTime() - startDate.getTime();
 var difToSecond = dif / 1000;

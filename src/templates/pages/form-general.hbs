@@ -383,25 +383,13 @@ scripts: $(function() { formGeneral(); });
                         <label class="control-label col-lg-4">Basic</label>
 
                         <div class="col-lg-8">
-                            <div class="make-switch switch-large">
-                                <input type="checkbox" checked>
-                            </div>
-
-                            <div class="make-switch">
-                                <input type="checkbox" checked>
-                            </div>
-
-                            <div class="make-switch switch-small">
-                                <input type="checkbox" checked>
-                            </div>
-
-                            <div class="make-switch switch-mini">
-                                <input type="checkbox" checked>
-                            </div>
-
-                            <div id="dimension-switch" class="make-switch">
-                                <input type="checkbox" checked>
-                            </div>
+                            <input class="make-switch" type="checkbox" data-size="mini" checked><br>                            
+                            <input class="make-switch" type="checkbox" data-size="small"><br>
+                            <input class="make-switch" type="checkbox" data-size="normal" checked><br>
+                            <input class="make-switch" type="checkbox" data-size="large"><br>
+                            <input class="make-switch" type="checkbox" data-label-text="BS" checked disabled><br>
+                            <input class="make-switch" type="checkbox"><br>
+                            <input class="make-switch" type="checkbox" checked><br>
                         </div>
                     </div>
 
@@ -409,29 +397,14 @@ scripts: $(function() { formGeneral(); });
                         <label class="control-label col-lg-4">Color</label>
 
                         <div class="col-lg-8">
-                            <div class="make-switch" data-on="primary" data-off="info">
-                                <input type="checkbox" checked>
-                            </div>
-
-                            <div class="make-switch" data-on="info" data-off="success">
-                                <input type="checkbox" checked>
-                            </div>
-
-                            <div class="make-switch" data-on="success" data-off="warning">
-                                <input type="checkbox" checked>
-                            </div>
-
-                            <div class="make-switch" data-on="warning" data-off="danger">
-                                <input type="checkbox" checked>
-                            </div>
-
-                            <div class="make-switch" data-on="danger" data-off="default">
-                                <input type="checkbox" checked>
-                            </div>
-
-                            <div class="make-switch" data-on="default" data-off="primary">
-                                <input type="checkbox" checked>
-                            </div>
+                        
+                            <input class="make-switch" type="checkbox" data-on-text="1" data-off-text="0" checked><br>
+                            <input class="make-switch" type="checkbox" data-on-color="info" data-off-color="success"><br>
+                            <input class="make-switch" type="checkbox" data-on-text="osman" data-off-text="nuri" checked><br>
+                            <input class="make-switch" type="checkbox" data-on-color="warning" data-off-color="danger"><br>
+                            <input class="make-switch" type="checkbox" data-on-text="TRUE" data-off-text="FALSE" checked><br>
+                            <input class="make-switch" type="checkbox" data-on-color="default" data-off-color="primary"><br>
+                            
                         </div>
                     </div>
 

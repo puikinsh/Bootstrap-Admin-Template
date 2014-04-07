@@ -542,18 +542,21 @@ function formGeneral() {
     /*----------- END timepicker CODE -------------------------*/
 
     /*----------- BEGIN toggleButtons CODE -------------------------*/
-    // Resets to the regular style
-$('#dimension-switch').bootstrapSwitch('setSizeClass', '');
-// Sets a mini switch
-$('#dimension-switch').bootstrapSwitch('setSizeClass', 'switch-mini');
-// Sets a small switch
-$('#dimension-switch').bootstrapSwitch('setSizeClass', 'switch-small');
-// Sets a large switch
-$('#dimension-switch').bootstrapSwitch('setSizeClass', 'switch-large');
+    $.each($('.make-switch'), function () {
+        $(this).bootstrapSwitch({
+            onText: $(this).data('onText'),
+            offText: $(this).data('offText'),
+            onColor: $(this).data('onColor'),
+            offColor: $(this).data('offColor'),
+            size: $(this).data('size'),
+            labelText: $(this).data('labelText')
+        });
+    });
     /*----------- END toggleButtons CODE -------------------------*/
 
     /*----------- BEGIN dualListBox CODE -------------------------*/
-    $.configureBoxes();
+//     DEPRECATED
+//     $.configureBoxes();
     /*----------- END dualListBox CODE -------------------------*/
 }
 function formValidation() {

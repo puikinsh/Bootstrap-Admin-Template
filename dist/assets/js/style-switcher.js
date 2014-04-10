@@ -1,5 +1,5 @@
 /**
-* Metis - Bootstrap-Admin-Template v2.2.1
+* Metis - Bootstrap-Admin-Template v2.2.2
 * Author : Osman Nuri Okumuş 
 * Copyright 2014
 * Licensed under MIT
@@ -7,7 +7,7 @@
 /*
  Name    : style-switcher.js
  Author  : ono <http://onokumus.com />
- Version : 1.0
+ Version : 1.1
  */
 // Load lesscss files
 yepnope.addPrefix('less', function (resourceObj) {
@@ -99,7 +99,7 @@ var styleSwitcher = {
         'Plase add the <strong>"side-right"</strong> class to the &lt;body&gt; element.' +
         '</div> ' +
         '<div id="sidebarWidth" class="alert alert-info">' +
-        'Plase add the <strong>"mini-sidebar"</strong> class to the &lt;body&gt; element.' +
+        'Plase add the <strong>"sidebar-left-mini"</strong> class to the &lt;body&gt; element.' +
         '</div>' +
         '<div id="topNavStyle" class="alert alert-info">' +
         'Plase add the <strong>"padTop53"</strong> class to the &lt;body&gt; element.' +
@@ -206,7 +206,7 @@ var styleSwitcher = {
         }) .html('Fixed') .on('click', function (e) {
             e.preventDefault();
             $(this) .addClass('active') .siblings('a') .removeClass('active');
-            $('body') .removeClass('wide') .addClass('fixed');
+            $('body').addClass('fixed');
             if (localStor) {
                 localStorage.layout = 'fixed';
             }
@@ -218,16 +218,14 @@ var styleSwitcher = {
         }) .html('Wide') .on('click', function (e) {
             e.preventDefault();
             $(this) .addClass('active') .siblings('a') .removeClass('active');
-            $('body') .removeClass('fixed') .addClass('wide') .removeAttr('style');
+            $('body') .removeClass('fixed') .removeAttr('style');
             if (localStor) {
-                localStorage.layout = 'wide';
+                localStorage.removeItem(layout);
             }
         });
         if (localStor) {
             if (localStorage.layout === 'fixed') {
                 boxLink.addClass('active');
-            } else {
-                wideLink.addClass('active');
             }
         }
         styleSwitcherWrap.append($('<div/>') .addClass('options-link boxedFixedBody') .append($('<h6/>') .html('Layout Style'), boxLink, wideLink
@@ -386,8 +384,17 @@ var styleSwitcher = {
             sideLeftLink.removeClass('active');
             $('body') .addClass('side-right');
         });
-        var sideAffixLink = $('<a/>') .html('Affix') .attr('href', '#') .on('click', function (e) {
-            $('body').removeClass('mini-sidebar');
+	  // DEPRECATED
+//         styleSwitcherWrap.append(
+// 	  $('<hr/>'), $('<div/>')
+// 	  .addClass('options-link sidebarOpt')
+// 	  .append($('<h6/>')
+// 	  .html('Side Bar Position')
+// 	  , sideLeftLink, sideRightLink
+// 	));
+	
+	var sideAffixLink = $('<a/>') .html('Affix') .attr('href', '#') .on('click', function (e) {
+            $('body').removeClass('sidebar-left-mini');
             e.preventDefault();
             var $menuHeight = $(window) .height();
             $('#menu') .affix({
@@ -398,20 +405,18 @@ var styleSwitcher = {
                 height: $menuHeight
             });
         });
-        styleSwitcherWrap.append($('<hr/>'), $('<div/>') .addClass('options-link sidebarOpt') .append($('<h6/>') .html('Side Bar Position'), sideLeftLink, sideRightLink
-        )
-        );
+	
         var sideMiniLink = $('<a/>') .html('Mini') .attr('href', '#') .on('click', function (e) {
             e.preventDefault();
             $(this) .addClass('active');
             sideMaxiLink.removeClass('active');
-            $('body') .addClass('mini-sidebar');
+            $('body') .addClass('sidebar-left-mini');
         });
         var sideMaxiLink = $('<a/>') .html('Maxi') .attr('href', '#') .on('click', function (e) {
             e.preventDefault();
             $(this) .addClass('active');
             sideMiniLink.removeClass('active');
-            $('body') .removeClass('mini-sidebar');
+            $('body') .removeClass('sidebar-left-mini');
         });
         styleSwitcherWrap.append($('<hr/>'), $('<div/>') .addClass('options-link sidebarOpt visible-lg') .append($('<h6/>') .html('Side Bar Width'), sideMiniLink, sideMaxiLink, sideAffixLink
         )

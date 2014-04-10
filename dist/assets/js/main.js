@@ -1,5 +1,5 @@
 /**
-* Metis - Bootstrap-Admin-Template v2.2.1
+* Metis - Bootstrap-Admin-Template v2.2.2
 * Author : Osman Nuri Okumuş 
 * Copyright 2014
 * Licensed under MIT
@@ -36,31 +36,10 @@ $(function () {
     $('li.accordion-group > a').on('click', function (e) {
         $(this).children('span').children('i').toggleClass('icon-angle-down');
     });
-    
-    $('#menu-toggle').on('click', function(e){
-        $('#left').toggleClass('opened');
-        e.preventDefault();
-    });
-    
+
+
     $('#menu').metisMenu();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function metisButton() {
     $.each($('.inner a.btn'), function () {
         $(this).popover({
@@ -858,6 +837,44 @@ var boxHiding = {
   }
 };
 boxHiding.init();
+$(function () {
+    var $body = $('body'),
+        $leftToggle = $('.toggle-left'),
+        $rightToggle = $('.toggle-right'),
+        $isLeftPanelMini = $body.hasClass('sidebar-left-mini'),
+        $isLeftPanelHide = $body.hasClass('sidebar-left-hidden'),
+        $count = 0;
+
+    $leftToggle.on('click', function (e) {
+
+        if ($(window).width() < 768) {
+            $body.toggleClass('sidebar-left-opened');
+        } else {
+            if ($body.hasClass('sidebar-right-opened') && $count % 3 === 2) {
+                $body.removeClass('sidebar-right-opened');
+            }
+            if ($body.hasClass('sidebar-right-opened') && $body.hasClass('mini-sidebar')) $count = 1;
+
+            $body.toggleClass('sidebar-left-mini', $count % 3 === 0);
+            $body.toggleClass('sidebar-left-hidden', $count % 3 === 1);
+            $count++;
+
+            $isLeftPanelMini = $body.hasClass('sidebar-left-mini');
+            $isLeftPanelHide = $body.hasClass('sidebar-left-hidden');
+
+            e.preventDefault();
+        }
+    });
+
+    $rightToggle.on('click', function (e) {
+        $body.toggleClass('sidebar-right-opened');
+
+        if (!$isLeftPanelMini && !$isLeftPanelHide) {
+            $body.toggleClass('sidebar-left-mini');
+        }
+        e.preventDefault();
+    });
+});
 function metisCalendar() {
     "use strict";
 
@@ -1120,63 +1137,63 @@ function metisMaps() {
 
             var $this = $(this.element),
                 $toggle = this.settings.toggle,
-                $hidingClass = this.settings.hidingClass,
                 resizeTimer;
-            
-            function resizedw(){
-                $('body').removeClass('mini-sidebar');
-                
+
+            function resizedw() {
+                $('body').removeClass('sidebar-left-mini');
+
                 $this.find('li.active').has('ul').children('ul').addClass('collapse in');
-            $this.find('li').not('.active').has('ul').children('ul').addClass('collapse');
-            
-            $this.find('li').has('ul').children('a').on('click', function (e) {
-                e.preventDefault();
+                $this.find('li').not('.active').has('ul').children('ul').addClass('collapse');
 
-                $(this).parent('li').toggleClass('opened').children('ul').collapse('toggle');
+                $this.find('li').has('ul').children('a').on('click', function (e) {
+                    e.preventDefault();
 
-                if ($toggle) {
-                    $(this).parent('li').siblings().removeClass('opened').children('ul.in').collapse('hide');
-                }
-            });
+                    $(this).parent('li').toggleClass('opened').children('ul').collapse('toggle');
+
+                    if ($toggle) {
+                        $(this).parent('li').siblings().removeClass('opened').children('ul.in').collapse('hide');
+                    }
+                });
             }
+
             function removeHidden() {
-                $this.find('li').has('ul').children('ul').removeClass('collapse in').css('height','inherit');
-                if(!$this.hasClass('affix')) {
+                $this.find('li').has('ul').children('ul').removeClass('collapse in').css('height', 'inherit');
+                if (!$this.hasClass('affix')) {
                     $this.find('li').has('ul').children('a').off('click');
                 }
             }
-            
+
             function allFunc() {
-                if($(window).width() < 992) {
+                if ($(window).width() < 992) {
                     resizedw();
                 } else {
                     removeHidden();
                 }
             }
-            
+
             allFunc();
-            
-            $this.on('affix.bs.affix', function(){
+
+            $this.on('affix.bs.affix', function () {
                 //resizedw();
                 console.log('affix.bs.affix');
             });
-            
-            $this.on('affix-top.bs.affix',function(){
+
+            $this.on('affix-top.bs.affix', function () {
                 //removeHidden();
                 console.log('affix-top.bs.affix');
             });
-            
-            $this.on('affixed.bs.affix', function(){
+
+            $this.on('affixed.bs.affix', function () {
                 resizedw();
                 console.log('affixed.bs.affix');
             });
-            
-            $this.on('affixed-top.bs.affix',function(){
+
+            $this.on('affixed-top.bs.affix', function () {
                 removeHidden();
                 console.log('affixed-top.bs.affix');
             });
-            
-            $(window).resize(function() {
+
+            $(window).resize(function () {
                 clearTimeout(resizeTimer);
                 resizeTimer = setTimeout(allFunc, 250);
             });
@@ -1200,7 +1217,6 @@ function metisSortable() {
   });
   
 }
-
 function metisTable() {
     "use strict";
 

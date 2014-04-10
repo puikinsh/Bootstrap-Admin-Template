@@ -23,24 +23,10 @@
 <ul id="menu" class="">
     <li class="nav-header">Menu</li>
     <li class="nav-divider"></li>
-    <li class="{{#is topTitle 'Dashboard'}}active{{/is}}">
-      <a href="javascript:;">
-        <i class="fa fa-dashboard"></i>
-        <span class="link-title">Dashboard</span>
-	<span class="fa arrow"></span>
+    <li class="{{#is title 'Dashboard'}}active{{/is}}">
+      <a href="dashboard.html">
+	<i class="fa fa-dashboard"></i><span class="link-title">Dashboard</span>
       </a>
-      <ul>
-            <li class="{{#is title 'Dashboard'}}active{{/is}}">
-	      <a href="dashboard.html">
-		<i class="fa fa-angle-right"></i>&nbsp;Default Style
-	      </a>
-	    </li>
-            <li class="{{#is title 'Dashboard Alterne'}}active{{/is}}">
-	      <a href="alterne.html">
-		<i class="fa fa-angle-right"></i>&nbsp;Alternative Style
-	      </a>
-	    </li>
-      </ul>
     </li>
     <li class="{{#is topTitle 'Components'}}active{{/is}}">
         <a href="javascript:;">
@@ -201,7 +187,7 @@
     	</ul>
     </li>
     
-    
+
    
 </ul>
 <!-- /#menu -->

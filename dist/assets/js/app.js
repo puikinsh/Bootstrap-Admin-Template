@@ -1,5 +1,5 @@
 /**
-* Metis - Bootstrap-Admin-Template v2.2.1
+* Metis - Bootstrap-Admin-Template v2.2.2
 * Author : Osman Nuri Okumuş 
 * Copyright 2014
 * Licensed under MIT

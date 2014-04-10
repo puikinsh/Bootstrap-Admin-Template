@@ -1,0 +1,52 @@
+/**
+* Metis - Bootstrap-Admin-Template v2.2.2
+* Author : Osman Nuri Okumuş 
+* Copyright 2014
+* Licensed under MIT
+*/
+#top > .navbar {
+  border-top: 3px solid #428bca;
+}
+#top > .navbar .dropdown-menu > li > a:hover,
+#top > .navbar .dropdown-menu > li > a:focus {
+  background-color: #428bca;
+  color: #000;
+}
+#wrap,
+#left {
+  background-color: #333;
+}
+/*
+// First Level
+#menu > li {
+  &.active > a {
+    background-color: darken(@baseColor, 10%);
+  }
+  &:hover > a, &:focus > a {
+    background-color: darken(@baseColor, 10%);
+  }
+}
+
+// Second, Third, ... level
+#menu > li ul {
+  background: darken(@baseColor, 10%);
+}
+
+
+
+@media (min-width: 992px) {//992px
+  .sidebar-left-mini #menu {
+    > li > a {
+      .link-title {
+        background: darken(@baseColor, 10%);
+      }
+    }
+  }
+}
+
+
+body:not(.sidebar-left-mini) #menu {
+  .nav-header {
+    background: darken(@baseColor, 10%);
+  }
+}*/

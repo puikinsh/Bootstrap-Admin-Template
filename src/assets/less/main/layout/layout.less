@@ -2,77 +2,83 @@
 /*                 Template Layout                       */
 /*********************************************************/
 
-
 body.padTop53 {
-    padding-top: 95px;
-    overflow: visible;
-    @media (min-width: 802px) {
-        padding-top: 54px;
-    }
+  padding-top: 95px;
+  overflow: visible;
+  @media (min-width: 802px) {
+    padding-top: 54px;
+  }
 }
-
-
+body {
+  .transition(all .3s ease-in-out);
+}
 #wrap, #top, .head, #footer {
-    .clearfix();
+  .clearfix();
 }
 
-#wrap {background-color: #333;}
+#wrap {
+  position: relative;
+}
 
+#left,
 #right {
-    display: none;
+  .transition(all .3s ease-in-out);
+  width: @SidebarWidth;
+  z-index: 999;
 }
 
 #left {
   position: absolute;
-  width: @SidebarWidth;
-  .transition(left .3s ease-in-out 0s);
-  z-index: 1;
-  background: #333;
   left: -@SidebarWidth;
 }
-.side-right #left {
-    left: auto;
-    right: -@SidebarWidth;
-    
-  .transition(right .3s ease-in-out 0s);
-}
-#left.opened {
-    left:0;
-}
-.side-right #left.opened {
-    left: auto;
-    right:0;
+
+#right {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+  right: -@SidebarWidth;
 }
 
-@media (min-width: @screen-md-min) {
-  #left {
-        position: relative;
-    float: left;
-    
-  left: auto;
-    
-    .side-right & {float:right;}
-    body.padTop53 & {top:53px;}
+.sidebar-left-opened #left {
+  left: 0;
+}
 
-  }
-    #content {
-      .text-overflow();
-    }
-    #left {
-        margin-bottom: -10px;
-    }
-    .side-right #left {
+.sidebar-right-opened {
+  position: relative;
+  right: @SidebarWidth;
+  #right {
     right: 0;
-}
+  }
 }
 
-@media (min-width: @screen-tablet) {
-    .hide-sidebar {
-        #left, #right {display: none;}
+@media (min-width: @screen-sm-min) {
+  #left {
+    position: relative;
+    float: left;
+    left: auto;
+
+    .sidebar-left-hidden & {
+      width: 0;
+      visibility: hidden;
     }
+    .sidebar-left-mini & {
+      width: @miniSidebarWidth;
+    }
+  }
+
+  #content {
+    .transition(all .3s ease-in-out);
+    .text-overflow();
+  }
+
+  .sidebar-right-opened {
+    right: auto;
+    margin-right: @SidebarWidth;
+  }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: @screen-lg-min) {
   body.fixed {
     #wrap, #footer, #top .navbar.navbar-fixed-top {
       max-width: 1170px;
@@ -80,10 +86,6 @@ body.padTop53 {
       margin-right: auto;
     }
   }
-}
-.mini-sidebar #left {
-    width: @miniSidebarWidth;
-    
 }
 
 /* ================== END Template Layout ============== */

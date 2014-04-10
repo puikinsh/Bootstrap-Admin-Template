@@ -28,42 +28,37 @@
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 
     <!--[if lt IE 9]>
-      <script src="assets/lib/html5shiv/html5shiv.js"></script>
-	      <script src="assets/lib/respond/respond.min.js"></script>
-	    <![endif]-->
+      <script src="assets                           "></script>
+        <script src="assets                           "></script>
+        <![endif]-->
 
     <!--Modernizr 3.0-->
     <script src="assets/lib/modernizr-build.min.js"></script>
   </head>
-  <body class="three-columns">
+  <body>
     <div id="wrap">
       <div id="top">
 
         <!-- .navbar -->
         <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container-fluid">
 
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <header class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-              <span class="sr-only">Toggle navigation</span> 
-              <span class="icon-bar"></span> 
-              <span class="icon-bar"></span> 
-              <span class="icon-bar"></span> 
-            </button>
-            <a href="index.html" class="navbar-brand">
-              <img src="assets/img/logo.png" alt="">
-            </a> 
-          </header>
-          <div class="topnav">
-            <div class="btn-toolbar">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <header class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span> 
+                <span class="icon-bar"></span> 
+                <span class="icon-bar"></span> 
+                <span class="icon-bar"></span> 
+              </button>
+              <a href="index.html" class="navbar-brand">
+                <img src="assets/img/logo.png" alt="">
+              </a> 
+            </header>
+            <div class="topnav">
               <div class="btn-group">
                 <a data-placement="bottom" data-original-title="Fullscreen" data-toggle="tooltip" class="btn btn-default btn-sm" id="toggleFullScreen">
                   <i class="glyphicon glyphicon-fullscreen"></i>
-                </a> 
-              </div>
-              <div class="btn-group">
-                <a data-placement="bottom" data-original-title="Show / Hide Sidebar" data-toggle="tooltip" class="btn btn-success btn-sm" id="changeSidebarPos">
-                  <i class="fa fa-expand"></i>
                 </a> 
               </div>
               <div class="btn-group">
@@ -75,11 +70,6 @@
                   <i class="fa fa-comments"></i>
                   <span class="label label-danger">4</span> 
                 </a> 
-              </div>
-              <div class="btn-group">
-                <a data-placement="bottom" data-original-title="Document" href="#" data-toggle="tooltip" class="btn btn-default btn-sm">
-                  <i class="fa fa-file"></i>
-                </a> 
                 <a data-toggle="modal" data-original-title="Help" data-placement="bottom" class="btn btn-default btn-sm" href="#helpModal">
                   <i class="fa fa-question"></i>
                 </a> 
@@ -89,42 +79,46 @@
                   <i class="fa fa-power-off"></i>
                 </a> 
               </div>
-            </div>
-          </div><!-- /.topnav -->
-          <div class="collapse navbar-collapse navbar-ex1-collapse">
-
-            <!-- .nav -->
-            <ul class="nav navbar-nav">
-              <li> <a href="dashboard.html">Dashboard</a>  </li>
-              <li> <a href="table.html">Tables</a>  </li>
-              <li> <a href="file.html">File Manager</a>  </li>
-              <li class='dropdown '>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  Form Elements
-                  <b class="caret"></b>
+              <div class="btn-group">
+                <a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip" class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
+                  <i class="fa fa-bars"></i>
                 </a> 
-                <ul class="dropdown-menu">
-                  <li> <a href="form-general.html">General</a>  </li>
-                  <li> <a href="form-validation.html">Validation</a>  </li>
-                  <li> <a href="form-wysiwyg.html">WYSIWYG</a>  </li>
-                  <li> <a href="form-wizard.html">Wizard &amp; File Upload</a>  </li>
-                </ul>
-              </li>
-            </ul><!-- /.nav -->
-          </div>
+                <a data-placement="bottom" data-original-title="Show / Hide Right" data-toggle="tooltip" class="btn btn-default btn-sm toggle-right"> <span class="glyphicon glyphicon-comment"></span>  </a> 
+              </div>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+
+              <!-- .nav -->
+              <ul class="nav navbar-nav">
+                <li> <a href="dashboard.html">Dashboard</a>  </li>
+                <li> <a href="table.html">Tables</a>  </li>
+                <li> <a href="file.html">File Manager</a>  </li>
+                <li class='dropdown '>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Form Elements
+                    <b class="caret"></b>
+                  </a> 
+                  <ul class="dropdown-menu">
+                    <li> <a href="form-general.html">General</a>  </li>
+                    <li> <a href="form-validation.html">Validation</a>  </li>
+                    <li> <a href="form-wysiwyg.html">WYSIWYG</a>  </li>
+                    <li> <a href="form-wizard.html">Wizard &amp; File Upload</a>  </li>
+                  </ul>
+                </li>
+              </ul><!-- /.nav -->
+            </div>
+          </div><!-- /.container-fluid -->
         </nav><!-- /.navbar -->
 
         <!-- header.head -->
         <header class="head">
           <div class="search-bar">
-            <a data-original-title="Show/Hide Menu" data-placement="bottom" data-tooltip="tooltip" class="accordion-toggle btn btn-primary btn-sm visible-xs visible-sm" id="menu-toggle">
-              <i class="fa fa-bars"></i>
-            </a> 
             <form class="main-search">
               <div class="input-group">
                 <input type="text" class="input-small form-control" placeholder="Live Search ...">
                 <span class="input-group-btn">
-                                    <button class="btn btn-primary btn-sm text-muted" type="button"><i class="fa fa-search"></i></button>
+                                    <button class="btn btn-primary btn-sm text-muted" type="button"><i
+                                            class="fa fa-search"></i></button>
                                 </span> 
               </div>
             </form>
@@ -167,24 +161,10 @@
         <ul id="menu" class="">
           <li class="nav-header">Menu</li>
           <li class="nav-divider"></li>
-          <li class="active">
-            <a href="javascript:;">
-              <i class="fa fa-dashboard"></i>
-              <span class="link-title">Dashboard</span> 
-              <span class="fa arrow"></span> 
+          <li class="">
+            <a href="dashboard.html">
+              <i class="fa fa-dashboard"></i><span class="link-title">Dashboard</span> 
             </a> 
-            <ul>
-              <li class="">
-                <a href="dashboard.html">
-                  <i class="fa fa-angle-right"></i>&nbsp;Default Style
-                </a> 
-              </li>
-              <li class="active">
-                <a href="alterne.html">
-                  <i class="fa fa-angle-right"></i>&nbsp;Alternative Style
-                </a> 
-              </li>
-            </ul>
           </li>
           <li class="">
             <a href="javascript:;">

@@ -6,7 +6,7 @@ Metis Admin Template with Twitter Bootstrap
 Bootstrap 2.3.2 [V.1.2](https://github.com/onokumus/Bootstrap-Admin-Template/archive/v1.2.zip)
 ready for use
 
-Bootstrap 3.1.1 [V2.2.1](https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip)
+Bootstrap 3.1.1 [V2.2.2](https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip)
 ready `dist` folder your use
 
 
@@ -41,6 +41,7 @@ http://demo.onokumus.com/metis/
 http://demo.onokumus.com/metis/v12
 
 ### Release History
+ * 2014-04-10   remove alterne.html, right panel available
  * 2014-04-07   v2.2.1 all dependency require bower & npm
  * 2014-02-28   v2.2.0 rewrite menu, layout, etc...
  * 2014-02-16   v2.1.4 update bootsrap 3.1.1 && add screenfull.js && fixed #menu

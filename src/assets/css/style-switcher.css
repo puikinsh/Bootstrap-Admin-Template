@@ -138,7 +138,7 @@ body {
 #sidebarWidth {
   display: none;
 }
-.mini-sidebar #sidebarWidth {
+.sidebar-left-mini #sidebarWidth {
   display:block;
 }
 .hide-sidebar .sidebarOpt, .hide-sidebar .sidebarWidth, .hide-sidebar #sidebarPos{

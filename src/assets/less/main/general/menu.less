@@ -70,17 +70,17 @@
 // Hiding Level 2
 
 @media (min-width: @screen-md-min) {
-    
-    body:not(.mini-sidebar) #menu li.active > ul, #menu.affix li > ul {
+
+    body:not(.sidebar-left-mini) #menu li.active > ul, #menu.affix li > ul {
         position: relative;
         top: auto !important;
         left: auto !important;
         right: auto !important;
     }
     
-    body:not(.mini-sidebar) #menu:not(.affix) li.active > ul {display: inherit;}
+    body:not(.sidebar-left-mini) #menu:not(.affix) li.active > ul {display: inherit;}
     
-    #menu li > ul, .mini-sidebar #menu li > ul {
+    #menu li > ul, .sidebar-left-mini #menu li > ul {
         position: absolute;
         top: 0;
         left: 100%;
@@ -88,8 +88,8 @@
         min-width: 200px;
         z-index: 1;
     }
-    #menu:not(.affix) li > ul, .mini-sidebar #menu:not(.affix) li > ul {display: none;}
-    .mini-sidebar #menu > li > ul {
+    #menu:not(.affix) li > ul, .sidebar-left-mini #menu:not(.affix) li > ul {display: none;}
+    .sidebar-left-mini #menu > li > ul {
         top: 100%;
     }
     
@@ -117,10 +117,16 @@
             overflow-y: scroll;
         }
     }
+    .padTop53 #menu.affix {
+       top:53px;
+    }
+    .sidebar-left-mini #menu.affix {
+    position: relative !important;
+    }
 }
 
 @media (min-width: @screen-md-min) {//992px
-    .mini-sidebar #menu {
+    .sidebar-left-mini #menu {
         > li > a {
             .fa {font-size: 18px;}
             .fa.arrow {display: none;}
@@ -139,7 +145,7 @@
         }
         > li:hover > a > .link-title {display: block;min-width: 200px;}
     }
-    .mini-sidebar.side-right #menu > li > a .link-title {
+    .sidebar-left-mini.side-right #menu > li > a .link-title {
         border-right-width: 0;
         border-left: 1px solid rgba(0, 0, 0, 0.3);
         left: auto;
@@ -148,7 +154,7 @@
 }
 
 
-body:not(.mini-sidebar) #menu {
+body:not(.sidebar-left-mini) #menu {
   .nav-header {
     padding: 3px 15px !important;
     text-transform: uppercase;
@@ -170,7 +176,7 @@ body:not(.mini-sidebar) #menu {
   .box-shadow(0px 1px 3px rgba(0, 0, 0, 0.3) inset);
 }
 
-.mini-sidebar #menu .nav-header {
+.sidebar-left-mini #menu .nav-header {
   position: absolute !important;
   overflow: hidden !important;
   width: 1px !important;

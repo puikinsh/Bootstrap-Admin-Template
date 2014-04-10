@@ -1,14 +1,5 @@
 @baseColor:#428bca;
 
-.vertical(@start-color: @baseColor; @end-color: darken(@baseColor, 10%); @start-percent: 0%; @end-percent: 100%) {
-  background-image: -webkit-gradient(linear, left @start-percent, left @end-percent, from(@start-color), to(@end-color)); // Safari 4+, Chrome 2+
-  background-image: -webkit-linear-gradient(top, @start-color, @start-percent, @end-color, @end-percent); // Safari 5.1+, Chrome 10+
-  background-image:  -moz-linear-gradient(top, @start-color @start-percent, @end-color @end-percent); // FF 3.6+
-  background-image: linear-gradient(to bottom, @start-color @start-percent, @end-color @end-percent); // Standard, IE10
-  background-repeat: repeat-x;
-  filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down
-}
-
 
 .mixin (@a) when (lightness(@a) >= 50%) {
   color: #000;
@@ -19,8 +10,48 @@
 
 #top > .navbar {
   border-top: 3px solid @baseColor;
-  .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
-    .vertical();
+  .dropdown-menu > li > a:hover,
+  .dropdown-menu > li > a:focus {
+    background-color: @baseColor;
     .mixin(@baseColor);
   }
 }
+
+#wrap,
+#left {
+  background-color: #333;
+}
+/*
+// First Level
+#menu > li {
+  &.active > a {
+    background-color: darken(@baseColor, 10%);
+  }
+  &:hover > a, &:focus > a {
+    background-color: darken(@baseColor, 10%);
+  }
+}
+
+// Second, Third, ... level
+#menu > li ul {
+  background: darken(@baseColor, 10%);
+}
+
+
+
+@media (min-width: 992px) {//992px
+  .sidebar-left-mini #menu {
+    > li > a {
+      .link-title {
+        background: darken(@baseColor, 10%);
+      }
+    }
+  }
+}
+
+
+body:not(.sidebar-left-mini) #menu {
+  .nav-header {
+    background: darken(@baseColor, 10%);
+  }
+}*/

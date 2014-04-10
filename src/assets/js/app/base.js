@@ -30,27 +30,7 @@ $(function () {
     $('li.accordion-group > a').on('click', function (e) {
         $(this).children('span').children('i').toggleClass('icon-angle-down');
     });
-    
-    $('#menu-toggle').on('click', function(e){
-        $('#left').toggleClass('opened');
-        e.preventDefault();
-    });
-    
+
+
     $('#menu').metisMenu();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

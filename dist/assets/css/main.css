@@ -11,10 +11,10 @@
 /*                 Template Layout                       */
 /*********************************************************/
 body.padTop53 {
-  padding-top: 95px;
+  padding-top: 104px;
   overflow: visible;
 }
-@media (min-width: 802px) {
+@media (min-width: 840px) {
   body.padTop53 {
     padding-top: 54px;
   }
@@ -71,6 +71,9 @@ body {
 .sidebar-right-opened #right {
   right: 0;
 }
+.sidebar-right-opened.fixed .navbar-fixed-top {
+  right: 250px;
+}
 @media (min-width: 768px) {
   #left {
     position: relative;
@@ -92,7 +95,10 @@ body {
     white-space: nowrap;
   }
   .sidebar-right-opened {
-    right: auto;
+    right: 0;
+    margin-right: 250px;
+  }
+  .sidebar-right-opened .navbar-fixed-top {
     margin-right: 250px;
   }
 }
@@ -414,7 +420,7 @@ body {
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   body:not(.sidebar-left-mini) #menu li.active > ul,
   #menu.affix li > ul {
     position: relative;
@@ -470,7 +476,7 @@ body {
     position: relative !important;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .sidebar-left-mini #menu > li > a .fa {
     font-size: 18px;
   }

@@ -1164,7 +1164,7 @@ function metisMaps() {
             }
 
             function allFunc() {
-                if ($(window).width() < 992) {
+                if ($(window).width() < 768) {
                     resizedw();
                 } else {
                     removeHidden();

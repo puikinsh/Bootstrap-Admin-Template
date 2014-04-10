@@ -13,7 +13,7 @@ ready `dist` folder your use
 
 ### Building
 
-#### 2.2.1 Version
+#### 2.2.2 Version
 required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](http://gruntjs.com/getting-started)
 
     $ git clone https://github.com/onokumus/Bootstrap-Admin-Template.git yourfoldername
@@ -33,7 +33,7 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
 
 ### Demo
 
-#### For 2.2.1 version
+#### For 2.2.2 version
 http://demo.onokumus.com/metis/
 
 #### For 1.2 version 
@@ -41,7 +41,7 @@ http://demo.onokumus.com/metis/
 http://demo.onokumus.com/metis/v12
 
 ### Release History
- * 2014-04-10   remove alterne.html, right panel available
+ * 2014-04-10   v2.2.2 remove alterne.html, right panel available
  * 2014-04-07   v2.2.1 all dependency require bower & npm
  * 2014-02-28   v2.2.0 rewrite menu, layout, etc...
  * 2014-02-16   v2.1.4 update bootsrap 3.1.1 && add screenfull.js && fixed #menu

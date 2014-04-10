@@ -3,9 +3,9 @@
 /*********************************************************/
 
 body.padTop53 {
-  padding-top: 95px;
+  padding-top: 104px;
   overflow: visible;
-  @media (min-width: 802px) {
+  @media (min-width: 840px) {
     padding-top: 54px;
   }
 }
@@ -50,6 +50,9 @@ body {
   #right {
     right: 0;
   }
+  &.fixed .navbar-fixed-top {
+    right: @SidebarWidth;
+  }
 }
 
 @media (min-width: @screen-sm-min) {
@@ -73,8 +76,11 @@ body {
   }
 
   .sidebar-right-opened {
-    right: auto;
-    margin-right: @SidebarWidth;
+       right: 0;
+       margin-right: @SidebarWidth;
+    .navbar-fixed-top {
+       margin-right: @SidebarWidth;
+    }
   }
 }
 

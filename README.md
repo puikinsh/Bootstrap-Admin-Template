@@ -1,19 +1,32 @@
-Metis Admin Template with Twitter Bootstrap 
-[![Build Status](https://travis-ci.org/onokumus/Bootstrap-Admin-Template.png)](http://travis-ci.org/onokumus/Bootstrap-Admin-Template) [![Dependency Status](https://david-dm.org/onokumus/Bootstrap-Admin-Template.svg?theme=shields.io)](https://david-dm.org/onokumus/Bootstrap-Admin-Template) [![devDependency Status](https://david-dm.org/onokumus/Bootstrap-Admin-Template/dev-status.svg?theme=shields.io)](https://david-dm.org/onokumus/Bootstrap-Admin-Template#info=devDependencies)
-------------------------------------------
+# Bootstrap-Admin-Template  [![Build Status](https://travis-ci.org/onokumus/Bootstrap-Admin-Template.png)](https://travis-ci.org/onokumus/Bootstrap-Admin-Template) [![Dependency Status](https://david-dm.org/onokumus/Bootstrap-Admin-Template.svg?theme=shields.io)](https://david-dm.org/onokumus/Bootstrap-Admin-Template) [![devDependency Status](https://david-dm.org/onokumus/Bootstrap-Admin-Template/dev-status.svg?theme=shields.io)](https://david-dm.org/onokumus/Bootstrap-Admin-Template#info=devDependencies)
+
+> Free Admin Template Based On Twitter Bootstrap 3.x
+
+## TOC
+  * [Download](#download)
+  * [Building](#building)
+    * [2.2.3 Version](#2.2.3-version)
+    * [1.2 Version](#12-version)
+  * [Demo](#demo)
+    * [For 2.2.3 version](#2.2.3-version)
+    * [For 1.2 version](#for-12-version)
+  * [Release History](#release-history)
+  * [Credits](#credits)
+  * [Author](#author)
+  * [License](#license)
 
 ### Download
-Bootstrap 2.3.2 [V.1.2](https://github.com/onokumus/Bootstrap-Admin-Template/archive/v1.2.zip)
+ * Bootstrap 2.3.2 [V.1.2](https://github.com/onokumus/Bootstrap-Admin-Template/archive/v1.2.zip)
 ready for use
 
-Bootstrap 3.1.1 [V2.2.2](https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip)
+ * Bootstrap 3.1.1 [2.2.3](https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip)
 ready `dist` folder your use
 
 
 
 ### Building
 
-#### 2.2.2 Version
+#### 2.2.3 Version
 required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](http://gruntjs.com/getting-started)
 
     $ git clone https://github.com/onokumus/Bootstrap-Admin-Template.git yourfoldername
@@ -32,26 +45,26 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
     $ open index.html
 
 ### Demo
+ * [Demo 2.2.3](http://demo.onokumus.com/metis/)
+ * [v1.2 `not development`](http://demo.onokumus.com/metis/v12)
 
-#### For 2.2.2 version
-http://demo.onokumus.com/metis/
 
-#### For 1.2 version 
-(not development)
-http://demo.onokumus.com/metis/v12
+## Release History
+**DATE**       **VERSION**   **CHANGES**                                        
+* 2014-04-13   v2.2.3        rewrite all code                                   
+* 2014-04-10   v2.2.2        remove `alterne.html`,right panel available        
+* 2014-04-07   v2.2.1        all dependency require bower & npm                 
+* 2014-02-28   v2.2.0        rewrite menu, layout, etc                          
+* 2014-02-16   v2.1.4        update bootsrap 3.1.1 && add screenfull.js && fixed
+* 2014-01-19   v2.1.3        add suitcss 's flex-embed component                
+* 2013-11-30   v2.1.2        create menu plugin, rewrite `menu.less`            
+* 2013-10-28   v2.1.1.2      add bower                                          
+* 2013-10-28   v2.1.1.1      remove bootsrap, font awesome, gmaps submodule.    
+* 2013-10-23   v2.1.1        Added `bgimage.html` Added `bgcolor.html` pages.   
+* 2013-10-22   v2.1          I don't remember. Whatever I did.                  
+* 2013-02-14   v1.0          First Commit.                                      
 
-### Release History
- * 2014-04-10   v2.2.2 remove alterne.html, right panel available
- * 2014-04-07   v2.2.1 all dependency require bower & npm
- * 2014-02-28   v2.2.0 rewrite menu, layout, etc...
- * 2014-02-16   v2.1.4 update bootsrap 3.1.1 && add screenfull.js && fixed #menu
- * 2014-01-19	v2.1.3 add suitcss 's flex-embed component
- * 2013-11-30   v2.1.2 create menu plugin, rewrite menu.less
- * 2013-10-28   v2.1.1 add bower 
- * 2013-10-28   v2.1.1 remove bootsrap, font awesome, gmaps submodule.
- * 2013-10-23   v2.1.1 Adds `bgimage.html` and `bgcolor.html` pages.
- * 2013 [02-15, 10-22] v1.0 - v2.1 I don't remember. Whatever I did.
- * 2013-02-14   v1.0   First Commit.
+
 
 ### Credits
  * [node.js](http://nodejs.org/)
@@ -86,7 +99,7 @@ http://demo.onokumus.com/metis/v12
  * [Gritter](http://boedesign.com/blog/2009/07/11/growl-for-jquery-gritter/)
  * [Magic](http://www.minimamente.com/magic-css3-animations)
  * [Mouse Wheel](https://github.com/brandonaaron/jquery-mousewheel)
- * [PageDown-Bootstrap](https://github.com/samwillis/pagedown-bootstrap)
+ * [PageDown-Bootstrap](https://github.com/kevinoconnor7/pagedown-bootstrap)
  * [Plupload](https://github.com/moxiecode/plupload)
  * [Bootstrap Switch](http://www.larentis.eu/switch/)
  * [tablesorter](http://tablesorter.com/)
@@ -96,10 +109,13 @@ http://demo.onokumus.com/metis/v12
  * [Uniform](http://uniformjs.com/)
  * [Validation Engine](http://www.position-relative.net/)
  * [jquery.validVal](http://validval.frebsite.nl/)
- * [bootstrap-wysihtml5](http://jhollingworth.github.io/bootstrap-wysihtml5/)
+ * [bootstrap3-wysihtml5-bower](https://github.com/Waxolunist/bootstrap3-wysihtml5-bower)
  * [Suitcss Flex-Embed](https://github.com/suitcss/flex-embed)
  * [screenfull.js](https://github.com/sindresorhus/screenfull.js)
 
-### Licensing
+### Author
+ * onokumus
 
-Bootstrap Admin template is open-sourced software licensed under the [MIT License](LICENSE.md).
+### License
+Copyright (c) 2014 onokumus, contributors.
+Released under the MIT license

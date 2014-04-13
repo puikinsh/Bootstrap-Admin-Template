@@ -1,5 +1,5 @@
 /**
-* @version: 1.3.4
+* @version: 1.3.5
 * @author: Dan Grossman http://www.dangrossman.info/
 * @date: 2014-03-19
 * @copyright: Copyright (c) 2012-2014 Dan Grossman. All rights reserved.
@@ -40,7 +40,7 @@
         if (typeof options !== 'object' || options === null)
             options = {};
 
-        this.parentEl = (typeof options === 'object' && options.parentEl && $(options.parentEl)) || $(this.parentEl);
+        this.parentEl = (typeof options === 'object' && options.parentEl && $(options.parentEl).length) || $(this.parentEl);
         this.container = $(DRPTemplate).appendTo(this.parentEl);
 
         this.setOptions(options, cb);
@@ -662,11 +662,13 @@
                 $(e.target).addClass('active');
                 this.startDate = startDate;
                 this.endDate = endDate;
+                this.chosenLabel = this.locale.customRangeLabel;
             } else if (startDate.isAfter(endDate)) {
                 $(e.target).addClass('active');
                 var difference = this.endDate.diff(this.startDate);
                 this.startDate = startDate;
                 this.endDate = moment(startDate).add('ms', difference);
+                this.chosenLabel = this.locale.customRangeLabel;
             }
 
             this.leftCalendar.month.month(this.startDate.month()).year(this.startDate.year());
@@ -744,8 +746,8 @@
         updateCalendars: function () {
             this.leftCalendar.calendar = this.buildCalendar(this.leftCalendar.month.month(), this.leftCalendar.month.year(), this.leftCalendar.month.hour(), this.leftCalendar.month.minute(), 'left');
             this.rightCalendar.calendar = this.buildCalendar(this.rightCalendar.month.month(), this.rightCalendar.month.year(), this.rightCalendar.month.hour(), this.rightCalendar.month.minute(), 'right');
-            this.container.find('.calendar.left').html(this.renderCalendar(this.leftCalendar.calendar, this.startDate, this.minDate, this.maxDate));
-            this.container.find('.calendar.right').html(this.renderCalendar(this.rightCalendar.calendar, this.endDate, this.startDate, this.maxDate));
+            this.container.find('.calendar.left').empty().html(this.renderCalendar(this.leftCalendar.calendar, this.startDate, this.minDate, this.maxDate));
+            this.container.find('.calendar.right').empty().html(this.renderCalendar(this.rightCalendar.calendar, this.endDate, this.startDate, this.maxDate));
 
             this.container.find('.ranges li').removeClass('active');
             var customRange = true;
@@ -754,19 +756,23 @@
                 if (this.timePicker) {
                     if (this.startDate.isSame(this.ranges[range][0]) && this.endDate.isSame(this.ranges[range][1])) {
                         customRange = false;
-                        this.container.find('.ranges li:eq(' + i + ')').addClass('active');
+                        this.chosenLabel = this.container.find('.ranges li:eq(' + i + ')')
+                            .addClass('active').html();
                     }
                 } else {
                     //ignore times when comparing dates if time picker is not enabled
                     if (this.startDate.format('YYYY-MM-DD') == this.ranges[range][0].format('YYYY-MM-DD') && this.endDate.format('YYYY-MM-DD') == this.ranges[range][1].format('YYYY-MM-DD')) {
                         customRange = false;
-                        this.container.find('.ranges li:eq(' + i + ')').addClass('active');
+                        this.chosenLabel = this.container.find('.ranges li:eq(' + i + ')')
+                            .addClass('active').html();
                     }
                 }
                 i++;
             }
-            if (customRange)
-                this.container.find('.ranges li:last').addClass('active');
+            if (customRange) {
+                this.chosenLabel = this.container.find('.ranges li:last')
+                    .addClass('active').html();
+            }
         },
 
         buildCalendar: function (month, year, hour, minute, side) {

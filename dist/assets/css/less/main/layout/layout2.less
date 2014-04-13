@@ -1,0 +1,65 @@
+@sideBarWidth: 220px;
+@contentWidth: 2*@sideBarWidth;
+@sideBarMiniWidth: 100px;
+@fullWidth: 100%;
+
+.three-columns {
+  @media (min-width: @screen-md) {
+
+    #content, #right {
+      float: left;
+    }
+
+    #right {
+      display: block;
+      padding: 10px;
+    }
+
+    #left, #right {
+      width: 20%;
+    }
+
+    #content {
+      width: 60%;
+      margin: 0 !important;
+    }
+  }
+  @media (min-width: @screen-lg) {
+    #left, #right {
+      width: 15%;
+    }
+
+    #content {
+      width: 70%;
+    }
+
+    .side-right {
+      #right {
+        float: right;
+        padding-top: 20px;
+      }
+      #content {
+        width: 85%;
+      }
+    }
+  }
+  @media (min-width: @screen-md) {
+    #left, #right {
+      width: calc(@sideBarWidth);
+    }
+
+    .mini-sidebar #right {
+      display: none;
+    }
+
+    #content {
+      width: ~"calc(@{fullWidth} - @{contentWidth})";
+      .side-right & {
+        width: ~"calc(@{fullWidth} - @{sideBarWidth})";
+      }
+      .mini-sidebar & {
+        width: ~"calc(@{fullWidth} - @{sideBarMiniWidth})";
+      }
+    }
+  }
+}

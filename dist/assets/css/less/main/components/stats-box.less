@@ -1,0 +1,41 @@
+.stats_box {
+  display: inline-block;
+  list-style: none outside none;
+  margin-left: 0;
+  margin-top: 20px;
+  padding:0;
+  li {
+    background: #EEEEEE;
+    .box-shadow(~"0 0 0 1px #F8F8F8 inset, 0 0 0 1px #CCCCCC");
+    display: inline-block;
+    line-height: 18px;
+    margin: 0 10px 10px;
+    padding: 0 10px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+    float: left;
+  }
+
+  .stat_text {
+    float: left;
+    font-size: 12px;
+    padding: 9px 10px 7px 0;
+    text-align: left;
+    min-width: 150px;
+    position: relative;
+    strong {
+      display: block;
+      font-size: 16px;
+    }
+    .percent {
+      color: #444;
+      float: right;
+      font-size: 20px;
+      font-weight: bold;
+      position: absolute;
+      right: 0;
+      top: 17px;
+      &.up {color: #46a546;}
+      &.down {color: #C52F61;}
+    }
+  }
+}

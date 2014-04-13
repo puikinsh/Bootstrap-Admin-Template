@@ -1,30 +1,54 @@
 {
   "name": "Bootstrap-Admin-Template",
-  "version": "2.2.2",
-  "author": {
-    "name": "Osman Nuri Okumuş",
-    "email": "onokumus@gmail.com",
-    "url": "https://github.com/onokumus"
-  },
   "description": "Twitter Bootstrap Admin Template",
-  "license": "MIT",
+  "version": "2.2.3",
+  "homepage": "https://github.com/onokumus/Bootstrap-Admin-Template",
+  "authors": [
+    "onokumus <onokumus@gmail.com>"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/onokumus/Bootstrap-Admin-Template.git"
   },
-  "bugs": {
-    "url": "https://github.com/onokumus/Bootstrap-Admin-Template/issues"
-  },
-  "licenses": {
-    "type": "MIT",
-    "url": "https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/README.md"
-  },
-  "dependencies": {
+  "main": "dist/index.html",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "twbs",
+    "assemble",
+    "grunt",
+    "less",
+    "admin",
+    "template",
+    "twitter bootstrap"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "dist"
+  ],
+  "devDependencies": {
+    "SubtlePatterns": "https://github.com/subtlepatterns/SubtlePatterns.git",
+    "jquery.sparkline.min": "http://omnipotent.net/jquery.sparkline/2.1.2/jquery.sparkline.min.js",
+    "cleditor": "https://github.com/cleditor/cleditor.git#~1.3.0",
+    "colorpicker": "http://www.eyecon.ro/bootstrap-colorpicker/colorpicker.zip",
+    "datepicker": "http://www.eyecon.ro/bootstrap-datepicker/datepicker.zip",
+    "chosen_v1.1.0": "https://github.com/harvesthq/chosen/releases/download/v1.1.0/chosen_v1.1.0.zip",
+    "magic": "https://github.com/miniMAC/magic.git",
+    "pagedown-bootstrap": "https://github.com/kevinoconnor7/pagedown-bootstrap.git",
+    "formwizard": "https://github.com/thecodemine/formwizard.git#~3.0.7",
+    "jquery-ui-touch-punch": "https://github.com/furf/jquery-ui-touch-punch.git",
+    "elfinder": "https://github.com/downloads/Studio-42/elFinder/elfinder-2.0-rc1.tar.gz",
+    "jquery-validation": "~1.11.2",
     "bootstrap": "~3.1.1",
-    "font-awesome": "~4.0.3",
-    "gmaps": "~0.4.11",
     "html5shiv": "~3.7.0",
     "respond": "~1.4.2",
+    "font-awesome": "~4.0.3",
+    "gmaps": "~0.4.11",
     "jquery.tablesorter": "~2.15.13",
     "jquery-autosize": "~1.18.6",
     "flot": "~0.8.2",
@@ -41,27 +65,14 @@
     "validationEngine": "~2.6.4",
     "jquery-form": "~3.46.0",
     "jquery.tagsinput": "~1.3.2",
-    "bootstrap-wysihtml5": "https://github.com/jhollingworth/bootstrap-wysihtml5.git",
-    "magic": "https://github.com/miniMAC/magic.git",
-    "pagedown-bootstrap": "https://github.com/samwillis/pagedown-bootstrap.git",
-    "formwizard": "https://github.com/thecodemine/formwizard.git#~3.0.7",
-    "jquery-ui-touch-punch": "https://github.com/furf/jquery-ui-touch-punch.git",
-    "elfinder": "https://github.com/downloads/Studio-42/elFinder/elfinder-2.0-rc1.tar.gz",
-    "jquery-validation-1.12.0": "http://jqueryvalidation.org/files/jquery-validation-1.12.0.zip",
-    "chosen_v1.1.0": "https://github.com/harvesthq/chosen/releases/download/v1.1.0/chosen_v1.1.0.zip",
-    "fullcalendar-1.6.4": "https://github.com/arshaw/fullcalendar/releases/download/v1.6.4/fullcalendar-1.6.4.zip",
     "datatables": "~1.9.4",
     "datatables-plugins": "*",
-    "cleditor": "https://github.com/cleditor/cleditor.git#~1.3.0",
-    "colorpicker": "http://www.eyecon.ro/bootstrap-colorpicker/colorpicker.zip",
-    "datepicker": "http://www.eyecon.ro/bootstrap-datepicker/datepicker.zip",
     "jasny-bootstrap": "~3.1.1",
     "blueimp-md5": "~1.1.0",
     "jquery-inputlimiter": "*",
     "bootstrap-duallistbox": "~3.0.1",
-    "jquery.sparkline.min": "http://omnipotent.net/jquery.sparkline/2.1.2/jquery.sparkline.min.js"
-  },
-  "devDependencies": {
-    "SubtlePatterns": "https://github.com/subtlepatterns/SubtlePatterns.git"
+    "fullcalendar": "~1.6.4",
+    "bootstrap3-wysihtml5-bower": "~0.2.9",
+    "holderjs": "~2.3.2"
   }
 }

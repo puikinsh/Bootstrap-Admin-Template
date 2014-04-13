@@ -1,0 +1,97 @@
+/*********************************************************/
+/*                 Template Layout                       */
+/*********************************************************/
+
+body.padTop53 {
+  padding-top: 104px;
+  overflow: visible;
+  @media (min-width: 840px) {
+    padding-top: 54px;
+  }
+}
+body {
+  .transition(all .3s ease-in-out);
+}
+#wrap, #top, .head, #footer {
+  .clearfix();
+}
+
+#wrap {
+  position: relative;
+}
+
+#left,
+#right {
+  .transition(all .3s ease-in-out);
+  width: @SidebarWidth;
+  z-index: 999;
+}
+
+#left {
+  position: absolute;
+  left: -@SidebarWidth;
+}
+
+#right {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+  right: -@SidebarWidth;
+}
+
+.sidebar-left-opened #left {
+  left: 0;
+}
+
+.sidebar-right-opened {
+  position: relative;
+  right: @SidebarWidth;
+  #right {
+    right: 0;
+  }
+  &.fixed .navbar-fixed-top {
+    right: @SidebarWidth;
+  }
+}
+
+@media (min-width: @screen-sm-min) {
+  #left {
+    position: relative;
+    float: left;
+    left: auto;
+
+    .sidebar-left-hidden & {
+      width: 0;
+      visibility: hidden;
+    }
+    .sidebar-left-mini & {
+      width: @miniSidebarWidth;
+    }
+  }
+
+  #content {
+    .transition(all .3s ease-in-out);
+    .text-overflow();
+  }
+
+  .sidebar-right-opened {
+       right: 0;
+       margin-right: @SidebarWidth;
+    .navbar-fixed-top {
+       margin-right: @SidebarWidth;
+    }
+  }
+}
+
+@media (min-width: @screen-lg-min) {
+  body.fixed {
+    #wrap, #footer, #top .navbar.navbar-fixed-top {
+      max-width: 1170px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+/* ================== END Template Layout ============== */

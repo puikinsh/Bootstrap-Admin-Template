@@ -1,11 +1,10 @@
 /* Start Countdown Settings */
-
-var startDate = new Date("01/01/2014");
-var endDate = new Date("04/06/2015");
-
-var dif = endDate.getTime() - startDate.getTime();
-var difToSecond = dif / 1000;
-var defaultPercent = 0;
+/*global $:false */
+var startDate = new Date("01/01/2014"),
+    endDate = new Date("04/06/2015"),
+    dif = endDate.getTime() - startDate.getTime(),
+    difToSecond = dif / 1000,
+    defaultPercent = 0;
 
 
 $(function () {
@@ -19,6 +18,7 @@ $(function () {
     $('div[rel=tooltip]').tooltip();
 });
 
+    
 function updateBar(periods) {
 
     fillSecondBar(periods[6]);

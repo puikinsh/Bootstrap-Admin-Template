@@ -1,0 +1,207 @@
+// Basic #menu reset
+#menu {
+  &, & ul, & li, & a {
+    padding: 0;
+    margin: 0;
+  }
+  &, & ul {
+    list-style: none;
+  }
+  & li, & a {
+    position: relative;
+    display: block;
+  }
+  & a, & a:hover, & a:focus, & a:active {
+    text-decoration: none;
+  }
+}
+
+// First Level
+#menu > li {
+  > a {
+    color: #ccc;
+    border-top: 1px solid rgba(0, 0, 0, .3);
+    .box-shadow(inset 0 1px 0 rgba(255, 255, 255, .05));
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .5);
+    padding: 10px 0 10px 15px;
+  }
+  &.active > a {
+    background-color: #1a1a1a;
+    color: #fff;
+    .box-shadow(0px 1px 3px rgba(0, 0, 0, 0.3) inset);
+  }
+  &:hover > a, &:focus > a {
+    background-color: #404040;
+    color: #fff;
+    outline: none;
+    .box-shadow(none);
+  }
+}
+
+// Second, Third, ... level
+#menu > li ul {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  .box-shadow(inset 0 1px 0 rgba(255, 255, 255, .05));
+  border-left-width: 0;
+  background: #404040;
+  a {
+    padding: 11px 0 11px 30px;
+    color: #ccc;
+    font-size: 13px;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, .1);
+      color: #fff;
+    }
+  }
+}
+
+//
+.u-isHiddenVisually {
+  position: absolute !important;
+  overflow: hidden !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+}
+
+// Hiding Level 2
+
+@media (min-width: @screen-sm-min) {
+
+    body:not(.sidebar-left-mini) #menu li.active > ul, #menu.affix li > ul {
+        position: relative;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+    }
+    
+    body:not(.sidebar-left-mini) #menu:not(.affix) li.active > ul {display: inherit;}
+    
+    #menu li > ul, .sidebar-left-mini #menu li > ul {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        .box-shadow(none);
+        min-width: 200px;
+        z-index: 1;
+    }
+    #menu:not(.affix) li > ul, .sidebar-left-mini #menu:not(.affix) li > ul {display: none;}
+    .sidebar-left-mini #menu > li > ul {
+        top: 100%;
+    }
+    
+    #menu li > ul > li > ul {
+        top: -1px;
+    }
+
+    .side-right #menu li > ul {
+        left: auto;
+        right: 100%;
+    }
+
+    #menu:not(.affix) li:hover > ul {
+        display: inherit;
+    }
+    
+    #menu.affix {
+        position: fixed;
+        top: 0;
+        width: @SidebarWidth;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        &:hover {
+            overflow-y: scroll;
+        }
+    }
+    .padTop53 #menu.affix {
+       top:53px;
+    }
+    .sidebar-left-mini #menu.affix {
+    position: relative !important;
+    }
+}
+
+@media (min-width: @screen-sm-min) {//992px
+    .sidebar-left-mini #menu {
+        > li > a {
+            .fa {font-size: 18px;}
+            .fa.arrow {display: none;}
+            .link-title {
+                border-top: 1px solid rgba(0, 0, 0, 0.3);
+                border-right: 1px solid rgba(0, 0, 0, 0.3);
+                .box-shadow(inset 0 1px 0 rgba(255, 255, 255, .05));
+                position: absolute;
+                left: 100%;
+                top: -1px;
+                z-index: 1;
+                background: #404040;
+                display: none;
+                padding: 10px 30px;
+            }
+        }
+        > li:hover > a > .link-title {display: block;min-width: 200px;}
+    }
+    .sidebar-left-mini.side-right #menu > li > a .link-title {
+        border-right-width: 0;
+        border-left: 1px solid rgba(0, 0, 0, 0.3);
+        left: auto;
+        right: 100%;
+    }
+}
+
+
+body:not(.sidebar-left-mini) #menu {
+  .nav-header {
+    padding: 3px 15px !important;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+    color: #777;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    .box-shadow(0px 1px 0px rgba(255, 255, 255, 0.05) inset);
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
+    background: #404040;
+  }
+}
+
+#menu .nav-divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.01);
+  height: 6px;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.2);
+  .box-shadow(0px 1px 3px rgba(0, 0, 0, 0.3) inset);
+}
+
+.sidebar-left-mini #menu .nav-header {
+  position: absolute !important;
+  overflow: hidden !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+}
+
+
+#menu {
+  .fa.arrow {
+    float: right;
+    padding-top: 3px;
+    margin-right: 15px;
+  }
+
+  .fa.arrow:before {
+    content: "\f104";
+  }
+
+  .active > a > .fa.arrow:before {
+    content: "\f107";
+  }
+
+}
+
+

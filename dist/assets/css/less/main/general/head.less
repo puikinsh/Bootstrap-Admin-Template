@@ -1,0 +1,101 @@
+/* BEGIN header.head bar */
+.head {
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.05) inset;
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
+background-color: #333;
+  .search-bar {
+    margin: 0 auto;
+    padding: 10px 15px;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    .box-shadow(0 1px 0 rgba(255, 255, 255, 0.05));
+
+    .main-search {
+      border-bottom: 1px solid #7c7c7c;
+
+      input[type="text"] {
+        background-color: transparent;
+        border-color: transparent;
+        color: #ccc;
+        .box-shadow(none);
+      }
+      button, input[type=submit] {
+        background: transparent;
+        border: transparent;
+      }
+    }
+    @media (min-width: @screen-tablet) {
+      border-bottom-width: 0;
+      border-right: 1px solid rgba(0, 0, 0, 0.3);
+      .box-shadow(-1px 0px 0px rgba(255, 255, 255, 0.05) inset);
+      .side-right & {
+        border-right-width: 0;
+        border-left: 1px solid rgba(0, 0, 0, 0.3);
+        .box-shadow(1px 0px 0px rgba(255, 255, 255, 0.05) inset);
+      }
+
+    }
+  }
+  .main-bar {
+    padding: 10px;
+    h3 {
+      margin-top: 0;
+      margin-bottom: 0;
+      color: #bababa;
+      @media (min-width: @screen-tablet) {
+        margin-top: 5px;
+      }
+    }
+  }
+}
+
+@media (min-width: @screen-tablet) {
+  .head .search-bar .main-search {
+    margin-right: auto;
+  }
+}
+
+
+@media (min-width: @screen-tablet) {
+  .search-bar {
+    //width: @miniSidebarWidth;
+    float: left;
+
+    .side-right & {
+      float: right;
+    }
+    padding: 10px 4px;
+
+    .input-small.form-control {
+      border-radius: 3px;
+    }
+
+  }
+
+  .main-bar {
+    display: block;
+    overflow: hidden;
+  }
+}
+
+@media (min-width: @screen-desktop) {
+  .search-bar {
+    width: @SidebarWidth;
+    padding: 10px 15px;
+    .input-group-btn {
+      display: table-cell;
+    }
+    .input-small.form-control {
+      border-radius: 3px 0 0 3px;
+    }
+    .mini-sidebar & {
+      .input-small.form-control {
+        border-radius: 3px;
+      }
+    }
+  }
+}
+
+/** END header.head bar */

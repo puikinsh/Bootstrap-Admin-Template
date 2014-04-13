@@ -1,0 +1,217 @@
+//
+// Gradient Buttons
+// --------------------------------------------------
+.btn-gradient(@btn-color: #555) {
+  #gradient > .vertical(@start-color: @btn-color; @end-color: darken(@btn-color, 12%));
+  background-repeat: repeat-x;
+  border-color: darken(@btn-color, 14%);
+
+  &:hover,
+  &:focus {
+    background-color: darken(@btn-color, 12%);
+    background-position: 0 -15px;
+  }
+
+  &:active,
+  &.active {
+    background-color: darken(@btn-color, 12%);
+    border-color: darken(@btn-color, 14%);
+  }
+}
+
+//
+// Line Buttons
+// -----------------------------------------------
+.btn-line-states(@color, @background, @border) {
+  color: @background;
+  background-color: #fff;
+  border-color: @border;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    background-color: darken(@background, 5%);
+    color:@color;
+    border-color: darken(@border, 10%);
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      background-color: @color;
+      border-color: @border
+    }
+  }
+}
+
+
+// Metis Extra Buttons
+.btn-metis-1 {
+  .button-variant(#fff, @metis-1-color, @metis-1-highlight-color);
+}
+.btn-metis-2 {
+  .button-variant(#fff, @metis-2-color, @metis-2-highlight-color);
+}
+.btn-metis-3 {
+  .button-variant(#fff, @metis-3-color, @metis-3-highlight-color);
+}
+.btn-metis-4 {
+  .button-variant(#fff, @metis-4-color, @metis-4-highlight-color);
+}
+.btn-metis-5 {
+  .button-variant(#fff, @metis-5-color, @metis-5-highlight-color);
+}
+.btn-metis-6 {
+  .button-variant(#fff, @metis-6-color, @metis-6-highlight-color);
+}
+
+.btn-grad {
+  &.btn-default,
+  &.btn-primary,
+  &.btn-success,
+  &.btn-info,
+  &.btn-warning,
+  &.btn-danger {
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .2);
+    @shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .075);
+    .box-shadow(@shadow);
+
+    // Reset the shadow
+    &:active,
+    &.active {
+      .box-shadow(inset 0 3px 5px rgba(0, 0, 0, .125));
+    }
+  }
+}
+
+// Gradient Buttons Common styles
+.btn-grad.btn {
+  // Remove the gradient for the pressed/active state
+  &:active,
+  &.active {
+    background-image: none;
+  }
+}
+
+// Apply the mixin to the buttons
+.btn-grad {
+  &.btn-default {
+    .btn-gradient(@btn-default-bg);
+    text-shadow: 0 1px 0 #fff;
+    border-color: #ccc;
+  }
+  &.btn-primary {
+    .btn-gradient(@btn-primary-bg);
+  }
+  &.btn-success {
+    .btn-gradient(@btn-success-bg);
+  }
+  &.btn-warning {
+    .btn-gradient(@btn-warning-bg);
+  }
+  &.btn-danger {
+    .btn-gradient(@btn-danger-bg);
+  }
+  &.btn-info {
+    .btn-gradient(@btn-info-bg);
+  }
+  &.btn-metis-1 {
+    .btn-gradient(@metis-1-color);
+  }
+  &.btn-metis-2 {
+    .btn-gradient(@metis-2-color);
+  }
+  &.btn-metis-3 {
+    .btn-gradient(@metis-3-color);
+  }
+  &.btn-metis-4 {
+    .btn-gradient(@metis-4-color);
+  }
+  &.btn-metis-5 {
+    .btn-gradient(@metis-5-color);
+  }
+  &.btn-metis-6 {
+    .btn-gradient(@metis-6-color);
+  }
+}
+
+
+.btn-circle {
+  border-radius: 500px;
+  .square(40px);
+  padding: 8px 10px;
+
+  &.btn-lg {
+    .square(60px);
+    padding: 14px 16px;
+  }
+  &.btn-sm {
+    .square(30px);
+    padding: 5px 10px;
+  }
+  &.btn-xs {
+    .square(20px);
+    padding: 0 5px;
+  }
+}
+.btn-rect {
+  border-radius: 0 !important;
+}
+.btn-round {
+  &.btn {border-radius: 28px;}
+  &.btn-xs {border-radius: 28px;}
+  &.btn-sm {border-radius: 28px;}
+  &.btn-lg {border-radius: 28px;}
+}
+
+.btn-line {
+  &.btn-default {
+    .btn-line-states(@btn-default-bg, @btn-default-color, @btn-default-border);
+  }
+  &.btn-primary {
+    .btn-line-states(@btn-primary-color, @btn-primary-bg, @btn-primary-border);
+  }
+  &.btn-warning {
+    .btn-line-states(@btn-warning-color, @btn-warning-bg, @btn-warning-border);
+  }
+  // Danger and error appear as red
+  &.btn-danger {
+    .btn-line-states(@btn-danger-color, @btn-danger-bg, @btn-danger-border);
+  }
+  // Success appears as green
+  &.btn-success {
+    .btn-line-states(@btn-success-color, @btn-success-bg, @btn-success-border);
+  }
+  // Info appears as blue-green
+  &.btn-info {
+    .btn-line-states(@btn-info-color, @btn-info-bg, @btn-info-border);
+  }
+  &.btn-metis-1 {
+    .btn-line-states(#fff, @metis-1-color, @metis-1-highlight-color);
+  }
+  &.btn-metis-2 {
+    .btn-line-states(#fff, @metis-2-color, @metis-2-highlight-color);
+  }
+  &.btn-metis-3 {
+    .btn-line-states(#fff, @metis-3-color, @metis-3-highlight-color);
+  }
+  &.btn-metis-4 {
+    .btn-line-states(#fff, @metis-4-color, @metis-4-highlight-color);
+  }
+  &.btn-metis-5 {
+    .btn-line-states(#fff, @metis-5-color, @metis-5-highlight-color);
+  }
+  &.btn-metis-6 {
+    .btn-line-states(#fff, @metis-6-color, @metis-6-highlight-color);
+  }
+}
+
+.btn-flat {
+  border-width:0 !important;
+}

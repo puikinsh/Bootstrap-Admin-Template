@@ -1,25 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js">
   <head>
     <meta charset="UTF-8">
     <title>File Manager</title>
 
-    <!--Mobile first-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!--IE Compatibility modes-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="msapplication-TileColor" content="#5bc0de">
-    <meta name="msapplication-TileImage" content="assets/img/metis-tile.png">
+
+    <!--Mobile first-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.min.css">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="assets/lib/Font-Awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.min.css">
 
     <!-- Metis core stylesheet -->
     <link rel="stylesheet" href="assets/css/main.min.css">
+
+    <!-- Metis Theme stylesheet -->
     <link rel="stylesheet" href="assets/css/theme.css">
     <link rel="stylesheet" href="assets/lib/elfinder/css/elfinder.min.css">
     <link rel="stylesheet" href="assets/lib/elfinder/css/theme.css">
@@ -35,8 +35,8 @@
         <script src="assets                           "></script>
         <![endif]-->
 
-    <!--Modernizr 3.0-->
-    <script src="assets/lib/modernizr-build.min.js"></script>
+    <!--Modernizr 2.7.1-->
+    <script src="assets/lib/modernizr/modernizr.min.js"></script>
   </head>
   <body>
     <div id="wrap">
@@ -114,29 +114,24 @@
             </div>
           </div><!-- /.container-fluid -->
         </nav><!-- /.navbar -->
-
-        <!-- header.head -->
         <header class="head">
           <div class="search-bar">
-            <form class="main-search">
+            <form class="main-search" action="">
               <div class="input-group">
-                <input type="text" class="input-small form-control" placeholder="Live Search ...">
+                <input type="text" class="form-control" placeholder="Live Search ...">
                 <span class="input-group-btn">
-                                    <button class="btn btn-primary btn-sm text-muted" type="button"><i
-                                            class="fa fa-search"></i></button>
-                                </span> 
+            <button class="btn btn-primary btn-sm text-muted" type="button">
+                <i class="fa fa-search"></i>
+            </button>
+        </span> 
               </div>
-            </form>
-          </div>
-
-          <!-- ."main-bar -->
+            </form><!-- /.main-search -->
+          </div><!-- /.search-bar -->
           <div class="main-bar">
             <h3>
               <i class="fa fa-file"></i>File Manager</h3>
           </div><!-- /.main-bar -->
-        </header>
-
-        <!-- end header.head -->
+        </header><!-- /.head -->
       </div><!-- /#top -->
       <div id="left">
         <div class="media user-media">
@@ -411,15 +406,9 @@
                 </div><!-- /.col-lg-12 -->
               </div><!-- /.row -->
             </div>
-          </div>
-
-          <!-- end .inner -->
-        </div>
-
-        <!-- end .outer -->
-      </div>
-
-      <!-- end #content -->
+          </div><!-- /.inner -->
+        </div><!-- /.outer -->
+      </div><!-- /#content -->
       <div id="right">
         <div class="alert alert-danger">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -478,9 +467,9 @@
         </div>
       </div><!-- /#right -->
     </div><!-- /#wrap -->
-    <div id="footer">
-      <p>2013 &copy; Metis Admin</p>
-    </div>
+    <footer id="footer">
+      <p>2014 &copy; Metis Bootstrap Admin Template</p>
+    </footer><!-- /#footer -->
 
     <!-- #helpModal -->
     <div id="helpModal" class="modal fade">
@@ -502,8 +491,15 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal --><!-- /#helpModal -->
-    <script src="assets/lib/jquery.min.js"></script>
+
+    <!--jQuery 2.1.0 -->
+    <script src="assets/lib/jquery/jquery.min.js"></script>
+
+    <!--Bootstrap -->
     <script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Screenfull -->
+    <script src="assets/lib/screenfull/screenfull.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="assets/lib/elfinder/js/elfinder.min.js"></script>
@@ -512,10 +508,11 @@
         metisFile();
       });
     </script>
-    <script src="assets/lib/screenfull/screenfull.js"></script>
+
+    <!-- Metis core scripts -->
     <script src="assets/js/main.min.js"></script>
 
     <!--For Demo Only. Not required -->
-    <script type="text/javascript" src="assets/js/style-switcher.js"></script>
+    <script src="assets/js/style-switcher.min.js"></script>
   </body>
 </html>

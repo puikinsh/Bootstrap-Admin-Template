@@ -1,0 +1,188 @@
+
+.box  {
+    margin: 10px auto;
+    display: block;
+    position: relative;
+    border: 1px solid #efefef;
+    header {
+        #gradient > .vertical(#fff; #f2f2f2);
+        border-bottom: 1px solid #d4d4d4;
+        .box-shadow(0 1px 4px rgba(0, 0, 0, 0.065));
+        .clearfix();
+        .icons, h5, .toolbar {
+            position: relative;
+            min-height: 1px;
+            float: left;
+            padding: 0;
+            margin: 0;
+            display: block;
+        }
+        .icons {
+            padding: 10px 15px;
+            border-right: 1px solid #ddd;
+            .box-shadow(1px 0px 0px #fff);
+        } 
+        h5 {
+            padding: 12px;
+            font-weight: bold;
+        }
+    }
+    &.inverse header {
+        #gradient > .vertical(#333; #222);
+        border-bottom: 1px solid #4d4d4d;
+        color: #f5f5f5;
+        .icons {
+            border-right: 1px solid #222;
+            .box-shadow(1px 0px 0px lighten(#222,10%));
+        }
+    }
+    &.primary header {
+        #gradient > .vertical(@brand-primary; darken(@brand-primary,10%));
+        border-bottom: 1px solid @brand-primary;
+        color: #fff;
+        .icons {
+            border-right: 1px solid darken(@brand-primary,20%);
+            .box-shadow(1px 0px 0px lighten(@brand-primary,10%));
+        }
+    }
+    &.success header {
+        #gradient > .vertical(@brand-success; darken(@brand-success,10%));
+        border-bottom: 1px solid @brand-success;
+        color: #fff;
+        .icons {
+            border-right: 1px solid darken(@brand-success,20%);
+            .box-shadow(1px 0px 0px lighten(@brand-success,10%));
+        }
+    }
+    &.warning header {
+        #gradient > .vertical(@brand-warning; darken(@brand-warning,10%));
+        border-bottom: 1px solid @brand-warning;
+        color: #fff;
+        .icons {
+            border-right: 1px solid darken(@brand-warning,20%);
+            .box-shadow(1px 0px 0px lighten(@brand-warning,10%));
+        }
+    }
+    &.danger header {
+        #gradient > .vertical(@brand-danger; darken(@brand-danger,10%));
+        border-bottom: 1px solid @brand-danger;
+        color: #fff;
+        .icons {
+            border-right: 1px solid darken(@brand-danger,20%);
+            .box-shadow(1px 0px 0px lighten(@brand-danger,10%));
+        }
+    }
+    &.info header {
+        #gradient > .vertical(@brand-info; darken(@brand-info,10%));
+        border-bottom: 1px solid @brand-info;
+        color: #fff;
+        .icons {
+            border-right: 1px solid darken(@brand-info,20%);
+            .box-shadow(1px 0px 0px lighten(@brand-info,10%));
+        }
+    }
+}
+
+
+.box header .toolbar {
+    float: right;
+    display: inline-table;
+    .btn-toolbar {
+        margin: 6px 3px;
+    }
+    .label, .badge {
+        display: inline-block;
+        margin:10px;
+    }
+    .nav {margin: 1px 1px 0 0;}
+    .nav > li {
+        display: inline-block;
+        > a {
+            padding-top:9px;
+            &:hover, &:focus {
+            }
+        }
+    }
+    > .btn {
+        margin-right: 4px;
+    }
+    > .btn-sm, > .btn-group {
+        margin: 4px;
+    }
+    > .btn-xs {
+        margin: 6px;
+    }
+    .input-sm {
+        margin: 4px -4px;
+    }
+    .progress {
+        min-width:120px;
+        margin: 10px 4px;
+
+        &.middle {
+            height: 12px;
+            margin: 13px 4px;
+        }
+        &.mini {
+            height: 6px;
+            margin: 16px 4px;
+        }
+    }
+}
+
+.full-screen-box {
+      height: 100% !important;
+      width: 100% !important;
+    }
+
+.box {
+    &.danger {
+        .dropdown-menu > li > a:hover,
+            .dropdown-menu > li > a:focus {
+            #gradient > .vertical(@brand-danger; darken(@brand-danger,10%));
+        }
+    }
+    &.info {
+        .dropdown-menu > li > a:hover,
+            .dropdown-menu > li > a:focus {
+            #gradient > .vertical(@brand-info; darken(@brand-info,10%));
+        }
+    }
+    &.success {
+        .dropdown-menu > li > a:hover,
+            .dropdown-menu > li > a:focus {
+            #gradient > .vertical(@brand-success; darken(@brand-success,10%));
+        }
+    }
+    &.warning {
+        .dropdown-menu > li > a:hover,
+            .dropdown-menu > li > a:focus {
+            #gradient > .vertical(@brand-warning; darken(@brand-warning,10%));
+        }
+    }
+    &.inverse {
+        .dropdown-menu > li > a:hover,
+            .dropdown-menu > li > a:focus {
+           #gradient > .vertical(#333; #222);
+        }
+    }
+}
+.box .body {
+    padding:10px;
+    .box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.05));
+    width: 100%;
+    background-color: #fff;
+    
+    hr {
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+    
+}
+.body.collapse:not(.in) {
+    padding: 0;
+  }
+.box > .block {padding:0;}
+
+
+.row.ui-sortable .box header {cursor: move;}

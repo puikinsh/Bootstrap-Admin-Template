@@ -1,0 +1,32 @@
+/*********************************************************/
+/*                 Sticky footer styles                  */
+/*********************************************************/
+
+#wrap {
+  margin: 0 auto;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+  height: @footerheight;
+}
+
+@media (min-width: @screen-tablet) {
+  html, body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+  }
+
+  #wrap {
+    /* Wrapper for page content to push down footer */
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by its height */
+    margin-bottom: -@footerheight;
+    /* Pad bottom by footer height */
+    padding: 0 0 @footerheight;
+  }
+}
+
+/* -------- END Sticky footer styles ------------------ */

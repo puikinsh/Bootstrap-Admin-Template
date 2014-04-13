@@ -1,0 +1,14 @@
+# =============================================
+# BUILD CONFIG
+# =============================================
+
+dest: dist
+assets: dist/assets
+
+src: src
+templates: src/templates
+data: src/data/*.{json,yml}
+partials: src/templates/partials/**/*.hbs
+helpers: src/helper/**/*.js
+layoutdir: src/templates/layouts
+pages: src/templates/pages

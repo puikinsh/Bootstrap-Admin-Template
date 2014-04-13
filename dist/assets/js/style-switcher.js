@@ -1,14 +1,9 @@
 /**
-* Metis - Bootstrap-Admin-Template v2.2.2
-* Author : Osman Nuri Okumuş 
+* Metis - Bootstrap-Admin-Template v2.2.3
+* Author : [object Object] 
 * Copyright 2014
-* Licensed under MIT
+* Licensed under  ()
 */
-/*
- Name    : style-switcher.js
- Author  : ono <http://onokumus.com />
- Version : 1.1
- */
 // Load lesscss files
 yepnope.addPrefix('less', function (resourceObj) {
     resourceObj.forceCSS = true;
@@ -26,12 +21,8 @@ var styleSwitcher = {
         };
         // Style Switcher CSS
         yepnope([
-        {
-            load: 'assets/css/style-switcher.css'
-        },
-        {
-            load: 'assets/lib/colorpicker/css/colorpicker.css'
-        },
+        {load: 'assets/css/style-switcher.css' },
+        {load: 'assets/lib/colorpicker/css/colorpicker.css'},
         {
             load: 'assets/css/colorpicker_hack.css'
         },
@@ -43,10 +34,10 @@ var styleSwitcher = {
             complete: function () {
                 yepnope([
                 {
-                    load: 'less!assets/less/theme.less'
+                    load: 'less!assets/css/less/theme.less'
                 },
                 {
-                    load: 'assets/lib/less-1.6.3.min.js',
+                    load: 'assets/lib/less/less-1.7.0.min.js',
                     complete: function () {
                         $this.build();
                         if (Modernizr.localstorage) {

@@ -1,25 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js">
   <head>
     <meta charset="UTF-8">
     <title>Metis</title>
 
-    <!--Mobile first-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!--IE Compatibility modes-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="msapplication-TileColor" content="#5bc0de">
-    <meta name="msapplication-TileImage" content="assets/img/metis-tile.png">
+
+    <!--Mobile first-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.min.css">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="assets/lib/Font-Awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.min.css">
 
     <!-- Metis core stylesheet -->
     <link rel="stylesheet" href="assets/css/main.min.css">
+
+    <!-- Metis Theme stylesheet -->
     <link rel="stylesheet" href="assets/css/theme.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -31,8 +31,8 @@
         <script src="assets                           "></script>
         <![endif]-->
 
-    <!--Modernizr 3.0-->
-    <script src="assets/lib/modernizr-build.min.js"></script>
+    <!--Modernizr 2.7.1-->
+    <script src="assets/lib/modernizr/modernizr.min.js"></script>
   </head>
   <body>
     <div id="wrap">
@@ -108,29 +108,24 @@
             </div>
           </div><!-- /.container-fluid -->
         </nav><!-- /.navbar -->
-
-        <!-- header.head -->
         <header class="head">
           <div class="search-bar">
-            <form class="main-search">
+            <form class="main-search" action="">
               <div class="input-group">
-                <input type="text" class="input-small form-control" placeholder="Live Search ...">
+                <input type="text" class="form-control" placeholder="Live Search ...">
                 <span class="input-group-btn">
-                                    <button class="btn btn-primary btn-sm text-muted" type="button"><i
-                                            class="fa fa-search"></i></button>
-                                </span> 
+            <button class="btn btn-primary btn-sm text-muted" type="button">
+                <i class="fa fa-search"></i>
+            </button>
+        </span> 
               </div>
-            </form>
-          </div>
-
-          <!-- ."main-bar -->
+            </form><!-- /.main-search -->
+          </div><!-- /.search-bar -->
           <div class="main-bar">
             <h3>
               <i class="fa fa-home"></i>Metis</h3>
           </div><!-- /.main-bar -->
-        </header>
-
-        <!-- end header.head -->
+        </header><!-- /.head -->
       </div><!-- /#top -->
       <div id="left">
         <div class="media user-media">
@@ -393,9 +388,8 @@
         <div class="outer">
           <div class="inner">
             <div class="col-lg-12">
-              <p>Metis Admin Template with Twitter Bootstrap</p>
-              <h2 id="-build-status-https-travis-ci-org-onokumus-bootstrap-admin-template-png-http-travis-ci-org-onokumus-bootstrap-admin-template-dependency-status-https-david-dm-org-onokumus-bootstrap-admin-template-svg-theme-shields-io-https-david-dm-org-onokumus-bootstrap-admin-template-devdependency-status-https-david-dm-org-onokumus-bootstrap-admin-template-dev-status-svg-theme-shields-io-https-david-dm-org-onokumus-bootstrap-admin-template-info-devdependencies-">
-                <a href="http://travis-ci.org/onokumus/Bootstrap-Admin-Template">
+              <h1 id="bootstrap-admin-template-build-status-https-travis-ci-org-onokumus-bootstrap-admin-template-png-https-travis-ci-org-onokumus-bootstrap-admin-template-dependency-status-https-david-dm-org-onokumus-bootstrap-admin-template-svg-theme-shields-io-https-david-dm-org-onokumus-bootstrap-admin-template-devdependency-status-https-david-dm-org-onokumus-bootstrap-admin-template-dev-status-svg-theme-shields-io-https-david-dm-org-onokumus-bootstrap-admin-template-info-devdependencies-">Bootstrap-Admin-Template
+                <a href="https://travis-ci.org/onokumus/Bootstrap-Admin-Template">
                   <img src="https://travis-ci.org/onokumus/Bootstrap-Admin-Template.png" alt="Build Status">
                 </a> 
                 <a href="https://david-dm.org/onokumus/Bootstrap-Admin-Template">
@@ -404,16 +398,47 @@
                 <a href="https://david-dm.org/onokumus/Bootstrap-Admin-Template#info=devDependencies">
                   <img src="https://david-dm.org/onokumus/Bootstrap-Admin-Template/dev-status.svg?theme=shields.io" alt="devDependency Status">
                 </a> 
-              </h2>
+              </h1>
+              <blockquote>
+                <p>Free Admin Template Based On Twitter Bootstrap 3.x</p>
+              </blockquote>
+              <h2 id="toc">TOC</h2>
+              <ul>
+                <li> <a href="#download">Download</a>  </li>
+                <li>
+                  <a href="#building">Building</a> 
+                  <ul>
+                    <li> <a href="#2.2.3-version">2.2.3 Version</a>  </li>
+                    <li> <a href="#12-version">1.2 Version</a>  </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#demo">Demo</a> 
+                  <ul>
+                    <li> <a href="#2.2.3-version">For 2.2.3 version</a>  </li>
+                    <li> <a href="#for-12-version">For 1.2 version</a>  </li>
+                  </ul>
+                </li>
+                <li> <a href="#release-history">Release History</a>  </li>
+                <li> <a href="#credits">Credits</a>  </li>
+                <li> <a href="#author">Author</a>  </li>
+                <li> <a href="#license">License</a>  </li>
+              </ul>
               <h3 id="download">Download</h3>
-              <p>Bootstrap 2.3.2
-                <a href="https://github.com/onokumus/Bootstrap-Admin-Template/archive/v1.2.zip">V.1.2</a> 
-                ready for use</p>
-              <p>Bootstrap 3.1.1
-                <a href="https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip">V2.2.2</a> 
-                ready <code>dist</code> folder your use</p>
+              <ul>
+                <li>
+                  <p>Bootstrap 2.3.2
+                    <a href="https://github.com/onokumus/Bootstrap-Admin-Template/archive/v1.2.zip">V.1.2</a> 
+                    ready for use</p>
+                </li>
+                <li>
+                  <p>Bootstrap 3.1.1
+                    <a href="https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip">2.2.3</a> 
+                    ready <code>dist</code> folder your use</p>
+                </li>
+              </ul>
               <h3 id="building">Building</h3>
-              <h4 id="2-2-2-version">2.2.2 Version</h4>
+              <h4 id="2-2-3-version">2.2.3 Version</h4>
               <p>required
                 <a href="http://nodejs.org/">node.js</a> &amp;
                 <a href="http://bower.io/">bower</a> &amp;
@@ -433,27 +458,30 @@ $ git submodule init
 $ git submodule update
 $ open index.html</code></pre>
               <h3 id="demo">Demo</h3>
-              <h4 id="for-2-2-2-version">For 2.2.2 version</h4>
-              <p>
-                <a href="http://demo.onokumus.com/metis/">http://demo.onokumus.com/metis/</a> 
-              </p>
-              <h4 id="for-1-2-version">For 1.2 version</h4>
-              <p>(not development)
-                <a href="http://demo.onokumus.com/metis/v12">http://demo.onokumus.com/metis/v12</a> 
-              </p>
-              <h3 id="release-history">Release History</h3>
               <ul>
-                <li>2014-04-10 v2.2.2 remove alterne.html, right panel available</li>
+                <li> <a href="http://demo.onokumus.com/metis/">Demo 2.2.3</a>  </li>
+                <li>
+                  <a href="http://demo.onokumus.com/metis/v12">v1.2 <code>not development</code>
+                  </a> 
+                </li>
+              </ul>
+              <h2 id="release-history">Release History</h2>
+              <p><strong>DATE</strong>   <strong>VERSION</strong>   <strong>CHANGES</strong>  
+              </p>
+              <ul>
+                <li>2014-04-13 v2.2.3 rewrite all code</li>
+                <li>2014-04-10 v2.2.2 remove <code>alterne.html</code>,right panel available</li>
                 <li>2014-04-07 v2.2.1 all dependency require bower &amp; npm</li>
-                <li>2014-02-28 v2.2.0 rewrite menu, layout, etc...</li>
-                <li>2014-02-16 v2.1.4 update bootsrap 3.1.1 &amp;&amp; add screenfull.js &amp;&amp; fixed #menu</li>
+                <li>2014-02-28 v2.2.0 rewrite menu, layout, etc</li>
+                <li>2014-02-16 v2.1.4 update bootsrap 3.1.1 &amp;&amp; add screenfull.js &amp;&amp; fixed</li>
                 <li>2014-01-19 v2.1.3 add suitcss &#39;s flex-embed component</li>
-                <li>2013-11-30 v2.1.2 create menu plugin, rewrite menu.less</li>
-                <li>2013-10-28 v2.1.1 add bower</li>
-                <li>2013-10-28 v2.1.1 remove bootsrap, font awesome, gmaps submodule.</li>
-                <li>2013-10-23   v2.1.1 Adds <code>bgimage.html</code> and <code>bgcolor.html</code> pages.</li>
-                <li>2013 [02-15, 10-22] v1.0 - v2.1 I don&#39;t remember. Whatever I did.</li>
-                <li>2013-02-14   v1.0   First Commit.</li>
+                <li>2013-11-30 v2.1.2 create menu plugin, rewrite <code>menu.less</code> 
+                </li>
+                <li>2013-10-28 v2.1.1.2 add bower</li>
+                <li>2013-10-28 v2.1.1.1 remove bootsrap, font awesome, gmaps submodule.</li>
+                <li>2013-10-23 v2.1.1 Added <code>bgimage.html</code> Added <code>bgcolor.html</code> pages.</li>
+                <li>2013-10-22 v2.1 I don&#39;t remember. Whatever I did.</li>
+                <li>2013-02-14 v1.0 First Commit.</li>
               </ul>
               <h3 id="credits">Credits</h3>
               <ul>
@@ -489,7 +517,7 @@ $ open index.html</code></pre>
                 <li> <a href="http://boedesign.com/blog/2009/07/11/growl-for-jquery-gritter/">Gritter</a>  </li>
                 <li> <a href="http://www.minimamente.com/magic-css3-animations">Magic</a>  </li>
                 <li> <a href="https://github.com/brandonaaron/jquery-mousewheel">Mouse Wheel</a>  </li>
-                <li> <a href="https://github.com/samwillis/pagedown-bootstrap">PageDown-Bootstrap</a>  </li>
+                <li> <a href="https://github.com/kevinoconnor7/pagedown-bootstrap">PageDown-Bootstrap</a>  </li>
                 <li> <a href="https://github.com/moxiecode/plupload">Plupload</a>  </li>
                 <li> <a href="http://www.larentis.eu/switch/">Bootstrap Switch</a>  </li>
                 <li> <a href="http://tablesorter.com/">tablesorter</a>  </li>
@@ -499,23 +527,20 @@ $ open index.html</code></pre>
                 <li> <a href="http://uniformjs.com/">Uniform</a>  </li>
                 <li> <a href="http://www.position-relative.net/">Validation Engine</a>  </li>
                 <li> <a href="http://validval.frebsite.nl/">jquery.validVal</a>  </li>
-                <li> <a href="http://jhollingworth.github.io/bootstrap-wysihtml5/">bootstrap-wysihtml5</a>  </li>
+                <li> <a href="https://github.com/Waxolunist/bootstrap3-wysihtml5-bower">bootstrap3-wysihtml5-bower</a>  </li>
                 <li> <a href="https://github.com/suitcss/flex-embed">Suitcss Flex-Embed</a>  </li>
                 <li> <a href="https://github.com/sindresorhus/screenfull.js">screenfull.js</a>  </li>
               </ul>
-              <h3 id="licensing">Licensing</h3>
-              <p>Bootstrap Admin template is open-sourced software licensed under the
-                <a href="LICENSE.md">MIT License</a> .</p>
+              <h3 id="author">Author</h3>
+              <ul>
+                <li>onokumus</li>
+              </ul>
+              <h3 id="license">License</h3>
+              <p>Copyright (c) 2014 onokumus, contributors. Released under the MIT license</p>
             </div>
-          </div>
-
-          <!-- end .inner -->
-        </div>
-
-        <!-- end .outer -->
-      </div>
-
-      <!-- end #content -->
+          </div><!-- /.inner -->
+        </div><!-- /.outer -->
+      </div><!-- /#content -->
       <div id="right">
         <div class="alert alert-danger">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -574,9 +599,9 @@ $ open index.html</code></pre>
         </div>
       </div><!-- /#right -->
     </div><!-- /#wrap -->
-    <div id="footer">
-      <p>2013 &copy; Metis Admin</p>
-    </div>
+    <footer id="footer">
+      <p>2014 &copy; Metis Bootstrap Admin Template</p>
+    </footer><!-- /#footer -->
 
     <!-- #helpModal -->
     <div id="helpModal" class="modal fade">
@@ -598,12 +623,20 @@ $ open index.html</code></pre>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal --><!-- /#helpModal -->
-    <script src="assets/lib/jquery.min.js"></script>
+
+    <!--jQuery 2.1.0 -->
+    <script src="assets/lib/jquery/jquery.min.js"></script>
+
+    <!--Bootstrap -->
     <script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Screenfull -->
     <script src="assets/lib/screenfull/screenfull.js"></script>
+
+    <!-- Metis core scripts -->
     <script src="assets/js/main.min.js"></script>
 
     <!--For Demo Only. Not required -->
-    <script type="text/javascript" src="assets/js/style-switcher.js"></script>
+    <script src="assets/js/style-switcher.min.js"></script>
   </body>
 </html>

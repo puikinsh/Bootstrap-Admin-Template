@@ -1,0 +1,31 @@
+.quick-btn {
+  background: #EEEEEE;
+  .box-shadow(~"0 0 0 1px #F8F8F8 inset, 0 0 0 1px #CCCCCC");
+  color: #444444;
+  display: inline-block;
+  height: 80px;
+  margin: 10px;
+  padding-top: 16px;
+  text-align: center;
+  text-decoration: none;
+  //text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+  width: 90px;
+  position: relative;
+  span {display: block;}
+  .label {
+    position: absolute;
+    right: -5px;
+    top: -5px;
+  }
+  &:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: #4d7589;
+    //text-shadow: 0 1px 1px #000;
+  }
+  &.small {
+    width:40px;
+    height: 30px;
+    padding-top: 6px;
+  }
+}

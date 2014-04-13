@@ -1,36 +1,55 @@
-$(function () {
-    "use strict";
+;
+(function (window, Modernizr) {
 
-    $('a[href=#]').on('click', function (e) {
-        e.preventDefault();
-    });
+    var
+    // Is Modernizr defined on the global scope
+        Modernizr = typeof Modernizr !== "undefined" ? Modernizr : false,
 
+    // whether or not is a touch device
+        isTouchDevice = Modernizr ? Modernizr.touch : !!('ontouchstart' in window || 'onmsgesturechange' in window),
 
-    $('a[data-toggle=tooltip]').tooltip();
-    $('a[data-tooltip=tooltip]').tooltip();
-
-
-    $('.minimize-box').on('click', function (e) {
-        e.preventDefault();
-        var $icon = $(this).children('i');
-        if ($icon.hasClass('icon-chevron-down')) {
-            $icon.removeClass('icon-chevron-down').addClass('icon-chevron-up');
-        } else if ($icon.hasClass('icon-chevron-up')) {
-            $icon.removeClass('icon-chevron-up').addClass('icon-chevron-down');
-        }
-    });
-    $('.close-box').click(function () {
-        $(this).closest('.box').hide('slow');
-    });
-
-    $('#changeSidebarPos').on('click', function (e) {
-        $('body').toggleClass('hide-sidebar');
-    });
-
-    $('li.accordion-group > a').on('click', function (e) {
-        $(this).children('span').children('i').toggleClass('icon-angle-down');
-    });
+    // Are we expecting a touch or a click?
+        buttonPressedEvent = ( isTouchDevice ) ? 'touchstart' : 'click',
 
 
+        Metis = function () {
+            this.init();
+        };
+
+    // Initialization method
+    Metis.prototype.init = function () {
+        this.buttonPressedEvent = buttonPressedEvent;
+    };
+
+    Metis.prototype.getViewportHeight = function () {
+
+        var docElement = document.documentElement,
+            client = docElement['clientHeight'],
+            inner = window['innerHeight'];
+
+        if (client < inner)
+            return inner;
+        else
+            return client;
+    };
+
+    Metis.prototype.getViewportWidth = function () {
+
+        var docElement = document.documentElement,
+            client = docElement['clientWidth'],
+            inner = window['innerWidth'];
+
+        if (client < inner)
+            return inner;
+        else
+            return client;
+    };
+
+    // Creates a Metis object.
+    window.Metis = new Metis();
+
+})(this, Modernizr);
+
+$(function(){
     $('#menu').metisMenu();
 });

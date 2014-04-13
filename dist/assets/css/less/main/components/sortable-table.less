@@ -1,0 +1,21 @@
+/* BEGIN SORTABLETABLE STYLES */
+
+.sortableTable th {
+  #gradient > .vertical(@header-color; @start-percent:0%; @header-highlight-color; 100%);
+  cursor: pointer;
+  
+  &:hover {
+    color: #888;
+  }
+  &.tablesorter-header {
+    .fa.sort:before {content: "\f0dc";}
+    &.tablesorter-headerDesc {
+      .fa.sort:before {content: "\f0de";}
+    }
+    &.tablesorter-headerAsc {
+      .fa.sort:before {content: "\f0dd";}
+    }
+  }
+
+}
+/* END SORTABLETABLE STYLES */

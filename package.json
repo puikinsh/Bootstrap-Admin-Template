@@ -1,40 +1,57 @@
 {
   "name": "Bootstrap-Admin-Template",
-  "version": "2.2.2",
+  "description": "Free Admin Template Based On Twitter Bootstrap 3.x",
+  "version": "2.2.3",
+  "homepage": "https://github.com/onokumus/Bootstrap-Admin-Template",
   "author": {
-    "name": "Osman Nuri Okumuş",
-    "email": "onokumus@gmail.com",
-    "url": "https://github.com/onokumus"
+    "name": "onokumus",
+    "url": "http://github.com/onokumus/"
   },
-  "description": "Twitter Bootstrap Admin Template",
-  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/onokumus/Bootstrap-Admin-Template"
+    "url": "https://github.com/onokumus/Bootstrap-Admin-Template.git"
   },
   "bugs": {
     "url": "https://github.com/onokumus/Bootstrap-Admin-Template/issues"
   },
-  "licenses": "MIT",
-  "devDependencies": {
-    "bower": "~1.3.1",
-    "grunt-cli": "~0.1.13",
-    "grunt": "~0.4.2",
-    "assemble": "~0.4.36",
-    "grunt-contrib-connect": "~0.7.0",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-concat": "~0.4.0",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-uglify": "~0.4.0",
-    "grunt-contrib-qunit": "~0.4.0",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-contrib-copy": "~0.5.0",
-    "assemble-less": "~0.7.0",
-    "pretty": "~0.1.2"
+  "engines": {
+    "node": ">=0.8"
   },
-  "dependencies": {
-    "screenfull": "~1.1.1",
+  "scripts": {
+    "test": "grunt assemble"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/LICENSE.md"
+    }
+  ],
+  "keywords": [
+    "twbs",
+    "assemble",
+    "grunt",
+    "less",
+    "admin",
+    "template"
+  ],
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-connect": "^0.7.1",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-modernizr": "^0.5.2",
+    "load-grunt-tasks": "^0.4.0",
+    "time-grunt": "^0.3.1",
+    "assemble": "^0.4.37",
+    "assemble-less": "^0.7.0",
+    "pretty": "^0.1.2",
+    "screenfull": "^1.1.1",
     "cssbeautify": "^0.3.1",
-    "epiceditor": "^0.2.0"
+    "epiceditor": "^0.2.0",
+    "less": "^1.7.0"
   }
 }

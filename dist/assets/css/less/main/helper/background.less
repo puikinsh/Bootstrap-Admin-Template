@@ -1,0 +1,45 @@
+.bg(@bg-color:@brand-primary;@color:#fff){
+  background-color: @bg-color;
+  color: @color;
+
+  &.dker, >.dker {
+    background-color: darken(@bg-color,8%);
+  }
+
+  &.dk, >.dk {
+    background-color: darken(@bg-color,4%);
+  }
+
+  &.lt, >.lt {
+    background-color: lighten(@bg-color,4%);
+  }
+
+  &.lter, >.lter {
+    background-color: lighten(@bg-color,8%);
+  }
+}
+
+.bg-primary {
+  .bg();
+}
+.bg-success {
+  .bg(@brand-success);
+}
+.bg-danger {
+  .bg(@brand-danger);
+}
+.bg-warning {
+  .bg(@brand-warning);
+}
+.bg-info {
+  .bg(@brand-info);
+}
+.bg-black {
+  .bg(#222);
+}
+.bg-dark {
+  .bg(#444);
+}
+.bg-light {
+  .bg(#eee,#333);
+}

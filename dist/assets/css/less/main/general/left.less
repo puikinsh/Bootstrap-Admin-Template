@@ -1,0 +1,87 @@
+/*********************************************************/
+/*          Begin LEFT Styles                           */
+/*********************************************************/
+
+.user-media {
+  background-color: #444444;
+
+  .user-link {
+    .center-block();
+    position: relative;
+
+    .user-img {
+      margin: 10px auto;
+    }
+    .user-label {
+      position: absolute;
+      top: -6px;
+      right: 6px;
+    }
+  }
+
+  .user-link {
+    float: left;
+    .user-img {
+      margin: 10px;
+    }
+    .user-label {
+      top: 6px;
+      right: 0;
+    }
+  }
+  .media-body {
+    display: block;
+    float: left;
+    margin-left: 12px;
+    h5.media-heading {
+      color: #fff;
+      padding-top: 8px;
+      margin-bottom: 3px;
+    }
+    ul.user-info li {
+      color: #ccc;
+    }
+  }
+}
+
+.side-right {
+  .user-link .user-label {
+    left: 6px;
+    right: auto;
+  }
+}
+
+.sidebar-left-mini .user-wrapper{
+  position: absolute;
+  top: 0;
+  left: -100%;
+  display: none;
+  min-width: @SidebarWidth;
+}
+
+.user-media-toggleHover {
+  display: none;
+}
+
+.sidebar-left-mini .user-media-toggleHover{
+  font-size: 18px;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  display: inherit;
+}
+
+.sidebar-left-mini .user-media:hover .user-wrapper{
+  background: #333;
+  left: 100%;
+  display: inherit;
+  z-index: 9999;
+}
+
+.sidebar-left-mini.side-right .user-media:hover .user-wrapper{
+  left: auto;
+  right: 100%;
+}
+
+/* ============== END LEFT Styles ================= */

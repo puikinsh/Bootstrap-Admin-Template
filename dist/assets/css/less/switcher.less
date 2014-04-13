@@ -1,0 +1,84 @@
+/* 
+    Document   : switcher
+    Created on : Feb 6, 2013, 12:38:25 AM
+    Author     : ono
+    Description:
+        Purpose of the stylesheet follows.
+*/
+body {
+    position: relative;
+}
+#style-switcher {
+    background-color: #303030;
+    position: fixed;
+    right: -212px;
+    top: 50px;
+    width: 212px;
+    z-index: 999;
+    transition: all 1s;
+}
+#style-switcher.open {
+    right: 0;
+}
+#style-switcher hr {
+    border-top-color: #4a4a4a;
+    border-bottom-color: #000;
+}
+#style-switcher h5 {
+    background-color: #404040;
+    color: #fff;
+    margin: 0;
+    padding: 8px;
+}
+#style-switcher h5 a {
+    background: #404040;
+    color: #E1E1E8;
+    left: -36px;
+    padding: 3px;
+    position: absolute;
+    text-decoration: none;
+    top: 0;
+}
+#style-switcher div {
+    padding: 5px 10px;
+}
+#style-switcher h6 {
+    color: #fff;
+}
+.pattern-switcher {
+  display: none;
+  a {
+    display: inline-block;
+    border: 1px dotted #444444;
+    margin-right: 2px;
+    width: 20px;
+    height: 20px;
+    background-repeat: repeat;
+  }
+}
+.loopingPattern (@i) when (@i > 0) {
+  (~".pattern-switcher a.p@{i}") {
+  // your resulting css
+    background-image: url("../img/pattern/p@{i}.png");
+  }
+  .loopingPattern(@i - 1);
+}
+.loopingPattern (0) {}
+
+// "call" the loopingClass the first time with highest value
+  .loopingPattern (28);
+  
+  .hide-sidebar {
+  #sidebar-change {
+    display: none;
+  }
+  #mini-sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 1280px) {
+  #fixed-wide-cnt {
+    display: none;
+  }
+}

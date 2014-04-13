@@ -1,0 +1,48 @@
+/* BEGIN animated checkbox styles */
+
+
+.anim-checkbox {
+  label {
+    position: relative;
+
+    &:before, &:after {
+      font-family: FontAwesome;
+      /*absolutely positioned*/
+      position: absolute;
+      left: -22px;
+    }
+    &:before {
+      content: '\f096'; /*unchecked*/
+    }
+    &:after {
+      content: '\f046'; /*checked*/
+      /*checked icon will be hidden by default by using 0 max-width and overflow hidden*/
+      max-width: 0;
+      overflow: hidden;
+      opacity: 0.5;
+      /*CSS3 transitions for animated effect*/
+      transition: all 0.35s;
+    }
+  }
+
+  input[type="checkbox"] {
+    display: none;
+
+    &:checked + label:after {
+      max-width: 25px; /*an arbitratry number more than the icon's width*/
+      opacity: 1; /*for fade in effect*/
+    }
+  }
+  /*adding some colors for fun*/
+  .primary:checked+label {&:before, &:after {color: @brand-primary;}}
+
+  .success:checked+label {&:before, &:after {color: @brand-success;}}
+
+  .warning:checked+label {&:before, &:after {color: @brand-warning;}}
+
+  .danger:checked+label {&:before, &:after {color: @brand-danger;}}
+
+  .info:checked+label {&:before, &:after {color: @brand-info;}}
+}
+
+/* END animated checkbox styles */

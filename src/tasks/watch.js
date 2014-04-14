@@ -4,12 +4,12 @@ module.exports = {
         tasks: ['assemble']
     },
     less: {
-      files: ['src/templates/less/**/*.less'],
-      tasks: ['copy:main','less']
+        files: ['src/templates/less/**/*.less'],
+        tasks: ['copy:main', 'less']
     },
     script: {
-      files: ['src/assets/js/**/*.js'],
-      tasks: ['concat','uglify']
+        files: ['src/assets/js/**/*.js'],
+        tasks: ['concat', 'uglify']
     },
     livereload: {
         options: {
@@ -21,4 +21,4 @@ module.exports = {
             'dist/assets/{,*/}*.css'
         ]
     }
-}
+};

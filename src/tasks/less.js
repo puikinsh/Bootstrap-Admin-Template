@@ -16,7 +16,7 @@ module.exports = {
     production: {
         options: {
             sourceMap: true,
-            sourceMapBasepath:'dist/assets/css/',
+            sourceMapBasepath: 'dist/assets/css/',
             sourceMapFilename: "dist/assets/css/main.css.map",
             compress: true
         },
@@ -24,4 +24,4 @@ module.exports = {
             'dist/assets/css/main.min.css': ['dist/assets/css/less/style.less']
         }
     }
-}
+};

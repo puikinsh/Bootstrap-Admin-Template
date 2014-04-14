@@ -1,7 +1,7 @@
 module.exports = {
     main: {
         options: {
-            banner:'<%= banner %>',
+            banner: '<%= banner %>',
             sourceMap: true,
             sourceMapName: 'dist/assets/js/main.js.map'
         },
@@ -11,7 +11,7 @@ module.exports = {
     },
     countdown: {
         options: {
-            banner:'<%= banner %>',
+            banner: '<%= banner %>',
             sourceMap: true,
             sourceMapName: 'dist/assets/js/countdown.js.map'
         },
@@ -20,7 +20,7 @@ module.exports = {
         }
     },
     styleswitcher: {
-        banner:'<%= banner %>',
+        banner: '<%= banner %>',
         options: {
             sourceMap: true,
             sourceMapName: 'dist/assets/js/style-switcher.js.map'
@@ -37,4 +37,4 @@ module.exports = {
             }
         ]
     }
-}
+};

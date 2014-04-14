@@ -22,28 +22,28 @@ module.exports = {
             }
         ]
     },
-            login: {
-                options: {
-                    layout: 'login.hbs'
-                },
-                files: [
-                    {expand: true, cwd: 'src/templates/login', src: ['login.hbs'], dest: 'dist/'}
-                ]
-            },
-            errors: {
-                options: {
-                    layout: 'errors.hbs'
-                },
-                files: [
-                    {expand: true, cwd: 'src/templates/errors', src: ['*.hbs'], dest: 'dist/'}
-                ]
-            },
-            countdown: {
-                options: {
-                    layout: 'countdown.hbs'
-                },
-                files: [
-                    {expand: true, cwd: 'src/templates/countdown', src: ['*.hbs'], dest: 'dist/'}
-                ]
-            }
-}
+    login: {
+        options: {
+            layout: 'login.hbs'
+        },
+        files: [
+            {expand: true, cwd: 'src/templates/login', src: ['login.hbs'], dest: 'dist/'}
+        ]
+    },
+    errors: {
+        options: {
+            layout: 'errors.hbs'
+        },
+        files: [
+            {expand: true, cwd: 'src/templates/errors', src: ['*.hbs'], dest: 'dist/'}
+        ]
+    },
+    countdown: {
+        options: {
+            layout: 'countdown.hbs'
+        },
+        files: [
+            {expand: true, cwd: 'src/templates/countdown', src: ['*.hbs'], dest: 'dist/'}
+        ]
+    }
+};

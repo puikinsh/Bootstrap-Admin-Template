@@ -1,12 +1,11 @@
-;
-(function (window, Modernizr) {
+;(function (window, Modernizr) {
+    "use strict";
 
-    var
     // Is Modernizr defined on the global scope
-        Modernizr = typeof Modernizr !== "undefined" ? Modernizr : false,
+        Modernizr = typeof Modernizr !== "undefined" ? Modernizr : false;
 
     // whether or not is a touch device
-        isTouchDevice = Modernizr ? Modernizr.touch : !!('ontouchstart' in window || 'onmsgesturechange' in window),
+       var isTouchDevice = Modernizr ? Modernizr.touch : !!('ontouchstart' in window || 'onmsgesturechange' in window),
 
     // Are we expecting a touch or a click?
         buttonPressedEvent = ( isTouchDevice ) ? 'touchstart' : 'click',
@@ -24,8 +23,8 @@
     Metis.prototype.getViewportHeight = function () {
 
         var docElement = document.documentElement,
-            client = docElement['clientHeight'],
-            inner = window['innerHeight'];
+            client = docElement.clientHeight,
+            inner = window.innerHeight;
 
         if (client < inner)
             return inner;
@@ -36,8 +35,8 @@
     Metis.prototype.getViewportWidth = function () {
 
         var docElement = document.documentElement,
-            client = docElement['clientWidth'],
-            inner = window['innerWidth'];
+            client = docElement.clientWidth,
+            inner = window.innerWidth;
 
         if (client < inner)
             return inner;

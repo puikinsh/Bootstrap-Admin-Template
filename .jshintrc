@@ -1,23 +1,14 @@
 {
-  "esnext": true,
-  "boss": true,
-  "curly": true,
-  "eqeqeq": true,
-  "eqnull": true,
-  "immed": true,
-  "latedef": true,
-  "newcap": true,
-  "noarg": true,
-  "node": true,
-  "sub": true,
-  "undef": true,
-  "unused": true,
-  "globals": {
-    "define": true,
-    "before": true,
-    "after": true,
-    "describe": true,
-    "it": true,
-    "document": false
-  }
+    "curly": true,
+    "eqeqeq": true,
+    "immed": true,
+    "latedef": "nofunc",
+    "newcap": true,
+    "noarg": true,
+    "sub": true,
+    "undef": true,
+    "unused": true,
+    "boss": true,
+    "eqnull": true,
+    "node": true
 }

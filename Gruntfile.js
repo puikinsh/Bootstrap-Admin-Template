@@ -1,3 +1,4 @@
+/* jshint node: true */
 'use strict';
 function getTask(name) {
     return require('./src/tasks/' + name + '.js');
@@ -33,7 +34,7 @@ module.exports = function (grunt) {
         less: getTask('less'),
 
         concat: getTask('concat'),
-		     
+
         uglify: getTask('uglify'),
 
         /**
@@ -54,20 +55,20 @@ module.exports = function (grunt) {
 
     });
 
-    
-        // JS distribution task.
-    grunt.registerTask('dist-js', ['modernizr', 'concat', 'uglify']);
+
+    // JS distribution task.
+    grunt.registerTask('dist-js', ['modernizr', 'jshint', 'concat', 'uglify']);
 
 
     // Full distribution task.
     grunt.registerTask('dist', ['clean', 'copy', 'less', 'dist-js']);
 
     grunt.registerTask('server', ['connect:livereload', 'watch']);
-    
-    
+
+
     // Default task.
     //grunt.registerTask('default', ['test', 'dist']);
 
     grunt.registerTask('default', ['dist', 'assemble']);
-    
+
 };

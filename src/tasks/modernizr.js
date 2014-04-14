@@ -55,4 +55,4 @@ module.exports = {
         // Have custom Modernizr tests? Add paths to their location here.
         "customTests": []
     }
-}
+};

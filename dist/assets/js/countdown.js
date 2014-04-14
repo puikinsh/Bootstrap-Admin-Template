@@ -24,7 +24,7 @@ $(function () {
     $('div[rel=tooltip]').tooltip();
 });
 
-    
+
 function updateBar(periods) {
 
     fillSecondBar(periods[6]);

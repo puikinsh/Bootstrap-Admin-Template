@@ -4,15 +4,14 @@
 * Copyright 2014
 * Licensed under  ()
 */
-;
-(function (window, Modernizr) {
+;(function (window, Modernizr) {
+    "use strict";
 
-    var
     // Is Modernizr defined on the global scope
-        Modernizr = typeof Modernizr !== "undefined" ? Modernizr : false,
+        Modernizr = typeof Modernizr !== "undefined" ? Modernizr : false;
 
     // whether or not is a touch device
-        isTouchDevice = Modernizr ? Modernizr.touch : !!('ontouchstart' in window || 'onmsgesturechange' in window),
+       var isTouchDevice = Modernizr ? Modernizr.touch : !!('ontouchstart' in window || 'onmsgesturechange' in window),
 
     // Are we expecting a touch or a click?
         buttonPressedEvent = ( isTouchDevice ) ? 'touchstart' : 'click',
@@ -30,8 +29,8 @@
     Metis.prototype.getViewportHeight = function () {
 
         var docElement = document.documentElement,
-            client = docElement['clientHeight'],
-            inner = window['innerHeight'];
+            client = docElement.clientHeight,
+            inner = window.innerHeight;
 
         if (client < inner)
             return inner;
@@ -42,8 +41,8 @@
     Metis.prototype.getViewportWidth = function () {
 
         var docElement = document.documentElement,
-            client = docElement['clientWidth'],
-            inner = window['innerWidth'];
+            client = docElement.clientWidth,
+            inner = window.innerWidth;
 
         if (client < inner)
             return inner;
@@ -757,24 +756,24 @@ function formWysiwyg() {
     /*----------- END Markdown.Editor CODE -------------------------*/
 
     /*----------- BEGIN cleditor CODE -------------------------*/
-    editor = $("#cleditor").cleditor({width: "100%", height: "100%"})[0].focus();
+    var cleditor = $("#cleditor").cleditor({width: "100%", height: "100%"})[0].focus();
     $(window).resize();
 
-    $(window).resize(function() {
+    $(window).resize(function () {
         var $win = $('#cleditorDiv');
-        $("#cleditor").width($win.width() - 24).height($win.height() - 24).offset({
+        cleditor.width($win.width() - 24).height($win.height() - 24).offset({
             left: 15,
             top: 15
         });
         editor.refresh();
     });
     /*----------- END cleditor CODE -------------------------*/
-    
+
     /*----------- BEGIN epiceditor CODE -------------------------*/
-    var opts={
-      basePath: 'assets/lib/epiceditor',
+    var opts = {
+        basePath: 'assets/lib/epiceditor'
     };
-    var editor = new EpicEditor(opts).load();
+    var epiceditor = new EpicEditor(opts).load();
     /*----------- END epiceditor CODE -------------------------*/
 }
 // Define toggleFullScreen
@@ -1280,17 +1279,25 @@ function metisTable() {
     /*----------- END action table CODE -------------------------*/
 
 }
-function metisPricing(){
-  $("#dark-toggle label").on("click", function(){	      
-		var $this = $(this);
-		$("ul.dark li.active").removeClass("primary success danger warning info default").addClass($this.find("input").val());
-	      });
-	      
-	      $("#light-toggle label").on("click", function(){	      
-		var $this = $(this);
-		$("ul#light li.active").removeClass("primary success danger warning info default").addClass($this.find("input").val());
-	      });
-};
+(function ($) {
+    "use strict";
+    var MetisPricing,
+        Metis = window.Metis;
+    MetisPricing = {
+        init: function () {
+            $("#dark-toggle label").on(Metis.buttonPressedEvent, function () {
+                var $this = $(this);
+                $("ul.dark li.active").removeClass("primary success danger warning info default").addClass($this.find("input").val());
+            });
+
+            $("#light-toggle label").on("click", function () {
+                var $this = $(this);
+                $("ul#light li.active").removeClass("primary success danger warning info default").addClass($this.find("input").val());
+            });
+        }
+    };
+    MetisPricing.init();
+})(jQuery);
 function progRess() {
 
     $.each($('.progress .progress-bar'), function () {

@@ -5,14 +5,12 @@ icon: fa fa-edit
 stylesheets:
 - lib/bootstrap3-wysihtml5-bower/bootstrap3-wysihtml5.min.css
 - lib/pagedown-bootstrap/css/jquery.pagedown-bootstrap.css
-- lib/cleditor/jquery.cleditor.css
-- css/jquery.cleditor-hack.css
 cdnjs:
 - //ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js
 - http://code.jquery.com/jquery-migrate-1.2.1.min.js
 javascripts:
 - lib/bootstrap3-wysihtml5-bower/bootstrap3-wysihtml5.all.min.js
-- lib/cleditor/jquery.cleditor.js
+- lib/ckeditor/ckeditor.js
 - lib/pagedown-bootstrap/js/jquery.pagedown-bootstrap.combined.min.js
 - lib/epiceditor/js/epiceditor.min.js
 scripts: $(function() {formWysiwyg();});
@@ -53,15 +51,15 @@ scripts: $(function() {formWysiwyg();});
         <div class="box">
             <header>
                 <div class="icons"><i class="fa fa-th-large"></i></div>
-                <h5>WYSIWYG Editor</h5>
+                <h5>CKEditor</h5>
                 <!-- .toolbar -->
             {{> toolbar}}
             <!-- /.toolbar -->
             </header>
 
-            <div id="cleditorDiv" class="body">
+            <div class="body">
                 <form>
-                    <textarea id="cleditor" class="form-control"></textarea>
+                    <textarea id="ckeditor" class="ckeditor"></textarea>
 
                     <div class="form-actions no-margin-bottom" id="cleditorForm">
                         <input type="submit" value="Submit" class="btn btn-primary">

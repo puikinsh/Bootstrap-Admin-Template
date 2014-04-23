@@ -78,7 +78,7 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
  * [SubtlePatterns](https://github.com/subtlepatterns/SubtlePatterns)
  * [FullCalendar](http://arshaw.com/fullcalendar/)
  * [Chosen](https://github.com/harvesthq/chosen)
- * [CLEditor](http://premiumsoftware.net/CLEditor)
+ * [CKEditor](http://ckeditor.com/)
  * [Colorpicker for Bootstrap](http://www.eyecon.ro/bootstrap-colorpicker/)
  * [Data Tables](http://www.datatables.net)
  * [Datepicker for Bootstrap](http://www.eyecon.ro/bootstrap-datepicker)

@@ -2,6 +2,8 @@ v2.2.4:
   date: "2014-04-23"
   changes:
     RTL version added
+    Remove CLEditor
+    Added CKEditor
 
 v2.2.3:
   date: "2014-04-13"

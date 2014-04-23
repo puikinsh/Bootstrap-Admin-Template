@@ -265,9 +265,9 @@ module.exports = {
             },
             {
                 expand: true,
-                cwd: 'bower_components/cleditor',
+                cwd: 'bower_components/ckeditor',
                 src: ['./**/*.*'],
-                dest: 'dist/assets/lib/cleditor'
+                dest: 'dist/assets/lib/ckeditor'
             },
             {
                 expand: true,

@@ -63,7 +63,7 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
 
 ## Release History
 **DATE**       **VERSION**   **CHANGES**                                        
-* 2014-04-23   v2.2.4        RTL version added                                  
+* 2014-04-23   v2.2.4        RTL version added Remove CLEditor Added CKEditor   
 * 2014-04-13   v2.2.3        rewrite all code                                   
 * 2014-04-10   v2.2.2        remove `alterne.html`,right panel available        
 * 2014-04-07   v2.2.1        all dependency require bower & npm                 
@@ -91,7 +91,7 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
  * [SubtlePatterns](https://github.com/subtlepatterns/SubtlePatterns)
  * [FullCalendar](http://arshaw.com/fullcalendar/)
  * [Chosen](https://github.com/harvesthq/chosen)
- * [CLEditor](http://premiumsoftware.net/CLEditor)
+ * [CKEditor](http://ckeditor.com/)
  * [Colorpicker for Bootstrap](http://www.eyecon.ro/bootstrap-colorpicker/)
  * [Data Tables](http://www.datatables.net)
  * [Datepicker for Bootstrap](http://www.eyecon.ro/bootstrap-datepicker)

@@ -6,3 +6,5 @@ before_script:
   - "npm install -g bower"
   - "bower install"
   - "grunt"
+after_script:
+  - "npm run buildrtl"

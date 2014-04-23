@@ -28,13 +28,5 @@ module.exports = {
         files: {
             'dist/assets/js/style-switcher.min.js': ['dist/assets/js/style-switcher.js']
         }
-    },
-    validation: {
-        files: [
-            {
-                'dist/assets/lib/jquery-validation/additional-methods.min.js': ['dist/assets/lib/jquery-validation/additional-methods.js'],
-                'dist/assets/lib/jquery-validation/jquery.validate.min.js': ['dist/assets/lib/jquery-validation/jquery.validate.js']
-            }
-        ]
     }
 };

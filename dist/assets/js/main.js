@@ -1,8 +1,8 @@
 /**
-* Metis - Bootstrap-Admin-Template v2.2.3
-* Author : [object Object] 
+* Metis - Bootstrap-Admin-Template v2.2.4
+* Author : onokumus 
 * Copyright 2014
-* Licensed under  ()
+* Licensed under MIT (https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/LICENSE.md)
 */
 ;(function (window, Modernizr) {
     "use strict";
@@ -412,7 +412,9 @@ function formGeneral() {
     });
 
     /*----------- BEGIN autosize CODE -------------------------*/
-    $('#autosize').autosize();
+    if($('#autosize').length){
+        $('#autosize').autosize();
+    }
     /*----------- END autosize CODE -------------------------*/
 
     /*----------- BEGIN inputlimiter CODE -------------------------*/

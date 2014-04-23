@@ -1,5 +1,5 @@
 /*!
- * Jasny Bootstrap v3.1.1 (http://jasny.github.io/bootstrap)
+ * Jasny Bootstrap v3.1.2 (http://jasny.github.io/bootstrap)
  * Copyright 2012-2014 Arnold Daniels
  * Licensed under Apache-2.0 (https://github.com/jasny/bootstrap/blob/master/LICENSE)
  */
@@ -530,15 +530,8 @@
   cursor: pointer;
   filter: alpha(opacity=0);
   opacity: 0;
-  -webkit-transform: translate(-300px, 0) scale(4);
-          transform: translate(-300px, 0) scale(4);
 
   direction: ltr;
-}
-@-moz-document url-prefix() {
-  .btn-file > input {
-    transform: none;
-  }
 }
 .fileinput {
   display: inline-block;
@@ -582,6 +575,13 @@
 }
 .fileinput.input-group {
   display: table;
+}
+.fileinput.input-group > * {
+  position: relative;
+  z-index: 2;
+}
+.fileinput.input-group > .btn-file {
+  z-index: 1;
 }
 .fileinput-new.input-group .btn-file,
 .fileinput-new .input-group .btn-file {

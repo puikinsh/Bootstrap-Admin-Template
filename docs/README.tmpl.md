@@ -29,14 +29,25 @@ ready `dist` folder your use
 #### {%= version %} Version
 required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](http://gruntjs.com/getting-started)
 
+```shell
     $ git clone https://github.com/onokumus/Bootstrap-Admin-Template.git yourfoldername
     $ cd yourfoldername
     $ npm install
-    $ bower install (./node_modules/bower/bin/bower install)
-    $ grunt (./node_modules/grunt-cli/bin/grunt)
-    $ cd dist/
-    $ open index.html
-    
+    $ npm run build
+    $ grunt connect
+```
+
+#### {%= version %} RTL Version
+required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](http://gruntjs.com/getting-started)
+
+```shell
+    $ git clone https://github.com/onokumus/Bootstrap-Admin-Template.git yourfoldername
+    $ cd yourfoldername
+    $ npm install
+    $ npm run buildrtl
+    $ grunt connect
+```
+
 #### 1.2 Version
     $ git clone -b v1.2 https://github.com/onokumus/Bootstrap-Admin-Template.git yourfoldername
     $ cd yourfoldername
@@ -46,6 +57,7 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
 
 ### Demo
  * [Demo {%= version %}](http://demo.onokumus.com/metis/)
+ * [RTL {%= version %}](http://demo.onokumus.com/metis/rtl/)
  * [v1.2 `not development`](http://demo.onokumus.com/metis/v12)
 
 

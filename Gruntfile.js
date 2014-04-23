@@ -22,7 +22,7 @@ module.exports = function (grunt) {
 
         banner: '/**\n' +
             '* Metis - <%=pkg.name %> v<%= pkg.version %>\n' +
-            '* Author : <%= pkg.author %> \n' +
+            '* Author : <%= pkg.author.name %> \n' +
             '* Copyright <%= grunt.template.today("yyyy") %>\n' +
             '* Licensed under <%= pkg.licenses.type %> (<%= pkg.licenses.url %>)\n' +
             '*/\n',

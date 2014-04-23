@@ -5,11 +5,28 @@
     <title>{{ title }}</title>
     <meta name="msapplication-TileColor" content="#5bc0de"/>
     <meta name="msapplication-TileImage" content="{{assets}}/img/metis-tile.png"/>
-
+    
+    <!-- Bootstrap -->
+    {{#if rtl}}
+    <link rel="stylesheet" href="{{assets}}/lib/bootstrap/css/bootstrap.rtl.css">
+    {{else}}
     <link rel="stylesheet" href="{{assets}}/lib/bootstrap/css/bootstrap.min.css">
+    {{/if}}
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="{{assets}}/lib/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{assets}}/css/countdown.css">
+    <!-- Metis core stylesheet -->
+    {{#if rtl}}
+    <link rel="stylesheet" href="{{assets}}/css/main.rtl.css">
+    {{else}}
     <link rel="stylesheet" href="{{assets}}/css/main.min.css">
+    {{/if}}
+    
+    <link rel="stylesheet" href="{{assets}}/css/countdown.css">
+    
+    {{#if rtl}}
+    <style>body{direction: rtl;}</style>
+    {{/if}}
+    
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;

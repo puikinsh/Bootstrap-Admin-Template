@@ -8,14 +8,25 @@
     <!--Mobile first-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap -->
+    {{#if rtl}}
+    <link rel="stylesheet" href="{{assets}}/lib/bootstrap/css/bootstrap.rtl.css">
+    {{else}}
     <link rel="stylesheet" href="{{assets}}/lib/bootstrap/css/bootstrap.min.css">
+    {{/if}}
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{assets}}/lib/font-awesome/css/font-awesome.min.css">
     <!-- Metis core stylesheet -->
+    {{#if rtl}}
+    <link rel="stylesheet" href="{{assets}}/css/main.rtl.css">
+    {{else}}
     <link rel="stylesheet" href="{{assets}}/css/main.min.css">
+    {{/if}}
     <!-- Metis Theme stylesheet -->
     <link rel="stylesheet" href="{{assets}}/css/theme.css">
     
+    {{#if rtl}}
+    <style>body{direction: rtl;}</style>
+    {{/if}}
    
     {{#if stylesheets}}
         {{css stylesheets}}
@@ -28,10 +39,10 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="{{assets}}                           "></script>
-    <script src="{{assets}}                           "></script>
+    <script src="{{assets}}/lib/html5shiv/html5shiv.js"></script>
+    <script src="{{assets}}/lib/respond/respond.min.js"></script>
     <![endif]-->
-    <!--Modernizr 2.7.1-->
+    <!--Modernizr 2.7.2-->
     <script src="{{assets}}/lib/modernizr/modernizr.min.js"></script>
 </head>
 <body>

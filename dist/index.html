@@ -27,11 +27,11 @@
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 
     <!--[if lt IE 9]>
-      <script src="assets                           "></script>
-        <script src="assets                           "></script>
+      <script src="assets/lib/html5shiv/html5shiv.js"></script>
+        <script src="assets/lib/respond/respond.min.js"></script>
         <![endif]-->
 
-    <!--Modernizr 2.7.1-->
+    <!--Modernizr 2.7.2-->
     <script src="assets/lib/modernizr/modernizr.min.js"></script>
   </head>
   <body>
@@ -408,14 +408,14 @@
                 <li>
                   <a href="#building">Building</a> 
                   <ul>
-                    <li> <a href="#2.2.3-version">2.2.3 Version</a>  </li>
+                    <li> <a href="#2.2.4-version">2.2.4 Version</a>  </li>
                     <li> <a href="#12-version">1.2 Version</a>  </li>
                   </ul>
                 </li>
                 <li>
                   <a href="#demo">Demo</a> 
                   <ul>
-                    <li> <a href="#2.2.3-version">For 2.2.3 version</a>  </li>
+                    <li> <a href="#2.2.4-version">For 2.2.4 version</a>  </li>
                     <li> <a href="#for-12-version">For 1.2 version</a>  </li>
                   </ul>
                 </li>
@@ -433,24 +433,33 @@
                 </li>
                 <li>
                   <p>Bootstrap 3.1.1
-                    <a href="https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip">2.2.3</a> 
+                    <a href="https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip">2.2.4</a> 
                     ready <code>dist</code> folder your use</p>
                 </li>
               </ul>
               <h3 id="building">Building</h3>
-              <h4 id="2-2-3-version">2.2.3 Version</h4>
+              <h4 id="2-2-4-version">2.2.4 Version</h4>
               <p>required
                 <a href="http://nodejs.org/">node.js</a> &amp;
                 <a href="http://bower.io/">bower</a> &amp;
                 <a href="http://gruntjs.com/getting-started">grunt</a> 
               </p>
-              <pre><code>$ git clone https://github.com/onokumus/Bootstrap-Admin-Template.git yourfoldername
-$ cd yourfoldername
-$ npm install
-$ bower install (./node_modules/bower/bin/bower install)
-$ grunt (./node_modules/grunt-cli/bin/grunt)
-$ cd dist/
-$ open index.html</code></pre>
+              <pre><code class="language-shell">    $ git clone https://github.com/onokumus/Bootstrap-Admin-Template.git yourfoldername
+    $ cd yourfoldername
+    $ npm install
+    $ npm run build
+    $ grunt connect</code></pre>
+              <h4 id="2-2-4-rtl-version">2.2.4 RTL Version</h4>
+              <p>required
+                <a href="http://nodejs.org/">node.js</a> &amp;
+                <a href="http://bower.io/">bower</a> &amp;
+                <a href="http://gruntjs.com/getting-started">grunt</a> 
+              </p>
+              <pre><code class="language-shell">    $ git clone https://github.com/onokumus/Bootstrap-Admin-Template.git yourfoldername
+    $ cd yourfoldername
+    $ npm install
+    $ npm run buildrtl
+    $ grunt connect</code></pre>
               <h4 id="1-2-version">1.2 Version</h4>
               <pre><code>$ git clone -b v1.2 https://github.com/onokumus/Bootstrap-Admin-Template.git yourfoldername
 $ cd yourfoldername
@@ -459,7 +468,8 @@ $ git submodule update
 $ open index.html</code></pre>
               <h3 id="demo">Demo</h3>
               <ul>
-                <li> <a href="http://demo.onokumus.com/metis/">Demo 2.2.3</a>  </li>
+                <li> <a href="http://demo.onokumus.com/metis/">Demo 2.2.4</a>  </li>
+                <li> <a href="http://demo.onokumus.com/metis/rtl/">RTL 2.2.4</a>  </li>
                 <li>
                   <a href="http://demo.onokumus.com/metis/v12">v1.2 <code>not development</code>
                   </a> 
@@ -469,6 +479,7 @@ $ open index.html</code></pre>
               <p><strong>DATE</strong>   <strong>VERSION</strong>   <strong>CHANGES</strong>  
               </p>
               <ul>
+                <li>2014-04-23 v2.2.4 RTL version added</li>
                 <li>2014-04-13 v2.2.3 rewrite all code</li>
                 <li>2014-04-10 v2.2.2 remove <code>alterne.html</code>,right panel available</li>
                 <li>2014-04-07 v2.2.1 all dependency require bower &amp; npm</li>
@@ -536,7 +547,7 @@ $ open index.html</code></pre>
                 <li>onokumus</li>
               </ul>
               <h3 id="license">License</h3>
-              <p>Copyright (c) 2014 onokumus, contributors. Released under the MIT license</p>
+              <p>Copyright (c) 2014 onokumus, contributors. Released under the , licenses</p>
             </div>
           </div><!-- /.inner -->
         </div><!-- /.outer -->

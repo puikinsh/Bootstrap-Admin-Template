@@ -31,11 +31,11 @@
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 
     <!--[if lt IE 9]>
-      <script src="assets                           "></script>
-        <script src="assets                           "></script>
+      <script src="assets/lib/html5shiv/html5shiv.js"></script>
+        <script src="assets/lib/respond/respond.min.js"></script>
         <![endif]-->
 
-    <!--Modernizr 2.7.1-->
+    <!--Modernizr 2.7.2-->
     <script src="assets/lib/modernizr/modernizr.min.js"></script>
   </head>
   <body>
@@ -404,20 +404,23 @@
                       <i class="fa fa-th-large"></i>
                     </div>
                     <h5>Basic Editor</h5>
-                    <ul class="nav pull-right">
-                      <li>
-                        <div class="btn-group">
-                          <a class="accordion-toggle btn btn-default btn-xs minimize-box" data-toggle="collapse" href="#div-1">
-                            <i class="fa fa-minus"></i>
-                          </a> 
-                          <button class="btn btn-danger btn-xs close-box">
-                            <i class="fa fa-times"></i>
-                          </button>
-                        </div>
-                      </li>
-                    </ul>
+
+                    <!-- .toolbar -->
+                    <div class="toolbar">
+                      <nav style="padding: 8px;">
+                        <a href="javascript:;" class="btn btn-default btn-xs collapse-box">
+                          <i class="fa fa-minus"></i>
+                        </a> 
+                        <a href="javascript:;" class="btn btn-default btn-xs full-box">
+                          <i class="fa fa-expand"></i>
+                        </a> 
+                        <a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                          <i class="fa fa-times"></i>
+                        </a> 
+                      </nav>
+                    </div><!-- /.toolbar -->
                   </header>
-                  <div id="div-1" class="body collapse in">
+                  <div id="div-1" class="body">
                     <form>
                       <textarea id="wysihtml5" class="form-control" rows="10"></textarea>
                       <div class="form-actions">
@@ -436,20 +439,23 @@
                       <i class="fa fa-th-large"></i>
                     </div>
                     <h5>WYSIWYG Editor</h5>
-                    <ul class="nav pull-right">
-                      <li>
-                        <div class="btn-group">
-                          <a class="accordion-toggle btn btn-default btn-xs minimize-box" data-toggle="collapse" href="#cleditorDiv">
-                            <i class="fa fa-minus"></i>
-                          </a> 
-                          <button class="btn btn-xs btn-danger close-box">
-                            <i class="fa fa-times"></i>
-                          </button>
-                        </div>
-                      </li>
-                    </ul>
+
+                    <!-- .toolbar -->
+                    <div class="toolbar">
+                      <nav style="padding: 8px;">
+                        <a href="javascript:;" class="btn btn-default btn-xs collapse-box">
+                          <i class="fa fa-minus"></i>
+                        </a> 
+                        <a href="javascript:;" class="btn btn-default btn-xs full-box">
+                          <i class="fa fa-expand"></i>
+                        </a> 
+                        <a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                          <i class="fa fa-times"></i>
+                        </a> 
+                      </nav>
+                    </div><!-- /.toolbar -->
                   </header>
-                  <div id="cleditorDiv" class="body collapse in">
+                  <div id="cleditorDiv" class="body">
                     <form>
                       <textarea id="cleditor" class="form-control"></textarea>
                       <div class="form-actions no-margin-bottom" id="cleditorForm">
@@ -495,20 +501,23 @@
                       <i class="fa fa-edit"></i>
                     </div>
                     <h5>epiceditor</h5>
-                    <ul class="nav pull-right">
-                      <li>
-                        <div class="btn-group">
-                          <a class="accordion-toggle btn btn-default btn-xs minimize-box" data-toggle="collapse" href="#cleditorDiv">
-                            <i class="fa fa-minus"></i>
-                          </a> 
-                          <button class="btn btn-xs btn-danger close-box">
-                            <i class="fa fa-times"></i>
-                          </button>
-                        </div>
-                      </li>
-                    </ul>
+
+                    <!-- .toolbar -->
+                    <div class="toolbar">
+                      <nav style="padding: 8px;">
+                        <a href="javascript:;" class="btn btn-default btn-xs collapse-box">
+                          <i class="fa fa-minus"></i>
+                        </a> 
+                        <a href="javascript:;" class="btn btn-default btn-xs full-box">
+                          <i class="fa fa-expand"></i>
+                        </a> 
+                        <a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                          <i class="fa fa-times"></i>
+                        </a> 
+                      </nav>
+                    </div><!-- /.toolbar -->
                   </header>
-                  <div id="epiceditorDiv" class="body collapse in">
+                  <div id="epiceditorDiv" class="body">
                     <div id="epiceditor">
                       <textarea id="my-edit-area"></textarea>
                     </div><!-- /#epiceditor -->

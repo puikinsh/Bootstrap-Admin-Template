@@ -12,8 +12,8 @@ cdnjs:
 javascripts:
 - lib/validationEngine/js/jquery.validationEngine.js
 - lib/validationEngine/js/languages/jquery.validationEngine-en.js
-- lib/jquery-validation/jquery.validate.min.js
-- lib/jquery-validation/localization/messages_ja.js
+- lib/jquery-validation/dist/jquery.validate.min.js
+- lib/jquery-validation/src/localization/messages_ja.js
 scripts: $(function() { formValidation(); });
 ---
 <style>
@@ -27,22 +27,12 @@ scripts: $(function() { formValidation(); });
             <header class="dark">
                 <div class="icons"><i class="fa fa-ok"></i></div>
                 <h5>Popup Validation</h5>
-                <div class="toolbar">
-                    <ul class="nav">
-                        <li>
-                            <div class="btn-group">
-                                <a class="accordion-toggle btn btn-xs minimize-box" data-toggle="collapse"
-                                   href="#collapse2">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <button class="btn btn-xs btn-danger close-box"><i class="fa fa-remove"></i></button>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                <!-- .toolbar -->
+            {{> toolbar}}
+            <!-- /.toolbar -->
 
             </header>
-            <div id="collapse2" class="body collapse in">
+            <div id="collapse2" class="body">
                 <form class="form-horizontal" id="popup-validation">
 
                     <div class="form-group">
@@ -187,24 +177,12 @@ scripts: $(function() { formValidation(); });
             <header>
                 <div class="icons"><i class="fa fa-th-large"></i></div>
                 <h5>Block Validation</h5>
-                <div class="toolbar">
-                    <ul class="nav">
-                        <li>
-                            <div class="btn-group">
-                                <a class="accordion-toggle btn btn-xs minimize-box" data-toggle="collapse"
-                                   href="#collapseOne">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <button class="btn btn-xs btn-danger close-box">
-                                    <i class="fa fa-remove"></i>
-                                </button>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                <!-- .toolbar -->
+            {{> toolbar}}
+            <!-- /.toolbar -->
 
             </header>
-            <div id="collapseOne" class="accordion-body collapse in body">
+            <div id="collapseOne" class="body">
                 <form action="#" class="form-horizontal" id="block-validate">
 
                     <div class="form-group">
@@ -289,22 +267,12 @@ scripts: $(function() { formValidation(); });
             <header>
                 <div class="icons"><i class="fa fa-ok"></i></div>
                 <h5>Inline Validation</h5>
-                <div class="toolbar">
-                    <ul class="nav">
-                        <li>
-                            <div class="btn-group">
-                                <a class="accordion-toggle btn btn-xs minimize-box" data-toggle="collapse"
-                                   href="#collapse3">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <button class="btn btn-xs btn-danger close-box"><i class="fa fa-remove"></i></button>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                <!-- .toolbar -->
+            {{> toolbar}}
+            <!-- /.toolbar -->
 
             </header>
-            <div id="collapse3" class="accordion-body collapse in body">
+            <div id="collapse3" class="body">
                 <form action="#" class="form-horizontal" id="inline-validate">
                     <div class="form-group">
                         <label class="control-label col-lg-4">Required</label>

@@ -1,7 +1,7 @@
 {
   "name": "Bootstrap-Admin-Template",
   "description": "Free Admin Template Based On Twitter Bootstrap 3.x",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "homepage": "https://github.com/onokumus/Bootstrap-Admin-Template",
   "author": {
     "name": "onokumus",
@@ -18,14 +18,17 @@
     "node": ">=0.8"
   },
   "scripts": {
-    "test": "grunt assemble"
+    "bower": "bower install",
+    "grunt": "grunt",
+    "build": "npm run bower && npm run grunt",
+    "mainrtl": "css-flip dist/assets/css/main.css > dist/assets/css/main.rtl.css",
+    "bootstraprtl": "css-flip dist/assets/lib/bootstrap/css/bootstrap.css > dist/assets/lib/bootstrap/css/bootstrap.rtl.css",
+    "buildrtl": "npm run build && npm run mainrtl && npm run bootstraprtl"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/LICENSE.md"
-    }
-  ],
+  "licenses": {
+    "type": "MIT",
+    "url": "https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/LICENSE.md"
+  },
   "keywords": [
     "twbs",
     "assemble",
@@ -52,6 +55,7 @@
     "screenfull": "^1.1.1",
     "cssbeautify": "^0.3.1",
     "epiceditor": "^0.2.0",
-    "less": "^1.7.0"
+    "less": "^1.7.0",
+    "css-flip": "^0.3.0"
   }
 }

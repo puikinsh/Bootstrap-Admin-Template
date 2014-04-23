@@ -5,10 +5,10 @@
 ## TOC
   * [Download](#download)
   * [Building](#building)
-    * [2.2.3 Version](#2.2.3-version)
+    * [2.2.4 Version](#2.2.4-version)
     * [1.2 Version](#12-version)
   * [Demo](#demo)
-    * [For 2.2.3 version](#2.2.3-version)
+    * [For 2.2.4 version](#2.2.4-version)
     * [For 1.2 version](#for-12-version)
   * [Release History](#release-history)
   * [Credits](#credits)
@@ -19,24 +19,35 @@
  * Bootstrap 2.3.2 [V.1.2](https://github.com/onokumus/Bootstrap-Admin-Template/archive/v1.2.zip)
 ready for use
 
- * Bootstrap 3.1.1 [2.2.3](https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip)
+ * Bootstrap 3.1.1 [2.2.4](https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip)
 ready `dist` folder your use
 
 
 
 ### Building
 
-#### 2.2.3 Version
+#### 2.2.4 Version
 required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](http://gruntjs.com/getting-started)
 
+```shell
     $ git clone https://github.com/onokumus/Bootstrap-Admin-Template.git yourfoldername
     $ cd yourfoldername
     $ npm install
-    $ bower install (./node_modules/bower/bin/bower install)
-    $ grunt (./node_modules/grunt-cli/bin/grunt)
-    $ cd dist/
-    $ open index.html
-    
+    $ npm run build
+    $ grunt connect
+```
+
+#### 2.2.4 RTL Version
+required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](http://gruntjs.com/getting-started)
+
+```shell
+    $ git clone https://github.com/onokumus/Bootstrap-Admin-Template.git yourfoldername
+    $ cd yourfoldername
+    $ npm install
+    $ npm run buildrtl
+    $ grunt connect
+```
+
 #### 1.2 Version
     $ git clone -b v1.2 https://github.com/onokumus/Bootstrap-Admin-Template.git yourfoldername
     $ cd yourfoldername
@@ -45,12 +56,14 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
     $ open index.html
 
 ### Demo
- * [Demo 2.2.3](http://demo.onokumus.com/metis/)
+ * [Demo 2.2.4](http://demo.onokumus.com/metis/)
+ * [RTL 2.2.4](http://demo.onokumus.com/metis/rtl/)
  * [v1.2 `not development`](http://demo.onokumus.com/metis/v12)
 
 
 ## Release History
 **DATE**       **VERSION**   **CHANGES**                                        
+* 2014-04-23   v2.2.4        RTL version added                                  
 * 2014-04-13   v2.2.3        rewrite all code                                   
 * 2014-04-10   v2.2.2        remove `alterne.html`,right panel available        
 * 2014-04-07   v2.2.1        all dependency require bower & npm                 
@@ -118,4 +131,4 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
 
 ### License
 Copyright (c) 2014 onokumus, contributors.
-Released under the MIT license
+Released under the ,  licenses

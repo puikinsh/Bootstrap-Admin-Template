@@ -11,7 +11,7 @@ module.exports = {
     },
     main: {
         options: {
-            layout: 'default.hbs'
+            layout: 'default.hbs',
         },
         files: [
             {
@@ -27,7 +27,7 @@ module.exports = {
             layout: 'login.hbs'
         },
         files: [
-            {expand: true, cwd: 'src/templates/login', src: ['login.hbs'], dest: 'dist/'}
+        {expand: true, cwd: 'src/templates/login', src: ['login.hbs'], dest: '<%= config.dest %>'}
         ]
     },
     errors: {
@@ -35,7 +35,7 @@ module.exports = {
             layout: 'errors.hbs'
         },
         files: [
-            {expand: true, cwd: 'src/templates/errors', src: ['*.hbs'], dest: 'dist/'}
+        {expand: true, cwd: 'src/templates/errors', src: ['*.hbs'], dest: '<%= config.dest %>'}
         ]
     },
     countdown: {
@@ -43,7 +43,48 @@ module.exports = {
             layout: 'countdown.hbs'
         },
         files: [
-            {expand: true, cwd: 'src/templates/countdown', src: ['*.hbs'], dest: 'dist/'}
+        {expand: true, cwd: 'src/templates/countdown', src: ['*.hbs'], dest: '<%= config.dest %>'}
         ]
+    },
+    mainrtl: {
+      options: {
+        layout: 'default.hbs',
+        rtl: true
+      },
+      files: [
+      {
+        expand: true,
+        cwd: '<%= config.pages %>',
+        src: ['*.hbs'],
+        dest: '<%= config.dest %>/rtl'
+      }
+      ]
+    },
+    loginrtl: {
+      options: {
+        layout: 'login.hbs',
+        rtl: true
+      },
+      files: [
+      {expand: true, cwd: 'src/templates/login', src: ['login.hbs'], dest: '<%= config.dest %>/rtl'}
+      ]
+    },
+    errorsrtl: {
+      options: {
+        layout: 'errors.hbs',
+        rtl: true
+      },
+      files: [
+      {expand: true, cwd: 'src/templates/errors', src: ['*.hbs'], dest: '<%= config.dest %>/rtl'}
+      ]
+    },
+    countdownrtl: {
+      options: {
+        layout: 'countdown.hbs',
+        rtl: true
+      },
+      files: [
+      {expand: true, cwd: 'src/templates/countdown', src: ['*.hbs'], dest: '<%= config.dest %>/rtl'}
+      ]
     }
 };

@@ -63,9 +63,8 @@ module.exports = {
                 expand: true,
                 cwd: 'bower_components/jquery-validation',
                 src: [
-                    './**/jquery.validate.js',
-                    './**/additional-methods.js',
-                    './localization/*.js'
+                    './dist/*.js',
+                    './src/localization/*.js'
                 ],
                 dest: 'dist/assets/lib/jquery-validation'
             },

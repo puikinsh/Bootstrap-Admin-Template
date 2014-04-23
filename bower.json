@@ -1,7 +1,7 @@
 {
   "name": "Bootstrap-Admin-Template",
   "description": "Twitter Bootstrap Admin Template",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "homepage": "https://github.com/onokumus/Bootstrap-Admin-Template",
   "authors": [
     "onokumus <onokumus@gmail.com>"
@@ -43,20 +43,19 @@
     "formwizard": "https://github.com/thecodemine/formwizard.git#~3.0.7",
     "jquery-ui-touch-punch": "https://github.com/furf/jquery-ui-touch-punch.git",
     "elfinder": "https://github.com/downloads/Studio-42/elFinder/elfinder-2.0-rc1.tar.gz",
-    "jquery-validation": "~1.11.2",
-    "bootstrap": "~3.1.1",
-    "html5shiv": "~3.7.0",
+    "jquery-validation": "http://jqueryvalidation.org/files/jquery-validation-1.12.0.zip",
+    "html5shiv": "~3.7.1",
     "respond": "~1.4.2",
     "font-awesome": "~4.0.3",
     "gmaps": "~0.4.11",
-    "jquery.tablesorter": "~2.15.13",
-    "jquery-autosize": "~1.18.6",
-    "flot": "~0.8.2",
-    "jquery-mousewheel": "~3.1.9",
+    "jquery.tablesorter": "~2.15.14",
+    "jquery-autosize": "~1.18.7",
+    "flot": "~0.8.3",
+    "jquery-mousewheel": "~3.1.11",
     "kbwood_countdown": "~2.0.0",
     "jquery.uniform": "~2.1.2",
     "bootstrap-timepicker": "~0.2.6",
-    "bootstrap-daterangepicker": "~1.3.4",
+    "bootstrap-daterangepicker": "~1.3.5",
     "jQuery.validVal": "~5.0.2",
     "jquery.gritter": "*",
     "plupload": "~2.1.1",
@@ -67,12 +66,16 @@
     "jquery.tagsinput": "~1.3.2",
     "datatables": "~1.9.4",
     "datatables-plugins": "*",
-    "jasny-bootstrap": "~3.1.1",
+    "jasny-bootstrap": "~3.1.2",
     "blueimp-md5": "~1.1.0",
     "jquery-inputlimiter": "*",
     "bootstrap-duallistbox": "~3.0.1",
     "fullcalendar": "~1.6.4",
     "bootstrap3-wysihtml5-bower": "~0.2.9",
     "holderjs": "~2.3.2"
+  },
+  "resolutions":{
+    "jquery": "~2.1.0",
+    "bootstrap": "~3.1.1"
   }
 }

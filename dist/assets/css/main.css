@@ -176,6 +176,10 @@ body {
   margin: 10px 0;
   text-align: right;
 }
+#top .topnav .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
 @media (min-width: 768px) {
   #top .topnav {
     float: right;

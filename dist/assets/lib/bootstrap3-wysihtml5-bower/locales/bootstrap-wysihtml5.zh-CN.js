@@ -1,7 +1,15 @@
 /**
  * Chinese translation for bootstrap-wysihtml5
  */
-(function($){
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define('bootstrap.wysihtml5.zh-CN', ['jquery', 'bootstrap.wysihtml5'], factory);
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function($){
     $.fn.wysihtml5.locale["zh-CN"] = {
         font_styles: {
             normal: "正文",
@@ -49,4 +57,4 @@
             orange: "橙色"
         }
     };
-}(jQuery));
+}));

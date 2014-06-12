@@ -4,7 +4,7 @@ module.exports = {
         tasks: ['assemble']
     },
     less: {
-        files: ['src/templates/less/**/*.less'],
+        files: ['src/assets/less/**/*.less'],
         tasks: ['copy:main', 'less']
     },
     script: {
@@ -18,7 +18,8 @@ module.exports = {
         files: [
             'dist/{,*/}*.html',
             'dist/assets/{,*/}*.less',
-            'dist/assets/{,*/}*.css'
+            'dist/assets/{,*/}*.css',
+            'dist/assets/{,*/}*.js'
         ]
     }
 };

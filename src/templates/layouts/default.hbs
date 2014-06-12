@@ -22,7 +22,6 @@
     <link rel="stylesheet" href="{{assets}}/css/main.min.css">
     {{/if}}
     <!-- Metis Theme stylesheet -->
-    <link rel="stylesheet" href="{{assets}}/css/theme.css">
     
     {{#if rtl}}
     <style>body{direction: rtl;}</style>
@@ -42,11 +41,24 @@
     <script src="{{assets}}/lib/html5shiv/html5shiv.js"></script>
     <script src="{{assets}}/lib/respond/respond.min.js"></script>
     <![endif]-->
-    <!--Modernizr 2.7.2-->
+    <!--For Development Only. Not required -->
+    <script>
+        less = {
+            env: "development",
+            relativeUrls: false,
+            rootpath: "../assets/"
+        };
+    </script>
+    <link rel="stylesheet" href="{{assets}}/css/style-switcher.css">
+    <link rel="stylesheet/less" type="text/css" href="{{assets}}/css/less/theme.less">
+    <script src="{{assets}}/lib/less/less-1.7.0.min.js"></script>
+    
+    
+    <!--Modernizr 2.8.2-->
     <script src="{{assets}}/lib/modernizr/modernizr.min.js"></script>
 </head>
-<body>
-<div id="wrap">
+<body class="{{#if boXed}}boxed{{/if}} {{#if sideMini}}sidebar-left-mini{{/if}} {{#if fixedMenu}}menu-affix{{/if}}">
+<div class="bg-dark dk" id="wrap">
     <div id="top">
         {{> nav }}
 
@@ -57,7 +69,7 @@
             <!-- /.search-bar -->
 
             <div class="main-bar">
-                <h3><i class="{{ icon }}"></i> {{ title }}</h3>
+                <h3><i class="{{ icon }}"></i>&nbsp; {{ title }}</h3>
             </div>
             <!-- /.main-bar -->
         </header>
@@ -70,7 +82,7 @@
     <!-- /#left -->
     <div id="content">
         <div class="outer">
-            <div class="inner">
+            <div class="inner bg-light lter">
                 {{> body }}
             </div>
             <!-- /.inner -->
@@ -79,45 +91,52 @@
     </div>
     <!-- /#content -->
 
-    <div id="right">
+    <div id="right" class="bg-light lter">
         {{> right }}
     </div>
     <!-- /#right -->
 </div>
 <!-- /#wrap -->
-<footer id="footer">
+<footer class="Footer bg-dark dker">
     <p>2014 &copy; Metis Bootstrap Admin Template</p>
 </footer>
 <!-- /#footer -->
 
 {{> helpModal }}
 
-<!--jQuery 2.1.0 -->
+<!--jQuery 2.1.1 -->
 <script src="{{assets}}/lib/jquery/jquery.min.js"></script>
 <!--Bootstrap -->
 <script src="{{assets}}/lib/bootstrap/js/bootstrap.min.js"></script>
-
-<!-- Screenfull -->
-<script src="{{assets}}/lib/screenfull/screenfull.js"></script>
 
 {{#if cdnjs}}
     {{cdn cdnjs}}
 {{/if}}
 
+<!-- Screenfull -->
+<script src="{{assets}}/lib/screenfull/screenfull.js"></script>
+
+{{#is title "Maps"}}
+    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+{{/is}}
+
 {{#if javascripts}}
     {{js javascripts}}
 {{/if}}
 
+
+
+
+<!-- Metis core scripts -->
+<script src="{{assets}}/js/core.min.js"></script>
+
+<!-- Metis demo scripts -->
+<script src="{{assets}}/js/app.js"></script>
 {{#if scripts}}
     <script>
             {{scripts}}
     </script>
 {{/if}}
-
-
-<!-- Metis core scripts -->
-<script src="{{assets}}/js/main.min.js"></script>
-<!--For Demo Only. Not required -->
-<script src="{{assets}}/js/style-switcher.min.js"></script>
+    <script src="{{assets}}/js/style-switcher.js"></script>
 </body>
 </html>

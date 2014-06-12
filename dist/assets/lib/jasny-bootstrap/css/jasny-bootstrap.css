@@ -1,5 +1,5 @@
 /*!
- * Jasny Bootstrap v3.1.2 (http://jasny.github.io/bootstrap)
+ * Jasny Bootstrap v3.1.3 (http://jasny.github.io/bootstrap)
  * Copyright 2012-2014 Arnold Daniels
  * Licensed under Apache-2.0 (https://github.com/jasny/bootstrap/blob/master/LICENSE)
  */
@@ -140,7 +140,7 @@
 .navmenu,
 .navbar-offcanvas {
   width: 300px;
-  height: 100%;
+  height: auto;
   border-style: solid;
   border-width: 1px;
   border-radius: 4px;
@@ -150,15 +150,15 @@
 .navbar-offcanvas {
   position: fixed;
   top: 0;
+  bottom: 0;
   z-index: 1030;
+  overflow-y: auto;
   border-radius: 0;
 }
 .navmenu-fixed-left,
 .navbar-offcanvas.navmenu-fixed-left {
   right: auto;
-  bottom: 0;
   left: 0;
-  overflow-y: auto;
   border-width: 0 1px 0 0;
 }
 .navmenu-fixed-right,

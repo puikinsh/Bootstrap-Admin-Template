@@ -7,12 +7,22 @@ module.exports = {
         data: '<%= config.data %>',
         partials: ['<%= config.partials %>'],
         helpers: '<%= config.helpers %>',
-        layoutdir: '<%= config.layoutdir %>'
+        layoutdir: '<%= config.layoutdir %>',
+        layout: 'default',
+        layoutext: '.hbs',
+        marked: {
+            breaks: false,
+            gfm: true,
+            langPrefix: 'language-',
+            pedantic: false,
+            sanitize: false,
+            silent: false,
+            smartLists: false,
+            smartypants: false,
+            tables: true 
+        }
     },
     main: {
-        options: {
-            layout: 'default.hbs',
-        },
         files: [
             {
                 expand: true,
@@ -22,33 +32,9 @@ module.exports = {
             }
         ]
     },
-    login: {
-        options: {
-            layout: 'login.hbs'
-        },
-        files: [
-        {expand: true, cwd: 'src/templates/login', src: ['login.hbs'], dest: '<%= config.dest %>'}
-        ]
-    },
-    errors: {
-        options: {
-            layout: 'errors.hbs'
-        },
-        files: [
-        {expand: true, cwd: 'src/templates/errors', src: ['*.hbs'], dest: '<%= config.dest %>'}
-        ]
-    },
-    countdown: {
-        options: {
-            layout: 'countdown.hbs'
-        },
-        files: [
-        {expand: true, cwd: 'src/templates/countdown', src: ['*.hbs'], dest: '<%= config.dest %>'}
-        ]
-    },
-    mainrtl: {
+    rtl: {
       options: {
-        layout: 'default.hbs',
+        layout: 'default',
         rtl: true
       },
       files: [
@@ -58,33 +44,6 @@ module.exports = {
         src: ['*.hbs'],
         dest: '<%= config.dest %>/rtl'
       }
-      ]
-    },
-    loginrtl: {
-      options: {
-        layout: 'login.hbs',
-        rtl: true
-      },
-      files: [
-      {expand: true, cwd: 'src/templates/login', src: ['login.hbs'], dest: '<%= config.dest %>/rtl'}
-      ]
-    },
-    errorsrtl: {
-      options: {
-        layout: 'errors.hbs',
-        rtl: true
-      },
-      files: [
-      {expand: true, cwd: 'src/templates/errors', src: ['*.hbs'], dest: '<%= config.dest %>/rtl'}
-      ]
-    },
-    countdownrtl: {
-      options: {
-        layout: 'countdown.hbs',
-        rtl: true
-      },
-      files: [
-      {expand: true, cwd: 'src/templates/countdown', src: ['*.hbs'], dest: '<%= config.dest %>/rtl'}
       ]
     }
 };

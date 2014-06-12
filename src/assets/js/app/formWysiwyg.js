@@ -1,5 +1,6 @@
-function formWysiwyg() {
-    "use strict";
+;(function($){
+  "use strict";
+  Metis.formWysiwyg = function() {
 
     /*----------- BEGIN wysihtml5 CODE -------------------------*/
     $('#wysihtml5').wysihtml5();
@@ -32,4 +33,6 @@ function formWysiwyg() {
     };
     var epiceditor = new EpicEditor(opts).load();
     /*----------- END epiceditor CODE -------------------------*/
-}
+};
+return Metis;
+})(jQuery);

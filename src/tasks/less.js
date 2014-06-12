@@ -23,5 +23,8 @@ module.exports = {
         files: {
             'dist/assets/css/main.min.css': ['dist/assets/css/less/style.less']
         }
+    },
+    switcher: {
+        files: {'dist/assets/css/style-switcher.css': ['dist/assets/css/less/style-switcher.less']}
     }
 };

@@ -11,7 +11,7 @@
 }(this, function() {
 
 /*!
- * GMaps.js v0.4.11
+ * GMaps.js v0.4.12
  * http://hpneo.github.com/gmaps/
  *
  * Copyright 2014, Gustavo Leon
@@ -766,6 +766,12 @@ GMaps.prototype.drawOverlay = function(options) {
           }
         });
       })(el, stop_overlay_events[ev]);
+    }
+
+    if (options.click) {
+      google.maps.event.addDomListener(overlay.el, 'click', function() {
+        options.click.apply(overlay, [overlay]);
+      });
     }
 
     google.maps.event.trigger(this, 'ready');

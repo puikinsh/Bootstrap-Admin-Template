@@ -24,7 +24,8 @@ module.exports = {
             "testallprops": true,
             "hasevents": false,
             "prefixes": true,
-            "domprefixes": true
+            "domprefixes": true,
+            "inputtypes": true
         },
 
         // By default, source is uglified before saving

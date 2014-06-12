@@ -1,12 +1,22 @@
 module.exports = {
-    main: {
+    core: {
         options: {
             banner: '<%= banner %>',
             sourceMap: true,
-            sourceMapName: 'dist/assets/js/main.js.map'
+            sourceMapName: 'dist/assets/js/core.js.map'
         },
         files: {
-            'dist/assets/js/main.min.js': ['dist/assets/js/main.js']
+            'dist/assets/js/core.min.js': ['dist/assets/js/core.js']
+        }
+    },
+    app: {
+        options: {
+            banner: '<%= banner %>',
+            sourceMap: true,
+            sourceMapName: 'dist/assets/js/app.js.map'
+        },
+        files: {
+            'dist/assets/js/app.min.js': ['dist/assets/js/app.js']
         }
     },
     countdown: {

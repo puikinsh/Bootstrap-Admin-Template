@@ -1,52 +1,27 @@
 /**
-* Metis - Bootstrap-Admin-Template v2.2.4
+* Metis - Bootstrap-Admin-Template v2.2.5
 * Author : onokumus 
 * Copyright 2014
-* Licensed under MIT (https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/LICENSE.md)
+* Licensed under  ()
 */
+body.boxed {
+  background: url("../img/pattern/arches.png") repeat;
+}
 #top > .navbar {
   border-top: 3px solid #428bca;
 }
 #top > .navbar .dropdown-menu > li > a:hover,
 #top > .navbar .dropdown-menu > li > a:focus {
   background-color: #428bca;
-  color: #000;
+  color: #ffffff;
 }
-#wrap,
-#left {
-  background-color: #333;
+#menu {
+  background-color: #428bca !important;
 }
-/*
-// First Level
-#menu > li {
-  &.active > a {
-    background-color: darken(@baseColor, 10%);
-  }
-  &:hover > a, &:focus > a {
-    background-color: darken(@baseColor, 10%);
-  }
+#menu > li > a {
+  color: #ffffff;
+  text-shadow: none !important;
 }
-
-// Second, Third, ... level
-#menu > li ul {
-  background: darken(@baseColor, 10%);
+.sidebar-left-mini #menu > li > a > .link-title {
+  background-color: #3681c1 !important;
 }
-
-
-
-@media (min-width: 992px) {//992px
-  .sidebar-left-mini #menu {
-    > li > a {
-      .link-title {
-        background: darken(@baseColor, 10%);
-      }
-    }
-  }
-}
-
-
-body:not(.sidebar-left-mini) #menu {
-  .nav-header {
-    background: darken(@baseColor, 10%);
-  }
-}*/

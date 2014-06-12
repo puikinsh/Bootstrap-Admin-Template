@@ -1,5 +1,6 @@
-function metisFile() {
-    "use strict";
+;(function($){
+  "use strict";
+  Metis.MetisFile = function() {
 
     /*----------- BEGIN elfinder CODE -------------------------*/
     var elf = $('#elfinder').elfinder({
@@ -8,4 +9,6 @@ function metisFile() {
     }).elfinder('instance');
     /*----------- END elfinder CODE -------------------------*/
 
-}
+};
+  return Metis;
+})(jQuery);

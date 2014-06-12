@@ -1,5 +1,7 @@
-function dashboard() {
-    "use strict";
+;(function($){
+  "use strict";
+  Metis.dashboard = function() {
+    
 
     //----------- BEGIN SPARKLINE CODE -------------------------*/
     // required jquery.sparkline.min.js*/
@@ -226,4 +228,6 @@ function dashboard() {
     $(".sortableTable").tablesorter();
     /*----------- END TABLESORTER CODE -------------------------*/
 
-}
+};
+  return Metis;
+})(jQuery);

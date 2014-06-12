@@ -7,8 +7,9 @@ stylesheets:
 cdnjs:
 - //ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js
 javascripts:
+- lib/moment/moment.min.js
 - lib/fullcalendar/fullcalendar.min.js
-scripts: $(function() { metisCalendar(); });
+scripts: $(function() { Metis.MetisCalendar(); });
 ---
 <div class="box">
   <header>
@@ -55,7 +56,7 @@ scripts: $(function() { metisCalendar(); });
 	      </div>
 	      <div class="well well-sm">
 		  <h4>Draggable Events</h4>
-		  <ul id='external-events' class="list-inline">
+		  <ul id='external-events' class="list-unstyled">
 		      <li class="external-event"><span class="label label-default">My Event 1</span></li>		      
 		      <li class="external-event"><span class="label label-primary">My Event 2</span></li>
 		      <li class="external-event"><span class="label label-danger">My Event 3</span></li>

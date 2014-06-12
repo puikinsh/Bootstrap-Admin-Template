@@ -7,13 +7,14 @@ stylesheets:
 cdnjs:
 - //ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js
 javascripts:
+- lib/moment/moment.min.js
 - lib/fullcalendar/fullcalendar.min.js
 - lib/jquery.tablesorter/jquery.tablesorter.min.js
 - lib/jquery.sparkline/jquery.sparkline.min.js
 - lib/flot/jquery.flot.js
 - lib/flot/jquery.flot.selection.js
 - lib/flot/jquery.flot.resize.js
-scripts: $(function() { dashboard(); });
+scripts: $(function() { Metis.dashboard(); });
 ---
 <div class="text-center">
     <ul class="stats_box">

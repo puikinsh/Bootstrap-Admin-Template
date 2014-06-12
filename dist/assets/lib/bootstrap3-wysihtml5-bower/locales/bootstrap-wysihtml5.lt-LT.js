@@ -1,7 +1,15 @@
 /**
  * Lithuanian translation for bootstrap-wysihtml5
  */
-(function($){
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define('bootstrap.wysihtml5.lt-LT', ['jquery', 'bootstrap.wysihtml5'], factory);
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function($){
     $.fn.wysihtml5.locale["lt-LT"] = {
         font_styles: {
               normal: "Normalus",
@@ -45,4 +53,4 @@
             orange: "Oranžinė"
         }
     };
-}(jQuery));
+}));

@@ -1,8 +1,16 @@
 /**
  * Arabic translation for bootstrap-wysihtml5
  */
-(function($){
-    $.fn.wysihtml5.locale["mo-MD"] = {
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define('bootstrap.wysihtml5.ar-AR', ['jquery', 'bootstrap.wysihtml5'], factory);
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function($){
+    $.fn.wysihtml5.locale["ar-AR"] = {
         font_styles: {
               normal: "نص عادي",
               h1: "عنوان رئيسي 1",
@@ -49,4 +57,4 @@
             orange: "برتقالي"
         }
     };
-}(jQuery));
+}));

@@ -1,7 +1,15 @@
 /**
 * Danish translations
 */
-(function($){
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define('bootstrap.wysihtml5.da-DK', ['jquery', 'bootstrap.wysihtml5'], factory);
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function($){
     $.fn.wysihtml5.locale["da-DK"] = {
         font_styles: {
             normal: "Normal tekst",
@@ -48,4 +56,4 @@
             orange: "Orange"
         }
     };
-}(jQuery));
+}));

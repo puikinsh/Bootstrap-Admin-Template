@@ -16,10 +16,10 @@
   * [License](#license)
 
 ### Download
- * Bootstrap 2.3.2 [V.1.2](https://github.com/onokumus/Bootstrap-Admin-Template/archive/v1.2.zip)
+ * Bootstrap 2.3.2 [v1.2](https://github.com/onokumus/Bootstrap-Admin-Template/archive/v1.2.zip)
 ready for use
 
- * Bootstrap 3.1.1 [{%= version %}](https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip)
+ * Bootstrap 3.1.1 [v{%= version %}](https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip)
 ready `dist` folder your use
 
 
@@ -56,8 +56,8 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
     $ open index.html
 
 ### Demo
- * [Demo {%= version %}](http://demo.onokumus.com/metis/)
- * [RTL {%= version %}](http://demo.onokumus.com/metis/rtl/)
+ * [Demo v{%= version %}](http://demo.onokumus.com/metis/)
+ * [RTL v{%= version %}](http://demo.onokumus.com/metis/rtl/)
  * [v1.2 `not development`](http://demo.onokumus.com/metis/v12)
 
 
@@ -75,6 +75,7 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
  * [Bootstrap](http://getbootstrap.com/)
  * [LESS](http://lesscss.org/)
  * [Modernizr](http://modernizr.com/)
+ * [Moment.js](http://momentjs.com/)
  * [SubtlePatterns](https://github.com/subtlepatterns/SubtlePatterns)
  * [FullCalendar](http://arshaw.com/fullcalendar/)
  * [Chosen](https://github.com/harvesthq/chosen)
@@ -86,7 +87,6 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
  * [Input Limiter](http://rustyjeans.com/jquery-plugins/input-limiter)
  * [Jasny Bootstrap](http://jasny.github.com/bootstrap)
  * [jQuery Validation](http://jqueryvalidation.org/)
- * [Dual Listbox](http://www.meadmiracle.com/dlb/DLBDocumentation.aspx)
  * [jQuery Sparklines](http://omnipotent.net/jquery.sparkline)
  * [Animate](https://daneden.me/animate/)
  * [Autosize](http://www.jacklmoore.com/autosize)

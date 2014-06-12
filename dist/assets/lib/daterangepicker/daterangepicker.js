@@ -1,7 +1,7 @@
 /**
-* @version: 1.3.5
+* @version: 1.3.7
 * @author: Dan Grossman http://www.dangrossman.info/
-* @date: 2014-03-19
+* @date: 2014-04-29
 * @copyright: Copyright (c) 2012-2014 Dan Grossman. All rights reserved.
 * @license: Licensed under Apache License v2.0. See http://www.apache.org/licenses/LICENSE-2.0
 * @website: http://www.improvely.com/
@@ -40,7 +40,7 @@
         if (typeof options !== 'object' || options === null)
             options = {};
 
-        this.parentEl = (typeof options === 'object' && options.parentEl && $(options.parentEl).length) || $(this.parentEl);
+        this.parentEl = (typeof options === 'object' && options.parentEl && $(options.parentEl).length) ? $(options.parentEl) : $(this.parentEl);
         this.container = $(DRPTemplate).appendTo(this.parentEl);
 
         this.setOptions(options, cb);
@@ -421,15 +421,20 @@
             if (!this.element.is('input')) return;
             if (!this.element.val().length) return;
 
-            var dateString = this.element.val().split(this.separator);
-            var start = moment(dateString[0], this.format);
-            var end = moment(dateString[1], this.format);
+            var dateString = this.element.val().split(this.separator),
+                start = null,
+                end = null;
+            
+            if(dateString.length === 2) {
+                start = moment(dateString[0], this.format);
+                end = moment(dateString[1], this.format);
+            }
 
-            if (this.singleDatePicker) {
+            if (this.singleDatePicker || start === null || end === null) {
                 start = moment(this.element.val(), this.format);
                 end = start;
             }
-
+            
             if (end.isBefore(start)) return;
 
             this.oldStartDate = this.startDate.clone();
@@ -457,7 +462,7 @@
                     left: this.parentEl.offset().left - this.parentEl.scrollLeft()
                 };
             }
-            
+
             if (this.opens == 'left') {
                 this.container.css({
                     top: this.element.offset().top + this.element.outerHeight() - parentOffset.top,
@@ -498,9 +503,15 @@
             this.container.show();
             this.move();
 
-            $(document).on('click.daterangepicker', $.proxy(this.outsideClick, this));
-            // also explicitly play nice with Bootstrap dropdowns, which stopPropagation when clicking them
-            $(document).on('click.daterangepicker', '[data-toggle=dropdown]', $.proxy(this.outsideClick, this));
+            // Create a click proxy that is private to this instance of datepicker, for unbinding
+            this._outsideClickProxy = $.proxy(function (e) { this.outsideClick(e); }, this);
+            // Bind global datepicker mousedown for hiding and
+            $(document)
+              .on('mousedown.daterangepicker', this._outsideClickProxy)
+              // also explicitly play nice with Bootstrap dropdowns, which stopPropagation when clicking them
+              .on('click.daterangepicker', '[data-toggle=dropdown]', this._outsideClickProxy)
+              // and also close when focus changes to outside the picker (eg. tabbing between controls)
+              .on('focusin.daterangepicker', this._outsideClickProxy);
 
             this.element.trigger('show.daterangepicker', this);
         },
@@ -512,12 +523,17 @@
             if (
                 target.closest(this.element).length ||
                 target.closest(this.container).length ||
-                target.closest('.calendar-date').length 
+                target.closest('.calendar-date').length
                 ) return;
             this.hide();
         },
 
         hide: function (e) {
+            $(document)
+              .off('mousedown.daterangepicker', this._outsideClickProxy)
+              .off('click.daterangepicker', this._outsideClickProxy)
+              .off('focusin.daterangepicker', this._outsideClickProxy);
+
             this.element.removeClass('active');
             this.container.hide();
 
@@ -527,7 +543,6 @@
             this.oldStartDate = this.startDate.clone();
             this.oldEndDate = this.endDate.clone();
 
-            $(document).off('click.daterangepicker', this.outsideClick);
             this.element.trigger('hide.daterangepicker', this);
         },
 
@@ -675,7 +690,8 @@
             this.rightCalendar.month.month(this.endDate.month()).year(this.endDate.year());
             this.updateCalendars();
 
-            endDate.endOf('day');
+            if (!this.timePicker)
+                endDate.endOf('day');
 
             if (this.singleDatePicker)
                 this.clickApply();
@@ -711,9 +727,9 @@
         },
 
         updateTime: function(e) {
-            var isLeft = $(e.target).closest('.calendar').hasClass('left'),
-                leftOrRight = isLeft ? 'left' : 'right',
-                cal = this.container.find('.calendar.'+leftOrRight);
+
+            var cal = $(e.target).closest('.calendar'),
+                isLeft = cal.hasClass('left');
 
             var hour = parseInt(cal.find('.hourselect').val(), 10);
             var minute = parseInt(cal.find('.minuteselect').val(), 10);
@@ -901,7 +917,7 @@
                     var cname = 'available ';
                     cname += (calendar[row][col].month() == calendar[1][1].month()) ? '' : 'off';
 
-                    if ((minDate && calendar[row][col].isBefore(minDate)) || (maxDate && calendar[row][col].isAfter(maxDate))) {
+                    if ((minDate && calendar[row][col].isBefore(minDate, 'day')) || (maxDate && calendar[row][col].isAfter(maxDate, 'day'))) {
                         cname = ' off disabled ';
                     } else if (calendar[row][col].format('YYYY-MM-DD') == selected.format('YYYY-MM-DD')) {
                         cname += ' active ';

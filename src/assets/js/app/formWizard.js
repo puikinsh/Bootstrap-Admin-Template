@@ -1,5 +1,7 @@
-function formWizard() {
-    "use strict";
+;(function($, Metis) {
+  "use strict";
+  
+  Metis.formWizard = function() {
 
     /*----------- BEGIN uniform CODE -------------------------*/
     $('#fileUpload').uniform();
@@ -78,4 +80,7 @@ function formWizard() {
     });
     /*----------- END formwizard CODE -------------------------*/
 
-}
+};
+  
+  return Metis;
+})(jQuery, Metis || {});

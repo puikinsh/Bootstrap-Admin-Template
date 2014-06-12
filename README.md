@@ -5,10 +5,10 @@
 ## TOC
   * [Download](#download)
   * [Building](#building)
-    * [2.2.4 Version](#2.2.4-version)
+    * [2.2.5 Version](#2.2.5-version)
     * [1.2 Version](#12-version)
   * [Demo](#demo)
-    * [For 2.2.4 version](#2.2.4-version)
+    * [For 2.2.5 version](#2.2.5-version)
     * [For 1.2 version](#for-12-version)
   * [Release History](#release-history)
   * [Credits](#credits)
@@ -16,17 +16,17 @@
   * [License](#license)
 
 ### Download
- * Bootstrap 2.3.2 [V.1.2](https://github.com/onokumus/Bootstrap-Admin-Template/archive/v1.2.zip)
+ * Bootstrap 2.3.2 [v1.2](https://github.com/onokumus/Bootstrap-Admin-Template/archive/v1.2.zip)
 ready for use
 
- * Bootstrap 3.1.1 [2.2.4](https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip)
+ * Bootstrap 3.1.1 [v2.2.5](https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip)
 ready `dist` folder your use
 
 
 
 ### Building
 
-#### 2.2.4 Version
+#### 2.2.5 Version
 required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](http://gruntjs.com/getting-started)
 
 ```shell
@@ -37,7 +37,7 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
     $ grunt connect
 ```
 
-#### 2.2.4 RTL Version
+#### 2.2.5 RTL Version
 required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](http://gruntjs.com/getting-started)
 
 ```shell
@@ -56,26 +56,27 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
     $ open index.html
 
 ### Demo
- * [Demo 2.2.4](http://demo.onokumus.com/metis/)
- * [RTL 2.2.4](http://demo.onokumus.com/metis/rtl/)
+ * [Demo v2.2.5](http://demo.onokumus.com/metis/)
+ * [RTL v2.2.5](http://demo.onokumus.com/metis/rtl/)
  * [v1.2 `not development`](http://demo.onokumus.com/metis/v12)
 
 
 ## Release History
-**DATE**       **VERSION**   **CHANGES**                                        
-* 2014-04-23   v2.2.4        RTL version added Remove CLEditor Added CKEditor   
-* 2014-04-13   v2.2.3        rewrite all code                                   
-* 2014-04-10   v2.2.2        remove `alterne.html`,right panel available        
-* 2014-04-07   v2.2.1        all dependency require bower & npm                 
-* 2014-02-28   v2.2.0        rewrite menu, layout, etc                          
-* 2014-02-16   v2.1.4        update bootsrap 3.1.1 && add screenfull.js && fixed
-* 2014-01-19   v2.1.3        add suitcss 's flex-embed component                
-* 2013-11-30   v2.1.2        create menu plugin, rewrite `menu.less`            
-* 2013-10-28   v2.1.1.2      add bower                                          
-* 2013-10-28   v2.1.1.1      remove bootsrap, font awesome, gmaps submodule.    
-* 2013-10-23   v2.1.1        Added `bgimage.html` Added `bgcolor.html` pages.   
-* 2013-10-22   v2.1          I don't remember. Whatever I did.                  
-* 2013-02-14   v1.0          First Commit.                                      
+**DATE**       **VERSION**   **CHANGES**                                                       
+* 2014-06-04   v2.2.5        Fixed side panel(s) code Deprecated main.js Added core.js & app.js
+* 2014-04-23   v2.2.4        RTL version added Remove CLEditor Added CKEditor                  
+* 2014-04-13   v2.2.3        rewrite all code                                                  
+* 2014-04-10   v2.2.2        remove `alterne.html`,right panel available                       
+* 2014-04-07   v2.2.1        all dependency require bower & npm                                
+* 2014-02-28   v2.2.0        rewrite menu, layout, etc                                         
+* 2014-02-16   v2.1.4        update bootsrap 3.1.1 && add screenfull.js && fixed               
+* 2014-01-19   v2.1.3        add suitcss 's flex-embed component                               
+* 2013-11-30   v2.1.2        create menu plugin, rewrite `menu.less`                           
+* 2013-10-28   v2.1.1.2      add bower                                                         
+* 2013-10-28   v2.1.1.1      remove bootsrap, font awesome, gmaps submodule.                   
+* 2013-10-23   v2.1.1        Added `bgimage.html` Added `bgcolor.html` pages.                  
+* 2013-10-22   v2.1          I don't remember. Whatever I did.                                 
+* 2013-02-14   v1.0          First Commit.                                                     
 
 
 
@@ -88,6 +89,7 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
  * [Bootstrap](http://getbootstrap.com/)
  * [LESS](http://lesscss.org/)
  * [Modernizr](http://modernizr.com/)
+ * [Moment.js](http://momentjs.com/)
  * [SubtlePatterns](https://github.com/subtlepatterns/SubtlePatterns)
  * [FullCalendar](http://arshaw.com/fullcalendar/)
  * [Chosen](https://github.com/harvesthq/chosen)
@@ -99,7 +101,6 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
  * [Input Limiter](http://rustyjeans.com/jquery-plugins/input-limiter)
  * [Jasny Bootstrap](http://jasny.github.com/bootstrap)
  * [jQuery Validation](http://jqueryvalidation.org/)
- * [Dual Listbox](http://www.meadmiracle.com/dlb/DLBDocumentation.aspx)
  * [jQuery Sparklines](http://omnipotent.net/jquery.sparkline)
  * [Animate](https://daneden.me/animate/)
  * [Autosize](http://www.jacklmoore.com/autosize)
@@ -130,5 +131,5 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
  * onokumus
 
 ### License
-Copyright (c) 2014 onokumus, contributors.
-Released under the ,  licenses
+Copyright (c) 2014 onokumus, contributors.  
+Released under the MIT license

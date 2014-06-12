@@ -1,7 +1,15 @@
 /**
  * Norwegian translation for bootstrap-wysihtml5
  */
-(function($){
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define('bootstrap.wysihtml5.nb-NB', ['jquery', 'bootstrap.wysihtml5'], factory);
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function($){
     $.fn.wysihtml5.locale["nb-NB"] = {
         font_styles: {
               normal: "Normal tekst",
@@ -46,4 +54,4 @@
           orange: "Oransj"
         }
     };
-}(jQuery));
+}));

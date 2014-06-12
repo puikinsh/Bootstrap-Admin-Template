@@ -1,0 +1,29 @@
+---
+title: Boxed and Fixed Header & Nav
+topTitle: Layouts
+icon: fa fa-building
+boXed: true
+fixedMenu: true
+fixedNav: true
+cdncss:
+- //cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.css
+cdnjs:
+- //cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js
+---
+<h2>Code</h2>
+{{#markdown}}
+```markup
+<body class="boxed menu-affix">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+    ...
+    </nav>
+</body>
+```
+{{/markdown}}
+<div class="row">
+    <div class="col-xs-1">
+        <p style="white-space: normal;">
+        {{> lorem-paragraph }}
+        </p>
+    </div>
+</div>

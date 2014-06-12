@@ -1,7 +1,15 @@
 /**
  * Bulgarian translation for bootstrap-wysihtml5
  */
-(function($){
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define('bootstrap.wysihtml5.bg-BG', ['jquery', 'bootstrap.wysihtml5'], factory);
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function($){
     $.fn.wysihtml5.locale["bg-BG"] = {
         font_styles: {
             normal: "Нормален текст",
@@ -48,5 +56,5 @@
             orange: "Оранжев"
         }
     };
-}(jQuery));
+}));
 

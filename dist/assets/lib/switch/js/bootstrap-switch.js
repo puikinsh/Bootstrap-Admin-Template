@@ -1,5 +1,5 @@
 /* ========================================================================
- * bootstrap-switch - v3.0.0
+ * bootstrap-switch - v3.0.1
  * http://www.bootstrap-switch.org
  * ========================================================================
  * Copyright 2012-2013 Mattia Larentis
@@ -26,8 +26,6 @@
     "use strict";
     var BootstrapSwitch;
     BootstrapSwitch = (function() {
-      BootstrapSwitch.prototype.name = "bootstrap-switch";
-
       function BootstrapSwitch(element, options) {
         if (options == null) {
           options = {};
@@ -39,6 +37,7 @@
           animate: this.$element.data("animate"),
           disabled: this.$element.is(":disabled"),
           readonly: this.$element.is("[readonly]"),
+          indeterminate: this.$element.data("indeterminate"),
           onColor: this.$element.data("on-color"),
           offColor: this.$element.data("off-color"),
           onText: this.$element.data("on-text"),
@@ -65,6 +64,9 @@
               if (_this.options.readonly) {
                 classes.push("" + _this.options.baseClass + "-readonly");
               }
+              if (_this.options.indeterminate) {
+                classes.push("" + _this.options.baseClass + "-indeterminate");
+              }
               if (_this.$element.attr("id")) {
                 classes.push("" + _this.options.baseClass + "-id-" + (_this.$element.attr("id")));
               }
@@ -88,6 +90,9 @@
           html: this.options.labelText,
           "class": "" + this.options.baseClass + "-label"
         });
+        if (this.options.indeterminate) {
+          this.$element.prop("indeterminate", true);
+        }
         this.$element.on("init.bootstrapSwitch", (function(_this) {
           return function() {
             return _this.options.onInit.apply(element, arguments);
@@ -113,7 +118,7 @@
         if (typeof value === "undefined") {
           return this.options.state;
         }
-        if (this.options.disabled || this.options.readonly) {
+        if (this.options.disabled || this.options.readonly || this.options.indeterminate) {
           return this.$element;
         }
         value = !!value;
@@ -122,7 +127,7 @@
       };
 
       BootstrapSwitch.prototype.toggleState = function(skip) {
-        if (this.options.disabled || this.options.readonly) {
+        if (this.options.disabled || this.options.readonly || this.options.indeterminate) {
           return this.$element;
         }
         return this.$element.prop("checked", !this.options.state).trigger("change.bootstrapSwitch", skip);
@@ -185,6 +190,24 @@
         this.$element.prop("readonly", !this.options.readonly);
         this.$wrapper.toggleClass("" + this.options.baseClass + "-readonly");
         this.options.readonly = !this.options.readonly;
+        return this.$element;
+      };
+
+      BootstrapSwitch.prototype.indeterminate = function(value) {
+        if (typeof value === "undefined") {
+          return this.options.indeterminate;
+        }
+        value = !!value;
+        this.$wrapper[value ? "addClass" : "removeClass"]("" + this.options.baseClass + "-indeterminate");
+        this.$element.prop("indeterminate", value);
+        this.options.indeterminate = value;
+        return this.$element;
+      };
+
+      BootstrapSwitch.prototype.toggleIndeterminate = function() {
+        this.$element.prop("indeterminate", !this.options.indeterminate);
+        this.$wrapper.toggleClass("" + this.options.baseClass + "-indeterminate");
+        this.options.indeterminate = !this.options.indeterminate;
         return this.$element;
       };
 
@@ -260,6 +283,28 @@
         return this.$element;
       };
 
+      BootstrapSwitch.prototype.onInit = function(value) {
+        if (typeof value === "undefined") {
+          return this.options.onInit;
+        }
+        if (!value) {
+          value = $.fn.bootstrapSwitch.defaults.onInit;
+        }
+        this.options.onInit = value;
+        return this.$element;
+      };
+
+      BootstrapSwitch.prototype.onSwitchChange = function(value) {
+        if (typeof value === "undefined") {
+          return this.options.onSwitchChange;
+        }
+        if (!value) {
+          value = $.fn.bootstrapSwitch.defaults.onSwitchChange;
+        }
+        this.options.onSwitchChange = value;
+        return this.$element;
+      };
+
       BootstrapSwitch.prototype.destroy = function() {
         var $form;
         $form = this.$element.closest("form");
@@ -311,7 +356,7 @@
           })(this),
           "keydown.bootstrapSwitch": (function(_this) {
             return function(e) {
-              if (!e.which || _this.options.disabled || _this.options.readonly) {
+              if (!e.which || _this.options.disabled || _this.options.readonly || _this.options.indeterminate) {
                 return;
               }
               switch (e.which) {
@@ -355,12 +400,13 @@
         return this.$label.on({
           "mousemove.bootstrapSwitch touchmove.bootstrapSwitch": (function(_this) {
             return function(e) {
-              var left, percent, right;
+              var left, pageX, percent, right;
               if (!_this.drag) {
                 return;
               }
               e.preventDefault();
-              percent = (((e.pageX || e.originalEvent.touches[0].pageX) - _this.$wrapper.offset().left) / _this.$wrapper.width()) * 100;
+              pageX = e.pageX || e.originalEvent.touches[0].pageX;
+              percent = ((pageX - _this.$wrapper.offset().left) / _this.$wrapper.width()) * 100;
               left = 25;
               right = 75;
               if (percent < left) {
@@ -374,7 +420,7 @@
           })(this),
           "mousedown.bootstrapSwitch touchstart.bootstrapSwitch": (function(_this) {
             return function(e) {
-              if (_this.drag || _this.options.disabled || _this.options.readonly) {
+              if (_this.drag || _this.options.disabled || _this.options.readonly || _this.options.indeterminate) {
                 return;
               }
               e.preventDefault();
@@ -402,6 +448,12 @@
           "mouseleave.bootstrapSwitch": (function(_this) {
             return function(e) {
               return _this.$label.trigger("mouseup.bootstrapSwitch");
+            };
+          })(this),
+          "click.bootstrapSwitch": (function(_this) {
+            return function(e) {
+              _this.toggleState();
+              return _this.$element.trigger("focus.bootstrapSwitch");
             };
           })(this)
         });
@@ -464,6 +516,7 @@
       animate: true,
       disabled: false,
       readonly: false,
+      indeterminate: false,
       onColor: "primary",
       offColor: "default",
       onText: "ON",

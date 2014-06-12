@@ -57,7 +57,8 @@ module.exports = {
                 'dist/assets/lib/respond/respond.min.js': ['bower_components/respond/dest/respond.min.js'],
                 'dist/assets/lib/jquery.tablesorter/jquery.tablesorter.min.js': ['bower_components/jquery.tablesorter/js/jquery.tablesorter.min.js'],
                 'dist/assets/lib/jquery.sparkline/jquery.sparkline.min.js': ['bower_components/jquery.sparkline.min/index.js'],
-                'dist/assets/lib/holderjs/holder.js': ['bower_components/holderjs/holder.js']
+                'dist/assets/lib/holderjs/holder.js': ['bower_components/holderjs/holder.js'],
+                'dist/assets/lib/moment/moment.min.js': ['bower_components/moment/min/moment.min.js']
             },
             {
                 expand: true,
@@ -70,7 +71,7 @@ module.exports = {
             },
             {
                 expand: true,
-                cwd: 'bower_components/fullcalendar',
+                cwd: 'bower_components/fullcalendar/dist',
                 src: ['./**/*.{js,css}'],
                 dest: 'dist/assets/lib/fullcalendar'
             },
@@ -95,7 +96,32 @@ module.exports = {
             {
                 expand: true,
                 cwd: 'bower_components/SubtlePatterns/',
-                src: ['./*.{png,jpg}'],
+                src: [
+                    'brillant.png',
+                    'always_grey.png',
+                    'retina_wood.png',
+                    'low_contrast_linen.png',
+                    'egg_shell.png',
+                    'cartographer.png',
+                    'batthern.png',
+                    'noisy_grid.png',
+                    'diamond_upholstery.png',
+                    'greyfloral.png',
+                    'white_tiles.png',
+                    'gplaypattern.png',
+                    'arches.png',
+                    'purty_wood.png',
+                    'diagonal_striped_brick.png',
+                    'large_leather.png',
+                    'bo_play_pattern.png',
+                    'irongrip.png',
+                    'wood_1.png',
+                    'pool_table.png',
+                    'crissXcross.png',
+                    'rip_jobs.png',
+                    'random_grey_variations.png',
+                    'carbon_fibre.png'
+                ],
                 dest: 'dist/assets/img/pattern'
             },
             {
@@ -181,7 +207,7 @@ module.exports = {
             },
             {
                 expand: true,
-                cwd: 'bower_components/chosen_v1.1.0/',
+                cwd: 'bower_components/chosen/',
                 src: ['./*.{css,png}', './*.*jquery*.js'],
                 dest: 'dist/assets/lib/chosen'
             },

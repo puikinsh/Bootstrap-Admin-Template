@@ -1,9 +1,18 @@
 /**
-* Metis - Bootstrap-Admin-Template v2.2.4
+* Metis - Bootstrap-Admin-Template v2.2.5
 * Author : onokumus 
 * Copyright 2014
-* Licensed under MIT (https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/LICENSE.md)
+* Licensed under  ()
 */
+
+/* ==========================================================================
+metisAdmin: Base
+========================================================================== */
+
+body {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
 
 /*********************************************************/
 
@@ -17,30 +26,14 @@
 
 /*********************************************************/
 
-body.padTop53 {
-  padding-top: 104px;
-  overflow: visible;
-}
-
-@media (min-width: 840px) {
-  body.padTop53 {
-    padding-top: 54px;
-  }
-}
-
-body {
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
-
 #wrap:before,
 #top:before,
 .head:before,
-#footer:before,
+.Footer:before,
 #wrap:after,
 #top:after,
 .head:after,
-#footer:after {
+.Footer:after {
   content: " ";
   display: table;
 }
@@ -48,7 +41,7 @@ body {
 #wrap:after,
 #top:after,
 .head:after,
-#footer:after {
+.Footer:after {
   clear: both;
 }
 
@@ -129,9 +122,9 @@ body {
 }
 
 @media (min-width: 1200px) {
-  body.fixed #wrap,
-  body.fixed #footer,
-  body.fixed #top .navbar.navbar-fixed-top {
+  body.boxed #wrap,
+  body.boxed .Footer,
+  body.boxed #top .navbar.navbar-fixed-top {
     max-width: 1170px;
     margin-right: auto;
     margin-left: auto;
@@ -235,7 +228,6 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.05) inset;
   text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
-  background-color: #333;
 }
 
 .head .search-bar {
@@ -349,10 +341,6 @@ body {
 
 /*********************************************************/
 
-.user-media {
-  background-color: #444444;
-}
-
 .user-media .user-link {
   display: block;
   margin-right: auto;
@@ -426,7 +414,6 @@ body {
 }
 
 .sidebar-left-mini .user-media:hover .user-wrapper {
-  background: #333;
   right: 100%;
   display: inherit;
   z-index: 9999;
@@ -445,6 +432,7 @@ body {
 #menu a {
   padding: 0;
   margin: 0;
+  color: #f4f4f4;
 }
 
 #menu,
@@ -465,9 +453,12 @@ body {
   text-decoration: none;
 }
 
+#menu ul {
+  background: rgba(0, 0, 0, 0.3);
+}
+
 #menu > li > a {
-  color: #ccc;
-  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
@@ -475,48 +466,44 @@ body {
 }
 
 #menu > li.active > a {
-  background-color: #1a1a1a;
-  color: #fff;
-  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3) inset;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3) inset;
+  background-color: rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1) inset;
 }
 
 #menu > li:hover > a,
 #menu > li:focus > a {
-  background-color: #404040;
-  color: #fff;
+  background-color: rgba(0, 0, 0, 0.1);
   outline: none;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
 
 #menu > li ul {
-  border: 1px solid rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
   border-right-width: 0;
-  background: #404040;
 }
 
 #menu > li ul a {
   padding: 11px 30px 11px 0;
-  color: #ccc;
   font-size: 13px;
 }
 
 #menu > li ul a:hover {
   background-color: rgba(0, 0, 0, 0.1);
-  color: #fff;
 }
 
-.u-isHiddenVisually {
-  position: absolute !important;
-  overflow: hidden !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  border: 0 !important;
-  clip: rect(1px, 1px, 1px, 1px) !important;
+#menu.affix {
+  position: fixed;
+  width: 250px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+#menu.affix:hover {
+  overflow-y: scroll;
 }
 
 @media (min-width: 768px) {
@@ -541,6 +528,7 @@ body {
     box-shadow: none;
     min-width: 200px;
     z-index: 1;
+    background-color: rgba(0, 0, 0, 0.8);
   }
 
   #menu:not(.affix) li > ul,
@@ -553,7 +541,7 @@ body {
   }
 
   #menu li > ul > li > ul {
-    top: -1px;
+    top: 0;
   }
 
   .side-right #menu li > ul {
@@ -563,23 +551,6 @@ body {
 
   #menu:not(.affix) li:hover > ul {
     display: inherit;
-  }
-
-  #menu.affix {
-    position: fixed;
-    top: 0;
-    width: 250px;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  #menu.affix:hover {
-    overflow-y: scroll;
-  }
-
-  .padTop53 #menu.affix {
-    top: 53px;
   }
 
   .sidebar-left-mini #menu.affix {
@@ -597,15 +568,15 @@ body {
   }
 
   .sidebar-left-mini #menu > li > a .link-title {
-    border-top: 1px solid rgba(0, 0, 0, 0.3);
-    border-left: 1px solid rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
     position: absolute;
     right: 100%;
     top: -1px;
     z-index: 1;
-    background: #404040;
+    background: rgba(0, 0, 0, 0.85);
     display: none;
     padding: 10px 30px;
   }
@@ -617,7 +588,7 @@ body {
 
   .sidebar-left-mini.side-right #menu > li > a .link-title {
     border-left-width: 0;
-    border-right: 1px solid rgba(0, 0, 0, 0.3);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
     right: auto;
     left: 100%;
   }
@@ -628,21 +599,19 @@ body:not(.sidebar-left-mini) #menu .nav-header {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 12px;
-  color: #777;
-  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.05) inset;
   box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.05) inset;
   text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
-  background: #404040;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 #menu .nav-divider {
-  border-top: 1px solid rgba(255, 255, 255, 0.01);
-  height: 6px;
+  height: 1rem;
   margin: 0;
   background: rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3) inset;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3) inset;
+  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1) inset;
 }
 
 .sidebar-left-mini #menu .nav-header {
@@ -709,21 +678,21 @@ body:not(.sidebar-left-mini) #menu .nav-header {
 
 /* END CONTENT STYLES */
 
-/* BEGIN FOOTER */
+/* ==========================================================================
+metisAdmin: Footer
+========================================================================== */
 
-#footer {
-  background-image: url("../img/pattern/px_by_Gre3g.png");
-  background-repeat: repeat;
-  color: #f9f9f9;
+.Footer {
   margin: 0 auto;
+  color: #f4f4f4;
+  border-top: 1px solid #222;
 }
 
-#footer p {
-  padding: 12px 0 0;
+.Footer p {
+  padding: 1.2rem 0;
+  margin: 0;
   text-align: center;
 }
-
-/** END FOOTER */
 
 /*********************************************************/
 
@@ -2662,204 +2631,187 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
   margin-left: 40px;
 }
 
-.bg-primary {
-  background-color: #428bca;
-  color: #ffffff;
+.bg-red {
+  background-color: #b90000;
+  color: #ffffff !important;
 }
 
-.bg-primary.dker,
-.bg-primary > .dker {
-  background-color: #3276b1;
+.bg-red.dker,
+.bg-red > .dker {
+  background-color: #900000 !important;
 }
 
-.bg-primary.dk,
-.bg-primary > .dk {
-  background-color: #3681c1;
+.bg-red.dk,
+.bg-red > .dk {
+  background-color: #a50000 !important;
 }
 
-.bg-primary.lt,
-.bg-primary > .lt {
-  background-color: #5295ce;
+.bg-red.lt,
+.bg-red > .lt {
+  background-color: #cd0000 !important;
 }
 
-.bg-primary.lter,
-.bg-primary > .lter {
-  background-color: #629fd3;
+.bg-red.lter,
+.bg-red > .lter {
+  background-color: #e20000 !important;
 }
 
-.bg-success {
-  background-color: #5cb85c;
-  color: #ffffff;
+.bg-brick {
+  background-color: #cd6723;
 }
 
-.bg-success.dker,
-.bg-success > .dker {
-  background-color: #47a447;
+a.bg-brick:hover {
+  background-color: #a1511c;
 }
 
-.bg-success.dk,
-.bg-success > .dk {
-  background-color: #4eb24e;
+.bg-orange {
+  background-color: #ff4e00;
+  color: #ffffff !important;
 }
 
-.bg-success.lt,
-.bg-success > .lt {
-  background-color: #6abe6a;
+.bg-orange.dker,
+.bg-orange > .dker {
+  background-color: #d64200 !important;
 }
 
-.bg-success.lter,
-.bg-success > .lter {
-  background-color: #78c478;
+.bg-orange.dk,
+.bg-orange > .dk {
+  background-color: #eb4800 !important;
 }
 
-.bg-danger {
-  background-color: #d9534f;
-  color: #ffffff;
+.bg-orange.lt,
+.bg-orange > .lt {
+  background-color: #ff5c14 !important;
 }
 
-.bg-danger.dker,
-.bg-danger > .dker {
-  background-color: #d2322d;
+.bg-orange.lter,
+.bg-orange > .lter {
+  background-color: #ff6a29 !important;
 }
 
-.bg-danger.dk,
-.bg-danger > .dk {
-  background-color: #d5433e;
+.bg-green {
+  background-color: #4b780a;
+  color: #ffffff !important;
 }
 
-.bg-danger.lt,
-.bg-danger > .lt {
-  background-color: #dd6360;
+.bg-green.dker,
+.bg-green > .dker {
+  background-color: #335207 !important;
 }
 
-.bg-danger.lter,
-.bg-danger > .lter {
-  background-color: #e07471;
+.bg-green.dk,
+.bg-green > .dk {
+  background-color: #3f6508 !important;
 }
 
-.bg-warning {
-  background-color: #f0ad4e;
-  color: #ffffff;
+.bg-green.lt,
+.bg-green > .lt {
+  background-color: #578b0c !important;
 }
 
-.bg-warning.dker,
-.bg-warning > .dker {
-  background-color: #ed9c28;
+.bg-green.lter,
+.bg-green > .lter {
+  background-color: #639e0d !important;
 }
 
-.bg-warning.dk,
-.bg-warning > .dk {
-  background-color: #eea43b;
+.bg-blue {
+  background-color: #00caf2;
+  color: #ffffff !important;
 }
 
-.bg-warning.lt,
-.bg-warning > .lt {
-  background-color: #f2b661;
+.bg-blue.dker,
+.bg-blue > .dker {
+  background-color: #00a8c9 !important;
 }
 
-.bg-warning.lter,
-.bg-warning > .lter {
-  background-color: #f3be74;
+.bg-blue.dk,
+.bg-blue > .dk {
+  background-color: #00b9de !important;
 }
 
-.bg-info {
-  background-color: #5bc0de;
-  color: #ffffff;
+.bg-blue.lt,
+.bg-blue > .lt {
+  background-color: #07d6ff !important;
 }
 
-.bg-info.dker,
-.bg-info > .dker {
-  background-color: #39b3d7;
-}
-
-.bg-info.dk,
-.bg-info > .dk {
-  background-color: #4ab9db;
-}
-
-.bg-info.lt,
-.bg-info > .lt {
-  background-color: #6cc7e1;
-}
-
-.bg-info.lter,
-.bg-info > .lter {
-  background-color: #7dcde5;
+.bg-blue.lter,
+.bg-blue > .lter {
+  background-color: #1cd9ff !important;
 }
 
 .bg-black {
   background-color: #222222;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .bg-black.dker,
 .bg-black > .dker {
-  background-color: #0e0e0e;
+  background-color: #0e0e0e !important;
 }
 
 .bg-black.dk,
 .bg-black > .dk {
-  background-color: #181818;
+  background-color: #181818 !important;
 }
 
 .bg-black.lt,
 .bg-black > .lt {
-  background-color: #2c2c2c;
+  background-color: #2c2c2c !important;
 }
 
 .bg-black.lter,
 .bg-black > .lter {
-  background-color: #363636;
+  background-color: #363636 !important;
 }
 
 .bg-dark {
   background-color: #444444;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .bg-dark.dker,
 .bg-dark > .dker {
-  background-color: #303030;
+  background-color: #303030 !important;
 }
 
 .bg-dark.dk,
 .bg-dark > .dk {
-  background-color: #3a3a3a;
+  background-color: #3a3a3a !important;
 }
 
 .bg-dark.lt,
 .bg-dark > .lt {
-  background-color: #4e4e4e;
+  background-color: #4e4e4e !important;
 }
 
 .bg-dark.lter,
 .bg-dark > .lter {
-  background-color: #585858;
+  background-color: #585858 !important;
 }
 
 .bg-light {
   background-color: #eeeeee;
-  color: #333333;
+  color: #333333 !important;
 }
 
 .bg-light.dker,
 .bg-light > .dker {
-  background-color: #dadada;
+  background-color: #dadada !important;
 }
 
 .bg-light.dk,
 .bg-light > .dk {
-  background-color: #e4e4e4;
+  background-color: #e4e4e4 !important;
 }
 
 .bg-light.lt,
 .bg-light > .lt {
-  background-color: #f8f8f8;
+  background-color: #f8f8f8 !important;
 }
 
 .bg-light.lter,
 .bg-light > .lter {
-  background-color: #ffffff;
+  background-color: #ffffff !important;
 }
 
 .bg-brillant {

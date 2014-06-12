@@ -1,39 +1,41 @@
 .bg(@bg-color:@brand-primary;@color:#fff){
   background-color: @bg-color;
-  color: @color;
+  color: @color !important;
 
   &.dker, >.dker {
-    background-color: darken(@bg-color,8%);
+    background-color: darken(@bg-color,8%) !important;
   }
 
   &.dk, >.dk {
-    background-color: darken(@bg-color,4%);
+    background-color: darken(@bg-color,4%) !important;
   }
 
   &.lt, >.lt {
-    background-color: lighten(@bg-color,4%);
+    background-color: lighten(@bg-color,4%) !important;
   }
 
   &.lter, >.lter {
-    background-color: lighten(@bg-color,8%);
+    background-color: lighten(@bg-color,8%) !important;
   }
 }
+.bg-red {
+  .bg(#B90000);
+}
+.bg-brick {
+  .bg-variant(#CD6723);
+}
 
-.bg-primary {
-  .bg();
+.bg-orange {
+  .bg(#FF4E00);
 }
-.bg-success {
-  .bg(@brand-success);
+.bg-green {
+  .bg(#4B780A);
 }
-.bg-danger {
-  .bg(@brand-danger);
+
+.bg-blue {
+  .bg(#00CAF2);
 }
-.bg-warning {
-  .bg(@brand-warning);
-}
-.bg-info {
-  .bg(@brand-info);
-}
+
 .bg-black {
   .bg(#222);
 }

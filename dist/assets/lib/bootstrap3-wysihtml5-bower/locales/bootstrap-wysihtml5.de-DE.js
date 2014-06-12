@@ -1,7 +1,15 @@
 /**
  * German translation for bootstrap-wysihtml5
  */
-(function($){
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define('bootstrap.wysihtml5.de-DE', ['jquery', 'bootstrap.wysihtml5'], factory);
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function($){
   $.fn.wysihtml5.locale["de-DE"] = {
     font_styles: {
       normal: "Normaler Text",
@@ -15,7 +23,8 @@
     emphasis: {
       bold: "Fett",
       italic: "Kursiv",
-      underline: "Unterstrichen"
+      underline: "Unterstrichen",
+      small: "Klein"
     },
     lists: {
       unordered: "Ungeordnete Liste",
@@ -49,4 +58,4 @@
       orange: "Orange"
     }
   };
-}(jQuery));
+}));

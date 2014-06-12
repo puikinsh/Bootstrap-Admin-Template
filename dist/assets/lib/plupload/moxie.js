@@ -1,6 +1,6 @@
 /**
  * mOxie - multi-runtime File API & XMLHttpRequest L2 Polyfill
- * v1.2.0
+ * v1.2.1
  *
  * Copyright 2013, Moxiecode Systems AB
  * Released under GPL License.
@@ -8,7 +8,7 @@
  * License: http://www.plupload.com/license
  * Contributing: http://www.plupload.com/contributing
  *
- * Date: 2014-01-16
+ * Date: 2014-05-14
  */
 /**
  * Compiled inline version. (Library mode)
@@ -229,7 +229,7 @@ define('moxie/core/utils/Basic', [], function() {
 	@method inSeries
 	@static
 	@param {Array} queue Array of functions to call in sequence
-	@param {Function} cb Main callback that is called in the end, or in case of erro
+	@param {Function} cb Main callback that is called in the end, or in case of error
 	*/
 	var inSeries = function(queue, cb) {
 		var i = 0, length = queue.length;
@@ -3036,7 +3036,7 @@ define('moxie/file/Blob', [
 			*/
 			detach: function(data) {
 				if (this.ruid) {
-					this.getRuntime().exec.call(this, 'Blob', 'destroy', blobpool[this.uid]);
+					this.getRuntime().exec.call(this, 'Blob', 'destroy');
 					this.disconnectRuntime();
 					this.ruid = null;
 				}
@@ -5154,8 +5154,10 @@ define("moxie/xhr/XMLHttpRequest", [
 			_xhr = new RuntimeTarget();
 
 			function loadEnd() {
-				_xhr.destroy();
-				_xhr = null;
+				if (_xhr) { // it could have been destroyed by now
+					_xhr.destroy();
+					_xhr = null;
+				}
 				self.dispatchEvent('loadend');
 				self = null;
 			}
@@ -5636,7 +5638,25 @@ define("moxie/image/Image", [
 			@param {Boolean} [crop=false] Whether to crop the image to exact dimensions
 			@param {Boolean} [preserveHeaders=true] Whether to preserve meta headers (on JPEGs after resize)
 			*/
-			downsize: function(width, height, crop, preserveHeaders) {
+			downsize: function(opts) {
+				var defaults = {
+					width: this.width,
+					height: this.height,
+					crop: false,
+					preserveHeaders: true
+				};
+
+				if (typeof(opts) === 'object') {
+					opts = Basic.extend(defaults, opts);
+				} else {
+					opts = Basic.extend(defaults, {
+						width: arguments[0],
+						height: arguments[1],
+						crop: arguments[2],
+						preserveHeaders: arguments[3]
+					});
+				}
+
 				try {
 					if (!this.size) { // only preloaded image objects can be used as source
 						throw new x.DOMException(x.DOMException.INVALID_STATE_ERR);
@@ -5647,19 +5667,10 @@ define("moxie/image/Image", [
 						throw new x.ImageError(x.ImageError.MAX_RESOLUTION_ERR);
 					}
 
-					if (!width && !height || Basic.typeOf(crop) === 'undefined') {
-						crop = false;
-					}
-
-					width = width || this.width;
-					height = height || this.height;
-
-					preserveHeaders = (Basic.typeOf(preserveHeaders) === 'undefined' ? true : !!preserveHeaders);
-
-					this.getRuntime().exec.call(this, 'Image', 'downsize', width, height, crop, preserveHeaders);
+					this.getRuntime().exec.call(this, 'Image', 'downsize', opts.width, opts.height, opts.crop, opts.preserveHeaders);
 				} catch(ex) {
 					// for now simply trigger error event
-					this.trigger('error', ex);
+					this.trigger('error', ex.code);
 				}
 			},
 
@@ -5740,14 +5751,18 @@ define("moxie/image/Image", [
 			},
 
 			/**
-			Embeds the image, or better to say, it's visual representation into the specified node. Depending on the runtime
-			in use, might be a canvas, or image (actual ) element or shim object (Flash or SilverLight - very rare, used for
-			legacy browsers that do not have canvas or proper dataURI support).
+			Embeds a visual representation of the image into the specified node. Depending on the runtime, 
+			it might be a canvas, an img node or a thrid party shim object (Flash or SilverLight - very rare, 
+			can be used in legacy browsers that do not have canvas or proper dataURI support).
 
 			@method embed
 			@param {DOMElement} el DOM element to insert the image object into
-			@param {Object} options Set of key/value pairs controlling the mime type, dimensions and cropping factor of resulting
-			representation
+			@param {Object} [options]
+				@param {Number} [options.width] The width of an embed (defaults to the image width)
+				@param {Number} [options.height] The height of an embed (defaults to the image height)
+				@param {String} [type="image/jpeg"] Mime type
+				@param {Number} [quality=90] Quality of an embed, if mime type is image/jpeg
+				@param {Boolean} [crop=false] Whether to crop an embed to the specified dimensions
 			*/
 			embed: function(el) {
 				var self = this
@@ -5845,7 +5860,7 @@ define("moxie/image/Image", [
 						width = options.width;
 						height = options.height || width;
 					} else {
-						// if container element has > 0 dimensions, take them
+						// if container element has measurable dimensions, use them
 						var dimensions = Dom.getSize(el);
 						if (dimensions.w && dimensions.h) { // both should be > 0
 							width = dimensions.w;
@@ -5868,7 +5883,7 @@ define("moxie/image/Image", [
 					return imgCopy;
 				} catch(ex) {
 					// for now simply trigger error event
-					this.trigger('error', ex);
+					this.trigger('error', ex.code);
 				}
 			},
 
@@ -5947,7 +5962,7 @@ define("moxie/image/Image", [
 				}
 			} catch(ex) {
 				// for now simply trigger error event
-				this.trigger('error', ex);
+				this.trigger('error', ex.code);
 			}
 		}
 
@@ -6489,7 +6504,7 @@ define("moxie/runtime/html5/file/FileInput", [
 					}
 
 					// clearing the value enables the user to select the same file again if they want to
-					if (Env.browser !== 'IE') {
+					if (Env.browser !== 'IE' && Env.browser !== 'IEMobile') {
 						this.value = '';
 					} else {
 						// in IE input[type="file"] is read-only so the only way to reset it is to re-insert it
@@ -6581,14 +6596,18 @@ define("moxie/runtime/html5/file/FileDrop", [
 				dropZone = _options.container;
 
 				Events.addEvent(dropZone, 'dragover', function(e) {
+					if (!_hasFiles(e)) {
+						return;
+					}
 					e.preventDefault();
-					e.stopPropagation();
 					e.dataTransfer.dropEffect = 'copy';
 				}, comp.uid);
 
 				Events.addEvent(dropZone, 'drop', function(e) {
+					if (!_hasFiles(e)) {
+						return;
+					}
 					e.preventDefault();
-					e.stopPropagation();
 
 					_files = [];
 
@@ -6608,14 +6627,10 @@ define("moxie/runtime/html5/file/FileDrop", [
 				}, comp.uid);
 
 				Events.addEvent(dropZone, 'dragenter', function(e) {
-					e.preventDefault();
-					e.stopPropagation();
 					comp.trigger("dragenter");
 				}, comp.uid);
 
 				Events.addEvent(dropZone, 'dragleave', function(e) {
-					e.preventDefault();
-					e.stopPropagation();
 					comp.trigger("dragleave");
 				}, comp.uid);
 			},
@@ -6630,6 +6645,20 @@ define("moxie/runtime/html5/file/FileDrop", [
 			}
 		});
 
+
+		function _hasFiles(e) {
+			if (!e.dataTransfer || !e.dataTransfer.types) { // e.dataTransfer.files is not available in Gecko during dragover
+				return false;
+			}
+
+			var types = Basic.toArray(e.dataTransfer.types || []);
+
+			return Basic.inArray("Files", types) !== -1 ||
+				Basic.inArray("public.file-url", types) !== -1 || // Safari < 5
+				Basic.inArray("application/x-moz-file", types) !== -1 // Gecko < 1.9.2 (< Firefox 3.6)
+				;
+		}
+
 		
 		function _extractExts(accept) {
 			var exts = [];
@@ -6641,8 +6670,11 @@ define("moxie/runtime/html5/file/FileDrop", [
 
 
 		function _isAcceptable(file) {
+			if (!_allowedExts.length) {
+				return true;
+			}
 			var ext = Mime.getFileExtension(file.name);
-			return !ext || !_allowedExts.length || Basic.inArray(ext, _allowedExts) !== -1;
+			return !ext || Basic.inArray(ext, _allowedExts) !== -1;
 		}
 
 
@@ -6684,6 +6716,7 @@ define("moxie/runtime/html5/file/FileDrop", [
 			});
 		}
 
+
 		function _readEntry(entry, cb) {
 			if (entry.isFile) {
 				entry.file(function(file) {
@@ -6701,6 +6734,7 @@ define("moxie/runtime/html5/file/FileDrop", [
 				cb(); // not file, not directory? what then?..
 			}
 		}
+
 
 		function _readDirEntry(dirEntry, cb) {
 			var entries = [], dirReader = dirEntry.createReader();
@@ -8605,7 +8639,7 @@ define("moxie/runtime/html5/image/Image", [
 			_img = new Image();
 			_img.onerror = function() {
 				_purge.call(this);
-				comp.trigger('error', new x.ImageError(x.ImageError.WRONG_FORMAT));
+				comp.trigger('error', x.ImageError.WRONG_FORMAT);
 			};
 			_img.onload = function() {
 				comp.trigger('load');
@@ -8625,7 +8659,7 @@ define("moxie/runtime/html5/image/Image", [
 					callback(this.result);
 				};
 				fr.onerror = function() {
-					comp.trigger('error', new x.FileException(x.FileException.NOT_READABLE_ERR));
+					comp.trigger('error', x.ImageError.WRONG_FORMAT);
 				};
 				fr.readAsDataURL(file);
 			} else {
@@ -8660,11 +8694,18 @@ define("moxie/runtime/html5/image/Image", [
 			img = _getImg();
 
 			// unify dimensions
-			mathFn = !crop ? Math.min : Math.max;
-			scale = mathFn(width/img.width, height/img.height);
+			if (!crop) {
+				scale = Math.min(width/img.width, height/img.height);
+			} else {
+				// one of the dimensions may exceed the actual image dimensions - we need to take the smallest value
+				width = Math.min(width, img.width);
+				height = Math.min(height, img.height);
+
+				scale = Math.max(width/img.width, height/img.height);
+			}
 		
 			// we only downsize here
-			if (scale > 1 && (!crop || preserveHeaders)) { // when cropping one of dimensions may still exceed max, so process it anyway
+			if (scale > 1 && !crop && preserveHeaders) {
 				this.trigger('Resize');
 				return;
 			}
@@ -8677,7 +8718,6 @@ define("moxie/runtime/html5/image/Image", [
 			// calculate dimensions of proportionally resized image
 			destWidth = Math.round(img.width * scale);	
 			destHeight = Math.round(img.height * scale);
-
 
 			// scale image and canvas
 			if (crop) {
@@ -8909,7 +8949,9 @@ define("moxie/runtime/flash/Runtime", [
 				return value && I.mode === 'browser';
 			},
 			send_multipart: Runtime.capTrue,
-			slice_blob: Runtime.capTrue,
+			slice_blob: function(value) {
+				return value && I.mode === 'browser';
+			},
 			stream_upload: function(value) {
 				return value && I.mode === 'browser';
 			},
@@ -10651,10 +10693,10 @@ Globally exposed namespace with the most frequently used public classes and hand
 @static
 @private
 */
-(function() {
+(function(exports) {
 	"use strict";
 
-	var o = {}, inArray = moxie.core.utils.Basic.inArray;
+	var o = {}, inArray = exports.moxie.core.utils.Basic.inArray;
 
 	// directly add some public classes
 	// (we do it dynamically here, since for custom builds we cannot know beforehand what modules were included)
@@ -10668,17 +10710,17 @@ Globally exposed namespace with the most frequently used public classes and hand
 				o[name] = ns[name];
 			}
 		}
-	})(window.moxie);
+	})(exports.moxie);
 
 	// add some manually
-	o.Env = window.moxie.core.utils.Env;
-	o.Mime = window.moxie.core.utils.Mime;
-	o.Exceptions = window.moxie.core.Exceptions;
+	o.Env = exports.moxie.core.utils.Env;
+	o.Mime = exports.moxie.core.utils.Mime;
+	o.Exceptions = exports.moxie.core.Exceptions;
 
 	// expose globally
-	window.mOxie = o;
-	if (!window.o) {
-		window.o = o;
+	exports.mOxie = o;
+	if (!exports.o) {
+		exports.o = o;
 	}
 	return o;
-})();
+})(this);

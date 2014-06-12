@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="../assets/css/main.rtl.css">
 
     <!-- Metis Theme stylesheet -->
-    <link rel="stylesheet" href="../assets/css/theme.css">
     <style>
       body {
         direction: rtl;
@@ -36,11 +35,23 @@
         <script src="../assets/lib/respond/respond.min.js"></script>
         <![endif]-->
 
-    <!--Modernizr 2.7.2-->
+    <!--For Development Only. Not required -->
+    <script>
+      less = {
+        env: "development",
+        relativeUrls: false,
+        rootpath: "../assets/"
+      };
+    </script>
+    <link rel="stylesheet" href="../assets/css/style-switcher.css">
+    <link rel="stylesheet/less" type="text/css" href="../assets/css/less/theme.less">
+    <script src="../assets/lib/less/less-1.7.0.min.js"></script>
+
+    <!--Modernizr 2.8.2-->
     <script src="../assets/lib/modernizr/modernizr.min.js"></script>
   </head>
-  <body>
-    <div id="wrap">
+  <body class="  ">
+    <div class="bg-dark dk" id="wrap">
       <div id="top">
 
         <!-- .navbar -->
@@ -128,18 +139,18 @@
           </div><!-- /.search-bar -->
           <div class="main-bar">
             <h3>
-              <i class="fa fa-home"></i>Metis</h3>
+              <i class="fa fa-home"></i>&nbsp; Metis</h3>
           </div><!-- /.main-bar -->
         </header><!-- /.head -->
       </div><!-- /#top -->
       <div id="left">
-        <div class="media user-media">
+        <div class="media user-media bg-dark dker">
           <div class="user-media-toggleHover">
             <span class="fa fa-user"></span> 
           </div>
-          <div class="user-wrapper">
+          <div class="user-wrapper bg-dark">
             <a class="user-link" href="">
-              <img class="media-object img-thumbnail user-img" alt="User Picture" src="assets/img/user.gif">
+              <img class="media-object img-thumbnail user-img" alt="User Picture" src="../assets/img/user.gif">
               <span class="label label-danger user-label">16</span> 
             </a> 
             <div class="media-body">
@@ -157,20 +168,71 @@
         </div>
 
         <!-- #menu -->
-        <ul id="menu" class="">
+        <ul id="menu" class="bg-blue dker">
           <li class="nav-header">Menu</li>
           <li class="nav-divider"></li>
           <li class="">
             <a href="dashboard.html">
-              <i class="fa fa-dashboard"></i><span class="link-title">Dashboard</span> 
+              <i class="fa fa-dashboard"></i><span class="link-title">&nbsp;Dashboard</span> 
             </a> 
           </li>
           <li class="">
             <a href="javascript:;">
+              <i class="fa fa-building "></i>
+              <span class="link-title">Layouts</span> 
+              <span class="fa arrow"></span> 
+            </a> 
+            <ul>
+              <li class="">
+                <a href="fixed-header.html">
+                  <i class="fa fa-angle-right"></i>&nbsp;Fixed Header</a> 
+              </li>
+              <li class="">
+                <a href="fixed-menu.html">
+                  <i class="fa fa-angle-right"></i>&nbsp;Fixed Menu</a> 
+              </li>
+              <li class="">
+                <a href="fixed-header-menu.html">
+                  <i class="fa fa-angle-right"></i>&nbsp;Fixed Header & Menu</a> 
+              </li>
+              <li class="">
+                <a href="sm.html">
+                  <i class="fa fa-angle-right"></i>&nbsp;Mini Sidebar</a> 
+              </li>
+              <li class="">
+                <a href="fixed-header-mini-sidebar.html">
+                  <i class="fa fa-angle-right"></i>&nbsp;Fixed Header & Mini Menu</a> 
+              </li>
+              <li class="">
+                <a href="fixed-mini-sidebar.html">
+                  <i class="fa fa-angle-right"></i>&nbsp;Fixed & Mini Menu</a> 
+              </li>
+              <li class="">
+                <a href="fixed-header-fixed-mini-sidebar.html">
+                  <i class="fa fa-angle-right"></i>&nbsp;Fixed Header and Fixed Mini Menu</a> 
+              </li>
+              <li class="">
+                <a href="boxed.html">
+                  <i class="fa fa-angle-right"></i>&nbsp;Boxed Layout</a> 
+              </li>
+              <li class="">
+                <a href="fixed-header-boxed.html">
+                  <i class="fa fa-angle-right"></i>&nbsp;Boxed Layout & Fixed Header</a> 
+              </li>
+              <li class="">
+                <a href="fixed-menu-boxed.html">
+                  <i class="fa fa-angle-right"></i>&nbsp;Boxed Layout & Fixed Menu</a> 
+              </li>
+              <li class="">
+                <a href="fxhmoxed.html">
+                  <i class="fa fa-angle-right"></i>&nbsp;Boxed and Fixed Header & Menu</a> 
+              </li>
+            </ul>
+          </li>
+          <li class="">
+            <a href="javascript:;">
               <i class="fa fa-tasks"></i>
-              <span class="link-title">
-              Components
-            </span> 
+              <span class="link-title">Components</span> 
               <span class="fa arrow"></span> 
             </a> 
             <ul>
@@ -391,7 +453,7 @@
       </div><!-- /#left -->
       <div id="content">
         <div class="outer">
-          <div class="inner">
+          <div class="inner bg-light lter">
             <div class="col-lg-12">
               <h1 id="bootstrap-admin-template-build-status-https-travis-ci-org-onokumus-bootstrap-admin-template-png-https-travis-ci-org-onokumus-bootstrap-admin-template-dependency-status-https-david-dm-org-onokumus-bootstrap-admin-template-svg-theme-shields-io-https-david-dm-org-onokumus-bootstrap-admin-template-devdependency-status-https-david-dm-org-onokumus-bootstrap-admin-template-dev-status-svg-theme-shields-io-https-david-dm-org-onokumus-bootstrap-admin-template-info-devdependencies-">Bootstrap-Admin-Template
                 <a href="https://travis-ci.org/onokumus/Bootstrap-Admin-Template">
@@ -413,14 +475,14 @@
                 <li>
                   <a href="#building">Building</a> 
                   <ul>
-                    <li> <a href="#2.2.4-version">2.2.4 Version</a>  </li>
+                    <li> <a href="#2.2.5-version">2.2.5 Version</a>  </li>
                     <li> <a href="#12-version">1.2 Version</a>  </li>
                   </ul>
                 </li>
                 <li>
                   <a href="#demo">Demo</a> 
                   <ul>
-                    <li> <a href="#2.2.4-version">For 2.2.4 version</a>  </li>
+                    <li> <a href="#2.2.5-version">For 2.2.5 version</a>  </li>
                     <li> <a href="#for-12-version">For 1.2 version</a>  </li>
                   </ul>
                 </li>
@@ -433,17 +495,17 @@
               <ul>
                 <li>
                   <p>Bootstrap 2.3.2
-                    <a href="https://github.com/onokumus/Bootstrap-Admin-Template/archive/v1.2.zip">V.1.2</a> 
+                    <a href="https://github.com/onokumus/Bootstrap-Admin-Template/archive/v1.2.zip">v1.2</a> 
                     ready for use</p>
                 </li>
                 <li>
                   <p>Bootstrap 3.1.1
-                    <a href="https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip">2.2.4</a> 
+                    <a href="https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip">v2.2.5</a> 
                     ready <code>dist</code> folder your use</p>
                 </li>
               </ul>
               <h3 id="building">Building</h3>
-              <h4 id="2-2-4-version">2.2.4 Version</h4>
+              <h4 id="2-2-5-version">2.2.5 Version</h4>
               <p>required
                 <a href="http://nodejs.org/">node.js</a> &amp;
                 <a href="http://bower.io/">bower</a> &amp;
@@ -454,7 +516,7 @@
     $ npm install
     $ npm run build
     $ grunt connect</code></pre>
-              <h4 id="2-2-4-rtl-version">2.2.4 RTL Version</h4>
+              <h4 id="2-2-5-rtl-version">2.2.5 RTL Version</h4>
               <p>required
                 <a href="http://nodejs.org/">node.js</a> &amp;
                 <a href="http://bower.io/">bower</a> &amp;
@@ -473,8 +535,8 @@ $ git submodule update
 $ open index.html</code></pre>
               <h3 id="demo">Demo</h3>
               <ul>
-                <li> <a href="http://demo.onokumus.com/metis/">Demo 2.2.4</a>  </li>
-                <li> <a href="http://demo.onokumus.com/metis/rtl/">RTL 2.2.4</a>  </li>
+                <li> <a href="http://demo.onokumus.com/metis/">Demo v2.2.5</a>  </li>
+                <li> <a href="http://demo.onokumus.com/metis/rtl/">RTL v2.2.5</a>  </li>
                 <li>
                   <a href="http://demo.onokumus.com/metis/v12">v1.2 <code>not development</code>
                   </a> 
@@ -484,6 +546,7 @@ $ open index.html</code></pre>
               <p><strong>DATE</strong>   <strong>VERSION</strong>   <strong>CHANGES</strong>  
               </p>
               <ul>
+                <li>2014-06-04 v2.2.5 Fixed side panel(s) code Deprecated main.js Added core.js &amp; app.js</li>
                 <li>2014-04-23 v2.2.4 RTL version added Remove CLEditor Added CKEditor</li>
                 <li>2014-04-13 v2.2.3 rewrite all code</li>
                 <li>2014-04-10 v2.2.2 remove <code>alterne.html</code>,right panel available</li>
@@ -509,6 +572,7 @@ $ open index.html</code></pre>
                 <li> <a href="http://getbootstrap.com/">Bootstrap</a>  </li>
                 <li> <a href="http://lesscss.org/">LESS</a>  </li>
                 <li> <a href="http://modernizr.com/">Modernizr</a>  </li>
+                <li> <a href="http://momentjs.com/">Moment.js</a>  </li>
                 <li> <a href="https://github.com/subtlepatterns/SubtlePatterns">SubtlePatterns</a>  </li>
                 <li> <a href="http://arshaw.com/fullcalendar/">FullCalendar</a>  </li>
                 <li> <a href="https://github.com/harvesthq/chosen">Chosen</a>  </li>
@@ -520,7 +584,6 @@ $ open index.html</code></pre>
                 <li> <a href="http://rustyjeans.com/jquery-plugins/input-limiter">Input Limiter</a>  </li>
                 <li> <a href="http://jasny.github.com/bootstrap">Jasny Bootstrap</a>  </li>
                 <li> <a href="http://jqueryvalidation.org/">jQuery Validation</a>  </li>
-                <li> <a href="http://www.meadmiracle.com/dlb/DLBDocumentation.aspx">Dual Listbox</a>  </li>
                 <li> <a href="http://omnipotent.net/jquery.sparkline">jQuery Sparklines</a>  </li>
                 <li> <a href="https://daneden.me/animate/">Animate</a>  </li>
                 <li> <a href="http://www.jacklmoore.com/autosize">Autosize</a>  </li>
@@ -552,12 +615,13 @@ $ open index.html</code></pre>
                 <li>onokumus</li>
               </ul>
               <h3 id="license">License</h3>
-              <p>Copyright (c) 2014 onokumus, contributors. Released under the , licenses</p>
+              <p>Copyright (c) 2014 onokumus, contributors.
+                <br>Released under the MIT license</p>
             </div>
           </div><!-- /.inner -->
         </div><!-- /.outer -->
       </div><!-- /#content -->
-      <div id="right">
+      <div id="right" class="bg-light lter">
         <div class="alert alert-danger">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
           <strong>Warning!</strong>  Best check yo self, you're not looking too good.
@@ -615,7 +679,7 @@ $ open index.html</code></pre>
         </div>
       </div><!-- /#right -->
     </div><!-- /#wrap -->
-    <footer id="footer">
+    <footer class="Footer bg-dark dker">
       <p>2014 &copy; Metis Bootstrap Admin Template</p>
     </footer><!-- /#footer -->
 
@@ -640,7 +704,7 @@ $ open index.html</code></pre>
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal --><!-- /#helpModal -->
 
-    <!--jQuery 2.1.0 -->
+    <!--jQuery 2.1.1 -->
     <script src="../assets/lib/jquery/jquery.min.js"></script>
 
     <!--Bootstrap -->
@@ -650,9 +714,10 @@ $ open index.html</code></pre>
     <script src="../assets/lib/screenfull/screenfull.js"></script>
 
     <!-- Metis core scripts -->
-    <script src="../assets/js/main.min.js"></script>
+    <script src="../assets/js/core.min.js"></script>
 
-    <!--For Demo Only. Not required -->
-    <script src="../assets/js/style-switcher.min.js"></script>
+    <!-- Metis demo scripts -->
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/style-switcher.js"></script>
   </body>
 </html>

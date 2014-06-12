@@ -1,5 +1,7 @@
-function formGeneral() {
-    "use strict";
+;(function($){
+  "use strict";
+  
+  Metis.formGeneral = function() {
 
     $('.with-tooltip').tooltip({
         selector: ".input-tooltip"
@@ -151,4 +153,7 @@ function formGeneral() {
 //     DEPRECATED
 //     $.configureBoxes();
     /*----------- END dualListBox CODE -------------------------*/
-}
+};
+  
+  return Metis;
+})(jQuery);

@@ -1,8 +1,15 @@
 /**
  * Spanish Argenina translation for bootstrap-wysihtml5
  */
-
-(function($){
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define('bootstrap.wysihtml5.es-AR', ['jquery', 'bootstrap.wysihtml5'], factory);
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function($){
     $.fn.wysihtml5.locale["es-AR"] = {
         font_styles: {
             normal: "Texto normal",
@@ -16,7 +23,8 @@
         emphasis: {
             bold: "Negrita",
             italic: "Itálica",
-            underline: "Subrayado"
+            underline: "Subrayado",
+            small: "Subíndice"
         },
         lists: {
             ordered: "Lista ordenada",
@@ -50,4 +58,4 @@
             orange: "Naranja"
         }
     };
-}(jQuery));
+}));

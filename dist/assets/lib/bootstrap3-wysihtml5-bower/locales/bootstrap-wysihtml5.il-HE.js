@@ -1,7 +1,15 @@
 /**
  * Hebrew translation for bootstrap-wysihtml5
  */
-(function($){
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define('bootstrap.wysihtml5.il-HE', ['jquery', 'bootstrap.wysihtml5'], factory);
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function($){
     $.fn.wysihtml5.locale["il-HE"] = {
         font_styles: {
             normal: "רגיל",
@@ -50,4 +58,4 @@
           orange: "כתום"
         }
     };
-}(jQuery));
+}));

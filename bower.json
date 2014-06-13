@@ -73,7 +73,8 @@
     "bootstrap3-wysihtml5-bower": "~0.3.0",
     "holderjs": "~2.3.2",
     "ckeditor": "~4.4.1",
-    "moment": "~2.6.0"
+    "moment": "~2.6.0",
+    "bootstrap": "~3.1.1"
   },
   "resolutions": {
     "jquery": "~2.1.1",

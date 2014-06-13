@@ -187,7 +187,7 @@ StyleSwitcher.prototype.build = function () {
         colorSelector = $('<input/>').addClass('color-picker-icon').attr({
             'id': 'colorSelector',
             'type': 'color'
-        }).val(colors[0].Hex);
+        }).val($this.storageManager.getBgColor());
         colorSelector.on('change', function (ev) {
             $this.storageManager.setBgColor($(this).val());
             $this.showChange();
@@ -240,6 +240,7 @@ StyleSwitcher.prototype.build = function () {
         $this.showChange();
 
         colorSelector.attr('data-color', $(this).data('colorHex'));
+        colorSelector.val($(this).data('colorHex'));
         colorSelector.find('a').css('background-color', $(this).data('colorHex'));
     });
 

@@ -51,7 +51,7 @@ module.exports = {
                 dest: 'dist/assets/lib/font-awesome'
             },
             {
-                'dist/assets/lib/less/less-1.7.0.min.js': ['node_modules/less/dist/less-1.7.0.min.js'],
+                'dist/assets/lib/less/less-1.7.1.min.js': ['node_modules/less/dist/less-1.7.1.min.js'],
                 'dist/assets/lib/gmaps/gmaps.js': ['bower_components/gmaps/gmaps.js'],
                 'dist/assets/lib/html5shiv/html5shiv.js': ['bower_components/html5shiv/dist/html5shiv.js'],
                 'dist/assets/lib/respond/respond.min.js': ['bower_components/respond/dest/respond.min.js'],

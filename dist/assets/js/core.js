@@ -1,8 +1,8 @@
 /**
-* Metis - Bootstrap-Admin-Template v2.2.5
+* Metis - Bootstrap-Admin-Template v2.2.6
 * Author : onokumus 
 * Copyright 2014
-* Licensed under  ()
+* Licensed under MIT (https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/LICENSE.md)
 */
 ;(function(window) {
     var

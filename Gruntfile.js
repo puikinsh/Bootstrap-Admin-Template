@@ -24,7 +24,7 @@ module.exports = function (grunt) {
             '* Metis - <%=pkg.name %> v<%= pkg.version %>\n' +
             '* Author : <%= pkg.author.name %> \n' +
             '* Copyright <%= grunt.template.today("yyyy") %>\n' +
-            '* Licensed under <%= pkg.licenses.type %> (<%= pkg.licenses.url %>)\n' +
+            '* Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
             '*/\n',
 
         clean: getTask('clean'),
@@ -46,6 +46,8 @@ module.exports = function (grunt) {
          * Build HTML from templates and data
          */
         assemble: getTask('assemble'),
+		     
+	htmlmin: getTask('htmlmin'),
 
         modernizr: getTask('modernizr'),
 

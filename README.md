@@ -5,11 +5,7 @@
 ## TOC
   * [Download](#download)
   * [Building](#building)
-    * [2.2.5 Version](#2.2.5-version)
-    * [1.2 Version](#12-version)
   * [Demo](#demo)
-    * [For 2.2.5 version](#2.2.5-version)
-    * [For 1.2 version](#for-12-version)
   * [Release History](#release-history)
   * [Credits](#credits)
   * [Author](#author)
@@ -19,14 +15,14 @@
  * Bootstrap 2.3.2 [v1.2](https://github.com/onokumus/Bootstrap-Admin-Template/archive/v1.2.zip)
 ready for use
 
- * Bootstrap 3.1.1 [v2.2.5](https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip)
+ * Bootstrap 3.1.1 [v2.2.6](https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip)
 ready `dist` folder your use
 
 
 
 ### Building
 
-#### 2.2.5 Version
+#### 2.2.6 Version
 required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](http://gruntjs.com/getting-started)
 
 ```shell
@@ -37,7 +33,7 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
     $ grunt connect
 ```
 
-#### 2.2.5 RTL Version
+#### 2.2.6 RTL Version
 required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](http://gruntjs.com/getting-started)
 
 ```shell
@@ -56,13 +52,14 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
     $ open index.html
 
 ### Demo
- * [Demo v2.2.5](http://demo.onokumus.com/metis/)
- * [RTL v2.2.5](http://demo.onokumus.com/metis/rtl/)
+ * [Demo v2.2.6](http://demo.onokumus.com/metis/)
+ * [RTL v2.2.6](http://demo.onokumus.com/metis/rtl/)
  * [v1.2 `not development`](http://demo.onokumus.com/metis/v12)
 
 
 ## Release History
 **DATE**       **VERSION**   **CHANGES**                                                       
+* 2014-07-07   v2.2.6        Bootstrap 3.2.0                                                   
 * 2014-06-04   v2.2.5        Fixed side panel(s) code Deprecated main.js Added core.js & app.js
 * 2014-04-23   v2.2.4        RTL version added Remove CLEditor Added CKEditor                  
 * 2014-04-13   v2.2.3        rewrite all code                                                  
@@ -132,4 +129,3 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
 
 ### License
 Copyright (c) 2014 onokumus, contributors.  
-Released under the MIT license

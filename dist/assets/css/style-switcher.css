@@ -1,8 +1,8 @@
 /**
-* Metis - Bootstrap-Admin-Template v2.2.5
+* Metis - Bootstrap-Admin-Template v2.2.6
 * Author : onokumus 
 * Copyright 2014
-* Licensed under  ()
+* Licensed under MIT (https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/LICENSE.md)
 */
 body {
   position: relative;
@@ -15,6 +15,7 @@ body {
   width: 212px;
   z-index: 999;
   -webkit-transition: all 1s;
+  -o-transition: all 1s;
   transition: all 1s;
 }
 .style-switcher.open {
@@ -125,6 +126,7 @@ body.rtl .style-switcher .options li {
   background-color: #454545;
   background-repeat: repeat-x;
   background-image: -webkit-linear-gradient(-90deg, #303030, #262626);
+  background-image: -o-linear-gradient(-90deg, #303030, #262626);
   background-image: linear-gradient(-90deg, #303030, #262626);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
   color: #ccc;
@@ -138,6 +140,7 @@ body.rtl .style-switcher .options li {
   background-color: #3D3D3D;
   background-repeat: repeat-x;
   background-image: -webkit-linear-gradient(-90deg, #2f2f2f, #343434);
+  background-image: -o-linear-gradient(-90deg, #2f2f2f, #343434);
   background-image: linear-gradient(-90deg, #2f2f2f, #343434);
   border: 1px solid #191919;
   -webkit-box-shadow: "0 1px 0 rgba(255, 255, 255, 0.09), 1px 1px 0 rgba(255, 255, 255, 0.05), -1px -1px 0 rgba(0, 0, 0, 0.02), 1px 1px 0 rgba(255, 255, 255, 0.05) inset";

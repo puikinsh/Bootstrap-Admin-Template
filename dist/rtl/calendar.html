@@ -47,7 +47,7 @@
     </script>
     <link rel="stylesheet" href="../assets/css/style-switcher.css">
     <link rel="stylesheet/less" type="text/css" href="../assets/css/less/theme.less">
-    <script src="../assets/lib/less/less-1.7.1.min.js"></script>
+    <script src="../assets/lib/less/less-1.7.3.min.js"></script>
 
     <!--Modernizr 2.8.2-->
     <script src="../assets/lib/modernizr/modernizr.min.js"></script>
@@ -451,6 +451,15 @@
               </li>
             </ul>
           </li>
+          <li class="nav-divider"></li>
+          <li class="nav-header">Ads</li>
+          <li class="nav-divider"></li>
+          <li>
+            <a href="https://www.digitalocean.com/?refcode=e29769a0f3a5">
+              <i class="fa fa-ticket"></i>
+              <span class="link-title">DigitalOcean Referral Link</span> 
+            </a> 
+          </li>
         </ul><!-- /#menu -->
       </div><!-- /#left -->
       <div id="content">
@@ -469,30 +478,42 @@
                           <legend>Add Custom Event</legend>
                           <span class="help-block">Event Title</span> 
                           <input id="title" name="title" type="text" placeholder="event title" class="form-control input-small">
-                          <label class="radio">
-                            <input type="radio" name="priority" value="label label-default" checked>
-                            <span class="label label-default">default</span> 
-                          </label>
-                          <label class="radio">
-                            <input type="radio" name="priority" value="label label-primary">
-                            <span class="label label-primary">primary</span> 
-                          </label>
-                          <label class="radio">
-                            <input type="radio" name="priority" value="label label-warning">
-                            <span class="label label-warning">warning</span> 
-                          </label>
-                          <label class="radio">
-                            <input type="radio" name="priority" value="label label-success">
-                            <span class="label label-success">success</span> 
-                          </label>
-                          <label class="radio">
-                            <input type="radio" name="priority" value="label label-info">
-                            <span class="label label-info">info</span> 
-                          </label>
-                          <label class="radio">
-                            <input type="radio" name="priority" value="label label-danger">
-                            <span class="label label-danger">danger</span> 
-                          </label>
+                          <div class="radio">
+                            <label>
+                              <input type="radio" name="priority" value="label label-default" checked>
+                              <span class="label label-default">default</span> 
+                            </label>
+                          </div>
+                          <div class="radio">
+                            <label>
+                              <input type="radio" name="priority" value="label label-primary">
+                              <span class="label label-primary">primary</span> 
+                            </label>
+                          </div>
+                          <div class="radio">
+                            <label>
+                              <input type="radio" name="priority" value="label label-warning">
+                              <span class="label label-warning">warning</span> 
+                            </label>
+                          </div>
+                          <div class="radio">
+                            <label>
+                              <input type="radio" name="priority" value="label label-success">
+                              <span class="label label-success">success</span> 
+                            </label>
+                          </div>
+                          <div class="radio">
+                            <label>
+                              <input type="radio" name="priority" value="label label-info">
+                              <span class="label label-info">info</span> 
+                            </label>
+                          </div>
+                          <div class="radio">
+                            <label>
+                              <input type="radio" name="priority" value="label label-danger">
+                              <span class="label label-danger">danger</span> 
+                            </label>
+                          </div>
                           <br>
                           <button id="add-event" type="button" class="btn btn-sm btn-default">Add Event</button>
                         </fieldset>

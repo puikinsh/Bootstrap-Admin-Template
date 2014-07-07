@@ -1,7 +1,7 @@
 {
   "name": "Bootstrap-Admin-Template",
   "description": "Free Admin Template Based On Twitter Bootstrap 3.x",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "homepage": "https://github.com/onokumus/Bootstrap-Admin-Template",
   "author": {
     "name": "onokumus",
@@ -14,12 +14,10 @@
   "bugs": {
     "url": "https://github.com/onokumus/Bootstrap-Admin-Template/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/LICENSE.md"
-    }
-  ],
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/LICENSE.md"
+  },
   "keywords": [
     "twbs",
     "assemble",
@@ -41,9 +39,9 @@
     "buildrtl": "npm run build && npm run mainrtl && npm run bootstraprtl"
   },
   "devDependencies": {
-    "assemble": "^0.4.37",
+    "assemble": "^0.4.41",
     "assemble-less": "^0.7.0",
-    "css-flip": "^0.4.0",
+    "css-flip": "^0.5.0",
     "cssbeautify": "^0.3.1",
     "epiceditor": "^0.2.0",
     "grunt": "^0.4.5",
@@ -51,12 +49,13 @@
     "grunt-contrib-concat": "^0.4.0",
     "grunt-contrib-connect": "^0.8.0",
     "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-htmlmin": "^0.3.0",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-uglify": "^0.5.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-modernizr": "^0.5.2",
-    "less": "^1.7.1",
-    "load-grunt-tasks": "^0.5.0",
+    "less": "^1.7.3",
+    "load-grunt-tasks": "^0.6.0",
     "pretty": "^0.1.2",
     "screenfull": "^1.2.1",
     "time-grunt": "^0.3.2",

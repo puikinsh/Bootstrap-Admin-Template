@@ -5,11 +5,7 @@
 ## TOC
   * [Download](#download)
   * [Building](#building)
-    * [{%= version %} Version](#{%= version %}-version)
-    * [1.2 Version](#12-version)
   * [Demo](#demo)
-    * [For {%= version %} version](#{%= version %}-version)
-    * [For 1.2 version](#for-12-version)
   * [Release History](#release-history)
   * [Credits](#credits)
   * [Author](#author)

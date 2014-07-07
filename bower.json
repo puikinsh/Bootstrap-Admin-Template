@@ -1,7 +1,7 @@
 {
   "name": "Bootstrap-Admin-Template",
   "description": "Twitter Bootstrap Admin Template",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "homepage": "https://github.com/onokumus/Bootstrap-Admin-Template",
   "authors": [
     "onokumus <onokumus@gmail.com>"
@@ -43,11 +43,11 @@
     "jquery-ui-touch-punch": "https://github.com/furf/jquery-ui-touch-punch.git",
     "elfinder": "https://github.com/downloads/Studio-42/elFinder/elfinder-2.0-rc1.tar.gz",
     "jquery-validation": "~1.12.0",
-    "html5shiv": "~3.7.1",
+    "html5shiv": "~3.7.2",
     "respond": "~1.4.2",
     "font-awesome": "~4.1.0",
-    "gmaps": "~0.4.12",
-    "jquery.tablesorter": "~2.17.1",
+    "gmaps": "~0.4.13",
+    "jquery.tablesorter": "~2.17.3",
     "jquery-autosize": "~1.18.9",
     "flot": "~0.8.3",
     "jquery-mousewheel": "~3.1.11",
@@ -58,8 +58,8 @@
     "jQuery.validVal": "~5.0.2",
     "jquery.gritter": "*",
     "plupload": "~2.1.2",
-    "animate.css": "~3.1.0",
-    "bootstrap-switch": "~3.0.1",
+    "animate.css": "~3.1.1",
+    "bootstrap-switch": "~3.0.2",
     "validationEngine": "~2.6.4",
     "jquery-form": "~3.46.0",
     "jquery.tagsinput": "~1.3.2",
@@ -68,16 +68,16 @@
     "jasny-bootstrap": "~3.1.3",
     "blueimp-md5": "~1.1.0",
     "jquery-inputlimiter": "*",
-    "bootstrap-duallistbox": "~3.0.1",
-    "fullcalendar": "~2.0.0",
-    "bootstrap3-wysihtml5-bower": "~0.3.0",
+    "bootstrap-duallistbox": "~3.0.2",
+    "fullcalendar": "~2.0.2",
+    "bootstrap3-wysihtml5-bower": "~0.3.2",
     "holderjs": "~2.3.2",
-    "ckeditor": "~4.4.1",
-    "moment": "~2.6.0",
-    "bootstrap": "~3.1.1"
+    "ckeditor": "~4.4.2",
+    "moment": "~2.7.0",
+    "bootstrap": "~3.2.0"
   },
   "resolutions": {
     "jquery": "~2.1.1",
-    "bootstrap": "~3.1.1"
+    "bootstrap": "~3.2.0"
   }
 }

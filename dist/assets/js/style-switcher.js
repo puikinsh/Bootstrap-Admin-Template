@@ -1,5 +1,5 @@
 /**
-* Metis - Bootstrap-Admin-Template v2.2.6
+* Metis - Bootstrap-Admin-Template v2.2.7
 * Author : onokumus 
 * Copyright 2014
 * Licensed under MIT (https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/LICENSE.md)
@@ -79,7 +79,7 @@ StyleSwitcher = function () {
 
     this.init();
 };
-StyleSwitcher.prototype.init = function () {
+StyleSwitcher.prototype.init = function () {  
     this.showChange();
     this.build();
 };
@@ -92,6 +92,7 @@ StyleSwitcher.prototype.showChange = function () {
 };
 
 StyleSwitcher.prototype.build = function () {
+   
     var $this = this;
     $this.storageManager = new LocalStorageManager();
 

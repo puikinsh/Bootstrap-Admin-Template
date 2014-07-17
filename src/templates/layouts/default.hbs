@@ -56,17 +56,28 @@
     
     <!--Modernizr 2.8.2-->
     <script src="{{assets}}/lib/modernizr/modernizr.min.js"></script>
+    {{#if analytics}}
+    {{analytics google.analytics 'head'}}
+    {{/if}}
 </head>
 <body class="{{#if boXed}}boxed{{/if}} {{#if sideMini}}sidebar-left-mini{{/if}} {{#if fixedMenu}}menu-affix{{/if}}">
 <div class="bg-dark dk" id="wrap">
     <div id="top">
         {{> nav }}
 
+        {{#if noHeader}}   
+        {{else}}
         <header class="head">
-            <div class="search-bar">
+        
+        {{#if noMainSearch}}    
+	  {{else}}
+	    <div class="search-bar">
                 {{> mainSearch }}
             </div>
             <!-- /.search-bar -->
+	{{/if}}
+        
+            
 
             <div class="main-bar">
                 <h3><i class="{{ icon }}"></i>&nbsp; {{ title }}</h3>
@@ -74,12 +85,16 @@
             <!-- /.main-bar -->
         </header>
         <!-- /.head -->
+        {{/if}}
     </div>
     <!-- /#top -->
-    <div id="left">
-        {{> left }}
-    </div>
-    <!-- /#left -->
+    {{#if noLeftSidebar}}    
+    {{else}}
+      <div id="left">
+	  {{> left }}
+      </div>
+      <!-- /#left -->
+    {{/if}}
     <div id="content">
         <div class="outer">
             <div class="inner bg-light lter">
@@ -90,11 +105,13 @@
         <!-- /.outer -->
     </div>
     <!-- /#content -->
-
+    {{#if noRightSidebar}}   
+        {{else}}
     <div id="right" class="bg-light lter">
         {{> right }}
     </div>
     <!-- /#right -->
+    {{/if}}
 </div>
 <!-- /#wrap -->
 <footer class="Footer bg-dark dker">
@@ -106,12 +123,15 @@
 
 <!--jQuery 2.1.1 -->
 <script src="{{assets}}/lib/jquery/jquery.min.js"></script>
-<!--Bootstrap -->
-<script src="{{assets}}/lib/bootstrap/js/bootstrap.min.js"></script>
 
 {{#if cdnjs}}
     {{cdn cdnjs}}
 {{/if}}
+
+<!--Bootstrap -->
+<script src="{{assets}}/lib/bootstrap/js/bootstrap.min.js"></script>
+
+
 
 <!-- Screenfull -->
 <script src="{{assets}}/lib/screenfull/screenfull.js"></script>
@@ -128,7 +148,7 @@
 
 
 <!-- Metis core scripts -->
-<script src="{{assets}}/js/core.min.js"></script>
+<script src="{{assets}}/js/core.js"></script>
 
 <!-- Metis demo scripts -->
 <script src="{{assets}}/js/app.min.js"></script>
@@ -137,6 +157,6 @@
             {{scripts}}
     </script>
 {{/if}}
-    <script src="{{assets}}/js/style-switcher.min.js"></script>
+    <script src="{{assets}}/js/style-switcher.js"></script>
 </body>
 </html>

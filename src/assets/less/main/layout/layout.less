@@ -10,7 +10,8 @@
   .clearfix();
 }
 
-#wrap {
+.Wrap, #wrap {
+  margin: 0 auto;
   position: relative;
 }
 
@@ -80,10 +81,14 @@
 
 @media (min-width: @screen-lg-min) {
   body.boxed {
-    #wrap, .Footer, #top .navbar.navbar-fixed-top {
+    margin-bottom: 0;
+    .Wrap, #wrap, .Footer, #top .navbar.navbar-fixed-top {
       max-width: 1170px;
       margin-left: auto;
       margin-right: auto;
+    }
+    .Footer, #footer {
+      position: relative;
     }
   }
 }

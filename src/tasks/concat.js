@@ -7,6 +7,7 @@ module.exports = {
         files: [
             {
                 'dist/assets/js/core.js': [
+		  'src/assets/js/ie10-viewport-bug-workaround.js',
                   'src/assets/js/core/Metis.js',
                   'src/assets/js/core/metisMenu.js',
                   'src/assets/js/core/metisNavBar.js',

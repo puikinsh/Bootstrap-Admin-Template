@@ -12,3 +12,6 @@ partials: src/templates/partials/**/*.hbs
 helpers: src/helper/**/*.js
 layoutdir: src/templates/layouts
 pages: src/templates/pages
+
+analytics: false
+ads: false

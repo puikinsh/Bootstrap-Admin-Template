@@ -73,7 +73,7 @@ StyleSwitcher = function () {
 
     this.init();
 };
-StyleSwitcher.prototype.init = function () {
+StyleSwitcher.prototype.init = function () {  
     this.showChange();
     this.build();
 };
@@ -86,6 +86,7 @@ StyleSwitcher.prototype.showChange = function () {
 };
 
 StyleSwitcher.prototype.build = function () {
+   
     var $this = this;
     $this.storageManager = new LocalStorageManager();
 

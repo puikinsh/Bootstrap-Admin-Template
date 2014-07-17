@@ -5,6 +5,8 @@
             $count = 0;
 
     Metis.metisAnimatePanel = function() {
+      
+      if($('#left').length){
         $leftToggle.on(Metis.buttonPressedEvent, function(e) {
 
             if ($(window).width() < 768) {
@@ -24,7 +26,10 @@
                 e.preventDefault();
             }
         });
-
+      } else {
+	$leftToggle.addClass('hidden');
+      }
+	if($('#right').length){
         $rightToggle.on(Metis.buttonPressedEvent, function(e) {
             switch (true) {
                 // Close right panel
@@ -40,6 +45,9 @@
             }
             e.preventDefault();
         });
+	} else {
+	$rightToggle.addClass('hidden');
+      }
     };
     return Metis;
 })(jQuery, Metis || {});

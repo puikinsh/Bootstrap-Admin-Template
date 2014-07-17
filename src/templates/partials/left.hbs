@@ -34,40 +34,12 @@
             <span class="link-title">Layouts</span>
             <span class="fa arrow"></span>
         </a>
-        <ul>
-            <li class="{{#is title 'Fixed Header'}}active{{/is}}">
-                <a href="fixed-header.html"><i class="fa fa-angle-right"></i>&nbsp;Fixed Header</a>
-            </li>
-            <li class="{{#is title 'Fixed Menu'}}active{{/is}}">
-                <a href="fixed-menu.html"><i class="fa fa-angle-right"></i>&nbsp;Fixed Menu</a>
-            </li>
-            <li class="{{#is title 'Fixed Header & Menu'}}active{{/is}}">
-                <a href="fixed-header-menu.html"><i class="fa fa-angle-right"></i>&nbsp;Fixed Header & Menu</a>
-            </li>
-            <li class="{{#is title 'Mini Sidebar'}}active{{/is}}">
-                <a href="sm.html"><i class="fa fa-angle-right"></i>&nbsp;Mini Sidebar</a>
-            </li>
-            <li class="{{#is title 'Fixed Header & Mini Menu'}}active{{/is}}">
-                <a href="fixed-header-mini-sidebar.html"><i class="fa fa-angle-right"></i>&nbsp;Fixed Header & Mini Menu</a>
-            </li>
-            <li class="{{#is title 'Fixed & Mini Menu'}}active{{/is}}">
-                <a href="fixed-mini-sidebar.html"><i class="fa fa-angle-right"></i>&nbsp;Fixed & Mini Menu</a>
-            </li>
-            <li class="{{#is title 'Fixed Header and Fixed Mini Menu'}}active{{/is}}">
-                <a href="fixed-header-fixed-mini-sidebar.html"><i class="fa fa-angle-right"></i>&nbsp;Fixed Header and Fixed Mini Menu</a>
-            </li>            
-            <li class="{{#is title 'Boxed Layout'}}active{{/is}}">
-                <a href="boxed.html"><i class="fa fa-angle-right"></i>&nbsp;Boxed Layout</a>
-            </li>
-            <li class="{{#is title 'Boxed Layout & Fixed Header'}}active{{/is}}">
-                <a href="fixed-header-boxed.html"><i class="fa fa-angle-right"></i>&nbsp;Boxed Layout & Fixed Header</a>
-            </li>
-            <li class="{{#is title 'Boxed Layout & Fixed Menu'}}active{{/is}}">
-                <a href="fixed-menu-boxed.html"><i class="fa fa-angle-right"></i>&nbsp;Boxed Layout & Fixed Menu</a>
-            </li>
-            <li class="{{#is title 'Boxed and Fixed Header & Menu'}}active{{/is}}">
-                <a href="fxhmoxed.html"><i class="fa fa-angle-right"></i>&nbsp;Boxed and Fixed Header & Menu</a>
-            </li>
+        <ul>            
+            {{#each  pages }} 
+            {{#is data.topTitle 'Layouts'}}
+	      <li > <a  href ="{{basename}}.html" ><i class="fa fa-angle-right"></i>&nbsp; {{data.title }} </a > </li > 
+	    {{/is}}
+	    {{/each  }} 
         </ul>
     </li>
     <li class="{{#is topTitle 'Components'}}active{{/is}}">
@@ -77,24 +49,12 @@
 	    <span class="fa arrow"></span>
         </a>
         <ul>
-            <li class="{{#is title "Icon"}}active{{/is}}">
-	      <a href="icon.html"><i class="fa fa-angle-right"></i>&nbsp;Icon</a>
-            </li>
-            <li class="{{#is title "Buttons"}}active{{/is}}">
-	      <a href="button.html"><i class="fa fa-angle-right"></i>&nbsp;Button</a>
-	    </li>
-            <li class="{{#is title "Progress"}}active{{/is}}">
-	      <a href="progress.html"><i class="fa fa-angle-right"></i>&nbsp;Progress</a>
-	    </li>
-            <li class="{{#is title "Pricing Table"}}active{{/is}}">
-	      <a href="pricing.html"><i class="fa fa-credit-card"></i>&nbsp;Pricing Table</a>
-	    </li>
-            <li class="{{#is title "Bg Image"}}active{{/is}}">
-	      <a href="bgimage.html"><i class="fa fa-angle-right"></i>&nbsp;Bg Image</a>
-	    </li>
-	    <li class="{{#is title "Bg Color"}}active{{/is}}">
-	      <a href="bgcolor.html"><i class="fa fa-angle-right"></i>&nbsp;Bg Color</a>
-	    </li>
+        
+	  {{#each  pages }} 
+            {{#is data.topTitle 'Components'}}
+	      <li > <a  href ="{{basename}}.html" ><i class="fa fa-angle-right"></i>&nbsp; {{data.title }} </a > </li > 
+	    {{/is}}
+	    {{/each  }} 
         </ul>
     </li>
     <li class="{{#is topTitle "Forms"}}active{{/is}}">
@@ -106,18 +66,12 @@
 	  <span class="fa arrow"></span>
         </a>
         <ul>
-	  <li class="{{#is title 'Form General'}}active{{/is}}">
-	    <a href="form-general.html"><i class="fa fa-angle-right"></i>&nbsp;General</a>
-	  </li>
-	  <li class="{{#is title 'Form Validation'}}active{{/is}}">
-	    <a href="form-validation.html"><i class="fa fa-angle-right"></i>&nbsp;Validation</a>
-	  </li>
-	  <li class="{{#is title 'Form WYSIWYG'}}active{{/is}}">
-	    <a href="form-wysiwyg.html"><i class="fa fa-angle-right"></i>&nbsp;WYSIWYG</a>
-	  </li>
-	  <li class="{{#is title 'Form Wizard'}}active{{/is}}">
-	    <a href="form-wizard.html"><i class="fa fa-angle-right"></i>&nbsp;Wizard &amp; File Upload</a>
-	  </li>
+        
+        {{#each  pages }} 
+            {{#is data.topTitle 'Forms'}}
+	      <li > <a  href ="{{basename}}.html" ><i class="fa fa-angle-right"></i>&nbsp; {{data.title }} </a > </li > 
+	    {{/is}}
+	    {{/each  }} 
         </ul>
     </li>
     <li{{#is title "Table"}} class="active"{{/is}}><a href="table.html"><i class="fa fa-table"></i>
@@ -226,17 +180,8 @@
 	  </li>
     	</ul>
     </li>
-   
-   
-   <li class="nav-divider"></li>
-    <li class="nav-header">Ads</li>
-    <li class="nav-divider"></li>
-    <li>
-        <a href="https://www.digitalocean.com/?refcode=e29769a0f3a5">
-        <i class="fa fa-ticket"></i>
-            <span class="link-title">DigitalOcean Referral Link</span>
-        </a>
-    </li>
- 
+    {{#if ads}}
+      {{> adsense }}
+    {{/if}}
 </ul>
 <!-- /#menu -->

@@ -6,10 +6,12 @@ module.exports = {
         assets: '<%= config.assets %>',
         data: '<%= config.data %>',
         partials: ['<%= config.partials %>'],
-        helpers: '<%= config.helpers %>',
+        helpers: ['<%= config.helpers %>','handlebars-helper-analytics'],
         layoutdir: '<%= config.layoutdir %>',
         layout: 'default',
         layoutext: '.hbs',
+	analytics: '<%= config.analytics %>',
+	ads: '<%= config.ads %>',
         marked: {
             breaks: false,
             gfm: true,

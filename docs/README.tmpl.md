@@ -15,7 +15,7 @@
  * Bootstrap 2.3.2 [v1.2](https://github.com/onokumus/Bootstrap-Admin-Template/archive/v1.2.zip)
 ready for use
 
- * Bootstrap 3.1.1 [v{%= version %}](https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip)
+ * Bootstrap 3.2.0 [v{%= version %}](https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip)
 ready `dist` folder your use
 
 
@@ -115,3 +115,5 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
 ### License
 {%= copyright() %}
 {%= license() %}
+
+{%= include("footer") %}

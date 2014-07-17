@@ -1,5 +1,5 @@
 /**
-* Metis - Bootstrap-Admin-Template v2.2.6
+* Metis - Bootstrap-Admin-Template v2.2.7
 * Author : onokumus 
 * Copyright 2014
 * Licensed under MIT (https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/LICENSE.md)
@@ -260,6 +260,8 @@
             $count = 0;
 
     Metis.metisAnimatePanel = function() {
+      
+      if($('#left').length){
         $leftToggle.on(Metis.buttonPressedEvent, function(e) {
 
             if ($(window).width() < 768) {
@@ -279,7 +281,10 @@
                 e.preventDefault();
             }
         });
-
+      } else {
+	$leftToggle.addClass('hidden');
+      }
+	if($('#right').length){
         $rightToggle.on(Metis.buttonPressedEvent, function(e) {
             switch (true) {
                 // Close right panel
@@ -295,15 +300,23 @@
             }
             e.preventDefault();
         });
+	} else {
+	$rightToggle.addClass('hidden');
+      }
     };
     return Metis;
 })(jQuery, Metis || {});
-$(function(){
+;(function($) {
+   $(document).ready(function() {
+    
+    $('[data-toggle="tooltip"]').tooltip();
+ 
     $('#menu').metisMenu();
     Metis.navBar();
     Metis.metisAnimatePanel();
     Metis.toggleFullScreen();
     Metis.boxFullScreen();
     Metis.panelBodyCollapse();
-    Metis.boxHiding();
-}); 
+    Metis.boxHiding();   
+  });
+})(jQuery);

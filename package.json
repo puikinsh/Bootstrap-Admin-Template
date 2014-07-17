@@ -1,7 +1,7 @@
 {
   "name": "Bootstrap-Admin-Template",
   "description": "Free Admin Template Based On Twitter Bootstrap 3.x",
-  "version": "2.2.6",
+  "version": "2.2.7",
   "homepage": "https://github.com/onokumus/Bootstrap-Admin-Template",
   "author": {
     "name": "onokumus",
@@ -54,6 +54,7 @@
     "grunt-contrib-uglify": "^0.5.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-modernizr": "^0.5.2",
+    "handlebars-helper-analytics": "^0.1.1",
     "less": "^1.7.3",
     "load-grunt-tasks": "^0.6.0",
     "pretty": "^0.1.2",

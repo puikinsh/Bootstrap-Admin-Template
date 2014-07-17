@@ -46,8 +46,8 @@ module.exports = function (grunt) {
          * Build HTML from templates and data
          */
         assemble: getTask('assemble'),
-		     
-	htmlmin: getTask('htmlmin'),
+
+        htmlmin: getTask('htmlmin'),
 
         modernizr: getTask('modernizr'),
 

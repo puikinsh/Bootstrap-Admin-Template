@@ -1,12 +1,15 @@
 ---
 title: Maps
 icon: fa fa-map-marker
-cdnjs:
-- http://maps.google.com/maps/api/js?sensor=true
 javascripts:
 - lib/gmaps/gmaps.js
 scripts: $(function() {Metis.MetisMaps();});
 ---
+<style>
+  .FlexEmbed-item {
+  height: 300px;
+}
+</style>
 <div class="row">
     <div class="col-lg-6">
 	<div class="box">
@@ -48,7 +51,7 @@ scripts: $(function() {Metis.MetisMaps();});
 	    <div class="FlexEmbed FlexEmbed--4by3">
 		<div id="gmaps-geolocation" class="FlexEmbed-item"></div>
 	    </div>
-		
+
 	    </div>
 	    <!-- /.body -->
 	</div>
@@ -66,7 +69,7 @@ scripts: $(function() {Metis.MetisMaps();});
 	    <div class="body">
 	      <div class="FlexEmbed FlexEmbed--4by3">
 		  <div id="gmaps-polylines" class="FlexEmbed-item"></div>
-	      </div>		
+	      </div>
 	    </div>
 	    <!-- /.body -->
 	</div>
@@ -128,4 +131,3 @@ scripts: $(function() {Metis.MetisMaps();});
     <!-- /.col-lg-6 -->
 </div>
 <!-- /.row -->
-

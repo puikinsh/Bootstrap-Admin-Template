@@ -1,5 +1,5 @@
 /**
-* Metis - Bootstrap-Admin-Template v2.2.6
+* Metis - Bootstrap-Admin-Template v2.2.7
 * Author : onokumus 
 * Copyright 2014
 * Licensed under MIT (https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/LICENSE.md)
@@ -15,6 +15,27 @@ body {
 /*********************************************************/
 /*                 Layout Styles                         */
 /*********************************************************/
+/* ==========================================================================
+   Sticky footer styles
+   ========================================================================== */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 48px;
+}
+.Footer,
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 48px;
+}
+/* END Sticky footer styles
+   ========================================================================== */
 /*********************************************************/
 /*                 Template Layout                       */
 /*********************************************************/
@@ -35,7 +56,9 @@ body {
 .Footer:after {
   clear: both;
 }
+.Wrap,
 #wrap {
+  margin: 0 auto;
   position: relative;
 }
 #left,
@@ -100,6 +123,10 @@ body {
   }
 }
 @media (min-width: 1200px) {
+  body.boxed {
+    margin-bottom: 0;
+  }
+  body.boxed .Wrap,
   body.boxed #wrap,
   body.boxed .Footer,
   body.boxed #top .navbar.navbar-fixed-top {
@@ -107,60 +134,12 @@ body {
     margin-left: auto;
     margin-right: auto;
   }
+  body.boxed .Footer,
+  body.boxed #footer {
+    position: relative;
+  }
 }
 /* ================== END Template Layout ============== */
-@media (min-width: 992px) {
-  .three-columns #content,
-  .three-columns #right {
-    float: left;
-  }
-  .three-columns #right {
-    display: block;
-    padding: 10px;
-  }
-  .three-columns #left,
-  .three-columns #right {
-    width: 20%;
-  }
-  .three-columns #content {
-    width: 60%;
-    margin: 0 !important;
-  }
-}
-@media (min-width: 1200px) {
-  .three-columns #left,
-  .three-columns #right {
-    width: 15%;
-  }
-  .three-columns #content {
-    width: 70%;
-  }
-  .three-columns .side-right #right {
-    float: right;
-    padding-top: 20px;
-  }
-  .three-columns .side-right #content {
-    width: 85%;
-  }
-}
-@media (min-width: 992px) {
-  .three-columns #left,
-  .three-columns #right {
-    width: calc(220px);
-  }
-  .three-columns .mini-sidebar #right {
-    display: none;
-  }
-  .three-columns #content {
-    width: calc(100% - 440px);
-  }
-  .side-right .three-columns #content {
-    width: calc(100% - 220px);
-  }
-  .mini-sidebar .three-columns #content {
-    width: calc(100% - 100px);
-  }
-}
 /* BEGIN TOP bar */
 #top .navbar {
   margin-bottom: 0;
@@ -556,18 +535,22 @@ body:not(.sidebar-left-mini) #menu .nav-header {
 }
 /* END CONTENT STYLES */
 /* ==========================================================================
-metisAdmin: Footer
-========================================================================== */
-.Footer {
+   Footer
+   ========================================================================== */
+.Footer,
+#footer {
   margin: 0 auto;
   color: #f4f4f4;
   border-top: 1px solid #222;
 }
-.Footer p {
+.Footer p,
+#footer p {
   padding: 1.2rem 0;
   margin: 0;
   text-align: center;
 }
+/* END Footer
+   ========================================================================== */
 /*********************************************************/
 /*                 Component Styles                      */
 /*********************************************************/
@@ -2477,87 +2460,6 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
 .bg-carbon_fibre {
   background: url("../img/pattern/carbon_fibre.png") repeat;
 }
-/*! suit-flex-embed v1.4.0 | MIT License | github.com/suitcss */
-/* ==========================================================================
-   FlexEmbed
-   ========================================================================== */
-/**
- * Flexible media embeds
- *
- * For use with media embeds – such as videos, slideshows, or even images –
- * that need to retain a specific aspect ratio but adapt to the width of their
- * containing element.
- *
- * Example HTML:
- *
- * <div class="FlexEmbed FlexEmbed--4by3">
- *     <iframe class="FlexEmbed-item" src="…"></iframe>
- * </div>
- *
- * <div class="FlexEmbed FlexEmbed--16by9">
- *     [iframe|object|embed]
- * </div>
- *
- * Based on: http://alistapart.com/article/creating-intrinsic-ratios-for-video
- */
-.FlexEmbed {
-  display: block;
-  overflow: hidden;
-  position: relative;
-}
-/**
- * A pseudo-element shunt is used to provide support for `max-height`. The
- * `max-height` property has no affect when using a percentage-padding to set
- * the aspect ratio.
- */
-.FlexEmbed:before {
-  content: "";
-  display: block;
-  width: 100%;
-}
-/**
- * Modifier: 3:1 aspect ratio
- */
-.FlexEmbed--3by1:before {
-  padding-bottom: 33.33333%;
-}
-/**
- * Modifier: 2:1 aspect ratio
- */
-.FlexEmbed--2by1:before {
-  padding-bottom: 50%;
-}
-/**
- * Modifier: 16:9 aspect ratio
- */
-.FlexEmbed--16by9:before {
-  padding-bottom: 56.25%;
-}
-/**
- * Modifier: 4:3 aspect ratio
- */
-.FlexEmbed--4by3:before {
-  padding-bottom: 75%;
-}
-/**
- * Descendant: media element
- *
- * Utility of the component is improved by provide an explicit descendant
- * class. However, it will work automatically for iframes, embeds, and objects
- * to account for times when you cannot modify the attributes for 3rd party
- * widget code.
- */
-.FlexEmbed-item,
-.FlexEmbed iframe,
-.FlexEmbed embed,
-.FlexEmbed object {
-  bottom: 0;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
 /* BEGIN ERROR PAGES STYLES */
 body.error {
   padding-top: 40px;
@@ -2578,12 +2480,14 @@ body.error .logo h1 {
 .login {
   padding-top: 40px;
   padding-bottom: 40px;
-  background: url("../img/pattern/black_paper.png") repeat #444444;
+  background: url("../img/pattern/irongrip.png") repeat #444444;
 }
 .login .form-signin {
   max-width: 330px;
-  padding: 15px;
+  padding: 20px;
   margin: 0 auto;
+  background-color: #fff;
+  border-radius: 3px;
 }
 .login .form-signin .form-signin-heading,
 .login .form-signin .checkbox {
@@ -2599,24 +2503,24 @@ body.error .logo h1 {
   font-size: 16px;
   height: auto;
   padding: 10px;
+  margin-bottom: 10px;
 }
 .login .form-signin input[type="text"]:focus,
 .login .form-signin input[type="password"]:focus,
 .login .form-signin input[type="email"]:focus {
   z-index: 2;
 }
-.login .form-signin input[type="text"] {
+.login .form-signin input.top {
   margin-bottom: -1px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-.login .form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-.login .form-signin input[type="email"] {
+.login .form-signin input.middle {
   margin-bottom: -1px;
   border-radius: 0;
+}
+.login .form-signin input.bottom {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 /* END LOGIN PAGE STYLES */

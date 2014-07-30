@@ -59,7 +59,7 @@
     "load-grunt-tasks": "^0.6.0",
     "pretty": "^0.1.2",
     "screenfull": "^1.2.1",
-    "time-grunt": "^0.3.2",
+    "time-grunt": "^0.4.0",
     "verb": "^0.2.13"
   }
 }

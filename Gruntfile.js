@@ -1,76 +1,77 @@
 /* jshint node: true */
 'use strict';
+
 function getTask(name) {
-    return require('./src/tasks/' + name + '.js');
+  return require('./src/tasks/' + name + '.js');
 }
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
-    require('time-grunt')(grunt);
-    require('load-grunt-tasks')(grunt, {
-        pattern: [
-            'grunt-*',
-            'assemble*'
-        ]
-    });
+  require('time-grunt')(grunt);
+  require('load-grunt-tasks')(grunt, {
+    pattern: [
+    'grunt-*',
+    'assemble*'
+    ]
+  });
 
-    // Project configuration.
-    grunt.initConfig({
+  // Project configuration.
+  grunt.initConfig({
 
-        // Project Metadata
-        pkg: grunt.file.readJSON('package.json'),
-        config: grunt.file.readYAML('_config.yml'),
+    // Project Metadata
+    pkg: grunt.file.readJSON('package.json'),
+    config: grunt.file.readYAML('_config.yml'),
 
-        banner: '/**\n' +
-            '* Metis - <%=pkg.name %> v<%= pkg.version %>\n' +
-            '* Author : <%= pkg.author.name %> \n' +
-            '* Copyright <%= grunt.template.today("yyyy") %>\n' +
-            '* Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
-            '*/\n',
+    banner: '/**\n' +
+    '* Metis - <%=pkg.name %> v<%= pkg.version %>\n' +
+    '* Author : <%= pkg.author.name %> \n' +
+    '* Copyright <%= grunt.template.today("yyyy") %>\n' +
+    '* Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
+    '*/\n',
 
-        clean: getTask('clean'),
+    clean: getTask('clean'),
 
-        copy: getTask('copy'),
+    copy: getTask('copy'),
 
-        less: getTask('less'),
+    less: getTask('less'),
 
-        concat: getTask('concat'),
+    concat: getTask('concat'),
 
-        uglify: getTask('uglify'),
+    uglify: getTask('uglify'),
 
-        /**
-         * Lint JavaScript
-         */
-        jshint: getTask('jshint'),
+    /**
+    * Lint JavaScript
+    */
+    jshint: getTask('jshint'),
 
-        /**
-         * Build HTML from templates and data
-         */
-        assemble: getTask('assemble'),
+    /**
+    * Build HTML from templates and data
+    */
+    assemble: getTask('assemble'),
 
-        htmlmin: getTask('htmlmin'),
+    htmlmin: getTask('htmlmin'),
 
-        modernizr: getTask('modernizr'),
+    modernizr: getTask('modernizr'),
 
-        watch: getTask('watch'),
+    watch: getTask('watch'),
 
-        connect: getTask('connect')
+    connect: getTask('connect')
 
-    });
-
-
-    // JS distribution task.
-    grunt.registerTask('dist-js', ['modernizr', 'jshint', 'concat', 'uglify']);
+  });
 
 
-    // Full distribution task.
-    grunt.registerTask('dist', ['clean', 'copy', 'less', 'dist-js']);
-
-    grunt.registerTask('server', ['connect:livereload', 'watch']);
+  // JS distribution task.
+  grunt.registerTask('dist-js', ['modernizr', 'jshint', 'concat', 'uglify']);
 
 
-    // Default task.
-    //grunt.registerTask('default', ['test', 'dist']);
+  // Full distribution task.
+  grunt.registerTask('dist', ['clean', 'copy', 'less', 'dist-js']);
 
-    grunt.registerTask('default', ['dist', 'assemble']);
+  grunt.registerTask('server', ['connect:livereload', 'watch']);
+
+
+  // Default task.
+  //grunt.registerTask('default', ['test', 'dist']);
+
+  grunt.registerTask('default', ['dist', 'assemble']);
 
 };

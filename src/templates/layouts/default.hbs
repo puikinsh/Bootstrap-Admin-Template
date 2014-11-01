@@ -21,12 +21,12 @@
     {{else}}
     <link rel="stylesheet" href="{{assets}}/css/main.min.css">
     {{/if}}
-    <!-- Metis Theme stylesheet -->
-    
+    <!-- metisMenu stylesheet -->
+    <link rel="stylesheet" href="{{assets}}/lib/metismenu/metisMenu.min.css">
     {{#if rtl}}
     <style>body{direction: rtl;}</style>
     {{/if}}
-   
+
     {{#if stylesheets}}
         {{css stylesheets}}
     {{/if}}
@@ -51,9 +51,9 @@
     </script>
     <link rel="stylesheet" href="{{assets}}/css/style-switcher.css">
     <link rel="stylesheet/less" type="text/css" href="{{assets}}/css/less/theme.less">
-    <script src="{{assets}}/lib/less/less-1.7.3.min.js"></script>
-    
-    
+    <script src="{{assets}}/lib/less/less-1.7.5.min.js"></script>
+
+
     <!--Modernizr 2.8.2-->
     <script src="{{assets}}/lib/modernizr/modernizr.min.js"></script>
     {{#if analytics}}
@@ -65,19 +65,19 @@
     <div id="top">
         {{> nav }}
 
-        {{#if noHeader}}   
+        {{#if noHeader}}
         {{else}}
         <header class="head">
-        
-        {{#if noMainSearch}}    
+
+        {{#if noMainSearch}}
 	  {{else}}
 	    <div class="search-bar">
                 {{> mainSearch }}
             </div>
             <!-- /.search-bar -->
 	{{/if}}
-        
-            
+
+
 
             <div class="main-bar">
                 <h3><i class="{{ icon }}"></i>&nbsp; {{ title }}</h3>
@@ -88,7 +88,7 @@
         {{/if}}
     </div>
     <!-- /#top -->
-    {{#if noLeftSidebar}}    
+    {{#if noLeftSidebar}}
     {{else}}
       <div id="left">
 	  {{> left }}
@@ -105,7 +105,7 @@
         <!-- /.outer -->
     </div>
     <!-- /#content -->
-    {{#if noRightSidebar}}   
+    {{#if noRightSidebar}}
         {{else}}
     <div id="right" class="bg-light lter">
         {{> right }}
@@ -131,6 +131,9 @@
 <!--Bootstrap -->
 <script src="{{assets}}/lib/bootstrap/js/bootstrap.min.js"></script>
 
+<!-- MetisMenu -->
+<script src="{{assets}}/lib/metismenu/metisMenu.min.js"></script>
+
 
 
 <!-- Screenfull -->
@@ -148,7 +151,7 @@
 
 
 <!-- Metis core scripts -->
-<script src="{{assets}}/js/core.js"></script>
+<script src="{{assets}}/js/core.min.js"></script>
 
 <!-- Metis demo scripts -->
 <script src="{{assets}}/js/app.min.js"></script>
@@ -157,6 +160,6 @@
             {{scripts}}
     </script>
 {{/if}}
-    <script src="{{assets}}/js/style-switcher.js"></script>
+    <script src="{{assets}}/js/style-switcher.min.js"></script>
 </body>
 </html>

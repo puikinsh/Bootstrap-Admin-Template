@@ -2,4 +2,4 @@
  Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
  For licensing, see LICENSE.md or http://ckeditor.com/license
 */
-CKEDITOR.plugins.setLang("codesnippet","sv",{button:"Infoga kodsnutt",codeContents:"Kodinnehålll",emptySnippetError:"Innehåll krävs för kodsnutt",language:"Språk",title:"Kodsnutt"});
+CKEDITOR.plugins.setLang("codesnippet","sv",{button:"Infoga kodsnutt",codeContents:"Kodinnehålll",emptySnippetError:"Innehåll krävs för kodsnutt",language:"Språk",title:"Kodsnutt",pathName:"code snippet"});

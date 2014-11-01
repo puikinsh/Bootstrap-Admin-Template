@@ -1,5 +1,5 @@
 /* http://keith-wood.name/countdown.html
-   Countdown for jQuery v2.0.0.
+   Countdown for jQuery v2.0.1.
    Written by Keith Wood (kbwood{at}iinet.com.au) January 2008.
    Available under the MIT (https://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt) license. 
    Please attribute the author if you use it. */
@@ -137,8 +137,8 @@
 			@property [isRTL=false] {boolean} True for right-to-left languages, false for left-to-right. */
 		regionalOptions: { // Available regional settings, indexed by language/country code
 			'': { // Default regional settings - English/US
-		labels: ['Years', 'Months', 'Weeks', 'Days', 'Hours', 'Minutes', 'Seconds'],
-		labels1: ['Year', 'Month', 'Week', 'Day', 'Hour', 'Minute', 'Second'],
+				labels: ['Years', 'Months', 'Weeks', 'Days', 'Hours', 'Minutes', 'Seconds'],
+				labels1: ['Year', 'Month', 'Week', 'Day', 'Hour', 'Minute', 'Second'],
 				compactLabels: ['y', 'm', 'w', 'd'],
 				whichLabels: null,
 				digits: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
@@ -176,37 +176,37 @@
 		_init: function() {
 			var self = this;
 			this._super();
-	this._serverSyncs = [];
-	var now = (typeof Date.now == 'function' ? Date.now :
-		function() { return new Date().getTime(); });
-	var perfAvail = (window.performance && typeof window.performance.now == 'function');
-	// Shared timer for all countdowns
-	function timerCallBack(timestamp) {
-		var drawStart = (timestamp < 1e12 ? // New HTML5 high resolution timer
-			(perfAvail ? (performance.now() + performance.timing.navigationStart) : now()) :
-			// Integer milliseconds since unix epoch
-			timestamp || now());
-		if (drawStart - animationStartTime >= 1000) {
-					self._updateElems();
-			animationStartTime = drawStart;
-		}
-		requestAnimationFrame(timerCallBack);
-	}
-	var requestAnimationFrame = window.requestAnimationFrame ||
-		window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame ||
-		window.oRequestAnimationFrame || window.msRequestAnimationFrame || null;
-		// This is when we expect a fall-back to setInterval as it's much more fluid
-	var animationStartTime = 0;
-	if (!requestAnimationFrame || $.noRequestAnimationFrame) {
-		$.noRequestAnimationFrame = null;
-				setInterval(function() { self._updateElems(); }, 980); // Fall back to good old setInterval
-	}
-	else {
-		animationStartTime = window.animationStartTime ||
-			window.webkitAnimationStartTime || window.mozAnimationStartTime ||
-			window.oAnimationStartTime || window.msAnimationStartTime || now();
-		requestAnimationFrame(timerCallBack);
-	}
+			this._serverSyncs = [];
+			var now = (typeof Date.now == 'function' ? Date.now :
+				function() { return new Date().getTime(); });
+			var perfAvail = (window.performance && typeof window.performance.now == 'function');
+			// Shared timer for all countdowns
+			function timerCallBack(timestamp) {
+				var drawStart = (timestamp < 1e12 ? // New HTML5 high resolution timer
+					(perfAvail ? (performance.now() + performance.timing.navigationStart) : now()) :
+					// Integer milliseconds since unix epoch
+					timestamp || now());
+				if (drawStart - animationStartTime >= 1000) {
+							self._updateElems();
+					animationStartTime = drawStart;
+				}
+				requestAnimationFrame(timerCallBack);
+			}
+			var requestAnimationFrame = window.requestAnimationFrame ||
+				window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame ||
+				window.oRequestAnimationFrame || window.msRequestAnimationFrame || null;
+				// This is when we expect a fall-back to setInterval as it's much more fluid
+			var animationStartTime = 0;
+			if (!requestAnimationFrame || $.noRequestAnimationFrame) {
+				$.noRequestAnimationFrame = null;
+						setInterval(function() { self._updateElems(); }, 980); // Fall back to good old setInterval
+			}
+			else {
+				animationStartTime = window.animationStartTime ||
+					window.webkitAnimationStartTime || window.mozAnimationStartTime ||
+					window.oAnimationStartTime || window.msAnimationStartTime || now();
+				requestAnimationFrame(timerCallBack);
+			}
 		},
 	
 		/** Convert a date/time to UTC.
@@ -221,41 +221,41 @@
 			@return {Date} The equivalent UTC date/time.
 			@example $.countdown.UTCDate(+10, 2013, 12-1, 25, 12, 0)
  $.countdown.UTCDate(-7, new Date(2013, 12-1, 25, 12, 0)) */
-	UTCDate: function(tz, year, month, day, hours, mins, secs, ms) {
-		if (typeof year == 'object' && year.constructor == Date) {
-			ms = year.getMilliseconds();
-			secs = year.getSeconds();
-			mins = year.getMinutes();
-			hours = year.getHours();
-			day = year.getDate();
-			month = year.getMonth();
-			year = year.getFullYear();
-		}
-		var d = new Date();
-		d.setUTCFullYear(year);
-		d.setUTCDate(1);
-		d.setUTCMonth(month || 0);
-		d.setUTCDate(day || 1);
-		d.setUTCHours(hours || 0);
-		d.setUTCMinutes((mins || 0) - (Math.abs(tz) < 30 ? tz * 60 : tz));
-		d.setUTCSeconds(secs || 0);
-		d.setUTCMilliseconds(ms || 0);
-		return d;
-	},
+		UTCDate: function(tz, year, month, day, hours, mins, secs, ms) {
+			if (typeof year == 'object' && year.constructor == Date) {
+				ms = year.getMilliseconds();
+				secs = year.getSeconds();
+				mins = year.getMinutes();
+				hours = year.getHours();
+				day = year.getDate();
+				month = year.getMonth();
+				year = year.getFullYear();
+			}
+			var d = new Date();
+			d.setUTCFullYear(year);
+			d.setUTCDate(1);
+			d.setUTCMonth(month || 0);
+			d.setUTCDate(day || 1);
+			d.setUTCHours(hours || 0);
+			d.setUTCMinutes((mins || 0) - (Math.abs(tz) < 30 ? tz * 60 : tz));
+			d.setUTCSeconds(secs || 0);
+			d.setUTCMilliseconds(ms || 0);
+			return d;
+		},
 
 		/** Convert a set of periods into seconds.
 	   Averaged for months and years.
 			@param periods {number[]} The periods per year/month/week/day/hour/minute/second.
 			@return {number} The corresponding number of seconds.
 			@example var secs = $.countdown.periodsToSeconds(periods) */
-	periodsToSeconds: function(periods) {
-		return periods[0] * 31557600 + periods[1] * 2629800 + periods[2] * 604800 +
-			periods[3] * 86400 + periods[4] * 3600 + periods[5] * 60 + periods[6];
-	},
+		periodsToSeconds: function(periods) {
+			return periods[0] * 31557600 + periods[1] * 2629800 + periods[2] * 604800 +
+				periods[3] * 86400 + periods[4] * 3600 + periods[5] * 60 + periods[6];
+		},
 
 		_instSettings: function(elem, options) {
 			return {_periods: [0, 0, 0, 0, 0, 0, 0]};
-	},
+		},
 
 		/** Add an element to the list of active ones.
 			@private
@@ -263,8 +263,8 @@
 		_addElem: function(elem) {
 			if (!this._hasElem(elem)) {
 				this._timerElems.push(elem);
-		}
-	},
+			}
+		},
 
 		/** See if an element is in the list of active ones.
 			@private
@@ -272,7 +272,7 @@
 			@return {boolean} True if present, false if not. */
 		_hasElem: function(elem) {
 			return ($.inArray(elem, this._timerElems) > -1);
-	},
+		},
 
 		/** Remove an element from the list of active ones.
 			@private
@@ -280,31 +280,31 @@
 		_removeElem: function(elem) {
 			this._timerElems = $.map(this._timerElems,
 				function(value) { return (value == elem ? null : value); }); // delete entry
-	},
+		},
 
 		/** Update each active timer element.
 			@private */
 		_updateElems: function() {
 			for (var i = this._timerElems.length - 1; i >= 0; i--) {
 				this._updateCountdown(this._timerElems[i]);
-		}
-	},
+			}
+		},
 
 		_optionsChanged: function(elem, inst, options) {
-		if (options.layout) {
-			options.layout = options.layout.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-		}
-		this._resetExtraLabels(inst.options, options);
-		var timezoneChanged = (inst.options.timezone != options.timezone);
-		$.extend(inst.options, options);
+			if (options.layout) {
+				options.layout = options.layout.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+			}
+			this._resetExtraLabels(inst.options, options);
+			var timezoneChanged = (inst.options.timezone != options.timezone);
+			$.extend(inst.options, options);
 			this._adjustSettings(elem, inst,
-			options.until != null || options.since != null || timezoneChanged);
-		var now = new Date();
-		if ((inst._since && inst._since < now) || (inst._until && inst._until > now)) {
+				options.until != null || options.since != null || timezoneChanged);
+			var now = new Date();
+			if ((inst._since && inst._since < now) || (inst._until && inst._until > now)) {
 				this._addElem(elem[0]);
-		}
+			}
 			this._updateCountdown(elem, inst);
-	},
+		},
 
 		/** Redisplay the countdown with an updated display.
 			@private
@@ -312,66 +312,62 @@
 			@param inst {object} The current settings for this instance. */
 		_updateCountdown: function(elem, inst) {
 			elem = elem.jquery ? elem : $(elem);
-			inst = inst || elem.data(this.name);
-		if (!inst) {
-			return;
-		}
-			elem.html(this._generateHTML(inst)).toggleClass(this._rtlClass, inst.options.isRTL);
-		if ($.isFunction(inst.options.onTick)) {
-			var periods = inst._hold != 'lap' ? inst._periods :
-				this._calculatePeriods(inst, inst._show, inst.options.significant, new Date());
-			if (inst.options.tickInterval == 1 ||
-					this.periodsToSeconds(periods) % inst.options.tickInterval == 0) {
-					inst.options.onTick.apply(elem[0], [periods]);
+			inst = inst || this._getInst(elem);
+			if (!inst) {
+				return;
 			}
-		}
-		var expired = inst._hold != 'pause' &&
-			(inst._since ? inst._now.getTime() < inst._since.getTime() :
-			inst._now.getTime() >= inst._until.getTime());
-		if (expired && !inst._expiring) {
-			inst._expiring = true;
+			elem.html(this._generateHTML(inst)).toggleClass(this._rtlClass, inst.options.isRTL);
+			if ($.isFunction(inst.options.onTick)) {
+				var periods = inst._hold != 'lap' ? inst._periods :
+					this._calculatePeriods(inst, inst._show, inst.options.significant, new Date());
+				if (inst.options.tickInterval == 1 ||
+						this.periodsToSeconds(periods) % inst.options.tickInterval == 0) {
+					inst.options.onTick.apply(elem[0], [periods]);
+				}
+			}
+			var expired = inst._hold != 'pause' &&
+				(inst._since ? inst._now.getTime() < inst._since.getTime() :
+				inst._now.getTime() >= inst._until.getTime());
+			if (expired && !inst._expiring) {
+				inst._expiring = true;
 				if (this._hasElem(elem[0]) || inst.options.alwaysExpire) {
 					this._removeElem(elem[0]);
-				if ($.isFunction(inst.options.onExpiry)) {
+					if ($.isFunction(inst.options.onExpiry)) {
 						inst.options.onExpiry.apply(elem[0], []);
-				}
-				if (inst.options.expiryText) {
-					var layout = inst.options.layout;
-					inst.options.layout = inst.options.expiryText;
+					}
+					if (inst.options.expiryText) {
+						var layout = inst.options.layout;
+						inst.options.layout = inst.options.expiryText;
 						this._updateCountdown(elem[0], inst);
-					inst.options.layout = layout;
+						inst.options.layout = layout;
+					}
+					if (inst.options.expiryUrl) {
+						window.location = inst.options.expiryUrl;
+					}
 				}
-				if (inst.options.expiryUrl) {
-					window.location = inst.options.expiryUrl;
-				}
+				inst._expiring = false;
 			}
-			inst._expiring = false;
-		}
-		else if (inst._hold == 'pause') {
+			else if (inst._hold == 'pause') {
 				this._removeElem(elem[0]);
-		}
-	},
+			}
+		},
 
 		/** Reset any extra labelsn and compactLabelsn entries if changing labels.
 			@private
 			@param base {object} The options to be updated.
 			@param options {object} The new option values. */
-	_resetExtraLabels: function(base, options) {
-		var changingLabels = false;
-		for (var n in options) {
-			if (n != 'whichLabels' && n.match(/[Ll]abels/)) {
-				changingLabels = true;
-				break;
-			}
-		}
-		if (changingLabels) {
-			for (var n in base) { // Remove custom numbered labels
+		_resetExtraLabels: function(base, options) {
+			for (var n in options) {
 				if (n.match(/[Ll]abels[02-9]|compactLabels1/)) {
+					base[n] = options[n];
+				}
+			}
+			for (var n in base) { // Remove custom numbered labels
+				if (n.match(/[Ll]abels[02-9]|compactLabels1/) && typeof options[n] === 'undefined') {
 					base[n] = null;
 				}
 			}
-		}
-	},
+		},
 	
 		/** Calculate internal settings for an instance.
 			@private

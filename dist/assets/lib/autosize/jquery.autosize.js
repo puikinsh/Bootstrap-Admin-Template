@@ -1,8 +1,7 @@
 /*!
-	Autosize v1.18.9 - 2014-05-27
-	Automatically adjust textarea height based on user input.
-	(c) 2014 Jack Moore - http://www.jacklmoore.com/autosize
-	license: http://www.opensource.org/licenses/mit-license.php
+	Autosize 1.18.14
+	license: MIT
+	http://www.jacklmoore.com/autosize
 */
 (function ($) {
 	var
@@ -27,7 +26,8 @@
 		'letterSpacing',
 		'textTransform',
 		'wordSpacing',
-		'textIndent'
+		'textIndent',
+		'whiteSpace'
 	],
 
 	// to keep track which textarea is being mirrored when adjust() is called.
@@ -169,11 +169,12 @@
 					// If the textarea is empty, copy the placeholder text into 
 					// the mirror control and use that for sizing so that we 
 					// don't end up with placeholder getting trimmed.
-					mirror.value = ($ta.attr("placeholder") || '') + options.append;
+					mirror.value = ($ta.attr("placeholder") || '');
 				} else {
-					mirror.value = ta.value + options.append;
+					mirror.value = ta.value;
 				}
 
+				mirror.value += options.append || '';
 				mirror.style.overflowY = ta.style.overflowY;
 				original = parseInt(ta.style.height,10);
 
@@ -199,9 +200,14 @@
 
 				if (original !== height) {
 					ta.style.height = height + 'px';
+
+					// Trigger a repaint for IE8 for when ta is nested 2 or more levels inside an inline-block
+					mirror.className = mirror.className;
+
 					if (callback) {
 						options.callback.call(ta,ta);
 					}
+					$ta.trigger('autosize.resized');
 				}
 			}
 
@@ -269,4 +275,4 @@
 			adjust();
 		});
 	};
-}(window.jQuery || window.$)); // jQuery or jQuery-like library, such as Zepto
+}(jQuery || $)); // jQuery or jQuery-like library, such as Zepto

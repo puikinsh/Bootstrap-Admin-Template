@@ -15,14 +15,14 @@
  * Bootstrap 2.3.2 [v1.2](https://github.com/onokumus/Bootstrap-Admin-Template/archive/v1.2.zip)
 ready for use
 
- * Bootstrap 3.2.0 [v2.2.7](https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip)
+ * Bootstrap 3.3.0 [v2.3.1](https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip)
 ready `dist` folder your use
 
 
 
 ### Building
 
-#### 2.2.7 Version
+#### 2.3.1 Version
 required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](http://gruntjs.com/getting-started)
 
 ```shell
@@ -33,7 +33,7 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
     $ grunt connect
 ```
 
-#### 2.2.7 RTL Version
+#### 2.3.1 RTL Version
 required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](http://gruntjs.com/getting-started)
 
 ```shell
@@ -52,29 +52,31 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
     $ open index.html
 
 ### Demo
- * [Demo v2.2.7](http://demo.onokumus.com/metis/)
- * [RTL v2.2.7](http://demo.onokumus.com/metis/rtl/)
+ * [Demo v2.3.1](http://demo.onokumus.com/metis/)
+ * [RTL v2.3.1](http://demo.onokumus.com/metis/rtl/)
  * [v1.2 `not development`](http://demo.onokumus.com/metis/v12)
 
 
 ## Release History
-**DATE**       **VERSION**   **CHANGES**                                                       
-* 2014-07-18   v2.2.6.1      added some layouts sample                                         
-* 2014-07-07   v2.2.6        Bootstrap 3.2.0                                                   
-* 2014-06-04   v2.2.5        Fixed side panel(s) code Deprecated main.js Added core.js & app.js
-* 2014-04-23   v2.2.4        RTL version added Remove CLEditor Added CKEditor                  
-* 2014-04-13   v2.2.3        rewrite all code                                                  
-* 2014-04-10   v2.2.2        remove `alterne.html`,right panel available                       
-* 2014-04-07   v2.2.1        all dependency require bower & npm                                
-* 2014-02-28   v2.2.0        rewrite menu, layout, etc                                         
-* 2014-02-16   v2.1.4        update bootsrap 3.1.1 && add screenfull.js && fixed               
-* 2014-01-19   v2.1.3        add suitcss 's flex-embed component                               
-* 2013-11-30   v2.1.2        create menu plugin, rewrite `menu.less`                           
-* 2013-10-28   v2.1.1.2      add bower                                                         
-* 2013-10-28   v2.1.1.1      remove bootsrap, font awesome, gmaps submodule.                   
-* 2013-10-23   v2.1.1        Added `bgimage.html` Added `bgcolor.html` pages.                  
-* 2013-10-22   v2.1          I don't remember. Whatever I did.                                 
-* 2013-02-14   v1.0          First Commit.                                                     
+**DATE**       **VERSION**   **CHANGES**                                                         
+* 2014-11-01   v2.3.1        Bootstrap 3.3.0, fixed jquery-timepicker stylesheet, added metisMenu
+                             plugin, many plugin updated                                         
+* 2014-07-18   v2.2.7        added some layouts sample                                           
+* 2014-07-07   v2.2.6        Bootstrap 3.2.0                                                     
+* 2014-06-04   v2.2.5        Fixed side panel(s) code Deprecated main.js Added core.js & app.js  
+* 2014-04-23   v2.2.4        RTL version added Remove CLEditor Added CKEditor                    
+* 2014-04-13   v2.2.3        rewrite all code                                                    
+* 2014-04-10   v2.2.2        remove `alterne.html`,right panel available                         
+* 2014-04-07   v2.2.1        all dependency require bower & npm                                  
+* 2014-02-28   v2.2.0        rewrite menu, layout, etc                                           
+* 2014-02-16   v2.1.4        update bootsrap 3.1.1 && add screenfull.js && fixed                 
+* 2014-01-19   v2.1.3        add suitcss 's flex-embed component                                 
+* 2013-11-30   v2.1.2        create menu plugin, rewrite `menu.less`                             
+* 2013-10-28   v2.1.1.2      add bower                                                           
+* 2013-10-28   v2.1.1.1      remove bootsrap, font awesome, gmaps submodule.                     
+* 2013-10-23   v2.1.1        Added `bgimage.html` Added `bgcolor.html` pages.                    
+* 2013-10-22   v2.1          I don't remember. Whatever I did.                                   
+* 2013-02-14   v1.0          First Commit.                                                       
 
 
 
@@ -100,7 +102,7 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
  * [Jasny Bootstrap](http://jasny.github.com/bootstrap)
  * [jQuery Validation](http://jqueryvalidation.org/)
  * [jQuery Sparklines](http://omnipotent.net/jquery.sparkline)
- * [Animate](https://daneden.me/animate/)
+ * [Animate](http://daneden.github.io/animate.css/)
  * [Autosize](http://www.jacklmoore.com/autosize)
  * [Countdown](http://keith-wood.name/countdown.html)
  * [CSS Beautify](http://cssbeautify.com)
@@ -109,7 +111,6 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
  * [jQuery Form](http://jquery.malsup.com/form/)
  * [Form Wizard](http://thecodemine.org)
  * [Gritter](http://boedesign.com/blog/2009/07/11/growl-for-jquery-gritter/)
- * [Magic](http://www.minimamente.com/magic-css3-animations)
  * [Mouse Wheel](https://github.com/brandonaaron/jquery-mousewheel)
  * [PageDown-Bootstrap](https://github.com/kevinoconnor7/pagedown-bootstrap)
  * [Plupload](https://github.com/moxiecode/plupload)
@@ -122,8 +123,8 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
  * [Validation Engine](http://www.position-relative.net/)
  * [jquery.validVal](http://validval.frebsite.nl/)
  * [bootstrap3-wysihtml5-bower](https://github.com/Waxolunist/bootstrap3-wysihtml5-bower)
- * [Suitcss Flex-Embed](https://github.com/suitcss/flex-embed)
  * [screenfull.js](https://github.com/sindresorhus/screenfull.js)
+ * [metisMenu](https://github.com/onokumus/metisMenu)
 
 ### Author
  * onokumus
@@ -132,4 +133,4 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
 Copyright (c) 2014 onokumus, contributors.  
 
 
-_This file was generated by [verb-cli](https://github.com/assemble/verb-cli) on July 18, 2014._
+_This file was generated by [verb-cli](https://github.com/assemble/verb-cli) on November 01, 2014._

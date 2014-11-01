@@ -34,7 +34,7 @@
 						// Add a new ._super() method that is the same method
 						// but on the super-class
 						this._super = function(args) {
-							return base[name].apply(this, args);
+							return base[name].apply(this, args || []);
 						};
 
 						var ret = fn.apply(this, arguments);				
@@ -72,7 +72,7 @@
 
 (function($) { // Ensure $, encapsulate
 
-	/** Abstract base class for collection plugins.
+	/** Abstract base class for collection plugins v1.0.1.
 		Written by Keith Wood (kbwood{at}iinet.com.au) December 2013.
 		Licensed under the MIT (https://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt) license.
 		@module $.JQPlugin

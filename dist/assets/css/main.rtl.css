@@ -1,5 +1,5 @@
 /**
-* Metis - Bootstrap-Admin-Template v2.2.7
+* Metis - Bootstrap-Admin-Template v2.3.1
 * Author : onokumus 
 * Copyright 2014
 * Licensed under MIT (https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/LICENSE.md)
@@ -361,6 +361,16 @@ body {
 
 .user-media .media-body ul.user-info li {
   color: #ccc;
+}
+
+.user-media:before,
+.user-media:after {
+  content: " ";
+  display: table;
+}
+
+.user-media:after {
+  clear: both;
 }
 
 .side-right .user-link .user-label {
@@ -971,6 +981,7 @@ body:not(.sidebar-left-mini) #menu .nav-header {
 
 .btn-metis-1:hover,
 .btn-metis-1:focus,
+.btn-metis-1.focus,
 .btn-metis-1:active,
 .btn-metis-1.active,
 .open > .dropdown-toggle.btn-metis-1 {
@@ -994,6 +1005,9 @@ fieldset[disabled] .btn-metis-1:hover,
 .btn-metis-1.disabled:focus,
 .btn-metis-1[disabled]:focus,
 fieldset[disabled] .btn-metis-1:focus,
+.btn-metis-1.disabled.focus,
+.btn-metis-1[disabled].focus,
+fieldset[disabled] .btn-metis-1.focus,
 .btn-metis-1.disabled:active,
 .btn-metis-1[disabled]:active,
 fieldset[disabled] .btn-metis-1:active,
@@ -1017,6 +1031,7 @@ fieldset[disabled] .btn-metis-1.active {
 
 .btn-metis-2:hover,
 .btn-metis-2:focus,
+.btn-metis-2.focus,
 .btn-metis-2:active,
 .btn-metis-2.active,
 .open > .dropdown-toggle.btn-metis-2 {
@@ -1040,6 +1055,9 @@ fieldset[disabled] .btn-metis-2:hover,
 .btn-metis-2.disabled:focus,
 .btn-metis-2[disabled]:focus,
 fieldset[disabled] .btn-metis-2:focus,
+.btn-metis-2.disabled.focus,
+.btn-metis-2[disabled].focus,
+fieldset[disabled] .btn-metis-2.focus,
 .btn-metis-2.disabled:active,
 .btn-metis-2[disabled]:active,
 fieldset[disabled] .btn-metis-2:active,
@@ -1063,6 +1081,7 @@ fieldset[disabled] .btn-metis-2.active {
 
 .btn-metis-3:hover,
 .btn-metis-3:focus,
+.btn-metis-3.focus,
 .btn-metis-3:active,
 .btn-metis-3.active,
 .open > .dropdown-toggle.btn-metis-3 {
@@ -1086,6 +1105,9 @@ fieldset[disabled] .btn-metis-3:hover,
 .btn-metis-3.disabled:focus,
 .btn-metis-3[disabled]:focus,
 fieldset[disabled] .btn-metis-3:focus,
+.btn-metis-3.disabled.focus,
+.btn-metis-3[disabled].focus,
+fieldset[disabled] .btn-metis-3.focus,
 .btn-metis-3.disabled:active,
 .btn-metis-3[disabled]:active,
 fieldset[disabled] .btn-metis-3:active,
@@ -1109,6 +1131,7 @@ fieldset[disabled] .btn-metis-3.active {
 
 .btn-metis-4:hover,
 .btn-metis-4:focus,
+.btn-metis-4.focus,
 .btn-metis-4:active,
 .btn-metis-4.active,
 .open > .dropdown-toggle.btn-metis-4 {
@@ -1132,6 +1155,9 @@ fieldset[disabled] .btn-metis-4:hover,
 .btn-metis-4.disabled:focus,
 .btn-metis-4[disabled]:focus,
 fieldset[disabled] .btn-metis-4:focus,
+.btn-metis-4.disabled.focus,
+.btn-metis-4[disabled].focus,
+fieldset[disabled] .btn-metis-4.focus,
 .btn-metis-4.disabled:active,
 .btn-metis-4[disabled]:active,
 fieldset[disabled] .btn-metis-4:active,
@@ -1155,6 +1181,7 @@ fieldset[disabled] .btn-metis-4.active {
 
 .btn-metis-5:hover,
 .btn-metis-5:focus,
+.btn-metis-5.focus,
 .btn-metis-5:active,
 .btn-metis-5.active,
 .open > .dropdown-toggle.btn-metis-5 {
@@ -1178,6 +1205,9 @@ fieldset[disabled] .btn-metis-5:hover,
 .btn-metis-5.disabled:focus,
 .btn-metis-5[disabled]:focus,
 fieldset[disabled] .btn-metis-5:focus,
+.btn-metis-5.disabled.focus,
+.btn-metis-5[disabled].focus,
+fieldset[disabled] .btn-metis-5.focus,
 .btn-metis-5.disabled:active,
 .btn-metis-5[disabled]:active,
 fieldset[disabled] .btn-metis-5:active,
@@ -1201,6 +1231,7 @@ fieldset[disabled] .btn-metis-5.active {
 
 .btn-metis-6:hover,
 .btn-metis-6:focus,
+.btn-metis-6.focus,
 .btn-metis-6:active,
 .btn-metis-6.active,
 .open > .dropdown-toggle.btn-metis-6 {
@@ -1224,6 +1255,9 @@ fieldset[disabled] .btn-metis-6:hover,
 .btn-metis-6.disabled:focus,
 .btn-metis-6[disabled]:focus,
 fieldset[disabled] .btn-metis-6:focus,
+.btn-metis-6.disabled.focus,
+.btn-metis-6[disabled].focus,
+fieldset[disabled] .btn-metis-6.focus,
 .btn-metis-6.disabled:active,
 .btn-metis-6[disabled]:active,
 fieldset[disabled] .btn-metis-6:active,
@@ -2329,13 +2363,7 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
   line-height: 52px;
 }
 
-.jqstooltip {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-}
-
-/* BEGIN SPARKLINE STYLES */
+/* END SPARKLINE STYLES */
 
 .stats_box {
   display: inline-block;
@@ -2483,8 +2511,107 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
 
 /* END FULLCALENDAR STYLES */
 
+/* ==========================================================================
+metisAdmin: HACK
+========================================================================== */
+
+/**
+* Chosen
+*/
+
+.chosen-container-single .chosen-single,
+.chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+  height: auto !important;
+}
+
+/**
+* Sparkline
+*/
+
+.jqstooltip {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+/**
+* Google Maps
+*/
+
 .google-maps {
   min-height: 300px;
+}
+
+/**
+* Bootstrap-Timepicker
+*/
+
+.icon-chevron-up,
+.icon-chevron-down {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-chevron-up:before {
+  content: "\e113";
+}
+
+.icon-chevron-down:before {
+  content: "\e114";
+}
+
+/**
+* Bootstrap-Wysihtml5
+*/
+
+iframe.wysihtml5-sandbox {
+  width: 100% !important;
+}
+
+/**
+* Elfinder
+*/
+
+.elfinder,
+.elfinder * {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+/**
+* Bootstrap-Colorpicker
+*/
+
+.colorpicker-saturation {
+  background-image: url(../lib/colorpicker/img/saturation.png) !important;
+}
+
+.colorpicker-hue {
+  background-image: url(../lib/colorpicker/img/hue.png) !important;
+}
+
+.colorpicker-alpha {
+  background-image: url(../lib/colorpicker/img/alpha.png) !important;
+}
+
+.colorpicker-color {
+  background-image: url(../lib/colorpicker/img/alpha.png) !important;
+}
+
+/**
+* Uniform
+*/
+
+div.uploader {
+  width: auto !important;
 }
 
 .p-xs {

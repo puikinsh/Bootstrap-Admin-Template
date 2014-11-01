@@ -19,7 +19,8 @@
     <!-- Metis core stylesheet -->
     <link rel="stylesheet" href="../assets/css/main.rtl.css">
 
-    <!-- Metis Theme stylesheet -->
+    <!-- metisMenu stylesheet -->
+    <link rel="stylesheet" href="../assets/lib/metismenu/metisMenu.min.css">
     <style>
       body {
         direction: rtl;
@@ -45,7 +46,7 @@
     </script>
     <link rel="stylesheet" href="../assets/css/style-switcher.css">
     <link rel="stylesheet/less" type="text/css" href="../assets/css/less/theme.less">
-    <script src="../assets/lib/less/less-1.7.3.min.js"></script>
+    <script src="../assets/lib/less/less-1.7.5.min.js"></script>
 
     <!--Modernizr 2.8.2-->
     <script src="../assets/lib/modernizr/modernizr.min.js"></script>
@@ -515,13 +516,13 @@
                     ready for use</p>
                 </li>
                 <li>
-                  <p>Bootstrap 3.2.0
-                    <a href="https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip">v2.2.7</a> 
+                  <p>Bootstrap 3.3.0
+                    <a href="https://github.com/onokumus/Bootstrap-Admin-Template/archive/master.zip">v2.3.1</a> 
                     ready <code>dist</code> folder your use</p>
                 </li>
               </ul>
               <h3 id="building">Building</h3>
-              <h4 id="2-2-7-version">2.2.7 Version</h4>
+              <h4 id="2-3-1-version">2.3.1 Version</h4>
               <p>required
                 <a href="http://nodejs.org/">node.js</a> &amp;
                 <a href="http://bower.io/">bower</a> &amp;
@@ -532,7 +533,7 @@
     $ npm install
     $ npm run build
     $ grunt connect</code></pre>
-              <h4 id="2-2-7-rtl-version">2.2.7 RTL Version</h4>
+              <h4 id="2-3-1-rtl-version">2.3.1 RTL Version</h4>
               <p>required
                 <a href="http://nodejs.org/">node.js</a> &amp;
                 <a href="http://bower.io/">bower</a> &amp;
@@ -551,8 +552,8 @@ $ git submodule update
 $ open index.html</code></pre>
               <h3 id="demo">Demo</h3>
               <ul>
-                <li> <a href="http://demo.onokumus.com/metis/">Demo v2.2.7</a>  </li>
-                <li> <a href="http://demo.onokumus.com/metis/rtl/">RTL v2.2.7</a>  </li>
+                <li> <a href="http://demo.onokumus.com/metis/">Demo v2.3.1</a>  </li>
+                <li> <a href="http://demo.onokumus.com/metis/rtl/">RTL v2.3.1</a>  </li>
                 <li>
                   <a href="http://demo.onokumus.com/metis/v12">v1.2 <code>not development</code>
                   </a> 
@@ -562,7 +563,9 @@ $ open index.html</code></pre>
               <p><strong>DATE</strong>   <strong>VERSION</strong>   <strong>CHANGES</strong>  
               </p>
               <ul>
-                <li>2014-07-18 v2.2.6.1 added some layouts sample</li>
+                <li>2014-11-01 v2.3.1 Bootstrap 3.3.0, fixed jquery-timepicker stylesheet, added metisMenu<pre><code>                       plugin, many plugin updated                                         </code></pre>
+                </li>
+                <li>2014-07-18 v2.2.7 added some layouts sample</li>
                 <li>2014-07-07 v2.2.6 Bootstrap 3.2.0</li>
                 <li>2014-06-04 v2.2.5 Fixed side panel(s) code Deprecated main.js Added core.js &amp; app.js</li>
                 <li>2014-04-23 v2.2.4 RTL version added Remove CLEditor Added CKEditor</li>
@@ -603,7 +606,7 @@ $ open index.html</code></pre>
                 <li> <a href="http://jasny.github.com/bootstrap">Jasny Bootstrap</a>  </li>
                 <li> <a href="http://jqueryvalidation.org/">jQuery Validation</a>  </li>
                 <li> <a href="http://omnipotent.net/jquery.sparkline">jQuery Sparklines</a>  </li>
-                <li> <a href="https://daneden.me/animate/">Animate</a>  </li>
+                <li> <a href="http://daneden.github.io/animate.css/">Animate</a>  </li>
                 <li> <a href="http://www.jacklmoore.com/autosize">Autosize</a>  </li>
                 <li> <a href="http://keith-wood.name/countdown.html">Countdown</a>  </li>
                 <li> <a href="http://cssbeautify.com">CSS Beautify</a>  </li>
@@ -612,7 +615,6 @@ $ open index.html</code></pre>
                 <li> <a href="http://jquery.malsup.com/form/">jQuery Form</a>  </li>
                 <li> <a href="http://thecodemine.org">Form Wizard</a>  </li>
                 <li> <a href="http://boedesign.com/blog/2009/07/11/growl-for-jquery-gritter/">Gritter</a>  </li>
-                <li> <a href="http://www.minimamente.com/magic-css3-animations">Magic</a>  </li>
                 <li> <a href="https://github.com/brandonaaron/jquery-mousewheel">Mouse Wheel</a>  </li>
                 <li> <a href="https://github.com/kevinoconnor7/pagedown-bootstrap">PageDown-Bootstrap</a>  </li>
                 <li> <a href="https://github.com/moxiecode/plupload">Plupload</a>  </li>
@@ -625,8 +627,8 @@ $ open index.html</code></pre>
                 <li> <a href="http://www.position-relative.net/">Validation Engine</a>  </li>
                 <li> <a href="http://validval.frebsite.nl/">jquery.validVal</a>  </li>
                 <li> <a href="https://github.com/Waxolunist/bootstrap3-wysihtml5-bower">bootstrap3-wysihtml5-bower</a>  </li>
-                <li> <a href="https://github.com/suitcss/flex-embed">Suitcss Flex-Embed</a>  </li>
                 <li> <a href="https://github.com/sindresorhus/screenfull.js">screenfull.js</a>  </li>
+                <li> <a href="https://github.com/onokumus/metisMenu">metisMenu</a>  </li>
               </ul>
               <h3 id="author">Author</h3>
               <ul>
@@ -634,7 +636,7 @@ $ open index.html</code></pre>
               </ul>
               <h3 id="license">License</h3>
               <p>Copyright (c) 2014 onokumus, contributors.</p>
-              <p><em>This file was generated by <a href="https://github.com/assemble/verb-cli">verb-cli</a>  on July 18, 2014.</em> 
+              <p><em>This file was generated by <a href="https://github.com/assemble/verb-cli">verb-cli</a>  on November 01, 2014.</em> 
               </p>
             </div>
           </div><!-- /.inner -->
@@ -729,14 +731,17 @@ $ open index.html</code></pre>
     <!--Bootstrap -->
     <script src="../assets/lib/bootstrap/js/bootstrap.min.js"></script>
 
+    <!-- MetisMenu -->
+    <script src="../assets/lib/metismenu/metisMenu.min.js"></script>
+
     <!-- Screenfull -->
     <script src="../assets/lib/screenfull/screenfull.js"></script>
 
     <!-- Metis core scripts -->
-    <script src="../assets/js/core.js"></script>
+    <script src="../assets/js/core.min.js"></script>
 
     <!-- Metis demo scripts -->
     <script src="../assets/js/app.min.js"></script>
-    <script src="../assets/js/style-switcher.js"></script>
+    <script src="../assets/js/style-switcher.min.js"></script>
   </body>
 </html>

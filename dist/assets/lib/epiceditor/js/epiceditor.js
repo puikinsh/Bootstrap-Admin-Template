@@ -101,7 +101,7 @@
   function _outerHeight(el) {
     var b = parseInt(_getStyle(el, 'border-top-width'), 10) + parseInt(_getStyle(el, 'border-bottom-width'), 10)
       , p = parseInt(_getStyle(el, 'padding-top'), 10) + parseInt(_getStyle(el, 'padding-bottom'), 10)
-      , w = el.offsetHeight
+      , w = parseInt(_getStyle(el, 'height'), 10)
       , t;
     // For IE in case no border is set and it defaults to "medium"
     if (isNaN(b)) { b = 0; }
@@ -165,25 +165,36 @@
   }
 
   function _setText(el, content) {
-    // If you want to know why we check for typeof string, see comment
-    // in the _getText function
-    if (typeof document.body.innerText == 'string') {
-      content = content.replace(/ /g, '\u00a0');
-      el.innerText = content;
-    }
-    else {
-      // Don't convert lt/gt characters as HTML when viewing the editor window
-      // TODO: Write a test to catch regressions for this
-      content = content.replace(/</g, '&lt;');
-      content = content.replace(/>/g, '&gt;');
-      content = content.replace(/\n/g, '<br>');
-      // Make sure to look for TWO spaces and replace with a space and &nbsp;
-      // If you find and replace every space with a &nbsp; text will not wrap.
-      // Hence the name (Non-Breaking-SPace).
-      content = content.replace(/\s\s/g, ' &nbsp;')
-      el.innerHTML = content;
-    }
+    // Don't convert lt/gt characters as HTML when viewing the editor window
+    // TODO: Write a test to catch regressions for this
+    content = content.replace(/</g, '&lt;');
+    content = content.replace(/>/g, '&gt;');
+    content = content.replace(/\n/g, '<br>');
+    
+    // Make sure to there aren't two spaces in a row (replace one with &nbsp;)
+    // If you find and replace every space with a &nbsp; text will not wrap.
+    // Hence the name (Non-Breaking-SPace).
+    // TODO: Probably need to test this somehow...
+    content = content.replace(/<br>\s/g, '<br>&nbsp;')
+    content = content.replace(/\s\s\s/g, '&nbsp; &nbsp;')
+    content = content.replace(/\s\s/g, '&nbsp; ')
+    content = content.replace(/^ /, '&nbsp;')
+
+    el.innerHTML = content;
     return true;
+  }
+
+  /**
+   * Converts the 'raw' format of a file's contents into plaintext
+   * @param   {string} content Contents of the file
+   * @returns {string} the sanitized content
+   */
+  function _sanitizeRawContent(content) {
+    // Get this, 2 spaces in a content editable actually converts to:
+    // 0020 00a0, meaning, "space no-break space". So, manually convert
+    // no-break spaces to spaces again before handing to marked.
+    // Also, WebKit converts no-break to unicode equivalent and FF HTML.
+    return content.replace(/\u00a0/g, ' ').replace(/&nbsp;/g, ' ');
   }
 
   /**
@@ -214,6 +225,16 @@
   function _isSafari() {
     var n = window.navigator;
     return n.userAgent.indexOf('Safari') > -1 && n.userAgent.indexOf('Chrome') == -1;
+  }
+
+  /**
+   * Same as the isIE(), but simply returns a boolean
+   * THIS IS TERRIBLE ONLY USE IF ABSOLUTELY NEEDED
+   * @returns {Boolean} true if Safari
+   */
+  function _isFirefox() {
+    var n = window.navigator;
+    return n.userAgent.indexOf('Firefox') > -1 && n.userAgent.indexOf('Seamonkey') == -1;
   }
 
   /**
@@ -328,9 +349,17 @@
           , toggleFullscreen: 'Enter Fullscreen'
           }
         , parser: typeof marked == 'function' ? marked : null
-        , button: { fullscreen: true, preview: true }
+        , autogrow: false
+        , button: { fullscreen: true
+          , preview: true
+          , bar: "auto"
+          }
         }
-      , defaultStorage;
+      , defaultStorage
+      , autogrowDefaults = { minHeight: 80
+        , maxHeight: false
+        , scroll: true
+        };
 
     self.settings = _mergeObjs(true, defaults, opts);
     
@@ -343,6 +372,16 @@
       self.settings.parser = function (str) {
         return str;
       }
+    }
+
+    if (self.settings.autogrow) {
+      if (self.settings.autogrow === true) {
+        self.settings.autogrow = autogrowDefaults;
+      }
+      else {
+        self.settings.autogrow = _mergeObjs(true, autogrowDefaults, self.settings.autogrow);
+      }
+      self._oldHeight = -1;
     }
 
     // If you put an absolute link as the path of any of the themes ignore the basePath
@@ -390,6 +429,14 @@
       }
     }
 
+    if (self.settings.button.bar === "show") {
+      self.settings.button.bar = true;
+    }
+
+    if (self.settings.button.bar === "hide") {
+      self.settings.button.bar = false;
+    }
+
     // Protect the id and overwrite if passed in as an option
     // TODO: Put underscrore to denote that this is private
     self._instanceId = 'epiceditor-' + Math.round(Math.random() * 100000);
@@ -408,7 +455,6 @@
     if (localStorage && self.settings.clientSideStorage) {
       this._storage = localStorage;
       if (this._storage[self.settings.localStorageName] && self.getFiles(self.settings.file.name) === undefined) {
-        _defaultFile = self.getFiles(self.settings.file.name);
         _defaultFile = self._defaultFileSchema();
         _defaultFile.content = self.settings.file.defaultContent;
       }
@@ -473,7 +519,12 @@
       , isMod = false
       , isCtrl = false
       , eventableIframes
-      , i; // i is reused for loops
+      , i // i is reused for loops
+      , boundAutogrow;
+
+    // Startup is a way to check if this EpicEditor is starting up. Useful for
+    // checking and doing certain things before EpicEditor emits a load event.
+    self._eeState.startup = true;
 
     if (self.settings.useNativeFullscreen) {
       nativeFsWebkit = document.body.webkitRequestFullScreen ? true : false;
@@ -504,14 +555,15 @@
                   '<iframe frameborder="0" id="epiceditor-editor-frame"></iframe>' +
                   '<iframe frameborder="0" id="epiceditor-previewer-frame"></iframe>' +
                   '<div id="epiceditor-utilbar">' +
-                    (self._previewEnabled ? '<img width="30" src="' + this.settings.basePath + '/images/preview.png" title="' + this.settings.string.togglePreview + '" class="epiceditor-toggle-btn epiceditor-toggle-preview-btn"> ' : '') +
-                    (self._editEnabled ? '<img width="30" src="' + this.settings.basePath + '/images/edit.png" title="' + this.settings.string.toggleEdit + '" class="epiceditor-toggle-btn epiceditor-toggle-edit-btn"> ' : '') +
-                    (self._fullscreenEnabled ? '<img width="30" src="' + this.settings.basePath + '/images/fullscreen.png" title="' + this.settings.string.toggleFullscreen + '" class="epiceditor-fullscreen-btn">' : '') +
+                    (self._previewEnabled ? '<button title="' + this.settings.string.togglePreview + '" class="epiceditor-toggle-btn epiceditor-toggle-preview-btn"></button> ' : '') +
+                    (self._editEnabled ? '<button title="' + this.settings.string.toggleEdit + '" class="epiceditor-toggle-btn epiceditor-toggle-edit-btn"></button> ' : '') +
+                    (self._fullscreenEnabled ? '<button title="' + this.settings.string.toggleFullscreen + '" class="epiceditor-fullscreen-btn"></button>' : '') +
                   '</div>' +
                 '</div>'
     
     // The previewer is just an empty box for the generated HTML to go into
     , previewer: '<div id="epiceditor-preview"></div>'
+    , editor: '<!doctype HTML>'
     };
 
     // Write an iframe and then select it for the editor
@@ -542,7 +594,7 @@
     self.editorIframeDocument = _getIframeInnards(self.editorIframe);
     self.editorIframeDocument.open();
     // Need something for... you guessed it, Firefox
-    self.editorIframeDocument.write('');
+    self.editorIframeDocument.write(_HtmlTemplates.editor);
     self.editorIframeDocument.close();
     
     // Setup the previewer iframe
@@ -571,6 +623,10 @@
     // Add a relative style to the overall wrapper to keep CSS relative to the editor
     self.iframe.getElementById('epiceditor-wrapper').style.position = 'relative';
 
+    // Set the position to relative so we hide them with left: -999999px
+    self.editorIframe.style.position = 'absolute';
+    self.previewerIframe.style.position = 'absolute';
+
     // Now grab the editor and previewer for later use
     self.editor = self.editorIframeDocument.body;
     self.previewer = self.previewerIframeDocument.getElementById('epiceditor-preview');
@@ -581,7 +637,10 @@
     self.iframe.body.style.height = this.element.offsetHeight + 'px';
 
     // Should actually check what mode it's in!
-    this.previewerIframe.style.display = 'none';
+    self.previewerIframe.style.left = '-999999px';
+
+    // Keep long lines from being longer than the editor
+    this.editorIframeDocument.body.style.wordWrap = 'break-word';
 
     // FIXME figure out why it needs +2 px
     if (_isIE() > -1) {
@@ -596,16 +655,37 @@
       // iframe's ready state == complete, then we can focus on the contenteditable
       self.iframe.addEventListener('readystatechange', function () {
         if (self.iframe.readyState == 'complete') {
-          self.editorIframeDocument.body.focus();
+          self.focus();
         }
       });
     }
+
+    // Because IE scrolls the whole window to hash links, we need our own
+    // method of scrolling the iframe to an ID from clicking a hash
+    self.previewerIframeDocument.addEventListener('click', function (e) {
+      var el = e.target
+        , body = self.previewerIframeDocument.body;
+      if (el.nodeName == 'A') {
+        // Make sure the link is a hash and the link is local to the iframe
+        if (el.hash && el.hostname == window.location.hostname) {
+          // Prevent the whole window from scrolling
+          e.preventDefault();
+          // Prevent opening a new window
+          el.target = '_self';
+          // Scroll to the matching element, if an element exists
+          if (body.querySelector(el.hash)) {
+            body.scrollTop = body.querySelector(el.hash).offsetTop;
+          }
+        }
+      }
+    });
 
     utilBtns = self.iframe.getElementById('epiceditor-utilbar');
 
     // TODO: Move into fullscreen setup function (_setupFullscreen)
     _elementStates = {}
     self._goFullscreen = function (el) {
+      this._fixScrollbars('auto');
 
       if (self.is('fullscreen')) {
         self._exitFullscreen(el);
@@ -653,6 +733,8 @@
       , 'cssFloat': 'left' // FF
       , 'styleFloat': 'left' // Older IEs
       , 'display': 'block'
+      , 'position': 'static'
+      , 'left': ''
       });
 
       // the previewer
@@ -663,6 +745,8 @@
       , 'cssFloat': 'right' // FF
       , 'styleFloat': 'right' // Older IEs
       , 'display': 'block'
+      , 'position': 'static'
+      , 'left': ''
       });
 
       // Setup the containing element CSS for fullscreen
@@ -695,12 +779,14 @@
 
       self.preview();
 
-      self.editorIframeDocument.body.focus();
+      self.focus();
 
       self.emit('fullscreenenter');
     };
 
     self._exitFullscreen = function (el) {
+      this._fixScrollbars();
+
       _saveStyleState(self.element, 'apply', _elementStates.element);
       _saveStyleState(self.iframeElement, 'apply', _elementStates.iframeElement);
       _saveStyleState(self.editorIframe, 'apply', _elementStates.editorIframe);
@@ -802,7 +888,9 @@
     utilBar = self.iframe.getElementById('epiceditor-utilbar');
 
     // Hide it at first until they move their mouse
-    utilBar.style.display = 'none';
+    if (self.settings.button.bar !== true) {
+      utilBar.style.display = 'none';
+    }
 
     utilBar.addEventListener('mouseover', function () {
       if (utilBarTimer) {
@@ -811,6 +899,9 @@
     });
 
     function utilBarHandler(e) {
+      if (self.settings.button.bar !== "auto") {
+        return;
+      }
       // Here we check if the mouse has moves more than 5px in any direction before triggering the mousemove code
       // we do this for 2 reasons:
       // 1. On Mac OS X lion when you scroll and it does the iOS like "jump" when it hits the top/bottom of the page itll fire off
@@ -883,6 +974,29 @@
       if (e.keyCode == 17) { isCtrl = false }
     }
 
+    function pasteHandler(e) {
+      var content;
+      if (e.clipboardData) {
+        //FF 22, Webkit, "standards"
+        e.preventDefault();
+        content = e.clipboardData.getData("text/plain");
+        self.editorIframeDocument.execCommand("insertText", false, content);
+      }
+      else if (window.clipboardData) {
+        //IE, "nasty"
+        e.preventDefault();
+        content = window.clipboardData.getData("Text");
+        content = content.replace(/</g, '&lt;');
+        content = content.replace(/>/g, '&gt;');
+        content = content.replace(/\n/g, '<br>');
+        content = content.replace(/\r/g, ''); //fuck you, ie!
+        content = content.replace(/<br>\s/g, '<br>&nbsp;')
+        content = content.replace(/\s\s\s/g, '&nbsp; &nbsp;')
+        content = content.replace(/\s\s/g, '&nbsp; ')
+        self.editorIframeDocument.selection.createRange().pasteHTML(content);
+      }
+    }
+
     // Hide and show the util bar based on mouse movements
     eventableIframes = [self.previewerIframeDocument, self.editorIframeDocument];
     
@@ -899,6 +1013,9 @@
       eventableIframes[i].addEventListener('keydown', function (e) {
         shortcutHandler(e);
       });
+      eventableIframes[i].addEventListener('paste', function (e) {
+        pasteHandler(e);
+      });
     }
 
     // Save the document every 100ms by default
@@ -908,7 +1025,7 @@
         if (!self._canSave) {
           return;
         }
-        self.save();
+        self.save(false, true);
       }, self.settings.file.autoSave);
     }
 
@@ -959,6 +1076,35 @@
     }
 
     self.iframe.close();
+    self._eeState.startup = false;
+
+    if (self.settings.autogrow) {
+      self._fixScrollbars();
+
+      boundAutogrow = function () {
+        setTimeout(function () {
+          self._autogrow();
+        }, 1);
+      };
+
+      //for if autosave is disabled or very slow
+      ['keydown', 'keyup', 'paste', 'cut'].forEach(function (ev) {
+        self.getElement('editor').addEventListener(ev, boundAutogrow);
+      });
+      
+      self.on('__update', boundAutogrow);
+      self.on('edit', function () {
+        setTimeout(boundAutogrow, 50)
+      });
+      self.on('preview', function () {
+        setTimeout(boundAutogrow, 50)
+      });
+
+      //for browsers that have rendering delays
+      setTimeout(boundAutogrow, 50);
+      boundAutogrow();
+    }
+
     // The callback and call are the same thing, but different ways to access them
     callback.call(this);
     this.emit('load');
@@ -982,9 +1128,13 @@
     }, 100);
 
     _syncTextarea = function () {
-      self._textareaElement.value = self.exportFile(textareaFileName, 'text', true);
+      // TODO: Figure out root cause for having to do this ||.
+      // This only happens for draft files. Probably has something to do with
+      // the fact draft files haven't been saved by the time this is called.
+      // TODO: Add test for this case.
+      self._textareaElement.value = self.exportFile(textareaFileName, 'text', true) || self.settings.file.defaultContent;
     }
-    
+
     if (typeof self.settings.textarea == 'string') {
       self._textareaElement = document.getElementById(self.settings.textarea);
     }
@@ -1007,7 +1157,7 @@
     // the local file in localStorage's modified date is newer than the server.
     if (self._textareaElement.value !== '') {
       self.importFile(textareaFileName, self._textareaElement.value);
-      
+
       // manually save draft after import so there is no delay between the
       // import and exporting in _syncTextarea. Without this, _syncTextarea
       // will pull the saved data from localStorage which will be <=100ms old.
@@ -1019,6 +1169,23 @@
 
     // Make sure to keep it updated
     self.on('__update', _syncTextarea);
+  }
+
+  /**
+   * Will NOT focus the editor if the editor is still starting up AND
+   * focusOnLoad is set to false. This allows you to place this in code that
+   * gets fired during .load() without worrying about it overriding the user's
+   * option. For example use cases see preview() and edit().
+   * @returns {undefined}
+   */
+
+  // Prevent focus when the user sets focusOnLoad to false by checking if the
+  // editor is starting up AND if focusOnLoad is true
+  EpicEditor.prototype._focusExceptOnLoad = function () {
+    var self = this;
+    if ((self._eeState.startup && self.settings.focusOnLoad) || !self._eeState.startup) {
+      self.focus();
+    }
   }
 
   /**
@@ -1136,28 +1303,37 @@
     // Add the generated draft HTML into the previewer
     self.previewer.innerHTML = self.exportFile(null, 'html', true);
 
-    // Because we have a <base> tag so all links open in a new window we
-    // need to prevent hash links from opening in a new window
-    anchors = self.previewer.getElementsByTagName('a');
-    for (x in anchors) {
-      // If the link is a hash AND the links hostname is the same as the
-      // current window's hostname (same page) then set the target to self
-      if (anchors[x].hash && anchors[x].hostname == window.location.hostname) {
-        anchors[x].target = '_self';
-      }
-    }
-
     // Hide the editor and display the previewer
     if (!self.is('fullscreen')) {
-      self.editorIframe.style.display = 'none';
-      self.previewerIframe.style.display = 'block';
+      self.editorIframe.style.left = '-999999px';
+      self.previewerIframe.style.left = '';
       self._eeState.preview = true;
       self._eeState.edit = false;
-      self.previewerIframe.focus();
+      self._focusExceptOnLoad();
     }
-    
+
     self.emit('preview');
     return self;
+  }
+
+  /**
+   * Helper to focus on the editor iframe. Will figure out which iframe to
+   * focus on based on which one is active and will handle the cross browser
+   * issues with focusing on the iframe vs the document body.
+   * @returns {object} EpicEditor will be returned
+   */
+  EpicEditor.prototype.focus = function (pageload) {
+    var self = this
+      , isPreview = self.is('preview')
+      , focusElement = isPreview ? self.previewerIframeDocument.body
+        : self.editorIframeDocument.body;
+
+    if (_isFirefox() && isPreview) {
+      focusElement = self.previewerIframe;
+    }
+
+    focusElement.focus();
+    return this;
   }
 
   /**
@@ -1189,9 +1365,9 @@
     _replaceClass(self.getElement('wrapper'), 'epiceditor-preview-mode', 'epiceditor-edit-mode');
     self._eeState.preview = false;
     self._eeState.edit = true;
-    self.editorIframe.style.display = 'block';
-    self.previewerIframe.style.display = 'none';
-    self.editorIframe.focus();
+    self.editorIframe.style.left = '';
+    self.previewerIframe.style.left = '-999999px';
+    self._focusExceptOnLoad();
     self.emit('edit');
     return this;
   }
@@ -1240,6 +1416,10 @@
       return self._eeState.edit;
     case 'fullscreen':
       return self._eeState.fullscreen;
+   // TODO: This "works", but the tests are saying otherwise. Come back to this
+   // and figure out how to fix it.
+   // case 'focused':
+   //   return document.activeElement == self.iframeElement;
     default:
       return false;
     }
@@ -1257,9 +1437,9 @@
     name = name || self.settings.file.name;
     self.settings.file.name = name;
     if (this._storage[self.settings.localStorageName]) {
-      fileObj = self.getFiles();
-      if (fileObj[name] !== undefined) {
-        _setText(self.editor, fileObj[name].content);
+      fileObj = self.exportFile(name);
+      if (fileObj !== undefined) {
+        _setText(self.editor, fileObj);
         self.emit('read');
       }
       else {
@@ -1277,7 +1457,7 @@
    * Saves content for offline use
    * @returns {object} EpicEditor will be returned
    */
-  EpicEditor.prototype.save = function (_isPreviewDraft) {
+  EpicEditor.prototype.save = function (_isPreviewDraft, _isAuto) {
     var self = this
       , storage
       , isUpdate = false
@@ -1310,6 +1490,10 @@
         storage[file].modified = new Date();
         isUpdate = true;
       }
+      //don't bother autosaving if the content hasn't actually changed
+      else if (_isAuto) {
+        return;
+      }
 
       storage[file].content = content;
       this._storage[previewDraftName + self.settings.localStorageName] = JSON.stringify(storage);
@@ -1321,7 +1505,12 @@
         self.emit('__update');
       }
 
-      this.emit('save');
+      if (_isAuto) {
+        this.emit('autosave');
+      }
+      else if (!_isPreviewDraft) {
+        this.emit('save');
+      }
     }
 
     return this;
@@ -1400,13 +1589,40 @@
       self.preview();
     }
 
+    //firefox has trouble with importing and working out the size right away
+    if (self.settings.autogrow) {
+      setTimeout(function () {
+        self._autogrow();
+      }, 50);
+    }
+
     return this;
   };
 
   /**
+   * Gets the local filestore
+   * @param   {string} name Name of the file in the store
+   * @returns {object|undefined} the local filestore, or a specific file in the store, if a name is given
+   */
+  EpicEditor.prototype._getFileStore = function (name, _isPreviewDraft) {
+    var previewDraftName = ''
+      , store;
+    if (_isPreviewDraft) {
+      previewDraftName = this._previewDraftLocation;
+    }
+    store = JSON.parse(this._storage[previewDraftName + this.settings.localStorageName]);
+    if (name) {
+      return store[name];
+    }
+    else {
+      return store;
+    }
+  }
+
+  /**
    * Exports a file as a string in a supported format
    * @param   {string} name Name of the file you want to export (case sensitive)
-   * @param   {string} kind Kind of file you want the content in (currently supports html and text)
+   * @param   {string} kind Kind of file you want the content in (currently supports html and text, default is the format the browser "wants")
    * @returns {string|undefined}  The content of the file in the content given or undefined if it doesn't exist
    */
   EpicEditor.prototype.exportFile = function (name, kind, _isPreviewDraft) {
@@ -1417,7 +1633,7 @@
     name = name || self.settings.file.name;
     kind = kind || 'text';
    
-    file = self.getFiles(name, _isPreviewDraft);
+    file = self._getFileStore(name, _isPreviewDraft);
 
     // If the file doesn't exist just return early with undefined
     if (file === undefined) {
@@ -1428,31 +1644,53 @@
    
     switch (kind) {
     case 'html':
-      // Get this, 2 spaces in a content editable actually converts to:
-      // 0020 00a0, meaning, "space no-break space". So, manually convert
-      // no-break spaces to spaces again before handing to marked.
-      // Also, WebKit converts no-break to unicode equivalent and FF HTML.
-      content = content.replace(/\u00a0/g, ' ').replace(/&nbsp;/g, ' ');
+      content = _sanitizeRawContent(content);
       return self.settings.parser(content);
     case 'text':
-      content = content.replace(/\u00a0/g, ' ').replace(/&nbsp;/g, ' ');
+      return _sanitizeRawContent(content);
+    case 'json':
+      file.content = _sanitizeRawContent(file.content);
+      return JSON.stringify(file);
+    case 'raw':
       return content;
     default:
       return content;
     }
   }
 
-  EpicEditor.prototype.getFiles = function (name, _isPreviewDraft) {
-    var previewDraftName = '';
-    if (_isPreviewDraft) {
-      previewDraftName = this._previewDraftLocation;
-    }
-    var files = JSON.parse(this._storage[previewDraftName + this.settings.localStorageName]);
+  /**
+   * Gets the contents and metadata for files
+   * @param   {string} name Name of the file whose data you want (case sensitive)
+   * @param   {boolean} excludeContent whether the contents of files should be excluded
+   * @returns {object} An object with the names and data of every file, or just the data of one file if a name was given
+   */
+  EpicEditor.prototype.getFiles = function (name, excludeContent) {
+    var file
+      , data = this._getFileStore(name);
+    
     if (name) {
-      return files[name];
+      if (data !== undefined) {
+        if (excludeContent) {
+          delete data.content;
+        }
+        else {
+          data.content = _sanitizeRawContent(data.content);
+        }
+      }
+      return data;
     }
     else {
-      return files;
+      for (file in data) {
+        if (data.hasOwnProperty(file)) {
+          if (excludeContent) {
+            delete data[file].content;
+          }
+          else {
+            data[file].content = _sanitizeRawContent(data[file].content);
+          }
+        }
+      }
+      return data;
     }
   }
 
@@ -1520,7 +1758,87 @@
     return self;
   }
 
-  EpicEditor.version = '0.2.0';
+  /**
+   * Handles autogrowing the editor
+   */
+  EpicEditor.prototype._autogrow = function () {
+    var editorHeight
+      , newHeight
+      , minHeight
+      , maxHeight
+      , el
+      , style
+      , maxedOut = false;
+
+    //autogrow in fullscreen is nonsensical
+    if (!this.is('fullscreen')) {
+      if (this.is('edit')) {
+        el = this.getElement('editor').documentElement;
+      }
+      else {
+        el = this.getElement('previewer').documentElement;
+      }
+
+      editorHeight = _outerHeight(el);
+      newHeight = editorHeight;
+
+      //handle minimum
+      minHeight = this.settings.autogrow.minHeight;
+      if (typeof minHeight === 'function') {
+        minHeight = minHeight(this);
+      }
+
+      if (minHeight && newHeight < minHeight) {
+        newHeight = minHeight;
+      }
+
+      //handle maximum
+      maxHeight = this.settings.autogrow.maxHeight;
+      if (typeof maxHeight === 'function') {
+        maxHeight = maxHeight(this);
+      }
+
+      if (maxHeight && newHeight > maxHeight) {
+        newHeight = maxHeight;
+        maxedOut = true;
+      }
+
+      if (maxedOut) {
+        this._fixScrollbars('auto');
+      } else {
+        this._fixScrollbars('hidden');
+      }
+
+      //actual resize
+      if (newHeight != this.oldHeight) {
+        this.getElement('container').style.height = newHeight + 'px';
+        this.reflow();
+        if (this.settings.autogrow.scroll) {
+          window.scrollBy(0, newHeight - this.oldHeight);
+        }
+        this.oldHeight = newHeight;
+      }
+    }
+  }
+
+  /**
+   * Shows or hides scrollbars based on the autogrow setting
+   * @param {string} forceSetting a value to force the overflow to
+   */
+  EpicEditor.prototype._fixScrollbars = function (forceSetting) {
+    var setting;
+    if (this.settings.autogrow) {
+      setting = 'hidden';
+    }
+    else {
+      setting = 'auto';
+    }
+    setting = forceSetting || setting;
+    this.getElement('editor').documentElement.style.overflow = setting;
+    this.getElement('previewer').documentElement.style.overflow = setting;
+  }
+
+  EpicEditor.version = '0.2.2';
 
   // Used to store information to be shared across editors
   EpicEditor._data = {};

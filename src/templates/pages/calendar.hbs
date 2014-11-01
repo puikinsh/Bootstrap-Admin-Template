@@ -3,7 +3,6 @@ title: Calendar
 icon: fa fa-calendar
 stylesheets:
 - lib/fullcalendar/fullcalendar.css
-- css/fullCalendarHack.css
 cdnjs:
 - //ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js
 javascripts:
@@ -24,7 +23,7 @@ scripts: $(function() { Metis.MetisCalendar(); });
 			  <legend>Add Custom Event</legend>
 			  <span class="help-block">Event Title</span>
 			  <input id="title" name="title" type="text" placeholder="event title" class="form-control input-small">
-			  
+
 			  <div class="radio">
 			    <label>
 				<input type="radio" name="priority" value="label label-default" checked>
@@ -70,7 +69,7 @@ scripts: $(function() { Metis.MetisCalendar(); });
 	      <div class="well well-sm">
 		  <h4>Draggable Events</h4>
 		  <ul id='external-events' class="list-unstyled">
-		      <li class="external-event"><span class="label label-default">My Event 1</span></li>		      
+		      <li class="external-event"><span class="label label-default">My Event 1</span></li>
 		      <li class="external-event"><span class="label label-primary">My Event 2</span></li>
 		      <li class="external-event"><span class="label label-danger">My Event 3</span></li>
 		      <li class="external-event"><span class="label label-success">My Event 4</span></li>
@@ -78,12 +77,12 @@ scripts: $(function() { Metis.MetisCalendar(); });
 		      <li class="external-event"><span class="label label-info">My Event 6</span></li>
 		  </ul>
 
-		  
+
 		  <div class="checkbox anim-checkbox h4">
 		      <input type="checkbox" id="drop-remove" class="danger">
 		      <label for="drop-remove">remove after drop</label>
 		  </div>
-		  
+
 	      </div>
 	  </div>
 	  <div id="calendar" class="col-lg-9"></div>

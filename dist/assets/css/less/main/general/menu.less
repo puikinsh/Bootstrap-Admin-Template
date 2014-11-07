@@ -15,7 +15,7 @@
   & a, & a:hover, & a:focus, & a:active {
     text-decoration: none;
   }
-  ul {  
+  ul {
     background: rgba(0, 0, 0, .3);
   }
 }
@@ -74,9 +74,9 @@
         left: auto !important;
         right: auto !important;
     }
-    
+
     body:not(.sidebar-left-mini) #menu:not(.affix) li.active > ul {display: inherit;}
-    
+
     #menu li > ul, .sidebar-left-mini #menu li > ul {
         position: absolute;
         top: 0;
@@ -86,11 +86,14 @@
         z-index: 1;
         background-color: rgba(0,0,0,0.8);
     }
-    #menu:not(.affix) li > ul, .sidebar-left-mini #menu:not(.affix) li > ul {display: none;}
+    #menu:not(.affix) li > ul,
+    .sidebar-left-mini #menu:not(.affix) li > ul {
+      display: none;
+    }
     .sidebar-left-mini #menu > li > ul {
         top: 100%;
     }
-    
+
     #menu li > ul > li > ul {
         top: 0;
     }
@@ -102,6 +105,7 @@
 
     #menu:not(.affix) li:hover > ul {
         display: inherit;
+        visibility: visible;
     }
 
     .sidebar-left-mini #menu.affix {
@@ -185,5 +189,3 @@ body:not(.sidebar-left-mini) #menu {
   }
 
 }
-
-

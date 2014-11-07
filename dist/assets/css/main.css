@@ -435,6 +435,7 @@ body {
   }
   #menu:not(.affix) li:hover > ul {
     display: inherit;
+    visibility: visible;
   }
   .sidebar-left-mini #menu.affix {
     position: relative !important;

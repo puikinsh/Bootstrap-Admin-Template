@@ -30,7 +30,7 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
     $ cd yourfoldername
     $ npm install
     $ npm run build
-    $ grunt connect
+    $ grunt serve
 ```
 
 #### 2.3.1 RTL Version
@@ -41,7 +41,7 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
     $ cd yourfoldername
     $ npm install
     $ npm run buildrtl
-    $ grunt connect
+    $ grunt serve
 ```
 
 #### 1.2 Version
@@ -58,25 +58,25 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
 
 
 ## Release History
-**DATE**       **VERSION**   **CHANGES**                                                         
+**DATE**       **VERSION**   **CHANGES**
 * 2014-11-01   v2.3.1        Bootstrap 3.3.0, fixed jquery-timepicker stylesheet, added metisMenu
-                             plugin, many plugin updated                                         
-* 2014-07-18   v2.2.7        added some layouts sample                                           
-* 2014-07-07   v2.2.6        Bootstrap 3.2.0                                                     
+                             plugin, many plugin updated
+* 2014-07-18   v2.2.7        added some layouts sample
+* 2014-07-07   v2.2.6        Bootstrap 3.2.0
 * 2014-06-04   v2.2.5        Fixed side panel(s) code Deprecated main.js Added core.js & app.js  
-* 2014-04-23   v2.2.4        RTL version added Remove CLEditor Added CKEditor                    
-* 2014-04-13   v2.2.3        rewrite all code                                                    
-* 2014-04-10   v2.2.2        remove `alterne.html`,right panel available                         
-* 2014-04-07   v2.2.1        all dependency require bower & npm                                  
-* 2014-02-28   v2.2.0        rewrite menu, layout, etc                                           
-* 2014-02-16   v2.1.4        update bootsrap 3.1.1 && add screenfull.js && fixed                 
-* 2014-01-19   v2.1.3        add suitcss 's flex-embed component                                 
-* 2013-11-30   v2.1.2        create menu plugin, rewrite `menu.less`                             
-* 2013-10-28   v2.1.1.2      add bower                                                           
-* 2013-10-28   v2.1.1.1      remove bootsrap, font awesome, gmaps submodule.                     
-* 2013-10-23   v2.1.1        Added `bgimage.html` Added `bgcolor.html` pages.                    
-* 2013-10-22   v2.1          I don't remember. Whatever I did.                                   
-* 2013-02-14   v1.0          First Commit.                                                       
+* 2014-04-23   v2.2.4        RTL version added Remove CLEditor Added CKEditor
+* 2014-04-13   v2.2.3        rewrite all code
+* 2014-04-10   v2.2.2        remove `alterne.html`,right panel available
+* 2014-04-07   v2.2.1        all dependency require bower & npm
+* 2014-02-28   v2.2.0        rewrite menu, layout, etc
+* 2014-02-16   v2.1.4        update bootsrap 3.1.1 && add screenfull.js && fixed
+* 2014-01-19   v2.1.3        add suitcss 's flex-embed component
+* 2013-11-30   v2.1.2        create menu plugin, rewrite `menu.less`
+* 2013-10-28   v2.1.1.2      add bower
+* 2013-10-28   v2.1.1.1      remove bootsrap, font awesome, gmaps submodule.
+* 2013-10-23   v2.1.1        Added `bgimage.html` Added `bgcolor.html` pages.
+* 2013-10-22   v2.1          I don't remember. Whatever I did.
+* 2013-02-14   v1.0          First Commit.
 
 
 

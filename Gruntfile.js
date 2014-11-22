@@ -9,8 +9,8 @@ module.exports = function(grunt) {
   require('time-grunt')(grunt);
   require('load-grunt-tasks')(grunt, {
     pattern: [
-    'grunt-*',
-    'assemble*'
+      'grunt-*',
+      'assemble*'
     ]
   });
 
@@ -22,11 +22,11 @@ module.exports = function(grunt) {
     config: grunt.file.readYAML('_config.yml'),
 
     banner: '/**\n' +
-    '* Metis - <%=pkg.name %> v<%= pkg.version %>\n' +
-    '* Author : <%= pkg.author.name %> \n' +
-    '* Copyright <%= grunt.template.today("yyyy") %>\n' +
-    '* Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
-    '*/\n',
+      '* Metis - <%=pkg.name %> v<%= pkg.version %>\n' +
+      '* Author : <%= pkg.author.name %> \n' +
+      '* Copyright <%= grunt.template.today("yyyy") %>\n' +
+      '* Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
+      '*/\n',
 
     clean: getTask('clean'),
 
@@ -39,13 +39,13 @@ module.exports = function(grunt) {
     uglify: getTask('uglify'),
 
     /**
-    * Lint JavaScript
-    */
+     * Lint JavaScript
+     */
     jshint: getTask('jshint'),
 
     /**
-    * Build HTML from templates and data
-    */
+     * Build HTML from templates and data
+     */
     assemble: getTask('assemble'),
 
     htmlmin: getTask('htmlmin'),
@@ -66,7 +66,7 @@ module.exports = function(grunt) {
   // Full distribution task.
   grunt.registerTask('dist', ['clean', 'copy', 'less', 'dist-js']);
 
-  grunt.registerTask('server', ['connect:livereload', 'watch']);
+  grunt.registerTask('serve', ['connect:livereload', 'watch']);
 
 
   // Default task.

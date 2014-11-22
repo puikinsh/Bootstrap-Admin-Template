@@ -106,7 +106,6 @@
   "use strict";
   // Define toggleFullScreen
   Metis.toggleFullScreen = function() {
-    var osman = "osman";
     if ((window.screenfull !== undefined) && screenfull.enabled) {
       $('#toggleFullScreen').on(Metis.buttonPressedEvent, function(e) {
         screenfull.toggle(window.document[0]);

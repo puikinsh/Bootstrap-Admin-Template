@@ -2,15 +2,12 @@ module.exports = {
   options: {
     port: 9000,
     livereload: 35729,
-    keepalive: true,
-    hostname: 'localhost'
+    hostname: 'localhost',
+    base: '<%= config.dest %>'
   },
   livereload: {
     options: {
-      open: true,
-      base: [
-        '<%= config.dest %>'
-      ]
+      open: true
     }
   }
 };

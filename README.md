@@ -7,8 +7,6 @@
 
 > Free Admin Template Based On Twitter Bootstrap 3.x
 
-> Free Admin Template Based On Twitter Bootstrap 3.x
-
 ## TOC
   * [Download](#download)
   * [Building](#building)

@@ -1,0 +1,13 @@
+{
+  "name": "elfinder",
+  "_cacheHeaders": {
+    "ETag": "\"bcf1d41226b19dfda90a92de66d69a53ab718b4e\"",
+    "Content-Length": "1039780",
+    "Content-Type": "application/zip",
+    "Content-Disposition": "attachment; filename=elFinder-2.0-rc1.zip"
+  },
+  "_release": "e-tag:bcf1d4122",
+  "_source": "https://github.com/Studio-42/elFinder/archive/2.0-rc1.zip",
+  "_target": "*",
+  "_originalSource": "https://github.com/Studio-42/elFinder/archive/2.0-rc1.zip"
+}

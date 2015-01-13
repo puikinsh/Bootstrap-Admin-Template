@@ -1,9 +1,10 @@
 /**
-* Metis - Bootstrap-Admin-Template v2.3.1
+* Metis - Bootstrap-Admin-Template v2.3.2
 * Author : onokumus 
-* Copyright 2014
+* Copyright 2015
 * Licensed under MIT (https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/LICENSE.md)
 */
+
 ;(function($, Metis) {
     var $button = $('.inner a.btn');
     Metis.metisButton = function() {
@@ -381,7 +382,7 @@
 })(jQuery);
 ;(function($){
   "use strict";
-  
+
   Metis.formGeneral = function() {
 
     $('.with-tooltip').tooltip({
@@ -508,12 +509,16 @@
     /*----------- END daterangepicker CODE -------------------------*/
 
     /*----------- BEGIN timepicker CODE -------------------------*/
-    $('.timepicker-default').timepicker();
-
-    $('.timepicker-24').timepicker({
-        minuteStep: 1,
-        showSeconds: true,
-        showMeridian: false
+    //     DEPRECATED
+    // $('.timepicker-default').timepicker();
+    //
+    // $('.timepicker-24').timepicker({
+    //     minuteStep: 1,
+    //     showSeconds: true,
+    //     showMeridian: false
+    // });
+    $('#datetimepicker4').datetimepicker({
+      pickDate: false
     });
     /*----------- END timepicker CODE -------------------------*/
 
@@ -535,9 +540,10 @@
 //     $.configureBoxes();
     /*----------- END dualListBox CODE -------------------------*/
 };
-  
+
   return Metis;
 })(jQuery);
+
 ;(function($){
   "use strict";
   
@@ -752,7 +758,7 @@
 //     /*----------- BEGIN cleditor CODE -------------------------*/
 //     var cleditor = $("#cleditor").cleditor({width: "100%", height: "100%"})[0].focus();
 //     $(window).resize();
-// 
+//
 //     $(window).resize(function () {
 //         var $win = $('#cleditorDiv');
 //         cleditor.width($win.width() - 24).height($win.height() - 24).offset({
@@ -765,13 +771,14 @@
 
     /*----------- BEGIN epiceditor CODE -------------------------*/
     var opts = {
-        basePath: 'assets/lib/epiceditor'
+        basePath: '//cdnjs.cloudflare.com/ajax/libs/epiceditor/0.2.2'
     };
     var epiceditor = new EpicEditor(opts).load();
     /*----------- END epiceditor CODE -------------------------*/
 };
 return Metis;
 })(jQuery);
+
 ;(function($){
   "use strict";
   Metis.MetisCalendar = function() {
@@ -1015,15 +1022,18 @@ return Metis;
   return Metis;
 })(jQuery);
 ;(function($, Metis) {
-    if (!$().sortable) {
-        return;
-    }
-    var $sortable = $('.inner .row');
-    Metis.metisSortable = function() {
-        $sortable.sortable();
-    };
-    return Metis;
+  if (!$().sortable) {
+    return;
+  }
+  var $sortable = $('.inner [class*=col-]');
+  Metis.metisSortable = function() {
+    $sortable.sortable({
+      placeholder: "ui-state-highlight"
+    }).disableSelection();
+  };
+  return Metis;
 })(jQuery, Metis || {});
+
 ;(function($){
   "use strict";
   

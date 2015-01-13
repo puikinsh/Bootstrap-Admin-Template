@@ -1,9 +1,10 @@
 /**
-* Metis - Bootstrap-Admin-Template v2.3.1
+* Metis - Bootstrap-Admin-Template v2.3.2
 * Author : onokumus 
-* Copyright 2014
+* Copyright 2015
 * Licensed under MIT (https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/LICENSE.md)
 */
+
 /* ==========================================================================
 metisAdmin: Base
 ========================================================================== */
@@ -34,8 +35,6 @@ body {
   /* Set the fixed height of the footer here */
   height: 48px;
 }
-/* END Sticky footer styles
-   ========================================================================== */
 /*********************************************************/
 /*                 Template Layout                       */
 /*********************************************************/
@@ -139,7 +138,6 @@ body {
     position: relative;
   }
 }
-/* ================== END Template Layout ============== */
 /* BEGIN TOP bar */
 #top .navbar {
   margin-bottom: 0;
@@ -157,7 +155,6 @@ body {
     float: right;
   }
 }
-/* END TOP bar */
 /* BEGIN header.head bar */
 .head {
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
@@ -249,7 +246,6 @@ body {
     border-radius: 3px;
   }
 }
-/** END header.head bar */
 /*********************************************************/
 /*          Begin LEFT Styles                           */
 /*********************************************************/
@@ -329,7 +325,6 @@ body {
   left: auto;
   right: 100%;
 }
-/* ============== END LEFT Styles ================= */
 #menu,
 #menu ul,
 #menu li,
@@ -542,7 +537,6 @@ body:not(.sidebar-left-mini) #menu .nav-header {
     width: 100%;
   }
 }
-/* END CONTENT STYLES */
 /* ==========================================================================
    Footer
    ========================================================================== */
@@ -558,8 +552,6 @@ body:not(.sidebar-left-mini) #menu .nav-header {
   margin: 0;
   text-align: center;
 }
-/* END Footer
-   ========================================================================== */
 /*********************************************************/
 /*                 Component Styles                      */
 /*********************************************************/
@@ -622,18 +614,18 @@ body:not(.sidebar-left-mini) #menu .nav-header {
   box-shadow: 1px 0px 0px #3c3c3c;
 }
 .box.primary header {
-  background-image: -webkit-linear-gradient(top, #428bca 0%, #3071a9 100%);
-  background-image: -o-linear-gradient(top, #428bca 0%, #3071a9 100%);
-  background-image: linear-gradient(to bottom, #428bca 0%, #3071a9 100%);
+  background-image: -webkit-linear-gradient(top, #337ab7 0%, #286090 100%);
+  background-image: -o-linear-gradient(top, #337ab7 0%, #286090 100%);
+  background-image: linear-gradient(to bottom, #337ab7 0%, #286090 100%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca', endColorstr='#ff3071a9', GradientType=0);
-  border-bottom: 1px solid #428bca;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff337ab7', endColorstr='#ff286090', GradientType=0);
+  border-bottom: 1px solid #337ab7;
   color: #fff;
 }
 .box.primary header .icons {
-  border-right: 1px solid #245682;
-  -webkit-box-shadow: 1px 0px 0px #6aa3d5;
-  box-shadow: 1px 0px 0px #6aa3d5;
+  border-right: 1px solid #1d4568;
+  -webkit-box-shadow: 1px 0px 0px #5094ce;
+  box-shadow: 1px 0px 0px #5094ce;
 }
 .box.success header {
   background-image: -webkit-linear-gradient(top, #5cb85c 0%, #449d44 100%);
@@ -1121,22 +1113,22 @@ fieldset[disabled] .btn-metis-6.active {
   border-color: #dbdbdb;
 }
 .btn-grad.btn-primary {
-  background-image: -webkit-linear-gradient(top, #428bca 0%, #2d6ca2 100%);
-  background-image: -o-linear-gradient(top, #428bca 0%, #2d6ca2 100%);
-  background-image: linear-gradient(to bottom, #428bca 0%, #2d6ca2 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca', endColorstr='#ff2d6ca2', GradientType=0);
+  background-image: -webkit-linear-gradient(top, #337ab7 0%, #265a88 100%);
+  background-image: -o-linear-gradient(top, #337ab7 0%, #265a88 100%);
+  background-image: linear-gradient(to bottom, #337ab7 0%, #265a88 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff337ab7', endColorstr='#ff265a88', GradientType=0);
   background-repeat: repeat-x;
-  border-color: #2b669a;
+  border-color: #245580;
 }
 .btn-grad.btn-primary:hover,
 .btn-grad.btn-primary:focus {
-  background-color: #2d6ca2;
+  background-color: #265a88;
   background-position: 0 -15px;
 }
 .btn-grad.btn-primary:active,
 .btn-grad.btn-primary.active {
-  background-color: #2d6ca2;
-  border-color: #2b669a;
+  background-color: #265a88;
+  border-color: #245580;
 }
 .btn-grad.btn-success {
   background-image: -webkit-linear-gradient(top, #5cb85c 0%, #419641 100%);
@@ -1386,17 +1378,17 @@ fieldset[disabled] .btn-line.btn-default.active {
   border-color: #cccccc;
 }
 .btn-line.btn-primary {
-  color: #428bca;
+  color: #337ab7;
   background-color: #fff;
-  border-color: #357ebd;
+  border-color: #2e6da4;
 }
 .btn-line.btn-primary:hover,
 .btn-line.btn-primary:focus,
 .btn-line.btn-primary:active,
 .btn-line.btn-primary.active {
-  background-color: #357ebd;
+  background-color: #2e6da4;
   color: #ffffff;
-  border-color: #2a6496;
+  border-color: #23527c;
 }
 .btn-line.btn-primary.disabled,
 .btn-line.btn-primary[disabled],
@@ -1414,7 +1406,7 @@ fieldset[disabled] .btn-line.btn-primary:active,
 .btn-line.btn-primary[disabled].active,
 fieldset[disabled] .btn-line.btn-primary.active {
   background-color: #ffffff;
-  border-color: #357ebd;
+  border-color: #2e6da4;
 }
 .btn-line.btn-warning {
   color: #f0ad4e;
@@ -1768,7 +1760,7 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
 }
 .anim-checkbox .primary:checked + label:before,
 .anim-checkbox .primary:checked + label:after {
-  color: #428bca;
+  color: #337ab7;
 }
 .anim-checkbox .success:checked + label:before,
 .anim-checkbox .success:checked + label:after {
@@ -1786,7 +1778,6 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
 .anim-checkbox .info:checked + label:after {
   color: #5bc0de;
 }
-/* END animated checkbox styles */
 /* BEGIN Pricing Table */
 .pricing-table {
   text-align: center;
@@ -1837,11 +1828,11 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
   }
 }
 .pricing-table > li.active.primary {
-  background-image: -webkit-linear-gradient(top, #357ebd 0%, #428bca 100%);
-  background-image: -o-linear-gradient(top, #357ebd 0%, #428bca 100%);
-  background-image: linear-gradient(to bottom, #357ebd 0%, #428bca 100%);
+  background-image: -webkit-linear-gradient(top, #2e6da4 0%, #337ab7 100%);
+  background-image: -o-linear-gradient(top, #2e6da4 0%, #337ab7 100%);
+  background-image: linear-gradient(to bottom, #2e6da4 0%, #337ab7 100%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff357ebd', endColorstr='#ff428bca', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff2e6da4', endColorstr='#ff337ab7', GradientType=0);
 }
 .pricing-table > li.active.success {
   background-image: -webkit-linear-gradient(top, #4cae4c 0%, #5cb85c 100%);
@@ -1923,7 +1914,6 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
 .pricing-table .features ul li {
   padding: 5px 0;
 }
-/* END Pricing Table */
 /* horizontal rules */
 .inner hr {
   margin-top: 10px;
@@ -1942,7 +1932,6 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
 .progress.lg {
   height: 28px;
 }
-/* END PROGRESSBAR STYLES */
 .quick-btn {
   background: #EEEEEE;
   -webkit-box-shadow: 0 0 0 1px #F8F8F8 inset, 0 0 0 1px #CCCCCC;
@@ -2001,7 +1990,6 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
 .sortableTable th.tablesorter-header.tablesorter-headerAsc .fa.sort:before {
   content: "\f0dd";
 }
-/* END SORTABLETABLE STYLES */
 /* BEGIN SPARKLINE STYLES */
 .sparkline {
   min-width: 50px;
@@ -2013,7 +2001,6 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
   padding: 10px 14px 0px 4px;
   line-height: 52px;
 }
-/* END SPARKLINE STYLES */
 .stats_box {
   display: inline-block;
   list-style: none outside none;
@@ -2093,12 +2080,12 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
   background-color: #5e5e5e;
 }
 .fc-event.label.label-primary {
-  border-color: #357ebd;
-  background-color: #428bca;
+  border-color: #2e6da4;
+  background-color: #337ab7;
 }
 .fc-event.label.label-primary[href]:hover,
 .fc-event.label.label-primary[href]:focus {
-  background-color: #3071a9;
+  background-color: #286090;
 }
 .fc-event.label.label-success {
   border-color: #4cae4c;
@@ -2132,7 +2119,6 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
 .fc-event.label.label-danger[href]:focus {
   background-color: #c9302c;
 }
-/* END FULLCALENDAR STYLES */
 /* ==========================================================================
 metisAdmin: HACK
 ========================================================================== */
@@ -2581,7 +2567,6 @@ body.error .logo h1 {
     font-size: 60px;
   }
 }
-/* END ERROR PAGES STYLES */
 /* BEGIN LOGIN PAGE STYLES */
 .login {
   padding-top: 40px;
@@ -2629,4 +2614,3 @@ body.error .logo h1 {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-/* END LOGIN PAGE STYLES */

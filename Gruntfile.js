@@ -38,6 +38,11 @@ module.exports = function(grunt) {
 
     uglify: getTask('uglify'),
 
+    wiredep: getTask('wiredep'),
+
+
+    usebanner: getTask('usebanner'),
+
     /**
      * Lint JavaScript
      */
@@ -64,7 +69,7 @@ module.exports = function(grunt) {
 
 
   // Full distribution task.
-  grunt.registerTask('dist', ['clean', 'copy', 'less', 'dist-js']);
+  grunt.registerTask('dist', ['clean', 'copy', 'less', 'dist-js', 'usebanner']);
 
   grunt.registerTask('serve', ['connect:livereload', 'watch']);
 

@@ -7,10 +7,10 @@
     <meta name="msapplication-TileImage" content="assets/img/metis-tile.png" />
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
 
     <!-- Metis core stylesheet -->
     <link rel="stylesheet" href="assets/css/main.min.css">
@@ -19,8 +19,8 @@
   <body class="bg-dark lter">
     <style>
       #map_canvas {
-        width: 100% !important;
-        height: 100% !important;
+        width: 400px !important;
+        height: 400px !important;
       }
     </style>
     <div class="container">
@@ -198,27 +198,19 @@
               <dd>http://domain.com</dd>
             </dl>
           </address>
-          <div class="row">
-            <div class="col-xs-12">
-              <div class="FlexEmbed FlexEmbed--4by3">
-                <div class="FlexEmbed-item" style="width:600px !important; height:400px !important;">
-                  <div id="map_canvas"></div>
-                </div>
-              </div>
-            </div><!-- /.col-xs-12 -->
-          </div><!-- /.row -->
-          <div class="clearfix"></div>
+          <div id="map_canvas"></div>
         </div><!-- /.col-lg-5 -->
       </div><!-- /.row -->
     </div>
-    <script src="assets/lib/jquery/jquery.min.js"></script>
-    <script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
-    <script src="assets/lib/gmaps/gmaps.js"></script>
-    <script src="assets/lib/kbwood_countdown/jquery.plugin.js"></script>
-    <script src="assets/lib/kbwood_countdown/jquery.countdown.min.js"></script>
-    <script src="assets/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="assets/lib/jquery-validation/src/localization/messages_zh.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <!--Bootstrap -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="//maps.google.com/maps/api/js?sensor=true"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.12/gmaps.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.0.1/jquery.plugin.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.0.1/jquery.countdown.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
     <script src="assets/js/countdown.js"></script>
   </body>
 </html>

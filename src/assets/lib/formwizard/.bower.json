@@ -1,0 +1,13 @@
+{
+  "name": "formwizard",
+  "_cacheHeaders": {
+    "ETag": "\"d88f30dec87fb9b37c4ecf381e3b50b5cf9ba56c\"",
+    "Content-Length": "185907",
+    "Content-Type": "application/zip",
+    "Content-Disposition": "attachment; filename=formwizard-3.0.7.zip"
+  },
+  "_release": "e-tag:d88f30dec",
+  "_source": "https://github.com/thecodemine/formwizard/archive/v3.0.7.zip",
+  "_target": "*",
+  "_originalSource": "https://github.com/thecodemine/formwizard/archive/v3.0.7.zip"
+}

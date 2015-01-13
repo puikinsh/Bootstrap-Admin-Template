@@ -1,0 +1,13 @@
+{
+  "name": "pagedown-bootstrap",
+  "_cacheHeaders": {
+    "ETag": "\"0bac85230bf732bf2744f41983e9e491fdae1f96\"",
+    "Content-Length": "83763",
+    "Content-Type": "application/zip",
+    "Content-Disposition": "attachment; filename=pagedown-bootstrap-1.1.zip"
+  },
+  "_release": "e-tag:0bac85230",
+  "_source": "https://github.com/kevinoconnor7/pagedown-bootstrap/archive/v1.1.zip",
+  "_target": "*",
+  "_originalSource": "https://github.com/kevinoconnor7/pagedown-bootstrap/archive/v1.1.zip"
+}

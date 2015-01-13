@@ -1,7 +1,6 @@
 module.exports = {
   core: {
     options: {
-      banner: '<%= banner %>',
       sourceMap: true,
       sourceMapName: 'dist/assets/js/core.js.map'
     },
@@ -11,7 +10,6 @@ module.exports = {
   },
   app: {
     options: {
-      banner: '<%= banner %>',
       sourceMap: true,
       sourceMapName: 'dist/assets/js/app.js.map'
     },
@@ -21,7 +19,6 @@ module.exports = {
   },
   countdown: {
     options: {
-      banner: '<%= banner %>',
       sourceMap: true,
       sourceMapName: 'dist/assets/js/countdown.js.map'
     },
@@ -30,7 +27,6 @@ module.exports = {
     }
   },
   styleswitcher: {
-    banner: '<%= banner %>',
     options: {
       sourceMap: true,
       sourceMapName: 'dist/assets/js/style-switcher.js.map'

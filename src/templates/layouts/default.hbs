@@ -1,165 +1,137 @@
 <!doctype html>
 <html class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <title>{{title}}</title>
-    <!--IE Compatibility modes-->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!--Mobile first-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap -->
-    {{#if rtl}}
-    <link rel="stylesheet" href="{{assets}}/lib/bootstrap/css/bootstrap.rtl.css">
-    {{else}}
-    <link rel="stylesheet" href="{{assets}}/lib/bootstrap/css/bootstrap.min.css">
-    {{/if}}
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{assets}}/lib/font-awesome/css/font-awesome.min.css">
-    <!-- Metis core stylesheet -->
-    {{#if rtl}}
-    <link rel="stylesheet" href="{{assets}}/css/main.rtl.css">
-    {{else}}
-    <link rel="stylesheet" href="{{assets}}/css/main.min.css">
-    {{/if}}
-    <!-- metisMenu stylesheet -->
-    <link rel="stylesheet" href="{{assets}}/lib/metismenu/metisMenu.min.css">
-    {{#if rtl}}
-    <style>body{direction: rtl;}</style>
-    {{/if}}
-
-    {{#if stylesheets}}
-        {{css stylesheets}}
-    {{/if}}
-
-    {{#if cdncss}}
-        {{cdn cdncss}}
-    {{/if}}
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="{{assets}}/lib/html5shiv/html5shiv.js"></script>
-    <script src="{{assets}}/lib/respond/respond.min.js"></script>
-    <![endif]-->
-    <!--For Development Only. Not required -->
-    <script>
-        less = {
-            env: "development",
-            relativeUrls: false,
-            rootpath: "../assets/"
-        };
-    </script>
-    <link rel="stylesheet" href="{{assets}}/css/style-switcher.css">
-    <link rel="stylesheet/less" type="text/css" href="{{assets}}/css/less/theme.less">
-    <script src="{{assets}}/lib/less/less-1.7.5.min.js"></script>
-
-
-    <!--Modernizr 2.8.2-->
-    <script src="{{assets}}/lib/modernizr/modernizr.min.js"></script>
-    {{#if analytics}}
-    {{analytics google.analytics 'head'}}
-    {{/if}}
+  <meta charset="UTF-8">
+  <title>{{title}}</title>
+  <!--IE Compatibility modes-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!--Mobile first-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap -->
+  {{#if rtl}}
+  <link rel="stylesheet" href="{{assets}}/lib/bootstrap/dist/css/bootstrap.rtl.css">
+  {{else}}
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css">
+  {{/if}}
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+  <!-- Metis core stylesheet -->
+  {{#if rtl}}
+  <link rel="stylesheet" href="{{assets}}/css/main.rtl.css">
+  {{else}}
+  <link rel="stylesheet" href="{{assets}}/css/main.min.css">
+  {{/if}}
+  <!-- metisMenu stylesheet -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.css">
+  {{#if rtl}}
+  <style>body{direction: rtl;}</style>
+  {{/if}}
+  {{#if stylesheets}}
+  {{css stylesheets}}
+  {{/if}}
+  {{#if cdncss}}
+  {{cdn cdncss}}
+  {{/if}}
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="{{assets}}/lib/html5shiv/html5shiv.js"></script>
+  <script src="{{assets}}/lib/respond/respond.min.js"></script>
+  <![endif]-->
+  <!--For Development Only. Not required -->
+  <script>
+  less = {
+    env: "development",
+    relativeUrls: false,
+    rootpath: "../assets/"
+  };
+  </script>
+  <link rel="stylesheet" href="{{assets}}/css/style-switcher.css">
+  <link rel="stylesheet/less" type="text/css" href="{{assets}}/less/theme.less">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.2.0/less.min.js"></script>
+  <!--Modernizr-->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  {{#if analytics}}
+  {{analytics google.analytics 'head'}}
+  {{/if}}
 </head>
 <body class="{{#if boXed}}boxed{{/if}} {{#if sideMini}}sidebar-left-mini{{/if}} {{#if fixedMenu}}menu-affix{{/if}}">
-<div class="bg-dark dk" id="wrap">
+  <div class="bg-dark dk" id="wrap">
     <div id="top">
-        {{> nav }}
-
-        {{#if noHeader}}
-        {{else}}
-        <header class="head">
-
+      {{> nav }}
+      {{#if noHeader}}
+      {{else}}
+      <header class="head">
         {{#if noMainSearch}}
-	  {{else}}
-	    <div class="search-bar">
-                {{> mainSearch }}
-            </div>
-            <!-- /.search-bar -->
-	{{/if}}
-
-
-
-            <div class="main-bar">
-                <h3><i class="{{ icon }}"></i>&nbsp; {{ title }}</h3>
-            </div>
-            <!-- /.main-bar -->
-        </header>
-        <!-- /.head -->
+        {{else}}
+        <div class="search-bar">
+          {{> mainSearch }}
+        </div>
+        <!-- /.search-bar -->
         {{/if}}
+        <div class="main-bar">
+          <h3><i class="{{ icon }}"></i>&nbsp; {{ title }}</h3>
+        </div>
+        <!-- /.main-bar -->
+      </header>
+      <!-- /.head -->
+      {{/if}}
     </div>
     <!-- /#top -->
     {{#if noLeftSidebar}}
     {{else}}
-      <div id="left">
-	  {{> left }}
-      </div>
-      <!-- /#left -->
+    <div id="left">
+      {{> left }}
+    </div>
+    <!-- /#left -->
     {{/if}}
     <div id="content">
-        <div class="outer">
-            <div class="inner bg-light lter">
-                {{> body }}
-            </div>
-            <!-- /.inner -->
+      <div class="outer">
+        <div class="inner bg-light lter">
+          {{> body }}
         </div>
-        <!-- /.outer -->
+        <!-- /.inner -->
+      </div>
+      <!-- /.outer -->
     </div>
     <!-- /#content -->
     {{#if noRightSidebar}}
-        {{else}}
+    {{else}}
     <div id="right" class="bg-light lter">
-        {{> right }}
+      {{> right }}
     </div>
     <!-- /#right -->
     {{/if}}
-</div>
-<!-- /#wrap -->
-<footer class="Footer bg-dark dker">
+  </div>
+  <!-- /#wrap -->
+  <footer class="Footer bg-dark dker">
     <p>2014 &copy; Metis Bootstrap Admin Template</p>
-</footer>
-<!-- /#footer -->
+  </footer>
+  <!-- /#footer -->
+  {{> helpModal }}
+  <!--jQuery -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  {{#if cdnjs}}
+  {{cdn cdnjs}}
+  {{/if}}
+  <!--Bootstrap -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <!-- MetisMenu -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.js"></script>
+  <!-- Screenfull -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/screenfull.js/2.0.0/screenfull.min.js"></script>
 
-{{> helpModal }}
-
-<!--jQuery 2.1.1 -->
-<script src="{{assets}}/lib/jquery/jquery.min.js"></script>
-
-{{#if cdnjs}}
-    {{cdn cdnjs}}
-{{/if}}
-
-<!--Bootstrap -->
-<script src="{{assets}}/lib/bootstrap/js/bootstrap.min.js"></script>
-
-<!-- MetisMenu -->
-<script src="{{assets}}/lib/metismenu/metisMenu.min.js"></script>
-
-
-
-<!-- Screenfull -->
-<script src="{{assets}}/lib/screenfull/screenfull.js"></script>
-
-{{#is title "Maps"}}
-    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-{{/is}}
-
-{{#if javascripts}}
-    {{js javascripts}}
-{{/if}}
-
-
-
-
-<!-- Metis core scripts -->
-<script src="{{assets}}/js/core.min.js"></script>
-
-<!-- Metis demo scripts -->
-<script src="{{assets}}/js/app.min.js"></script>
-{{#if scripts}}
-    <script>
-            {{scripts}}
-    </script>
-{{/if}}
-    <script src="{{assets}}/js/style-switcher.min.js"></script>
+  {{#if javascripts}}
+  {{js javascripts}}
+  {{/if}}
+  <!-- Metis core scripts -->
+  <script src="{{assets}}/js/core.min.js"></script>
+  <!-- Metis demo scripts -->
+  <script src="{{assets}}/js/app.js"></script>
+  {{#if scripts}}
+  <script>
+    {{scripts}}
+  </script>
+  {{/if}}
+  <script src="{{assets}}/js/style-switcher.min.js"></script>
 </body>
-</html>

@@ -16,7 +16,7 @@
 //     /*----------- BEGIN cleditor CODE -------------------------*/
 //     var cleditor = $("#cleditor").cleditor({width: "100%", height: "100%"})[0].focus();
 //     $(window).resize();
-// 
+//
 //     $(window).resize(function () {
 //         var $win = $('#cleditorDiv');
 //         cleditor.width($win.width() - 24).height($win.height() - 24).offset({
@@ -29,7 +29,7 @@
 
     /*----------- BEGIN epiceditor CODE -------------------------*/
     var opts = {
-        basePath: 'assets/lib/epiceditor'
+        basePath: '//cdnjs.cloudflare.com/ajax/libs/epiceditor/0.2.2'
     };
     var epiceditor = new EpicEditor(opts).load();
     /*----------- END epiceditor CODE -------------------------*/

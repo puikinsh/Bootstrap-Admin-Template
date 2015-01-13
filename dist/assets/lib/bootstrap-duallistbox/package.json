@@ -1,0 +1,52 @@
+{
+  "name": "bootstrap-duallistbox",
+  "title": "Bootstrap Duallistbox",
+  "description": "A responsive dual listbox widget optimized for Twitter Bootstrap. It works on all modern browsers and on touch devices.",
+  "author": {
+    "name": "István Ujj-Mészáros",
+    "url": "https://github.com/istvan-ujjmeszaros"
+  },
+  "contributors": [
+    {
+      "name": "Francesco Pontillo",
+      "url": "https://github.com/frapontillo"
+    },
+    {
+      "name": "Ninir",
+      "url": "https://github.com/Ninir"
+    },
+    {
+      "name": "Christophe Coevoet",
+      "url": "https://github.com/stof"
+    },
+    {
+      "name": "Ed Ng",
+      "url": "https://github.com/gnedster"
+    },
+    {
+      "name": "ssafejava",
+      "url": "https://github.com/ssafejava"
+    },
+    {
+      "name": "justthefish",
+      "url": "https://github.com/justthefish"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/istvan-ujjmeszaros/bootstrap-duallistbox.git"
+  },
+  "homepage": "http://www.virtuosoft.eu/code/bootstrap-duallistbox/",
+  "version": "3.0.2",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.3.2",
+    "grunt-contrib-cssmin": "~0.9.0"
+  },
+  "scripts": {
+    "test": "grunt travis --verbose"
+  }
+}

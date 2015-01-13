@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta charset="utf-8">
+
+<title>bootstrap-wysihtml5</title>
+
+
+<link rel="stylesheet" type="text/css" href="../components/bootstrap/dist/css/bootstrap.min.css"></link>
+<link rel="stylesheet" type="text/css" href="../components/bootstrap/dist/css/bootstrap-theme.min.css"></link>
+<link rel="stylesheet" type="text/css" href="../dist/bootstrap3-wysihtml5.min.css"></link>
+
+<style type="text/css" media="screen">
+  .btn.jumbo {
+    font-size: 20px;
+    font-weight: normal;
+    padding: 14px 24px;
+    margin-right: 10px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+  }
+</style>
+
+</head>
+<body>
+<div class="container">
+  <div class="jumbotron" style="margin-top:40px">
+    <h1 style="font-size:58px">bootstrap-wysihtml5 <br/><small>Simple, beautiful wysiwyg editors</small></h1>
+    <hr style="border-color: white"/>
+    <textarea class="textarea" placeholder="Enter text ..." style="width: 100%; height: 200px; font-size: 14px; line-height: 18px;"></textarea>
+  </div>
+
+  <div class="row">
+    <div class="span6">
+          <h2>About</h2>
+          <p>
+        bootstrap-wysihtml5 is a javascript plugin that makes it easy to create simple, beautiful wysiwyg editors with the help of <a href="https://github.com/xing/wysihtml5">wysihtml5</a> and <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 3</a>
+      </p>
+
+      <p style="text-align:center; margin-top:20px">
+        <a class="btn btn-large btn-primary jumbo" href="https://github.com/Waxolunist/bootstrap3-wysihtml5-bower/">View project on Github</a>
+      </p>
+    </div>
+    <div class="span6" >
+      <h2>Usage</h2>
+
+      <p>
+        <pre>$('.textarea').wysihtml5();</pre>     
+      </p>
+
+    </div>
+  </div>
+</div>
+
+
+<script data-main="main-dev.js" src="../components/requirejs/require.js"></script>
+
+
+</body>
+</html>

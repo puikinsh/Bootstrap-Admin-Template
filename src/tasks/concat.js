@@ -1,9 +1,5 @@
 module.exports = {
   main: {
-    options: {
-      banner: '<%= banner %>',
-      stripBanners: false
-    },
     files: [{
       'dist/assets/js/core.js': [
         'src/assets/js/ie10-viewport-bug-workaround.js',

@@ -5,11 +5,11 @@ module.exports = {
   },
   less: {
     files: ['src/assets/less/**/*.less'],
-    tasks: ['copy:main', 'less']
+    tasks: ['copy:main', 'less','usebanner:css']
   },
   script: {
     files: ['src/assets/js/**/*.js'],
-    tasks: ['concat', 'uglify']
+    tasks: ['concat', 'uglify', 'usebanner:js']
   },
   grunt: {
     files: ['Gruntfile.js', 'src/tasks/*.js'],

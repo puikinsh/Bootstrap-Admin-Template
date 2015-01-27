@@ -185,12 +185,15 @@
             } else {
                 switch (true) {
                     case $body.hasClass("sidebar-left-hidden"):
+                        $("#left").show();/*This is to display left menu/**/
                         $body.removeClass("sidebar-left-hidden sidebar-left-mini");
                         break;
                     case $body.hasClass("sidebar-left-mini"):
+                        $("#left").hide();/*To prevent wierd display of text when trying to hide menu from mini/**/
                         $body.removeClass("sidebar-left-mini").addClass("sidebar-left-hidden");
                         break;
                     default :
+                    	$("#left").show();/*This is to display left menu/**/
                         $body.addClass("sidebar-left-mini");
                 }
 

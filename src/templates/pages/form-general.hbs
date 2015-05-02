@@ -3,33 +3,36 @@ topTitle: Forms
 title: Form General
 icon: fa fa-pencil
 styleName: alterne
+
+cdncss:
+- //cdnjs.cloudflare.com/ajax/libs/Uniform.js/2.1.2/themes/default/css/uniform.default.min.css
+- //cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.min.css
+- //cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.3/jquery.tagsinput.css
+- //cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css
+- //cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.1/css/bootstrap3/bootstrap-switch.min.css
+- //cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.1/css/datepicker3.min.css
+- //cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.0.1/css/bootstrap-colorpicker.min.css
+- //cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.3/css/bootstrap-datetimepicker.min.css
+cdnjs:
+- //cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js
+- //cdnjs.cloudflare.com/ajax/libs/Uniform.js/2.1.2/jquery.uniform.min.js
+- //cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js
+- //cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.3/jquery.tagsinput.min.js
+- //cdnjs.cloudflare.com/ajax/libs/autosize.js/1.18.17/jquery.autosize.min.js
+- //cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js
+- //cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.1/js/bootstrap-switch.min.js
+- //cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.1/js/bootstrap-datepicker.min.js
+- //cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.0.1/js/bootstrap-colorpicker.min.js
+- //cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.3/js/bootstrap-datetimepicker.min.js
+
 stylesheets:
-- lib/jquery.uniform/themes/default/css/uniform.default.css
 - lib/inputlimiter/jquery.inputlimiter.css
-- lib/chosen/chosen.min.css
-- lib/colorpicker/css/colorpicker.css
-- css/colorpicker_hack.css
-- lib/tagsinput/jquery.tagsinput.css
-- lib/daterangepicker/daterangepicker-bs3.css
-- lib/datepicker/css/datepicker.css
-- lib/timepicker/css/bootstrap-timepicker.min.css
-- lib/switch/css/bootstrap3/bootstrap-switch.min.css
-- lib/jasny-bootstrap/css/jasny-bootstrap.min.css
+- lib/bootstrap-daterangepicker/daterangepicker-bs3.css
 javascripts:
-- lib/jquery.uniform/jquery.uniform.min.js
 - lib/inputlimiter/jquery.inputlimiter.js
-- lib/chosen/chosen.jquery.min.js
-- lib/colorpicker/js/bootstrap-colorpicker.js
-- lib/tagsinput/jquery.tagsinput.js
 - lib/validVal/js/jquery.validVal.min.js
-- lib/moment/moment.min.js
-- lib/daterangepicker/daterangepicker.js
-- lib/datepicker/js/bootstrap-datepicker.js
-- lib/timepicker/js/bootstrap-timepicker.min.js
-- lib/switch/js/bootstrap-switch.min.js
-- lib/autosize/jquery.autosize.min.js
-- lib/jasny-bootstrap/js/jasny-bootstrap.min.js
-scripts: $(function() { formGeneral(); });
+- lib/bootstrap-daterangepicker/daterangepicker.js
+scripts: $(function() { Metis.formGeneral(); });
 ---
 <!--BEGIN INPUT TEXT FIELDS-->
 <div class="row">
@@ -383,7 +386,7 @@ scripts: $(function() { formGeneral(); });
                         <label class="control-label col-lg-4">Basic</label>
 
                         <div class="col-lg-8">
-                            <input class="make-switch" type="checkbox" data-size="mini" checked><br>                            
+                            <input class="make-switch" type="checkbox" data-size="mini" checked><br>
                             <input class="make-switch" type="checkbox" data-size="small"><br>
                             <input class="make-switch" type="checkbox" data-size="normal" checked><br>
                             <input class="make-switch" type="checkbox" data-size="large"><br>
@@ -397,14 +400,14 @@ scripts: $(function() { formGeneral(); });
                         <label class="control-label col-lg-4">Color</label>
 
                         <div class="col-lg-8">
-                        
+
                             <input class="make-switch" type="checkbox" data-on-text="1" data-off-text="0" checked><br>
                             <input class="make-switch" type="checkbox" data-on-color="info" data-off-color="success"><br>
                             <input class="make-switch" type="checkbox" data-on-text="osman" data-off-text="nuri" checked><br>
                             <input class="make-switch" type="checkbox" data-on-color="warning" data-off-color="danger"><br>
                             <input class="make-switch" type="checkbox" data-on-text="TRUE" data-off-text="FALSE" checked><br>
                             <input class="make-switch" type="checkbox" data-on-color="default" data-off-color="primary"><br>
-                            
+
                         </div>
                     </div>
 
@@ -714,32 +717,6 @@ scripts: $(function() { formGeneral(); });
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="body">
-                            <p>Attached to other element then field and using events to work with the date values.</p>
-
-                            <div class="alert alert-danger" id="alert" style="display: none;">
-                              <strong>Oh snap!</strong>
-                              <p></p>
-                            </div>
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th><a href="#" class="btn btn-default" id="dp4" data-date-format="yyyy-mm-dd"
-                                           data-date="2014-02-20">Start date</a></th>
-                                    <th><a href="#" class="btn btn-default" id="dp5" data-date-format="yyyy-mm-dd"
-                                           data-date="2014-02-25">End date</a></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td id="startDate">2012-02-20</td>
-                                    <td id="endDate">2012-02-25</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>
@@ -816,19 +793,11 @@ scripts: $(function() { formGeneral(); });
                     <div class="form-group">
                         <label class="control-label col-lg-4">Default Timepicker</label>
                         <div class="col-lg-3">
-                            <div class="input-group bootstrap-timepicker">
-                                <input class="form-control timepicker-default" type="text">
-                                <span class="input-group-addon add-on"><i class="fa fa-clock-o"></i></span>
-                            </div>
+                          <div class='input-group date' id='datetimepicker4'>
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
+                          </span>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-lg-4">24hr Timepicker</label>
-                        <div class="col-lg-3">
-                            <div class="input-group bootstrap-timepicker">
-                                <input class="timepicker-24 form-control" type="text">
-                                <span class="input-group-addon add-on"><i class="fa fa-clock-o"></i></span>
-                            </div>
                         </div>
                     </div>
                 </form>

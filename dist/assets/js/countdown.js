@@ -1,9 +1,10 @@
 /**
-* Metis - Bootstrap-Admin-Template v2.2.4
+* Metis - Bootstrap-Admin-Template v2.3.2
 * Author : onokumus 
-* Copyright 2014
+* Copyright 2015
 * Licensed under MIT (https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/LICENSE.md)
 */
+
 /* Start Countdown Settings */
 /*global $:false */
 var startDate = new Date("01/01/2014"),
@@ -75,16 +76,7 @@ var map;
 map = new GMaps({
         el: '#map_canvas',
         lat: -12.043333,
-        lng: -77.028333,
-        zoomControl: true,
-        zoomControlOpt: {
-            style: 'SMALL',
-            position: 'TOP_LEFT'
-        },
-        panControl: false,
-        streetViewControl: false,
-        mapTypeControl: false,
-        overviewMapControl: false
+        lng: -77.028333
     });
 
 

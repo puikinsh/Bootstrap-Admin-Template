@@ -1,19 +1,21 @@
-(function ($) {
+;(function($, Metis) {
     "use strict";
-    var MetisPricing,
-        Metis = window.Metis;
-    MetisPricing = {
-        init: function () {
-            $("#dark-toggle label").on(Metis.buttonPressedEvent, function () {
-                var $this = $(this);
-                $("ul.dark li.active").removeClass("primary success danger warning info default").addClass($this.find("input").val());
-            });
-
-            $("#light-toggle label").on("click", function () {
-                var $this = $(this);
-                $("ul#light li.active").removeClass("primary success danger warning info default").addClass($this.find("input").val());
-            });
-        }
+    var _updateClass = function(el, c) {
+        el.removeClass("primary success danger warning info default").addClass(c);
     };
-    MetisPricing.init();
-})(jQuery);
+    Metis.MetisPricing = function() {
+        var $dark = $("ul.dark li.active"),
+                $light = $("ul#light li.active");
+
+        $("#dark-toggle label").on(Metis.buttonPressedEvent, function() {
+            var $this = $(this);
+            _updateClass($dark, $this.find("input").val());
+        });
+
+        $("#light-toggle label").on(Metis.buttonPressedEvent, function() {
+            var $this = $(this);
+            _updateClass($light, $this.find("input").val());
+        });
+    };
+    return Metis;
+})(jQuery, Metis || {});

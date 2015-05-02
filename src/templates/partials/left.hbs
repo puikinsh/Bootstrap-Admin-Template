@@ -1,10 +1,10 @@
-<div class="media user-media">
+<div class="media user-media bg-dark dker">
     <div class="user-media-toggleHover">
         <span class="fa fa-user"></span>
     </div>
-    <div class="user-wrapper">
+    <div class="user-wrapper bg-dark">
         <a class="user-link" href="">
-            <img class="media-object img-thumbnail user-img" alt="User Picture" src="assets/img/user.gif">
+            <img class="media-object img-thumbnail user-img" alt="User Picture" src="{{assets}}/img/user.gif">
             <span class="label label-danger user-label">16</span>
         </a>
 
@@ -20,41 +20,41 @@
     </div>
 </div>
 <!-- #menu -->
-<ul id="menu" class="">
+<ul id="menu" class="bg-blue dker">
     <li class="nav-header">Menu</li>
     <li class="nav-divider"></li>
     <li class="{{#is title 'Dashboard'}}active{{/is}}">
       <a href="dashboard.html">
-	<i class="fa fa-dashboard"></i><span class="link-title">Dashboard</span>
+	<i class="fa fa-dashboard"></i><span class="link-title">&nbsp;Dashboard</span>
       </a>
+    </li>
+    <li class="{{#is topTitle 'Layouts'}}active{{/is}}">
+        <a href="javascript:;">
+            <i class="fa fa-building "></i>
+            <span class="link-title">Layouts</span>
+            <span class="fa arrow"></span>
+        </a>
+        <ul>            
+            {{#each  pages }} 
+            {{#is data.topTitle 'Layouts'}}
+	      <li > <a  href ="{{basename}}.html" ><i class="fa fa-angle-right"></i>&nbsp; {{data.title }} </a > </li > 
+	    {{/is}}
+	    {{/each  }} 
+        </ul>
     </li>
     <li class="{{#is topTitle 'Components'}}active{{/is}}">
         <a href="javascript:;">
             <i class="fa fa-tasks"></i>
-            <span class="link-title">
-              Components
-            </span>
+            <span class="link-title">Components</span>
 	    <span class="fa arrow"></span>
         </a>
         <ul>
-            <li class="{{#is title "Icon"}}active{{/is}}">
-	      <a href="icon.html"><i class="fa fa-angle-right"></i>&nbsp;Icon</a>
-            </li>
-            <li class="{{#is title "Buttons"}}active{{/is}}">
-	      <a href="button.html"><i class="fa fa-angle-right"></i>&nbsp;Button</a>
-	    </li>
-            <li class="{{#is title "Progress"}}active{{/is}}">
-	      <a href="progress.html"><i class="fa fa-angle-right"></i>&nbsp;Progress</a>
-	    </li>
-            <li class="{{#is title "Pricing Table"}}active{{/is}}">
-	      <a href="pricing.html"><i class="fa fa-credit-card"></i>&nbsp;Pricing Table</a>
-	    </li>
-            <li class="{{#is title "Bg Image"}}active{{/is}}">
-	      <a href="bgimage.html"><i class="fa fa-angle-right"></i>&nbsp;Bg Image</a>
-	    </li>
-	    <li class="{{#is title "Bg Color"}}active{{/is}}">
-	      <a href="bgcolor.html"><i class="fa fa-angle-right"></i>&nbsp;Bg Color</a>
-	    </li>
+        
+	  {{#each  pages }} 
+            {{#is data.topTitle 'Components'}}
+	      <li > <a  href ="{{basename}}.html" ><i class="fa fa-angle-right"></i>&nbsp; {{data.title }} </a > </li > 
+	    {{/is}}
+	    {{/each  }} 
         </ul>
     </li>
     <li class="{{#is topTitle "Forms"}}active{{/is}}">
@@ -66,18 +66,12 @@
 	  <span class="fa arrow"></span>
         </a>
         <ul>
-	  <li class="{{#is title 'Form General'}}active{{/is}}">
-	    <a href="form-general.html"><i class="fa fa-angle-right"></i>&nbsp;General</a>
-	  </li>
-	  <li class="{{#is title 'Form Validation'}}active{{/is}}">
-	    <a href="form-validation.html"><i class="fa fa-angle-right"></i>&nbsp;Validation</a>
-	  </li>
-	  <li class="{{#is title 'Form WYSIWYG'}}active{{/is}}">
-	    <a href="form-wysiwyg.html"><i class="fa fa-angle-right"></i>&nbsp;WYSIWYG</a>
-	  </li>
-	  <li class="{{#is title 'Form Wizard'}}active{{/is}}">
-	    <a href="form-wizard.html"><i class="fa fa-angle-right"></i>&nbsp;Wizard &amp; File Upload</a>
-	  </li>
+        
+        {{#each  pages }} 
+            {{#is data.topTitle 'Forms'}}
+	      <li > <a  href ="{{basename}}.html" ><i class="fa fa-angle-right"></i>&nbsp; {{data.title }} </a > </li > 
+	    {{/is}}
+	    {{/each  }} 
         </ul>
     </li>
     <li{{#is title "Table"}} class="active"{{/is}}><a href="table.html"><i class="fa fa-table"></i>
@@ -186,7 +180,8 @@
 	  </li>
     	</ul>
     </li>
-
-   
+    {{#if ads}}
+      {{> adsense }}
+    {{/if}}
 </ul>
 <!-- /#menu -->

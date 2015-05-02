@@ -1,3 +1,30 @@
+v2.3.2:
+  date: "2015-01-12"
+  changes:
+    Bootstrap 3.3.1, many plugin updated
+
+v2.3.1:
+  date: "2014-11-01"
+  changes:
+    Bootstrap 3.3.0, fixed jquery-timepicker stylesheet, added metisMenu plugin, many plugin updated
+
+v2.2.7:
+  date: "2014-07-18"
+  changes:
+    added some layouts sample
+
+v2.2.6:
+  date: "2014-07-07"
+  changes:
+    Bootstrap 3.2.0
+
+v2.2.5:
+  date: "2014-06-04"
+  changes:
+    Fixed side panel(s) code
+    Deprecated main.js
+    Added core.js & app.js
+
 v2.2.4:
   date: "2014-04-23"
   changes:

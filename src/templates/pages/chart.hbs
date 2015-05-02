@@ -1,23 +1,21 @@
 ---
 title: Charts
 icon: fa fa-bar-chart
-stylesheets:
-- lib/animate.css/animate.min.css
+cdncss:
+- //cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css
 cdnjs:
-- //ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js
-javascripts:
-- lib/flot/jquery.flot.js
-- lib/flot/jquery.flot.pie.js
-- lib/flot/jquery.flot.selection.js
-- lib/flot/jquery.flot.resize.js
-scripts: $(function() { metisChart(); });
+- //cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js
+- //cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.pie.min.js
+- //cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.selection.min.js
+- //cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.resize.min.js
+scripts: $(function() { Metis.MetisChart(); });
 ---
 <div class="row">
 <div class="col-lg-6">
 	<div class="box">
 		<div class="body">
-			<div id="trigo" style="height: 250px;"></div>
-			<!-- /#trigo -->
+			<div id="human" style="height: 250px;"></div>
+			<!-- /#human -->
 		</div>
 		<!-- /.body -->
 	</div>
@@ -45,8 +43,8 @@ scripts: $(function() { metisChart(); });
 <div class="col-lg-5">
 	<div class="box">
 		<div class="body">
-			<div id="trigo2" style="height: 250px;"></div>
-			<!-- /#trigo2 -->
+			<div id="bar" style="height: 250px;"></div>
+			<!-- /#bar -->
 		</div>
 		<!-- /.body -->
 	</div>

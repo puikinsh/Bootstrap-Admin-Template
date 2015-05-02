@@ -1,14 +1,13 @@
 ---
 title: Calendar
 icon: fa fa-calendar
-stylesheets:
-- lib/fullcalendar/fullcalendar.css
-- css/fullCalendarHack.css
+cdncss:
+- //cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.css
 cdnjs:
-- //ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js
-javascripts:
-- lib/fullcalendar/fullcalendar.min.js
-scripts: $(function() { metisCalendar(); });
+- //cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js
+- //cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js
+- //cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.js
+scripts: $(function() { Metis.MetisCalendar(); });
 ---
 <div class="box">
   <header>
@@ -23,30 +22,43 @@ scripts: $(function() { metisCalendar(); });
 			  <legend>Add Custom Event</legend>
 			  <span class="help-block">Event Title</span>
 			  <input id="title" name="title" type="text" placeholder="event title" class="form-control input-small">
-			  <label class="radio">
-			      <input type="radio" name="priority" value="label label-default" checked>
-			      <span class="label label-default">default</span>
-			  </label>
-			  <label class="radio">
-			      <input type="radio" name="priority" value="label label-primary">
-			      <span class="label label-primary">primary</span>
-			  </label>
-			  <label class="radio">
-			      <input type="radio" name="priority" value="label label-warning">
-			      <span class="label label-warning">warning</span>
-			  </label>
-			  <label class="radio">
-			      <input type="radio" name="priority" value="label label-success">
-			      <span class="label label-success">success</span>
-			  </label>
-			  <label class="radio">
-			      <input type="radio" name="priority" value="label label-info">
-			      <span class="label label-info">info</span>
-			  </label>
-			  <label class="radio">
-			      <input type="radio" name="priority" value="label label-danger">
-			      <span class="label label-danger">danger</span>
-			  </label>
+
+			  <div class="radio">
+			    <label>
+				<input type="radio" name="priority" value="label label-default" checked>
+				<span class="label label-default">default</span>
+			    </label>
+			  </div>
+			  <div class="radio">
+			    <label>
+				<input type="radio" name="priority" value="label label-primary">
+				<span class="label label-primary">primary</span>
+			    </label>
+			  </div>
+			  <div class="radio">
+			    <label>
+				<input type="radio" name="priority" value="label label-warning">
+				<span class="label label-warning">warning</span>
+			    </label>
+			  </div>
+			  <div class="radio">
+			    <label>
+				<input type="radio" name="priority" value="label label-success">
+				<span class="label label-success">success</span>
+			    </label>
+			  </div>
+			  <div class="radio">
+			    <label>
+				<input type="radio" name="priority" value="label label-info">
+				<span class="label label-info">info</span>
+			    </label>
+			  </div>
+			  <div class="radio">
+			    <label>
+				<input type="radio" name="priority" value="label label-danger">
+				<span class="label label-danger">danger</span>
+			    </label>
+			  </div>
 			  <br>
 			  <button id="add-event" type="button" class="btn btn-sm btn-default">Add Event</button>
 		      </fieldset>
@@ -55,8 +67,8 @@ scripts: $(function() { metisCalendar(); });
 	      </div>
 	      <div class="well well-sm">
 		  <h4>Draggable Events</h4>
-		  <ul id='external-events' class="list-inline">
-		      <li class="external-event"><span class="label label-default">My Event 1</span></li>		      
+		  <ul id='external-events' class="list-unstyled">
+		      <li class="external-event"><span class="label label-default">My Event 1</span></li>
 		      <li class="external-event"><span class="label label-primary">My Event 2</span></li>
 		      <li class="external-event"><span class="label label-danger">My Event 3</span></li>
 		      <li class="external-event"><span class="label label-success">My Event 4</span></li>
@@ -64,12 +76,12 @@ scripts: $(function() { metisCalendar(); });
 		      <li class="external-event"><span class="label label-info">My Event 6</span></li>
 		  </ul>
 
-		  
+
 		  <div class="checkbox anim-checkbox h4">
 		      <input type="checkbox" id="drop-remove" class="danger">
 		      <label for="drop-remove">remove after drop</label>
 		  </div>
-		  
+
 	      </div>
 	  </div>
 	  <div id="calendar" class="col-lg-9"></div>

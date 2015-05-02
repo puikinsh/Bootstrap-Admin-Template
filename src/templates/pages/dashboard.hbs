@@ -2,18 +2,18 @@
 topTitle: Dashboard
 title: Dashboard
 icon: fa fa-dashboard
-stylesheets:
-- lib/fullcalendar/fullcalendar.css
+cdncss:
+- //cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.css
 cdnjs:
-- //ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js
-javascripts:
-- lib/fullcalendar/fullcalendar.min.js
-- lib/jquery.tablesorter/jquery.tablesorter.min.js
-- lib/jquery.sparkline/jquery.sparkline.min.js
-- lib/flot/jquery.flot.js
-- lib/flot/jquery.flot.selection.js
-- lib/flot/jquery.flot.resize.js
-scripts: $(function() { dashboard(); });
+- //cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js
+- //cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js
+- //cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.js
+- //cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js
+- //cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js
+- //cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js
+- //cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.selection.min.js
+- //cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.resize.min.js
+scripts: $(function() { Metis.dashboard(); });
 ---
 <div class="text-center">
     <ul class="stats_box">

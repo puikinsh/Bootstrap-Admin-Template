@@ -1,5 +1,7 @@
-function formValidation() {
-    "use strict";
+;(function($){
+  "use strict";
+  
+  Metis.formValidation = function() {
     /*----------- BEGIN validationEngine CODE -------------------------*/
     $('#popup-validation').validationEngine();
     /*----------- END validationEngine CODE -------------------------*/
@@ -102,4 +104,7 @@ function formValidation() {
         }
     });
     /*----------- END validate CODE -------------------------*/
-}
+};
+  
+  return Metis;
+})(jQuery);

@@ -1,0 +1,127 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <!--IE Compatibility modes-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--Mobile first-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap -->
+    {{#if rtl}}
+    <link rel="stylesheet" href="{{assets}}/lib/bootstrap/dist/css/bootstrap.rtl.css">
+    {{else}}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css">
+    {{/if}}
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+    <!-- Metis core stylesheet -->
+    {{#if rtl}}
+    <link rel="stylesheet" href="{{assets}}/css/main.rtl.css">
+    {{else}}
+    <link rel="stylesheet" href="{{assets}}/css/main.min.css">
+    {{/if}}
+    <!-- Metis Theme stylesheet -->
+    <link rel="stylesheet" href="{{assets}}/css/theme.css">
+
+    {{#if rtl}}
+    <style>body{direction: rtl;}</style>
+    {{/if}}
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="{{assets}}/lib/html5shiv/html5shiv.js"></script>
+    <script src="{{assets}}/lib/respond/respond.min.js"></script>
+    <![endif]-->
+    <!--Modernizr -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+</head>
+<body>
+<div id="wrap">
+    <div id="top">
+
+        <!-- .navbar -->
+<nav class="navbar navbar-inverse navbar-{{#if fixedNav}}fixed{{else}}static{{/if}}-top">
+    <div class="container-fluid">
+
+
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <header class="navbar-header">
+            <a href="index.html" class="navbar-brand"><img src="{{assets}}/img/logo.png" alt=""></a>
+        </header>
+
+
+
+        <div class="topnav">
+            <div class="btn-group">
+                <a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip"
+                   class="btn btn-primary btn-sm toggle-left">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <a data-placement="bottom" data-original-title="Show / Hide Right" data-toggle="tooltip"
+                   class="btn btn-default btn-sm toggle-right">
+                    <span class="glyphicon glyphicon-comment"></span>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<!-- /.navbar -->
+
+        <header class="head">
+            <div class="search-bar">
+                {{> mainSearch }}
+            </div>
+            <!-- /.search-bar -->
+
+            <div class="main-bar">
+                <h3><i class="{{ icon }}"></i> {{ title }}</h3>
+            </div>
+            <!-- /.main-bar -->
+        </header>
+        <!-- /.head -->
+    </div>
+    <!-- /#top -->
+    <div id="left">
+        <p>LEFT</p>
+    </div>
+    <!-- /#left -->
+    <div id="content">
+        <div class="outer">
+            <div class="inner">
+                <p>BODY</p>
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+
+    <div id="right">
+        <p>RIGHT</p>
+    </div>
+    <!-- /#right -->
+</div>
+<!-- /#wrap -->
+<footer id="footer">
+    <p>2014 &copy; Metis Bootstrap Admin Template</p>
+</footer>
+<!-- /#footer -->
+
+
+<!--jQuery 2.1.1 -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<!--Bootstrap -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.js"></script>
+
+
+
+<!-- Metis core scripts -->
+<script src="{{assets}}/js/core.min.js"></script>
+
+</body>
+</html>

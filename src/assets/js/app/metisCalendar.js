@@ -1,7 +1,7 @@
-function metisCalendar() {
-    "use strict";
-
-    var date = new Date();
+;(function($){
+  "use strict";
+  Metis.MetisCalendar = function() {
+        var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
@@ -65,13 +65,9 @@ function metisCalendar() {
 
     $('#calendar').fullCalendar({
         header: hdr,
-        buttonText: {
-            prev: '<i class="fa fa-chevron-left"></i>',
-            next: '<i class="fa fa-chevron-right"></i>'
-        },
         editable: true,
         droppable: true, // this allows things to be dropped onto the calendar !!!
-        drop: function(date, allDay) { // this function is called when something is dropped
+        drop: function(date) { // this function is called when something is dropped
 
             // retrieve the dropped element's stored Event Object
             var originalEventObject = $(this).data('eventObject');
@@ -81,7 +77,6 @@ function metisCalendar() {
 
             // assign it the date that was reported
             copiedEventObject.start = date;
-            copiedEventObject.allDay = allDay;
 
             // render the event on the calendar
             // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
@@ -99,4 +94,6 @@ function metisCalendar() {
             $('#calendar').fullCalendar('render');
         }
     });
-}
+  };
+  return Metis;
+})(jQuery);

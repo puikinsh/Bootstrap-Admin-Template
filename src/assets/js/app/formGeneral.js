@@ -1,5 +1,7 @@
-function formGeneral() {
-    "use strict";
+;(function($){
+  "use strict";
+
+  Metis.formGeneral = function() {
 
     $('.with-tooltip').tooltip({
         selector: ".input-tooltip"
@@ -125,12 +127,16 @@ function formGeneral() {
     /*----------- END daterangepicker CODE -------------------------*/
 
     /*----------- BEGIN timepicker CODE -------------------------*/
-    $('.timepicker-default').timepicker();
-
-    $('.timepicker-24').timepicker({
-        minuteStep: 1,
-        showSeconds: true,
-        showMeridian: false
+    //     DEPRECATED
+    // $('.timepicker-default').timepicker();
+    //
+    // $('.timepicker-24').timepicker({
+    //     minuteStep: 1,
+    //     showSeconds: true,
+    //     showMeridian: false
+    // });
+    $('#datetimepicker4').datetimepicker({
+      pickDate: false
     });
     /*----------- END timepicker CODE -------------------------*/
 
@@ -151,4 +157,7 @@ function formGeneral() {
 //     DEPRECATED
 //     $.configureBoxes();
     /*----------- END dualListBox CODE -------------------------*/
-}
+};
+
+  return Metis;
+})(jQuery);

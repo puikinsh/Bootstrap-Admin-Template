@@ -1,0 +1,19 @@
+{
+  "name": "jQuery.validVal",
+  "main": "js/jquery.validVal.js",
+  "version": "5.0.2",
+  "homepage": "http://validval.frebsite.nl/",
+  "authors": [
+    "Fred Heusschen <info@frebsite.nl>"
+  ],
+  "description": "A highly customizable and feature rich jQuery form validator plugin that embraces the power of HTML5.",
+  "keywords": [
+  	"validval",
+    "form",
+    "validation",
+    "validator"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.6.0"
+  }
+}

@@ -3,17 +3,16 @@ topTitle: Forms
 title: Form WYSIWYG
 icon: fa fa-edit
 stylesheets:
-- lib/bootstrap3-wysihtml5-bower/bootstrap3-wysihtml5.min.css
+- lib/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.min.css
 - lib/pagedown-bootstrap/css/jquery.pagedown-bootstrap.css
 cdnjs:
-- //ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js
-- http://code.jquery.com/jquery-migrate-1.2.1.min.js
+- //cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js
+- //cdnjs.cloudflare.com/ajax/libs/ckeditor/4.4.5/ckeditor.js
+- //cdnjs.cloudflare.com/ajax/libs/epiceditor/0.2.2/js/epiceditor.min.js
 javascripts:
-- lib/bootstrap3-wysihtml5-bower/bootstrap3-wysihtml5.all.min.js
-- lib/ckeditor/ckeditor.js
+- lib/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.all.min.js
 - lib/pagedown-bootstrap/js/jquery.pagedown-bootstrap.combined.min.js
-- lib/epiceditor/js/epiceditor.min.js
-scripts: $(function() {formWysiwyg();});
+scripts: $(function() {Metis.formWysiwyg();});
 ---
 <style>
     ul.wysihtml5-toolbar > li {
@@ -115,7 +114,7 @@ scripts: $(function() {formWysiwyg();});
       <!-- /#epiceditor -->
     </div>
     <!-- /#epiceditorDiv.body collapse in -->
-    
+
     </div>
     <!-- /.box -->
   </div>

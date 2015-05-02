@@ -2,21 +2,16 @@
 /*                 Template Layout                       */
 /*********************************************************/
 
-body.padTop53 {
-  padding-top: 104px;
-  overflow: visible;
-  @media (min-width: 840px) {
-    padding-top: 54px;
-  }
-}
-body {
-  .transition(all .3s ease-in-out);
-}
-#wrap, #top, .head, #footer {
+
+#wrap,
+#top,
+.head,
+.Footer {
   .clearfix();
 }
 
-#wrap {
+.Wrap, #wrap {
+  margin: 0 auto;
   position: relative;
 }
 
@@ -85,11 +80,15 @@ body {
 }
 
 @media (min-width: @screen-lg-min) {
-  body.fixed {
-    #wrap, #footer, #top .navbar.navbar-fixed-top {
+  body.boxed {
+    margin-bottom: 0;
+    .Wrap, #wrap, .Footer, #top .navbar.navbar-fixed-top {
       max-width: 1170px;
       margin-left: auto;
       margin-right: auto;
+    }
+    .Footer, #footer {
+      position: relative;
     }
   }
 }

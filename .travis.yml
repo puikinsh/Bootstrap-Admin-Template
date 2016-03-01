@@ -1,10 +1,5 @@
+sudo: false
 language: node_js
 node_js:
-  - "0.10"
-before_script:
-  - "npm install -g grunt-cli"
-  - "npm install -g bower"
-  - "bower install"
-  - "grunt"
-after_script:
-  - "npm run buildrtl"
+  - "iojs"
+  - "0.12"

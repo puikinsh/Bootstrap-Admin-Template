@@ -1,4 +1,4 @@
-Copyright (c) 2014 onokumus, contributors.
+Copyright (c) 2016 onokumus, contributors.
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation

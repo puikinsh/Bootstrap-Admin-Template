@@ -2,21 +2,21 @@
   "name": "Bootstrap-Admin-Template",
   "description": "Free Admin Template Based On Twitter Bootstrap 3.x",
   "version": "2.3.2",
-  "homepage": "https://github.com/onokumus/Bootstrap-Admin-Template",
+  "homepage": "https://github.com/puikinsh/Bootstrap-Admin-Template",
   "author": {
-    "name": "onokumus",
-    "url": "http://github.com/onokumus/"
+    "name": "puikinsh",
+    "url": "http://github.com/puikinsh/"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/onokumus/Bootstrap-Admin-Template.git"
+    "url": "https://github.com/puikinsh/Bootstrap-Admin-Template.git"
   },
   "bugs": {
-    "url": "https://github.com/onokumus/Bootstrap-Admin-Template/issues"
+    "url": "https://github.com/puikinsh/Bootstrap-Admin-Template/issues"
   },
   "license": {
     "type": "MIT",
-    "url": "https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/LICENSE.md"
+    "url": "https://github.com/puikinsh/Bootstrap-Admin-Template/blob/master/LICENSE.md"
   },
   "keywords": [
     "twbs",

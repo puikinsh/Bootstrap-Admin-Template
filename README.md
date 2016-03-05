@@ -2,6 +2,8 @@
 
 Metis is a simple yet powerful free Bootstrap admin dashboard template that you can feel free to use for any app, service, software or anything else. Feel free to share and fork it. 
 
+This template currently is slighly outdated but withing few weeks we are going to make a major overhaul making ot the best free admin template you have seen on Github or elsehwere on the web. 
+
 *  [![Build Status](https://travis-ci.org/onokumus/Bootstrap-Admin-Template.svg)](https://travis-ci.org/onokumus/Bootstrap-Admin-Template)
 * [![Dependency Status](https://david-dm.org/onokumus/Bootstrap-Admin-Template.svg?theme=shields.io)](https://david-dm.org/onokumus/Bootstrap-Admin-Template)
 * [![devDependency Status](https://david-dm.org/onokumus/Bootstrap-Admin-Template/dev-status.svg?theme=shields.io)](https://david-dm.org/onokumus/Bootstrap-Admin-Template#info=devDependencies)
@@ -111,9 +113,7 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
  * [bootstrap3-wysihtml5-bower](https://github.com/Waxolunist/bootstrap3-wysihtml5-bower)
  * [screenfull.js](https://github.com/sindresorhus/screenfull.js)
 
-## About Author
-
-*Colorlib**
+## About Authors
 
 + [Colorlib](https://colorlib.com/) - Colorlib is the most popular source for free WordPress themes and HTML templates. 
 + [Aigars Silkalns](https://twitter.com/AigarsSilkalns) - Aigars maintains this project and is also the idea author behind Colorlib and everythiwn you will find on that website. 

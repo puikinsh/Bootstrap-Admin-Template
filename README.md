@@ -64,7 +64,7 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
     $ open index.html
 
 ## Demo
- * [Demo v2.3.2](https://colorlib.com/polygon/metis/
+ * [Demo v2.3.2](https://colorlib.com/polygon/metis/)
  * [RTL v2.3.2](https://colorlib.com/polygon/metis/rtl/)
 
 

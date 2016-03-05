@@ -1,4 +1,7 @@
 # Bootstrap-Admin-Template
+
+Metis is a simple yet powerful free Bootstrap admin dashboard template that you can feel free to use for any app, service, software or anything else. Feel free to share and fork it. 
+
 *  [![Build Status](https://travis-ci.org/onokumus/Bootstrap-Admin-Template.svg)](https://travis-ci.org/onokumus/Bootstrap-Admin-Template)
 * [![Dependency Status](https://david-dm.org/onokumus/Bootstrap-Admin-Template.svg?theme=shields.io)](https://david-dm.org/onokumus/Bootstrap-Admin-Template)
 * [![devDependency Status](https://david-dm.org/onokumus/Bootstrap-Admin-Template/dev-status.svg?theme=shields.io)](https://david-dm.org/onokumus/Bootstrap-Admin-Template#info=devDependencies)
@@ -59,9 +62,8 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
     $ open index.html
 
 ## Demo
- * [Demo v2.3.2](http://demo.onokumus.com/metis/)
- * [RTL v2.3.2](http://demo.onokumus.com/metis/rtl/)
- * [v1.2 `not development`](http://demo.onokumus.com/metis/v12)
+ * [Demo v2.3.2](https://colorlib.com/polygon/metis/
+ * [RTL v2.3.2](https://colorlib.com/polygon/metis/rtl/)
 
 
 
@@ -108,23 +110,18 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
  * [jquery.validVal](http://validval.frebsite.nl/)
  * [bootstrap3-wysihtml5-bower](https://github.com/Waxolunist/bootstrap3-wysihtml5-bower)
  * [screenfull.js](https://github.com/sindresorhus/screenfull.js)
- * [metisMenu](https://github.com/onokumus/metisMenu)
 
-## Author
+## About Author
 
-**Osman Nuri Okumuş**
+*Colorlib**
 
-+ [github/onokumus](https://github.com/onokumus)
-+ [twitter/onokumus](http://twitter.com/onokumus)
-
++ [Colorlib](https://colorlib.com/) - Colorlib is the most popular source for free WordPress themes and HTML templates. 
++ [Aigars Silkalns](https://twitter.com/AigarsSilkalns) - Aigars maintains this project and is also the idea author behind Colorlib and everythiwn you will find on that website. 
 
 ## License
-Copyright (c) 2015 onokumus  
-Released under the MIT license
+Copyright (c) 2016 Aigars Silkalns & Colorlib  
+Released under the MIT license. This free Bootstrap admin template is distributed as as it with no support. You can feeel free to use it, share it, tweakit it, workin it, sell it or do whatver you want as long as you keep the original license in plce. 
 
-***
-
-[:coffee: Buy Me A Coffee](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EYSUBWWDTCYKU)
 
 ***
 

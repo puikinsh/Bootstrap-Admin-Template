@@ -1,6 +1,6 @@
 # Bootstrap-Admin-Template
 
-Metis is a simple yet powerful free Bootstrap admin dashboard template that you can feel free to use for any app, service, software or anything else. Feel free to share and fork it.
+Metis is a simple yet powerful free Bootstrap admin dashboard template that you can feel free to use for any app, SaaS, admin dashboard, user dashbboard, web app, service, software or anything else. Feel free to share and fork it.
 
 This template currently is slighly outdated but withing few weeks we are going to make a major overhaul making ot the best free admin template you have seen on Github or elsehwere on the web.
 
@@ -14,7 +14,7 @@ This template currently is slighly outdated but withing few weeks we are going t
 * [Download](#download)
 * [Building](#building)
 * [Demo](#demo)
-* [Release History](#release-history)
+* [Other](#other)
 * [Credits](#credits)
 * [Author](#author)
 * [License](#license)
@@ -71,6 +71,24 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
 
 * [Demo v2.3.2](https://colorlib.com/polygon/metis/)
 * [RTL v2.3.2](https://colorlib.com/polygon/metis/rtl/)
+* 
+
+## Other templates and useful resources
+* [Free Admin Templates](https://colorlib.com/wp/free-bootstrap-admin-dashboard-templates/ "Free Bootstrap Admin Templates on Colorlib") - A comprehensive list of the best free Bootstrap admin dashboard templates. All templates are built based on Bootstrap frontend framework making them responsive and mobile friendly. Most of them can compete with premium admin templates.   
+
+* [Free Admin Dashboard Templates](https://colorlib.com/wp/free-html5-admin-dashboard-templates/ "List of free HTML based admin templates by Colorlib") - Versatile list of the best free HTML5/CSS3 powered admin templates. Templates are licensed under MIT license making them free for personal and commercial use. However, no support is provided with these templates. 
+
+* [AngularJS Templates](https://colorlib.com/wp/angularjs-admin-templates/ "Angular Admin Templates on Colorlib") - Comprehensive list of the most popular AngularJS admin templates. Most of these templates comes with both HTML and Angular version therefore they are not just strictly limited to Angular or some other platform. 
+
+* [Premium Admin Templates](https://colorlib.com/wp/html-admin-templates/ "Premium HTML Material Design Admin Templates on Colorlib") - Comprehensive list of premium admin templates designed uing Flat and Material design. Most of these templates comes with both AngularJS and HTML version making your universal tool.
+
+* [Bootstrap Admin Templates](https://colorlib.com/wp/bootstrap-admin-templates/ "List of Premium Bootstrap Admin Templates by Colorlib") - List of Bootstrap admin dashboard templates that uses a minimal yet stunning Flat or Material design. Most of these templates comes as HTML and AngularJS version making them universal and easy to use for your upcoming SaaS, web application, user dashboard, admin dashboard, CRM, ERP, database, or any other data driven interface. 
+
+* [WordPress Admin Templates](https://colorlib.com/wp/wordpress-admin-dashboard-themes-plugins/ "List of WordPress Admin Dashboard Templates and Plugins by Colorlib") - List of stunning and customizable WordPress admin dashboard templates that will add a personal touch to your WordPress dashboard via template or plugin. 
+
+* [WordPress Themes](https://colorlib.com/wp/free-wordpress-themes/ "List of Free WordPress themes by Colorlib") - Most versatile list of free WordPress themes all licensed under GPL. These themes can be used, shared, tweaked, redistributed without restriction as long as you keep the original copyright/license information.
+
+
 
 ## Credits
 
@@ -118,7 +136,7 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [grunt](htt
 * [screenfull.js](https://github.com/sindresorhus/screenfull.js)
 * [metisMenu](https://github.com/onokumus/metisMenu)
 
-## About Authors
+## Author
 
 * [Colorlib](https://colorlib.com/) - Colorlib is the most popular source for free WordPress themes and HTML templates.
 * [Aigars Silkalns](https://twitter.com/AigarsSilkalns) - Aigars maintains this project and is also the idea author behind Colorlib and everythiwn you will find on that website.

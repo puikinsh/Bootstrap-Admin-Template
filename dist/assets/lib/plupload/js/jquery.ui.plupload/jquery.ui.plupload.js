@@ -141,14 +141,14 @@ Dispatched when file dialog is closed.
 /**
 Dispatched when upload is started.
 
-@event start
+@event started
 @param {plupload.Uploader} uploader Uploader instance sending the event.
 */
 
 /**
 Dispatched when upload is stopped.
 
-@event stop
+@event stopped
 @param {plupload.Uploader} uploader Uploader instance sending the event.
 */
 
@@ -416,6 +416,9 @@ $.widget("ui.plupload", {
 
 		uploader = this.uploader = uploaders[id] = new plupload.Uploader($.extend(this.options, options));
 
+		// retrieve full normalized set of options
+		this.options = uploader.getOption();
+
 		if (self.options.views.thumbs) {
 			uploader.settings.required_features.display_media = true;
 		}
@@ -589,17 +592,26 @@ $.widget("ui.plupload", {
 			self._trigger('removed', null, { up: up, files: files } );
 		});
 		
-		uploader.bind('QueueChanged StateChanged', function() {
+		uploader.bind('QueueChanged', function() {
 			self._handleState();
+		});
+
+		uploader.bind('StateChanged', function(up) {
+			self._handleState();
+			if (plupload.STARTED === up.state) {
+				self._trigger('started', null, { up: this.uploader });
+			} else if (plupload.STOPPED === up.state) {
+				self._trigger('stopped', null, { up: this.uploader });
+			}
 		});
 		
 		uploader.bind('UploadFile', function(up, file) {
 			self._handleFileStatus(file);
 		});
 		
-		uploader.bind('FileUploaded', function(up, file) {
+		uploader.bind('FileUploaded', function(up, file, result) {
 			self._handleFileStatus(file);
-			self._trigger('uploaded', null, { up: up, file: file } );
+			self._trigger('uploaded', null, { up: up, file: file, result: result } );
 		});
 		
 		uploader.bind('UploadProgress', function(up, file) {
@@ -642,7 +654,7 @@ $.widget("ui.plupload", {
 			}
 		}
 		
-		self.uploader.settings[key] = value;	
+		self.uploader.setOption(key, value);	
 	},
 
 	
@@ -653,7 +665,6 @@ $.widget("ui.plupload", {
 	*/
 	start: function() {
 		this.uploader.start();
-		this._trigger('start', null, { up: this.uploader });
 	},
 
 	
@@ -664,7 +675,6 @@ $.widget("ui.plupload", {
 	*/
 	stop: function() {
 		this.uploader.stop();
-		this._trigger('stop', null, { up: this.uploader });
 	},
 
 
@@ -691,7 +701,7 @@ $.widget("ui.plupload", {
 
 	
 	/**
-	Retrieve file by it's unique id.
+	Retrieve file by its unique id.
 
 	@method getFile
 	@param {String} id Unique id of the file
@@ -723,7 +733,7 @@ $.widget("ui.plupload", {
 	Remove the file from the queue.
 
 	@method removeFile
-	@param {plupload.File|String} file File to remove, might be specified directly or by it's unique id
+	@param {plupload.File|String} file File to remove, might be specified directly or by its unique id
 	*/
 	removeFile: function(file) {
 		if (plupload.typeOf(file) === 'string') {
@@ -1017,9 +1027,9 @@ $.widget("ui.plupload", {
 			// calculate index of virst visible thumb
 			var startIdx = Math.floor(self.content.scrollTop() / th) * cols;
 			// get potentially visible thumbs that are not yet visible
-			thumbs = $('.plupload_file', self.filelist)
+			thumbs = $('.plupload_file .plupload_file_thumb', self.filelist)
 				.slice(startIdx, startIdx + num)
-				.filter('.plupload_file_loading')
+				.filter('.plupload_thumb_toload')
 				.get();
 		}
 		
@@ -1051,22 +1061,32 @@ $.widget("ui.plupload", {
 			var img = new o.Image();
 
 			img.onload = function() {
-				var thumb = $('#' + file.id + ' .plupload_file_thumb', self.filelist).html('');
+				var thumb = $('#' + file.id + ' .plupload_file_thumb', self.filelist);
 				this.embed(thumb[0], { 
-					width:  self.options.thumb_width, 
+					width: self.options.thumb_width, 
 					height: self.options.thumb_height, 
 					crop: true,
+					preserveHeaders: false,
 					swf_url: o.resolveUrl(self.options.flash_swf_url),
 					xap_url: o.resolveUrl(self.options.silverlight_xap_url)
 				});
 			};
 
-			img.bind("embedded error", function() {
-				$('#' + file.id, self.filelist).removeClass('plupload_file_loading');
+			img.bind("embedded error", function(e) {
+				$('#' + file.id, self.filelist)
+					.find('.plupload_file_thumb')
+						.removeClass('plupload_thumb_loading')
+						.addClass('plupload_thumb_' + e.type)
+					;
 				this.destroy();
 				setTimeout(cb, 1); // detach, otherwise ui might hang (in SilverLight for example)
 			});
 
+			$('#' + file.id, self.filelist)
+				.find('.plupload_file_thumb')
+					.removeClass('plupload_thumb_toload')
+					.addClass('plupload_thumb_loading')
+				;
 			img.load(file.getSource());
 		}
 
@@ -1083,7 +1103,7 @@ $.widget("ui.plupload", {
 
 			loading = true;
 
-			preloadThumb(self.getFile($(thumbs.shift()).attr('id')), function() {
+			preloadThumb(self.getFile($(thumbs.shift()).closest('.plupload_file').attr('id')), function() {
 				loading = false;
 				lazyLoad();
 			});
@@ -1100,21 +1120,21 @@ $.widget("ui.plupload", {
 	_addFiles: function(files) {
 		var self = this, file_html, html = '';
 
-		file_html = '<li class="plupload_file ui-state-default plupload_file_loading plupload_delete" id="%id%" style="width:%thumb_width%px;">' +
-			'<div class="plupload_file_thumb" style="width:%thumb_width%px;height:%thumb_height%px;">' +
-				'<div class="plupload_file_dummy ui-widget-content" style="line-height:%thumb_height%px;"><span class="ui-state-disabled">%ext% </span></div>' +
+		file_html = '<li class="plupload_file ui-state-default plupload_delete" id="{id}" style="width:{thumb_width}px;">' +
+			'<div class="plupload_file_thumb plupload_thumb_toload" style="width: {thumb_width}px; height: {thumb_height}px;">' +
+				'<div class="plupload_file_dummy ui-widget-content" style="line-height: {thumb_height}px;"><span class="ui-state-disabled">{ext} </span></div>' +
 			'</div>' +
 			'<div class="plupload_file_status">' +
 				'<div class="plupload_file_progress ui-widget-header" style="width: 0%"> </div>' + 
-				'<span class="plupload_file_percent">%percent% </span>' +
+				'<span class="plupload_file_percent">{percent} </span>' +
 			'</div>' +
-			'<div class="plupload_file_name" title="%name%">' +
-				'<span class="plupload_file_name_wrapper">%name% </span>' +
+			'<div class="plupload_file_name" title="{name}">' +
+				'<span class="plupload_file_name_wrapper">{name} </span>' +
 			'</div>' +						
 			'<div class="plupload_file_action">' +
 				'<div class="plupload_action_icon ui-icon ui-icon-circle-minus"> </div>' +
 			'</div>' +
-			'<div class="plupload_file_size">%size% </div>' +
+			'<div class="plupload_file_size">{size} </div>' +
 			'<div class="plupload_file_fields"> </div>' +
 		'</li>';
 
@@ -1125,7 +1145,7 @@ $.widget("ui.plupload", {
 		$.each(files, function(i, file) {
 			var ext = o.Mime.getFileExtension(file.name) || 'none';
 
-			html += file_html.replace(/%(\w+)%/g, function($0, $1) {
+			html += file_html.replace(/\{(\w+)\}/g, function($0, $1) {
 				switch ($1) {
 					case 'thumb_width':
 					case 'thumb_height':

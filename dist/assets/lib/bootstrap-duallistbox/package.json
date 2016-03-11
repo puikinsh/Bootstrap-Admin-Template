@@ -37,7 +37,7 @@
     "url": "http://github.com/istvan-ujjmeszaros/bootstrap-duallistbox.git"
   },
   "homepage": "http://www.virtuosoft.eu/code/bootstrap-duallistbox/",
-  "version": "3.0.2",
+  "version": "3.0.5",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-cli": "~0.1.13",

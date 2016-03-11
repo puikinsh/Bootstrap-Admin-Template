@@ -33,7 +33,7 @@ GMaps.prototype.toImage = function(options) {
 GMaps.staticMapURL = function(options){
   var parameters = [],
       data,
-      static_root = 'http://maps.googleapis.com/maps/api/staticmap';
+      static_root = (location.protocol === 'file:' ? 'http:' : location.protocol ) + '//maps.googleapis.com/maps/api/staticmap';
 
   if (options.url) {
     static_root = options.url;
@@ -107,7 +107,7 @@ GMaps.staticMapURL = function(options){
   if (markers) {
     var marker, loc;
 
-    for (var i=0; data=markers[i]; i++) {
+    for (var i = 0; data = markers[i]; i++) {
       marker = [];
 
       if (data.size && data.size !== 'normal') {

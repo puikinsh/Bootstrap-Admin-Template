@@ -1,3 +1,4 @@
+"use strict";
 (function(root, factory) {
   if(typeof exports === 'object') {
     module.exports = factory({{{cjsDependencies}}});
@@ -5,12 +6,14 @@
   else if(typeof define === 'function' && define.amd) {
     define({{#if amdModuleId}}'{{amdModuleId}}', {{/if}}[{{{amdDependencies}}}], factory);
   }
+  else {
+    root.{{globalAlias}} = factory({{{globalDependencies}}});
+  }
 
-  root.{{globalAlias}} = factory({{{globalDependencies}}});
 
 }(this, function({{dependencies}}) {
 
 {{{code}}}
-  
+
 return {{objectToExport}};
 }));

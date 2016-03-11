@@ -1,10 +1,77 @@
-GMaps.js - A Javascript library that simplifies your life
+**Important**
+
+If you're developer, I'm moving gmaps.js to NPM, you can give your opinion and check the migration progress in [Issue #404](https://github.com/hpneo/gmaps/issues/404)
+
+---
+
+gmaps.js - A Javascript library that simplifies your life
 =========================================================
 
-GMaps.js allows you to use the potential of Google Maps in a simple way. No more extensive documentation or large amount of code.
+gmaps.js allows you to use the potential of Google Maps in a simple way. No more extensive documentation or large amount of code.
 
 Visit the examples in [hpneo.github.com/gmaps](http://hpneo.github.com/gmaps/)
 Go to the API Documentation [hpneo.github.io/gmaps/documentation.html](http://hpneo.github.io/gmaps/documentation.html)
+
+Quick Start
+-----
+
+1. Add a reference to Google Maps API
+2. Add gmaps.js in your HTML
+3. Enjoy!
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="http://maps.google.com/maps/api/js"></script>
+  <script src="gmaps.js"></script>
+  <style type="text/css">
+    #map {
+      width: 400px;
+      height: 400px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    var map = new GMaps({
+      el: '#map',
+      lat: -12.043333,
+      lng: -77.028333
+    });
+  </script>
+</body>
+</html>
+```
+
+Use with AMD
+-----
+
+With require.js, you need to load Google Maps JavaScript API first. For example, assuming you have a `googlemapsapi.js` file:
+
+```javascript
+define(['async!http://maps.google.com/maps/api/js?v=3&sensor=false'], function() {});
+```
+
+Next you have to define the dependency for gmaps.js:
+
+```javascript
+require.config({
+  paths: {
+    "googlemapsapi": "googlemapsapi",
+  },
+  shim: {
+    gmaps: {
+      deps: ["googlemapsapi"],
+      exports: "GMaps"
+    }
+  }
+});
+```
+
+Also, you can use the [googlemaps-amd](https://github.com/aerisweather/googlemaps-amd) plugin.
 
 Build
 ------
@@ -20,6 +87,33 @@ grunt
 
 Changelog
 ---------
+
+0.4.22
+-----------------------
+* Render directions
+* Added missing function for registering addListenerOnce
+
+0.4.21
+-----------------------
+* Better check for `console.error`
+
+0.4.20
+-----------------------
+* Show an error in the console, instead throwing an error
+
+0.4.19
+-----------------------
+* Fix bug at hiding markers' context menu when the map is zooming
+
+0.4.18
+-----------------------
+* Fix bug in `array_map`
+
+0.4.17
+-----------------------
+* Remove the http so the library (Google Maps call) will also work under SSL without warnings
+* Update route drawing methods to allow 'icons' option for drawPolyline
+* Remove dependency on 'grunt-cli' having to be installed globally
 
 0.4.16
 -----------------------

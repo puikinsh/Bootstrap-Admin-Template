@@ -13,7 +13,7 @@ into the text box. Otherwise, you can provide a custom callback function to rece
 
 The component can also be used as a single date picker by setting the `singleDatePicker` option to `true`.
 
-**[View a demo](http://www.dangrossman.info/2012/08/20/a-date-range-picker-for-twitter-bootstrap/)** or **[Try it in a live application](https://awio.iljmp.com/5/drpdemogh)**
+**[View some examples](http://www.daterangepicker.com/)** or **[Try it in a live application](https://awio.iljmp.com/5/drpdemogh)**
 
 ## Usage
 
@@ -56,6 +56,12 @@ $('input[name="daterange"]').daterangepicker(
 );
 ````
 
+Options may also be set using HTML5 data attributes. For example, timePicker="true" would be set with:
+
+```
+<input type="text" data-time-picker="true" name="daterange">
+```
+
 ## Options
 
 `startDate`: (Date object, moment object or string) The start of the initially selected date range
@@ -68,7 +74,7 @@ $('input[name="daterange"]').daterangepicker(
 
 `dateLimit`: (object) The maximum span between the selected start and end dates. Can have any property you can add to a moment object (i.e. days, months)
 
-`timeZone`: (string or number) The timezone that will be used to display the startDate and endDate in the calendar. This may be a string such as "-08:00" or an offset in minutes from Greenwich Mean Time. Uses Moment.js #zone, [see the docs here](http://momentjs.com/docs/#/manipulating/timezone-offset/) for more information. If the timeZone option is not set, the calendar will use the time zone set on the startDate that has been passed in through the options, if it has one. Defaults to the local time zone
+`timeZone`: (string or number) The timezone that will be used to display the startDate and endDate in the calendar. This may be a string such as "08:00" or an offset in minutes from Greenwich Mean Time. Uses Moment.js #utcOffset, [see the docs here](http://momentjs.com/docs/#/manipulating/utc-offset/) for more information. If the timeZone option is not set, the calendar will use the time zone set on the startDate that has been passed in through the options, if it has one. Defaults to the local time zone
 
 `showDropdowns`: (boolean) Show year and month select boxes above calendars to jump to a specific month and year
 
@@ -85,6 +91,8 @@ $('input[name="daterange"]').daterangepicker(
 `ranges`: (object) Set predefined date ranges the user can select from. Each key is the label for the range, and its value an array with two dates representing the bounds of the range
 
 `opens`: (string: 'left'/'right'/'center') Whether the picker appears aligned to the left, to the right, or centered under the HTML element it's attached to
+
+`drops`: (string: 'down' or 'up') Whether the picker opens below (default) or above the element it's attached to
 
 `buttonClasses`: (array) CSS class names that will be added to all buttons in the picker
 

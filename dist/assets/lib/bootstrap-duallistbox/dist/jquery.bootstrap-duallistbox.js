@@ -1,5 +1,5 @@
 /*
- *  Bootstrap Duallistbox - v3.0.2
+ *  Bootstrap Duallistbox - v3.0.5
  *  A responsive dual listbox widget optimized for Twitter Bootstrap. It works on all modern browsers and on touch devices.
  *  http://www.virtuosoft.eu/code/bootstrap-duallistbox/
  *
@@ -145,10 +145,11 @@
 
     dualListbox.elements['select'+selectIndex].empty().scrollTop(0);
     var regex = new RegExp($.trim(dualListbox.elements['filterInput'+selectIndex].val()), 'gi'),
+      allOptions = dualListbox.element.find('option'),
       options = dualListbox.element;
 
     if (selectIndex === 1) {
-      options = options.find('option').not(':selected');
+      options = allOptions.not(':selected');
     } else  {
       options = options.find('option:selected');
     }
@@ -160,16 +161,17 @@
         isFiltered = false;
         dualListbox.elements['select'+selectIndex].append($item.clone(true).prop('selected', $item.data('_selected')));
       }
-      dualListbox.element.find('option').eq($item.data('original-index')).data('filtered'+selectIndex, isFiltered);
+      allOptions.eq($item.data('original-index')).data('filtered'+selectIndex, isFiltered);
     });
 
     refreshInfo(dualListbox);
   }
 
   function saveSelections(dualListbox, selectIndex) {
+    var options = dualListbox.element.find('option');
     dualListbox.elements['select'+selectIndex].find('option').each(function(index, item) {
       var $item = $(item);
-      dualListbox.element.find('option').eq($item.data('original-index')).data('_selected', $item.prop('selected'));
+      options.eq($item.data('original-index')).data('_selected', $item.prop('selected'));
     });
   }
 

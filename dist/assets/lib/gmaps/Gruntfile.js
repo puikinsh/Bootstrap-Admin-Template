@@ -62,13 +62,26 @@ module.exports = function(grunt) {
       all : ['Gruntfile.js']
     },
 
+    uglify : {
+      options : {
+        sourceMap : true
+      },
+      all : {
+        files: {
+           'gmaps.min.js': [ 'gmaps.js' ]
+        }
+      }
+    },
+
     umd : {
       all : {
         src : 'gmaps.js',
         objectToExport : 'GMaps',
-        amdModuleId : 'GMaps',
         globalAlias : 'GMaps',
-        template : 'umd.hbs'
+        template : 'umd.hbs',
+        deps: {
+          amd: ['jquery', 'googlemaps!']
+        }
       }
     }
 
@@ -78,8 +91,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-umd');
 
   grunt.registerTask('test', ['jshint', 'jasmine']);
-  grunt.registerTask('default', ['test', 'concat', 'umd']);
+  grunt.registerTask('default', ['test', 'concat', 'umd', 'uglify']);
 };

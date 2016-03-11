@@ -1,8 +1,8 @@
 /**
 * Metis - Bootstrap-Admin-Template v2.3.2
-* Author : onokumus 
-* Copyright 2015
-* Licensed under MIT (https://github.com/onokumus/Bootstrap-Admin-Template/blob/master/LICENSE.md)
+* Author : puikinsh 
+* Copyright 2016
+* Licensed under MIT (https://github.com/puikinsh/Bootstrap-Admin-Template/blob/master/LICENSE.md)
 */
 
 .style-switcher {
@@ -137,9 +137,9 @@ body.rtl .style-switcher .options li {
 .style-switcher .options-link a:hover {
   background-color: #3D3D3D;
   background-repeat: repeat-x;
-  background-image: -webkit-linear-gradient(-90deg, #2f2f2f, #343434);
-  background-image: -o-linear-gradient(-90deg, #2f2f2f, #343434);
-  background-image: linear-gradient(-90deg, #2f2f2f, #343434);
+  background-image: -webkit-linear-gradient(-90deg, #2F2F2F, #343434);
+  background-image: -o-linear-gradient(-90deg, #2F2F2F, #343434);
+  background-image: linear-gradient(-90deg, #2F2F2F, #343434);
   border: 1px solid #191919;
   -webkit-box-shadow: "0 1px 0 rgba(255, 255, 255, 0.09), 1px 1px 0 rgba(255, 255, 255, 0.05), -1px -1px 0 rgba(0, 0, 0, 0.02), 1px 1px 0 rgba(255, 255, 255, 0.05) inset";
   box-shadow: "0 1px 0 rgba(255, 255, 255, 0.09), 1px 1px 0 rgba(255, 255, 255, 0.05), -1px -1px 0 rgba(0, 0, 0, 0.02), 1px 1px 0 rgba(255, 255, 255, 0.05) inset";

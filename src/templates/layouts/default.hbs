@@ -2,15 +2,7 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <!--IE Compatibility modes-->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!--Mobile first-->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>{{title}}</title>
-
-  <meta name="description" content="{{pkg.description}}">
+  {{> meta}}
 
   <!-- Bootstrap -->
   <link rel="stylesheet" href="{{assets}}/lib/bootstrap/css/bootstrap{{#if rtl}}.rtl{{/if}}{{#if production}}.min{{/if}}.css">

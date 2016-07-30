@@ -1,12 +1,8 @@
 <!doctype html>
 <html class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <title>{{title}}</title>
-    <!--IE Compatibility modes-->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!--Mobile first-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{> meta}}
+    
     <!-- Bootstrap -->
     {{#if rtl}}
     <link rel="stylesheet" href="{{assets}}/lib/bootstrap/dist/css/bootstrap.rtl.css">

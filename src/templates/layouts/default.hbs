@@ -1,60 +1,66 @@
 <!doctype html>
-<html class="no-js">
+<html>
+
 <head>
   <meta charset="UTF-8">
-  <title>{{title}}</title>
   <!--IE Compatibility modes-->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!--Mobile first-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>{{title}}</title>
+
+  <meta name="description" content="{{pkg.description}}">
+
   <!-- Bootstrap -->
-  {{#if rtl}}
-  <link rel="stylesheet" href="{{assets}}/lib/bootstrap/dist/css/bootstrap.rtl.css">
-  {{else}}
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
-  {{/if}}
+  <link rel="stylesheet" href="{{assets}}/lib/bootstrap/css/bootstrap{{#if rtl}}.rtl{{/if}}{{#if production}}.min{{/if}}.css">
+
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{assets}}/lib/font-awesome/css/font-awesome{{#if production}}.min{{/if}}.css">
+
   <!-- Metis core stylesheet -->
-  {{#if rtl}}
-  <link rel="stylesheet" href="{{assets}}/css/main.rtl.css">
-  {{else}}
-  <link rel="stylesheet" href="{{assets}}/css/main.min.css">
-  {{/if}}
+  <link rel="stylesheet" href="{{assets}}/css/main{{#if rtl}}.rtl{{/if}}{{#if production}}.min{{/if}}.css">
+
   <!-- metisMenu stylesheet -->
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.css">
+  <link rel="stylesheet" href="{{assets}}/metismenu/metisMenu{{#if production}}.min{{/if}}.css">
+
   {{#if rtl}}
   <style>body{direction: rtl;}</style>
   {{/if}}
   {{#if stylesheets}}
-  {{css stylesheets}}
+  {{#each stylesheets}}
+    {{.}}
+  {{/each}}
   {{/if}}
   {{#if cdncss}}
-  {{cdn cdncss}}
+  {{#each cdncss}}
+    {{.}}
+  {{/each}}
   {{/if}}
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
-  <script src="{{assets}}/lib/html5shiv/html5shiv.js"></script>
-  <script src="{{assets}}/lib/respond/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+
   <!--For Development Only. Not required -->
   <script>
   less = {
     env: "development",
     relativeUrls: false,
-    rootpath: "../assets/"
+    rootpath: "{{assets}}/"
   };
   </script>
-  <link rel="stylesheet" href="{{assets}}/css/style-switcher.css">
+  <link rel="stylesheet" href="{{assets}}/css/style-switcher{{#if production}}.min{{/if}}.css">
   <link rel="stylesheet/less" type="text/css" href="{{assets}}/less/theme.less">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.2.0/less.min.js"></script>
-  <!--Modernizr-->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-  {{#if analytics}}
-  {{analytics google.analytics 'head'}}
-  {{/if}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less{{#if production}}.min{{/if}}.js"></script>
+
+  {{!-- {{> analytic}} --}}
+
 </head>
+
 <body class="{{#if boXed}}boxed{{/if}} {{#if sideMini}}sidebar-left-mini{{/if}} {{#if fixedMenu}}menu-affix{{/if}}">
   <div class="bg-dark dk" id="wrap">
     <div id="top">
@@ -70,7 +76,12 @@
         <!-- /.search-bar -->
         {{/if}}
         <div class="main-bar">
-          <h3><i class="{{ icon }}"></i>&nbsp; {{ title }}</h3>
+          <h3>
+            {{#if icon}}
+              <i class="{{ icon }}"></i>&nbsp;
+            {{/if}}
+            {{ title }}
+          </h3>
         </div>
         <!-- /.main-bar -->
       </header>
@@ -105,33 +116,49 @@
   </div>
   <!-- /#wrap -->
   <footer class="Footer bg-dark dker">
-    <p>2014 &copy; Metis Bootstrap Admin Template</p>
+    <p>2016 &copy; Metis Bootstrap Admin Template</p>
   </footer>
   <!-- /#footer -->
   {{> helpModal }}
+
   <!--jQuery -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="{{assets}}/lib/jquery/jquery{{#if production}}.min{{/if}}.js"></script>
+
   {{#if cdnjs}}
-  {{cdn cdnjs}}
+    {{#each cdnjs}}
+      <script src="{{.}}"></script>
+    {{/each}}
   {{/if}}
+
   <!--Bootstrap -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="{{assets}}/lib/bootstrap/js/bootstrap{{#if production}}.min{{/if}}.js"></script>
   <!-- MetisMenu -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.js"></script>
+  <script src="{{assets}}/lib/metismenu/metisMenu{{#if production}}.min{{/if}}.js"></script>
   <!-- Screenfull -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/screenfull.js/2.0.0/screenfull.min.js"></script>
+  <script src="{{assets}}/lib/screenfull/screenfull{{#if production}}.min{{/if}}.js"></script>
 
   {{#if javascripts}}
-  {{js javascripts}}
+    {{#each javascripts}}
+      <script src="{{assets}}/{{.}}"></script>
+    {{/each}}
   {{/if}}
+
   <!-- Metis core scripts -->
-  <script src="{{assets}}/js/core.min.js"></script>
+  <script src="{{assets}}/js/core{{#if production}}.min{{/if}}.js"></script>
   <!-- Metis demo scripts -->
-  <script src="{{assets}}/js/app.js"></script>
+  <script src="{{assets}}/js/app{{#if production}}.min{{/if}}.js"></script>
+
   {{#if scripts}}
-  <script>
-    {{scripts}}
-  </script>
+    <script>
+      $(function(){
+        {{#each scripts}}
+          {{.}};
+        {{/each}}
+      });
+    </script>
   {{/if}}
-  <script src="{{assets}}/js/style-switcher.min.js"></script>
+
+  <script src="{{assets}}/js/style-switcher{{#if production}}.min{{/if}}.js"></script>
 </body>
+
+</html>

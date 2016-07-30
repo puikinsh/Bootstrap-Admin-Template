@@ -41,7 +41,7 @@
   "devDependencies": {
     "assemble": "^0.16.2",
     "css-flip": "^0.5.0",
-    "grunt": "^0.4.5",
+    "grunt": "^1.0.1",
     "grunt-autoprefixer": "^2.1.0",
     "grunt-banner": "^0.3.1",
     "grunt-contrib-clean": "^0.6.0",

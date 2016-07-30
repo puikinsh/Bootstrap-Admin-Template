@@ -39,7 +39,7 @@
     "buildrtl": "npm run build && npm run mainrtl && npm run bootstraprtl"
   },
   "devDependencies": {
-    "assemble": "^0.4.42",
+    "assemble": "^0.16.2",
     "css-flip": "^0.5.0",
     "grunt": "^0.4.5",
     "grunt-autoprefixer": "^2.1.0",

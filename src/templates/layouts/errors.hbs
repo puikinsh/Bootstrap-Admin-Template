@@ -1,58 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  {{> meta}}
-  
-  <!-- Bootstrap -->
-  {{#if rtl}}
-  <link rel="stylesheet" href="{{assets}}/lib/bootstrap/dist/css/bootstrap.rtl.css">
-  {{else}}
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
-  {{/if}}
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  <!-- Metis core stylesheet -->
-  {{#if rtl}}
-  <link rel="stylesheet" href="{{assets}}/css/main.rtl.css">
-  {{else}}
-  <link rel="stylesheet" href="{{assets}}/css/main.min.css">
-  {{/if}}
-  {{#if rtl}}
-  <style>body{direction: rtl;}</style>
-  {{/if}}
+    {{> meta}}
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{{assets}}/lib/bootstrap/css/bootstrap{{#if rtl}}.rtl{{/if}}{{#if production}}.min{{/if}}.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{assets}}/lib/font-awesome/css/font-awesome{{#if production}}.min{{/if}}.css">
+
+    <!-- Metis core stylesheet -->
+    <link rel="stylesheet" href="{{assets}}/css/main{{#if rtl}}.rtl{{/if}}{{#if production}}.min{{/if}}.css">
+
+{{> rtl-style}}
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 </head>
+
 <body class="error">
-  <div class="container">
-    <div class="col-lg-8 col-lg-offset-2 text-center">
-      <div class="logo">
-        <h1>{{title}}</h1>
-      </div>
-      <p class="lead text-muted">{{message}}</p>
-      <div class="clearfix"></div>
-      <div class="col-lg-6 col-lg-offset-3">
-        <form action="index.html">
-          <div class="input-group">
-            <input type="text" placeholder="search ..." class="form-control">
-            <span class="input-group-btn">
+    <div class="container">
+        <div class="col-lg-8 col-lg-offset-2 text-center">
+            <div class="logo">
+                <h1>{{title}}</h1>
+            </div>
+            <p class="lead text-muted">{{message}}</p>
+            <div class="clearfix"></div>
+            <div class="col-lg-6 col-lg-offset-3">
+                <form action="index.html">
+                    <div class="input-group">
+                        <input type="text" placeholder="search ..." class="form-control">
+                        <span class="input-group-btn">
               <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
             </span>
-          </div>
-        </form>
-      </div>
-      <div class="clearfix"></div>
-      <div class="sr-only">
-        {% body %}
-      </div>
-      <br>
-      <div class="col-lg-6 col-lg-offset-3">
-        <div class="btn-group btn-group-justified">
-          <a href="dashboard.html" class="btn btn-info">Return Dashboard</a>
-          <a href="index.html" class="btn btn-warning">Return Website</a>
+                    </div>
+                </form>
+            </div>
+            <div class="clearfix"></div>
+            <div class="sr-only">
+                {% body %}
+            </div>
+            <br>
+            <div class="col-lg-6 col-lg-offset-3">
+                <div class="btn-group btn-group-justified">
+                    <a href="dashboard.html" class="btn btn-info">Return Dashboard</a>
+                    <a href="index.html" class="btn btn-warning">Return Website</a>
+                </div>
+            </div>
         </div>
-      </div>
+        <!-- /.col-lg-8 col-offset-2 -->
     </div>
-    <!-- /.col-lg-8 col-offset-2 -->
-  </div>
 </body>
+
 </html>

@@ -1,13 +1,11 @@
 {
     "name": "bootstrap-admin-template",
     "description": "Twitter Bootstrap Admin Template",
-    "authors": [
-        "puikinsh (http://github.com/puikinsh/)"
-    ],
+    "authors": "puikinsh (http://github.com/puikinsh/)",
     "homepage": "https://github.com/puikinsh/Bootstrap-Admin-Template",
     "repository": {
         "type": "git",
-        "url": "git://github.com/puikinsh/Bootstrap-Admin-Template.git"
+        "url": "git+https://github.com/puikinsh/Bootstrap-Admin-Template.git"
     },
     "main": [
         "dist/core.js",

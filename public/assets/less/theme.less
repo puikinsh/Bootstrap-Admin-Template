@@ -1,0 +1,27 @@
+@bgColor:#428bca;
+@fgColor:#ffffff;
+@bgImage:'arches';
+@bgImageRoute : '../img/pattern';
+
+body.boxed {
+    background: url("@{bgImageRoute}/@{bgImage}.png") repeat;
+}
+
+#top > .navbar {
+  border-top: 3px solid @bgColor;
+  .dropdown-menu > li > a:hover,
+  .dropdown-menu > li > a:focus {
+    background-color: @bgColor;
+    color: @fgColor;
+  }
+}
+#menu {
+  background-color: @bgColor !important;
+  > li > a {
+    color: @fgColor;
+    text-shadow: none !important;
+  }
+}
+.sidebar-left-mini #menu > li > a > .link-title {
+  background-color:darken(@bgColor,4%) !important;
+}

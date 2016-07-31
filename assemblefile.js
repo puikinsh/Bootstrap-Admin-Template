@@ -44,6 +44,6 @@ app.task('html', ['init'], function() {
         .pipe(browserSync.stream());
 });
 
-app.task('default', ['html']);
+app.task('default', ['html', 'html:rtl']);
 
 module.exports = app;

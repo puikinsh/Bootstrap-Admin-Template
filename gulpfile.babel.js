@@ -1,5 +1,6 @@
 import path from 'path';
 import gulp from 'gulp';
+import del from 'del';
 import brs from 'browser-sync';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import app from './assemblefile';
@@ -31,6 +32,9 @@ const AUTOPREFIXER_BROWSERS = [
     'android >= 4.4',
     'bb >= 10'
 ];
+
+// Clean Output Directory
+gulp.task('clean', () => del(['dist', 'public']));
 
 gulp.task('styles:theme', () => {
     return gulp.src(['src/less/theme*.less'])
@@ -107,6 +111,7 @@ gulp.task('styles', ['styles:theme', 'styles:switcher'], () => {
         }));
 });
 
+
 gulp.task('scripts:core', () => {
     return gulp.src([
             // 'src/assets/js/ie10-viewport-bug-workaround.js',
@@ -179,6 +184,7 @@ gulp.task('assets', () => {
 
 
     gulp.src('./src/css/*.css').pipe(gulp.dest('./public/assets/css'));
+    gulp.src('./src/less/theme.less').pipe(gulp.dest('./public/assets/less'));
     gulp.src('./src/img/**/*.*').pipe(gulp.dest('./public/assets/img'));
     gulp.src('./src/lib/**/*.*').pipe(gulp.dest('./public/assets/lib'));
     gulp.src('./src/js/*.js').pipe(gulp.dest('./public/assets/js'));
@@ -211,12 +217,9 @@ gulp.task('serve', function() {
  */
 function watch() {
     gulp.watch(['src/templates/**/*.hbs'], ['pages', reload]);
-    gulp.watch(['src/**/*.js'],['scripts', reload]);
+    gulp.watch(['src/**/*.js'], ['scripts', reload]);
     gulp.watch(['src/**/*.{less,css}'], ['styles', reload]);
     gulp.watch(['src/**/*.{svg,png,jpg,gif}'], ['assets', reload]);
-    //   gulp.watch(['src/**/README.md'], ['pages', reload]);
-    //   gulp.watch(['templates/**/*'], ['templates', reload]);
-    //   gulp.watch(['docs/**/*'], ['pages', 'assets', reload]);
     gulp.watch(['package.json', 'bower.json'], ['assets']);
 }
 

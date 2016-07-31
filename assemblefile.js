@@ -3,6 +3,7 @@
 var assemble = require('assemble');
 var extname = require('gulp-extname');
 var path = require('path');
+var browserSync = require('browser-sync').create();
 var helpers = require('handlebars-helpers');
 var compare = helpers.comparison();
 var pkg = require('./package');
@@ -14,7 +15,7 @@ app.task('init', function(cb) {
     app.helper('is', compare);
     app.helper('markdown', require('helper-markdown'));
     app.data('pkg', pkg);
-    app.data('dist','dist');
+    app.data('dist', 'dist');
     app.data(['./src/templates/data/**/*.{json,yml}']);
     // app.data('analytic','UA-23581568-13');
     app.layouts(path.join(__dirname, './src/templates/layouts/*.hbs'));
@@ -30,7 +31,8 @@ app.task('html:rtl', ['init'], function() {
     return app.toStream('pages')
         .pipe(app.renderFile())
         .pipe(extname())
-        .pipe(app.dest('public/rtl'));
+        .pipe(app.dest('public/rtl'))
+        .pipe(browserSync.stream());
 });
 
 app.task('html', ['init'], function() {
@@ -38,9 +40,10 @@ app.task('html', ['init'], function() {
     return app.toStream('pages')
         .pipe(app.renderFile())
         .pipe(extname())
-        .pipe(app.dest('public'));
+        .pipe(app.dest('public'))
+        .pipe(browserSync.stream());
 });
 
-app.task('default', ['html', 'html:rtl']);
+app.task('default', ['html']);
 
 module.exports = app;

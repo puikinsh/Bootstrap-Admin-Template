@@ -6,16 +6,16 @@
 
 {{> rtl-style}}
 
-    {{#if stylesheets}}
-        {{#each stylesheets}}
-            {{.}}
-        {{/each}}
-    {{/if}}
-    {{#if cdncss}}
-        {{#each cdncss}}
-            {{.}}
-        {{/each}}
-    {{/if}}
+{{#if stylesheets}}
+    {{#each stylesheets}}
+        <link rel="stylesheet" href="{{assets}}/assets/{{.}}">
+    {{/each}}
+{{/if}}
+{{#if cdncss}}
+    {{#each cdncss}}
+        <link rel="stylesheet" href="{{.}}">
+    {{/each}}
+{{/if}}
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,7 +29,7 @@
         less = {
             env: "development",
             relativeUrls: false,
-            rootpath: "../assets/"
+            rootpath: "assets/"
         };
     </script>
     <link rel="stylesheet" href="assets/css/style-switcher{{#if production}}.min{{/if}}.css">
@@ -118,7 +118,7 @@
 
             {{#if javascripts}}
                 {{#each javascripts}}
-                    <script src="{{assets}}/{{.}}"></script>
+                    <script src="{{assets}}/assets/{{.}}"></script>
                 {{/each}}
             {{/if}}
 

@@ -9,8 +9,7 @@ module.exports = function(grunt) {
   require('time-grunt')(grunt);
   require('load-grunt-tasks')(grunt, {
     pattern: [
-      'grunt-*',
-      'assemble*'
+      'grunt-*'
     ]
   });
 
@@ -51,32 +50,34 @@ module.exports = function(grunt) {
     /**
      * Build HTML from templates and data
      */
-    assemble: getTask('assemble'),
+    // assemble: getTask('assemble'),
 
     htmlmin: getTask('htmlmin'),
 
-    modernizr: getTask('modernizr'),
+    // modernizr: getTask('modernizr'),
 
     watch: getTask('watch'),
 
-    connect: getTask('connect')
+    connect: getTask('connect'),
+
+    browserSync:getTask('browserSync')
 
   });
 
 
   // JS distribution task.
-  grunt.registerTask('dist-js', ['modernizr', 'jshint', 'concat', 'uglify']);
+  grunt.registerTask('dist-js', ['jshint', 'concat', 'uglify']);
 
 
   // Full distribution task.
   grunt.registerTask('dist', ['clean', 'copy', 'less', 'dist-js', 'usebanner']);
 
-  grunt.registerTask('serve', ['connect:livereload', 'watch']);
+  grunt.registerTask('serve', ['browserSync', 'watch']);
 
 
   // Default task.
   //grunt.registerTask('default', ['test', 'dist']);
 
-  grunt.registerTask('default', ['dist', 'assemble']);
+  grunt.registerTask('default', ['dist']);
 
 };

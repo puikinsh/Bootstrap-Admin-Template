@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Plupload: Test Uploader</title>
+
+<script src="../loader.js"></script>
+
+<script type="text/javascript">
+
+QUnit.config.reorder = false;
+QUnit.config.autostart = false;
+QUnit.config.testTimeout = 10000;
+
+FileHash.init({
+	files: ['files/01.min.js', 'files/02.min.js'],
+	onready: function() {
+		QUnit.start();
+	}
+});
+
+o.Env.swf_url = "../../js/flash/Moxie.swf";
+o.Env.xap_url = "../../js/silverlight/Moxie.xap";
+
+module("plupload.Uploader", {
+	setup: function() {
+		var options, up;
+
+		$('#qunit-fixture').html('<div id="uploader" />');
+
+		options = this.options = {
+			browse_button: 'uploader',
+			container: 'qunit-fixture',
+			url: "Plupload/upload.php"
+		};
+
+		up = this.up = new plupload.Uploader(options);
+
+		up.bind('PostInit', function() {
+			QUnit.start();
+		});
+
+		QUnit.stop();
+		up.init();
+
+		// introduce special event that can be binded or unbinded without problems
+		up.bind('FilesAdded', function(up, files) {
+			up.trigger('TestFilesAdded', files);
+		});
+
+		up.bind('FilesRemoved', function(up, files) {
+			up.trigger('TestFilesRemoved', files);
+		});
+
+		up.bind('QueueChanged', function(up) {
+			up.trigger('TestQueueChanged');
+		});
+	},
+
+	teardown: function() {
+		this.up.destroy();
+	}
+});
+
+
+test('addFile()', function() {	
+	var up = this.up
+	, file
+	, files = FileHash.getRuntimeFiles()
+	, nFiles = FileHash.getNativeFiles()
+	, queue = []
+	;
+
+	if (nFiles.length) {
+		queue.push(
+			// window.Blob
+			function(cb) {
+				up.bind('TestFilesAdded', function(up) {
+					equal(up.files.length, 1, "window.Blob added.");
+					up.unbind('TestFilesAdded');
+					cb();
+				});
+				up.addFile(nFiles[0].blob, nFiles[0].name);
+			},
+			
+			// o.Blob
+			function(cb) {
+				file = new o.Blob(null, files[0].getSource());
+				up.bind('TestFilesAdded', function(up) {
+					equal(up.files[0].name, files[0].name, "File name set properly through the second, optional argument.");
+					equal(up.files.length, 2, "o.Blob added (file name: " + up.files[1].name  + ").");
+					up.unbind('TestFilesAdded');
+					cb();
+				});
+				up.addFile(file, files[0].name);
+			}
+		);
+	}
+
+	
+	queue.push(
+		// o.File
+		function(cb) {
+			up.bind('TestFilesAdded', function(up) {
+				equal(up.files.length, 3, "o.File added (file name: " + up.files[2].name  + ").");
+				up.unbind('TestFilesAdded');
+				cb();
+			});
+			up.addFile(files[0]);
+		},
+
+		// plupload.File
+		function(cb) {
+			file = new plupload.File(files[1]);
+			up.bind('TestFilesAdded', function(up) {
+				equal(up.files.length, 4, "plupload.File added (file name: " + up.files[3].name  + ").");
+				up.unbind('TestFilesAdded');
+				cb();
+			});
+
+			up.addFile(file);
+		},
+
+		// array of file objects
+		function(cb) {
+			var mixedArr = [];
+
+			if (nFiles.length) {
+				[].push.apply(mixedArr, [
+					nFiles[0].blob,
+					new o.Blob(null, nFiles[0].blob)
+				]);
+			}
+
+			[].push.apply(mixedArr, [
+				files[0],
+				new plupload.File(files[1])
+			]);
+
+			up.bind('TestQueueChanged', function() {
+				ok(true, "QueueChanged triggered.");
+				up.unbind('TestQueueChanged');
+			});
+
+			up.bind('Refresh', function() {
+				ok(true, "Refresh triggered.");
+			});
+
+			up.bind('TestFilesAdded', function(up) {
+				equal(up.files.length, 8, "Mixed array of various file objects added.");
+				notEqual(up.files[7].name, files[0].name, "Second parameter (fileName) properly ignored, when first one is an array.");
+				up.unbind('TestFilesAdded');
+				cb();
+			});
+
+			up.addFile(mixedArr, files[0].name);
+		}
+	);
+
+	stop();
+	o.inSeries(queue, function() {
+		start();
+	});
+});
+
+
+test('getFile()', function() {
+	expect(1);
+
+	var files = FileHash.getRuntimeFiles();
+
+	this.up.bind('TestFilesAdded', function(up, files) {
+		start();
+		var file = up.getFile(files[0].id);
+		deepEqual(file, files[0], "File retrieved by id with getFile().");
+		up.unbind('TestFilesAdded');
+	});
+
+	stop();
+	this.up.addFile(files);
+});
+
+
+test('removeFile() / splice()', function() {
+	expect(5);
+
+	var countFiles, files = FileHash.getRuntimeFiles();
+
+	this.up.bind('TestFilesAdded', function(up, files) {
+		start();
+		countFiles = up.files.length;
+
+		up.removeFile(up.files[0]);
+		equal(up.files.length, --countFiles, "File removed from the queue by passing a plupload.File object.");
+
+		up.removeFile(up.files[0].id);
+		equal(up.files.length, --countFiles, "File removed from the queue by passing file id.");
+
+		up.bind('FilesRemoved', function(up, files) {
+			equal(files.length, 2, "FilesRemoved triggred, " + files.length + " removed.");
+		});
+
+		up.bind('QueueChanged', function(up) {
+			ok(true, "QueueChanged triggered.");
+		});
+
+		up.splice(0, 2);
+		equal(up.files.length, 0, "Two files removed simultaneously with splice().");
+
+		up.unbind('TestFilesAdded');
+	});
+
+	stop();
+	this.up.addFile([
+		new o.File(null, files[0]),
+		new o.File(null, files[1]),
+		new plupload.File(files[0]),
+		new plupload.File(files[1])
+	]);
+});
+
+
+test('Test if internal file counters are properly updated, when queue changes.', function() {	
+	var up = this.up
+	, file
+	, files = FileHash.getRuntimeFiles()
+	, nFiles = FileHash.getNativeFiles()
+	, queue = []
+	;
+	
+	queue.push(
+
+		// when files are added to the queue
+		function(cb) {
+			up.bind('TestFilesAdded', function() {
+				ok(true, "FilesAdded triggered when file was added.");
+				equal(up.files.length, files.length, "Queue updated.");
+				equal(up.total.queued, files.length, "up.total updated.");
+				up.unbind('TestFilesAdded');
+				cb();
+			});
+
+			up.addFile(files);
+		},
+
+		// when files are removed from the queue
+		function(cb) {
+			up.bind('TestFilesRemoved', function() {
+				ok(true, "FilesRemoved triggered when file was removed.");
+				equal(up.files.length, files.length - 1, "Queue updated.");
+				equal(up.total.queued, files.length - 1, "up.total updated.");
+				up.unbind('TestFilesRemoved');
+				cb();
+			});
+
+			up.removeFile(up.files[1]);
+		}
+	);
+
+	stop();
+	o.inSeries(queue, function() {
+		start();
+	});
+});
+
+
+test('setOption() - set option that requires reinitialization', function() {
+	var oldValue = this.up.getOption('multi_selection');
+	var newValue = !oldValue;
+
+	this.up.setOption('multi_selection', newValue);
+
+	notEqual(oldValue, this.up.getOption('multi_selection'), "Option successfully changed.");
+});
+
+
+</script>
+</head>
+<body>
+	<div id="qunit"></div>
+    <div id="qunit-fixture" style="position: relative; top: 0 !important; left: 0 !important; width: 100%; height: 9px;"></div>
+</body>
+</html>

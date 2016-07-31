@@ -4,18 +4,6 @@
 <head>
     {{> meta}}
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{assets}}/lib/bootstrap/css/bootstrap{{#if rtl}}.rtl{{/if}}{{#if production}}.min{{/if}}.css">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{assets}}/lib/font-awesome/css/font-awesome{{#if production}}.min{{/if}}.css">
-
-    <!-- Metis core stylesheet -->
-    <link rel="stylesheet" href="{{assets}}/css/main{{#if rtl}}.rtl{{/if}}{{#if production}}.min{{/if}}.css">
-
-    <!-- metisMenu stylesheet -->
-    <link rel="stylesheet" href="{{assets}}/metismenu/metisMenu{{#if production}}.min{{/if}}.css">
-
 {{> rtl-style}}
 
     {{#if stylesheets}}
@@ -41,11 +29,11 @@
         less = {
             env: "development",
             relativeUrls: false,
-            rootpath: "{{assets}}/"
+            rootpath: "../assets/"
         };
     </script>
-    <link rel="stylesheet" href="{{assets}}/css/style-switcher{{#if production}}.min{{/if}}.css">
-    <link rel="stylesheet/less" type="text/css" href="{{assets}}/less/theme.less">
+    <link rel="stylesheet" href="assets/css/style-switcher{{#if production}}.min{{/if}}.css">
+    <link rel="stylesheet/less" type="text/css" href="assets/less/theme.less">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less{{#if production}}.min{{/if}}.js"></script>
 
     {{!-- {{> analytic}}
@@ -126,7 +114,7 @@
             <!-- MetisMenu -->
             <script src="{{assets}}/lib/metismenu/metisMenu{{#if production}}.min{{/if}}.js"></script>
             <!-- Screenfull -->
-            <script src="{{assets}}/lib/screenfull/screenfull{{#if production}}.min{{/if}}.js"></script>
+            <script src="{{assets}}/lib/screenfull/screenfull.js"></script>
 
             {{#if javascripts}}
                 {{#each javascripts}}
@@ -135,9 +123,9 @@
             {{/if}}
 
             <!-- Metis core scripts -->
-            <script src="{{assets}}/js/core{{#if production}}.min{{/if}}.js"></script>
+            <script src="assets/js/core{{#if production}}.min{{/if}}.js"></script>
             <!-- Metis demo scripts -->
-            <script src="{{assets}}/js/app{{#if production}}.min{{/if}}.js"></script>
+            <script src="assets/js/app{{#if production}}.min{{/if}}.js"></script>
 
             {{#if scripts}}
                 <script>

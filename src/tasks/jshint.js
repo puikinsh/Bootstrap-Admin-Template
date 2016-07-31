@@ -1,14 +1,16 @@
 module.exports = {
-  grunt: {
-    options: {
-      jshintrc: './.jshintrc'
+    grunt: {
+        options: {
+            jshintrc: './.jshintrc',
+            reporterOutput: ''
+        },
+        src: ['./Gruntfile.js', './src/tasks/**/*.js']
     },
-    src: ['Gruntfile.js', '<%= config.src %>/tasks/**/*.js']
-  },
-  main: {
-    options: {
-      jshintrc: '<%= config.src %>/assets/js/.jshintrc'
-    },
-    src: ['<%= config.src %>/assets/js/**/*.js']
-  }
+    main: {
+        options: {
+            jshintrc: './src/assets/js/.jshintrc',
+            reporterOutput: ''
+        },
+        src: ['./src/assets/js/**/*.js']
+    }
 };

@@ -14,6 +14,7 @@ app.task('init', function(cb) {
     app.helper('is', compare);
     app.helper('markdown', require('helper-markdown'));
     app.data('pkg', pkg);
+    app.data('dist','dist');
     app.data(['./src/templates/data/**/*.{json,yml}']);
     // app.data('analytic','UA-23581568-13');
     app.layouts(path.join(__dirname, './src/templates/layouts/*.hbs'));

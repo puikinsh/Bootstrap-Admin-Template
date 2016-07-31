@@ -1,6 +1,6 @@
 module.exports = {
   options: {
-    paths: ['bower_components/bootstrap/less']
+    paths: ['node_modules/bootstrap/less']
   },
   development: {
     files: {

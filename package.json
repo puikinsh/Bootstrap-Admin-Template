@@ -31,11 +31,12 @@
     "node": ">=0.10.0"
   },
   "scripts": {
+    "html": "assemble",
     "bower": "bower install",
     "grunt": "grunt",
-    "build": "npm run bower && npm run grunt",
+    "build": "npm run bower && npm run grunt && npm run html",
     "mainrtl": "css-flip dist/assets/css/main.css > dist/assets/css/main.rtl.css",
-    "bootstraprtl": "css-flip bower_components/bootstrap/dist/css/bootstrap.css > dist/assets/lib/bootstrap/dist/css/bootstrap.rtl.css",
+    "bootstraprtl": "css-flip node_modules/bootstrap/dist/css/bootstrap.css > public/assets/lib/bootstrap/css/bootstrap.rtl.css",
     "buildrtl": "npm run build && npm run mainrtl && npm run bootstraprtl"
   },
   "devDependencies": {
@@ -44,6 +45,7 @@
     "grunt": "^1.0.1",
     "grunt-autoprefixer": "^3.0.4",
     "grunt-banner": "^0.6.0",
+    "grunt-browser-sync": "^2.2.0",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-connect": "^1.0.2",
@@ -64,13 +66,17 @@
     "helper-markdown": "^0.2.1",
     "helper-md": "^0.2.1",
     "jscs": "^3.0.7",
+    "jshint-stylish": "^2.2.0",
     "load-grunt-tasks": "^3.5.0",
     "pretty": "^1.0.0",
     "time-grunt": "^1.4.0"
   },
   "dependencies": {
+    "animate.css": "^3.5.1",
     "bootstrap": "^3.3.7",
+    "font-awesome": "^4.6.3",
     "jquery": "^3.1.0",
-    "metismenu": "^2.5.2"
+    "metismenu": "^2.5.2",
+    "screenfull": "^3.0.0"
   }
 }

@@ -88,6 +88,17 @@ grunt
 Changelog
 ---------
 
+0.4.24
+-----------------------
+* Fix bug in getRoutes (see #373)
+
+0.4.23
+-----------------------
+* Fix bug at trying to remove a large amount of markers inside a marker cluster (see #473)
+* Check for Google Maps library before creating a GMaps object (see #467)
+* Check the Google Maps API at instantiation instead of declaration (see #467)
+* Add polyfill for google.maps.Rectangle.prototype.containsLatLng
+
 0.4.22
 -----------------------
 * Render directions

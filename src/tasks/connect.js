@@ -4,10 +4,5 @@ module.exports = {
     livereload: 35729,
     hostname: 'localhost',
     base: '<%= config.dest %>'
-  },
-  livereload: {
-    options: {
-      open: true
-    }
   }
 };

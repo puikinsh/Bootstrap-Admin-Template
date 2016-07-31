@@ -2,7 +2,7 @@
 # BUILD CONFIG
 # =============================================
 
-dest: dist
+dest: public
 assets: dist/assets
 
 src: src

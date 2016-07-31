@@ -4,7 +4,7 @@ module.exports = {
     "devFile": "node_modules/grunt-modernizr/lib/modernizr-dev.js",
 
     // [REQUIRED] Path to save out the built file.
-    "outputFile": "<%= config.assets %>/lib/modernizr/modernizr.min.js",
+    "outputFile": "public/lib/modernizr/modernizr.min.js",
 
     // Based on default settings on http://modernizr.com/download/
     "extra": {
@@ -29,7 +29,7 @@ module.exports = {
     },
 
     // By default, source is uglified before saving
-    "uglify": true,
+    "uglify": false,
 
     // Define any tests you want to implicitly include.
     "tests": [

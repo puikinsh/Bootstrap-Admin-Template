@@ -1,25 +1,9 @@
 /**
  * bootstrap-admin-template - Free Admin Template Based On Twitter Bootstrap 3.x
- * @version 2.3.2
+ * @version 2.4.1
  * @license MIT
  * @link https://github.com/puikinsh/Bootstrap-Admin-Template
  */
-'use strict';
-
-;(function ($, Metis) {
-    var $button = $('.inner a.btn');
-    Metis.metisButton = function () {
-        $.each($button, function () {
-            $(this).popover({
-                placement: 'bottom',
-                title: this.innerHTML,
-                content: this.outerHTML,
-                trigger: Metis.isTouchDevice ? 'touchstart' : 'hover'
-            });
-        });
-    };
-    return Metis;
-})(jQuery, Metis || {});
 "use strict";
 
 ;(function ($, Metis) {
@@ -728,6 +712,22 @@
     };
     return Metis;
 })(jQuery);
+'use strict';
+
+;(function ($, Metis) {
+    var $button = $('.inner a.btn');
+    Metis.metisButton = function () {
+        $.each($button, function () {
+            $(this).popover({
+                placement: 'bottom',
+                title: this.innerHTML,
+                content: this.outerHTML,
+                trigger: Metis.isTouchDevice ? 'touchstart' : 'hover'
+            });
+        });
+    };
+    return Metis;
+})(jQuery, Metis || {});
 'use strict';
 
 ;(function ($) {

@@ -41,7 +41,7 @@
         "plupload": "~2.1.2",
         "bootstrap-switch": "~3.3.2",
         "kbwood_countdown": "git://github.com/kbwood/countdown.git#2.0.1",
-        "jquery-inputlimiter": "https://jquery-inputlimiter.googlecode.com/files/jquery-inputlimiter.1.3.1.zip",
+        "jquery-inputlimiter": "https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/jquery-inputlimiter/jquery-inputlimiter.1.3.1.zip",
         "bootstrap3-wysihtml5-bower": "~0.3.3"
     },
     "dependencies": {

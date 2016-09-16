@@ -7,7 +7,7 @@
 		exports["Cleave"] = factory(require("react"));
 	else
 		root["Cleave"] = factory(root["React"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -56,13 +56,31 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _Cleave = __webpack_require__(1);
+
+	var _Cleave2 = _interopRequireDefault(_Cleave);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _Cleave2.default;
+
+/***/ },
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-	var React = __webpack_require__(1);
+	var React = __webpack_require__(2);
 
-	var NumeralFormatter = __webpack_require__(2);
+	var NumeralFormatter = __webpack_require__(3);
 	var DateFormatter = __webpack_require__(4);
 	var PhoneFormatter = __webpack_require__(5);
 	var CreditCardDetector = __webpack_require__(6);
@@ -81,8 +99,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            phoneRegionCode = nextProps.options.phoneRegionCode,
 	            newValue = nextProps.value;
 
-	        if (newValue) {
-	            owner.onInput(newValue);
+	        if (newValue !== undefined) {
+	            newValue = newValue.toString();
+
+	            if (newValue !== owner.properties.initValue) {
+	                owner.properties.initValue = newValue;
+	                owner.onInput(newValue);
+	            }
 	        }
 
 	        // update phone region code
@@ -100,10 +123,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var options = _owner$props.options;
 	        var onKeyDown = _owner$props.onKeyDown;
 	        var onChange = _owner$props.onChange;
+	        var onInit = _owner$props.onInit;
 
-	        var other = _objectWithoutProperties(_owner$props, ['value', 'options', 'onKeyDown', 'onChange']);
 
 	        owner.registeredEvents = {
+	            onInit: onInit || Util.noop,
 	            onChange: onChange || Util.noop,
 	            onKeyDown: onKeyDown || Util.noop
 	        };
@@ -113,7 +137,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        owner.properties = DefaultProperties.assign({}, options);
 
 	        return {
-	            other: other,
 	            value: owner.properties.result
 	        };
 	    },
@@ -134,6 +157,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        owner.initNumeralFormatter();
 
 	        owner.onInput(pps.initValue);
+
+	        owner.registeredEvents.onInit(owner);
 	    },
 
 	    initNumeralFormatter: function initNumeralFormatter() {
@@ -172,10 +197,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // Cleave.AsYouTypeFormatter should be provided by
 	        // external google closure lib
 	        try {
-	            pps.phoneFormatter = new PhoneFormatter(new window.Cleave.AsYouTypeFormatter(pps.phoneRegionCode), pps.delimiter);
+	            pps.phoneFormatter = new PhoneFormatter(new pps.root.Cleave.AsYouTypeFormatter(pps.phoneRegionCode), pps.delimiter);
 	        } catch (ex) {
 	            throw new Error('Please include phone-type-formatter.{country}.js lib');
 	        }
+	    },
+
+	    setRawValue: function setRawValue(value) {
+	        var owner = this,
+	            pps = owner.properties;
+
+	        value = value.toString();
+
+	        if (pps.numeral) {
+	            value = value.replace('.', pps.numeralDecimalMark);
+	        }
+
+	        owner.onChange({ target: { value: value } });
+	    },
+
+	    onInit: function onInit(owner) {
+	        return owner;
 	    },
 
 	    onKeyDown: function onKeyDown(event) {
@@ -184,7 +226,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            charCode = event.which || event.keyCode;
 
 	        // hit backspace when last character is delimiter
-	        if (charCode === 8 && pps.result.slice(-1) === pps.delimiter) {
+	        if (charCode === 8 && Util.isDelimiter(pps.result.slice(-1), pps.delimiter, pps.delimiters)) {
 	            pps.backspace = true;
 	        } else {
 	            pps.backspace = false;
@@ -195,15 +237,25 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    onChange: function onChange(event) {
 	        var owner = this,
-	            pps = owner.properties;
+	            pps = owner.properties,
+	            rawValue;
 
 	        owner.onInput(event.target.value);
 
-	        if (pps.numeral) {
-	            event.target.rawValue = pps.numeralFormatter.getRawValue(pps.result);
-	        } else {
-	            event.target.rawValue = Util.strip(pps.result, pps.delimiterRE);
+	        rawValue = pps.result;
+
+	        if (pps.rawValueTrimPrefix) {
+	            rawValue = Util.getPrefixStrippedValue(rawValue, pps.prefix, pps.prefixLength);
 	        }
+
+	        if (pps.numeral) {
+	            rawValue = pps.numeralFormatter.getRawValue(rawValue);
+	        } else {
+	            rawValue = Util.stripDelimiters(rawValue, pps.delimiter, pps.delimiters);
+	        }
+
+	        event.target.rawValue = rawValue;
+	        event.target.value = pps.result;
 
 	        owner.registeredEvents.onChange(event);
 	    },
@@ -218,7 +270,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // case 2: last character is not delimiter which is:
 	        // 12|34* -> hit backspace -> 1|34*
 
-	        if (!pps.numeral && pps.backspace && value.slice(-1) !== pps.delimiter) {
+	        if (!pps.numeral && pps.backspace && !Util.isDelimiter(value.slice(-1), pps.delimiter, pps.delimiters)) {
 	            value = Util.headStr(value, value.length - 1);
 	        }
 
@@ -244,10 +296,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        // strip delimiters
-	        value = Util.strip(value, pps.delimiterRE);
+	        value = Util.stripDelimiters(value, pps.delimiter, pps.delimiters);
 
 	        // strip prefix
-	        value = Util.getPrefixStrippedValue(value, pps.prefixLength);
+	        value = Util.getPrefixStrippedValue(value, pps.prefix, pps.prefixLength);
 
 	        // strip non-numeric characters
 	        value = pps.numericOnly ? Util.strip(value, /[^\d]/g) : value;
@@ -278,7 +330,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        value = Util.headStr(value, pps.maxLength);
 
 	        // apply blocks
-	        pps.result = Util.getFormattedValue(value, pps.blocks, pps.blocksLength, pps.delimiter);
+	        pps.result = Util.getFormattedValue(value, pps.blocks, pps.blocksLength, pps.delimiter, pps.delimiters);
 
 	        // nothing changed
 	        // prevent update value to avoid caret position change
@@ -319,29 +371,39 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    render: function render() {
 	        var owner = this;
+	        var _owner$props2 = owner.props;
+	        var value = _owner$props2.value;
+	        var options = _owner$props2.options;
+	        var onKeyDown = _owner$props2.onKeyDown;
+	        var onChange = _owner$props2.onChange;
+	        var onInit = _owner$props2.onInit;
 
-	        return React.createElement('input', _extends({ type: 'text' }, owner.state.other, {
+	        var propsToTransfer = _objectWithoutProperties(_owner$props2, ['value', 'options', 'onKeyDown', 'onChange', 'onInit']);
+
+	        return React.createElement('input', _extends({
+	            type: 'text',
 	            value: owner.state.value,
 	            onKeyDown: owner.onKeyDown,
-	            onChange: owner.onChange }));
+	            onChange: owner.onChange
+	        }, propsToTransfer, {
+	            propsToIgnore: [value, options, onKeyDown, onChange, onInit]
+	        }));
 	    }
 	});
 
-	module.exports = window.Cleave = Cleave;
-
-/***/ },
-/* 1 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+	module.exports = Cleave;
 
 /***/ },
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
+	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	'use strict';
 
 	var NumeralFormatter = function NumeralFormatter(numeralDecimalMark, numeralDecimalScale, numeralThousandsGroupStyle, delimiter) {
 	    var owner = this;
@@ -372,17 +434,26 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        // strip alphabet letters
 	        value = value.replace(/[A-Za-z]/g, '')
-
 	        // replace the first decimal mark with reserved placeholder
 	        .replace(owner.numeralDecimalMark, 'M')
 
-	        // strip the non numeric letters except M
-	        .replace(/[^\dM]/g, '')
+	        // strip non numeric letters except minus and "M"
+	        // this is to ensure prefix has been stripped
+	        .replace(/[^\dM-]/g, '')
 
-	        // replace mark
+	        // replace the leading minus with reserved placeholder
+	        .replace(/^\-/, 'N')
+
+	        // strip the other minus sign (if present)
+	        .replace(/\-/g, '')
+
+	        // replace the minus sign (if present)
+	        .replace('N', '-')
+
+	        // replace decimal mark
 	        .replace('M', owner.numeralDecimalMark)
 
-	        // strip leading 0
+	        // strip any leading zeros
 	        .replace(/^(-)?0+(?=\d)/, '$1');
 
 	        partInteger = value;
@@ -412,34 +483,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	};
 
-	if (( false ? 'undefined' : _typeof(module)) === 'object' && _typeof(module.exports) === 'object') {
-	    module.exports = exports = NumeralFormatter;
-	}
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)(module)))
-
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	module.exports = function(module) {
-		if(!module.webpackPolyfill) {
-			module.deprecate = function() {};
-			module.paths = [];
-			// module.parent = undefined by default
-			module.children = [];
-			module.webpackPolyfill = 1;
-		}
-		return module;
-	}
-
+	module.exports = NumeralFormatter;
 
 /***/ },
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
-
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	'use strict';
 
 	var DateFormatter = function DateFormatter(datePattern) {
 	    var owner = this;
@@ -512,18 +562,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	};
 
-	if (( false ? 'undefined' : _typeof(module)) === 'object' && _typeof(module.exports) === 'object') {
-	    module.exports = exports = DateFormatter;
-	}
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)(module)))
+	module.exports = DateFormatter;
 
 /***/ },
 /* 5 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
-
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	'use strict';
 
 	var PhoneFormatter = function PhoneFormatter(formatter, delimiter) {
 	    var owner = this;
@@ -581,18 +626,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	};
 
-	if (( false ? 'undefined' : _typeof(module)) === 'object' && _typeof(module.exports) === 'object') {
-	    module.exports = exports = PhoneFormatter;
-	}
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)(module)))
+	module.exports = PhoneFormatter;
 
 /***/ },
 /* 6 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
-
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	'use strict';
 
 	var CreditCardDetector = {
 	    blocks: {
@@ -716,24 +756,49 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	};
 
-	if (( false ? 'undefined' : _typeof(module)) === 'object' && _typeof(module.exports) === 'object') {
-	    module.exports = exports = CreditCardDetector;
-	}
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)(module)))
+	module.exports = CreditCardDetector;
 
 /***/ },
 /* 7 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
-
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	'use strict';
 
 	var Util = {
 	    noop: function noop() {},
 
 	    strip: function strip(value, re) {
 	        return value.replace(re, '');
+	    },
+
+	    isDelimiter: function isDelimiter(letter, delimiter, delimiters) {
+	        // single delimiter
+	        if (delimiters.length === 0) {
+	            return letter === delimiter;
+	        }
+
+	        // multiple delimiters
+	        return delimiters.some(function (current) {
+	            if (letter === current) {
+	                return true;
+	            }
+	        });
+	    },
+
+	    stripDelimiters: function stripDelimiters(value, delimiter, delimiters) {
+	        // single delimiter
+	        if (delimiters.length === 0) {
+	            var delimiterRE = delimiter ? new RegExp('\\' + delimiter, 'g') : '';
+
+	            return value.replace(delimiterRE, '');
+	        }
+
+	        // multiple delimiters
+	        delimiters.forEach(function (current) {
+	            value = value.replace(new RegExp('\\' + current, 'g'), '');
+	        });
+
+	        return value;
 	    },
 
 	    headStr: function headStr(str, length) {
@@ -750,12 +815,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // for prefix: PRE
 	    // (PRE123, 3) -> 123
 	    // (PR123, 3) -> 23 this happens when user hits backspace in front of "PRE"
-	    getPrefixStrippedValue: function getPrefixStrippedValue(value, prefixLength) {
+	    getPrefixStrippedValue: function getPrefixStrippedValue(value, prefix, prefixLength) {
+	        if (value.slice(0, prefixLength) !== prefix) {
+	            var diffIndex = this.getFirstDiffIndex(prefix, value.slice(0, prefixLength));
+
+	            value = prefix + value.slice(diffIndex, diffIndex + 1) + value.slice(prefixLength + 1);
+	        }
+
 	        return value.slice(prefixLength);
 	    },
 
-	    getFormattedValue: function getFormattedValue(value, blocks, blocksLength, delimiter) {
-	        var result = '';
+	    getFirstDiffIndex: function getFirstDiffIndex(prev, current) {
+	        var index = 0;
+
+	        while (prev.charAt(index) === current.charAt(index)) {
+	            if (prev.charAt(index++) === '') return -1;
+	        }return index;
+	    },
+
+	    getFormattedValue: function getFormattedValue(value, blocks, blocksLength, delimiter, delimiters) {
+	        var result = '',
+	            multipleDelimiters = delimiters.length > 0,
+	            currentDelimiter;
 
 	        blocks.forEach(function (length, index) {
 	            if (value.length > 0) {
@@ -764,8 +845,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	                result += sub;
 
+	                currentDelimiter = multipleDelimiters ? delimiters[index] || currentDelimiter : delimiter;
+
 	                if (sub.length === length && index < blocksLength - 1) {
-	                    result += delimiter;
+	                    result += currentDelimiter;
 	                }
 
 	                // update remaining string
@@ -777,16 +860,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	};
 
-	if (( false ? 'undefined' : _typeof(module)) === 'object' && _typeof(module.exports) === 'object') {
-	    module.exports = exports = Util;
-	}
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)(module)))
+	module.exports = Util;
 
 /***/ },
 /* 8 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
 
 	/**
 	 * Props Assignment
@@ -833,14 +913,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        target.prefix = target.creditCard || target.phone || target.date ? '' : opts.prefix || '';
 	        target.prefixLength = target.prefix.length;
+	        target.rawValueTrimPrefix = !!opts.rawValueTrimPrefix;
+	        target.copyDelimiter = !!opts.copyDelimiter;
 
-	        target.initValue = opts.initValue || '';
+	        target.initValue = opts.initValue === undefined ? '' : opts.initValue.toString();
 
 	        target.delimiter = opts.delimiter || opts.delimiter === '' ? opts.delimiter : opts.date ? '/' : opts.numeral ? ',' : opts.phone ? ' ' : ' ';
-	        target.delimiterRE = new RegExp('\\' + (target.delimiter || ' '), 'g');
+	        target.delimiters = opts.delimiters || [];
 
 	        target.blocks = opts.blocks || [];
 	        target.blocksLength = target.blocks.length;
+
+	        target.root = (typeof global === 'undefined' ? 'undefined' : _typeof(global)) === 'object' && global ? global : window;
 
 	        target.maxLength = 0;
 
@@ -851,10 +935,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	};
 
-	if (( false ? 'undefined' : _typeof(module)) === 'object' && _typeof(module.exports) === 'object') {
-	    module.exports = exports = DefaultProperties;
-	}
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)(module)))
+	module.exports = DefaultProperties;
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }
 /******/ ])

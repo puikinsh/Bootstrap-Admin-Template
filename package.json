@@ -74,7 +74,7 @@
     "bootstrap": "^3.3.7",
     "cleave.js": "^0.7.7",
     "clipboard": "^1.5.12",
-    "font-awesome": "^4.6.3",
+    "font-awesome": "^4.7.0",
     "fullcalendar": "^3.0.0",
     "gmaps": "^0.4.24",
     "jquery": "2.2.4",

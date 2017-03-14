@@ -7,7 +7,7 @@
 		exports["Cleave"] = factory(require("react"));
 	else
 		root["Cleave"] = factory(root["React"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -56,36 +56,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _Cleave = __webpack_require__(1);
-
-	var _Cleave2 = _interopRequireDefault(_Cleave);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _Cleave2.default;
-
-/***/ },
-/* 1 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-	var React = __webpack_require__(2);
+	var React = __webpack_require__(1);
 
-	var NumeralFormatter = __webpack_require__(3);
-	var DateFormatter = __webpack_require__(4);
-	var PhoneFormatter = __webpack_require__(5);
-	var CreditCardDetector = __webpack_require__(6);
-	var Util = __webpack_require__(7);
-	var DefaultProperties = __webpack_require__(8);
+	var NumeralFormatter = __webpack_require__(2);
+	var DateFormatter = __webpack_require__(3);
+	var PhoneFormatter = __webpack_require__(4);
+	var CreditCardDetector = __webpack_require__(5);
+	var Util = __webpack_require__(6);
+	var DefaultProperties = __webpack_require__(7);
 
 	var Cleave = React.createClass({
 	    displayName: 'Cleave',
@@ -96,7 +78,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
 	        var owner = this,
-	            phoneRegionCode = nextProps.options.phoneRegionCode,
+	            phoneRegionCode = (nextProps.options || {}).phoneRegionCode,
 	            newValue = nextProps.value;
 
 	        if (newValue !== undefined) {
@@ -132,7 +114,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            onKeyDown: onKeyDown || Util.noop
 	        };
 
-	        options.initValue = value;
+	        (options || {}).initValue = value;
 
 	        owner.properties = DefaultProperties.assign({}, options);
 
@@ -152,6 +134,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        pps.maxLength = Util.getMaxLength(pps.blocks);
 
+	        owner.isAndroid = Util.isAndroid();
+
 	        owner.initPhoneFormatter();
 	        owner.initDateFormatter();
 	        owner.initNumeralFormatter();
@@ -169,7 +153,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return;
 	        }
 
-	        pps.numeralFormatter = new NumeralFormatter(pps.numeralDecimalMark, pps.numeralDecimalScale, pps.numeralThousandsGroupStyle, pps.delimiter);
+	        pps.numeralFormatter = new NumeralFormatter(pps.numeralDecimalMark, pps.numeralDecimalScale, pps.numeralThousandsGroupStyle, pps.numeralPositiveOnly, pps.delimiter);
 	    },
 
 	    initDateFormatter: function initDateFormatter() {
@@ -207,7 +191,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var owner = this,
 	            pps = owner.properties;
 
-	        value = value.toString();
+	        value = value !== undefined ? value.toString() : '';
 
 	        if (pps.numeral) {
 	            value = value.replace('.', pps.numeralDecimalMark);
@@ -327,7 +311,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        // strip over length characters
-	        value = Util.headStr(value, pps.maxLength);
+	        value = pps.maxLength > 0 ? Util.headStr(value, pps.maxLength) : value;
 
 	        // apply blocks
 	        pps.result = Util.getFormattedValue(value, pps.blocks, pps.blocksLength, pps.delimiter, pps.delimiters);
@@ -366,7 +350,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 
 	    updateValueState: function updateValueState() {
-	        this.setState({ value: this.properties.result });
+	        var owner = this;
+
+	        if (owner.isAndroid) {
+	            window.setTimeout(function () {
+	                owner.setState({ value: owner.properties.result });
+	            }, 1);
+
+	            return;
+	        }
+
+	        owner.setState({ value: owner.properties.result });
 	    },
 
 	    render: function render() {
@@ -377,16 +371,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var onKeyDown = _owner$props2.onKeyDown;
 	        var onChange = _owner$props2.onChange;
 	        var onInit = _owner$props2.onInit;
+	        var htmlRef = _owner$props2.htmlRef;
 
-	        var propsToTransfer = _objectWithoutProperties(_owner$props2, ['value', 'options', 'onKeyDown', 'onChange', 'onInit']);
+	        var propsToTransfer = _objectWithoutProperties(_owner$props2, ['value', 'options', 'onKeyDown', 'onChange', 'onInit', 'htmlRef']);
 
 	        return React.createElement('input', _extends({
 	            type: 'text',
+	            ref: htmlRef,
 	            value: owner.state.value,
 	            onKeyDown: owner.onKeyDown,
 	            onChange: owner.onChange
 	        }, propsToTransfer, {
-	            propsToIgnore: [value, options, onKeyDown, onChange, onInit]
+	            'data-cleave-ignore': [value, options, onKeyDown, onChange, onInit, htmlRef]
 	        }));
 	    }
 	});
@@ -394,23 +390,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = Cleave;
 
 /***/ },
-/* 2 */
+/* 1 */
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ },
-/* 3 */
+/* 2 */
 /***/ function(module, exports) {
 
 	'use strict';
 
-	var NumeralFormatter = function NumeralFormatter(numeralDecimalMark, numeralDecimalScale, numeralThousandsGroupStyle, delimiter) {
+	var NumeralFormatter = function NumeralFormatter(numeralDecimalMark, numeralDecimalScale, numeralThousandsGroupStyle, numeralPositiveOnly, delimiter) {
 	    var owner = this;
 
 	    owner.numeralDecimalMark = numeralDecimalMark || '.';
 	    owner.numeralDecimalScale = numeralDecimalScale >= 0 ? numeralDecimalScale : 2;
 	    owner.numeralThousandsGroupStyle = numeralThousandsGroupStyle || NumeralFormatter.groupStyle.thousand;
+	    owner.numeralPositiveOnly = !!numeralPositiveOnly;
 	    owner.delimiter = delimiter || delimiter === '' ? delimiter : ',';
 	    owner.delimiterRE = delimiter ? new RegExp('\\' + delimiter, 'g') : '';
 	};
@@ -448,7 +445,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        .replace(/\-/g, '')
 
 	        // replace the minus sign (if present)
-	        .replace('N', '-')
+	        .replace('N', owner.numeralPositiveOnly ? '' : '-')
 
 	        // replace decimal mark
 	        .replace('M', owner.numeralDecimalMark)
@@ -486,7 +483,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = NumeralFormatter;
 
 /***/ },
-/* 4 */
+/* 3 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -565,7 +562,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = DateFormatter;
 
 /***/ },
-/* 5 */
+/* 4 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -629,7 +626,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = PhoneFormatter;
 
 /***/ },
-/* 6 */
+/* 5 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -646,7 +643,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        jcb: [4, 4, 4, 4],
 	        maestro: [4, 4, 4, 4],
 	        visa: [4, 4, 4, 4],
-	        generalLoose: [4, 4, 4, 4],
+	        general: [4, 4, 4, 4],
 	        generalStrict: [4, 4, 4, 7]
 	    },
 
@@ -740,17 +737,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        } else if (re.visa.test(value)) {
 	            return {
 	                type: 'visa',
-	                blocks: blocks.visa
-	            };
-	        } else if (strictMode) {
-	            return {
-	                type: 'unknown',
-	                blocks: blocks.generalStrict
+	                blocks: strictMode ? blocks.generalStrict : blocks.visa
 	            };
 	        } else {
 	            return {
 	                type: 'unknown',
-	                blocks: blocks.generalLoose
+	                blocks: blocks.general
 	            };
 	        }
 	    }
@@ -759,7 +751,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = CreditCardDetector;
 
 /***/ },
-/* 7 */
+/* 6 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -838,6 +830,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            multipleDelimiters = delimiters.length > 0,
 	            currentDelimiter;
 
+	        // no options, normal input
+	        if (blocksLength === 0) {
+	            return value;
+	        }
+
 	        blocks.forEach(function (length, index) {
 	            if (value.length > 0) {
 	                var sub = value.slice(0, length),
@@ -857,13 +854,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 
 	        return result;
+	    },
+
+	    isAndroid: function isAndroid() {
+	        if (navigator && /android/i.test(navigator.userAgent)) {
+	            return true;
+	        }
+
+	        return false;
 	    }
 	};
 
 	module.exports = Util;
 
 /***/ },
-/* 8 */
+/* 7 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
@@ -904,6 +909,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        target.numeralDecimalScale = opts.numeralDecimalScale >= 0 ? opts.numeralDecimalScale : 2;
 	        target.numeralDecimalMark = opts.numeralDecimalMark || '.';
 	        target.numeralThousandsGroupStyle = opts.numeralThousandsGroupStyle || 'thousand';
+	        target.numeralPositiveOnly = !!opts.numeralPositiveOnly;
 
 	        // others
 	        target.numericOnly = target.creditCard || target.date || !!opts.numericOnly;

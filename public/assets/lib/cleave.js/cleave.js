@@ -93,6 +93,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        pps.maxLength = Cleave.Util.getMaxLength(pps.blocks);
 
+	        owner.isAndroid = Cleave.Util.isAndroid();
+
 	        owner.onChangeListener = owner.onChange.bind(owner);
 	        owner.onKeyDownListener = owner.onKeyDown.bind(owner);
 	        owner.onCutListener = owner.onCut.bind(owner);
@@ -122,6 +124,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            pps.numeralDecimalMark,
 	            pps.numeralDecimalScale,
 	            pps.numeralThousandsGroupStyle,
+	            pps.numeralPositiveOnly,
 	            pps.delimiter
 	        );
 	    },
@@ -319,6 +322,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    updateValueState: function () {
 	        var owner = this;
 
+	        // fix Android browser type="text" input field
+	        // cursor not jumping issue
+	        if (owner.isAndroid) {
+	            window.setTimeout(function () {
+	                owner.element.value = owner.properties.result;
+	            }, 1);
+
+	            return;
+	        }
+
 	        owner.element.value = owner.properties.result;
 	    },
 
@@ -333,7 +346,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    setRawValue: function (value) {
 	        var owner = this, pps = owner.properties;
 
-	        value = value.toString();
+	        value = value !== undefined ? value.toString() : '';
 
 	        if (pps.numeral) {
 	            value = value.replace('.', pps.numeralDecimalMark);
@@ -388,7 +401,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Cleave.DefaultProperties = __webpack_require__(6);
 
 	// for angular directive
-	((typeof global === 'object' && global) ? global : window)["Cleave"] = Cleave;
+	((typeof global === 'object' && global) ? global : window)['Cleave'] = Cleave;
 
 	// CommonJS
 	module.exports = Cleave;
@@ -404,12 +417,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	var NumeralFormatter = function (numeralDecimalMark,
 	                                 numeralDecimalScale,
 	                                 numeralThousandsGroupStyle,
+	                                 numeralPositiveOnly,
 	                                 delimiter) {
 	    var owner = this;
 
 	    owner.numeralDecimalMark = numeralDecimalMark || '.';
 	    owner.numeralDecimalScale = numeralDecimalScale >= 0 ? numeralDecimalScale : 2;
 	    owner.numeralThousandsGroupStyle = numeralThousandsGroupStyle || NumeralFormatter.groupStyle.thousand;
+	    owner.numeralPositiveOnly = !!numeralPositiveOnly;
 	    owner.delimiter = (delimiter || delimiter === '') ? delimiter : ',';
 	    owner.delimiterRE = delimiter ? new RegExp('\\' + delimiter, 'g') : '';
 	};
@@ -444,7 +459,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            .replace(/\-/g, '')
 
 	            // replace the minus sign (if present)
-	            .replace('N', '-')
+	            .replace('N', owner.numeralPositiveOnly ? '' : '-')
 
 	            // replace decimal mark
 	            .replace('M', owner.numeralDecimalMark)
@@ -644,7 +659,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        jcb:           [4, 4, 4, 4],
 	        maestro:       [4, 4, 4, 4],
 	        visa:          [4, 4, 4, 4],
-	        generalLoose:  [4, 4, 4, 4],
+	        general:       [4, 4, 4, 4],
 	        generalStrict: [4, 4, 4, 7]
 	    },
 
@@ -738,17 +753,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        } else if (re.visa.test(value)) {
 	            return {
 	                type:   'visa',
-	                blocks: blocks.visa
-	            };
-	        } else if (strictMode) {
-	            return {
-	                type:   'unknown',
-	                blocks: blocks.generalStrict
+	                blocks: strictMode ? blocks.generalStrict : blocks.visa
 	            };
 	        } else {
 	            return {
 	                type:   'unknown',
-	                blocks: blocks.generalLoose
+	                blocks: blocks.general
 	            };
 	        }
 	    }
@@ -841,6 +851,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            multipleDelimiters = delimiters.length > 0,
 	            currentDelimiter;
 
+	        // no options, normal input
+	        if (blocksLength === 0) {
+	            return value;
+	        }
+
 	        blocks.forEach(function (length, index) {
 	            if (value.length > 0) {
 	                var sub = value.slice(0, length),
@@ -860,6 +875,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 
 	        return result;
+	    },
+
+	    isAndroid: function () {
+	        if (navigator && /android/i.test(navigator.userAgent)) {
+	            return true;
+	        }
+
+	        return false;
 	    }
 	};
 
@@ -905,6 +928,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        target.numeralDecimalScale = opts.numeralDecimalScale >= 0 ? opts.numeralDecimalScale : 2;
 	        target.numeralDecimalMark = opts.numeralDecimalMark || '.';
 	        target.numeralThousandsGroupStyle = opts.numeralThousandsGroupStyle || 'thousand';
+	        target.numeralPositiveOnly = !!opts.numeralPositiveOnly;
 
 	        // others
 	        target.numericOnly = target.creditCard || target.date || !!opts.numericOnly;

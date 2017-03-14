@@ -4,6 +4,22 @@
  * @license MIT
  * @link https://github.com/puikinsh/Bootstrap-Admin-Template
  */
+'use strict';
+
+;(function ($, Metis) {
+    var $button = $('.inner a.btn');
+    Metis.metisButton = function () {
+        $.each($button, function () {
+            $(this).popover({
+                placement: 'bottom',
+                title: this.innerHTML,
+                content: this.outerHTML,
+                trigger: Metis.isTouchDevice ? 'touchstart' : 'hover'
+            });
+        });
+    };
+    return Metis;
+})(jQuery, Metis || {});
 "use strict";
 
 ;(function ($, Metis) {
@@ -712,22 +728,6 @@
     };
     return Metis;
 })(jQuery);
-'use strict';
-
-;(function ($, Metis) {
-    var $button = $('.inner a.btn');
-    Metis.metisButton = function () {
-        $.each($button, function () {
-            $(this).popover({
-                placement: 'bottom',
-                title: this.innerHTML,
-                content: this.outerHTML,
-                trigger: Metis.isTouchDevice ? 'touchstart' : 'hover'
-            });
-        });
-    };
-    return Metis;
-})(jQuery, Metis || {});
 'use strict';
 
 ;(function ($) {

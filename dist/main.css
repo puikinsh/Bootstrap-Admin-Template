@@ -266,8 +266,6 @@ body {
   right: 0;
 }
 .user-media .media-body {
-  display: block;
-  float: left;
   margin-left: 12px;
 }
 .user-media .media-body h5.media-heading {

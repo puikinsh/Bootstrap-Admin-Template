@@ -1,6 +1,6 @@
 /**
  * bootstrap-admin-template - Free Admin Template Based On Twitter Bootstrap 3.x
- * @version 2.4.1
+ * @version 2.4.2
  * @license MIT
  * @link https://github.com/puikinsh/Bootstrap-Admin-Template
  */

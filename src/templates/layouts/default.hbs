@@ -85,9 +85,10 @@
                     <!-- /.outer -->
                 </div>
                 <!-- /#content -->
+
                 {{#if noRightSidebar}}
                 {{else}}
-                    <div id="right" class="bg-light lter">
+                    <div id="right" class="onoffcanvas {{#if rtl}}is-left{{else}}is-right{{/if}} is-fixed bg-light" aria-expanded=false>
                         {{> right }}
                     </div>
                     <!-- /#right -->
@@ -95,7 +96,7 @@
             </div>
             <!-- /#wrap -->
             <footer class="Footer bg-dark dker">
-                <p>2016 &copy; Metis Bootstrap Admin Template</p>
+                <p>2017 &copy; Metis Bootstrap Admin Template v2.4.2</p>
             </footer>
             <!-- /#footer -->
             {{> helpModal }}
@@ -113,6 +114,8 @@
             <script src="{{assets}}/lib/bootstrap/js/bootstrap{{#if production}}.min{{/if}}.js"></script>
             <!-- MetisMenu -->
             <script src="{{assets}}/lib/metismenu/metisMenu{{#if production}}.min{{/if}}.js"></script>
+            <!-- onoffcanvas -->
+            <script src="{{assets}}/lib/onoffcanvas/onoffcanvas{{#if production}}.min{{/if}}.js"></script>
             <!-- Screenfull -->
             <script src="{{assets}}/lib/screenfull/screenfull.js"></script>
 

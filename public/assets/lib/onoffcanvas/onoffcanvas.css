@@ -1,0 +1,150 @@
+/**
+ * onoffcanvas - A jQuery offcanvas plugin
+ * @version v1.1.1
+ * @link https://github.com/onokumus/onoffcanvas#readme
+ * @license MIT
+ */
+.onoffcanvas-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.onoffcanvas {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  z-index: 1001;
+  will-change: transform;
+  -webkit-transform: translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  -o-transition: -o-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease, -o-transform 0.3s ease;
+}
+
+.onoffcanvas.is-fixed {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  position: fixed;
+}
+
+.onoffcanvas.is-center {
+  bottom: auto;
+  -webkit-transform: translate3d(-100%, 100%, 0);
+          transform: translate3d(-100%, 100%, 0);
+}
+
+.onoffcanvas.is-center.is-open {
+  -webkit-transform: translate3d(0, 100%, 0);
+          transform: translate3d(0, 100%, 0);
+}
+
+.onoffcanvas.is-top {
+  bottom: auto;
+  -webkit-transform: translate3d(0, -100%, 0);
+          transform: translate3d(0, -100%, 0);
+}
+
+.onoffcanvas.is-bottom {
+  top: auto;
+  -webkit-transform: translate3d(0, 100%, 0);
+          transform: translate3d(0, 100%, 0);
+}
+
+.onoffcanvas.is-right {
+  left: auto;
+  -webkit-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
+}
+
+.onoffcanvas.is-left {
+  right: auto;
+  -webkit-transform: translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0);
+}
+
+.onoffcanvas.is-open {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+.onoffcanvas-container:hover .onoffcanvas.is-hoverable {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+.onoffcanvas-container:hover .onoffcanvas.is-center.is-hoverable {
+  top: 50%;
+  -webkit-transform: translate3d(0, -50%, 0);
+          transform: translate3d(0, -50%, 0);
+}
+
+.onoffcanvas-toggler {
+  position: relative;
+  display: inline-block;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  cursor: pointer;
+  padding: 0;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+button.onoffcanvas-toggler {
+  border-width: 0;
+  background: transparent;
+}
+
+.onoffcanvas-toggler::after,
+.onoffcanvas-toggler::before {
+  content: '';
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  top: 50%;
+  border-style: solid;
+  border-color: #adb5bd;
+  will-change: transform;
+  -webkit-transform: translate3d(0, -50%, 0);
+          transform: translate3d(0, -50%, 0);
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.onoffcanvas-toggler:after {
+  border-width: 2px 0;
+  height: 50%;
+}
+
+.onoffcanvas-toggler:before {
+  border-width: 2px 0 0 0;
+}
+
+.is-open .onoffcanvas-toggler[aria-expanded="true"]::before, .is-open .onoffcanvas-toggler[aria-expanded="true"]::after,
+.onoffcanvas-toggler.is-animated[aria-expanded="true"]::before,
+.onoffcanvas-toggler.is-animated[aria-expanded="true"]::after {
+  width: 100%;
+  height: 2px;
+  left: 0;
+}
+
+.is-open .onoffcanvas-toggler[aria-expanded="true"]::before,
+.onoffcanvas-toggler.is-animated[aria-expanded="true"]::before {
+  -webkit-transform: rotate(45deg);
+       -o-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.is-open .onoffcanvas-toggler[aria-expanded="true"]::after,
+.onoffcanvas-toggler.is-animated[aria-expanded="true"]::after {
+  -webkit-transform: rotate(-45deg);
+       -o-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  border-width: 2px 0 0 0;
+}

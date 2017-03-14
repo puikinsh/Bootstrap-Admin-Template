@@ -1,7 +1,7 @@
 {
   "name": "bootstrap-admin-template",
   "description": "Free Admin Template Based On Twitter Bootstrap 3.x",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "homepage": "https://github.com/puikinsh/Bootstrap-Admin-Template",
   "author": "puikinsh (http://github.com/puikinsh)",
   "repository": {
@@ -80,6 +80,7 @@
     "jquery": "2.2.4",
     "jquery-validation": "^1.15.1",
     "metismenu": "^2.6.1",
+    "onoffcanvas": "^1.1.1",
     "screenfull": "^3.0.0"
   },
   "verb": {

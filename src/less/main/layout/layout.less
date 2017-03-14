@@ -15,8 +15,7 @@
   position: relative;
 }
 
-#left,
-#right {
+#left {
   .transition(all .3s ease-in-out);
   width: @SidebarWidth;
   z-index: 999;
@@ -27,32 +26,18 @@
   left: -@SidebarWidth;
 }
 
-#right {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  overflow-y: auto;
-  right: -@SidebarWidth;
-}
+
 
 .sidebar-left-opened #left {
   left: 0;
 }
 
-.sidebar-right-opened {
-  position: relative;
-  right: @SidebarWidth;
-  #right {
-    right: 0;
-  }
-  &.fixed .navbar-fixed-top {
-    right: @SidebarWidth;
-  }
-}
+
 
 @media (min-width: @screen-sm-min) {
   #left {
-    position: relative;
+
+    position: sticky;
     float: left;
     left: auto;
 
@@ -70,13 +55,7 @@
     overflow: hidden;
   }
 
-  .sidebar-right-opened {
-       right: 0;
-       margin-right: @SidebarWidth;
-    .navbar-fixed-top {
-       margin-right: @SidebarWidth;
-    }
-  }
+
 }
 
 @media (min-width: @screen-lg-min) {

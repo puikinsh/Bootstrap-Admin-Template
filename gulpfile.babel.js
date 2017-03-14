@@ -173,6 +173,7 @@ gulp.task('assets', () => {
     gulp.src(`${nmd}/moment/min/*.*`).pipe(gulp.dest(`${vnd}/moment`));
     gulp.src(`${nmd}/chart.js/dist/*.*`).pipe(gulp.dest(`${vnd}/chart.js`));
     gulp.src(`${nmd}/metismenu/dist/*.*`).pipe(gulp.dest(`${vnd}/metismenu`));
+    gulp.src(`${nmd}/onoffcanvas/dist/*.*`).pipe(gulp.dest(`${vnd}/onoffcanvas`));
     gulp.src(`${nmd}/clipboard/dist/*.*`).pipe(gulp.dest(`${vnd}/clipboard`));
     gulp.src(`${nmd}/cleave.js/dist/**/*.*`).pipe(gulp.dest(`${vnd}/cleave.js`));
     gulp.src(`${nmd}/screenfull/dist/**/*.*`).pipe(gulp.dest(`${vnd}/screenfull`));

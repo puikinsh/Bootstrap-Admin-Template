@@ -28,6 +28,9 @@
     <!-- metisMenu stylesheet -->
     <link rel="stylesheet" href="../assets/lib/metismenu/metisMenu.css">
     
+    <!-- onoffcanvas stylesheet -->
+    <link rel="stylesheet" href="../assets/lib/onoffcanvas/onoffcanvas.css">
+    
     <!-- animate.css stylesheet -->
     <link rel="stylesheet" href="../assets/lib/animate.css/animate.css">
 
@@ -117,9 +120,8 @@
                                        class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
                                         <i class="fa fa-bars"></i>
                                     </a>
-                                    <a data-placement="bottom" data-original-title="Show / Hide Right" data-toggle="tooltip"
-                                       class="btn btn-default btn-sm toggle-right">
-                                        <span class="glyphicon glyphicon-comment"></span>
+                                    <a href="#right" data-toggle="onoffcanvas" class="btn btn-default btn-sm" aria-expanded="false">
+                                        <span class="fa fa-fw fa-comment"></span>
                                     </a>
                                 </div>
                     
@@ -782,7 +784,11 @@
                     <!-- /.outer -->
                 </div>
                 <!-- /#content -->
-                    <div id="right" class="bg-light lter">
+
+                    <div id="right" class="onoffcanvas is-left is-fixed bg-light" aria-expanded=false>
+                        <a class="onoffcanvas-toggler" href="#right" data-toggle=onoffcanvas aria-expanded=false></a>
+                        <br>
+                        <br>
                         <div class="alert alert-danger">
                             <button type="button" class="close" data-dismiss="alert">&times;</button>
                             <strong>Warning!</strong> Best check yo self, you're not looking too good.
@@ -836,12 +842,13 @@
                             <div class="progress xs">
                                 <div class="progress-bar progress-bar-danger" style="width: 80%"></div>
                             </div>
-                        </div>                    </div>
+                        </div>
+                    </div>
                     <!-- /#right -->
             </div>
             <!-- /#wrap -->
             <footer class="Footer bg-dark dker">
-                <p>2016 &copy; Metis Bootstrap Admin Template</p>
+                <p>2017 &copy; Metis Bootstrap Admin Template v2.4.2</p>
             </footer>
             <!-- /#footer -->
             <!-- #helpModal -->
@@ -879,6 +886,8 @@
             <script src="../assets/lib/bootstrap/js/bootstrap.js"></script>
             <!-- MetisMenu -->
             <script src="../assets/lib/metismenu/metisMenu.js"></script>
+            <!-- onoffcanvas -->
+            <script src="../assets/lib/onoffcanvas/onoffcanvas.js"></script>
             <!-- Screenfull -->
             <script src="../assets/lib/screenfull/screenfull.js"></script>
 

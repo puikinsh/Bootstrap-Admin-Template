@@ -1,6 +1,6 @@
 /**
  * bootstrap-admin-template - Free Admin Template Based On Twitter Bootstrap 3.x
- * @version 2.4.1
+ * @version 2.4.2
  * @license MIT
  * @link https://github.com/puikinsh/Bootstrap-Admin-Template
  */
@@ -47,7 +47,8 @@
 
     var $navBar = $('nav.navbar'),
         $body = $('body'),
-        $menu = $('#menu');
+        $menu = $('#menu'),
+        $left = $('#left');
 
     function addPaddingTop(el, val) {
         el.css('padding-top', val);
@@ -66,20 +67,8 @@
         $body.css('padding-top', bodyPadTop);
 
         if ($body.hasClass('menu-affix')) {
-            $menu.affix({
-                offset: {
-                    top: $menu.offset().top
-                }
-            }).css({
-                height: function height() {
-                    if ($(window).width() < 768) {
-                        return $(window).height();
-                    } else {
-                        return $(window).height();
-                    }
-                },
-                top: bodyPadTop - 1,
-                bottom: 0
+            $left.css({
+                top: bodyPadTop
             });
             console.log($navBar.outerHeight(true));
         }
@@ -168,7 +157,6 @@
 ;(function ($, Metis) {
     var $body = $('body'),
         $leftToggle = $('.toggle-left'),
-        $rightToggle = $('.toggle-right'),
         $count = 0;
 
     Metis.metisAnimatePanel = function () {
@@ -195,25 +183,6 @@
             });
         } else {
             $leftToggle.addClass('hidden');
-        }
-        if ($('#right').length) {
-            $rightToggle.on(Metis.buttonPressedEvent, function (e) {
-                switch (true) {
-                    // Close right panel
-                    case $body.hasClass("sidebar-right-opened"):
-                        $body.removeClass("sidebar-right-opened");
-                        break;
-                    default:
-                        // Open right panel
-                        $body.addClass("sidebar-right-opened");
-                        if (!$body.hasClass("sidebar-left-mini") & !$body.hasClass("sidebar-left-hidden")) {
-                            $body.addClass("sidebar-left-mini");
-                        }
-                }
-                e.preventDefault();
-            });
-        } else {
-            $rightToggle.addClass('hidden');
         }
     };
     return Metis;

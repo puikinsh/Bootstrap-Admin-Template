@@ -2,7 +2,7 @@
 
 Metis is a simple yet powerful free Bootstrap admin dashboard template that you can feel free to use for any app, service, software or anything else. Feel free to share and fork it.
 
-This template currently is slighly outdated but withing few weeks we are going to make a major overhaul making ot the best free admin template you have seen on Github or elsehwere on the web.
+This template currently is slighly outdated but withing few weeks we are going to make a major overhaul making ot the best free admin template you have seen on Github or elsewhere on the web.
 
 * [![Build Status](https://img.shields.io/travis/Osman%20Nuri%20Okumus/bootstrap-admin-template.svg?style=flat)](https://travis-ci.org/Osman%20Nuri%20Okumus/bootstrap-admin-template)
 * [![Dependency Status](https://david-dm.org/puikinsh/Bootstrap-Admin-Template.svg?theme=shields.io)](https://david-dm.org/puikinsh/Bootstrap-Admin-Template)
@@ -114,13 +114,13 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [gulp](http
 ## About Authors
 
 * [Colorlib](https://colorlib.com/) - Colorlib is the most popular source for free WordPress themes and HTML templates.
-* [Aigars Silkalns](https://twitter.com/AigarsSilkalns) - Aigars maintains this project and is also the idea author behind Colorlib and everythiwn you will find on that website.
+* [Aigars Silkalns](https://twitter.com/AigarsSilkalns) - Aigars maintains this project and is also the idea author behind Colorlib and everything you will find on that website.
 
 ## License
 
 Copyright (c) 2016 Aigars Silkalns & Colorlib
 
-Released under the MIT license. This free Bootstrap admin template is distributed as as it with no support. You can feeel free to use it, share it, tweakit it, workin it, sell it or do whatver you want as long as you keep the original license in plce.
+Released under the MIT license. This free Bootstrap admin template is distributed as as it with no support. You can feel free to use it, share it, tweak it, work in it, sell it or do whatever you want as long as you keep the original license in place.
 
 ***
 

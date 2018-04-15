@@ -159,7 +159,6 @@ gulp.task('scripts:app', function () {
 gulp.task('scripts', ['scripts:core', 'scripts:app']);
 
 gulp.task('assets', function () {
-  gulp.src(`${nmd}/moment/min/*.*`).pipe(gulp.dest(`${vnd}/moment`));
   gulp.src(`${nmd}/chart.js/dist/*.*`).pipe(gulp.dest(`${vnd}/chart.js`));
   gulp.src(`${nmd}/clipboard/dist/*.*`).pipe(gulp.dest(`${vnd}/clipboard`));
   gulp.src(`${nmd}/cleave.js/dist/**/*.*`).pipe(gulp.dest(`${vnd}/cleave.js`));

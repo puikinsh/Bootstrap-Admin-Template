@@ -29,15 +29,12 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "clean": "./node_modules/.bin/rimraf public dist",
     "assets": "./node_modules/.bin/gulp",
     "pages": "./node_modules/.bin/assemble --file assemblefile.js",
-    "build": "npm run clean && npm run assets && npm run pages",
+    "build": "npm run assets && npm run pages",
     "mainrtldist": "rtlcss dist/main.css dist/main.rtl.css && csso dist/main.rtl.css dist/main.rtl.min.css",
     "mainrtlpublic": "rtlcss dist/main.css public/assets/css/main.rtl.css && csso dist/main.rtl.css public/assets/css/main.rtl.min.css",
-    "bootstraprtl": "rtlcss node_modules/bootstrap/dist/css/bootstrap.css public/assets/lib/bootstrap/css/bootstrap.rtl.css",
-    "bootstraprtlmin": "csso public/assets/lib/bootstrap/css/bootstrap.rtl.css public/assets/lib/bootstrap/css/bootstrap.rtl.min.css",
-    "rtl": "npm run mainrtldist && npm run mainrtlpublic && npm run bootstraprtl && npm run bootstraprtlmin",
+    "rtl": "npm run mainrtldist && npm run mainrtlpublic",
     "buildrtl": "npm run build && npm run rtl"
   },
   "devDependencies": {
@@ -68,19 +65,19 @@
     "rtlcss": "^2.2.1"
   },
   "dependencies": {
-    "noty": "^2.3.8",
-    "animate.css": "^3.5.1",
+    "noty": "^3.2.0-beta",
+    "animate.css": "^3.6.1",
     "bootstrap": "^4.1.0",
-    "cleave.js": "^0.7.7",
-    "clipboard": "^1.5.12",
+    "cleave.js": "^1.3.3",
+    "clipboard": "^2.0.0",
     "font-awesome": "^4.7.0",
-    "fullcalendar": "^3.0.0",
+    "fullcalendar": "^3.9.0",
     "gmaps": "^0.4.24",
     "jquery": "^3.3.1",
-    "jquery-validation": "^1.15.1",
-    "metismenu": "^2.6.1",
+    "jquery-validation": "^1.17.0",
+    "metismenu": "^2.7.4",
     "onoffcanvas": "^1.1.1",
-    "screenfull": "^3.0.0"
+    "screenfull": "^3.3.2"
   },
   "verb": {
     "toc": true,

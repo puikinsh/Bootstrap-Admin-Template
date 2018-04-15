@@ -181,7 +181,6 @@ gulp.task('assets', () => {
     gulp.src(`${nmd}/jquery-validation/dist/*.*`).pipe(gulp.dest(`${vnd}/jquery-validation`));
     gulp.src(`${nmd}/gmaps/gmaps.{js,min.js}`).pipe(gulp.dest(`${vnd}/gmaps`));
     gulp.src(`${nmd}/fullcalendar/dist/**/*.*`).pipe(gulp.dest(`${vnd}/fullcalendar`));
-    gulp.src('bower_components/bootstrap-duallistbox/dist/*.*').pipe(gulp.dest(`${vnd}/bootstrap-duallistbox`));
 
 
     gulp.src('./src/css/*.css').pipe(gulp.dest('./public/assets/css'));
@@ -221,7 +220,7 @@ function watch() {
     gulp.watch(['src/**/*.js'], ['scripts', reload]);
     gulp.watch(['src/**/*.{less,css}'], ['styles', reload]);
     gulp.watch(['src/**/*.{svg,png,jpg,gif}'], ['assets', reload]);
-    gulp.watch(['package.json', 'bower.json'], ['assets']);
+    gulp.watch(['package.json'], ['assets']);
 }
 
 gulp.task('default', ['pages', 'styles', 'scripts', 'assets']);

@@ -29,7 +29,6 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "preinstall": "bower install",
     "clean": "./node_modules/.bin/rimraf public dist",
     "assets": "./node_modules/.bin/gulp",
     "pages": "./node_modules/.bin/assemble --file assemblefile.js",

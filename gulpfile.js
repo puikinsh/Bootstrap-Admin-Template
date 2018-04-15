@@ -1,6 +1,5 @@
 const path = require('path');
 const gulp = require('gulp');
-const del = require('del');
 const brs = require('browser-sync');
 const gulpLoadPlugins = require('gulp-load-plugins');
 const app = require('./assemblefile');
@@ -34,8 +33,6 @@ const AUTOPREFIXER_BROWSERS = [
   'Opera >= 30'
 ];
 
-// Clean Output Directory
-gulp.task('clean', () => del(['dist', 'public']));
 
 gulp.task('styles:theme', function () {
   return gulp.src(['src/less/theme*.less'])
@@ -100,9 +97,6 @@ gulp.task('styles', function () {
     .pipe(gulp.dest('public/assets/css'))
     .pipe($.if('*.css', $.cssnano()))
     .pipe($.concat('main.min.css'))
-    .pipe($.header(banner, {
-      pkg
-    }))
     .pipe(gulp.dest('dist'))
     .pipe(gulp.dest('public/assets/css'))
     .pipe($.size({
@@ -165,17 +159,11 @@ gulp.task('scripts:app', function () {
 gulp.task('scripts', ['scripts:core', 'scripts:app']);
 
 gulp.task('assets', function () {
-  gulp.src(`${nmd}/jquery/dist/**/*.*`).pipe(gulp.dest(`${vnd}/jquery`));
-  gulp.src(`${nmd}/bootstrap/dist/**/*.*`).pipe(gulp.dest(`${vnd}/bootstrap`));
-  gulp.src(`${nmd}/animate.css/*.css`).pipe(gulp.dest(`${vnd}/animate.css`));
   gulp.src(`${nmd}/font-awesome/{css,fonts}/**/*.*`).pipe(gulp.dest(`${vnd}/font-awesome`));
   gulp.src(`${nmd}/moment/min/*.*`).pipe(gulp.dest(`${vnd}/moment`));
   gulp.src(`${nmd}/chart.js/dist/*.*`).pipe(gulp.dest(`${vnd}/chart.js`));
-  gulp.src(`${nmd}/metismenu/dist/*.*`).pipe(gulp.dest(`${vnd}/metismenu`));
-  gulp.src(`${nmd}/onoffcanvas/dist/*.*`).pipe(gulp.dest(`${vnd}/onoffcanvas`));
   gulp.src(`${nmd}/clipboard/dist/*.*`).pipe(gulp.dest(`${vnd}/clipboard`));
   gulp.src(`${nmd}/cleave.js/dist/**/*.*`).pipe(gulp.dest(`${vnd}/cleave.js`));
-  gulp.src(`${nmd}/screenfull/dist/**/*.*`).pipe(gulp.dest(`${vnd}/screenfull`));
   gulp.src(`${nmd}/noty/js/noty/packaged/*.*`).pipe(gulp.dest(`${vnd}/noty`));
   gulp.src(`${nmd}/jquery-validation/dist/*.*`).pipe(gulp.dest(`${vnd}/jquery-validation`));
   gulp.src(`${nmd}/gmaps/gmaps.{js,min.js}`).pipe(gulp.dest(`${vnd}/gmaps`));

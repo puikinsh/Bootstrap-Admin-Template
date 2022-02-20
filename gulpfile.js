@@ -31,32 +31,6 @@ const AUTOPREFIXER_BROWSERS = [
 ];
 
 
-gulp.task('styles:theme', function () {
-  return gulp.src(['src/less/theme*.less'])
-    .pipe($.less({
-      paths: [path.join(__dirname, './node_modules/bootstrap/less')]
-    }))
-    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
-    .pipe(gulp.dest('.tmp'))
-    .pipe($.header(banner, {
-      pkg
-    }))
-    .pipe(gulp.dest('dist'))
-    .pipe(gulp.dest('public/assets/css'))
-    .pipe($.if('*.css', $.cssnano()))
-    .pipe($.header(banner, {
-      pkg
-    }))
-    .pipe($.rename({
-      suffix: '.min'
-    }))
-    .pipe(gulp.dest('dist'))
-    .pipe(gulp.dest('public/assets/css'))
-    .pipe($.size({
-      title: 'styles:theme'
-    }));
-});
-
 gulp.task('styles', function () {
   return gulp.src('src/scss/style.scss')
     .pipe($.sass())
@@ -140,7 +114,6 @@ gulp.task('assets', function () {
 
 
   gulp.src('./src/css/*.css').pipe(gulp.dest('./public/assets/css'));
-  gulp.src('./src/less/theme.less').pipe(gulp.dest('./public/assets/less'));
   gulp.src('./src/img/**/*.*').pipe(gulp.dest('./public/assets/img'));
   gulp.src('./src/lib/**/*.*').pipe(gulp.dest('./public/assets/lib'));
   gulp.src('./src/js/*.js').pipe(gulp.dest('./public/assets/js'));

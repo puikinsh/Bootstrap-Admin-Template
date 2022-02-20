@@ -33,8 +33,6 @@
   },
   "devDependencies": {
     "assemble": "^0.24.3",
-    "css-flip": "^0.5.0",
-    "del": "^3.0.0",
     "gulp-extname": "^0.2.2",
     "handlebars-helpers": "^0.10.0",
     "helper-markdown": "^1.0.0",

@@ -24,18 +24,6 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-    <!--For Development Only. Not required -->
-    <script>
-        less = {
-            env: "development",
-            relativeUrls: false,
-            rootpath: "/assets/"
-        };
-    </script>
-    <link rel="stylesheet" href="{{assets}}/css/style-switcher{{#if production}}.min{{/if}}.css">
-    <link rel="stylesheet/less" type="text/css" href="{{assets}}/less/theme.less">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less{{#if production}}.min{{/if}}.js"></script>
-
     {{!-- {{> analytic}}
     --}}
   </head>
@@ -140,7 +128,6 @@
                 </script>
             {{/if}}
 
-            <script src="{{assets}}/js/style-switcher{{#if production}}.min{{/if}}.js"></script>
         </body>
 
 </html>

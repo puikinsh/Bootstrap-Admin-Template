@@ -57,30 +57,6 @@ gulp.task('styles:theme', function () {
     }));
 });
 
-gulp.task('styles:switcher', function () {
-  return gulp.src(['src/less/style-switcher.less'])
-    .pipe($.less({
-      paths: [path.join(__dirname, './node_modules/bootstrap/less')]
-    }))
-    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
-    .pipe(gulp.dest('.tmp'))
-    .pipe($.header(banner, {
-      pkg
-    }))
-    .pipe(gulp.dest('public/assets/css'))
-    .pipe($.if('*.css', $.cssnano()))
-    .pipe($.header(banner, {
-      pkg
-    }))
-    .pipe($.rename({
-      suffix: '.min'
-    }))
-    .pipe(gulp.dest('public/assets/css'))
-    .pipe($.size({
-      title: 'styles:switcher'
-    }));
-});
-
 gulp.task('styles', function () {
   return gulp.src('src/scss/style.scss')
     .pipe($.sass())

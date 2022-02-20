@@ -62,26 +62,6 @@ function fillTotalbar(percent) {
 }
 
 
-/* Start Google Map*/
-
-
-
-var map = new GMaps({
-        el: '#map_canvas',
-            lat: -12.043333,
-            lng: -77.028333,
-            zoomControl: true,
-            zoomControlOpt: {
-                style: 'SMALL',
-                position: 'TOP_LEFT'
-            },
-            panControl: false,
-            streetViewControl: false,
-            mapTypeControl: false,
-            overviewMapControl: false
-        });
-
-
 /* Start Form validation*/
 
 $(function () {

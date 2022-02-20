@@ -98,7 +98,6 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [gulp](http
 * [Gritter](http://boedesign.com/blog/2009/07/11/growl-for-jquery-gritter/)
 * [Mouse Wheel](https://github.com/brandonaaron/jquery-mousewheel)
 * [PageDown-Bootstrap](https://github.com/kevinoconnor7/pagedown-bootstrap)
-* [Plupload](https://github.com/moxiecode/plupload)
 * [Bootstrap Switch](http://www.larentis.eu/switch/)
 * [tablesorter](http://tablesorter.com/)
 * [tagsinput](http://xoxco.com/projects/code/tagsinput/)

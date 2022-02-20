@@ -7,21 +7,6 @@
     $('#fileUpload').uniform();
     /*----------- END uniform CODE -------------------------*/
 
-    /*----------- BEGIN plupload CODE -------------------------*/
-    $("#uploader").pluploadQueue({
-        runtimes: 'html5,html4',
-        url: 'form-wysiwyg.html',
-        max_file_size: '128kb',
-        unique_names: true,
-        filters: [
-            {
-                title: "Image files",
-                extensions: "jpg,gif,png"
-            }
-        ]
-    });
-    /*----------- END plupload CODE -------------------------*/
-
     /*----------- BEGIN formwizard CODE -------------------------*/
     $("#wizardForm").formwizard({
         formPluginEnabled: true,

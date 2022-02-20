@@ -1,6 +1,5 @@
 const path = require('path');
 const gulp = require('gulp');
-const brs = require('browser-sync');
 const gulpLoadPlugins = require('gulp-load-plugins');
 const app = require('./assemblefile');
 const pkg = require('./package.json');
@@ -8,8 +7,6 @@ const pkg = require('./package.json');
 const $ = gulpLoadPlugins();
 const nmd = 'node_modules';
 const vnd = 'public/assets/lib';
-const browserSync = brs.create();
-const reload = browserSync.reload;
 
 const banner = ['/*!',
   ' * Metis - <%= pkg.description %>',
@@ -114,7 +111,6 @@ gulp.task('scripts:core', function () {
       'src/js/core/metisAnimatePanel.js',
       'src/js/core/init.js'
     ])
-    .pipe($.babel())
     .pipe(gulp.dest('.tmp/app'))
     .pipe($.concat('core.js'))
     .pipe($.header(banner, {
@@ -136,7 +132,6 @@ gulp.task('scripts:core', function () {
 
 gulp.task('scripts:app', function () {
   return gulp.src('src/js/app/*.js')
-    .pipe($.babel())
     .pipe(gulp.dest('.tmp/app'))
     .pipe($.concat('app.js'))
     .pipe($.header(banner, {
@@ -183,29 +178,5 @@ gulp.task('pages', function() {
   });
 });
 
-/**
- * Serves the landing page from 'public' directory.
- */
-gulp.task('serve', function() {
-  browserSync.init({
-    notify: true,
-    server: {
-      baseDir: ['public']
-    }
-  });
-  watch();
-});
-
-
-/**
- * Defines the list of resources to watch for changes.
- */
-function watch() {
-  gulp.watch(['src/templates/**/*.hbs'], ['pages', reload]);
-  gulp.watch(['src/**/*.js'], ['scripts', reload]);
-  gulp.watch(['src/**/*.{less,css}'], ['styles', reload]);
-  gulp.watch(['src/**/*.{svg,png,jpg,gif}'], ['assets', reload]);
-  gulp.watch(['package.json'], ['assets']);
-}
 
 gulp.task('default', ['pages', 'styles', 'scripts', 'assets']);

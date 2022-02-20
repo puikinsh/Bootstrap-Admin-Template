@@ -54,10 +54,6 @@
     $('.uniform').uniform();
     /*----------- END uniform CODE -------------------------*/
 
-    /*----------- BEGIN validVal CODE -------------------------*/
-    $('#validVal').validVal();
-    /*----------- END validVal CODE -------------------------*/
-
     /*----------- BEGIN colorpicker CODE -------------------------*/
     $('#cp1').colorpicker({
         format: 'hex'

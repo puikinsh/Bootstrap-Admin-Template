@@ -106,7 +106,6 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [gulp](http
 * [Touch Punch](http://touchpunch.furf.com/)
 * [Uniform](http://uniformjs.com/)
 * [Validation Engine](http://www.position-relative.net/)
-* [jquery.validVal](http://validval.frebsite.nl/)
 * [bootstrap3-wysihtml5-bower](https://github.com/Waxolunist/bootstrap3-wysihtml5-bower)
 * [screenfull.js](https://github.com/sindresorhus/screenfull.js)
 * [metisMenu](https://github.com/onokumus/metisMenu)

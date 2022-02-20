@@ -66,14 +66,5 @@
     "fullcalendar": "^3.9.0",
     "gmaps": "^0.4.24",
     "jquery-validation": "^1.17.0"
-  },
-  "verb": {
-    "toc": true,
-    "tasks": [
-      "readme"
-    ],
-    "plugins": [
-      "gulp-format-md"
-    ]
   }
 }

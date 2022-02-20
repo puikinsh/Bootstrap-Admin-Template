@@ -85,7 +85,6 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [gulp](http
 * [Datepicker for Bootstrap](http://www.eyecon.ro/bootstrap-datepicker)
 * [elFinder](http://elfinder.org)
 * [Input Limiter](http://rustyjeans.com/jquery-plugins/input-limiter)
-* [Jasny Bootstrap](http://jasny.github.com/bootstrap)
 * [jQuery Validation](http://jqueryvalidation.org/)
 * [jQuery Sparklines](http://omnipotent.net/jquery.sparkline)
 * [Animate](http://daneden.github.io/animate.css/)

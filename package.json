@@ -31,11 +31,7 @@
   "scripts": {
     "assets": "./node_modules/.bin/gulp",
     "pages": "./node_modules/.bin/assemble --file assemblefile.js",
-    "build": "npm run assets && npm run pages",
-    "mainrtldist": "rtlcss dist/main.css dist/main.rtl.css && csso dist/main.rtl.css dist/main.rtl.min.css",
-    "mainrtlpublic": "rtlcss dist/main.css public/assets/css/main.rtl.css && csso dist/main.rtl.css public/assets/css/main.rtl.min.css",
-    "rtl": "npm run mainrtldist && npm run mainrtlpublic",
-    "buildrtl": "npm run build && npm run rtl"
+    "build": "npm run assets && npm run pages"
   },
   "devDependencies": {
     "assemble": "^0.24.3",
@@ -57,8 +53,7 @@
     "gulp-uglify": "^3.0.0",
     "handlebars-helpers": "^0.10.0",
     "helper-markdown": "^1.0.0",
-    "helper-md": "^0.2.2",
-    "rtlcss": "^2.2.1"
+    "helper-md": "^0.2.2"
   },
   "dependencies": {
     "noty": "^3.2.0-beta",

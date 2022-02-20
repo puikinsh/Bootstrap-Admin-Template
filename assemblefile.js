@@ -24,15 +24,6 @@ app.task('init', function(cb) {
     cb();
 });
 
-app.task('html:rtl', ['init'], function() {
-    app.data('assets', '../assets');
-    app.data('rtl', true);
-    return app.toStream('pages')
-        .pipe(app.renderFile())
-        .pipe(extname())
-        .pipe(app.dest('public/rtl'));
-});
-
 app.task('html', ['init'], function() {
     app.data('assets', 'assets');
     return app.toStream('pages')
@@ -41,6 +32,6 @@ app.task('html', ['init'], function() {
         .pipe(app.dest('public'));
 });
 
-app.task('default', ['html', 'html:rtl']);
+app.task('default', ['html']);
 
 module.exports = app;

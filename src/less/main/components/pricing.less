@@ -11,12 +11,12 @@
     list-style: none;
   }
   > li {
-    #gradient > .vertical(#EBEEF5; #fff);
+    background-image: linear-gradient(to bottom, #EBEEF5 0%, #fff 100%);
     color: #444;
-    .transition(all 0.2s);
+    transition: all 0.2s;
   }
   &.dark > li {
-    #gradient > .vertical(#666; #444);
+    background-image: linear-gradient(to bottom, #666 0%, #444 100%);
     color: #fff;
     &.active.default {
       color:#fff;
@@ -29,25 +29,25 @@
     &.default {color:#444;}
     
     @media (min-width: @screen-tablet) {
-      .scale(1.03);
+      transform: scale(1.03);
     }
 
-    .box-shadow(0 0 15px 1px rgba(0, 0, 0, 0.5));
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.5);
     z-index: 1;
     &.primary {
-      #gradient > .vertical(darken(@brand-primary, 5%); @brand-primary);
+      background-image: linear-gradient(to bottom, #2e6da4 0%, #337ab7 100%);
     }
     &.success {
-      #gradient > .vertical(darken(@brand-success, 5%); @brand-success);
+      background-image: linear-gradient(to bottom, #4cae4c 0%, #5cb85c 100%);
     }
     &.warning {
-      #gradient > .vertical(darken(@brand-warning, 5%); @brand-warning);
+      background-image: linear-gradient(to bottom, #eea236 0%, #f0ad4e 100%);
     }
     &.danger {
-      #gradient > .vertical(darken(@brand-danger, 5%); @brand-danger);
+      background-image: linear-gradient(to bottom, #d43f3a 0%, #d9534f 100%);
     }
     &.info {
-      #gradient > .vertical(darken(@brand-info, 5%); @brand-info);
+      background-image: linear-gradient(to bottom, #46b8da 0%, #5bc0de 100%);
     }
   }
 
@@ -66,7 +66,8 @@
   }
 
   .price-body {
-    .square(125px);
+    width: 125px;
+  height: 125px;
     margin: 0 auto 15px auto;
     border: 2px solid #444;
     border-radius: 100%;

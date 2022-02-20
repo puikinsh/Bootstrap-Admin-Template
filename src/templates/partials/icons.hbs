@@ -11,27 +11,12 @@
 </style>
 
 <ul class="nav nav-tabs" id="iconsTab">
-    <li class="active">
-        <a href="#glyphicon" data-toggle="tab">Glyphicons for Bootstrap</a>
-    </li>
     <li>
         <a href="#fontAwesome" data-toggle="tab">Font Awesome</a>
     </li>
 </ul>
 
 <div class="tab-content">
-
-    <div class="tab-pane active" id="glyphicon">
-        {{#if icons}}
-            <ul class="the-icons clearfix">
-                {{#each icons}}
-                    <li class="col-sm-6 col-md-4 col-lg-3">
-                        <i class="glyphicon {{.}}"></i>&nbsp; {{.}}
-                    </li>
-                {{/each}}
-            </ul>
-        {{/if}}
-    </div>
 
     <div class="tab-pane" id="fontAwesome">
         {{#if awesome}}

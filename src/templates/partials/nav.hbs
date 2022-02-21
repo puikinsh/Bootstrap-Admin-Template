@@ -1,88 +1,93 @@
 <!-- .navbar -->
-<nav class="navbar navbar-inverse navbar-{{#if fixedNav}}fixed{{else}}static{{/if}}-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
 
+        <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt="Metis"></a>
 
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <header class="navbar-header">
-
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="index.html" class="navbar-brand"><img src="{{assets}}/img/logo.png" alt=""></a>
-
-        </header>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
 
-
+        <!-- BEGIN: .topnav -->
         <div class="topnav">
-            <div class="btn-group">
-                <a data-placement="bottom" data-original-title="Fullscreen" data-toggle="tooltip"
-                   class="btn btn-default btn-sm" id="toggleFullScreen">
-                    <i class="glyphicon glyphicon-fullscreen"></i>
-                </a>
+
+            <div class="btn-group btn-group-sm" role="group" aria-label="Fullscreen">
+                <button id="toggleFullScreen" type="button" class="btn btn-light" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom" title="Fullscreen">
+                    <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                </button>
             </div>
-            <div class="btn-group">
-                <a data-placement="bottom" data-original-title="E-mail" data-toggle="tooltip"
-                   class="btn btn-default btn-sm">
+
+            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                    title="E-mail">
                     <i class="fa fa-envelope"></i>
-                    <span class="label label-warning">5</span>
-                </a>
-                <a data-placement="bottom" data-original-title="Messages" href="#" data-toggle="tooltip"
-                   class="btn btn-default btn-sm">
-                    <i class="fa fa-comments"></i>
-                    <span class="label label-danger">4</span>
-                </a>
-                <a data-toggle="modal" data-original-title="Help" data-placement="bottom"
-                   class="btn btn-default btn-sm"
-                   href="#helpModal">
+                    <span class="badge bg-warning">5</span>
+                </button>
+                <button type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                    title="Messages">
+                    <i class="fa fa-envelope"></i>
+                    <span class="badge bg-danger">4</span>
+                </button>
+                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#helpModal"
+                    title="Help">
                     <i class="fa fa-question"></i>
-                </a>
+                </button>
             </div>
-            <div class="btn-group">
-                <a href="login.html" data-toggle="tooltip" data-original-title="Logout" data-placement="bottom"
-                   class="btn btn-secondary btn-sm">
+
+            <div class="btn-group btn-group-sm" role="group" aria-label="Logout">
+                <a href="login.html" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                    title="Logout">
                     <i class="fa fa-power-off"></i>
                 </a>
             </div>
-            <div class="btn-group">
-                <a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip"
-                   class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
+
+            <div class="btn-group btn-group-sm" role="group" aria-label="Sidebar">
+
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#left"
+                    aria-controls="left" title="Show / Hide Left">
                     <i class="fa fa-bars"></i>
-                </a>
-                <a href="#right" data-toggle="onoffcanvas" class="btn btn-default btn-sm" aria-expanded="false">
-                    <span class="fa fa-fw fa-comment"></span>
-                </a>
+                </button>
+
+                <button class="btn btn-light" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#right" aria-controls="offcanvasRight">
+                    <i class="fa fa-fw fa-comment"></i>
+                </button>
+
             </div>
 
         </div>
+        <!-- END: /.topnav -->
 
-
-
-
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-
-            <!-- .nav -->
-            <ul class="nav navbar-nav">
-                <li{{#is title "Dashboard"}} class="active"{{/is}}><a href="dashboard.html">Dashboard</a></li>
-                <li{{#is title "Table"}} class="active"{{/is}}><a href="table.html">Tables</a></li>
-                <li class='dropdown {{#is topTitle "Forms"}}active{{/is}}'>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Form Elements <b class="caret"></b>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="table.html">Tables</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Form Elements
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="form-general.html">General</a></li>
-                        <li><a href="form-validation.html">Validation</a></li>
-                        <li><a href="form-wysiwyg.html">WYSIWYG</a></li>
-                        <li><a href="form-wizard.html">Wizard &amp; File Upload</a></li>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="form-general.html">General</a></li>
+                        <li><a class="dropdown-item" href="form-validation.html">Validation</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="form-wysiwyg.html">WYSIWYG</a></li>
+                        <li><a class="dropdown-item" href="form-wizard.html">Wizard &amp; File Upload</a></li>
                     </ul>
                 </li>
+
             </ul>
-            <!-- /.nav -->
         </div>
+
     </div>
     <!-- /.container-fluid -->
 </nav>

@@ -1,14 +1,12 @@
-# bootstrap-admin-template
+# Metis
 
-Metis is a simple yet powerful free Bootstrap admin dashboard template that you can feel free to use for any app, service, software or anything else. Feel free to share and fork it.
+> Bootstrap 5 Admin Template
+
+Metis is a simple yet powerful free Bootstrap 5 admin dashboard template that you can feel free to use for any app, service, software or anything else. Feel free to share and fork it.
 
 This template currently is slighly outdated but withing few weeks we are going to make a major overhaul making ot the best free admin template you have seen on Github or elsewhere on the web.
 
-* [![Build Status](https://img.shields.io/travis/Osman%20Nuri%20Okumus/bootstrap-admin-template.svg?style=flat)](https://travis-ci.org/Osman%20Nuri%20Okumus/bootstrap-admin-template)
-* [![Dependency Status](https://david-dm.org/puikinsh/Bootstrap-Admin-Template.svg?theme=shields.io)](https://david-dm.org/puikinsh/Bootstrap-Admin-Template)
-* [![devDependency Status](https://david-dm.org/puikinsh/Bootstrap-Admin-Template/dev-status.svg?theme=shields.io)](https://david-dm.org/puikinsh/Bootstrap-Admin-Template#info=devDependencies)
-
-## TOC
+## Table Of Content
 
 * [Download](#download)
   - [Building](#building)
@@ -30,12 +28,12 @@ ready `public` folder your use
 required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [gulp](http://gulpjs.com/)
 
 ```shell
-    $ git clone https://github.com/puikinsh/Bootstrap-Admin-Template.git yourfoldername
-    $ cd yourfoldername
-    $ npm install
-    $ bower install
-    $ npm run build
-    $ gulp serve
+git clone https://github.com/puikinsh/Bootstrap-Admin-Template.git yourfoldername
+cd yourfoldername
+npm install
+bower install
+npm run build
+gulp serve
 ```
 
 #### 2.3.2 RTL Version
@@ -43,22 +41,22 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [gulp](http
 required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [gulp](http://gulpjs.com/)
 
 ```shell
-    $ git clone https://github.com/puikinsh/Bootstrap-Admin-Template.git yourfoldername
-    $ cd yourfoldername
-    $ npm install
-    $ bower install
-    $ npm run buildrtl
-    $ gulp serve
+git clone https://github.com/puikinsh/Bootstrap-Admin-Template.git yourfoldername
+cd yourfoldername
+npm install
+bower install
+npm run buildrtl
+gulp serve
 ```
 
 #### 1.2 Version
 
 ```shell
-    $ git clone -b v1.2 https://github.com/puikinsh/Bootstrap-Admin-Template.git yourfoldername
-    $ cd yourfoldername
-    $ git submodule init
-    $ git submodule update
-    $ open index.html
+git clone -b v1.2 https://github.com/puikinsh/Bootstrap-Admin-Template.git yourfoldername
+cd yourfoldername
+git submodule init
+git submodule update
+open index.html
 ```
 
 ## Demo
@@ -124,7 +122,7 @@ required [node.js](http://nodejs.org/) & [bower](http://bower.io/) & [gulp](http
 
 ## License
 
-Copyright (c) 2016 Aigars Silkalns & Colorlib
+Copyright (c) 2022 Aigars Silkalns & Colorlib
 
 Released under the MIT license. This free Bootstrap admin template is distributed as as it with no support. You can feel free to use it, share it, tweak it, work in it, sell it or do whatever you want as long as you keep the original license in place.
 

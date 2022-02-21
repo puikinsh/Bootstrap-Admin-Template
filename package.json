@@ -39,6 +39,7 @@
     "helper-md": "^0.2.2"
   },
   "dependencies": {
+    "bootstrap": "^5.1.3",
     "clipboard": "^2.0.0",
     "fullcalendar": "^3.9.0",
     "jquery-validation": "^1.17.0"

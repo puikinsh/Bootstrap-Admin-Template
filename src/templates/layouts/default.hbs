@@ -49,10 +49,7 @@
                 <!-- /#top -->
                 {{#if noLeftSidebar}}
                 {{else}}
-                    <div id="left">
-                        {{> left }}
-                    </div>
-                    <!-- /#left -->
+                    {{> left }}
                 {{/if}}
                 <div id="content">
                     <div class="outer">
@@ -67,10 +64,7 @@
 
                 {{#if noRightSidebar}}
                 {{else}}
-                    <div id="right" class="onoffcanvas {{#if rtl}}is-left{{else}}is-right{{/if}} is-fixed bg-light" aria-expanded=false>
-                        {{> right }}
-                    </div>
-                    <!-- /#right -->
+                    {{> right }}
                 {{/if}}
             </div>
             <!-- /#wrap -->

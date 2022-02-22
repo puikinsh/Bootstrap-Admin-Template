@@ -1,0 +1,18 @@
+:where(html) {
+  block-size: 100%;
+}
+
+:where(body) {
+  min-block-size: 100%;
+}
+
+/* ================== BEGIN Layout ============== */
+.metis-content {
+  outline: 10px solid #6e6e6e;
+  border: 10px solid #e4e4e4;
+  margin: 10px;
+}
+
+/* ================== END Layout ============== */
+
+/*# sourceMappingURL=metis.css.map */

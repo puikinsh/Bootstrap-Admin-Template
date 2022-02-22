@@ -78,68 +78,82 @@ scripts:
 
 </div>
 <hr>
-<div class="row">
-    <div class="col-lg-8">
-	<div class="box">
-	    <header>
-		<h5>Line Chart</h5>
-	    </header>
-	    <div class="body" id="trigo" style="height: 250px;"></div>
-	</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Line Chart</h5>
+          <!-- /.card-title -->
+          <div id="trigo" style="height: 256px;"></div>
+          <!-- /#trigo -->
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
     </div>
-    <div class="col-lg-4">
-	<div class="box">
-	    <div class="body">
-		<table class="table table-condensed table-hovered sortableTable">
-		    <thead>
-			<tr>
-			    <th>Country <i class="fa sort"></i></th>
-			    <th>Visit <i class="fa sort"></i></th>
-			    <th>Time <i class="fa sort"></i></th>
-			</tr>
-		    </thead>
-		    <tbody>
-			<tr class="active">
-			    <td>Andorra</td>
-			    <td>1126</td>
-			    <td>00:00:15</td>
-			</tr>
-			<tr>
-			    <td>Belarus</td>
-			    <td>350</td>
-			    <td>00:01:20</td>
-			</tr>
-			<tr class="danger">
-			    <td>Paraguay</td>
-			    <td>43</td>
-			    <td>00:00:30</td>
-			</tr>
-			<tr class="warning">
-			    <td>Malta</td>
-			    <td>547</td>
-			    <td>00:10:20</td>
-			</tr>
-			<tr>
-			    <td>Australia</td>
-			    <td>560</td>
-			    <td>00:00:10</td>
-			</tr>
-			<tr>
-			    <td>Kenya</td>
-			    <td>97</td>
-			    <td>00:20:00</td>
-			</tr>
-			<tr class="success">
-			    <td>Italy</td>
-			    <td>2450</td>
-			    <td>00:10:00</td>
-			</tr>
-		    </tbody>
-		</table>
-	    </div>
-	</div>
+    <!-- /.col-md-6 -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Tablesorter</h5>
+          <!-- /.card-title -->
+          <table class="table table-condensed table-hovered sortableTable">
+            <thead>
+              <tr>
+                <th>Country</th>
+                <th>Visit</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="active">
+                <td>Andorra</td>
+                <td>1126</td>
+                <td>00:00:15</td>
+              </tr>
+              <tr>
+                <td>Belarus</td>
+                <td>350</td>
+                <td>00:01:20</td>
+              </tr>
+              <tr class="danger">
+                <td>Paraguay</td>
+                <td>43</td>
+                <td>00:00:30</td>
+              </tr>
+              <tr class="warning">
+                <td>Malta</td>
+                <td>547</td>
+                <td>00:10:20</td>
+              </tr>
+              <tr>
+                <td>Australia</td>
+                <td>560</td>
+                <td>00:00:10</td>
+              </tr>
+              <tr>
+                <td>Kenya</td>
+                <td>97</td>
+                <td>00:20:00</td>
+              </tr>
+              <tr class="success">
+                <td>Italy</td>
+                <td>2450</td>
+                <td>00:10:00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
     </div>
+    <!-- /.col-md-6 -->
+  </div>
+  <!-- /.row -->
 </div>
+<!-- /.container-fluid -->
 <hr>
 
 <!-- BEGIN: fullcalendar -->

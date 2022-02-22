@@ -28,8 +28,10 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "css:dev":"sass -I node_modules src/scss:public/assets/css -w",
-    "css":"sass -I node_modules src/scss:dist",
+    "css:dev": "sass -I node_modules src/scss:public/assets/css -w",
+    "js:dev": "rollup -c -w",
+    "css": "sass -I node_modules src/scss:dist",
+    "js": "rollup -c",
     "pages": "./node_modules/.bin/assemble --file assemblefile.js",
     "build": "npm run pages"
   },
@@ -39,6 +41,7 @@
     "handlebars-helpers": "^0.10.0",
     "helper-markdown": "^1.0.0",
     "helper-md": "^0.2.2",
+    "rollup": "^2.68.0",
     "sass": "^1.49.8"
   },
   "dependencies": {

@@ -19,9 +19,8 @@
     --}}
   </head>
 
-        <body class="{{#if boXed}}boxed{{/if}} {{#if sideMini}}sidebar-left-mini{{/if}} {{#if fixedMenu}}menu-affix{{/if}}">
-            <div class="bg-dark dk" id="wrap">
-                <div id="top">
+        <body class="{{#if boXed}}container{{else}}container-fluid{{/if}} p-0 d-flex flex-column">
+            <div id="top">
                     {{> nav }}
                     {{#if noHeader}}
                     {{else}}
@@ -47,18 +46,15 @@
                     {{/if}}
                 </div>
                 <!-- /#top -->
+            
+            <div class="bg-dark d-flex aligns-item-stretch position-relative flex-fill w-100" id="wrap">
+                
                 {{#if noLeftSidebar}}
                 {{else}}
                     {{> left }}
                 {{/if}}
-                <div id="content">
-                    <div class="outer">
-                        <div class="inner bg-light lter">
-                            {% body %}
-                        </div>
-                        <!-- /.inner -->
-                    </div>
-                    <!-- /.outer -->
+                <div class="metis-content bg-light w-100 flex-fill py-3">
+                    {% body %}
                 </div>
                 <!-- /#content -->
 

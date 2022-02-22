@@ -2,13 +2,14 @@
 title: Table
 icon: fa fa-table
 cdncss:
-- https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css
+- https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css
+- https://cdn.jsdelivr.net/npm/jquery-ui-dist/jquery-ui.min.css
+- https://cdn.jsdelivr.net/npm/tablesorter/dist/css/theme.bootstrap_4.min.css
 cdnjs:
-- https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js
-- https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js
-- https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js
-- https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js
-- //cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js
+- https://cdn.jsdelivr.net/npm/jquery-ui-dist/jquery-ui.min.js
+- https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js
+- https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js
+- https://cdn.jsdelivr.net/npm/tablesorter/dist/js/jquery.tablesorter.combined.min.js
 scripts:
 - Metis.MetisTable()
 - Metis.metisSortable()
@@ -19,8 +20,8 @@ scripts:
 <div class="row">
     <div class="col">
         <div class="card mb-3">
-            <header class="card-header d-flex">
-                <div class="icons"><i class="fa fa-table"></i></div>
+            <header class="card-header d-flex align-items-center">
+                <div class="metis-ratio-square pe-2 me-2 border-end"><i class="bi bi-table"></i></div>
                 <h5>Dynamic Table</h5>
                 {{> toolbar}}
             </header>

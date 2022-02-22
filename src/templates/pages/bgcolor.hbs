@@ -1,97 +1,55 @@
 ---
 topTitle: Components
-title: Bg Color
+title: Background Color
 icon: fa fa-barcode
 ---
-<style>
-  ul[rel^="bg"] > li {height: 50px; line-height:50px;}
-</style>
-<h3>Background Color</h3>
-<div class="row">
-  <div class="col-sm-3">
-    <ul class="list-unstyled bg-red" rel="bg-">
-      <li>.bg-bg-red</li>
-      <li class="dker">.dker</li>
-      <li class="dk">.dk</li>
-      <li class="lt">.lt</li>
-      <li class="lter">.lter</li>
-    </ul>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Background color</h5>
+          <div class="p-3 mb-2 bg-primary text-white">.bg-primary</div>
+          <div class="p-3 mb-2 bg-secondary text-white">.bg-secondary</div>
+          <div class="p-3 mb-2 bg-success text-white">.bg-success</div>
+          <div class="p-3 mb-2 bg-danger text-white">.bg-danger</div>
+          <div class="p-3 mb-2 bg-warning text-dark">.bg-warning</div>
+          <div class="p-3 mb-2 bg-info text-dark">.bg-info</div>
+          <div class="p-3 mb-2 bg-light text-dark">.bg-light</div>
+          <div class="p-3 mb-2 bg-dark text-white">.bg-dark</div>
+          <div class="p-3 mb-2 bg-body text-dark">.bg-body</div>
+          <div class="p-3 mb-2 bg-white text-dark">.bg-white</div>
+          <div class="p-3 mb-2 bg-transparent text-dark">.bg-transparent</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Background gradient</h5>
+          <div class="p-3 mb-2 bg-primary bg-gradient text-white">.bg-primary.bg-gradient</div>
+          <div class="p-3 mb-2 bg-secondary bg-gradient text-white">.bg-secondary.bg-gradient</div>
+          <div class="p-3 mb-2 bg-success bg-gradient text-white">.bg-success.bg-gradient</div>
+          <div class="p-3 mb-2 bg-danger bg-gradient text-white">.bg-danger.bg-gradient</div>
+          <div class="p-3 mb-2 bg-warning bg-gradient text-dark">.bg-warning.bg-gradient</div>
+          <div class="p-3 mb-2 bg-info bg-gradient text-dark">.bg-info.bg-gradient</div>
+          <div class="p-3 mb-2 bg-light bg-gradient text-dark">.bg-light.bg-gradient</div>
+          <div class="p-3 mb-2 bg-dark bg-gradient text-white">.bg-dark.bg-gradient</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Opacity</h5>
+          <div class="bg-success p-2 text-white">This is default success background</div>
+          <div class="bg-success p-2 text-white bg-opacity-75">This is 75% opacity success background</div>
+          <div class="bg-success p-2 text-dark bg-opacity-50">This is 50% opacity success background</div>
+          <div class="bg-success p-2 text-dark bg-opacity-25">This is 25% opacity success background</div>
+          <div class="bg-success p-2 text-dark bg-opacity-10">This is 10% opacity success background</div>
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- /.col-sm-3 -->
-    <div class="col-sm-3">
-    <ul class="list-unstyled bg-brick" rel="bg-">
-      <li>.bg-brick</li>
-      <li class="dker">.dker</li>
-      <li class="dk">.dk</li>
-      <li class="lt">.lt</li>
-      <li class="lter">.lter</li>
-    </ul>
-  </div>
-  <!-- /.col-sm-3 -->
-   <div class="col-sm-3">
-    <ul class="list-unstyled bg-orange" rel="bg-">
-      <li>.bg-orange</li>
-      <li class="dker">.dker</li>
-      <li class="dk">.dk</li>
-      <li class="lt">.lt</li>
-      <li class="lter">.lter</li>
-    </ul>
-  </div>
-  <!-- /.col-sm-3 -->
-  
-      <div class="col-sm-3">
-    <ul class="list-unstyled bg-green" rel="bg-">
-      <li>.bg-green</li>
-      <li class="dker">.dker</li>
-      <li class="dk">.dk</li>
-      <li class="lt">.lt</li>
-      <li class="lter">.lter</li>
-    </ul>
-  </div>
-  <!-- /.col-sm-3 -->
-  
-      <div class="col-sm-3">
-    <ul class="list-unstyled bg-blue" rel="bg-">
-      <li>.bg-blue</li>
-      <li class="dker">.dker</li>
-      <li class="dk">.dk</li>
-      <li class="lt">.lt</li>
-      <li class="lter">.lter</li>
-    </ul>
-  </div>
-  <!-- /.col-sm-3 -->
-  
-      <div class="col-sm-3">
-    <ul class="list-unstyled bg-black" rel="bg-">
-      <li>.bg-black</li>
-      <li class="dker">.dker</li>
-      <li class="dk">.dk</li>
-      <li class="lt">.lt</li>
-      <li class="lter">.lter</li>
-    </ul>
-  </div>
-  <!-- /.col-sm-3 -->
-  
-      <div class="col-sm-3">
-    <ul class="list-unstyled bg-dark" rel="bg-">
-      <li>.bg-dark</li>
-      <li class="dker">.dker</li>
-      <li class="dk">.dk</li>
-      <li class="lt">.lt</li>
-      <li class="lter">.lter</li>
-    </ul>
-  </div>
-  <!-- /.col-sm-3 -->
-  
-      <div class="col-sm-3">
-    <ul class="list-unstyled bg-light" rel="bg-">
-      <li>.bg-light</li>
-      <li class="dker">.dker</li>
-      <li class="dk">.dk</li>
-      <li class="lt">.lt</li>
-      <li class="lter">.lter</li>
-    </ul>
-  </div>
-  <!-- /.col-sm-3 -->
 </div>
-<!-- /.row -->
+<!-- /.container-fluid -->

@@ -16,11 +16,11 @@ Metis.boxFullScreen = () => {
   if (!screenfull.isEnabled) {
     return false;
   }
-  const triggers = document.querySelectorAll(".full-box");
+  const triggers = document.querySelectorAll(".card-fs-toggle");
   [...triggers].map((trigger) => {
     const i = trigger.querySelector("i.bi-fullscreen");
     trigger.addEventListener("click", (e) => {
-      screenfull.toggle(trigger.closest(".box"));
+      screenfull.toggle(trigger.closest(".card"));
       i?.classList.toggle("bi-fullscreen");
       i?.classList.toggle("bi-fullscreen-exit");
     });

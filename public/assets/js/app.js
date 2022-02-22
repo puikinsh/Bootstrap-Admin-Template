@@ -851,25 +851,8 @@
         return Metis;
     })(jQuery, Metis || {});
 
-    (function($, Metis){
-      Metis.MetisProgress = function() {
-        var $bar = $('.progress .progress-bar');
-        $.each($bar, function () {
-          
-          var $this = $(this);
-          
-          $this
-          .animate({
-            width: $(this).attr('aria-valuenow') + '%'
-          })
-          .popover({
-            placement: 'bottom',
-            title: 'Source',
-            content: this.outerHTML
-          });
-        });
+    Metis.MetisProgress = function() {
+        return new Error("Metis.MetisProgress() function is deprecated.")
       };
-      return Metis;
-    })(jQuery, Metis);
 
 })();

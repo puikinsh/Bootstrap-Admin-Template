@@ -1,12 +1,44 @@
-.box:not(:fullscreen) {
-  background-color: #afa;
+/* ================== BEGIN Utility ============== */
+:where(html) {
+  --ratio-square: 1;
+  --ratio-landscape: 4/3;
+  --ratio-portrait: 3/4;
+  --ratio-widescreen: 16/9;
+  --ratio-ultrawide: 18/5;
+  --ratio-golden: 1.618/1;
 }
 
-
-.box:fullscreen {
-  background-color: #faa;
+.metis-ratio-square {
+  aspect-ratio: var(--ratio-square);
 }
 
-.box:fullscreen .card-body {
+.metis-ratio-landscape {
+  aspect-ratio: var(--ratio-landscape);
+}
+
+.metis-ratio-portrait {
+  aspect-ratio: var(--ratio-portrait);
+}
+
+.metis-ratio-widescreen {
+  aspect-ratio: var(--ratio-widescreen);
+}
+
+.metis-ratio-ultrawide {
+  aspect-ratio: var(--ratio-ultrawide);
+}
+
+.metis-ratio-golden {
+  aspect-ratio: var(--ratio-golden);
+}
+
+.card:fullscreen {
+  border-width: 0;
+  border-radius: 0;
+}
+
+.card:fullscreen .card-body {
   overflow: auto;
 }
+
+/* ================== END Utility ============== */

@@ -19,40 +19,18 @@
     --}}
   </head>
 
-        <body class="{{#if boXed}}container{{else}}container-fluid{{/if}} p-0 d-flex flex-column">
-            <div id="top">
-                    {{> nav }}
-                    {{#if noHeader}}
-                    {{else}}
-                        <header class="head">
-                            {{#if noMainSearch}}
-                            {{else}}
-                                <div class="search-bar">
-                                    {{> mainSearch }}
-                                </div>
-                                <!-- /.search-bar -->
-                            {{/if}}
-                            <div class="main-bar">
-                                <h3>
-            {{#if icon}}
-              <i class="{{ icon }}"></i>&nbsp;
-            {{/if}}
-            {{ title }}
-          </h3>
-                            </div>
-                            <!-- /.main-bar -->
-                        </header>
-                        <!-- /.head -->
-                    {{/if}}
-                </div>
-                <!-- /#top -->
+    <body class="{{#if boXed}}container{{else}}container-fluid{{/if}} p-0 d-flex flex-column">
+        
+        <!-- BEGIN: /#top -->
+        <div id="top">
+        {{> nav }}
+        {{> head }}
+        </div>
+        <!-- END: /#top -->
             
-            <div class="bg-dark d-flex aligns-item-stretch position-relative flex-fill w-100" id="wrap">
+            <div class="metis-wrap bg-dark d-flex aligns-item-stretch position-relative flex-fill w-100" id="metis-wrap">
                 
-                {{#if noLeftSidebar}}
-                {{else}}
-                    {{> left }}
-                {{/if}}
+                {{> left }}
                 <div class="metis-content bg-light w-100 flex-fill py-3">
                     {% body %}
                 </div>
@@ -64,8 +42,8 @@
                 {{/if}}
             </div>
             <!-- /#wrap -->
-            <footer class="Footer bg-dark dker">
-                <p>2017 &copy; Metis Bootstrap Admin Template v2.4.2</p>
+            <footer class="container-fluid bg-dark text-light p-3 d-flex align-items-center justify-content-center">
+                2022 &copy; Metis Bootstrap Admin Template
             </footer>
             <!-- /#footer -->
             {{> helpModal }}

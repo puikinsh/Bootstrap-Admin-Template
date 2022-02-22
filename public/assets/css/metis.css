@@ -1,4 +1,8 @@
 :where(html) {
+  --metis-sidebar-width: clamp(256px, 16vw, 400px);
+}
+
+:where(html) {
   block-size: 100%;
 }
 
@@ -7,6 +11,31 @@
 }
 
 /* ================== BEGIN Layout ============== */
+@media (max-width: 991.98px) {
+  .metis-topnav {
+    flex-basis: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .search-bar {
+    width: var(--metis-sidebar-width);
+  }
+}
+
+.metis-sidebar-start {
+  width: var(--metis-sidebar-width);
+  position: absolute;
+}
+@media (min-width: 992px) {
+  .metis-sidebar-start.offcanvas.show {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+  }
+}
+
 .metis-content {
   outline: 10px solid #6e6e6e;
   border: 10px solid #e4e4e4;

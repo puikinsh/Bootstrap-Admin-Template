@@ -1,4 +1,29 @@
 /* ================== BEGIN Layout ============== */
+.metis-topnav {
+  @include media-breakpoint-down(lg) {
+    flex-basis: 100%;
+  }
+}
+
+.search-bar {
+  @include media-breakpoint-up(lg) {
+    width: var(--metis-sidebar-width);
+  }
+}
+
+.metis-sidebar-start {
+  width: var(--metis-sidebar-width);
+  position: absolute;
+  @include media-breakpoint-up(lg) {
+    &.offcanvas.show {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: 1020;
+    }
+  }
+}
+
 .metis-content {
   outline: 10px solid #6e6e6e;
   border: 10px solid #e4e4e4;

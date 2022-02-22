@@ -5,54 +5,74 @@ icon: fa fa-gamepad
 scripts:
 - Metis.metisButton()
 ---
-<div class="row">
-        <div class="col-lg-12">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
             <div class="card mb-3">
-                <header>
-                    <div class="icons"><i class="fa fa-building-o"></i></div>
-                    <h5>Default Button</h5>
-                    <div class="toolbar">
-                        <button class="btn btn-default btn-sm" data-toggle="collapse" data-target="#div1">default</button>
-                    </div>
-                </header>
-                <div class="card-body collapse show" id="div1">
-                    <h3>Default Button</h3>
-                    <a href="#" class="btn btn-default">default</a>
-                    <a href="#" class="btn btn-primary">primary</a>
-                    <a href="#" class="btn btn-danger">danger</a>
-                    <a href="#" class="btn btn-success">success</a>
-                    <a href="#" class="btn btn-info">info</a>
-                    <a href="#" class="btn btn-warning">warning</a>
-                    <hr>
-                    <h4>Mini Button</h4>
-                    <a href="#" class="btn btn-default btn-sm">default</a>
-                    <a href="#" class="btn btn-primary btn-sm">primary</a>
-                    <a href="#" class="btn btn-danger btn-sm">danger</a>
-                    <a href="#" class="btn btn-success btn-sm">success</a>
-                    <a href="#" class="btn btn-info btn-sm">info</a>
-                    <a href="#" class="btn btn-warning btn-sm">warning</a>
-                    <hr>
-                    <h4>Small Button</h4>
-                    <a href="#" class="btn btn-default btn-sm">default</a>
-                    <a href="#" class="btn btn-primary btn-sm">primary</a>
-                    <a href="#" class="btn btn-danger btn-sm">danger</a>
-                    <a href="#" class="btn btn-success btn-sm">success</a>
-                    <a href="#" class="btn btn-info btn-sm">info</a>
-                    <a href="#" class="btn btn-warning btn-sm">warning</a>
-                    <hr>
-                    <h4>Large Button</h4>
+                <div class="card-body">
+                    <h5 class="card-title">Buttons</h5>
+                    <!-- /.card-title -->
+                    <button type="button" class="btn btn-primary">Primary</button>
+                    <button type="button" class="btn btn-secondary">Secondary</button>
+                    <button type="button" class="btn btn-success">Success</button>
+                    <button type="button" class="btn btn-danger">Danger</button>
+                    <button type="button" class="btn btn-warning">Warning</button>
+                    <button type="button" class="btn btn-info">Info</button>
+                    <button type="button" class="btn btn-light">Light</button>
+                    <button type="button" class="btn btn-dark">Dark</button>
 
-                    <a href="#" class="btn btn-default btn-lg">default</a>
-                    <a href="#" class="btn btn-primary btn-lg">primary</a>
-                    <a href="#" class="btn btn-danger btn-lg">danger</a>
-                    <a href="#" class="btn btn-success btn-lg">success</a>
-                    <a href="#" class="btn btn-info btn-lg">info</a>
-                    <a href="#" class="btn btn-warning btn-lg">warning</a>
+                    <button type="button" class="btn btn-link">Link</button>
                 </div>
-                <!-- /.body -->
+                <!-- /.card-body -->
             </div>
             <!-- /.card -->
         </div>
-        <!-- /.col-lg-12 -->
-  </div>
-<!-- /.row -->
+        <!-- /.col-md-4 -->
+        <div class="col-sm-12 col-md-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Outline buttons</h5>
+                    <!-- /.card-title -->
+                    <button type="button" class="btn btn-outline-primary">Primary</button>
+                    <button type="button" class="btn btn-outline-secondary">Secondary</button>
+                    <button type="button" class="btn btn-outline-success">Success</button>
+                    <button type="button" class="btn btn-outline-danger">Danger</button>
+                    <button type="button" class="btn btn-outline-warning">Warning</button>
+                    <button type="button" class="btn btn-outline-info">Info</button>
+                    <button type="button" class="btn btn-outline-light">Light</button>
+                    <button type="button" class="btn btn-outline-dark">Dark</button>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col-md-4 -->
+        <div class="col-12 col-md-12">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Sizes</h5>
+                    <!-- /.card-title -->
+                    <button type="button" class="btn btn-primary btn-lg">Large button</button>
+                    <button type="button" class="btn btn-secondary btn-lg">Large button</button>
+
+                    <hr>
+
+                    <button type="button" class="btn btn-primary btn-sm">Small button</button>
+                    <button type="button" class="btn btn-secondary btn-sm">Small button</button>
+
+                    <hr>
+
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" type="button">Button</button>
+                        <button class="btn btn-primary" type="button">Button</button>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col-md-4 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container-fluid -->

@@ -14,15 +14,17 @@ scripts:
 - Metis.metisSortable()
 ---
 
+<div class="container-fluid">
 <!--Begin Datatables-->
 <div class="row">
-  <div class="col-lg-12">
-        <div class="box">
-            <header>
+    <div class="col">
+        <div class="card mb-3">
+            <header class="card-header d-flex">
                 <div class="icons"><i class="fa fa-table"></i></div>
                 <h5>Dynamic Table</h5>
+                {{> toolbar}}
             </header>
-            <div id="collapse4" class="body">
+            <div id="collapse4" class="card-body">
                 <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
                     {{> dataTable}}
                 </table>
@@ -38,19 +40,12 @@ scripts:
 <div class="row">
     <!-- .col-lg-6 -->
     <div class="col-lg-6">
-        <div class="box">
-            <header>
+        <div class="card mb-3">
+            <header class="card-header d-flex">
                 <h5>Default styles</h5>
-                <div class="toolbar">
-		                <div class="btn-group">
-                    <a href="#defaultTable" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
-                        <i class="fa fa-angle-up"></i>
-                    </a>
-                    <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
-                  </div>
-                </div>
+                {{> toolbar}}
             </header>
-            <div id="defaultTable" class="body collapse in">
+            <div id="defaultTable" class="card-body collapse show">
                 <table class="table responsive-table">
                     {{> tableBase}}
                 </table>
@@ -61,21 +56,12 @@ scripts:
 
     <!-- .col-lg-6 -->
     <div class="col-lg-6">
-        <div class="box">
-            <header>
+        <div class="card mb-3">
+            <header class="card-header d-flex">
                 <h5>Table Striped</h5>
-                <div class="toolbar">
-                    <div class="btn-group">
-                        <a href="#stripedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
-                            <i class="fa fa-angle-up"></i>
-                        </a>
-                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
-                    </div>
-
-
-                </div>
+                {{> toolbar}}
             </header>
-            <div id="stripedTable" class="body collapse in">
+            <div id="stripedTable" class="card-body collapse show">
                 <table class="table table-striped responsive-table">
                     {{> tableBase}}
                 </table>
@@ -89,19 +75,12 @@ scripts:
 <div class="row">
     <!-- .col-lg-6 -->
     <div class="col-lg-6">
-        <div class="box">
-            <header>
+        <div class="card mb-3">
+            <header class="card-header d-flex">
                 <h5>Table Bordered</h5>
-                <div class="toolbar">
-                    <div class="btn-group">
-                        <a href="#borderedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
-                            <i class="fa fa-angle-up"></i>
-                        </a>
-                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
-                    </div>
-                </div>
+                {{> toolbar}}
             </header>
-            <div id="borderedTable" class="body collapse in">
+            <div id="borderedTable" class="card-body collapse show">
                 <table class="table table-bordered responsive-table">
                     {{> tableBase}}
                 </table>
@@ -112,19 +91,12 @@ scripts:
 
     <!-- .col-lg-6 -->
     <div class="col-lg-6">
-        <div class="box">
-            <header>
+        <div class="card mb-3">
+            <header class="card-header d-flex">
                 <h5>Table Condensed</h5>
-                <div class="toolbar">
-                    <div class="btn-group">
-                        <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
-                            <i class="fa fa-angle-up"></i>
-                        </a>
-                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
-                    </div>
-                </div>
+                {{> toolbar}}
             </header>
-            <div id="condensedTable" class="body collapse in">
+            <div id="condensedTable" class="card-body collapse show">
                 <table class="table table-condensed responsive-table">
                     {{> tableBase}}
                 </table>
@@ -133,51 +105,38 @@ scripts:
     </div>
     <!-- /.col-lg-6 -->
 </div>
-
-<div class="row">
-    <!-- .col-lg-6 -->
-    <div class="col-lg-6">
-        <div class="box">
-            <header>
-                <h5>Optional row classes</h5>
-                <div class="toolbar">
-                    <div class="btn-group">
-                        <a href="#optionalTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
-                            <i class="fa fa-angle-up"></i>
-                        </a>
-                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
-                    </div>
+    <div class="row">
+        <!-- .col-lg-6 -->
+        <div class="col-lg-6">
+            <div class="card mb-3">
+                <header class="card-header d-flex">
+                    <h5>Optional row classes</h5>
+                    {{> toolbar}}
+                </header>
+                <div id="optionalTable" class="card-body collapse show">
+                    <table class="table responsive-table">
+                        {{> tableBase}}
+                    </table>
                 </div>
-            </header>
-            <div id="optionalTable" class="body collapse in">
-                <table class="table responsive-table">
-                    {{> tableBase}}
-                </table>
             </div>
         </div>
-    </div>
-    <!-- /.col-lg-6 -->
+        <!-- /.col-lg-6 -->
 
-    <!-- .col-lg-6 -->
-    <div class="col-lg-6">
-        <div class="box">
-            <header>
-                <h5>Sortable Table</h5>
-                <div class="toolbar">
-                    <div class="btn-group">
-                        <a href="#sortableTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
-                            <i class="fa fa-angle-up"></i>
-                        </a>
-                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
-                    </div>
+        <!-- .col-lg-6 -->
+        <div class="col-lg-6">
+            <div class="card mb-3">
+                <header class="card-header d-flex">
+                    <h5>Sortable Table</h5>
+                    {{> toolbar}}
+                </header>
+                <div id="sortableTable" class="card-body collapse show">
+                    <table class="table table-bordered sortableTable responsive-table">
+                        {{> tableSortable}}
+                    </table>
                 </div>
-            </header>
-            <div id="sortableTable" class="body collapse in">
-                <table class="table table-bordered sortableTable responsive-table">
-                    {{> tableSortable}}
-                </table>
             </div>
         </div>
+        <!-- /.col-lg-6 -->
     </div>
-    <!-- /.col-lg-6 -->
 </div>
+<!-- /.container-fluid -->

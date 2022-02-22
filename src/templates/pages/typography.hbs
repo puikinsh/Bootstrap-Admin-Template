@@ -1,283 +1,236 @@
 ---
 title: Typography
-icon: fa fa-font
+icon: bi bi-file-font
 ---
-<div class="row">
-    <div class="col-lg-4">
-        <div class="card mb-3">
-            <header>
-                <h5>Heading</h5>
-                <div class="toolbar">
-                    <span class="label label-info">
-                        &lt;h1&gt;Heading 1&lt;/h1&gt;
-                    </span>
-                </div>
-            </header>
-            <div class="card-body">
-                <h1 class="text-muted">Heading 1</h1>
-                <h2 class="text-primary">Heading 2</h2>
-                <h3 class="text-warning">Heading 3</h3>
-                <h4 class="text-danger">Heading 4</h4>
-                <h5 class="text-success">Heading 5</h5>
-                <h6 class="text-info">Heading 6</h6>
-            </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card mb-3">
+        <header class="card-header d-flex flex-row align-items-center">
+          <div class="metis-ratio-square me-3">
+            <i class="bi bi-bounding-box"></i>
+          </div>
+          <div class="vr"></div>
+          <h5 class="ms-3 my-0">Headings</h5>
+        </header>
+        <div class="card-body">
+          <h1>h1. Bootstrap heading</h1>
+          <h2>h2. Bootstrap heading</h2>
+          <h3>h3. Bootstrap heading</h3>
+          <h4>h4. Bootstrap heading</h4>
+          <h5>h5. Bootstrap heading</h5>
+          <h6>h6. Bootstrap heading</h6>
         </div>
+      </div>
+    </div>
+    <!-- /.col-lg-6 -->
+    <div class="col-lg-6">
+      <div class="card mb-3">
+        <header class="card-header">
+          <h5>Display headings</h5>
+        </header>
+        <div class="card-body">
+          <h1 class="display-1">Display 1</h1>
+          <h1 class="display-2">Display 2</h1>
+          <h1 class="display-3">Display 3</h1>
+          <h1 class="display-4">Display 4</h1>
+          <h1 class="display-5">Display 5</h1>
+          <h1 class="display-6">Display 6</h1>
+        </div>
+      </div>
+    </div>
+    <!-- /.col-lg-6 -->
+  </div>
+  <!-- /.row -->
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card mb-3">
+        <header class="card-header">
+          <h5>Lead</h5>
+        </header>
+        <div class="card-body">
+          <p class="lead">
+            This is a lead paragraph. It stands out from regular paragraphs.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- /.col-lg-6 -->
+    <div class="col-lg-6">
+      <div class="card mb-3">
+        <header class="card-header">
+          <h5>Inline text elements</h5>
+        </header>
+        <div class="card-body">
+          <p>You can use the mark tag to <mark>highlight</mark> text.</p>
+          <p><del>This line of text is meant to be treated as deleted text.</del></p>
+          <p><s>This line of text is meant to be treated as no longer accurate.</s></p>
+          <p><ins>This line of text is meant to be treated as an addition to the document.</ins></p>
+          <p><u>This line of text will render as underlined.</u></p>
+          <p><small>This line of text is meant to be treated as fine print.</small></p>
+          <p><strong>This line rendered as bold text.</strong></p>
+          <p><em>This line rendered as italicized text.</em></p>
+        </div>
+      </div>
+    </div>
+    <!-- /.col-lg-6 -->
+  </div>
+  <!-- /.row -->
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card mb-3">
+        <header class="card-header">
+          <h5>Abbreviations</h5>
+        </header>
+        <div class="card-body">
+          <p><abbr title="attribute">attr</abbr></p>
+          <p><abbr title="HyperText Markup Language" class="initialism">HTML</abbr></p>
+        </div>
+      </div>
+    </div>
+    <!-- /.col-lg-6 -->
+    <div class="col-lg-6">
+      <div class="card mb-3">
+        <header class="card-header">
+          <h5>Blockquotes</h5>
+        </header>
+        <div class="card-body">
+          <blockquote class="blockquote">
+            <p>A well-known quote, contained in a blockquote element.</p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+    <!-- /.col-lg-6 -->
+  </div>
+  <!-- /.row -->
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card mb-3">
+        <header class="card-header">
+          <h5>Naming a source</h5>
+        </header>
+        <div class="card-body">
+          <figure>
+            <blockquote class="blockquote">
+              <p>A well-known quote, contained in a blockquote element.</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+              Someone famous in <cite title="Source Title">Source Title</cite>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+    <!-- /.col-lg-6 -->
+    <div class="col-lg-6">
+      <div class="card mb-3">
+        <header class="card-header">
+          <h5>Alignment</h5>
+        </header>
+        <div class="card-body">
+          <figure class="text-center">
+            <blockquote class="blockquote">
+              <p>A well-known quote, contained in a blockquote element.</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+              Someone famous in <cite title="Source Title">Source Title</cite>
+            </figcaption>
+          </figure>
+          <hr>
+          <figure class="text-end">
+            <blockquote class="blockquote">
+              <p>A well-known quote, contained in a blockquote element.</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+              Someone famous in <cite title="Source Title">Source Title</cite>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+    <!-- /.col-lg-6 -->
+  </div>
+  <!-- /.row -->
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card mb-3">
+        <header class="card-header">
+          <h5>Unstyled Lists</h5>
+        </header>
+        <div class="card-body">
+          <ul class="list-unstyled">
+            <li>This is a list.</li>
+            <li>It appears completely unstyled.</li>
+            <li>Structurally, it's still a list.</li>
+            <li>However, this style only applies to immediate child elements.</li>
+            <li>Nested lists:
+              <ul>
+                <li>are unaffected by this style</li>
+                <li>will still show a bullet</li>
+                <li>and have appropriate left margin</li>
+              </ul>
+            </li>
+            <li>This may still come in handy in some situations.</li>
+          </ul>
+        </div>
+      </div>
     </div>
     <!-- /.col-lg-4 -->
-    <div class="col-lg-8">
-        <div class="card mb-3">
-            <header>
-                <h5>Paragraph</h5>
-                <div class="toolbar">
-                    <span class="label label-warning">
-                        &lt;p&gt;paragraph&lt;/p&gt;
-                    </span>
-                </div>
-            </header>
-            <div class="card-body">
-                <p>Default paragraph</p>
-                <p class="lead">lead paragraph</p>
-                <p class="text-muted">Muted paragraph</p>
-                <p class="text-warning">warning paragraph</p>
-                <p class="text-primary">primary paragraph</p>
-                <p class="text-info">info paragraph</p>
-                <p class="text-success">success paragraph</p>
-                <p class="text-danger">danger paragraph</p>
-            </div>
+    <div class="col-lg-4">
+      <div class="card mb-3">
+        <header class="card-header">
+          <h5>Inline Lists</h5>
+        </header>
+        <div class="card-body">
+          <ul class="list-inline">
+            <li class="list-inline-item">This is a list item.</li>
+            <li class="list-inline-item">And another one.</li>
+            <li class="list-inline-item">But they're displayed inline.</li>
+          </ul>
         </div>
+      </div>
     </div>
-    <!-- /.col-lg-8 -->
-</div>
-<!-- /.row -->
+    <!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+      <div class="card mb-3">
+        <header class="card-header">
+          <h5>Description list alignment</h5>
+        </header>
+        <div class="card-body">
+          <dl class="row">
+            <dt class="col-sm-3">Description lists</dt>
+            <dd class="col-sm-9">A description list is perfect for defining terms.</dd>
 
-<div class="row">
-    <div class="col-lg-6">
-        <div class="card mb-3">
-            <header>
-                <h5>Blockquotes</h5>
-                <div class="toolbar">
-                    <span class="label label-danger">
-                        blockquotes
-                    </span>
-                </div>
-            </header>
-            <div class="card-body clearfix">
-                <blockquote>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id eleifend nunc. Sed
-                        fringilla pellentesque consequat.
-                    </p>
-                </blockquote>
-                <blockquote class="pull-right">
-                    <p class="text-muted">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id eleifend nunc.
-                        <small>Sed fringilla pellentesque consequat.</small>
-                    </p>
-                </blockquote>
-            </div>
-        </div>
-    </div>
-    <!-- /.col-lg-6 -->
-    <div class="col-lg-6">
-        <div class="card mb-3">
-            <header>
-                <div class="icons"><i class="fa fa-list"></i></div>
-                <h5>List</h5>
-                <div class="toolbar">
-                    <span class="label label-default">
-                        <i class="fa fa-list-alt"></i>
-                    </span>
-                </div>
-            </header>
-            <div class="card-body">
-                <h3>Unordered</h3>
-                <ul>
-                    <li>Lorem ipsum dolor sit amet</li>
-                    <li class="label label-default">Consectetur adipiscing elit</li>
-                    <li class="text-success">Integer molestie lorem at massa</li>
-                    <li class="label label-danger">Facilisis in pretium nisl aliquet</li>
-                    <li>Nulla volutpat aliquam velit
-                        <ul>
-                            <li>Phasellus iaculis neque</li>
-                            <li class="badge badge-success">Purus sodales ultricies</li>
-                            <li>Vestibulum laoreet porttitor sem</li>
-                            <li>Ac tristique libero volutpat at</li>
-                        </ul>
-                    </li>
-                    <li>Faucibus porta lacus fringilla vel</li>
-                    <li>Aenean sit amet erat nunc</li>
-                    <li>Eget porttitor lorem</li>
-                </ul>
+            <dt class="col-sm-3">Term</dt>
+            <dd class="col-sm-9">
+              <p>Definition for the term.</p>
+              <p>And some more placeholder definition text.</p>
+            </dd>
 
-                <h3>Ordered</h3>
-                <ol>
-                    <li>Lorem ipsum dolor sit amet</li>
-                    <li>Consectetur adipiscing elit</li>
-                    <li>Integer molestie lorem at massa</li>
-                    <li>Facilisis in pretium nisl aliquet</li>
-                    <li>Nulla volutpat aliquam velit
-                        <ul>
-                            <li>Phasellus iaculis neque</li>
-                            <li>Purus sodales ultricies</li>
-                            <li>Vestibulum laoreet porttitor sem</li>
-                            <li>Ac tristique libero volutpat at</li>
-                        </ul>
-                    </li>
-                    <li>Faucibus porta lacus fringilla vel</li>
-                    <li>Aenean sit amet erat nunc</li>
-                    <li>Eget porttitor lorem</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-    <!-- /.col-lg-6 -->
-</div>
-<!-- /.row -->
+            <dt class="col-sm-3">Another term</dt>
+            <dd class="col-sm-9">This definition is short, so no extra paragraphs or anything.</dd>
 
-<div class="row">
-    <div class="col-lg-6">
-        <div class="card mb-3">
-            <header>
-                <h5>Box > Body
-                    <small>10px padding</small>
-                </h5>
-            </header>
-            <div class="card-body">
-                <pre class="prettyprint linenums">
-&lt;div class=&quot;box&quot;&gt;
- &lt;header&gt;
-  &lt;h5&gt;Title&lt;/h5&gt;
- &lt;/header&gt;
- &lt;div class=&quot;body&quot;&gtContent;&lt;/div&gt;
-&lt;/div&gt;</pre>
-            </div>
-        </div>
-    </div>
-    <!-- /.col-lg-6 -->
-    <div class="col-lg-6">
-        <div class="card mb-3">
-            <header>
-                <h5>Box > Block
-                    <small>No padding</small>
-                </h5>
-            </header>
-            <div class="block">
-                <pre class="prettyprint linenums">
-&lt;div class=&quot;box&quot;&gt;
-  &lt;header&gt;
-    &lt;h5&gt;Title&lt;/h5&gt;
-  &lt;/header&gt;
-    &lt;div class=&quot;block&quot;&gt;Content&lt;/div&gt;
-&lt;/div&gt;</pre>
-            </div>
-        </div>
-    </div>
-    <!-- /.col-lg-6 -->
-</div>
-<!-- /.row -->
+            <dt class="col-sm-3 text-truncate">Truncated term is truncated</dt>
+            <dd class="col-sm-9">This can be useful when space is tight. Adds an ellipsis at the end.</dd>
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card mb-3">
-            <header>
-                <h5>Label</h5>
-                <div class="toolbar">
-                    <span class="label label-default">label</span>
-                </div>                
-            </header>
-            <div class="card-body">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Labels</th>
-                            <th>Markup</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <span class="label label-default">Default</span>
-                            </td>
-                            <td>
-                                <code>&lt;span class="label label-default"&gt;Default&lt;/span&gt;</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="label label-success">Success</span>
-                            </td>
-                            <td>
-                                <code>&lt;span class="label label-success"&gt;Success&lt;/span&gt;</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="label label-warning">Warning</span>
-                            </td>
-                            <td>
-                                <code>&lt;span class="label label-warning"&gt;Warning&lt;/span&gt;</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="label label-danger">Danger</span>
-                            </td>
-                            <td>
-                                <code>&lt;span class="label label-danger"&gt;Important&lt;/span&gt;</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="label label-info">Info</span>
-                            </td>
-                            <td>
-                                <code>&lt;span class="label label-info"&gt;Info&lt;/span&gt;</code>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </div>
+            <dt class="col-sm-3">Nesting</dt>
+            <dd class="col-sm-9">
+              <dl class="row">
+                <dt class="col-sm-4">Nested definition list</dt>
+                <dd class="col-sm-8">I heard you like definition lists. Let me put a definition list inside your
+                  definition list.</dd>
+              </dl>
+            </dd>
+          </dl>
         </div>
+      </div>
     </div>
-    <!-- /.col-lg-12 -->
+    <!-- /.col-lg-4 -->
+  </div>
+  <!-- /.row -->
 </div>
-<!-- /.row -->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card mb-3">
-            <header>
-                <h5>Badge</h5>
-                <div class="toolbar">
-                    <span class="badge">badge</span>
-                </div>
-            </header>
-            <div class="card-body">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Example</th>
-                            <th>Markup</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                Default
-                            </td>
-                            <td>
-                                <span class="badge">1</span>
-                            </td>
-                            <td>
-                                <code>&lt;span class="badge"&gt;1&lt;/span&gt;</code>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
+<!-- /.container-fluid -->

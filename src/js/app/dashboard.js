@@ -150,7 +150,7 @@
 
     /*----------- BEGIN TABLESORTER CODE -------------------------*/
     /* required jquery.tablesorter.min.js*/
-    $(".sortableTable").tablesorter();
+    $(".sortableTable").tablesorter({theme : "bootstrap",});
     /*----------- END TABLESORTER CODE -------------------------*/
 
 };

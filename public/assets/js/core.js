@@ -1,205 +1,315 @@
 /**
  * bootstrap-admin-template - Free Admin Template Based On Twitter Bootstrap 3.x
- * @version 2.4.2
+ * @version 3.0.0-alpha
  * @license MIT
  * @link https://github.com/puikinsh/Bootstrap-Admin-Template
  */
-'use strict';
 
-;(function (window) {
-    var
-    // Are we expecting a touch or a click?
-    buttonPressedEvent = 'touchstart click',
-        Metis = function Metis() {
-        this.init();
-    };
+(function () {
+  'use strict';
 
-    // Initialization method
-    Metis.prototype.init = function () {
-        this.buttonPressedEvent = buttonPressedEvent;
-    };
-
-    Metis.prototype.getViewportHeight = function () {
-
-        var docElement = document.documentElement,
-            client = docElement.clientHeight,
-            inner = window.innerHeight;
-
-        if (client < inner) return inner;else return client;
-    };
-
-    Metis.prototype.getViewportWidth = function () {
-
-        var docElement = document.documentElement,
-            client = docElement.clientWidth,
-            inner = window.innerWidth;
-
-        if (client < inner) return inner;else return client;
-    };
-
-    // Creates a Metis object.
-    window.Metis = new Metis();
-})(window);
-'use strict';
-
-;(function ($) {
-    "use strict";
-
-    var $navBar = $('nav.navbar'),
-        $body = $('body'),
-        $menu = $('#menu'),
-        $left = $('#left');
-
-    function addPaddingTop(el, val) {
-        el.css('padding-top', val);
+  class MetisBase {
+    constructor() {
+      this.buttonPressedEvent = "click";
     }
-    function removePaddingTop(el) {
-        el.css('padding-top', 'inherit');
-    }
-    function getHeight(el) {
-        return el.outerHeight();
+    getViewportHeight() {
+      const docElement = document.documentElement;
+      const client = docElement.clientHeight;
+      const inner = window.innerHeight;
+
+      return client < inner ? inner : client;
     }
 
-    function init() {
-        var isFixedNav = $navBar.hasClass('navbar-fixed-top');
-        var bodyPadTop = isFixedNav ? $navBar.outerHeight(true) : 0;
+    getViewportWidth() {
+      const docElement = document.documentElement;
+      const client = docElement.clientWidth;
+      const inner = window.innerWidth;
 
-        $body.css('padding-top', bodyPadTop);
-
-        if ($body.hasClass('menu-affix')) {
-            $left.css({
-                top: bodyPadTop
-            });
-            console.log($navBar.outerHeight(true));
-        }
+      return client < inner ? inner : client;
     }
+  }
+  window.Metis = new MetisBase();
 
-    Metis.navBar = function () {
-        var resizeTimer;
-        init();
-        $(window).resize(function () {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(init(), 250);
-        });
-    };
-    return Metis;
-})(jQuery);
-'use strict';
+  Metis.navBar = () => {
+    return new Error("Metis.navBar() is removed.");
+  };
 
-;(function ($, Metis) {
-  "use strict";
+  /* eslint-disable promise/prefer-await-to-then */
+
+  const methodMap = [
+  	[
+  		'requestFullscreen',
+  		'exitFullscreen',
+  		'fullscreenElement',
+  		'fullscreenEnabled',
+  		'fullscreenchange',
+  		'fullscreenerror',
+  	],
+  	// New WebKit
+  	[
+  		'webkitRequestFullscreen',
+  		'webkitExitFullscreen',
+  		'webkitFullscreenElement',
+  		'webkitFullscreenEnabled',
+  		'webkitfullscreenchange',
+  		'webkitfullscreenerror',
+
+  	],
+  	// Old WebKit
+  	[
+  		'webkitRequestFullScreen',
+  		'webkitCancelFullScreen',
+  		'webkitCurrentFullScreenElement',
+  		'webkitCancelFullScreen',
+  		'webkitfullscreenchange',
+  		'webkitfullscreenerror',
+
+  	],
+  	[
+  		'mozRequestFullScreen',
+  		'mozCancelFullScreen',
+  		'mozFullScreenElement',
+  		'mozFullScreenEnabled',
+  		'mozfullscreenchange',
+  		'mozfullscreenerror',
+  	],
+  	[
+  		'msRequestFullscreen',
+  		'msExitFullscreen',
+  		'msFullscreenElement',
+  		'msFullscreenEnabled',
+  		'MSFullscreenChange',
+  		'MSFullscreenError',
+  	],
+  ];
+
+  const nativeAPI = (() => {
+  	const unprefixedMethods = methodMap[0];
+  	const returnValue = {};
+
+  	for (const methodList of methodMap) {
+  		const exitFullscreenMethod = methodList?.[1];
+  		if (exitFullscreenMethod in document) {
+  			for (const [index, method] of methodList.entries()) {
+  				returnValue[unprefixedMethods[index]] = method;
+  			}
+
+  			return returnValue;
+  		}
+  	}
+
+  	return false;
+  })();
+
+  const eventNameMap = {
+  	change: nativeAPI.fullscreenchange,
+  	error: nativeAPI.fullscreenerror,
+  };
+
+  // eslint-disable-next-line import/no-mutable-exports
+  let screenfull = {
+  	// eslint-disable-next-line default-param-last
+  	request(element = document.documentElement, options) {
+  		return new Promise((resolve, reject) => {
+  			const onFullScreenEntered = () => {
+  				screenfull.off('change', onFullScreenEntered);
+  				resolve();
+  			};
+
+  			screenfull.on('change', onFullScreenEntered);
+
+  			const returnPromise = element[nativeAPI.requestFullscreen](options);
+
+  			if (returnPromise instanceof Promise) {
+  				returnPromise.then(onFullScreenEntered).catch(reject);
+  			}
+  		});
+  	},
+  	exit() {
+  		return new Promise((resolve, reject) => {
+  			if (!screenfull.isFullscreen) {
+  				resolve();
+  				return;
+  			}
+
+  			const onFullScreenExit = () => {
+  				screenfull.off('change', onFullScreenExit);
+  				resolve();
+  			};
+
+  			screenfull.on('change', onFullScreenExit);
+
+  			const returnPromise = document[nativeAPI.exitFullscreen]();
+
+  			if (returnPromise instanceof Promise) {
+  				returnPromise.then(onFullScreenExit).catch(reject);
+  			}
+  		});
+  	},
+  	toggle(element, options) {
+  		return screenfull.isFullscreen ? screenfull.exit() : screenfull.request(element, options);
+  	},
+  	onchange(callback) {
+  		screenfull.on('change', callback);
+  	},
+  	onerror(callback) {
+  		screenfull.on('error', callback);
+  	},
+  	on(event, callback) {
+  		const eventName = eventNameMap[event];
+  		if (eventName) {
+  			document.addEventListener(eventName, callback, false);
+  		}
+  	},
+  	off(event, callback) {
+  		const eventName = eventNameMap[event];
+  		if (eventName) {
+  			document.removeEventListener(eventName, callback, false);
+  		}
+  	},
+  	raw: nativeAPI,
+  };
+
+  Object.defineProperties(screenfull, {
+  	isFullscreen: {
+  		get: () => Boolean(document[nativeAPI.fullscreenElement]),
+  	},
+  	element: {
+  		enumerable: true,
+  		get: () => document[nativeAPI.fullscreenElement] ?? undefined,
+  	},
+  	isEnabled: {
+  		enumerable: true,
+  		// Coerce to boolean in case of old WebKit.
+  		get: () => Boolean(document[nativeAPI.fullscreenEnabled]),
+  	},
+  });
+
+  if (!nativeAPI) {
+  	screenfull = {isEnabled: false};
+  }
+
+  var screenfull$1 = screenfull;
+
   // Define toggleFullScreen
-
-  Metis.toggleFullScreen = function () {
-    if (window.screenfull !== undefined && screenfull.enabled) {
-      $('#toggleFullScreen').on(Metis.buttonPressedEvent, function (e) {
-        screenfull.toggle(window.document[0]);
-        $('body').toggleClass('fullScreen');
-        e.preventDefault();
-      });
-    } else {
-      $('#toggleFullScreen').addClass('hidden');
+  Metis.toggleFullScreen = () => {
+    if (!screenfull$1.isEnabled) {
+      return false;
     }
+    const toggleFullScreen = document.getElementById("toggleFullScreen");
+    toggleFullScreen?.addEventListener(Metis.buttonPressedEvent, () => {
+      screenfull$1.toggle(document.documentElement);
+    });
   };
+
   // Define boxFullScreen
-  Metis.boxFullScreen = function () {
-    if (window.screenfull !== undefined && screenfull.enabled) {
-      $('.full-box').on(Metis.buttonPressedEvent, function (e) {
-        var $toggledPanel = $(this).parents('.box')[0];
-        screenfull.toggle($toggledPanel);
-        $(this).parents('.box').toggleClass('full-screen-box');
-        $(this).parents('.box').children('.body').toggleClass('full-screen-box');
-        $(this).children('i').toggleClass('fa-compress');
+  Metis.boxFullScreen = () => {
+    if (!screenfull$1.isEnabled) {
+      return false;
+    }
+    const triggers = document.querySelectorAll(".full-box");
+    [...triggers].map((trigger) => {
+      const i = trigger.querySelector("i.bi-fullscreen");
+      trigger.addEventListener("click", (e) => {
+        screenfull$1.toggle(trigger.closest(".box"));
+        i?.classList.toggle("bi-fullscreen");
+        i?.classList.toggle("bi-fullscreen-exit");
+      });
+    });
+  };
+  (function ($, Metis) {
+    Metis.panelBodyCollapse = function () {
+      var $collapseButton = $(".collapse-box"),
+        $collapsedPanelBody = $collapseButton.closest(".box").children(".body");
+
+      $collapsedPanelBody.collapse("show");
+
+      $collapseButton.on(Metis.buttonPressedEvent, function (e) {
+        var $collapsePanelBody = $(this).closest(".box").children(".body"),
+          $toggleButtonImage = $(this).children("i");
+        $collapsePanelBody.on("show.bs.collapse", function () {
+          $toggleButtonImage
+            .removeClass("fa-minus fa-plus")
+            .addClass("fa-spinner fa-spin");
+        });
+        $collapsePanelBody.on("shown.bs.collapse", function () {
+          $toggleButtonImage
+            .removeClass("fa-spinner fa-spin")
+            .addClass("fa-minus");
+        });
+
+        $collapsePanelBody.on("hide.bs.collapse", function () {
+          $toggleButtonImage
+            .removeClass("fa-minus fa-plus")
+            .addClass("fa-spinner fa-spin");
+        });
+
+        $collapsePanelBody.on("hidden.bs.collapse", function () {
+          $toggleButtonImage
+            .removeClass("fa-spinner fa-spin")
+            .addClass("fa-plus");
+        });
+
+        $collapsePanelBody.collapse("toggle");
+
         e.preventDefault();
       });
-    } else {
-      $('.full-box').addClass('hidden');
-    }
-  };
-  Metis.panelBodyCollapse = function () {
-    var $collapseButton = $('.collapse-box'),
-        $collapsedPanelBody = $collapseButton.closest('.box').children('.body');
-
-    $collapsedPanelBody.collapse('show');
-
-    $collapseButton.on(Metis.buttonPressedEvent, function (e) {
-      var $collapsePanelBody = $(this).closest('.box').children('.body'),
-          $toggleButtonImage = $(this).children('i');
-      $collapsePanelBody.on('show.bs.collapse', function () {
-        $toggleButtonImage.removeClass('fa-minus fa-plus').addClass('fa-spinner fa-spin');
+    };
+    Metis.boxHiding = function () {
+      $(".close-box").on(Metis.buttonPressedEvent, function () {
+        $(this).closest(".box").hide("slow");
       });
-      $collapsePanelBody.on('shown.bs.collapse', function () {
-        $toggleButtonImage.removeClass('fa-spinner fa-spin').addClass('fa-minus');
-      });
-
-      $collapsePanelBody.on('hide.bs.collapse', function () {
-        $toggleButtonImage.removeClass('fa-minus fa-plus').addClass('fa-spinner fa-spin');
-      });
-
-      $collapsePanelBody.on('hidden.bs.collapse', function () {
-        $toggleButtonImage.removeClass('fa-spinner fa-spin').addClass('fa-plus');
-      });
-
-      $collapsePanelBody.collapse('toggle');
-
-      e.preventDefault();
-    });
-  };
-  Metis.boxHiding = function () {
-    $('.close-box').on(Metis.buttonPressedEvent, function () {
-      $(this).closest('.box').hide('slow');
-    });
-  };
-  return Metis;
-})(jQuery, Metis || {});
-'use strict';
-
-;(function ($, Metis) {
-    var $body = $('body'),
-        $leftToggle = $('.toggle-left'),
-        $count = 0;
-
-    Metis.metisAnimatePanel = function () {
-
-        if ($('#left').length) {
-            $leftToggle.on(Metis.buttonPressedEvent, function (e) {
-
-                if ($(window).width() < 768) {
-                    $body.toggleClass('sidebar-left-opened');
-                } else {
-                    switch (true) {
-                        case $body.hasClass("sidebar-left-hidden"):
-                            $body.removeClass("sidebar-left-hidden sidebar-left-mini");
-                            break;
-                        case $body.hasClass("sidebar-left-mini"):
-                            $body.removeClass("sidebar-left-mini").addClass("sidebar-left-hidden");
-                            break;
-                        default:
-                            $body.addClass("sidebar-left-mini");
-                    }
-
-                    e.preventDefault();
-                }
-            });
-        } else {
-            $leftToggle.addClass('hidden');
-        }
     };
     return Metis;
-})(jQuery, Metis || {});
-'use strict';
+  })(jQuery, Metis || {});
 
-;(function ($) {
-   $(document).ready(function () {
+  (function($, Metis) {
+      var $body = $('body'),
+          $leftToggle = $('.toggle-left');
 
+      Metis.metisAnimatePanel = function() {
+
+          if ($('#left').length) {
+              $leftToggle.on(Metis.buttonPressedEvent, function(e) {
+
+                  if ($(window).width() < 768) {
+                      $body.toggleClass('sidebar-left-opened');
+                  } else {
+                      switch (true) {
+                          case $body.hasClass("sidebar-left-hidden"):
+                              $body.removeClass("sidebar-left-hidden sidebar-left-mini");
+                              break;
+                          case $body.hasClass("sidebar-left-mini"):
+                              $body.removeClass("sidebar-left-mini").addClass("sidebar-left-hidden");
+                              break;
+                          default:
+                              $body.addClass("sidebar-left-mini");
+                      }
+
+                      e.preventDefault();
+                  }
+              });
+          } else {
+              $leftToggle.addClass('hidden');
+          }
+
+      };
+      return Metis;
+  })(jQuery, Metis || {});
+
+  (function($) {
+     $(document).ready(function() {
+      
       $('[data-toggle="tooltip"]').tooltip();
-
+   
       $('#menu').metisMenu();
       Metis.navBar();
       Metis.metisAnimatePanel();
       Metis.toggleFullScreen();
       Metis.boxFullScreen();
       Metis.panelBodyCollapse();
-      Metis.boxHiding();
-   });
-})(jQuery);
+      Metis.boxHiding();   
+    });
+  })(jQuery);
+
+})();

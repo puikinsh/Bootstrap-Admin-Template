@@ -1,40 +1,21 @@
-;(function(window) {
-    var
-      // Are we expecting a touch or a click?
-      buttonPressedEvent = 'touchstart click',
-      Metis = function() {
-          this.init();
-      };
+class MetisBase {
+  constructor() {
+    this.buttonPressedEvent = "click";
+  }
+  getViewportHeight() {
+    const docElement = document.documentElement;
+    const client = docElement.clientHeight;
+    const inner = window.innerHeight;
 
-    // Initialization method
-    Metis.prototype.init = function() {
-        this.buttonPressedEvent = buttonPressedEvent;
-    };
+    return client < inner ? inner : client;
+  }
 
-    Metis.prototype.getViewportHeight = function() {
+  getViewportWidth() {
+    const docElement = document.documentElement;
+    const client = docElement.clientWidth;
+    const inner = window.innerWidth;
 
-        var docElement = document.documentElement,
-                client = docElement.clientHeight,
-                inner = window.innerHeight;
-
-        if (client < inner)
-            return inner;
-        else
-            return client;
-    };
-
-    Metis.prototype.getViewportWidth = function() {
-
-        var docElement = document.documentElement,
-                client = docElement.clientWidth,
-                inner = window.innerWidth;
-
-        if (client < inner)
-            return inner;
-        else
-            return client;
-    };
-
-    // Creates a Metis object.
-    window.Metis = new Metis();
-})(window);
+    return client < inner ? inner : client;
+  }
+}
+window.Metis = new MetisBase();

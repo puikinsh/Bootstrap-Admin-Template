@@ -658,35 +658,6 @@ body:not(.sidebar-left-mini) #menu .nav-header {
   text-align: center;
   width: 27px;
 }
-/* BEGIN SORTABLETABLE STYLES */
-.sortableTable th {
-  background-image: linear-gradient(to bottom, #fff 0%, #f2f2f2 100%);
-  cursor: pointer;
-}
-.sortableTable th:hover {
-  color: #888;
-}
-.sortableTable th.tablesorter-header .fa.sort:before {
-  content: "\f0dc";
-}
-.sortableTable th.tablesorter-header.tablesorter-headerDesc .fa.sort:before {
-  content: "\f0de";
-}
-.sortableTable th.tablesorter-header.tablesorter-headerAsc .fa.sort:before {
-  content: "\f0dd";
-}
-/* END SORTABLETABLE STYLES */
-/* BEGIN SPARKLINE STYLES */
-.sparkline {
-  min-width: 50px;
-  border-right: 1px solid #DCDCDC;
-  box-shadow: 1px 0 0 0 #FFFFFF;
-  float: left;
-  margin-right: 12px;
-  padding: 10px 14px 0px 4px;
-  line-height: 52px;
-}
-/* END SPARKLINE STYLES */
 .stats_box {
   display: inline-block;
   list-style: none outside none;

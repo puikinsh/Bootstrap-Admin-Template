@@ -1,0 +1,12 @@
+.box:not(:fullscreen) {
+  background-color: #afa;
+}
+
+
+.box:fullscreen {
+  background-color: #faa;
+}
+
+.box:fullscreen .card-body {
+  overflow: auto;
+}

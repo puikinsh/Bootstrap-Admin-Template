@@ -43,6 +43,55 @@
 }
 
 /* ================== END Layout ============== */
+/*!
+* metismenujs - v1.3.1
+* A menu plugin
+* https://github.com/onokumus/metismenujs#readme
+*
+* Made by Osman Nuri Okumus <onokumus@gmail.com> (https://github.com/onokumus)
+* Under MIT License
+*/
+.metismenu .mm-collapse:not(.mm-show) {
+  display: none;
+}
+
+.metismenu .mm-collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition-timing-function: ease;
+  transition-duration: 0.35s;
+  transition-property: height, visibility;
+}
+
+.metismenu .has-arrow {
+  position: relative;
+}
+
+.metismenu .has-arrow::after {
+  position: absolute;
+  content: "";
+  width: 0.5em;
+  height: 0.5em;
+  border-width: 0 0 1px 1px;
+  border-style: solid;
+  border-color: initial;
+  inset-inline-end: 1em;
+  transform: rotate(45deg) translate(0, -50%);
+  transform-origin: top;
+  top: 50%;
+  transition: all 0.3s ease-out;
+}
+
+*[dir=rtl] .metismenu .has-arrow::after {
+  transform: rotate(-135deg) translate(0, -50%);
+}
+
+.metismenu .mm-active > .has-arrow::after,
+.metismenu .has-arrow[aria-expanded=true]::after {
+  transform: rotate(-45deg) translate(0, -50%);
+}
+
 /* ================== BEGIN Utility ============== */
 :where(html) {
   --ratio-square: 1;

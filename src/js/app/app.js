@@ -1,4 +1,3 @@
-import "./MetisButton.js";
 import "./chart.js";
 import "./dashboard.js";
 import "./formGeneral.js";
@@ -6,9 +5,12 @@ import "./formValidation.js";
 import "./formWizard.js";
 import "./formWysiwyg.js";
 import "./metisCalendar.js";
-import "./metisFile.js";
 import "./metisSortable.js";
 import "./metisTable.js";
 import "./pricing.js";
-import "./progress.js";
 import "./countdown.js";
+
+// Deprecated functions
+import "./progress.js";
+import "./MetisButton.js";
+import "./metisFile.js";

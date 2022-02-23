@@ -1,9 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  Metis.SideMenu();
-  Metis.navBar();
-  Metis.metisAnimatePanel();
+  Metis.sideMenu();
   Metis.toggleFullScreen();
-  Metis.boxFullScreen();
-  Metis.panelBodyCollapse();
-  Metis.boxHiding();
+  Metis.collapseCard();
+  Metis.hideCard();
+  Metis.fullCard();
 });

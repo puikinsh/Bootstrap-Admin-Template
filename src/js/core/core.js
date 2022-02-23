@@ -1,6 +1,7 @@
-import "./Metis.js";
-import "./metisNavBar.js";
-import "./fullscreen.js";
-import "./metisAnimatePanel.js";
+import "./metis.js";
+import "./utility.js";
 import "./sideMenu.js";
+import "./fullscreen.js";
+import "./card.js";
+import "./deprecated.js";
 import "./init.js";

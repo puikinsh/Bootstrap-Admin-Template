@@ -54,16 +54,13 @@
                 {{/each}}
             {{/if}}
 
-            <!--Bootstrap -->
-            <script src="{{assets}}/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-
             {{#if javascripts}}
                 {{#each javascripts}}
                     <script src="{{assets}}/assets/{{.}}"></script>
                 {{/each}}
             {{/if}}
 
-            <!-- Metis core scripts -->
+            <!-- Metis core scripts: REQUIRED -->
             <script src="{{assets}}/js/core.js"></script>
             <!-- Metis demo scripts -->
             <script src="{{assets}}/js/app.js"></script>

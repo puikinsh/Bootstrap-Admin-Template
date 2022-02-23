@@ -5,833 +5,469 @@ icon: fa fa-pencil
 styleName: alterne
 
 cdncss:
-- //cdnjs.cloudflare.com/ajax/libs/Uniform.js/2.1.2/themes/default/css/uniform.default.min.css
-- //cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.min.css
-- //cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.3/jquery.tagsinput.css
-- https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/css/bootstrap3/bootstrap-switch.min.css
-- //cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.1/css/datepicker3.min.css
-- //cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.0.1/css/bootstrap-colorpicker.min.css
-- https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css
+- https://cdn.jsdelivr.net/npm/jquery-inputlimiter/jquery.inputlimiter.css
+- https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.css
 cdnjs:
-- https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js
-- //cdnjs.cloudflare.com/ajax/libs/Uniform.js/2.1.2/jquery.uniform.min.js
-- //cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js
-- //cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.3/jquery.tagsinput.min.js
-- //cdnjs.cloudflare.com/ajax/libs/autosize.js/1.18.17/jquery.autosize.min.js
-- https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min.js
-- //cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.1/js/bootstrap-datepicker.min.js
-- //cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.0.1/js/bootstrap-colorpicker.min.js
-- https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js
+- https://cdn.jsdelivr.net/npm/moment/moment.min.js
+- https://cdn.jsdelivr.net/npm/jquery-inputlimiter/jquery.inputlimiter.min.js
+- https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js
+- https://cdn.jsdelivr.net/npm/jquery-autosize/jquery.autosize.min.js
 
-stylesheets:
-- lib/inputlimiter/jquery.inputlimiter.css
-- lib/bootstrap-daterangepicker/daterangepicker-bs3.css
-javascripts:
-- lib/inputlimiter/jquery.inputlimiter.js
-- lib/bootstrap-daterangepicker/daterangepicker.js
 scripts:
 - Metis.formGeneral()
 ---
-<!--BEGIN INPUT TEXT FIELDS-->
-<div class="row">
-<div class="col-lg-6">
-    <div class="card mb-3">
-        <header>
-            <div class="icons"><i class="fa fa-edit"></i></div>
-            <h5>Input Text Fields</h5>
-            <!-- .toolbar -->
-            {{> toolbar}}
-            <!-- /.toolbar -->
-        </header>
-        <div id="div-1" class="card-body">
-            <form class="form-horizontal">
 
-                <div class="form-group">
-                    <label for="text1" class="control-label col-lg-4">Normal Input Field</label>
-
-                    <div class="col-lg-8">
-                        <input type="text" id="text1" placeholder="Email" class="form-control">
-                    </div>
-                </div>
-                <!-- /.form-group -->
-
-                <div class="form-group">
-                    <label for="pass1" class="control-label col-lg-4">Password Field</label>
-
-                    <div class="col-lg-8">
-                        <input class="form-control" type="password" id="pass1"
-                               data-original-title="Please use your secure password" data-placement="top"/>
-                    </div>
-                </div>
-                <!-- /.form-group -->
-
-                <div class="form-group">
-                    <label class="control-label col-lg-4">Read only input</label>
-
-                    <div class="col-lg-8">
-                        <input type="text" value="read only" readonly class="form-control">
-                    </div>
-                </div>
-                <!-- /.form-group -->
-
-                <div class="form-group">
-                    <label class="control-label col-lg-4">Disabled input</label>
-
-                    <div class="col-lg-8">
-                        <input type="text" value="disabled" disabled class="form-control">
-                    </div>
-                </div>
-                <!-- /.form-group -->
-
-                <div class="form-group">
-                    <label for="text2" class="control-label col-lg-4">With Placeholder</label>
-
-                    <div class="col-lg-8">
-                        <input type="text" id="text2" placeholder="placeholder text" class="form-control">
-                    </div>
-                </div>
-                <!-- /.form-group -->
-
-                <div class="form-group">
-                    <label for="limiter" class="control-label col-lg-4">Input limiter</label>
-
-                    <div class="col-lg-8">
-                        <textarea id="limiter" class="form-control"></textarea>
-                    </div>
-                </div>
-                <!-- /.row -->
-
-                <div class="form-group">
-                    <label for="text4" class="control-label col-lg-4">Default Textarea</label>
-
-                    <div class="col-lg-8">
-                        <textarea id="text4" class="form-control"></textarea>
-                    </div>
-                </div>
-                <!-- /.form-group -->
-
-                <div class="form-group">
-                    <label for="autosize" class="control-label col-lg-4">Textarea With Autosize</label>
-
-                    <div class="col-lg-8">
-                        <textarea id="autosize" class="form-control"></textarea>
-                    </div>
-                </div>
-                <!-- /.form-group -->
-
-                <div class="form-group">
-                    <label for="tags" class="control-label col-lg-4">Tags</label>
-
-                    <div class="col-lg-8">
-                        <input name="tags" id="tags" value="foo,bar,baz" class="form-control">
-                    </div>
-                </div>
-                <!-- /.form-group -->
-            </form>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card mb-3">
+        <div class="card-header">Form controls</div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
         </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card mb-3 -->
     </div>
+    <!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+      <div class="card mb-3">
+        <div class="card-header">Sizing</div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg"
+            aria-label=".form-control-lg example">
+          <input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
+          <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm"
+            aria-label=".form-control-sm example">
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card mb-3 -->
+    </div>
+    <!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+      <div class="card mb-3">
+        <div class="card-header">Disabled</div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <input class="form-control" type="text" placeholder="Disabled input" aria-label="Disabled input example"
+            disabled>
+          <input class="form-control" type="text" value="Disabled readonly input" aria-label="Disabled input example"
+            disabled readonly>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card mb-3 -->
+    </div>
+    <!-- /.col-lg-4 -->
+  </div>
+  <!-- /.row -->
 </div>
+<!-- /.container-fluid -->
 
-<!--END TEXT INPUT FIELD-->
 
-<!--BEGIN SELECT        -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card mb-3">
+        <div class="card-header">Readonly</div>
+        <!-- /.card-header -->
+        <div class="card-body"><input class="form-control" type="text" value="Readonly input here..."
+            aria-label="readonly input example" readonly></div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card mb-3 -->
+    </div>
+    <!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+      <div class="card mb-3">
+        <div class="card-header">Readonly plain text</div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="inputPassword">
+            </div>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card mb-3 -->
+    </div>
+    <!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+      <div class="card mb-3">
+        <div class="card-header">Readonly 2</div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <form class="row g-3">
+            <div class="col-auto">
+              <label for="staticEmail2" class="visually-hidden">Email</label>
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@example.com">
+            </div>
+            <div class="col-auto">
+              <label for="inputPassword2" class="visually-hidden">Password</label>
+              <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
+            </div>
+          </form>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card mb-3 -->
+    </div>
+    <!-- /.col-lg-4 -->
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.container-fluid -->
 
-<div class="col-lg-6">
-<div class="card mb-3">
-<header>
-    <div class="icons"><i class="fa fa-th-large"></i></div>
-    <h5>Selects</h5>
-
-    <!-- .toolbar -->
-    {{> toolbar}}
-    <!-- /.toolbar -->
-
-</header>
-<div id="div-2" class="card-body">
-<form class="form-horizontal">
-
-<div class="form-group">
-    <label class="control-label col-lg-4">Select Dropdown</label>
-
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card mb-3">
+        <div class="card-header">File input</div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Default file input example</label>
+            <input class="form-control" type="file" id="formFile">
+          </div>
+          <div class="mb-3">
+            <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+            <input class="form-control" type="file" id="formFileMultiple" multiple>
+          </div>
+          <div class="mb-3">
+            <label for="formFileDisabled" class="form-label">Disabled file input example</label>
+            <input class="form-control" type="file" id="formFileDisabled" disabled>
+          </div>
+          <div class="mb-3">
+            <label for="formFileSm" class="form-label">Small file input example</label>
+            <input class="form-control form-control-sm" id="formFileSm" type="file">
+          </div>
+          <div>
+            <label for="formFileLg" class="form-label">Large file input example</label>
+            <input class="form-control form-control-lg" id="formFileLg" type="file">
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card mb-3 -->
+    </div>
+    <!-- /.col-lg4 -->
     <div class="col-lg-8">
-        <select class="form-control">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-        </select>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card mb-3">
+            <div class="card-header">Color</div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <label for="exampleColorInput" class="form-label">Color picker</label>
+              <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c"
+                title="Choose your color">
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card mb-3 -->
+        </div>
+        <!-- /.col-lg4 -->
+        <div class="col-lg-6">
+          <div class="card mb-3">
+            <div class="card-header">Datalists</div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <label for="exampleDataList" class="form-label">Datalist example</label>
+              <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+              <datalist id="datalistOptions">
+                <option value="San Francisco">
+                <option value="New York">
+                <option value="Seattle">
+                <option value="Los Angeles">
+                <option value="Chicago">
+              </datalist>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card mb-3 -->
+        </div>
+        <!-- /.col-lg4 -->
+      </div>
+      <!-- /.row -->
+      <div class="row">
+        <div class="col">
+          <div class="card mb-3">
+            <div class="card-header d-flex- gap-3 align-items-center">Select</div>
+            <!-- /.card-header d-flex- gap-3 align-items-center -->
+            <div class="card-body">
+              <h5 class="mt-3">Default</h5>
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+
+              <h5 class="mt-3">Sizing</h5>
+              <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+
+              <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+
+              <h5 class="mt-3">Multiple</h5>
+              <select class="form-select" multiple aria-label="multiple select example">
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+
+              <h5 class="mt-3">Multiple with size</h5>
+              <select class="form-select" size="3" aria-label="size 3 select example">
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+
+              <h5 class="mt-3">Disabled</h5>
+              <select class="form-select" aria-label="Disabled select example" disabled>
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card mb-3 -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
     </div>
+    <!-- /.col-lg-8 -->
+  </div>
+  <!-- /.row -->
 </div>
-
-<div class="form-group">
-<label class="control-label col-lg-4">Select with search</label>
-
-<div class="col-lg-8">
-  <select data-placeholder="Choose a Country..." class="form-control chzn-select" tabindex="2">
-    {{> country-option-list}}
-  </select>
-</div>
-</div>
-
-<div class="form-group">
-    <label class="control-label col-lg-4">Multiple select</label>
-
-    <div class="col-lg-8">
-        <select multiple="multiple" size="5" class="form-control">
-            <option selected>1</option>
-            <option selected>2</option>
-            <option>3</option>
-            <option selected>4</option>
-            <option>5</option>
-        </select>
-    </div>
-</div>
-
-<div class="form-group">
-<label class="control-label col-lg-4">Multiple with search</label>
-
-<div class="col-lg-8">
-  <select data-placeholder="Choose a Country..." class="form-control chzn-select" multiple tabindex="4">
-    {{> country-option-list}}
-  </select>
-</div>
-</div>
-
-<div class="form-group">
-    <label class="control-label col-lg-4">Single Select with Groups</label>
-
-    <div class="col-lg-8">
-        <select data-placeholder="Your Favorite Football Team" class="form-control chzn-select" tabindex="5">
-            {{> football-option-list}}
-        </select>
-    </div>
-</div>
-<div class="form-group">
-    <label class="control-label col-lg-4">Multiple Select with Groups</label>
-
-    <div class="col-lg-8">
-        <select data-placeholder="Your Favorite Football Team" class="form-control chzn-select" multiple tabindex="6">
-            {{> football-option-list}}
-        </select>
-    </div>
-</div>
-<div class="form-group">
-    <label class="control-label col-lg-4">Single Select</label>
-
-    <div class="col-lg-8">
-        <select data-placeholder="Your Favorite Type of Bear" class="form-control chzn-select" tabindex="7">
-            {{> bear-option-list}}
-        </select>
-    </div>
-</div>
-<div class="form-group">
-    <label class="control-label col-lg-4">Multiple Select</label>
-
-    <div class="col-lg-8">
-        <select data-placeholder="Your Favorite Types of Bear" multiple class="form-control chzn-select" tabindex="8">
-            {{> bear-option-list}}
-        </select>
-    </div>
-</div>
-<div class="form-group">
-    <label class="control-label col-lg-4">Multiple Select & Deselect</label>
-
-    <div class="col-lg-8">
-        <select data-placeholder="Your Favorite Types of Bear" multiple class="form-control chzn-select" id="test_me_paddington" name="test_me_form" tabindex="8">
-            {{> bear-option-list}}
-        </select>
-    </div>
-</div>
-<div class="form-group">
-    <label class="control-label col-lg-4">Allow Deselect on Single Selects</label>
-
-    <div class="col-lg-8">
-        <select data-placeholder="Your Favorite Type of Bear" class="form-control chzn-select-deselect" tabindex="7">
-            {{> bear-option-list}}
-        </select>
-    </div>
-</div>
-<div class="form-group">
-    <label class="control-label col-lg-4">Single right to left select</label>
-
-    <div class="col-lg-8">
-        <select data-placeholder="Your Favorite Type of Bear" class="form-control chzn-select chzn-rtl" tabindex="9">
-            {{> bear-option-list}}
-        </select>
-    </div>
-</div>
-<div class="form-group">
-    <label class="control-label col-lg-4">Multiple right to left select</label>
-
-    <div class="col-lg-8">
-        <select data-placeholder="Your Favorite Types of Bear" multiple class="form-control chzn-select  chzn-rtl" tabindex="10">
-            {{> bear-option-list}}
-        </select>
-    </div>
-</div>
-<div class="form-group">
-    <label class="control-label col-lg-4">Spinner</label>
-    <div class="col-lg-8">
-        <input class="form-control" type="number" value="6">
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="control-label col-lg-4">Decimal Spinner</label>
-    <div class="col-lg-8">
-        <input class="form-control" type="number" step="0.1" value="2.8">
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="control-label col-lg-4">Currency Spinner</label>
-    <div class="col-lg-8">
-        <input class="form-control" type="number" step="5" value="16">
-    </div>
-</div>
-</form>
-</div>
-</div>
-</div>
-<!--END SELECT-->
-</div>
-<!-- /.row -->
-
+<!-- /.container-fluid -->
 
 <!-- BEGIN CHECKBOX & RADIO -->
-<div class="row">
-    <div class="col-lg-6">
-        <div class="card mb-3">
-            <header>
-                <div class="icons"><i class="fa fa-check"></i></div>
-                <h5>Checkbox & Radio</h5>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card mb-3">
+        <header class="card-header d-flex align-items-center gap-3">
+          <i class="bi bi-check2-all"></i>
+          <div class="vr"></div>
+          <h5>Checkbox</h5>
+        </header>
+        <div class="card-body">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Default checkbox
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+              Checked checkbox
+            </label>
+          </div>
 
-                <div class="toolbar">
-                    <input class="uniform" type="checkbox" checked>
-                </div>
-            </header>
-            <div class="card-body">
-                <form class="form-horizontal">
+          <h5 class="card-title mt-5">Indeterminate</h5>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+            <label class="form-check-label" for="flexCheckIndeterminate">
+              Indeterminate checkbox
+            </label>
+          </div>
 
-                    <div class="form-group">
-                        <label class="control-label col-lg-4">Checkbox</label>
-
-                        <div class="col-lg-8">
-                            <div class="checkbox">
-                                <label>
-                                    <input class="uniform" type="checkbox" value="option1" checked> Checked checkbox
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input class="uniform" type="checkbox" value="option2"> Unchecked checkbox
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input class="uniform" type="checkbox" value="option3" checked disabled> Disabled
-                                    checked
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input class="uniform" type="checkbox" value="option2" disabled> Disabled unchecked
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.row -->
-                    <div class="form-group">
-                        <label class="control-label col-lg-4">Radio</label>
-
-                        <div class="col-lg-8">
-                            <div class="checkbox">
-                                <label>
-                                    <input class="uniform" type="radio" name="optionsRadios" value="option1" checked>Checked
-                                    radio
-                                </label>
-                            </div>
-                            <!-- /.checkbox -->
-                            <div class="checkbox">
-                                <label>
-                                    <input class="uniform" type="radio" name="optionsRadios" value="option2">Unchecked
-                                    radio
-                                </label>
-                            </div>
-                            <!-- /.checkbox -->
-                            <div class="checkbox">
-                                <label>
-                                    <input class="uniform" type="radio" name="optionsRadios2" value="option3" checked
-                                           disabled>
-                                    Disabled checked radio
-                                </label>
-                            </div>
-                            <!-- /.checkbox -->
-                            <div class="checkbox">
-                                <label>
-                                    <input class="uniform" type="radio" name="optionsRadios2" value="option4" disabled>
-                                    Disabled unchecked radio
-                                </label>
-                            </div>
-                            <!-- /.checkbox -->
-                        </div>
-                    </div>
-                    <!-- /.row -->
-
-
-                    <div class="form-group">
-                        <label class="control-label col-lg-4">Basic</label>
-
-                        <div class="col-lg-8">
-                            <input class="make-switch" type="checkbox" data-size="mini" checked><br>
-                            <input class="make-switch" type="checkbox" data-size="small"><br>
-                            <input class="make-switch" type="checkbox" data-size="normal" checked><br>
-                            <input class="make-switch" type="checkbox" data-size="large"><br>
-                            <input class="make-switch" type="checkbox" data-label-text="BS" checked disabled><br>
-                            <input class="make-switch" type="checkbox"><br>
-                            <input class="make-switch" type="checkbox" checked><br>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-lg-4">Color</label>
-
-                        <div class="col-lg-8">
-
-                            <input class="make-switch" type="checkbox" data-on-text="1" data-off-text="0" checked><br>
-                            <input class="make-switch" type="checkbox" data-on-color="info" data-off-color="success"><br>
-                            <input class="make-switch" type="checkbox" data-on-text="osman" data-off-text="nuri" checked><br>
-                            <input class="make-switch" type="checkbox" data-on-color="warning" data-off-color="danger"><br>
-                            <input class="make-switch" type="checkbox" data-on-text="TRUE" data-off-text="FALSE" checked><br>
-                            <input class="make-switch" type="checkbox" data-on-color="default" data-off-color="primary"><br>
-
-                        </div>
-                    </div>
-
-                    <!-- /.row -->
-                    <!-- /.row -->
-
-                </form>
-            </div>
+          <h5 class="card-title mt-5">Disabled</h5>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" disabled>
+            <label class="form-check-label" for="flexCheckDisabled">
+              Disabled checkbox
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckCheckedDisabled" checked disabled>
+            <label class="form-check-label" for="flexCheckCheckedDisabled">
+              Disabled checked checkbox
+            </label>
+          </div>
         </div>
+      </div>
     </div>
+
+    <div class="col-lg-4">
+      <div class="card mb-3">
+        <header class="card-header d-flex align-items-center gap-3">
+          <i class="bi bi-record2"></i>
+          <div class="vr"></div>
+          <h5>Radios</h5>
+        </header>
+        <div class="card-body">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              Default radio
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+              Default checked radio
+            </label>
+          </div>
+
+          <h5 class="card-title mt-5">Disabled</h5>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioDisabled" disabled>
+            <label class="form-check-label" for="flexRadioDisabled">
+              Disabled radio
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" checked
+              disabled>
+            <label class="form-check-label" for="flexRadioCheckedDisabled">
+              Disabled checked radio
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card mb-3">
+        <header class="card-header d-flex align-items-center gap-3">
+          <i class="bi bi-toggle-on"></i>
+          <div class="vr"></div>
+          <h5>Switches</h5>
+        </header>
+        <div class="card-body">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+            <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDisabled" disabled>
+            <label class="form-check-label" for="flexSwitchCheckDisabled">Disabled switch checkbox input</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckCheckedDisabled" checked
+              disabled>
+            <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Disabled checked switch checkbox
+              input</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.row -->
 </div>
-<!-- /.row -->
+<!-- /.container-fluid -->
 <!-- END CHECKBOX & RADIO -->
 
 
-<!--BEGIN MASKED INPUTS-->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card mb-3">
-            <header>
-                <div class="icons"><i class="fa fa-bolt"></i></div>
-                <h5>Masked Inputs</h5>
+<!--BEGIN INPUT TEXT FIELDS-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card mb-3">
+        <header class="card-header d-flex align-items-center gap-3">
+          <i class="fa fa-edit"></i>
+          <div class="vr"></div>
+          <h5 class="m-0 p-0">Input limiter</h5>
+          <!-- .toolbar -->
+          {{> toolbar}}
+          <!-- /.toolbar -->
+        </header>
+        <div class="card-body">
 
-                <!-- .toolbar -->
-                {{> toolbar}}
-                <!-- /.toolbar -->
-
-            </header>
-            <div id="div-4" class="card-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label col-lg-3">Date</label>
-
-                        <div class="col-lg-5">
-                            <div class="input-group">
-                                <input class="form-control" type="text" data-mask="99/99/9999">
-                                <span class="input-group-addon">99/99/9999</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-lg-3">Phone</label>
-
-                        <div class="col-lg-5">
-                            <div class="input-group">
-                                <input class="form-control" type="text" data-mask="(999) 999-9999">
-                                <span class="input-group-addon">(999) 999-9999</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-lg-3">Product key</label>
-
-                        <div class="col-lg-5">
-                            <div class="input-group">
-                                <input class="form-control" type="text" data-mask="a*-999-a999">
-                                <span class="input-group-addon">a*-999-a999</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-lg-3">Phone</label>
-
-                        <div class="col-lg-5">
-                            <div class="input-group">
-                                <input class="form-control" type="text" data-mask="+33 999 999 999">
-                                <span class="input-group-addon">+33 999 999 999</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-lg-3">Percent</label>
-
-                        <div class="col-lg-5">
-                            <div class="input-group">
-                                <input class="form-control" type="text" data-mask="99%">
-                                <span class="input-group-addon">99%</span>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
+          <div class="mb-5">
+            <label for="limiter" class="form-label">Input limiter</label>
+            <textarea class="form-control" id="limiter"></textarea>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-<!--END MASKED INPUTS-->
+    <!-- /.col-lg-4 -->
 
-<!-- BEGIN COLOR PICKER -->
-
-<!-- .row -->
-<div class="row">
-    <!-- .col-lg-6 -->
-    <div class="col-lg-12">
-        <!-- .card -->
-        <div class="card mb-3">
-            <header>
-                <div class="icons">
-                    <i class="fa fa-edit"></i>
-                </div>
-                <h5>Color Picker</h5>
-
-                <!-- .toolbar -->
-                {{> toolbar}}
-                <!-- /.toolbar -->
-
-            </header>
-            <!-- .BODY -->
-            <div class="card-body" id="colorPickerBlock">
-                <form class="form-horizontal">
-
-                    <div class="form-group">
-                        <label for="cp1" class="control-label col-lg-4">Field with hex format</label>
-
-                        <div class="col-lg-3">
-                            <input type="text" class="form-control" value="#8fff00" id="cp1">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="cp2" class="control-label col-lg-4">Field with the rgba format</label>
-
-                        <div class="col-lg-3">
-                            <input type="text" class="form-control" value="rgb(0,194,255,0.78)" id="cp2"
-                                   data-color-format="rgba">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="cp3" class="control-label col-lg-4">As component</label>
-
-                        <div class="col-lg-3">
-                            <div class="input-group color">
-                                <input type="text" class="form-control" readonly data-color="rgb(255, 146, 180)"
-                                       data-color-format="rgb" id="cp3">
-                                <span class="input-group-addon" style="background-color: rgb(255, 146, 180)"><i
-                                        class="fa fa-home"></i></span>
-                            </div>
-                            <!-- /input-group -->
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="cp3" class="control-label col-lg-4">Using events to work with the color</label>
-
-                        <div class="col-lg-3">
-                            <a href="#" class="btn btn-danger" id="cp4" data-color-format="hex"
-                               data-color="rgb(255, 255, 255)">Change background color</a>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
-            <!-- /.BODY -->
+    <div class="col-lg-4">
+      <div class="card mb-3">
+        <div class="card-header d-flex align-items-center gap-3">
+          <h5 class="m-0 p-0">Autosize</h5>
+          <!-- /.m-0 p-0 -->
+          {{> toolbar}}
         </div>
-        <!-- /.card -->
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-
-<!-- END COLOR PICKER -->
-
-<!-- BEGIN DATE PICKER -->
-<div class="row">
-    <!-- .col-lg-12 -->
-    <div class="col-lg-12">
-        <!-- .card -->
-        <div class="card mb-3">
-            <header>
-                <div class="icons">
-                    <i class="fa fa-calendar"></i>
-                </div>
-                <h5>Date Picker</h5>
-
-                <!-- .toolbar -->
-                {{> toolbar}}
-                <!-- /.toolbar -->
-
-            </header>
-            <div id="datePickerBlock" class="card-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label col-lg-4" for="dp1">Field with the format specified via
-                            options</label>
-
-                        <div class="col-lg-3">
-                            <input type="text" class="form-control" value="02-16-2012" id="dp1">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-lg-4" for="dp2">Field with the format specified via data
-                            tag</label>
-
-                        <div class="col-lg-3">
-                            <input type="text" class="form-control" value="02/16/12" data-date-format="mm/dd/yy"
-                                   id="dp2">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-lg-4" for="dp3">As component</label>
-
-                        <div class="col-lg-3">
-                            <div class="input-group input-append date" id="dp3" data-date="12-02-2012"
-                                 data-date-format="dd-mm-yyyy">
-                                <input class="form-control" type="text" value="12-02-2012" readonly>
-                                <span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-lg-4" for="dpYears">Start with years viewMode</label>
-
-                        <div class="col-lg-3">
-                            <div class="input-group input-append  date" id="dpYears" data-date="12-02-2012"
-                                 data-date-format="dd-mm-yyyy" data-date-viewmode="years">
-                                <input class="form-control" type="text" value="12-02-2012" readonly>
-                                <span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-lg-4" for="dpMonths">Limit the view mode to months</label>
-
-                        <div class="col-lg-3">
-                            <div class="input-group input-append  date" id="dpMonths" data-date="102/2012"
-                                 data-date-format="mm/yyyy" data-date-viewmode="years" data-date-minviewmode="months">
-                                <input class="form-control" type="text" value="12-02-2012" readonly>
-                                <span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
+        <!-- /.card-header d-flex align-items-center gap-3 -->
+        <div class="card-body">
+          <div class="mb-5">
+            <label for="autosize" class="form-label">Textarea with Autosize</label>
+            <textarea class="form-control" id="autosize"></textarea>
+          </div>
         </div>
-        <!-- /.card -->
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card mb-3 -->
     </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- END DATE PICKER -->
+    <!-- /.col-lg-4 -->
 
-<!-- BEGIN DATE RANGE PICKER -->
-<!-- .row -->
-<div class="row">
-    <!-- .col-lg-12 -->
-    <div class="col-lg-12">
-        <!-- .card -->
-        <div class="card mb-3">
-            <header>
-                <div class="icons">
-                    <i class="fa fa-calendar"></i>
-                </div>
-                <h5>Date Range Picker</h5>
-
-                <!-- .toolbar -->
-                {{> toolbar}}
-                <!-- /.toolbar -->
-
-            </header>
-            <!-- .block -->
-
-
-            <div id="dateRangePickerBlock" class="card-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label col-lg-4" for="reservation">Reservation dates</label>
-
-                        <div class="col-lg-4">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                <input type="text" name="reservation" id="reservation" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-lg-4" for="reportrange">Pre-defined Ranges & Callback</label>
-
-                        <div class="col-lg-4">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                <input type="text" class="form-control" value="02-16-2012" id="reportrange">
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <!-- /.block -->
+    <div class="col-lg-4">
+      <div class="card mb-3">
+        <div class="card-header d-flex align-items-center gap-3">
+          <h5 class="m-0 p-0">TagsInput</h5>
+          <!-- /.m-0 p-0 -->
+          {{> toolbar}}
         </div>
-        <!-- /.card -->
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<!--END DATE RANGE PICKER -->
-
-<!-- BEGIN TIME PICKER -->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card mb-3">
-            <header>
-                <div class="icons"><i class="fa fa-clock-o"></i></div>
-                <h5>Time Picker</h5>
-            </header>
-            <div class="card-body">
-                <form action="" class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label col-lg-4">Default Timepicker</label>
-                        <div class="col-lg-3">
-                          <div class='input-group date' id='datetimepicker4'>
-                            <input type='text' class="form-control" />
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
-                          </span>
-                        </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
+        <!-- /.card-header d-flex align-items-center gap-3 -->
+        <div class="card-body">
+          <div class="mb-3">
+            <label for="tags" class="form-label">Tags</label>
+            <input type="text" class="form-control" id="tags" value="foo,bar,baz">
+          </div>
         </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card mb-3 -->
     </div>
+    <!-- /.col-lg-4 -->
+  </div>
+  <!-- /.row -->
 </div>
-<!-- END TIME PICKER -->
-
-<!-- BEGIN GRID INPUTS-->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card mb-3">
-            <header>
-                <div class="icons"><i class="fa fa-th"></i></div>
-                <h5>Grid Inputs</h5>
-
-                <!-- .toolbar -->
-                {{> toolbar}}
-                <!-- /.toolbar -->
-
-            </header>
-            <div id="div-5" class="card-body">
-                <form class="">
-
-                    <div class="form-group row">
-                        <div class="col-lg-1">
-                            <input class="form-control" placeholder=".col-lg-1" type="text">
-                        </div>
-                        <!-- /.col-lg-1 -->
-                        <div class="col-lg-11">
-                            <input class="form-control" placeholder=".col-lg-11" type="text">
-                        </div>
-                        <!-- /.col-lg-11 -->
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-lg-2">
-                            <input class="form-control" placeholder=".col-lg-2" type="text">
-                        </div>
-                        <!-- /.col-lg-2 -->
-                        <div class="col-lg-10">
-                            <input class="form-control" placeholder=".col-lg-10" type="text">
-                        </div>
-                        <!-- /.col-lg-10 -->
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-lg-3">
-                            <input class="form-control" placeholder=".col-lg-3" type="text">
-                        </div>
-                        <!-- /.col-lg-3 -->
-                        <div class="col-lg-9">
-                            <input class="form-control" placeholder=".col-lg-9" type="text">
-                        </div>
-                        <!-- /.col-lg-9 -->
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-lg-4">
-                            <input class="form-control" placeholder=".col-lg-4" type="text">
-                        </div>
-                        <!-- /.col-lg-4 -->
-                        <div class="col-lg-8">
-                            <input class="form-control" placeholder=".col-lg-8" type="text">
-                        </div>
-                        <!-- /.col-lg-8 -->
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-lg-5">
-                            <input class="form-control" placeholder=".col-lg-5" type="text">
-                        </div>
-                        <!-- /.col-lg-5 -->
-                        <div class="col-lg-7">
-                            <input class="form-control" placeholder=".col-lg-7" type="text">
-                        </div>
-                        <!-- /.col-lg-7 -->
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-lg-6">
-                            <input class="form-control" placeholder=".col-lg-6" type="text">
-                        </div>
-                        <!-- /.col-lg-6 -->
-                        <div class="col-lg-6">
-                            <input class="form-control" placeholder=".col-lg-6" type="text">
-                        </div>
-                        <!-- /.col-lg-6 -->
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-lg-4">
-                            <input class="form-control" placeholder=".col-lg-4" type="text">
-                        </div>
-                        <!-- /.col-lg-4 -->
-                        <div class="col-lg-4">
-                            <input class="form-control" placeholder=".col-lg-4" type="text">
-                        </div>
-                        <!-- /.col-lg-4 -->
-                        <div class="col-lg-4">
-                            <input class="form-control" placeholder=".col-lg-4" type="text">
-                        </div>
-                        <!-- /.col-lg-4 -->
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-lg-3">
-                            <input class="form-control" placeholder=".col-lg-3" type="text">
-                        </div>
-                        <!-- /.col-lg-3 -->
-                        <div class="col-lg-4">
-                            <input class="form-control" placeholder=".col-lg-4" type="text">
-                        </div>
-                        <!-- /.col-lg-4 -->
-                        <div class="col-lg-5">
-                            <input class="form-control" placeholder=".col-lg-5" type="text">
-                        </div>
-                        <!-- /.col-lg-5 -->
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!--END GRID INPUTS-->
+<!-- /.container-fluid -->

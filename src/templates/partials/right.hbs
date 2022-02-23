@@ -18,13 +18,13 @@
 
 <script>
     const direction = document.querySelector('#direction');
-    const bootstrapCss = document.querySelector('#bootstrap-css');
+    const metisCss = document.querySelector('#metis-css');
     let rtlText = ''
 
     direction.addEventListener('change', e => {
         rtlText = e.target.checked ? '.rtl' : ''
         document.firstElementChild.setAttribute('dir', e.target.checked ? 'rtl' : 'ltr');
-        bootstrapCss.setAttribute('href', `assets/lib/bootstrap/css/bootstrap${rtlText}.css`)
+        metisCss.setAttribute('href', `assets/css/metis${rtlText}.css`)
     });
 </script>
 <!-- END: offcanvas -->

@@ -11,3 +11,4 @@ import "./metisSortable.js";
 import "./metisTable.js";
 import "./pricing.js";
 import "./progress.js";
+import "./countdown.js";

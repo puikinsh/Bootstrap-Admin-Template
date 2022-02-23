@@ -1,193 +1,199 @@
 ---
-title: Under Construction
-layout: countdown
+layout: false
 ---
-    <div class="container">
-        <div class="clearfix">
-            <div class="logo">
-                <h1><span class="text-warning">UC</span></h1>
-            </div>
-        </div>
-        <div class="clearfix">
-            <div class="col-lg-12 title">
-                <h2>Our Site <span class="orange">U</span>nder <span class="orange">C</span>onstruction</h2>
-                <small>We are done with the backend just front end to go. The site will launch in:</small>
-            </div>
-        </div>
-        <!--counter is here-->
-        <div id="counter"></div>
+<!DOCTYPE html>
+<html lang="en">
 
-        <div id="counter-default" class="row">
-            <div class="col-lg-3 col-sm-6">
-                <div class="inner">
-                    <div id="day-number" class="timer-number"></div>
-                    <div class="timer-text">DAYS</div>
-                    <div class="progress mini progress-striped active">
-                        <div id="day-bar" class="progress-bar progress-bar-warning"></div>
-                    </div>
-                </div>
-                <!-- /.inner -->
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="inner">
-                    <div id="hour-number" class="timer-number"></div>
-                    <div class="timer-text">HOURS</div>
-                    <div class="progress mini progress-striped active">
-                        <div id="hour-bar" class="progress-bar progress-bar-warning"></div>
-                    </div>
-                </div>
-                <!-- /.inner -->
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="inner">
-                    <div id="minute-number" class="timer-number"></div>
-                    <div class="timer-text">MINUTES</div>
-                    <div class="progress mini progress-striped active">
-                        <div id="minute-bar" class="progress-bar progress-bar-warning"></div>
-                    </div>
-                </div>
-                <!-- /.inner -->
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="inner">
-                    <div id="second-number" class="timer-number"></div>
-                    <div class="timer-text">SECOND</div>
+<head>
+  <meta charset="UTF-8">
+  <!--Mobile first-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Under Construction</title>
 
-                    <div class="progress mini progress-striped active">
-                        <div id="second-bar" class="progress-bar progress-bar-warning"></div>
-                    </div>
+  <meta name="description" content="Free Admin Template Based On Twitter Bootstrap 5.x">
+  <meta name="author" content="">
 
-                </div>
-                <!-- /.inner -->
-            </div>
-        </div>
+  <meta name="msapplication-TileColor" content="#5bc0de" />
+  <meta name="msapplication-TileImage" content="assets/img/metis-tile.png" />
 
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="progress progress-striped active" rel="tooltip" data-placement="bottom"
-                     data-original-title="Total Progress">
-                    <div id="total-bar" class="progress-bar progress-bar-warning"></div>
-                </div>
-            </div>
-        </div>
-        <hr/>
-        <!-- .row -->
-        <div class="row">
-            <!-- .col-lg-6 -->
-            <div class="col-lg-6">
-                <form action="#" method="post" accept-charset="utf-8" id="emailForm">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.css" id="bootstrap-css">
 
-                    <div class="form-group">
-                        <label class="control-label" for="email1">E-mail</label>
-                        <input class="form-control" type="email" name="email1" id="email1"
-                               placeholder="Enter your email to subscribe" required="required">
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-lg-6 col-sm-6 col-6">
-                            <button class="btn btn-warning btn-block" type="submit">Submit</button>
-                        </div>
-                        <div class="form-group col-lg-6 col-sm-6 col-6">
-                            <button class="btn btn-block btn-default" type="reset">Cancel</button>
-                        </div>
-                    </div>
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="assets/lib/bootstrap-icons/bootstrap-icons.css">
 
-                </form>
-            </div>
-            <!-- /.col-lg-6 -->
-            <!-- .col-lg-6 -->
-            <div class="col-lg-6 contact">
-                <dl class="dl-horizontal">
-                    <dt>Contact Us :</dt>
-                    <dd>
-                        <a href="#contact-area" class="accordion-toggle" data-toggle="collapse" rel="tooltip"
-                           data-placement="top" data-original-title="Fill the form">
-                            <i class="fa fa-envelope"></i>
-                        </a>
-                    </dd>
-                    <dt>Follow Us :</dt>
-                    <dd>
-                        <a href="#" rel="tooltip" data-placement="bottom" data-original-title="facebook"><i
-                                class="fa fa-facebook"></i></a>
-                        <a href="#" rel="tooltip" data-placement="bottom" data-original-title="Twitter"><i
-                                class="fa fa-twitter"></i></a>
-                        <a href="#" rel="tooltip" data-placement="bottom" data-original-title="pinterest"><i
-                                class="fa fa-pinterest"></i></a>
-                        <a href="#" rel="tooltip" data-placement="bottom" data-original-title="google"><i
-                                class="fa fa-google-plus"></i></a>
-                        <a href="#" rel="tooltip" data-placement="bottom" data-original-title="github"><i
-                                class="fa fa-github"></i></a>
-                    </dd>
-                </dl>
-            </div>
-            <!-- /.col-lg-6 -->
-        </div>
-        <!-- /.row -->
-        <!-- .row -->
-        <div id="contact-area" class="row">
-            <!-- .col-lg-7 -->
-            <div class="col-lg-7">
-                <div class="well">
-                    <form action="#" method="post" accept-charset="utf-8" id="messageForm">
-                        <fieldset>
-                            <legend>Contact Form</legend>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/lib/font-awesome/css/all.min.css">
 
-                            <div class="form-group">
-                                <label class="control-label" for="name">Name</label>
-                                <input class="form-control" type="text" name="name" id="name"
-                                       placeholder="Enter yor name"
-                                       required="required">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="email">E-mail</label>
-                                <input class="form-control" type="email" name="email" id="email"
-                                       placeholder="Enter your e-mail" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="subject">Subject</label>
-                                <input class="form-control" type="text" name="subject" id="subject"
-                                       placeholder="Enter your subject" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="message">Message</label>
-                                <textarea class="form-control" name="messsage" id="message"
-                                          placeholder="Enter your message" required="required"></textarea>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-lg-6 col-sm-6 col-6">
-                                    <button class="btn btn-warning btn-block" type="submit">Submit</button>
-                                </div>
-                                <div class="form-group col-lg-6 col-sm-6 col-6">
-                                    <button class="btn btn-block btn-default" type="reset">Cancel</button>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
+  <!-- Metis core stylesheet -->
+  <link rel="stylesheet" href="assets/css/metis.css">
 
-            </div>
-            <!-- /.col-lg-7 -->
-            <!-- .col-lg-5 -->
-            <div class="col-lg-5">
-                <div class="page-header">
-                    <h4>Contact info</h4>
-                </div>
-                <address>
-                    <dl class="dl-horizontal">
-                        <dt>Address :</dt>
-                        <dd>
-                            123 Home Street NY US
-                        </dd>
-                        <dt>Telephone :</dt>
-                        <dd>+0 123 456 78</dd>
-                        <dt>E-mail :</dt>
-                        <dd>mail@domain.com</dd>
-                        <dt>Web :</dt>
-                        <dd>http://domain.com</dd>
-                    </dl>
-                </address>
+</head>
 
-            </div>
-            <!-- /.col-lg-5 -->
-        </div>
-        <!-- /.row -->
+<body class="bg-dark">
+  <div class="container">
+    <div class="display-1 text-info text-center p-3 m-3 fw-bold">UC</div>
+    <!-- /.display-1 text-warning text-center p-3 m-3 -->
+
+    <div class="text-center text-white py-3 my-3">
+      <h1>Our Site <span class="text-info">U</span>nder <span class="text-info">C</span>onstruction</h1>
+      <p class="lead">
+          We are done with the backend just front end to go. The site will launch in:
+          </p>
     </div>
+    <!-- /.text-center text-white -->
+    <!--counter is here-->
+    <div id="counter"></div>
+
+    <div id="counter-default" class="row">
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <div class="bg-black border border-dark rounded-3 shadow-lg text-center p-5 metis-ratio-square">
+          <div id="day-number" class="fw-bold fs-2 text-light mb-3"></div>
+          <div class="p-3 text-secondary">DAYS</div>
+          <div class="progress">
+            <div id="day-bar" class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+              aria-valuemax="365"></div>
+          </div>
+        </div>
+        <!-- /.inner -->
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <div class="bg-black border border-dark rounded-3 shadow-lg text-center p-5 metis-ratio-square">
+          <div id="hour-number" class="fw-bold fs-2 text-light mb-3"></div>
+          <div class="p-3 text-secondary">HOURS</div>
+          <div class="progress">
+            <div id="hour-bar" class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+              aria-valuemax="24"></div>
+          </div>
+        </div>
+        <!-- /.inner -->
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <div class="bg-black border border-dark rounded-3 shadow-lg text-center p-5 metis-ratio-square">
+          <div id="minute-number" class="fw-bold fs-2 text-light mb-3"></div>
+          <div class="p-3 text-secondary">MINUTES</div>
+          <div class="progress">
+            <div id="minute-bar" class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+              aria-valuemax="59"></div>
+          </div>
+        </div>
+        <!-- /.inner -->
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <div class="bg-black border border-dark rounded-3 shadow-lg text-center p-5 metis-ratio-square">
+          <div id="second-number" class="fw-bold fs-2 text-light mb-3"></div>
+          <div class="p-3 text-secondary">SECOND</div>
+          <div class="progress">
+            <div id="second-bar" class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+              aria-valuemax="59"></div>
+          </div>
+
+        </div>
+        <!-- /.inner -->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="progress" style="height: 2rem;">
+          <div id="total-bar"
+            class="fs-5 text-warning progress-bar progress-bar-striped progress-bar-animated bg-success"
+            role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    <hr />
+    <!-- .row -->
+    <div class="row">
+      <!-- .col-lg-6 -->
+      <div class="col-lg-6">
+        <div class="card bg-primary text-white border-primary bg-opacity-50 mb-3">
+          <div class="card-body">
+            <form>
+              <div class="mb-3">
+                <label for="Name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="Name" aria-describedby="Name" placeholder="Enter your name">
+                <div id="emailHelp" class="form-text text-info">We'll never share your email with anyone else.</div>
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+              </div>
+              <div class="mb-3">
+                <label for="subject" class="form-label">Subject</label>
+                <input type="text" class="form-control" id="subject">
+              </div>
+              <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" rows="3"></textarea>
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col-lg-6 -->
+      <!-- .col-lg-6 -->
+      <div class="col-lg-6 contact">
+
+        <div class="card bg-warning bg-opacity-50 border-warning text-light mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Contact Us</h5>
+            <dl class="row">
+              <dt class="col-sm-3">Address :</dt>
+              <dd class="col-sm-9">123 Home Street NY US</dd>
+
+              <dt class="col-sm-3">Telephone :</dt>
+              <dd class="col-sm-9">+0 123 456 78</dd>
+
+              <dt class="col-sm-3">E-mail :</dt>
+              <dd class="col-sm-9">mail@domain.com</dd>
+
+              <dt class="col-sm-3">Web :</dt>
+              <dd class="col-sm-9"><a class="link-light" href="index.html">http://domain.com</a></dd>
+
+            </dl>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card bg-success bg-opacity-50 border border-success text-white -->
+
+      </div>
+      <!-- /.col-lg-6 -->
+    </div>
+    <!-- /.row -->
+  </div>
+
+
+  <!--jQuery -->
+  <script src="assets/lib/jquery/jquery.js"></script>
+
+  <!--Bootstrap -->
+  <script src="assets/lib/bootstrap/js/bootstrap.bundle.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.0.1/jquery.plugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.0.1/jquery.countdown.min.js"></script>
+
+
+  <!-- Metis -->
+  <script src="assets/js/core.js"></script>
+
+  <!-- Demo -->
+  <script src="assets/js/app.js"></script>
+
+  <script>
+    Metis.Countdown();
+  </script>
+</body>
+
+</html>

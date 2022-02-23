@@ -1,0 +1,14 @@
+@import "bootstrap/dist/css/bootstrap.rtl.min";
+
+// Required for extending Bootstrap 
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+@import "root";
+@import "base";
+@import "layout";
+
+@import "vendor";
+
+@import "utility";

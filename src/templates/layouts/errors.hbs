@@ -6,37 +6,31 @@
 
 </head>
 
-<body class="error">
+<body class="d-flex align-items-center justify-content-center metis-bg-gray-9 metis-text-grape-2">
     <div class="container">
-        <div class="col-lg-8 col-lg-offset-2 text-center">
-            <div class="logo">
-                <h1>{{title}}</h1>
-            </div>
-            <p class="lead text-muted">{{message}}</p>
-            <div class="clearfix"></div>
-            <div class="col-lg-6 col-lg-offset-3">
-                <form action="index.html">
-                    <div class="input-group">
-                        <input type="text" placeholder="search ..." class="form-control">
-                        <span class="input-group-btn">
-              <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-            </span>
-                    </div>
-                </form>
-            </div>
-            <div class="clearfix"></div>
-            <div class="sr-only">
-                {% body %}
-            </div>
-            <br>
-            <div class="col-lg-6 col-lg-offset-3">
-                <div class="btn-group btn-group-justified">
-                    <a href="dashboard.html" class="btn btn-info">Return Dashboard</a>
-                    <a href="index.html" class="btn btn-warning">Return Website</a>
+        <div class="row justify-content-center">
+            <div class="col col-md-8 col-lg-6 text-center p-5 metis-ratio-ultrawide">
+                <img src="assets/img/{{img}}" alt="{{title}}" class="img-fluid w-50">
+                <h1 class="text-light mt-5">
+                    <div class="metis-gradient-1 metis-text-gradient fw-light font-monospace text-break" style="font-size: 10rem;">{{title}}</div>
+                </h1>
+                <div class="input-group input-group-lg mb-5 mt-3">
+                    <input type="search" class="form-control metis-bg-gray-8 metis-text-gray-1 metis-border-gray-7" placeholder="Search .." aria-label="Search"
+                        aria-describedby="search">
+                    <button class="btn btn-outline-secondary metis-bg-gray-8  metis-border-gray-7" type="button" id="search"><i
+                            class="bi bi-search"></i></button>
+                </div>
+                <p class="display-5 metis-gradient-3 metis-text-gradient">{{message}}</p>
+
+                <a class="link-warning fs-5 text-decoration-none" href="dashboard.html">
+                    <i class="bi bi-arrow-90deg-left"></i> Return Dashboard
+                </a>
+                <div class="sr-only">
+                    {% body %}
                 </div>
             </div>
         </div>
-        <!-- /.col-lg-8 col-offset-2 -->
+        <!-- /.row row-cols-2 -->
     </div>
 </body>
 

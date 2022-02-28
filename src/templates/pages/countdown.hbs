@@ -17,21 +17,17 @@ layout: false
   <meta name="msapplication-TileColor" content="#5bc0de" />
   <meta name="msapplication-TileImage" content="assets/img/metis-tile.png" />
 
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.css" id="bootstrap-css">
 
-  <!-- Bootstrap Icons -->
-  <link rel="stylesheet" href="assets/lib/bootstrap-icons/bootstrap-icons.css">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="assets/lib/font-awesome/css/all.min.css">
+  <!-- Icon: Bootstrap + Font Awesome -->
+  <link rel="stylesheet" href="assets/css/icons.css">
 
   <!-- Metis core stylesheet -->
   <link rel="stylesheet" href="assets/css/metis.css">
 
 </head>
 
-<body class="bg-dark">
+<body class="metis-bg-gray-9">
   <div class="container">
     <div class="display-1 text-info text-center p-3 m-3 fw-bold">UC</div>
     <!-- /.display-1 text-warning text-center p-3 m-3 -->
@@ -43,49 +39,55 @@ layout: false
           </p>
     </div>
     <!-- /.text-center text-white -->
+
+    <div class="row justify-content-center">
+      <div class="col-11 col-sm-5 col-md-4 col-lg-3 mt-3 mb-5">
+        <img class="img-fluid" src="assets/img/undraw_under_construction_-46-pa.svg" alt="Under Construction">
+      </div>
+    </div>
     <!--counter is here-->
     <div id="counter"></div>
 
     <div id="counter-default" class="row">
       <div class="col-lg-3 col-sm-6 mb-5">
-        <div class="bg-black border border-dark rounded-3 shadow-lg text-center p-5 metis-ratio-square">
-          <div id="day-number" class="fw-bold fs-2 text-light mb-3"></div>
-          <div class="p-3 text-secondary">DAYS</div>
+        <div class="metis-bg-gray-8 border metis-border-gray-7 rounded-3 metis-shadow-2 text-center p-5 metis-ratio-square">
+          <div id="day-number" class="fs-1 metis-text-orange-2 mb-3"></div>
+          <div class="p-3 metis-text-orange-1">DAYS</div>
           <div class="progress">
-            <div id="day-bar" class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+            <div id="day-bar" class="progress-bar  metis-gradient-18" role="progressbar" aria-valuenow="75" aria-valuemin="0"
               aria-valuemax="365"></div>
           </div>
         </div>
         <!-- /.inner -->
       </div>
       <div class="col-lg-3 col-sm-6 mb-5">
-        <div class="bg-black border border-dark rounded-3 shadow-lg text-center p-5 metis-ratio-square">
-          <div id="hour-number" class="fw-bold fs-2 text-light mb-3"></div>
-          <div class="p-3 text-secondary">HOURS</div>
+        <div class="metis-bg-gray-8 border metis-border-gray-7 rounded-3 metis-shadow-2 text-center p-5 metis-ratio-square">
+          <div id="hour-number" class="fs-1 metis-text-cyan-2 mb-3"></div>
+          <div class="p-3 metis-text-cyan-1">HOURS</div>
           <div class="progress">
-            <div id="hour-bar" class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+            <div id="hour-bar" class="progress-bar  metis-gradient-2" role="progressbar" aria-valuenow="75" aria-valuemin="0"
               aria-valuemax="24"></div>
           </div>
         </div>
         <!-- /.inner -->
       </div>
       <div class="col-lg-3 col-sm-6 mb-5">
-        <div class="bg-black border border-dark rounded-3 shadow-lg text-center p-5 metis-ratio-square">
-          <div id="minute-number" class="fw-bold fs-2 text-light mb-3"></div>
-          <div class="p-3 text-secondary">MINUTES</div>
+        <div class="metis-bg-gray-8 border metis-border-gray-7 rounded-3 metis-shadow-2 text-center p-5 metis-ratio-square">
+          <div id="minute-number" class="fs-1 metis-text-grape-2 mb-3"></div>
+          <div class="p-3 metis-text-grape-1">MINUTES</div>
           <div class="progress">
-            <div id="minute-bar" class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+            <div id="minute-bar" class="progress-bar  metis-gradient-4" role="progressbar" aria-valuenow="75" aria-valuemin="0"
               aria-valuemax="59"></div>
           </div>
         </div>
         <!-- /.inner -->
       </div>
       <div class="col-lg-3 col-sm-6 mb-5">
-        <div class="bg-black border border-dark rounded-3 shadow-lg text-center p-5 metis-ratio-square">
-          <div id="second-number" class="fw-bold fs-2 text-light mb-3"></div>
-          <div class="p-3 text-secondary">SECOND</div>
+        <div class="metis-bg-gray-8 border metis-border-gray-7 rounded-3 metis-shadow-2 text-center p-5 metis-ratio-square">
+          <div id="second-number" class="fs-1 metis-text-green-2 mb-3"></div>
+          <div class="p-3 metis-text-green-1">SECOND</div>
           <div class="progress">
-            <div id="second-bar" class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+            <div id="second-bar" class="progress-bar metis-gradient-3" role="progressbar" aria-valuenow="75" aria-valuemin="0"
               aria-valuemax="59"></div>
           </div>
 
@@ -96,9 +98,9 @@ layout: false
 
     <div class="row">
       <div class="col-lg-12">
-        <div class="progress" style="height: 2rem;">
+        <div class="progress metis-bg-gray-8 border metis-border-gray-7 mb-3" style="height: 2rem;">
           <div id="total-bar"
-            class="fs-5 text-warning progress-bar progress-bar-striped progress-bar-animated bg-success"
+            class="fs-5 text-white fw-bold progress-bar progress-bar-striped progress-bar-animated metis-bg-blue-3"
             role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
           </div>
         </div>
@@ -108,31 +110,31 @@ layout: false
     </div>
     <hr />
     <!-- .row -->
-    <div class="row">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
       <!-- .col-lg-6 -->
-      <div class="col-lg-6">
-        <div class="card bg-primary text-white border-primary bg-opacity-50 mb-3">
+      <div class="col">
+        <div class="card h-100 metis-bg-gray-8 metis-border-gray-7 border metis-text-gray-2 metis-shadow-2 mb-3">
           <div class="card-body">
             <form>
               <div class="mb-3">
                 <label for="Name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="Name" aria-describedby="Name" placeholder="Enter your name">
-                <div id="emailHelp" class="form-text text-info">We'll never share your email with anyone else.</div>
+                <input type="text" class="form-control metis-bg-gray-7 metis-border-gray-6 text-white" id="Name" aria-describedby="Name" placeholder="Enter your name">
+                <div id="emailHelp" class="form-text metis-text-red-2">We'll never share your email with anyone else.</div>
               </div>
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                <input type="email" class="form-control metis-bg-gray-7 metis-border-gray-6 text-white" id="exampleFormControlInput1" placeholder="name@example.com">
               </div>
               <div class="mb-3">
                 <label for="subject" class="form-label">Subject</label>
-                <input type="text" class="form-control" id="subject">
+                <input type="text" class="form-control metis-bg-gray-7 metis-border-gray-6 text-white" id="subject">
               </div>
               <div class="mb-3">
                 <label for="message" class="form-label">Message</label>
-                <textarea class="form-control" id="message" rows="3"></textarea>
+                <textarea class="form-control metis-bg-gray-7 metis-border-gray-6 text-white" id="message" rows="3"></textarea>
               </div>
               <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <input type="checkbox" class="form-check-input metis-bg-gray-9" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>
@@ -144,9 +146,9 @@ layout: false
       </div>
       <!-- /.col-lg-6 -->
       <!-- .col-lg-6 -->
-      <div class="col-lg-6 contact">
+      <div class="col">
 
-        <div class="card bg-warning bg-opacity-50 border-warning text-light mb-3">
+        <div class="card h-100 metis-bg-gray-8 metis-border-gray-7 border metis-text-gray-2 metis-shadow-2 mb-3">
           <div class="card-body">
             <h5 class="card-title">Contact Us</h5>
             <dl class="row">
@@ -176,10 +178,7 @@ layout: false
 
 
   <!--jQuery -->
-  <script src="assets/lib/jquery/jquery.js"></script>
-
-  <!--Bootstrap -->
-  <script src="assets/lib/bootstrap/js/bootstrap.bundle.js"></script>
+  <script src="assets/lib/jquery/jquery.min.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.0.1/jquery.plugin.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.0.1/jquery.countdown.min.js"></script>

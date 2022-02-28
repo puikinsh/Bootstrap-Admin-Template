@@ -16,68 +16,504 @@ cdnjs:
 scripts:
 - Metis.dashboard()
 ---
-<div class="text-center">
-    <ul class="stats_box">
-	<li>
-	    <div class="sparkline bar_week"></div>
-	    <div class="stat_text">
-		<strong>2.345</strong>Weekly Visit
-		<span class="percent down"> <i class="fa fa-caret-down"></i> -16%</span>
-	    </div>
-	</li>
-	<li>
-	    <div class="sparkline line_day"></div>
-	    <div class="stat_text">
-		<strong>165</strong>Daily Visit
-		<span class="percent up"> <i class="fa fa-caret-up"></i> +23%</span>
-	    </div>
-	</li>
-	<li>
-	    <div class="sparkline pie_week"></div>
-	    <div class="stat_text">
-		<strong>$2 345.00</strong>Weekly Sale
-		<span class="percent"> 0%</span>
-	    </div>
-	</li>
-	<li>
-	    <div class="sparkline stacked_month"></div>
-	    <div class="stat_text">
-		<strong>$678.00</strong>Monthly Sale
-		<span class="percent down"> <i class="fa fa-caret-down"></i> -10%</span>
-	    </div>
-	</li>
-    </ul>
-</div>
-<hr>
-<div class="text-center">
 
-    <a class="quick-btn" href="#">
-	<i class="fa fa-bolt fa-2x"></i>
-	<span>default</span>
-	<span class="label label-default">2</span>
-    </a>
-    <a class="quick-btn" href="#">
-	<i class="fa fa-check fa-2x"></i>
-	<span>danger</span>
-	<span class="label label-danger">2</span>
-    </a>
-    <a class="quick-btn" href="#">
-	<i class="fa fa-building-o fa-2x"></i>
-	<span>No Label</span>
-    </a>
-    <a class="quick-btn" href="#">
-	<i class="fa fa-envelope fa-2x"></i>
-	<span>success</span>
-	<span class="label label-success">-456</span>
-    </a>
-    <a class="quick-btn" href="#">
-	<i class="fa fa-signal fa-2x"></i>
-	<span>warning</span>
-	<span class="label label-warning">+25</span>
-    </a>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col col-sm-6 col-xl-3">
+      <div class="card rounded-3 mb-3 metis-shadow-1 metis-border-gray-1">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
+              <div class="h6 text-muted d-block mb-2">
+                Weekly Visit
+              </div>
+              <!-- /.h6 fw-bold text-muted d-block mb-2 -->
+              <div class="h3">2.345</div>
+              <!-- /.h3 -->
+              <div class="d-flex gap-2">
+                <span class="badge metis-bg-red-3 border metis-border-red-4">
+                  <i class="bi bi-arrow-down"></i> -16%
+                </span>
+                <!-- /.badge metis-bg-pink-3 border metis-border-pink-4 -->
+                <span class="text-muted text-nowrap">Since last month.</span>
+              </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-auto">
+              <div
+                class="rounded-circle metis-ratio-square p-3 text-white metis-bg-indigo-5 fs-5 d-flex align-items-center justify-content-center">
+                <i class="bi bi-bar-chart-line"></i>
+              </div>
+              <!-- /.rounded-circle metis-bg-pink-5 fs-4 -->
+            </div>
+            <!-- /.col-auto -->
+          </div>
+          <!-- /.row -->
 
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card mb-3 -->
+    </div>
+    <!-- /.col col-sm-6 col-xl-3 -->
+    <div class="col col-sm-6 col-xl-3">
+      <div class="card rounded-3 mb-3 metis-shadow-1 metis-border-gray-1">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
+              <div class="h6 text-muted d-block mb-2">
+                Daily Visit
+              </div>
+              <!-- /.h6 fw-bold text-muted d-block mb-2 -->
+              <div class="h3">165</div>
+              <!-- /.h3 -->
+              <div class="d-flex gap-2">
+                <span class="badge metis-bg-teal-3 border metis-border-teal-4">
+                  <i class="bi bi-arrow-up"></i> 23%
+                </span>
+                <!-- /.badge metis-bg-pink-3 border metis-border-pink-4 -->
+                <span class="text-muted text-nowrap">Since last day.</span>
+              </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-auto">
+              <div
+                class="rounded-circle metis-ratio-square p-3 text-dark metis-bg-yellow-5 fs-5 d-flex align-items-center justify-content-center">
+                <i class="bi bi-graph-up-arrow"></i>
+              </div>
+              <!-- /.rounded-circle metis-bg-pink-5 fs-4 -->
+            </div>
+            <!-- /.col-auto -->
+          </div>
+          <!-- /.row -->
+
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card mb-3 -->
+    </div>
+    <!-- /.col col-sm-6 col-xl-3 -->
+
+    <div class="col col-sm-6 col-xl-3">
+      <div class="card rounded-3 mb-3 metis-shadow-1 metis-border-gray-1">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
+              <div class="h6 text-muted d-block mb-2">
+                Weekly Visit
+              </div>
+              <!-- /.h6 fw-bold text-muted d-block mb-2 -->
+              <div class="h3">2.345</div>
+              <!-- /.h3 -->
+              <div class="d-flex gap-2">
+                <span class="badge metis-bg-red-3 border metis-border-red-4">
+                  <i class="bi bi-arrow-down"></i> -16%
+                </span>
+                <!-- /.badge metis-bg-pink-3 border metis-border-pink-4 -->
+                <span class="text-muted text-nowrap">Since last month.</span>
+              </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-auto">
+              <div
+                class="rounded-circle metis-ratio-square p-3 text-white metis-bg-indigo-5 fs-5 d-flex align-items-center justify-content-center">
+                <i class="bi bi-bar-chart-line"></i>
+              </div>
+              <!-- /.rounded-circle metis-bg-pink-5 fs-4 -->
+            </div>
+            <!-- /.col-auto -->
+          </div>
+          <!-- /.row -->
+
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card mb-3 -->
+    </div>
+    <!-- /.col col-sm-6 col-xl-3 -->
+    <div class="col col-sm-6 col-xl-3">
+      <div class="card rounded-3 mb-3 metis-shadow-1 metis-border-gray-1">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
+              <div class="h6 text-muted d-block mb-2">
+                Daily Visit
+              </div>
+              <!-- /.h6 fw-bold text-muted d-block mb-2 -->
+              <div class="h3">165</div>
+              <!-- /.h3 -->
+              <div class="d-flex gap-2">
+                <span class="badge metis-bg-teal-3 border metis-border-teal-4">
+                  <i class="bi bi-arrow-up"></i> 23%
+                </span>
+                <!-- /.badge metis-bg-pink-3 border metis-border-pink-4 -->
+                <span class="text-muted text-nowrap">Since last day.</span>
+              </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-auto">
+              <div
+                class="rounded-circle metis-ratio-square p-3 text-dark metis-bg-yellow-5 fs-5 d-flex align-items-center justify-content-center">
+                <i class="bi bi-graph-up-arrow"></i>
+              </div>
+              <!-- /.rounded-circle metis-bg-pink-5 fs-4 -->
+            </div>
+            <!-- /.col-auto -->
+          </div>
+          <!-- /.row -->
+
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card mb-3 -->
+    </div>
+    <!-- /.col col-sm-6 col-xl-3 -->
+
+  </div>
+  <!-- /.row -->
 </div>
-<hr>
+<!-- /.container-fluid -->
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="bg-white text-muted p-3 shadow-sm">
+        <h5>Guide List</h5>
+        <div class="table-responsive">
+          <table class="table table-borderless">
+            <thead class="border-bottom">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">STATUS</th>
+                <th scope="col">GUIDE NAME</th>
+                <th scope="col">VIEW</th>
+                <th scope="col">DATE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">#89612</th>
+                <td>
+                  <span class="badge rounded-pill metis-bg-green-2 d-inline-flex align-items-center metis-text-green-8">
+                    <span class="p-1 me-2 metis-bg-green-7 rounded-circle metis-ratio-square"></span> Live
+                  </span>
+                </td>
+                <td>Create your first guide</td>
+                <td class="d-flex align-items-center gap-1 fw-bold">
+                  <span class="fs-4"><i class="bi bi-eye"></i></span> 420
+                  <span
+                    class="badge rounded-pill metis-bg-green-2 d-inline-flex align-items-center metis-text-green-8">23
+                    <i class="bi bi-arrow-up-right"></i>
+                  </span>
+                </td>
+                <td>23 April 2022</td>
+              </tr>
+
+              <tr>
+                <th scope="row">#53224</th>
+                <td>
+                  <span class="badge rounded-pill metis-bg-green-2 d-inline-flex align-items-center metis-text-green-8">
+                    <span class="p-1 me-2 metis-bg-green-7 rounded-circle metis-ratio-square"></span> Live
+                  </span>
+                </td>
+                <td>Install Chrome Extension</td>
+                <td class="d-flex align-items-center gap-1 fw-bold">
+                  <span class="fs-4"><i class="bi bi-eye"></i></span> 450
+                  <span class="badge rounded-pill metis-bg-red-2 d-inline-flex align-items-center metis-text-red-8">23
+                    <i class="bi bi-arrow-down-right"></i>
+                  </span>
+                </td>
+                <td>23 April 2022</td>
+              </tr>
+
+              <tr>
+                <th scope="row">#12345</th>
+                <td>
+                  <span class="badge rounded-pill metis-bg-gray-2 d-inline-flex align-items-center metis-text-gray-5">
+                    <span class="p-1 me-2 metis-bg-gray-4 rounded-circle metis-ratio-square"></span> Disable
+                  </span>
+                </td>
+                <td>Create your first guide</td>
+                <td class="d-flex align-items-center gap-1 fw-bold">
+                  <span class="fs-4"><i class="bi bi-eye"></i></span> 380
+                  <span class="badge rounded-pill metis-bg-cyan-2 d-inline-flex align-items-center metis-text-cyan-8">23
+                    <i class="bi bi-arrow-up-right"></i>
+                  </span>
+                </td>
+                <td>19 May 2022</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- /.bg-white text-muted p-3 -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.container-fluid -->
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="my-3 bg-white rounded-3 border">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 gx-2">
+          <div class="col d-flex align-items-center p-3" style="height: 10rem;">
+            <div class="flex-fill px-1">
+              <h6 class="text-muted">Guide Views</h6>
+              <div class="d-flex align-items-center gap-2">
+                <div class="fs-3 d-inline-block">1.234 </div>
+                <span class="badge rounded-pill bg-info">23 <i class="bi-arrow-up-right"></i> </span>
+              </div>
+              <div class="text-muted">Views (7 day)</div>
+            </div>
+            <div class="vr d-none d-md-inline-block"></div>
+          </div>
+          <!-- /.col -->
+          <div class="col d-flex align-items-center p-3" style="height: 10rem;">
+            <div class="flex-fill px-1">
+              <h6 class="text-muted">Guide Views</h6>
+              <div class="d-flex align-items-center gap-2">
+                <div class="fs-3 d-inline-block">1.234 </div>
+                <span class="badge rounded-pill bg-info">23 <i class="bi-arrow-up-right"></i> </span>
+              </div>
+              <div class="text-muted">Views (7 day)</div>
+            </div>
+            <div class="vr d-none d-xl-inline-block"></div>
+          </div>
+          <!-- /.col -->
+          <div class="col d-flex align-items-center p-3" style="height: 10rem;">
+            <div class="flex-fill px-1">
+              <h6 class="text-muted">Guide Views</h6>
+              <div class="d-flex align-items-center gap-2">
+                <div class="fs-3 d-inline-block">1.234 </div>
+                <span class="badge rounded-pill bg-info">23 <i class="bi-arrow-up-right"></i> </span>
+              </div>
+              <div class="text-muted">Views (7 day)</div>
+            </div>
+            <div class="vr d-none d-md-inline-block"></div>
+          </div>
+          <!-- /.col -->
+          <div class="col d-flex align-items-center p-3" style="height: 10rem;">
+            <div class="flex-fill px-1">
+              <h6 class="text-muted">Guide Views</h6>
+              <div class="d-flex align-items-center gap-2">
+                <div class="fs-3 d-inline-block">1.234 </div>
+                <span class="badge rounded-pill bg-info">23 <i class="bi-arrow-up-right"></i> </span>
+              </div>
+              <div class="text-muted">Views (7 day)</div>
+            </div>
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.my-3 bg-white rounded-3 -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.container-fluid -->
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-xl-3">
+      <div class="card bg-dark text-light mb-3">
+        <header class="card-header d-flex align-items-center">
+          <span class="p-2 bg-info rounded-circle me-3"></span>
+          <h5 class="m-0">Login form</h5>
+        </header>
+        <div class="card-body">
+          <form>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="email" class="form-control metis-bg-gray-8 metis-text-gray-1 metis-border-gray-7"
+                id="exampleInputEmail1" aria-describedby="emailHelp">
+              <div id="emailHelp" class="form-text text-info text-opacity-75">We'll never share your email with anyone
+                else.</div>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control metis-bg-gray-8 metis-text-gray-1 metis-border-gray-7"
+                id="exampleInputPassword1">
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card .bg-dark -->
+    </div>
+    <!-- /.col-md-3 -->
+
+    <div class="col-sm-12 col-md-6 col-xl-3">
+      <div class="card bg-dark text-light mb-3">
+        <div class="card-body">
+          <div class="d-flex align-items-center justify-content-center py-3">
+            <img src="assets/img/vincent-van-zalinge-vUNQaTtZeOo-unsplash.jpg" alt="Vincent van Zalinge"
+              class="img-fluid rounded-circle" width="128">
+          </div>
+          <!-- /.d-flex align-items-center justify-content-center -->
+          <p class="card-text text-center">Vincent van Zalinge</p>
+          <a href="#" class="link-dark text-decoration-none text-center d-block"><i class="bi bi-globe"></i>
+            https://www.instagram.com/vincentvanzalinge/</a>
+
+          <div class="d-flex gap-3 my-3 justify-content-center">
+            <a href="#" class="btn btn-sm btn-primary rounded-pill"><i class="bi bi-bookmark-plus"></i> Follow</a>
+            <a href="#" class="btn btn-sm rounded-circle btn-outline-secondary"><i class="bi bi-upload"></i></a>
+            <a href="#" class="btn btn-sm rounded-circle btn-outline-secondary"><i class="bi bi-three-dots"></i></a>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card mb-3 -->
+    </div>
+    <!-- /.col-md-3 -->
+
+    {{!-- BEGIN CHAT --}}
+
+    <div class="col-sm-12 col-md-6 col-xl-3">
+      <div class="card bg-dark mb-3 text-light metis-border-gray-8">
+        <div class="card-header d-flex align-items-center">
+          <h5>Chat</h5>
+          <div class="ms-auto">
+            <div class="text-info fs-4">
+              <i class="bi bi-chat-left-dots-fill"></i>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="d-flex flex-column overflow-auto metis-bg-gray-8 border metis-border-gray-7 rounded"
+            style="height: 400px;">
+            <div class="card w-50 metis-bg-gray-6 m-3">
+              <div class="card-header metis-bg-gray-8">
+                <h6 class="text-info">Vincent van Zalinge</h6>
+              </div>
+              <div class="card-body metis-bg-gray-9">
+                lorem ipsum dolor
+              </div>
+              <div class="card-footer small text-muted text-end  metis-bg-gray-9">
+                10 minutes ago
+              </div>
+            </div>
+            <!-- /.card-w-50 metis-bg-gray-6 -->
+
+            <div class="card w-50 metis-bg-green-6 m-3 ms-auto">
+
+              <div class="card-body metis-bg-green-7">
+                lorem ipsum dolor
+              </div>
+              <div class="card-footer small text-light text-end  metis-bg-green-7 border-0">
+                12:34 <i class="bi bi-check2-all text-info fs-5"></i>
+              </div>
+            </div>
+            <!-- /.card-w-50 metis-bg-gray-6 -->
+
+            <div class="card w-50 metis-bg-green-6 m-3 ms-auto">
+
+              <div class="card-body metis-bg-green-7">
+                lorem ipsum dolor
+              </div>
+              <div class="card-footer small text-light text-end  metis-bg-green-7 border-0">
+                12:34 <i class="bi bi-check2-all text-light fs-5"></i>
+              </div>
+            </div>
+            <!-- /.card-w-50 metis-bg-gray-6 -->
+
+            <div class="card w-50 metis-bg-green-6 m-3 ms-auto">
+
+              <div class="card-body metis-bg-green-7">
+                lorem ipsum dolor 👍
+              </div>
+              <div class="card-footer small text-light text-end  metis-bg-green-7 border-0">
+                12:34 <i class="bi bi-check2 text-light fs-5"></i>
+              </div>
+            </div>
+            <!-- /.card-w-50 metis-bg-gray-6 -->
+          </div>
+        </div>
+        {{!-- .card-body --}}
+
+        <footer class="card-footer py-3">
+          <div class="input-group">
+            <input type="text" class="form-control metis-bg-gray-8 metis-text-gray-1 metis-border-gray-7"
+              placeholder="type & enter">
+            <button class="btn btn-outline-secondary" type="button">
+              <span class="link-info"><i class="bi bi-send"></i></span>
+            </button>
+          </div>
+        </footer>
+        <!-- /.card-footer -->
+      </div>
+
+
+    </div>
+    {{!-- END CHAT --}}
+
+
+    {{!-- BEGIN CAROUSEL --}}
+    <div class="col-sm-12 col-md-6 col-xl-3">
+      <div class="card border-0 shadow bg-dark text-light mb-3">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="assets/img/alexander-ant-AnjGcUxk9ME-unsplash.jpg" class="d-block w-100" alt="alexander ant">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Alexander Ant</h5>
+                <p>https://instagram.com/_alexander_ant_</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="assets/img/alexander-ant-EHlp8e-nQ3g-unsplash.jpg" class="d-block w-100" alt="alexander ant">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Alexander Ant</h5>
+                <p>https://instagram.com/_alexander_ant_</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="assets/img/alexander-ant-Y81_LvzzDrM-unsplash.jpg" class="d-block w-100" alt="alexander ant">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Alexander Ant</h5>
+                <p>https://instagram.com/_alexander_ant_</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="assets/img/solen-feyissa-MdGbzzn49-o-unsplash.jpg" class="d-block w-100" alt="Solen Feyissa">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Solen Feyissa</h5>
+                <p>https://instagram.com/aarif_foto</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.col-md-3 -->
+    {{!-- END CAROUSEL --}}
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.container-fluid -->
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-6">
@@ -158,14 +594,14 @@ scripts:
 
 <!-- BEGIN: fullcalendar -->
 <div class="container-fluid">
-	<div class="card">
-		<div class="card-body">
-			<h5 class="card-title">Calendar</h5>
-			<div id='calendar'></div>
-			<!-- /.card-title -->
-		</div>
-		<!-- /.card-body -->
-	</div>
-	<!-- /.card -->
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Calendar</h5>
+      <div id='calendar'></div>
+      <!-- /.card-title -->
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
 </div>
 <!-- END: fullcalendar -->

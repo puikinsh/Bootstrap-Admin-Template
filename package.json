@@ -77,7 +77,7 @@
     "font-awesome": "^4.7.0",
     "fullcalendar": "^3.0.0",
     "gmaps": "^0.4.24",
-    "jquery": "2.2.4",
+    "jquery": "3.6.3",
     "jquery-validation": "^1.15.1",
     "metismenu": "^2.6.1",
     "onoffcanvas": "^1.1.1",

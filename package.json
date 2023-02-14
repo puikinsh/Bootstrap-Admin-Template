@@ -66,7 +66,7 @@
     "handlebars-helpers": "^0.7.3",
     "helper-markdown": "^0.2.1",
     "helper-md": "^0.2.1",
-    "noty": "^2.3.8",
+    "noty": "^3.1.4",
     "rtlcss": "^2.0.6"
   },
   "dependencies": {

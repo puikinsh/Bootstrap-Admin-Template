@@ -79,7 +79,7 @@
     "gmaps": "^0.4.24",
     "jquery": "3.6.3",
     "jquery-validation": "^1.15.1",
-    "metismenu": "^2.6.1",
+    "metismenu": "^3.0.7",
     "onoffcanvas": "^2.3.1",
     "screenfull": "^3.0.0"
   },

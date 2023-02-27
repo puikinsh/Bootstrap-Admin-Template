@@ -42,7 +42,7 @@
     "buildrtl": "npm run build && npm run rtl"
   },
   "devDependencies": {
-    "assemble": "^0.17.1",
+    "assemble": "^0.24.3",
     "babel-core": "^6.11.4",
     "babel-preset-es2015": "^6.9.0",
     "browser-sync": "^2.13.0",

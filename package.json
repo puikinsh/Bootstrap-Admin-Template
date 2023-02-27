@@ -71,7 +71,7 @@
   },
   "dependencies": {
     "animate.css": "^3.5.1",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^5.2.3",
     "cleave.js": "^1.6.0",
     "clipboard": "^2.0.11",
     "font-awesome": "^4.7.0",

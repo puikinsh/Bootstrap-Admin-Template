@@ -61,7 +61,7 @@
     "gulp-load-plugins": "^2.0.8",
     "gulp-open": "^3.0.1",
     "gulp-rename": "^1.2.2",
-    "gulp-size": "^2.1.0",
+    "gulp-size": "^4.0.1",
     "gulp-uglify": "^3.0.2",
     "handlebars-helpers": "^0.10.0",
     "helper-markdown": "^1.0.0",

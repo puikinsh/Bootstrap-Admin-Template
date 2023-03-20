@@ -57,7 +57,7 @@
     "gulp-format-md": "^0.1.9",
     "gulp-header": "^1.8.7",
     "gulp-if": "^3.0.0",
-    "gulp-less": "^3.1.0",
+    "gulp-less": "^5.0.0",
     "gulp-load-plugins": "^2.0.8",
     "gulp-open": "^3.0.1",
     "gulp-rename": "^2.0.0",

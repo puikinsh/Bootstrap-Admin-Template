@@ -54,7 +54,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-cssnano": "^2.1.2",
     "gulp-extname": "^0.2.2",
-    "gulp-format-md": "^0.1.9",
+    "gulp-format-md": "^2.0.0",
     "gulp-header": "^1.8.7",
     "gulp-if": "^3.0.0",
     "gulp-less": "^3.1.0",

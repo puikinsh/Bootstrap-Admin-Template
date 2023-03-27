@@ -75,7 +75,7 @@
     "cleave.js": "^1.6.0",
     "clipboard": "^2.0.11",
     "font-awesome": "^4.7.0",
-    "fullcalendar": "^3.0.0",
+    "fullcalendar": "^6.1.5",
     "gmaps": "^0.4.24",
     "jquery": "3.6.3",
     "jquery-validation": "^1.15.1",

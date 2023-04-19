@@ -7,7 +7,6 @@
 #top,
 .head,
 .Footer {
-  .clearfix();
 }
 
 .Wrap, #wrap {
@@ -16,7 +15,7 @@
 }
 
 #left {
-  .transition(all .3s ease-in-out);
+  transition: all 0.3s ease-in-out;
   width: @SidebarWidth;
   z-index: 999;
 }
@@ -51,25 +50,11 @@
   }
 
   #content {
-    .transition(all .3s ease-in-out);
+    transition: all 0.3s ease-in-out;
     overflow: hidden;
   }
 
 
-}
-
-@media (min-width: @screen-lg-min) {
-  body.boxed {
-    margin-bottom: 0;
-    .Wrap, #wrap, .Footer, #top .navbar.navbar-fixed-top {
-      max-width: 1170px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .Footer, #footer {
-      position: relative;
-    }
-  }
 }
 
 /* ================== END Template Layout ============== */

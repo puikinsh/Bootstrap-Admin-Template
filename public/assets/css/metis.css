@@ -1,0 +1,140 @@
+:where(html) {
+  --metis-sidebar-width: clamp(256px, 16vw, 400px);
+}
+
+:where(html) {
+  block-size: 100%;
+}
+
+:where(body) {
+  min-block-size: 100%;
+}
+
+/* ================== BEGIN Layout ============== */
+@media (max-width: 991.98px) {
+  .metis-topnav {
+    flex-basis: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .search-bar {
+    width: var(--metis-sidebar-width);
+  }
+}
+
+.metis-sidebar-start {
+  width: var(--metis-sidebar-width);
+  position: absolute;
+}
+@media (min-width: 992px) {
+  .metis-sidebar-start.offcanvas.show {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+  }
+}
+
+.metis-content {
+  outline: 10px solid #6e6e6e;
+  border: 10px solid #e4e4e4;
+  margin: 10px;
+}
+
+/* ================== END Layout ============== */
+/*!
+* metismenujs - v1.3.1
+* A menu plugin
+* https://github.com/onokumus/metismenujs#readme
+*
+* Made by Osman Nuri Okumus <onokumus@gmail.com> (https://github.com/onokumus)
+* Under MIT License
+*/
+.metismenu .mm-collapse:not(.mm-show) {
+  display: none;
+}
+
+.metismenu .mm-collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition-timing-function: ease;
+  transition-duration: 0.35s;
+  transition-property: height, visibility;
+}
+
+.metismenu .has-arrow {
+  position: relative;
+}
+
+.metismenu .has-arrow::after {
+  position: absolute;
+  content: "";
+  width: 0.5em;
+  height: 0.5em;
+  border-width: 0 0 1px 1px;
+  border-style: solid;
+  border-color: initial;
+  inset-inline-end: 1em;
+  transform: rotate(45deg) translate(0, -50%);
+  transform-origin: top;
+  top: 50%;
+  transition: all 0.3s ease-out;
+}
+
+*[dir=rtl] .metismenu .has-arrow::after {
+  transform: rotate(-135deg) translate(0, -50%);
+}
+
+.metismenu .mm-active > .has-arrow::after,
+.metismenu .has-arrow[aria-expanded=true]::after {
+  transform: rotate(-45deg) translate(0, -50%);
+}
+
+/* ================== BEGIN Utility ============== */
+:where(html) {
+  --ratio-square: 1;
+  --ratio-landscape: 4/3;
+  --ratio-portrait: 3/4;
+  --ratio-widescreen: 16/9;
+  --ratio-ultrawide: 18/5;
+  --ratio-golden: 1.618/1;
+}
+
+.metis-ratio-square {
+  aspect-ratio: var(--ratio-square);
+}
+
+.metis-ratio-landscape {
+  aspect-ratio: var(--ratio-landscape);
+}
+
+.metis-ratio-portrait {
+  aspect-ratio: var(--ratio-portrait);
+}
+
+.metis-ratio-widescreen {
+  aspect-ratio: var(--ratio-widescreen);
+}
+
+.metis-ratio-ultrawide {
+  aspect-ratio: var(--ratio-ultrawide);
+}
+
+.metis-ratio-golden {
+  aspect-ratio: var(--ratio-golden);
+}
+
+.card:fullscreen {
+  border-width: 0;
+  border-radius: 0;
+}
+
+.card:fullscreen .card-body {
+  overflow: auto;
+}
+
+/* ================== END Utility ============== */
+
+/*# sourceMappingURL=metis.css.map */

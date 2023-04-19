@@ -1,89 +1,91 @@
 <!-- .navbar -->
-<nav class="navbar navbar-inverse navbar-{{#if fixedNav}}fixed{{else}}static{{/if}}-top">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
 
+    <a class="navbar-brand py-0" href="index.html">
+      <img src="assets/img/logo.png" alt="Metis" height="40">
+    </a>
 
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <header class="navbar-header">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#metisNavbarCollapse"
+      aria-controls="metisNavbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="index.html" class="navbar-brand"><img src="{{assets}}/img/logo.png" alt=""></a>
+    <!-- BEGIN: .metis-topnav -->
+    <div class="metis-topnav text-end order-lg-last">
 
-        </header>
+      <div class="btn-group btn-group-sm" role="group" aria-label="Fullscreen">
+        <button id="toggleFullScreen" type="button" class="btn btn-light" data-bs-toggle="tooltip"
+          data-bs-placement="bottom" title="Fullscreen">
+          <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+        </button>
+      </div>
 
+      <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="E-mail">
+          <i class="fa fa-envelope"></i>
+          <span class="badge bg-warning">5</span>
+        </button>
+        <button type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom"
+          title="Messages">
+          <i class="fa fa-envelope"></i>
+          <span class="badge bg-danger">4</span>
+        </button>
+        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#helpModal" title="Help">
+          <i class="fa fa-question"></i>
+        </button>
+      </div>
 
+      <div class="btn-group btn-group-sm" role="group" aria-label="Logout">
+        <a href="login.html" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout">
+          <i class="fa fa-power-off"></i>
+        </a>
+      </div>
 
-        <div class="topnav">
-            <div class="btn-group">
-                <a data-placement="bottom" data-original-title="Fullscreen" data-toggle="tooltip"
-                   class="btn btn-default btn-sm" id="toggleFullScreen">
-                    <i class="glyphicon glyphicon-fullscreen"></i>
-                </a>
-            </div>
-            <div class="btn-group">
-                <a data-placement="bottom" data-original-title="E-mail" data-toggle="tooltip"
-                   class="btn btn-default btn-sm">
-                    <i class="fa fa-envelope"></i>
-                    <span class="label label-warning">5</span>
-                </a>
-                <a data-placement="bottom" data-original-title="Messages" href="#" data-toggle="tooltip"
-                   class="btn btn-default btn-sm">
-                    <i class="fa fa-comments"></i>
-                    <span class="label label-danger">4</span>
-                </a>
-                <a data-toggle="modal" data-original-title="Help" data-placement="bottom"
-                   class="btn btn-default btn-sm"
-                   href="#helpModal">
-                    <i class="fa fa-question"></i>
-                </a>
-            </div>
-            <div class="btn-group">
-                <a href="login.html" data-toggle="tooltip" data-original-title="Logout" data-placement="bottom"
-                   class="btn btn-metis-1 btn-sm">
-                    <i class="fa fa-power-off"></i>
-                </a>
-            </div>
-            <div class="btn-group">
-                <a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip"
-                   class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
-                    <i class="fa fa-bars"></i>
-                </a>
-                <a href="#right" data-toggle="onoffcanvas" class="btn btn-default btn-sm" aria-expanded="false">
-                    <span class="fa fa-fw fa-comment"></span>
-                </a>
-            </div>
+      <div class="btn-group btn-group-sm" role="group" aria-label="Sidebar">
 
-        </div>
+        <button class="btn btn-primary" type="button" data-oc-toggle="onoffcanvas" data-oc-target="#metis-sidebar-start" title="Show / Hide Left">
+          <i class="fa fa-bars"></i>
+        </button>
 
+        <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#metis-sidebar-end"  title="Show / Hide Right"
+          aria-controls="metis-sidebar-end">
+          <i class="fa fa-fw fa-comment"></i>
+        </button>
 
+      </div>
 
-
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-
-            <!-- .nav -->
-            <ul class="nav navbar-nav">
-                <li{{#is title "Dashboard"}} class="active"{{/is}}><a href="dashboard.html">Dashboard</a></li>
-                <li{{#is title "Table"}} class="active"{{/is}}><a href="table.html">Tables</a></li>
-                <li class='dropdown {{#is topTitle "Forms"}}active{{/is}}'>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        Form Elements <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="form-general.html">General</a></li>
-                        <li><a href="form-validation.html">Validation</a></li>
-                        <li><a href="form-wysiwyg.html">WYSIWYG</a></li>
-                        <li><a href="form-wizard.html">Wizard &amp; File Upload</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <!-- /.nav -->
-        </div>
     </div>
-    <!-- /.container-fluid -->
+    <!-- END: /.metis-topnav -->
+
+    <div class="collapse navbar-collapse" id="metisNavbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="index.html">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="table.html">Tables</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Form Elements
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="form-general.html">General</a></li>
+            <li><a class="dropdown-item" href="form-validation.html">Validation</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="form-wysiwyg.html">WYSIWYG</a></li>
+            <li><a class="dropdown-item" href="form-wizard.html">Wizard &amp; File Upload</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+  <!-- /.container-fluid -->
 </nav>
 <!-- /.navbar -->

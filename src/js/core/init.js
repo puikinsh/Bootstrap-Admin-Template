@@ -1,14 +1,7 @@
-;(function($) {
-   $(document).ready(function() {
-    
-    $('[data-toggle="tooltip"]').tooltip();
- 
-    $('#menu').metisMenu();
-    Metis.navBar();
-    Metis.metisAnimatePanel();
-    Metis.toggleFullScreen();
-    Metis.boxFullScreen();
-    Metis.panelBodyCollapse();
-    Metis.boxHiding();   
-  });
-})(jQuery);
+document.addEventListener("DOMContentLoaded", () => {
+  Metis.sideMenu();
+  Metis.toggleFullScreen();
+  Metis.collapseCard();
+  Metis.hideCard();
+  Metis.fullCard();
+});

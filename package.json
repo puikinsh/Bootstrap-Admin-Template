@@ -78,7 +78,7 @@
     "fullcalendar": "^6.1.9",
     "gmaps": "^0.4.24",
     "jquery": "3.7.1",
-    "jquery-validation": "^1.15.1",
+    "jquery-validation": "^1.20.0",
     "metismenu": "^3.0.7",
     "onoffcanvas": "^2.3.1",
     "screenfull": "^6.0.2"

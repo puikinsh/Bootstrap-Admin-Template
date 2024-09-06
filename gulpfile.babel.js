@@ -121,7 +121,6 @@ gulp.task('scripts:core', () => {
             'src/js/core/metisAnimatePanel.js',
             'src/js/core/init.js'
         ])
-        .pipe($.babel())
         .pipe(gulp.dest('.tmp/app'))
         .pipe($.concat('core.js'))
         .pipe($.header(banner, {
@@ -143,7 +142,6 @@ gulp.task('scripts:core', () => {
 
 gulp.task('scripts:app', () => {
     return gulp.src('src/js/app/*.js')
-        .pipe($.babel())
         .pipe(gulp.dest('.tmp/app'))
         .pipe($.concat('app.js'))
         .pipe($.header(banner, {

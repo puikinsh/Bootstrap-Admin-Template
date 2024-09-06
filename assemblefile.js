@@ -3,7 +3,6 @@
 var assemble = require('assemble');
 var extname = require('gulp-extname');
 var path = require('path');
-var browserSync = require('browser-sync').create();
 var helpers = require('handlebars-helpers');
 var compare = helpers.comparison();
 var pkg = require('./package');
@@ -31,8 +30,7 @@ app.task('html:rtl', ['init'], function() {
     return app.toStream('pages')
         .pipe(app.renderFile())
         .pipe(extname())
-        .pipe(app.dest('public/rtl'))
-        .pipe(browserSync.stream());
+        .pipe(app.dest('public/rtl'));
 });
 
 app.task('html', ['init'], function() {
@@ -40,10 +38,9 @@ app.task('html', ['init'], function() {
     return app.toStream('pages')
         .pipe(app.renderFile())
         .pipe(extname())
-        .pipe(app.dest('public'))
-        .pipe(browserSync.stream());
+        .pipe(app.dest('public'));
 });
 
-app.task('default', ['html', 'html:rtl']);
+app.task('default', 'html');
 
 module.exports = app;

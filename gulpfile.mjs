@@ -3,6 +3,8 @@ import { fileURLToPath } from "node:url";
 import { deleteAsync } from "del";
 
 import { dest, parallel, series, src, watch } from "gulp";
+import * as dartSass from "sass";
+import gulpSass from "gulp-sass";
 import less from "gulp-less";
 import autoprefixer from "gulp-autoprefixer";
 import header from "gulp-header";
@@ -15,7 +17,7 @@ import GulpCleanCss from "gulp-clean-css";
 
 import pkg from "./package.json" with { type: "json" };
 
-import app from './assemblefile.js';
+const sass = gulpSass(dartSass);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -36,8 +38,15 @@ function clean() {
     return deleteAsync(["dist", "public"]);
 }
 
+function iconCss(cb){
+    cb();
+    return src("src/scss/icons.scss").pipe(sass({
+        includePaths: [path.join(__dirname, "./node_modules")],
+        outputStyle: "expanded",
+    })).pipe(dest("public/assets/css"));
+}
 
-function css(cb) {
+function cssLtr(cb) {
     cb();
     return src([
         "src/less/main.less",
@@ -59,7 +68,7 @@ function css(cb) {
         .pipe(dest("dist"))
         .pipe(dest("public/assets/css"))
         .pipe(size({
-            title: "styles:theme",
+            title: "styles",
         }));
 }
 
@@ -109,7 +118,7 @@ function bs3rtl(cb) {
         }))
         .pipe(dest("public/assets/lib/bootstrap/css"))
         .pipe(size({
-            title: "styles:rtl",
+            title: "bs3:rtl",
         }));
 }
 
@@ -150,42 +159,38 @@ function jsapp() {
 }
 
 async function assets(){
-    src(`${nmd}/jquery/dist/**/*.*`).pipe(dest(`${vnd}/jquery`));
-    src(`${nmd}/jquery-ui/dist/**/*.*`).pipe(dest(`${vnd}/jquery-ui`));
-    src(`${nmd}/bootstrap/dist/**/*.*`).pipe(dest(`${vnd}/bootstrap`));
-    src(`${nmd}/animate.css/*.css`).pipe(dest(`${vnd}/animate.css`));
-    src(`${nmd}/font-awesome/{css,fonts}/**/*.*`).pipe(dest(`${vnd}/font-awesome`));
-    src(`${nmd}/moment/min/*.*`).pipe(dest(`${vnd}/moment`));
-    src(`${nmd}/chart.js/dist/*.*`).pipe(dest(`${vnd}/chart.js`));
-    src(`${nmd}/metismenu/dist/*.*`).pipe(dest(`${vnd}/metismenu`));
-    src(`${nmd}/onoffcanvas/dist/*.*`).pipe(dest(`${vnd}/onoffcanvas`));
-    src(`${nmd}/clipboard/dist/*.*`).pipe(dest(`${vnd}/clipboard`));
-    src(`${nmd}/cleave.js/dist/**/*.*`).pipe(dest(`${vnd}/cleave.js`));
-    src(`${nmd}/screenfull/dist/**/*.*`).pipe(dest(`${vnd}/screenfull`));
-    src(`${nmd}/noty/lib/*.*`).pipe(dest(`${vnd}/noty`));
-    src(`${nmd}/plupload/js/*.*`).pipe(dest(`${vnd}/plupload`));
-    src(`${nmd}/formwizard/js/*.*`).pipe(dest(`${vnd}/formwizard`));
-    src(`${nmd}/jquery-inputlimiter/*.*`).pipe(dest(`${vnd}/jquery-inputlimiter`));
-    src(`${nmd}/jquery-validation/dist/**/*.*`).pipe(dest(`${vnd}/jquery-validation`));
-    src(`${nmd}/gritter/**/*.*`).pipe(dest(`${vnd}/gritter`));
-    src(`${nmd}/bootstrap-timepicker/**/*.*`).pipe(dest(`${vnd}/bootstrap-timepicker`));
-    src(`${nmd}/daterangepicker/daterangepicker.*`).pipe(dest(`${vnd}/daterangepicker`));
-    src(`${nmd}/gmaps/gmaps.{js,min.js}`).pipe(dest(`${vnd}/gmaps`));
-    src(`${nmd}/fullcalendar/dist/**/*.*`).pipe(dest(`${vnd}/fullcalendar`));
-    src(`${nmd}/bootstrap4-duallistbox/dist/**/*.*`).pipe(dest(`${vnd}/bootstrap4-duallistbox`));
+    src(`${nmd}/jquery/dist/**/*.*`, { encoding: false }).pipe(dest(`${vnd}/jquery`));
+    src(`${nmd}/jquery-ui/dist/**/*.*`, { encoding: false }).pipe(dest(`${vnd}/jquery-ui`));
+    src(`${nmd}/bootstrap/dist/**/*.*`, { encoding: false }).pipe(dest(`${vnd}/bootstrap`));
+    src(`${nmd}/animate.css/*.css`, { encoding: false }).pipe(dest(`${vnd}/animate.css`));
+    src(`${nmd}/moment/min/*.*`, { encoding: false }).pipe(dest(`${vnd}/moment`));
+    src(`${nmd}/chart.js/dist/*.*`, { encoding: false }).pipe(dest(`${vnd}/chart.js`));
+    src(`${nmd}/metismenu/dist/*.*`, { encoding: false }).pipe(dest(`${vnd}/metismenu`));
+    src(`${nmd}/onoffcanvas/dist/*.*`, { encoding: false }).pipe(dest(`${vnd}/onoffcanvas`));
+    src(`${nmd}/clipboard/dist/*.*`, { encoding: false }).pipe(dest(`${vnd}/clipboard`));
+    src(`${nmd}/cleave.js/dist/**/*.*`, { encoding: false }).pipe(dest(`${vnd}/cleave.js`));
+    src(`${nmd}/screenfull/dist/**/*.*`, { encoding: false }).pipe(dest(`${vnd}/screenfull`));
+    src(`${nmd}/noty/lib/*.*`, { encoding: false }).pipe(dest(`${vnd}/noty`));
+    src(`${nmd}/plupload/js/**/*.*`, { encoding: false }).pipe(dest(`${vnd}/plupload`));
+    src(`${nmd}/formwizard/js/*.*`, { encoding: false }).pipe(dest(`${vnd}/formwizard`));
+    src(`${nmd}/jquery-inputlimiter/*.*`, { encoding: false }).pipe(dest(`${vnd}/jquery-inputlimiter`));
+    src(`${nmd}/jquery-validation/dist/**/*.*`, { encoding: false }).pipe(dest(`${vnd}/jquery-validation`));
+    src(`${nmd}/gritter/**/*.*`, { encoding: false }).pipe(dest(`${vnd}/gritter`));
+    src(`${nmd}/bootstrap-timepicker/**/*.*`, { encoding: false }).pipe(dest(`${vnd}/bootstrap-timepicker`));
+    src(`${nmd}/daterangepicker/daterangepicker.*`, { encoding: false }).pipe(dest(`${vnd}/daterangepicker`));
+    src(`${nmd}/gmaps/gmaps.{js,min.js}`, { encoding: false }).pipe(dest(`${vnd}/gmaps`));
+    src(`${nmd}/fullcalendar/dist/**/*.*`, { encoding: false }).pipe(dest(`${vnd}/fullcalendar`));
+    src(`${nmd}/pagedown-bootstrap/{css,js}/**/*.*`, { encoding: false }).pipe(dest(`${vnd}/pagedown-bootstrap`));
+    src(`${nmd}/bootstrap4-duallistbox/dist/**/*.*`, { encoding: false }).pipe(dest(`${vnd}/bootstrap4-duallistbox`));
+    src(`${nmd}/bootstrap3-wysihtml5-bower/dist/**/*.*`, { encoding: false }).pipe(dest(`${vnd}/bootstrap3-wysihtml5-bower`));
 
-    src('./src/css/*.css').pipe(dest('./public/assets/css'));
-    src('./src/less/theme.less').pipe(dest('./public/assets/less'));
-    src('./src/img/**/*.*').pipe(dest('./public/assets/img'));
-    src('./src/js/*.js').pipe(dest('./public/assets/js'));
-}
+    src(`${nmd}/bootstrap-icons/font/fonts/**/*.*`, { encoding: false }).pipe(dest(`public/assets/webfonts`));
+    src(`${nmd}/@fortawesome/fontawesome-free/webfonts/**/*.*`, { encoding: false }).pipe(dest(`public/assets/webfonts`));
 
-function assemblePages(){
-    return app.build('html', function(err) {
-        if (err) {
-            console.error('ERROR', err);
-        }
-    });
+    src('./src/css/*.css', { encoding: false }).pipe(dest('./public/assets/css'));
+    src('./src/less/theme.less', { encoding: false }).pipe(dest('./public/assets/less'));
+    src('./src/img/**/*.*', { encoding: false }).pipe(dest('./public/assets/img'));
+    src('./src/js/*.js', { encoding: false }).pipe(dest('./public/assets/js'));
 }
 
 // gulp watch function
@@ -194,18 +199,17 @@ function devWatch() {
     watch("src/less/**/*.less", css, cssrtl);
     // Watch .js files
     watch("src/js/**/*.js", jscore, jsapp);
-    // Watch html files
-    watch("src/**/*.hbs", pages);
 }
 
 const js = parallel(jscore, jsapp);
-const pages = parallel(assemblePages);
-const rtl = parallel(cssrtl, bs3rtl);
+const icons = parallel(iconCss);
+const css = parallel(cssLtr, icons);
+const rtl = parallel(cssrtl, bs3rtl, icons);
 
-const build = parallel(css, jscore, jsapp, assets, pages);
+const build = parallel(css, js, assets);
 
-const dev = series(css, jscore, jsapp, rtl, devWatch);
+const dev = series(css, js, rtl, devWatch);
 
 export default build;
 
-export { build, clean, assets, dev, css, rtl, js, pages };
+export { build, clean, assets, dev, css, rtl, js, icons };

@@ -436,7 +436,7 @@
     /*----------- END uniform CODE -------------------------*/
 
     /*----------- BEGIN validVal CODE -------------------------*/
-    $('#validVal').validVal();
+    // $('#validVal').validVal();
     /*----------- END validVal CODE -------------------------*/
 
     /*----------- BEGIN colorpicker CODE -------------------------*/

@@ -17,28 +17,28 @@ This template currently is slighly outdated but withing few weeks we are going t
 
 ## Download
 
-* Bootstrap@3 [dev](https://github.com/puikinsh/Bootstrap-Admin-Template/archive/refs/heads/dev.zip)
+Bootstrap@3 [dev](https://github.com/puikinsh/Bootstrap-Admin-Template/archive/refs/heads/dev.zip)
 ready `public` folder your use
 
 #### Developer Version
 
-required [node.js](http://nodejs.org/) & [gulp](http://gulpjs.com/)
-
+required [Bun](https://bun.sh/)
 ```shell
     git clone -b dev https://github.com/puikinsh/Bootstrap-Admin-Template.git yourfoldername
     cd yourfoldername
-    npm install --legacy-peer-deps
-    npm run build
-    npm run serve
+    bun install
+    bun run build
+    bun run serve
 ```
 ##### RTL
  ```shell
     git clone -b dev https://github.com/puikinsh/Bootstrap-Admin-Template.git yourfoldername
     cd yourfoldername
-    npm install --legacy-peer-deps
-    npm run build
-    npm run rtl
-    npm run serve
+    bun install
+    bun run build
+    bun run rtl
+    bun run pages:rtl
+    bun run serve
 ```
 
 ## Demo

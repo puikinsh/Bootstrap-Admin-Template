@@ -4,51 +4,54 @@
  * @license MIT
  * @link https://github.com/puikinsh/Bootstrap-Admin-Template
  */
-'use strict';
-
-;(function (window) {
+;(function(window) {
     var
-    // Are we expecting a touch or a click?
-    buttonPressedEvent = 'touchstart click',
-        Metis = function Metis() {
-        this.init();
-    };
+      // Are we expecting a touch or a click?
+      buttonPressedEvent = 'touchstart click',
+      Metis = function() {
+          this.init();
+      };
 
     // Initialization method
-    Metis.prototype.init = function () {
+    Metis.prototype.init = function() {
         this.buttonPressedEvent = buttonPressedEvent;
     };
 
-    Metis.prototype.getViewportHeight = function () {
+    Metis.prototype.getViewportHeight = function() {
 
         var docElement = document.documentElement,
-            client = docElement.clientHeight,
-            inner = window.innerHeight;
+                client = docElement.clientHeight,
+                inner = window.innerHeight;
 
-        if (client < inner) return inner;else return client;
+        if (client < inner)
+            return inner;
+        else
+            return client;
     };
 
-    Metis.prototype.getViewportWidth = function () {
+    Metis.prototype.getViewportWidth = function() {
 
         var docElement = document.documentElement,
-            client = docElement.clientWidth,
-            inner = window.innerWidth;
+                client = docElement.clientWidth,
+                inner = window.innerWidth;
 
-        if (client < inner) return inner;else return client;
+        if (client < inner)
+            return inner;
+        else
+            return client;
     };
 
     // Creates a Metis object.
     window.Metis = new Metis();
 })(window);
-'use strict';
 
-;(function ($) {
+;(function($) {
     "use strict";
 
     var $navBar = $('nav.navbar'),
-        $body = $('body'),
-        $menu = $('#menu'),
-        $left = $('#left');
+            $body = $('body'),
+            $menu = $('#menu'),
+            $left = $('#left');
 
     function addPaddingTop(el, val) {
         el.css('padding-top', val);
@@ -74,25 +77,23 @@
         }
     }
 
-    Metis.navBar = function () {
+    Metis.navBar = function() {
         var resizeTimer;
         init();
-        $(window).resize(function () {
+        $(window).resize(function() {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(init(), 250);
         });
     };
     return Metis;
 })(jQuery);
-'use strict';
 
-;(function ($, Metis) {
+;(function($, Metis) {
   "use strict";
   // Define toggleFullScreen
-
-  Metis.toggleFullScreen = function () {
-    if (window.screenfull !== undefined && screenfull.enabled) {
-      $('#toggleFullScreen').on(Metis.buttonPressedEvent, function (e) {
+  Metis.toggleFullScreen = function() {
+    if ((window.screenfull !== undefined) && screenfull.enabled) {
+      $('#toggleFullScreen').on(Metis.buttonPressedEvent, function(e) {
         screenfull.toggle(window.document[0]);
         $('body').toggleClass('fullScreen');
         e.preventDefault();
@@ -102,9 +103,9 @@
     }
   };
   // Define boxFullScreen
-  Metis.boxFullScreen = function () {
-    if (window.screenfull !== undefined && screenfull.enabled) {
-      $('.full-box').on(Metis.buttonPressedEvent, function (e) {
+  Metis.boxFullScreen = function() {
+    if ((window.screenfull !== undefined) && screenfull.enabled) {
+      $('.full-box').on(Metis.buttonPressedEvent, function(e) {
         var $toggledPanel = $(this).parents('.box')[0];
         screenfull.toggle($toggledPanel);
         $(this).parents('.box').toggleClass('full-screen-box');
@@ -116,27 +117,27 @@
       $('.full-box').addClass('hidden');
     }
   };
-  Metis.panelBodyCollapse = function () {
+  Metis.panelBodyCollapse = function() {
     var $collapseButton = $('.collapse-box'),
-        $collapsedPanelBody = $collapseButton.closest('.box').children('.body');
+      $collapsedPanelBody = $collapseButton.closest('.box').children('.body');
 
     $collapsedPanelBody.collapse('show');
 
-    $collapseButton.on(Metis.buttonPressedEvent, function (e) {
+    $collapseButton.on(Metis.buttonPressedEvent, function(e) {
       var $collapsePanelBody = $(this).closest('.box').children('.body'),
-          $toggleButtonImage = $(this).children('i');
-      $collapsePanelBody.on('show.bs.collapse', function () {
+        $toggleButtonImage = $(this).children('i');
+      $collapsePanelBody.on('show.bs.collapse', function() {
         $toggleButtonImage.removeClass('fa-minus fa-plus').addClass('fa-spinner fa-spin');
       });
-      $collapsePanelBody.on('shown.bs.collapse', function () {
+      $collapsePanelBody.on('shown.bs.collapse', function() {
         $toggleButtonImage.removeClass('fa-spinner fa-spin').addClass('fa-minus');
       });
 
-      $collapsePanelBody.on('hide.bs.collapse', function () {
+      $collapsePanelBody.on('hide.bs.collapse', function() {
         $toggleButtonImage.removeClass('fa-minus fa-plus').addClass('fa-spinner fa-spin');
       });
 
-      $collapsePanelBody.on('hidden.bs.collapse', function () {
+      $collapsePanelBody.on('hidden.bs.collapse', function() {
         $toggleButtonImage.removeClass('fa-spinner fa-spin').addClass('fa-plus');
       });
 
@@ -145,24 +146,23 @@
       e.preventDefault();
     });
   };
-  Metis.boxHiding = function () {
-    $('.close-box').on(Metis.buttonPressedEvent, function () {
+  Metis.boxHiding = function() {
+    $('.close-box').on(Metis.buttonPressedEvent, function() {
       $(this).closest('.box').hide('slow');
     });
   };
   return Metis;
 })(jQuery, Metis || {});
-'use strict';
 
-;(function ($, Metis) {
+;(function($, Metis) {
     var $body = $('body'),
         $leftToggle = $('.toggle-left'),
         $count = 0;
 
-    Metis.metisAnimatePanel = function () {
+    Metis.metisAnimatePanel = function() {
 
         if ($('#left').length) {
-            $leftToggle.on(Metis.buttonPressedEvent, function (e) {
+            $leftToggle.on(Metis.buttonPressedEvent, function(e) {
 
                 if ($(window).width() < 768) {
                     $body.toggleClass('sidebar-left-opened');
@@ -184,22 +184,22 @@
         } else {
             $leftToggle.addClass('hidden');
         }
+
     };
     return Metis;
 })(jQuery, Metis || {});
-'use strict';
 
-;(function ($) {
-   $(document).ready(function () {
-
-      $('[data-toggle="tooltip"]').tooltip();
-
-      $('#menu').metisMenu();
-      Metis.navBar();
-      Metis.metisAnimatePanel();
-      Metis.toggleFullScreen();
-      Metis.boxFullScreen();
-      Metis.panelBodyCollapse();
-      Metis.boxHiding();
-   });
+;(function($) {
+   $(document).ready(function() {
+    
+    $('[data-toggle="tooltip"]').tooltip();
+ 
+    $('#menu').metisMenu();
+    Metis.navBar();
+    Metis.metisAnimatePanel();
+    Metis.toggleFullScreen();
+    Metis.boxFullScreen();
+    Metis.panelBodyCollapse();
+    Metis.boxHiding();   
+  });
 })(jQuery);

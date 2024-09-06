@@ -1,6 +1,6 @@
 /**
  * onoffcanvas - A jQuery offcanvas plugin
- * @version v1.1.1
+ * @version v1.1.2
  * @link https://github.com/onokumus/onoffcanvas#readme
  * @license MIT
  */
@@ -33,23 +33,13 @@
     return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
   };
 
-  ;(function ($) {
-    'use strict';
-
+  (function ($) {
     var OnoffCanvas = function OnoffCanvas(element, options) {
       this.$element = $(element);
       this.options = $.extend({}, OnoffCanvas.DEFAULTS, options);
-      this.$trigger = $('[data-toggle="onoffcanvas"][href="#' + element.id + '"],' + '[data-toggle="onoffcanvas"][data-target="#' + element.id + '"]');
+      this.$trigger = $('[data-toggle="onoffcanvas"][href="#' + element.id + '"],[data-toggle="onoffcanvas"][data-target="#' + element.id + '"]');
 
-      if (this.options.parent) {
-        this.$parent = this.getParent();
-      } else {
-        this.addAriaCollapsedClass(this.$element, this.$trigger);
-      }
-
-      if (this.options.toggle) {
-        // this.toggle();
-      }
+      this.addAriaCollapsedClass(this.$element, this.$trigger);
     };
 
     OnoffCanvas.DEFAULTS = {
@@ -85,6 +75,13 @@
       this[this.$element.hasClass(openClass) ? 'hide' : 'show']();
     };
 
+    function getTargetFromTrigger($trigger) {
+      var href = void 0;
+      var target = $trigger.attr('data-target') || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '');
+
+      return $(target);
+    }
+
     OnoffCanvas.prototype.getParent = function () {
       return $(this.options.parent).find('[data-toggle="onoffcanvas"][data-parent="' + this.options.parent + '"]').each($.proxy(function (i, element) {
         var $element = $(element);
@@ -99,13 +96,6 @@
       $trigger.attr('aria-expanded', !isOpen);
       $element.toggleClass(openClass, !isOpen).attr('aria-expanded', !isOpen);
     };
-
-    function getTargetFromTrigger($trigger) {
-      var href;
-      var target = $trigger.attr('data-target') || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '');
-
-      return $(target);
-    }
 
     function Plugin(option) {
       return this.each(function () {
@@ -147,7 +137,6 @@
 
       var $target = getTargetFromTrigger($this);
       var data = $target.data('onoffcanvas');
-      console.log(data);
       var option = data ? 'toggle' : $this.data();
 
       Plugin.call($target, option);

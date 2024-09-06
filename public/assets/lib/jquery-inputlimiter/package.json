@@ -1,0 +1,25 @@
+{
+  "name": "jquery-inputlimiter",
+  "version": "1.3.2",
+  "description": "This jQuery plugin will allow you to limit input into form fields. It can display a message as the user types to let them know how many characters they have remaining.",
+  "homepage": "http://rustyjeans.com/jquery-plugins/input-limiter",
+  "license": "MIT",
+  "author": {
+    "email": "yeganemehr@jeyserver.com",
+    "name": "Amir.h Yeganemehr",
+    "url": "http://yeganemehr.ir/"
+  },
+  "bugs": {
+    "url": "https://github.com/yeganemehr/jquery-inputlimiter/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yeganemehr/jquery-inputlimiter.git"
+  },
+  "main": "jquery.inputlimiter.js",
+  "types":"jquery.inputlimiter.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {}
+}

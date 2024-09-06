@@ -95,6 +95,7 @@
     "jquery-validation": "^1.21.0",
     "kbwood_countdown": "git://github.com/kbwood/countdown.git#2.0.1",
     "metismenu": "^2.6.1",
+    "moment": "^2.30.1",
     "onoffcanvas": "^1.1.1",
     "pagedown-bootstrap": "^1.0.0",
     "plupload": "^2.3.9",

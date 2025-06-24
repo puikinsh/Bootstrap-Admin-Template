@@ -100,8 +100,16 @@ export class LucideIconManager {
   }
 
   async loadLucideIcons() {
-    // Tree-shakable Lucide imports (only load what we use)
+    // Tree-shakable Lucide imports (only load what we use) - Optional dependency
     try {
+      // Check if lucide is available as optional dependency
+      const lucideModule = await import('lucide').catch(() => null);
+      
+      if (!lucideModule) {
+        console.info('Lucide icons not installed, using Bootstrap Icons only');
+        return;
+      }
+
       const { 
         BarChart3, 
         Users, 
@@ -149,7 +157,7 @@ export class LucideIconManager {
         User,
         Crown,
         Shield
-      } = await import('lucide');
+      } = lucideModule;
 
       // Map icon names to Lucide components
       this.icons.set('dashboard', BarChart3);
@@ -199,8 +207,10 @@ export class LucideIconManager {
       this.icons.set('crown', Crown);
       this.icons.set('shield', Shield);
 
+      console.info('✨ Lucide icons loaded successfully');
+
     } catch (error) {
-      console.warn('Lucide icons not available, falling back to Bootstrap Icons');
+      console.info('Lucide icons not available, falling back to Bootstrap Icons only');
     }
   }
 

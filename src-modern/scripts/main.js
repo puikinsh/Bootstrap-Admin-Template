@@ -32,8 +32,7 @@ import Alpine from 'alpinejs';
 // Import styles
 import '../styles/scss/main.scss';
 
-// Import Bootstrap Icons CSS (more efficient than SCSS import in Vite)
-import 'bootstrap-icons/font/bootstrap-icons.css';
+// Bootstrap Icons are imported via SCSS for better integration
 
 // Application Class
 class AdminApp {
@@ -146,7 +145,28 @@ class AdminApp {
       case 'dashboard':
         this.components.set('dashboard', new DashboardManager());
         break;
+      case 'forms':
+        // Forms page specific initialization
+        this.initFormsPage();
+        break;
       // Add more page-specific initializations here
+    }
+  }
+
+  // Initialize forms page
+  async initFormsPage() {
+    try {
+      const { formComponents, formManager } = await import('./components/forms.js');
+      
+      // Register form components with Alpine.js
+      Object.entries(formComponents).forEach(([name, component]) => {
+        Alpine.data(name, component);
+      });
+
+      this.components.set('formManager', formManager);
+      console.log('📝 Forms page initialized successfully');
+    } catch (error) {
+      console.warn('Forms components not available:', error);
     }
   }
 

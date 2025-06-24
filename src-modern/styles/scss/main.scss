@@ -17,8 +17,8 @@
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/utilities";
 
-// 4. Include Bootstrap Icons (via JavaScript for better performance)
-// @import "~bootstrap-icons/font/bootstrap-icons.css"; // Removed - using JS import instead
+// 4. Include Bootstrap Icons
+@import "bootstrap-icons/font/bootstrap-icons.css";
 
 // 5. Include Bootstrap components (selective import for better performance)
 @import "~bootstrap/scss/root";

@@ -1,19 +1,9 @@
-<svg width="120" height="32" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!-- Background circle for the M -->
-  <circle cx="16" cy="16" r="15" fill="url(#logoGradient)" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="16" cy="16" r="16" fill="url(#logoGradient)"/>
   
-  <!-- Letter M -->
-  <path d="M8 24V8h3.5l2.5 8.5L16.5 8H20v16h-2.5V12.5L15 21h-1L11.5 12.5V24H8z" fill="white" font-weight="600"/>
-  
-  <!-- Text "Modern" -->
-  <text x="40" y="20" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" fill="currentColor">
-    Modern
-  </text>
-  
-  <!-- Subtle "Admin" text -->
-  <text x="40" y="11" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="500" fill="currentColor" opacity="0.7">
-    ADMIN
-  </text>
+  <!-- Centered Letter M -->
+  <path d="M10 24V8h2.5l2.5 6.5L17.5 8H20v16h-2V12.5L16.5 20h-1L14 12.5V24H10z" fill="white" font-weight="700"/>
   
   <!-- Gradient definition -->
   <defs>

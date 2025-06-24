@@ -51,19 +51,18 @@
         <header class="admin-header">
             <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
                 <div class="container-fluid">
-                    <!-- Sidebar Toggle -->
+                    <!-- Logo/Brand - Now first on the left -->
+                    <a class="navbar-brand me-3" href="/">
+                        <img src="/assets/images/logo.svg" alt="Logo" height="32" class="d-inline-block align-text-top">
+                    </a>
+
+                    <!-- Sidebar Toggle - Now after logo -->
                     <button class="btn btn-outline-secondary me-3" 
                             type="button" 
                             data-sidebar-toggle
                             aria-label="Toggle sidebar">
                         <i class="bi bi-list"></i>
                     </button>
-
-                    <!-- Logo/Brand -->
-                    <a class="navbar-brand" href="/">
-                        <img src="/assets/images/logo.svg" alt="Logo" height="32" class="d-inline-block align-text-top">
-                        <span class="fw-bold text-primary">Modern Admin</span>
-                    </a>
 
                     <!-- Search Bar with Alpine.js -->
                     <div class="search-container flex-grow-1 mx-4" x-data="searchComponent">

@@ -21,12 +21,20 @@
 </head>
 <body data-page="forms">
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/index.html">
+            <!-- Logo/Brand - First on the left -->
+            <a class="navbar-brand me-3" href="/index.html">
                 <img src="/assets/images/logo.svg" alt="Logo" height="32" class="d-inline-block align-text-top">
-                <span class="fw-bold text-primary ms-2">Modern Admin</span>
             </a>
+            
+            <!-- Sidebar Toggle Button -->
+            <button class="btn btn-outline-secondary me-3" 
+                    type="button" 
+                    data-sidebar-toggle
+                    aria-label="Toggle sidebar">
+                <i class="bi bi-list"></i>
+            </button>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>

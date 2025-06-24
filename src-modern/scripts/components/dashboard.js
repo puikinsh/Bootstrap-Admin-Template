@@ -9,19 +9,25 @@ import {
   PointElement,
   LineElement,
   BarElement,
+  LineController,
+  BarController,
+  DoughnutController,
   Title,
   Tooltip,
   Legend,
   ArcElement,
 } from 'chart.js';
 
-// Register Chart.js components
+// Register Chart.js components and controllers
 Chart.register(
   CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
   BarElement,
+  LineController,
+  BarController,
+  DoughnutController,
   Title,
   Tooltip,
   Legend,

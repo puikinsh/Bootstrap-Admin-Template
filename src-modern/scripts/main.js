@@ -29,10 +29,8 @@ import { iconManager } from './utils/icon-manager.js';
 // Import Alpine.js for reactive components
 import Alpine from 'alpinejs';
 
-// Import styles
+// Import styles (Bootstrap Icons are included in SCSS)
 import '../styles/scss/main.scss';
-
-// Bootstrap Icons are imported via SCSS for better integration
 
 // Application Class
 class AdminApp {

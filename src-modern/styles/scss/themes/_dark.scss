@@ -1,0 +1,49 @@
+// ==========================================================================
+// Dark Theme Styles
+// ==========================================================================
+
+[data-bs-theme="dark"] {
+  --bs-body-bg: #{$gray-900};
+  --bs-body-color: #{$gray-100};
+  --bs-border-color: #{$gray-800};
+  --bs-border-color-translucent: rgba(255, 255, 255, 0.1);
+  
+  // Custom dark theme colors
+  .admin-header {
+    .navbar {
+      background-color: rgba(15, 23, 42, 0.95) !important;
+      backdrop-filter: blur(12px);
+      border-bottom-color: var(--bs-border-color);
+    }
+  }
+  
+  .admin-sidebar {
+    background-color: var(--bs-body-bg);
+    border-right-color: var(--bs-border-color);
+  }
+  
+  .card {
+    background-color: rgba(30, 41, 59, 0.7);
+    border-color: var(--bs-border-color);
+  }
+  
+  .stats-card {
+    .stats-icon {
+      &.bg-primary {
+        background-color: rgba(99, 102, 241, 0.2) !important;
+      }
+      
+      &.bg-success {
+        background-color: rgba(16, 185, 129, 0.2) !important;
+      }
+      
+      &.bg-warning {
+        background-color: rgba(245, 158, 11, 0.2) !important;
+      }
+      
+      &.bg-info {
+        background-color: rgba(6, 182, 212, 0.2) !important;
+      }
+    }
+  }
+}

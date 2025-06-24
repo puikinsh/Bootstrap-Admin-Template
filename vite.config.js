@@ -23,7 +23,8 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "bootstrap/scss/functions"; @import "bootstrap/scss/variables";`
+        api: 'modern-compiler',
+        silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin', 'color-functions']
       }
     }
   },

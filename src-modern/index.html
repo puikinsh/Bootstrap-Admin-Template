@@ -65,30 +65,51 @@
                         <span class="fw-bold text-primary">Modern Admin</span>
                     </a>
 
-                    <!-- Search Bar -->
-                    <div class="search-container flex-grow-1 mx-4">
+                    <!-- Search Bar with Alpine.js -->
+                    <div class="search-container flex-grow-1 mx-4" x-data="searchComponent">
                         <div class="position-relative">
                             <input type="search" 
                                    class="form-control" 
                                    placeholder="Search... (Ctrl+K)"
+                                   x-model="query"
+                                   @input="search()"
                                    data-search-input
                                    aria-label="Search">
                             <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3"></i>
+                            
+                            <!-- Search Results Dropdown -->
+                            <div x-show="results.length > 0" 
+                                 x-transition:enter="transition ease-out duration-100"
+                                 x-transition:enter-start="opacity-0 scale-95"
+                                 x-transition:enter-end="opacity-100 scale-100"
+                                 class="position-absolute top-100 start-0 w-100 bg-white border rounded-2 shadow-lg mt-1 z-3">
+                                <template x-for="result in results" :key="result.title">
+                                    <a :href="result.url" class="d-block px-3 py-2 text-decoration-none text-dark border-bottom">
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-file-text me-2 text-muted"></i>
+                                            <span x-text="result.title"></span>
+                                            <small class="ms-auto text-muted" x-text="result.type"></small>
+                                        </div>
+                                    </a>
+                                </template>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Right Side Icons -->
                     <div class="navbar-nav flex-row">
-                        <!-- Theme Toggle -->
-                        <button class="btn btn-outline-secondary me-2" 
-                                type="button" 
-                                data-theme-toggle
-                                data-bs-toggle="tooltip"
-                                data-bs-placement="bottom"
-                                title="Toggle theme">
-                            <i class="bi bi-sun-fill theme-icon-light"></i>
-                            <i class="bi bi-moon-fill theme-icon-dark d-none"></i>
-                        </button>
+                        <!-- Theme Toggle with Alpine.js -->
+                        <div x-data="themeSwitch">
+                            <button class="btn btn-outline-secondary me-2" 
+                                    type="button" 
+                                    @click="toggle()"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom"
+                                    title="Toggle theme">
+                                <i class="bi bi-sun-fill" x-show="currentTheme === 'light'"></i>
+                                <i class="bi bi-moon-fill" x-show="currentTheme === 'dark'"></i>
+                            </button>
+                        </div>
 
                         <!-- Fullscreen Toggle -->
                         <button class="btn btn-outline-secondary me-2" 
@@ -210,9 +231,9 @@
                     </div>
                 </div>
 
-                <!-- Stats Cards -->
+                <!-- Stats Cards with Alpine.js -->
                 <div class="row g-4 mb-4">
-                    <div class="col-xl-3 col-lg-6">
+                    <div class="col-xl-3 col-lg-6" x-data="statsCounter(12426, 5)">
                         <div class="card stats-card">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
@@ -223,7 +244,7 @@
                                     </div>
                                     <div class="flex-grow-1 ms-3">
                                         <h6 class="mb-0 text-muted">Total Users</h6>
-                                        <h3 class="mb-0">12,426</h3>
+                                        <h3 class="mb-0" x-text="value.toLocaleString()" data-stat-value>12,426</h3>
                                         <small class="text-success">
                                             <i class="bi bi-arrow-up"></i> +12.5%
                                         </small>
@@ -298,11 +319,17 @@
                 </div>
 
                 <!-- Chart Section -->
-                <div class="row g-4">
+                <div class="row g-4 mb-4">
                     <div class="col-lg-8">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header d-flex justify-content-between align-items-center">
                                 <h5 class="card-title mb-0">Revenue Overview</h5>
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <button type="button" class="btn btn-outline-primary active" data-chart-period="7d">7D</button>
+                                    <button type="button" class="btn btn-outline-primary" data-chart-period="30d">30D</button>
+                                    <button type="button" class="btn btn-outline-primary" data-chart-period="90d">90D</button>
+                                    <button type="button" class="btn btn-outline-primary" data-chart-period="1y">1Y</button>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <canvas id="revenueChart" height="100"></canvas>
@@ -345,6 +372,31 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Charts Row -->
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">User Growth (Last 7 Days)</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="userGrowthChart" height="120"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Order Status Distribution</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="orderStatusChart" height="120"></canvas>
                             </div>
                         </div>
                     </div>

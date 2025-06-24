@@ -1,0 +1,86 @@
+// ==========================================================================
+// Card Components - Modern Design
+// ==========================================================================
+
+.card {
+  border: none;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  backdrop-filter: blur(12px);
+  transition: var(--transition-base);
+  
+  &:hover {
+    box-shadow: var(--box-shadow-lg);
+    transform: translateY(-2px);
+  }
+}
+
+// Stats Cards
+.stats-card {
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  .stats-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--border-radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+  }
+}
+
+// Activity Feed Cards
+.activity-feed {
+  .activity-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--bs-border-color-translucent);
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    .activity-icon {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      margin-right: 0.75rem;
+      flex-shrink: 0;
+    }
+    
+    .activity-content {
+      flex: 1;
+      min-width: 0;
+      
+      p {
+        margin-bottom: 0.25rem;
+        font-size: 0.875rem;
+        line-height: 1.4;
+      }
+      
+      small {
+        font-size: 0.75rem;
+      }
+    }
+  }
+}
+
+// Glassmorphism variant
+.card-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  [data-bs-theme="dark"] & {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}

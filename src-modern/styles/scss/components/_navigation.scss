@@ -1,0 +1,111 @@
+// ==========================================================================
+// Navigation Components
+// ==========================================================================
+
+// Sidebar Navigation
+.sidebar-nav {
+  .nav {
+    --bs-nav-link-padding-x: 1rem;
+    --bs-nav-link-padding-y: 0.75rem;
+    
+    .nav-link {
+      color: var(--bs-body-color);
+      border-radius: var(--border-radius-sm);
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      transition: var(--transition-fast);
+      
+      i {
+        width: 1.25rem;
+        margin-right: 0.75rem;
+        font-size: 1rem;
+      }
+      
+      &:hover {
+        background-color: var(--bs-primary-bg-subtle);
+        color: var(--bs-primary);
+        transform: translateX(4px);
+      }
+      
+      &.active {
+        background-color: var(--bs-primary);
+        color: white;
+        box-shadow: var(--box-shadow-sm);
+        
+        &:hover {
+          background-color: var(--bs-primary);
+          transform: none;
+        }
+      }
+    }
+  }
+}
+
+// Top Navigation
+.admin-header {
+  .navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    
+    img {
+      margin-right: 0.5rem;
+    }
+  }
+  
+  .search-container {
+    max-width: 400px;
+    
+    .form-control {
+      border: 1px solid var(--bs-border-color);
+      border-radius: var(--border-radius-sm);
+      padding-right: 2.5rem;
+      
+      &:focus {
+        box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+        border-color: var(--bs-primary);
+      }
+    }
+    
+    .bi-search {
+      color: var(--bs-secondary);
+      pointer-events: none;
+    }
+  }
+}
+
+// Sidebar collapse behavior
+.admin-wrapper {
+  &.sidebar-collapsed {
+    .admin-sidebar {
+      width: var(--sidebar-mini-width);
+      
+      .sidebar-nav .nav-link span {
+        opacity: 0;
+        transform: translateX(-10px);
+        transition: var(--transition-fast);
+      }
+    }
+    
+    .admin-main,
+    .admin-footer {
+      margin-left: var(--sidebar-mini-width);
+    }
+  }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+  .admin-sidebar {
+    transform: translateX(-100%);
+    
+    &.show {
+      transform: translateX(0);
+    }
+  }
+  
+  .admin-main,
+  .admin-footer {
+    margin-left: 0;
+  }
+}

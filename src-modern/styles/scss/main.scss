@@ -3,18 +3,19 @@
 // Main SCSS Entry Point
 // ==========================================================================
 
-// 1. Include Bootstrap functions and variables
+// 1. Include Bootstrap functions first
 @import "~bootstrap/scss/functions";
 
 // 2. Include our custom variables and overrides (before Bootstrap variables)
 @import "abstracts/variables";
 @import "abstracts/mixins";
 
-// 3. Include Bootstrap variables and mixins
+// 3. Include Bootstrap variables and maps
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/variables-dark";
 @import "~bootstrap/scss/maps";
 @import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
 
 // 4. Include Bootstrap components (selective import for better performance)
 @import "~bootstrap/scss/root";
@@ -49,7 +50,7 @@
 @import "~bootstrap/scss/offcanvas";
 @import "~bootstrap/scss/placeholders";
 
-// 5. Include Bootstrap helpers and utilities
+// 5. Include Bootstrap helpers and utilities API
 @import "~bootstrap/scss/helpers";
 @import "~bootstrap/scss/utilities/api";
 

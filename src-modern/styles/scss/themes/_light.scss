@@ -1,0 +1,25 @@
+// ==========================================================================
+// Light Theme Styles
+// ==========================================================================
+
+[data-bs-theme="light"] {
+  --bs-body-bg: #{$gray-50};
+  --bs-body-color: #{$gray-900};
+  --bs-border-color: #{$gray-200};
+  --bs-border-color-translucent: rgba(0, 0, 0, 0.1);
+  
+  .admin-header {
+    .navbar {
+      background-color: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: blur(12px);
+    }
+  }
+  
+  .admin-sidebar {
+    background-color: white;
+  }
+  
+  .card {
+    background-color: white;
+  }
+}

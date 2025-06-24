@@ -25,6 +25,9 @@ import { SidebarManager } from './components/sidebar.js';
 import { DashboardManager } from './components/dashboard.js';
 import { NotificationManager } from './utils/notifications.js';
 
+// Import Alpine.js for reactive components
+import Alpine from 'alpinejs';
+
 // Import styles
 import '../styles/scss/main.scss';
 
@@ -63,6 +66,9 @@ class AdminApp {
 
       // Initialize tooltips and popovers globally
       this.initTooltipsAndPopovers();
+
+      // Initialize Alpine.js
+      this.initAlpine();
 
       this.isInitialized = true;
       console.log('🚀 Admin App initialized successfully');
@@ -197,6 +203,87 @@ class AdminApp {
   // Get component instance
   getComponent(name) {
     return this.components.get(name);
+  }
+
+  // Initialize Alpine.js
+  initAlpine() {
+    // Register Alpine data components
+    Alpine.data('searchComponent', () => ({
+      query: '',
+      results: [],
+      isLoading: false,
+      
+      async search() {
+        if (this.query.length < 2) {
+          this.results = [];
+          return;
+        }
+        
+        this.isLoading = true;
+        // Simulate API search
+        await new Promise(resolve => setTimeout(resolve, 300));
+        
+        this.results = [
+          { title: 'Dashboard', url: '/', type: 'page' },
+          { title: 'Users', url: '/users', type: 'page' },
+          { title: 'Settings', url: '/settings', type: 'page' },
+          { title: 'Analytics', url: '/analytics', type: 'page' }
+        ].filter(item => 
+          item.title.toLowerCase().includes(this.query.toLowerCase())
+        );
+        
+        this.isLoading = false;
+      }
+    }));
+
+    Alpine.data('statsCounter', (initialValue = 0, increment = 1) => ({
+      value: initialValue,
+      
+      init() {
+        // Auto-increment every 5 seconds
+        setInterval(() => {
+          this.value += Math.floor(Math.random() * increment) + 1;
+        }, 5000);
+      }
+    }));
+
+    Alpine.data('themeSwitch', () => ({
+      currentTheme: 'light',
+      
+      init() {
+        this.currentTheme = localStorage.getItem('theme') || 'light';
+      },
+      
+      toggle() {
+        this.currentTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-bs-theme', this.currentTheme);
+        localStorage.setItem('theme', this.currentTheme);
+      }
+    }));
+
+    // Start Alpine.js
+    Alpine.start();
+    window.Alpine = Alpine;
+  }
+
+  // Show demo notifications
+  showDemoNotifications() {
+    setTimeout(() => {
+      this.notificationManager.info('New user registered', {
+        action: {
+          text: 'View',
+          handler: 'window.location.href="/users"'
+        }
+      });
+    }, 3000);
+
+    setTimeout(() => {
+      this.notificationManager.warning('Server maintenance in 10 minutes');
+    }, 6000);
+
+    setTimeout(() => {
+      this.notificationManager.success('Backup completed successfully');
+    }, 9000);
   }
 
   // Cleanup method

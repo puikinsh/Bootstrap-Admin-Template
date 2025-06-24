@@ -34,18 +34,22 @@
     "bootstrap": "^5.3.7",
     "@popperjs/core": "^2.11.8",
     "bootstrap-icons": "^1.11.3",
-    "@fortawesome/fontawesome-free": "^6.5.1"
+    "@fortawesome/fontawesome-free": "^6.5.1",
+    "chart.js": "^4.4.1",
+    "alpinejs": "^3.14.1",
+    "apexcharts": "^3.54.1",
+    "dayjs": "^1.11.13",
+    "sweetalert2": "^11.14.5"
   },
   "devDependencies": {
-    "vite": "^5.0.0",
-    "sass": "^1.69.0",
-    "eslint": "^8.55.0",
-    "prettier": "^3.1.0",
-    "rimraf": "^5.0.5",
-    "vite-plugin-handlebars": "^2.0.0",
-    "@vitejs/plugin-legacy": "^5.2.0",
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.32"
+    "vite": "^6.3.5",
+    "sass": "^1.82.0",
+    "eslint": "^9.18.0",
+    "prettier": "^3.4.2",
+    "rimraf": "^6.0.1",
+    "@vitejs/plugin-legacy": "^6.0.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.2"
   },
   "browserslist": [
     "> 1%",

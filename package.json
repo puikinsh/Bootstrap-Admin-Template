@@ -1,7 +1,8 @@
 {
-  "name": "bootstrap-admin-template",
-  "description": "Free Admin Template Based On Twitter Bootstrap 3.x",
-  "version": "2.4.2",
+  "name": "bootstrap-admin-template-modern",
+  "description": "Modern Bootstrap 5 Admin Template with Vite",
+  "version": "3.0.0",
+  "type": "module",
   "homepage": "https://github.com/puikinsh/Bootstrap-Admin-Template",
   "author": "puikinsh (http://github.com/puikinsh)",
   "repository": {
@@ -13,83 +14,42 @@
   },
   "license": "MIT",
   "keywords": [
-    "twbs",
-    "assemble",
-    "gulp",
-    "less",
+    "bootstrap",
+    "vite",
     "admin",
-    "template"
+    "template",
+    "dashboard",
+    "modern",
+    "bootstrap5"
   ],
-  "main": "dist/core.js",
-  "style": "dist/main.css",
-  "files": [
-    "dist"
-  ],
-  "engines": {
-    "node": ">=0.10.0"
-  },
   "scripts": {
-    "preinstall": "bower install",
-    "clean": "./node_modules/.bin/rimraf public dist",
-    "assets": "./node_modules/.bin/gulp",
-    "pages": "./node_modules/.bin/assemble --file assemblefile.js",
-    "build": "npm run clean && npm run assets && npm run pages",
-    "mainrtldist": "rtlcss dist/main.css dist/main.rtl.css && csso dist/main.rtl.css dist/main.rtl.min.css",
-    "mainrtlpublic": "rtlcss dist/main.css public/assets/css/main.rtl.css && csso dist/main.rtl.css public/assets/css/main.rtl.min.css",
-    "bootstraprtl": "rtlcss node_modules/bootstrap/dist/css/bootstrap.css public/assets/lib/bootstrap/css/bootstrap.rtl.css",
-    "bootstraprtlmin": "csso public/assets/lib/bootstrap/css/bootstrap.rtl.css public/assets/lib/bootstrap/css/bootstrap.rtl.min.css",
-    "rtl": "npm run mainrtldist && npm run mainrtlpublic && npm run bootstraprtl && npm run bootstraprtlmin",
-    "buildrtl": "npm run build && npm run rtl"
-  },
-  "devDependencies": {
-    "assemble": "^0.17.1",
-    "babel-core": "^6.11.4",
-    "babel-preset-es2015": "^6.9.0",
-    "browser-sync": "^2.13.0",
-    "css-flip": "^0.5.0",
-    "del": "^2.2.1",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-babel": "^6.1.2",
-    "gulp-concat": "^2.6.0",
-    "gulp-cssnano": "^2.1.2",
-    "gulp-extname": "^0.2.2",
-    "gulp-format-md": "^0.1.9",
-    "gulp-header": "^1.8.7",
-    "gulp-if": "^2.0.1",
-    "gulp-less": "^3.1.0",
-    "gulp-load-plugins": "^1.2.4",
-    "gulp-open": "^2.0.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-size": "^2.1.0",
-    "gulp-uglify": "^2.0.0",
-    "handlebars-helpers": "^0.7.3",
-    "helper-markdown": "^0.2.1",
-    "helper-md": "^0.2.1",
-    "noty": "^2.3.8",
-    "rtlcss": "^2.0.6"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "format": "prettier --write .",
+    "clean": "rimraf dist"
   },
   "dependencies": {
-    "animate.css": "^3.5.1",
-    "bootstrap": "^3.3.7",
-    "cleave.js": "^0.7.7",
-    "clipboard": "^1.5.12",
-    "font-awesome": "^4.7.0",
-    "fullcalendar": "^3.0.0",
-    "gmaps": "^0.4.24",
-    "jquery": "2.2.4",
-    "jquery-validation": "^1.15.1",
-    "metismenu": "^2.6.1",
-    "onoffcanvas": "^1.1.1",
-    "screenfull": "^3.0.0"
+    "bootstrap": "^5.3.7",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap-icons": "^1.11.3",
+    "@fortawesome/fontawesome-free": "^6.5.1"
   },
-  "verb": {
-    "toc": true,
-    "tasks": [
-      "readme"
-    ],
-    "plugins": [
-      "gulp-format-md"
-    ]
-  }
-}
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "sass": "^1.69.0",
+    "eslint": "^8.55.0",
+    "prettier": "^3.1.0",
+    "rimraf": "^5.0.5",
+    "vite-plugin-handlebars": "^2.0.0",
+    "@vitejs/plugin-legacy": "^5.2.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+} 

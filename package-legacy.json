@@ -1,0 +1,98 @@
+{
+  "name": "bootstrap-admin-template",
+  "description": "Free Admin Template Based On Twitter Bootstrap 3.x",
+  "version": "2.4.2",
+  "homepage": "https://github.com/puikinsh/Bootstrap-Admin-Template",
+  "author": "puikinsh (http://github.com/puikinsh)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/puikinsh/Bootstrap-Admin-Template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/puikinsh/Bootstrap-Admin-Template/issues"
+  },
+  "license": "MIT",
+  "keywords": [
+    "twbs",
+    "assemble",
+    "gulp",
+    "less",
+    "admin",
+    "template"
+  ],
+  "main": "dist/core.js",
+  "style": "dist/main.css",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "preinstall": "bower install",
+    "clean": "rimraf public dist",
+    "assets": "gulp",
+    "pages": "assemble --file assemblefile.js",
+    "build": "npm run clean && npm run assets && npm run pages",
+    "mainrtldist": "rtlcss dist/main.css dist/main.rtl.css && csso dist/main.rtl.css dist/main.rtl.min.css",
+    "mainrtlpublic": "rtlcss dist/main.css public/assets/css/main.rtl.css && csso dist/main.rtl.css public/assets/css/main.rtl.min.css",
+    "bootstraprtl": "rtlcss node_modules/bootstrap/dist/css/bootstrap.css public/assets/lib/bootstrap/css/bootstrap.rtl.css",
+    "bootstraprtlmin": "csso public/assets/lib/bootstrap/css/bootstrap.rtl.css public/assets/lib/bootstrap/css/bootstrap.rtl.min.css",
+    "rtl": "npm run mainrtldist && npm run mainrtlpublic && npm run bootstraprtl && npm run bootstraprtlmin",
+    "buildrtl": "npm run build && npm run rtl"
+  },
+  "devDependencies": {
+    "assemble": "^0.17.1",
+    "babel-core": "^6.11.4",
+    "babel-preset-es2015": "^6.9.0",
+    "browser-sync": "^2.13.0",
+    "css-flip": "^0.5.0",
+    "del": "^2.2.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-extname": "^0.2.2",
+    "gulp-format-md": "^0.1.9",
+    "gulp-header": "^1.8.7",
+    "gulp-if": "^2.0.1",
+    "gulp-less": "^3.1.0",
+    "gulp-load-plugins": "^1.2.4",
+    "gulp-open": "^2.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-size": "^2.1.0",
+    "gulp-uglify": "^2.0.0",
+    "handlebars-helpers": "^0.7.3",
+    "helper-markdown": "^0.2.1",
+    "helper-md": "^0.2.1",
+    "noty": "^2.3.8",
+    "rtlcss": "^2.0.6"
+  },
+  "dependencies": {
+    "animate.css": "^3.5.1",
+    "bootstrap": "^3.3.7",
+    "cleave.js": "^0.7.7",
+    "clipboard": "^1.5.12",
+    "font-awesome": "^4.7.0",
+    "fullcalendar": "^3.0.0",
+    "gmaps": "^0.4.24",
+    "jquery": "2.2.4",
+    "jquery-validation": "^1.15.1",
+    "metismenu": "^2.6.1",
+    "onoffcanvas": "^1.1.1",
+    "screenfull": "^3.0.0"
+  },
+  "verb": {
+    "toc": true,
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ]
+  },
+  "directories": {
+    "doc": "docs"
+  }
+}

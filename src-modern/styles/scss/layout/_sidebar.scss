@@ -1,0 +1,15 @@
+// ==========================================================================
+// Sidebar Layout Styles
+// ==========================================================================
+
+.admin-sidebar {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--header-height));
+  background: var(--bs-body-bg);
+  border-right: 1px solid var(--bs-border-color);
+  transition: var(--transition-base);
+  z-index: $zindex-sticky;
+} 

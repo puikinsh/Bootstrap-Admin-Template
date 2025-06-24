@@ -1,0 +1,11 @@
+// ==========================================================================
+// Footer Layout Styles
+// ==========================================================================
+
+.admin-footer {
+  margin-left: var(--sidebar-width);
+  padding: 1rem 0;
+  border-top: 1px solid var(--bs-border-color);
+  background: var(--bs-body-bg);
+  transition: var(--transition-base);
+} 

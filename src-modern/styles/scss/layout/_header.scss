@@ -1,0 +1,18 @@
+// ==========================================================================
+// Header Layout Styles
+// ==========================================================================
+
+.admin-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $zindex-fixed;
+  height: var(--header-height);
+  
+  .navbar {
+    height: 100%;
+    border-bottom: 1px solid var(--bs-border-color);
+    backdrop-filter: blur(8px);
+  }
+} 

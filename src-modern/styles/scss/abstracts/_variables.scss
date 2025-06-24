@@ -1,0 +1,135 @@
+// ==========================================================================
+// Custom Variables - Bootstrap 5 Overrides
+// Modern Design System for 2025
+// ==========================================================================
+
+// Brand Colors - Modern Palette
+$primary: #6366f1;    // Indigo
+$secondary: #64748b;  // Slate
+$success: #10b981;    // Emerald
+$info: #06b6d4;       // Cyan
+$warning: #f59e0b;    // Amber
+$danger: #ef4444;     // Red
+$light: #f8fafc;     // Slate 50
+$dark: #1e293b;      // Slate 800
+
+// Extended Color Palette
+$purple: #8b5cf6;
+$pink: #ec4899;
+$indigo: #6366f1;
+$teal: #14b8a6;
+$orange: #f97316;
+
+// Grayscale
+$gray-50: #f8fafc;
+$gray-100: #f1f5f9;
+$gray-200: #e2e8f0;
+$gray-300: #cbd5e1;
+$gray-400: #94a3b8;
+$gray-500: #64748b;
+$gray-600: #475569;
+$gray-700: #334155;
+$gray-800: #1e293b;
+$gray-900: #0f172a;
+
+// Typography
+$font-family-sans-serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-family-monospace: "Fira Code", "SF Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+$h1-font-size: 2.25rem;  // 36px
+$h2-font-size: 1.875rem; // 30px
+$h3-font-size: 1.5rem;   // 24px
+$h4-font-size: 1.25rem;  // 20px
+$h5-font-size: 1.125rem; // 18px
+$h6-font-size: 1rem;     // 16px
+
+// Spacing
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,  // 4px
+  2: $spacer * 0.5,   // 8px
+  3: $spacer * 0.75,  // 12px
+  4: $spacer,         // 16px
+  5: $spacer * 1.25,  // 20px
+  6: $spacer * 1.5,   // 24px
+  7: $spacer * 1.75,  // 28px
+  8: $spacer * 2,     // 32px
+  9: $spacer * 2.25,  // 36px
+  10: $spacer * 2.5,  // 40px
+  11: $spacer * 3,    // 48px
+  12: $spacer * 3.5,  // 56px
+);
+
+// Border Radius - Modern rounded corners
+$border-radius: 0.75rem;      // 12px
+$border-radius-sm: 0.5rem;    // 8px
+$border-radius-lg: 1rem;      // 16px
+$border-radius-xl: 1.25rem;   // 20px
+$border-radius-2xl: 1.5rem;   // 24px
+
+// Shadows - Subtle modern shadows
+$box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+$box-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+$box-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+// Layout Variables
+$sidebar-width: 280px;
+$sidebar-mini-width: 70px;
+$header-height: 70px;
+$footer-height: 60px;
+
+// Transitions
+$transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Z-index scale
+$zindex-dropdown: 1000;
+$zindex-sticky: 1020;
+$zindex-fixed: 1030;
+$zindex-modal-backdrop: 1040;
+$zindex-modal: 1050;
+$zindex-popover: 1060;
+$zindex-tooltip: 1070;
+$zindex-toast: 1080;
+
+// Component specific variables
+$navbar-padding-y: 1rem;
+$navbar-brand-font-size: 1.5rem;
+
+$card-border-width: 0;
+$card-border-color: transparent;
+$card-box-shadow: $box-shadow;
+
+$btn-border-radius: $border-radius-sm;
+$btn-padding-y: 0.75rem;
+$btn-padding-x: 1.5rem;
+
+$input-border-radius: $border-radius-sm;
+$input-padding-y: 0.75rem;
+$input-padding-x: 1rem;
+
+// Custom CSS Properties for runtime theming
+:root {
+  --sidebar-width: #{$sidebar-width};
+  --sidebar-mini-width: #{$sidebar-mini-width};
+  --header-height: #{$header-height};
+  --footer-height: #{$footer-height};
+  
+  --transition-base: #{$transition-base};
+  --transition-fast: #{$transition-fast};
+  --transition-slow: #{$transition-slow};
+  
+  --border-radius: #{$border-radius};
+  --border-radius-sm: #{$border-radius-sm};
+  --border-radius-lg: #{$border-radius-lg};
+  
+  --box-shadow: #{$box-shadow};
+  --box-shadow-sm: #{$box-shadow-sm};
+  --box-shadow-lg: #{$box-shadow-lg};
+} 

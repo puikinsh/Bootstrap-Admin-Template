@@ -24,6 +24,7 @@ import { ThemeManager } from './utils/theme-manager.js';
 import { SidebarManager } from './components/sidebar.js';
 import { DashboardManager } from './components/dashboard.js';
 import { NotificationManager } from './utils/notifications.js';
+import { iconManager } from './utils/icon-manager.js';
 
 // Import Alpine.js for reactive components
 import Alpine from 'alpinejs';
@@ -54,6 +55,13 @@ class AdminApp {
       this.themeManager = new ThemeManager();
       this.sidebarManager = new SidebarManager();
       this.notificationManager = new NotificationManager();
+      this.iconManager = iconManager;
+
+      // Preload common icons for better performance
+      this.iconManager.preloadIcons([
+        'dashboard', 'users', 'analytics', 'settings', 'notifications',
+        'search', 'menu', 'check', 'warning', 'info', 'success', 'error'
+      ]);
 
       // Initialize Bootstrap components
       this.initBootstrapComponents();
@@ -261,6 +269,20 @@ class AdminApp {
       }
     }));
 
+    Alpine.data('iconDemo', () => ({
+      currentProvider: 'bootstrap',
+      
+      switchProvider(provider) {
+        this.currentProvider = provider;
+        iconManager.switchProvider(provider);
+        console.log(`🎨 Switched to ${provider} icons`);
+      },
+      
+      getIcon(iconName) {
+        return iconManager.get(iconName);
+      }
+    }));
+
     // Start Alpine.js
     Alpine.start();
     window.Alpine = Alpine;
@@ -306,6 +328,7 @@ app.init();
 
 // Export for global access
 window.AdminApp = app;
+window.IconManager = iconManager;
 
 // Export the app instance for module imports
 export default app; 

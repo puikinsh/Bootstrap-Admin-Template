@@ -118,7 +118,7 @@
                                 data-bs-toggle="tooltip"
                                 data-bs-placement="bottom"
                                 title="Toggle fullscreen">
-                            <i class="bi bi-arrows-fullscreen"></i>
+                            <i class="bi bi-arrows-fullscreen icon-hover"></i>
                         </button>
 
                         <!-- Notifications -->
@@ -204,9 +204,49 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="/reports">
+                                <i class="bi bi-file-earmark-text"></i>
+                                <span>Reports</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/messages">
+                                <i class="bi bi-chat-dots"></i>
+                                <span>Messages</span>
+                                <span class="badge bg-danger rounded-pill ms-auto">3</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/calendar">
+                                <i class="bi bi-calendar-event"></i>
+                                <span>Calendar</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/files">
+                                <i class="bi bi-folder2-open"></i>
+                                <span>Files</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mt-3">
+                            <small class="text-muted px-3 text-uppercase fw-bold">Admin</small>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="/settings">
                                 <i class="bi bi-gear"></i>
                                 <span>Settings</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/security">
+                                <i class="bi bi-shield-check"></i>
+                                <span>Security</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/help">
+                                <i class="bi bi-question-circle"></i>
+                                <span>Help & Support</span>
                             </a>
                         </li>
                     </ul>
@@ -223,10 +263,25 @@
                         <h1 class="h3 mb-0">Dashboard</h1>
                         <p class="text-muted mb-0">Welcome back! Here's what's happening.</p>
                     </div>
-                    <div>
+                    <div class="d-flex gap-2">
                         <button type="button" class="btn btn-primary">
                             <i class="bi bi-plus-lg me-2"></i>
                             New Item
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary" 
+                                data-bs-toggle="tooltip" 
+                                title="Refresh data">
+                            <i class="bi bi-arrow-clockwise icon-hover"></i>
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary" 
+                                data-bs-toggle="tooltip" 
+                                title="Export data">
+                            <i class="bi bi-download icon-hover"></i>
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary" 
+                                data-bs-toggle="tooltip" 
+                                title="Settings">
+                            <i class="bi bi-gear icon-hover"></i>
                         </button>
                     </div>
                 </div>
@@ -422,6 +477,136 @@
     <!-- Toast Container -->
     <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index: 11">
         <div id="toast-container"></div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="position-fixed bottom-0 end-0 p-4" style="z-index: 10">
+        <div class="dropdown dropup">
+            <button class="btn btn-primary btn-lg rounded-circle shadow-lg" 
+                    type="button" 
+                    data-bs-toggle="dropdown" 
+                    aria-expanded="false"
+                    data-bs-placement="top"
+                    title="Quick Actions">
+                <i class="bi bi-plus-lg"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                    <a class="dropdown-item" href="#" onclick="window.AdminApp.notificationManager.info('New user action triggered')">
+                        <i class="bi bi-person-plus me-2"></i>Add User
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#" onclick="window.AdminApp.notificationManager.info('New product action triggered')">
+                        <i class="bi bi-box me-2"></i>Add Product
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#" onclick="window.AdminApp.notificationManager.info('New order action triggered')">
+                        <i class="bi bi-bag-plus me-2"></i>New Order
+                    </a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <a class="dropdown-item" href="#" x-data="iconDemo" @click="switchProvider('lucide')" onclick="window.AdminApp.notificationManager.success('Switched to Lucide icons!')">
+                        <i class="bi bi-palette me-2"></i>Switch to Lucide Icons
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#" x-data="iconDemo" @click="switchProvider('bootstrap')" onclick="window.AdminApp.notificationManager.success('Switched to Bootstrap icons!')">
+                        <i class="bi bi-bootstrap me-2"></i>Switch to Bootstrap Icons
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Icon Demo Modal -->
+    <div class="modal fade" id="iconDemoModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-palette me-2"></i>
+                        Icon System Demo
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" x-data="iconDemo">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h6>Current Provider: <span class="badge bg-primary" x-text="currentProvider"></span></h6>
+                            <div class="btn-group" role="group">
+                                <button type="button" 
+                                        class="btn btn-outline-primary"
+                                        @click="switchProvider('bootstrap')"
+                                        :class="{ 'active': currentProvider === 'bootstrap' }">
+                                    Bootstrap Icons
+                                </button>
+                                <button type="button" 
+                                        class="btn btn-outline-primary"
+                                        @click="switchProvider('lucide')"
+                                        :class="{ 'active': currentProvider === 'lucide' }">
+                                    Lucide Icons
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-3">
+                        <div class="col-md-3 text-center">
+                            <div class="p-3 border rounded">
+                                <i class="bi bi-speedometer2 icon-xl text-primary mb-2"></i>
+                                <br><small>Dashboard</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="p-3 border rounded">
+                                <i class="bi bi-people icon-xl text-success mb-2"></i>
+                                <br><small>Users</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="p-3 border rounded">
+                                <i class="bi bi-graph-up icon-xl text-info mb-2"></i>
+                                <br><small>Analytics</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="p-3 border rounded">
+                                <i class="bi bi-gear icon-xl text-warning mb-2"></i>
+                                <br><small>Settings</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h6 class="mt-4">Icon Animations</h6>
+                    <div class="row g-3">
+                        <div class="col-md-3 text-center">
+                            <i class="bi bi-arrow-clockwise icon-xl icon-spin text-primary"></i>
+                            <br><small>Spin</small>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <i class="bi bi-heart icon-xl icon-pulse text-danger"></i>
+                            <br><small>Pulse</small>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <i class="bi bi-star icon-xl icon-hover text-warning"></i>
+                            <br><small>Hover Effect</small>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <i class="bi bi-check-circle icon-xl text-success"></i>
+                            <br><small>Static</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x me-2"></i>Close
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->

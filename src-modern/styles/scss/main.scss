@@ -17,7 +17,10 @@
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/utilities";
 
-// 4. Include Bootstrap components (selective import for better performance)
+// 4. Include Bootstrap Icons
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+// 5. Include Bootstrap components (selective import for better performance)
 @import "~bootstrap/scss/root";
 @import "~bootstrap/scss/reboot";
 @import "~bootstrap/scss/type";
@@ -50,11 +53,11 @@
 @import "~bootstrap/scss/offcanvas";
 @import "~bootstrap/scss/placeholders";
 
-// 5. Include Bootstrap helpers and utilities API
+// 6. Include Bootstrap helpers and utilities API
 @import "~bootstrap/scss/helpers";
 @import "~bootstrap/scss/utilities/api";
 
-// 6. Include our custom components
+// 7. Include our custom components
 @import "layout/header";
 @import "layout/sidebar";
 @import "layout/main";
@@ -67,14 +70,15 @@
 @import "components/navigation";
 @import "components/modals";
 @import "components/charts";
+@import "components/icons";
 
 @import "pages/dashboard";
 @import "pages/login";
 @import "pages/errors";
 
-// 7. Include theme variants
+// 8. Include theme variants
 @import "themes/dark";
 @import "themes/light";
 
-// 8. Include utilities and helpers
+// 9. Include utilities and helpers
 @import "abstracts/utilities"; 

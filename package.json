@@ -41,6 +41,9 @@
     "dayjs": "^1.11.13",
     "sweetalert2": "^11.14.5"
   },
+  "optionalDependencies": {
+    "lucide": "^0.460.0"
+  },
   "devDependencies": {
     "vite": "^6.3.5",
     "sass": "^1.82.0",

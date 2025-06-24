@@ -32,6 +32,9 @@ import Alpine from 'alpinejs';
 // Import styles
 import '../styles/scss/main.scss';
 
+// Import Bootstrap Icons CSS (more efficient than SCSS import in Vite)
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 // Application Class
 class AdminApp {
   constructor() {

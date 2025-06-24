@@ -5,10 +5,14 @@
 .card {
   border: none;
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--bs-box-shadow-sm), inset 0 1px 0 rgba(var(--bs-body-color-rgb), 0.05);
   backdrop-filter: blur(12px);
-  transition: var(--transition-base);
-  
+  transition: all 0.3s ease;
+
+  .card-header {
+    background-color: transparent;
+  }
+
   &:hover {
     box-shadow: var(--box-shadow-lg);
     transform: translateY(-2px);

@@ -394,7 +394,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <canvas id="revenueChart" height="100"></canvas>
+                                <canvas id="revenueChart" height="250"></canvas>
                             </div>
                         </div>
                     </div>
@@ -440,14 +440,14 @@
                 </div>
 
                 <!-- Additional Charts Row -->
-                <div class="row g-4">
+                <div class="row g-4 mb-4">
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-header">
                                 <h5 class="card-title mb-0">User Growth (Last 7 Days)</h5>
                             </div>
                             <div class="card-body">
-                                <canvas id="userGrowthChart" height="120"></canvas>
+                                <canvas id="userGrowthChart" height="200"></canvas>
                             </div>
                         </div>
                     </div>
@@ -458,11 +458,68 @@
                                 <h5 class="card-title mb-0">Order Status Distribution</h5>
                             </div>
                             <div class="card-body">
-                                <canvas id="orderStatusChart" height="120"></canvas>
+                                <canvas id="orderStatusChart" height="200"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- New Widgets Row -->
+                <div class="row g-4 mb-4">
+                    <!-- Recent Orders -->
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Recent Orders</h5>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Order ID</th>
+                                                <th>Customer</th>
+                                                <th>Amount</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="recent-orders-table">
+                                            <!-- Orders will be injected here by dashboard.js -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Storage Status -->
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Storage Status</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="storageStatusChart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sales by Location -->
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Sales by Location</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="salesByLocationChart" style="height: 400px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </main>
 
@@ -479,6 +536,7 @@
                 </div>
             </div>
         </footer>
+        </div> <!-- /.admin-wrapper -->
     </div>
 
     <!-- Toast Container -->

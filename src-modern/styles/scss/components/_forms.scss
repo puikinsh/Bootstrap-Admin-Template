@@ -480,6 +480,136 @@
   }
 }
 
+// File Upload Zone
+.file-upload-zone {
+  border: 2px dashed var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  padding: 3rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--bs-body-bg);
+
+  &:hover {
+    border-color: var(--bs-primary);
+    background: rgba(var(--bs-primary-rgb), 0.05);
+  }
+
+  &.dragover {
+    border-color: var(--bs-primary);
+    background: rgba(var(--bs-primary-rgb), 0.1);
+    transform: scale(1.02);
+  }
+}
+
+// File Item Display
+.file-item {
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: var(--bs-light) !important;
+  }
+}
+
+// Wizard Steps
+.wizard-steps {
+  .wizard-step {
+    text-align: center;
+    flex: 1;
+    position: relative;
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--bs-light);
+      border: 2px solid var(--bs-border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.5rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .step-title {
+      font-size: 0.875rem;
+      color: var(--bs-secondary);
+      font-weight: 500;
+    }
+
+    &.active {
+      .step-number {
+        background: var(--bs-primary);
+        border-color: var(--bs-primary);
+        color: white;
+      }
+      
+      .step-title {
+        color: var(--bs-primary);
+      }
+    }
+
+    &.completed {
+      .step-number {
+        background: var(--bs-success);
+        border-color: var(--bs-success);
+        color: white;
+      }
+      
+      .step-title {
+        color: var(--bs-success);
+      }
+    }
+
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 60%;
+      right: -40%;
+      height: 2px;
+      background: var(--bs-border-color);
+      z-index: -1;
+    }
+
+    &.completed:not(:last-child)::after {
+      background: var(--bs-success);
+    }
+  }
+}
+
+// Password Strength Enhancements
+.strength-bar {
+  height: 6px;
+  background: var(--bs-light);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+
+  .strength-fill {
+    height: 100%;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+
+    &.weak {
+      background: var(--bs-danger);
+    }
+
+    &.fair {
+      background: var(--bs-warning);
+    }
+
+    &.good {
+      background: var(--bs-info);
+    }
+
+    &.strong {
+      background: var(--bs-success);
+    }
+  }
+}
+
 // Form Grid System
 .form-grid {
   display: grid;

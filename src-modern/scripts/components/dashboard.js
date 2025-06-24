@@ -17,6 +17,7 @@ import {
   Legend,
   ArcElement,
 } from 'chart.js';
+import ApexCharts from 'apexcharts';
 
 // Register Chart.js components and controllers
 Chart.register(
@@ -41,7 +42,9 @@ export class DashboardManager {
       revenue: [],
       users: [],
       orders: [],
-      performance: []
+      performance: [],
+      recentOrders: [],
+      salesByLocation: []
     };
     this.init();
   }
@@ -56,6 +59,9 @@ export class DashboardManager {
     this.initRevenueChart();
     this.initUserGrowthChart();
     this.initOrderStatusChart();
+    this.initStorageChart();
+    this.initSalesByLocationChart();
+    this.populateRecentOrders();
     
     // Initialize real-time updates
     this.startRealTimeUpdates();
@@ -70,6 +76,8 @@ export class DashboardManager {
     this.data.users = this.generateUserData();
     this.data.orders = this.generateOrderData();
     this.data.performance = this.generatePerformanceData();
+    this.data.recentOrders = this.generateRecentOrders();
+    this.data.salesByLocation = this.generateSalesByLocation();
   }
 
   generateRevenueData() {
@@ -97,6 +105,38 @@ export class DashboardManager {
       cancelled: 23,
       processing: 156
     };
+  }
+
+  generateRecentOrders() {
+    const customers = ['John Doe', 'Jane Smith', 'Mike Johnson', 'Sarah Wilson', 'Bob Brown'];
+    const statuses = [
+        { text: 'Completed', class: 'bg-success' },
+        { text: 'Pending', class: 'bg-warning' },
+        { text: 'Shipped', class: 'bg-info' },
+        { text: 'Cancelled', class: 'bg-danger' }
+    ];
+    return Array.from({length: 5}, (_, i) => ({
+        id: `#${Math.floor(Math.random() * 9000) + 1000}`,
+        customer: customers[Math.floor(Math.random() * customers.length)],
+        amount: `$${(Math.random() * 500 + 50).toFixed(2)}`,
+        status: statuses[Math.floor(Math.random() * statuses.length)],
+        date: new Date(Date.now() - Math.random() * 1000 * 60 * 60 * 24 * 7).toLocaleDateString()
+    }));
+  }
+
+  generateSalesByLocation() {
+    return [
+        { "name": "United States", "value": 2822},
+        { "name": "Canada", "value": 1432},
+        { "name": "United Kingdom", "value": 980},
+        { "name": "Australia", "value": 780},
+        { "name": "Germany", "value": 650},
+        { "name": "Brazil", "value": 450},
+        { "name": "India", "value": 1800},
+        { "name": "China", "value": 2100},
+        { "name": "Japan", "value": 850},
+        { "name": "Russia", "value": 550}
+    ]
   }
 
   generatePerformanceData() {
@@ -293,6 +333,120 @@ export class DashboardManager {
     });
 
     this.charts.set('orderStatus', chart);
+  }
+
+  initStorageChart() {
+    const options = {
+      chart: {
+        height: 280,
+        type: "radialBar",
+      },
+      series: [76],
+      colors: ["#20E647"],
+      plotOptions: {
+        radialBar: {
+          hollow: {
+            margin: 0,
+            size: "70%",
+            background: "#293450"
+          },
+          track: {
+            dropShadow: {
+              enabled: true,
+              top: 2,
+              left: 0,
+              blur: 4,
+              opacity: 0.15
+            }
+          },
+          dataLabels: {
+            name: {
+              offsetY: -10,
+              color: "#fff",
+              fontSize: "13px"
+            },
+            value: {
+              color: "#fff",
+              fontSize: "30px",
+              show: true
+            }
+          }
+        }
+      },
+      fill: {
+        type: "gradient",
+        gradient: {
+          shade: "dark",
+          type: "vertical",
+          gradientToColors: ["#87D4F9"],
+          stops: [0, 100]
+        }
+      },
+      stroke: {
+        lineCap: "round"
+      },
+      labels: ["Used Space"]
+    };
+
+    const chart = new ApexCharts(document.querySelector("#storageStatusChart"), options);
+    chart.render();
+    this.charts.set('storage', chart);
+  }
+
+  initSalesByLocationChart() {
+      const options = {
+          series: [{
+              name: 'Sales',
+              data: this.data.salesByLocation.map(c => ({ x: c.name, y: c.value }))
+          }],
+          chart: {
+              type: 'treemap',
+              height: 350
+          },
+          dataLabels: {
+              enabled: true,
+              style: {
+                  fontSize: '12px',
+              },
+              formatter: function(text, op) {
+                  return [text, op.value]
+              },
+              offsetY: -4
+          },
+          plotOptions: {
+              treemap: {
+                  enableShades: true,
+                  shadeIntensity: 0.5,
+                  reverseNegativeShade: true,
+                  colorScale: {
+                      ranges: [
+                          { from: 0, to: 1000, color: '#CDD7B6' },
+                          { from: 1001, to: 2000, color: '#A4B494' },
+                          { from: 2001, to: 3000, color: '#52708E' }
+                      ]
+                  }
+              }
+          }
+      };
+
+      const chart = new ApexCharts(document.querySelector("#salesByLocationChart"), options);
+      chart.render();
+      this.charts.set('salesByLocation', chart);
+  }
+
+  populateRecentOrders() {
+      const tableBody = document.getElementById('recent-orders-table');
+      if (!tableBody) return;
+
+      tableBody.innerHTML = this.data.recentOrders.map(order => `
+          <tr>
+              <td><strong>${order.id}</strong></td>
+              <td>${order.customer}</td>
+              <td>${order.amount}</td>
+              <td><span class="badge ${order.status.class}">${order.status.text}</span></td>
+              <td>${order.date}</td>
+          </tr>
+      `).join('');
   }
 
   startRealTimeUpdates() {

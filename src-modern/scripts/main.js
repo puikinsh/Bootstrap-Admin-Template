@@ -66,8 +66,8 @@ class AdminApp {
       // Initialize Bootstrap components
       this.initBootstrapComponents();
 
-      // Initialize page-specific components
-      this.initPageComponents();
+      // Initialize page-specific components and wait for them to complete
+      await this.initPageComponents();
 
       // Setup global event listeners
       this.setupEventListeners();
@@ -136,7 +136,7 @@ class AdminApp {
   }
 
   // Initialize page-specific components
-  initPageComponents() {
+  async initPageComponents() {
     const currentPage = document.body.dataset.page;
 
     switch (currentPage) {
@@ -145,7 +145,7 @@ class AdminApp {
         break;
       case 'forms':
         // Forms page specific initialization
-        this.initFormsPage();
+        await this.initFormsPage();
         break;
       // Add more page-specific initializations here
     }

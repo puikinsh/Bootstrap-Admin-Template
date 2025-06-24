@@ -224,6 +224,569 @@ export class PasswordStrength {
 
 // Alpine.js Form Components
 export const formComponents = {
+  // Contact Form Component
+  contactForm: () => ({
+    form: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      subject: '',
+      message: ''
+    },
+    errors: {},
+    isSubmitting: false,
+
+    validateField(field) {
+      switch (field) {
+        case 'firstName':
+          this.errors.firstName = this.form.firstName.length < 2 ? 'First name must be at least 2 characters' : '';
+          break;
+        case 'lastName':
+          this.errors.lastName = this.form.lastName.length < 2 ? 'Last name must be at least 2 characters' : '';
+          break;
+        case 'email':
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          this.errors.email = !emailRegex.test(this.form.email) ? 'Please enter a valid email address' : '';
+          break;
+        case 'message':
+          this.errors.message = this.form.message.length < 10 ? 'Message must be at least 10 characters' : '';
+          break;
+      }
+    },
+
+    getFieldClass(field) {
+      if (this.errors[field]) return 'is-invalid';
+      if (this.form[field] && !this.errors[field]) return 'is-valid';
+      return '';
+    },
+
+    async submitForm() {
+      this.isSubmitting = true;
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      alert('Message sent successfully!');
+      this.isSubmitting = false;
+      // Reset form
+      this.form = {
+        firstName: '',
+        lastName: '',
+        email: '',
+        subject: '',
+        message: ''
+      };
+    }
+  }),
+
+  // Registration Form Component
+  registrationForm: () => ({
+    form: {
+      username: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      agreeTerms: false
+    },
+    errors: {},
+    isSubmitting: false,
+    showPassword: false,
+    passwordStrength: {
+      level: 'weak',
+      percentage: 0,
+      text: 'Weak',
+      color: 'danger'
+    },
+
+    validateField(field) {
+      switch (field) {
+        case 'username':
+          this.errors.username = this.form.username.length < 3 ? 'Username must be at least 3 characters' : '';
+          break;
+        case 'email':
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          this.errors.email = !emailRegex.test(this.form.email) ? 'Please enter a valid email address' : '';
+          break;
+        case 'confirmPassword':
+          this.errors.confirmPassword = this.form.password !== this.form.confirmPassword ? 'Passwords do not match' : '';
+          break;
+      }
+    },
+
+    validatePassword() {
+      const password = this.form.password;
+      let score = 0;
+
+      if (password.length >= 8) score++;
+      if (/[A-Z]/.test(password)) score++;
+      if (/[a-z]/.test(password)) score++;
+      if (/[0-9]/.test(password)) score++;
+      if (/[^A-Za-z0-9]/.test(password)) score++;
+
+      const levels = [{
+        level: 'weak',
+        percentage: 20,
+        text: 'Weak',
+        color: 'danger'
+      }, {
+        level: 'weak',
+        percentage: 40,
+        text: 'Fair',
+        color: 'warning'
+      }, {
+        level: 'fair',
+        percentage: 60,
+        text: 'Good',
+        color: 'info'
+      }, {
+        level: 'good',
+        percentage: 80,
+        text: 'Strong',
+        color: 'success'
+      }, {
+        level: 'strong',
+        percentage: 100,
+        text: 'Very Strong',
+        color: 'success'
+      }];
+
+      this.passwordStrength = levels[score] || levels[0];
+      this.errors.password = score < 3 ? 'Password is too weak' : '';
+    },
+
+    getFieldClass(field) {
+      if (this.errors[field]) return 'is-invalid';
+      if (this.form[field] && !this.errors[field]) return 'is-valid';
+      return '';
+    },
+
+    get isFormValid() {
+      return Object.values(this.errors).every(error => !error) &&
+        Object.values(this.form).every(value => value) &&
+        this.form.agreeTerms;
+    },
+
+    async submitForm() {
+      this.isSubmitting = true;
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      alert('Account created successfully!');
+      this.isSubmitting = false;
+    }
+  }),
+
+  // File Upload Component
+  fileUploadForm: () => ({
+    files: [],
+    dragOver: false,
+
+    handleDrop(event) {
+      this.dragOver = false;
+      this.handleFiles(event.dataTransfer.files);
+    },
+
+    handleFiles(fileList) {
+      Array.from(fileList).forEach(file => {
+        const fileObj = {
+          id: Date.now() + Math.random(),
+          name: file.name,
+          size: this.formatFileSize(file.size),
+          status: 'uploading',
+          progress: 0
+        };
+        this.files.push(fileObj);
+        this.simulateUpload(fileObj);
+      });
+    },
+
+    simulateUpload(fileObj) {
+      const interval = setInterval(() => {
+        fileObj.progress += Math.random() * 30;
+        if (fileObj.progress >= 100) {
+          fileObj.progress = 100;
+          fileObj.status = 'completed';
+          clearInterval(interval);
+        }
+      }, 500);
+    },
+
+    removeFile(fileId) {
+      this.files = this.files.filter(file => file.id !== fileId);
+    },
+
+    formatFileSize(bytes) {
+      if (bytes === 0) return '0 Bytes';
+      const k = 1024;
+      const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+  }),
+
+  // Enhanced Form Wizard Component
+  enhancedFormWizard: () => ({
+    currentStep: 1,
+    totalSteps: 4,
+    isSubmitting: false,
+    completedSteps: [],
+    stepErrors: {},
+    errors: {},
+
+    steps: [{
+      id: 1,
+      title: 'Personal',
+      description: 'Basic information'
+    }, {
+      id: 2,
+      title: 'Address',
+      description: 'Contact details'
+    }, {
+      id: 3,
+      title: 'Account',
+      description: 'Login credentials'
+    }, {
+      id: 4,
+      title: 'Review',
+      description: 'Confirm details'
+    }],
+
+    formData: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      birthDate: '',
+      gender: '',
+      address: '',
+      city: '',
+      state: '',
+      zipCode: '',
+      country: 'US',
+      username: '',
+      password: '',
+      confirmPassword: '',
+      securityQuestion: '',
+      securityAnswer: '',
+      emailNotifications: true,
+      smsNotifications: false,
+      marketingEmails: false,
+      profilePublic: false,
+      agreeToTerms: false
+    },
+
+    passwordStrength: {
+      level: 'weak',
+      percentage: 0,
+      text: 'Weak',
+      color: 'danger'
+    },
+
+    init() {
+      // Load any saved draft
+      this.loadDraft();
+    },
+
+    validateField(field) {
+      this.errors[field] = '';
+
+      switch (field) {
+        case 'firstName':
+          if (!this.formData.firstName.trim()) {
+            this.errors.firstName = 'First name is required';
+          } else if (this.formData.firstName.length < 2) {
+            this.errors.firstName = 'First name must be at least 2 characters';
+          }
+          break;
+
+        case 'lastName':
+          if (!this.formData.lastName.trim()) {
+            this.errors.lastName = 'Last name is required';
+          } else if (this.formData.lastName.length < 2) {
+            this.errors.lastName = 'Last name must be at least 2 characters';
+          }
+          break;
+
+        case 'email':
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!this.formData.email.trim()) {
+            this.errors.email = 'Email is required';
+          } else if (!emailRegex.test(this.formData.email)) {
+            this.errors.email = 'Please enter a valid email address';
+          }
+          break;
+
+        case 'phone':
+          if (this.formData.phone && !/^[\+]?[\d\s\-\(\)]+$/.test(this.formData.phone)) {
+            this.errors.phone = 'Please enter a valid phone number';
+          }
+          break;
+
+        case 'address':
+          if (!this.formData.address.trim()) {
+            this.errors.address = 'Address is required';
+          }
+          break;
+
+        case 'city':
+          if (!this.formData.city.trim()) {
+            this.errors.city = 'City is required';
+          }
+          break;
+
+        case 'state':
+          if (!this.formData.state) {
+            this.errors.state = 'State is required';
+          }
+          break;
+
+        case 'zipCode':
+          if (!this.formData.zipCode.trim()) {
+            this.errors.zipCode = 'ZIP code is required';
+          } else if (!/^\d{5}(-\d{4})?$/.test(this.formData.zipCode)) {
+            this.errors.zipCode = 'Please enter a valid ZIP code';
+          }
+          break;
+
+        case 'username':
+          if (!this.formData.username.trim()) {
+            this.errors.username = 'Username is required';
+          } else if (this.formData.username.length < 3) {
+            this.errors.username = 'Username must be at least 3 characters';
+          } else if (!/^[a-zA-Z0-9_]+$/.test(this.formData.username)) {
+            this.errors.username = 'Username can only contain letters, numbers, and underscores';
+          }
+          break;
+
+        case 'password':
+          if (!this.formData.password) {
+            this.errors.password = 'Password is required';
+          } else if (this.passwordStrength.level === 'weak') {
+            this.errors.password = 'Password is too weak';
+          }
+          break;
+
+        case 'confirmPassword':
+          if (this.formData.password !== this.formData.confirmPassword) {
+            this.errors.confirmPassword = 'Passwords do not match';
+          }
+          break;
+
+        case 'agreeToTerms':
+          if (!this.formData.agreeToTerms) {
+            this.errors.agreeToTerms = 'You must agree to the terms and conditions';
+          }
+          break;
+      }
+    },
+
+    getFieldClass(field) {
+      if (this.errors[field]) return 'is-invalid';
+      if (this.formData[field] && !this.errors[field]) return 'is-valid';
+      return '';
+    },
+
+    updatePasswordStrength() {
+      const password = this.formData.password;
+      let score = 0;
+
+      if (password.length >= 8) score++;
+      if (/[A-Z]/.test(password)) score++;
+      if (/[a-z]/.test(password)) score++;
+      if (/[0-9]/.test(password)) score++;
+      if (/[^A-Za-z0-9]/.test(password)) score++;
+
+      const levels = [{
+        level: 'weak',
+        percentage: 20,
+        text: 'Weak',
+        color: 'danger'
+      }, {
+        level: 'weak',
+        percentage: 40,
+        text: 'Fair',
+        color: 'warning'
+      }, {
+        level: 'fair',
+        percentage: 60,
+        text: 'Good',
+        color: 'info'
+      }, {
+        level: 'good',
+        percentage: 80,
+        text: 'Strong',
+        color: 'success'
+      }, {
+        level: 'strong',
+        percentage: 100,
+        text: 'Very Strong',
+        color: 'success'
+      }];
+
+      this.passwordStrength = levels[score] || levels[0];
+      this.validateField('password');
+    },
+
+    validateCurrentStep() {
+      let isValid = true;
+
+      switch (this.currentStep) {
+        case 1:
+          ['firstName', 'lastName', 'email'].forEach(field => {
+            this.validateField(field);
+            if (this.errors[field]) isValid = false;
+          });
+          break;
+
+        case 2:
+          ['address', 'city', 'state', 'zipCode'].forEach(field => {
+            this.validateField(field);
+            if (this.errors[field]) isValid = false;
+          });
+          break;
+
+        case 3:
+          ['username', 'password', 'confirmPassword'].forEach(field => {
+            this.validateField(field);
+            if (this.errors[field]) isValid = false;
+          });
+          break;
+
+        case 4:
+          this.validateField('agreeToTerms');
+          if (this.errors.agreeToTerms) isValid = false;
+          break;
+      }
+
+      return isValid;
+    },
+
+    canProceed() {
+      // Quick check for required fields based on current step
+      switch (this.currentStep) {
+        case 1:
+          return this.formData.firstName && this.formData.lastName && this.formData.email;
+        case 2:
+          return this.formData.address && this.formData.city && this.formData.state && this.formData.zipCode;
+        case 3:
+          return this.formData.username && this.formData.password && this.formData.confirmPassword && this.formData.password === this.formData.confirmPassword;
+        case 4:
+          return this.formData.agreeToTerms;
+        default:
+          return true;
+      }
+    },
+
+    isStepCompleted(stepId) {
+      return this.completedSteps.includes(stepId);
+    },
+
+    hasStepError(stepId) {
+      return this.stepErrors[stepId] || false;
+    },
+
+    goToStep(stepId) {
+      if (stepId <= this.currentStep || this.isStepCompleted(stepId)) {
+        this.currentStep = stepId;
+      }
+    },
+
+    async nextStep() {
+      if (!this.validateCurrentStep()) {
+        this.stepErrors[this.currentStep] = true;
+        return;
+      }
+
+      this.stepErrors[this.currentStep] = false;
+      if (!this.completedSteps.includes(this.currentStep)) {
+        this.completedSteps.push(this.currentStep);
+      }
+
+      if (this.currentStep === 4) {
+        await this.submitForm();
+      } else {
+        this.currentStep++;
+      }
+    },
+
+    prevStep() {
+      if (this.currentStep > 1) {
+        this.currentStep--;
+      }
+    },
+
+    async submitForm() {
+      this.isSubmitting = true;
+
+      try {
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        // Clear any saved draft
+        localStorage.removeItem('formWizardDraft');
+
+        // Move to success step
+        this.currentStep = 5;
+
+      } catch (error) {
+        alert('Error submitting form: ' + error.message);
+      } finally {
+        this.isSubmitting = false;
+      }
+    },
+
+    saveDraft() {
+      localStorage.setItem('formWizardDraft', JSON.stringify({
+        currentStep: this.currentStep,
+        formData: this.formData,
+        completedSteps: this.completedSteps
+      }));
+      alert('Draft saved successfully!');
+    },
+
+    loadDraft() {
+      const draft = localStorage.getItem('formWizardDraft');
+      if (draft) {
+        const saved = JSON.parse(draft);
+        this.currentStep = saved.currentStep;
+        this.formData = { ...this.formData,
+          ...saved.formData
+        };
+        this.completedSteps = saved.completedSteps || [];
+      }
+    },
+
+    resetWizard() {
+      this.currentStep = 1;
+      this.completedSteps = [];
+      this.stepErrors = {};
+      this.errors = {};
+      this.isSubmitting = false;
+
+      this.formData = {
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        birthDate: '',
+        gender: '',
+        address: '',
+        city: '',
+        state: '',
+        zipCode: '',
+        country: 'US',
+        username: '',
+        password: '',
+        confirmPassword: '',
+        securityQuestion: '',
+        securityAnswer: '',
+        emailNotifications: true,
+        smsNotifications: false,
+        marketingEmails: false,
+        profilePublic: false,
+        agreeToTerms: false
+      };
+
+      localStorage.removeItem('formWizardDraft');
+    }
+  }),
+
   // Real-time validation component
   validationForm: () => ({
     validator: new FormValidator(),
@@ -608,4 +1171,9 @@ export class FormManager {
 }
 
 // Export default instance
-export const formManager = new FormManager(); 
+export const formManager = new FormManager();
+
+export default {
+  formComponents,
+  FormManager
+}; 

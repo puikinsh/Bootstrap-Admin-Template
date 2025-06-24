@@ -80,10 +80,30 @@
     .admin-sidebar {
       width: var(--sidebar-mini-width);
       
-      .sidebar-nav .nav-link span {
-        opacity: 0;
-        transform: translateX(-10px);
-        transition: var(--transition-fast);
+      .sidebar-nav {
+        .nav-link {
+          justify-content: center;
+          padding: 0.75rem 0.5rem;
+          
+          span {
+            display: none;
+          }
+          
+          .badge {
+            display: none;
+          }
+          
+          i {
+            margin-right: 0;
+            font-size: 1.1rem;
+          }
+        }
+        
+        .nav-item {
+          small {
+            display: none;
+          }
+        }
       }
     }
     

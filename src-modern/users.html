@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management - Modern Bootstrap Admin</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Advanced user management with data tables, CRUD operations, and bulk actions">
+    <meta name="keywords" content="bootstrap, admin, dashboard, users, data tables, CRUD">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body data-page="users">
+    <!-- Admin App Container -->
+    <div class="admin-app">
+        <div class="admin-wrapper" id="admin-wrapper">
+            
+            <!-- Header -->
+            <header class="admin-header">
+                <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+                    <div class="container-fluid">
+                        <!-- Logo/Brand -->
+                        <a class="navbar-brand me-3 d-flex align-items-center" href="/">
+                            <img src="/assets/images/logo.svg" alt="Logo" height="32" class="d-inline-block align-text-top me-2">
+                            <h1 class="h4 mb-0 fw-bold text-primary">Metis</h1>
+                        </a>
+
+                        <!-- Sidebar Toggle -->
+                        <button class="btn btn-outline-secondary me-3" 
+                                type="button" 
+                                data-sidebar-toggle
+                                aria-label="Toggle sidebar">
+                            <i class="bi bi-list"></i>
+                        </button>
+
+                        <!-- Search Bar -->
+                        <div class="search-container flex-grow-1 mx-4" x-data="searchComponent">
+                            <div class="position-relative">
+                                <input type="search" 
+                                       class="form-control" 
+                                       placeholder="Search users..."
+                                       x-model="query"
+                                       @input="search()"
+                                       data-search-input>
+                                <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3"></i>
+                            </div>
+                        </div>
+
+                        <!-- Right Navigation -->
+                        <div class="navbar-nav flex-row">
+                            <div x-data="themeSwitch">
+                                <button class="btn btn-outline-secondary me-2" 
+                                        type="button" 
+                                        @click="toggle()">
+                                    <i class="bi bi-sun-fill" x-show="currentTheme === 'light'"></i>
+                                    <i class="bi bi-moon-fill" x-show="currentTheme === 'dark'"></i>
+                                </button>
+                            </div>
+                            <a class="btn btn-outline-primary" href="/index.html">
+                                <i class="bi bi-speedometer2 me-2"></i>Dashboard
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+
+            <!-- Sidebar -->
+            <aside class="admin-sidebar" id="admin-sidebar">
+                <div class="sidebar-content">
+                    <nav class="sidebar-nav">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">
+                                    <i class="bi bi-speedometer2"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/analytics">
+                                    <i class="bi bi-graph-up"></i>
+                                    <span>Analytics</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/users.html">
+                                    <i class="bi bi-people"></i>
+                                    <span>Users</span>
+                                    <span class="badge bg-primary rounded-pill ms-auto">Active</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/products">
+                                    <i class="bi bi-box"></i>
+                                    <span>Products</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/orders">
+                                    <i class="bi bi-bag-check"></i>
+                                    <span>Orders</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/forms.html">
+                                    <i class="bi bi-ui-checks-grid"></i>
+                                    <span>Forms</span>
+                                    <span class="badge bg-success rounded-pill ms-auto">New</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/reports">
+                                    <i class="bi bi-file-earmark-text"></i>
+                                    <span>Reports</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/messages">
+                                    <i class="bi bi-chat-dots"></i>
+                                    <span>Messages</span>
+                                    <span class="badge bg-danger rounded-pill ms-auto">3</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/calendar">
+                                    <i class="bi bi-calendar-event"></i>
+                                    <span>Calendar</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/files">
+                                    <i class="bi bi-folder2-open"></i>
+                                    <span>Files</span>
+                                </a>
+                            </li>
+                            <li class="nav-item mt-3">
+                                <small class="text-muted px-3 text-uppercase fw-bold">Admin</small>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/settings">
+                                    <i class="bi bi-gear"></i>
+                                    <span>Settings</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/security">
+                                    <i class="bi bi-shield-check"></i>
+                                    <span>Security</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/help">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>Help & Support</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="admin-main">
+                <div class="container-fluid p-4">
+                    
+                    <!-- Page Header -->
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h1 class="h3 mb-0">User Management</h1>
+                            <p class="text-muted mb-0">Manage users, roles, and permissions</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#importModal">
+                                <i class="bi bi-upload me-2"></i>Import Users
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary" onclick="exportUsers()">
+                                <i class="bi bi-download me-2"></i>Export
+                            </button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userModal">
+                                <i class="bi bi-person-plus me-2"></i>Add User
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-xl-3 col-lg-6">
+                            <div class="card stats-card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="stats-icon bg-primary bg-opacity-10 text-primary me-3">
+                                            <i class="bi bi-people"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0 text-muted">Total Users</h6>
+                                            <h3 class="mb-0">2,847</h3>
+                                            <small class="text-success"><i class="bi bi-arrow-up"></i> +12.5%</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6">
+                            <div class="card stats-card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="stats-icon bg-success bg-opacity-10 text-success me-3">
+                                            <i class="bi bi-person-check"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0 text-muted">Active Users</h6>
+                                            <h3 class="mb-0">2,234</h3>
+                                            <small class="text-success"><i class="bi bi-arrow-up"></i> +8.3%</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6">
+                            <div class="card stats-card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="stats-icon bg-warning bg-opacity-10 text-warning me-3">
+                                            <i class="bi bi-person-exclamation"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0 text-muted">Pending</h6>
+                                            <h3 class="mb-0">156</h3>
+                                            <small class="text-warning"><i class="bi bi-dash"></i> 0.0%</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6">
+                            <div class="card stats-card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="stats-icon bg-info bg-opacity-10 text-info me-3">
+                                            <i class="bi bi-person-plus"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0 text-muted">New This Month</h6>
+                                            <h3 class="mb-0">87</h3>
+                                            <small class="text-success"><i class="bi bi-arrow-up"></i> +23.1%</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Users Table -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h5 class="card-title mb-0">Users Directory</h5>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="d-flex gap-2" x-data="userTable">
+                                        <!-- Search -->
+                                        <div class="position-relative">
+                                            <input type="search" 
+                                                   class="form-control form-control-sm" 
+                                                   placeholder="Search users..."
+                                                   x-model="searchQuery"
+                                                   @input="filterUsers()"
+                                                   style="width: 200px;">
+                                            <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-2 text-muted"></i>
+                                        </div>
+                                        
+                                        <!-- Status Filter -->
+                                        <select class="form-select form-select-sm" 
+                                                x-model="statusFilter" 
+                                                @change="filterUsers()"
+                                                style="width: 150px;">
+                                            <option value="">All Status</option>
+                                            <option value="active">Active</option>
+                                            <option value="inactive">Inactive</option>
+                                            <option value="pending">Pending</option>
+                                        </select>
+                                        
+                                        <!-- Role Filter -->
+                                        <select class="form-select form-select-sm" 
+                                                x-model="roleFilter" 
+                                                @change="filterUsers()"
+                                                style="width: 150px;">
+                                            <option value="">All Roles</option>
+                                            <option value="admin">Admin</option>
+                                            <option value="user">User</option>
+                                            <option value="moderator">Moderator</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div x-data="userTable">
+                                <!-- Bulk Actions Bar -->
+                                <div class="bulk-actions-bar p-3 bg-light border-bottom" x-show="selectedUsers.length > 0" x-transition>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted">
+                                            <span x-text="selectedUsers.length"></span> user(s) selected
+                                        </span>
+                                        <div class="d-flex gap-2">
+                                            <button class="btn btn-sm btn-outline-secondary" @click="bulkAction('activate')">
+                                                <i class="bi bi-check-circle me-1"></i>Activate
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary" @click="bulkAction('deactivate')">
+                                                <i class="bi bi-x-circle me-1"></i>Deactivate
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger" @click="bulkAction('delete')">
+                                                <i class="bi bi-trash me-1"></i>Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Table -->
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th style="width: 40px;">
+                                                    <input type="checkbox" 
+                                                           class="form-check-input" 
+                                                           @change="toggleAll($event.target.checked)"
+                                                           :checked="selectedUsers.length === filteredUsers.length && filteredUsers.length > 0">
+                                                </th>
+                                                <th @click="sortBy('name')" class="sortable">
+                                                    Name 
+                                                    <i class="bi bi-arrow-up" x-show="sortField === 'name' && sortDirection === 'asc'"></i>
+                                                    <i class="bi bi-arrow-down" x-show="sortField === 'name' && sortDirection === 'desc'"></i>
+                                                </th>
+                                                <th @click="sortBy('email')" class="sortable">
+                                                    Email
+                                                    <i class="bi bi-arrow-up" x-show="sortField === 'email' && sortDirection === 'asc'"></i>
+                                                    <i class="bi bi-arrow-down" x-show="sortField === 'email' && sortDirection === 'desc'"></i>
+                                                </th>
+                                                <th>Role</th>
+                                                <th>Status</th>
+                                                <th @click="sortBy('lastActive')" class="sortable">
+                                                    Last Active
+                                                    <i class="bi bi-arrow-up" x-show="sortField === 'lastActive' && sortDirection === 'asc'"></i>
+                                                    <i class="bi bi-arrow-down" x-show="sortField === 'lastActive' && sortDirection === 'desc'"></i>
+                                                </th>
+                                                <th style="width: 120px;">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <template x-for="user in paginatedUsers" :key="user.id">
+                                                <tr>
+                                                    <td>
+                                                        <input type="checkbox" 
+                                                               class="form-check-input" 
+                                                               :value="user.id"
+                                                               x-model="selectedUsers">
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <img :src="user.avatar" 
+                                                                 class="rounded-circle me-2" 
+                                                                 width="32" 
+                                                                 height="32"
+                                                                 :alt="user.name">
+                                                            <div>
+                                                                <div class="fw-medium" x-text="user.name"></div>
+                                                                <small class="text-muted" x-text="'ID: ' + user.id"></small>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td x-text="user.email"></td>
+                                                    <td>
+                                                        <span class="badge" 
+                                                              :class="{
+                                                                  'bg-danger': user.role === 'admin',
+                                                                  'bg-primary': user.role === 'user', 
+                                                                  'bg-warning': user.role === 'moderator'
+                                                              }"
+                                                              x-text="user.role"></span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge" 
+                                                              :class="{
+                                                                  'bg-success': user.status === 'active',
+                                                                  'bg-secondary': user.status === 'inactive',
+                                                                  'bg-warning': user.status === 'pending'
+                                                              }"
+                                                              x-text="user.status"></span>
+                                                    </td>
+                                                    <td x-text="user.lastActive"></td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" 
+                                                                    type="button" 
+                                                                    data-bs-toggle="dropdown">
+                                                                <i class="bi bi-three-dots"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item" href="#" @click="editUser(user)">
+                                                                    <i class="bi bi-pencil me-2"></i>Edit
+                                                                </a></li>
+                                                                <li><a class="dropdown-item" href="#" @click="viewUser(user)">
+                                                                    <i class="bi bi-eye me-2"></i>View Profile
+                                                                </a></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" @click="deleteUser(user)">
+                                                                    <i class="bi bi-trash me-2"></i>Delete
+                                                                </a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </template>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- Pagination -->
+                                <div class="d-flex justify-content-between align-items-center p-3">
+                                    <div class="text-muted">
+                                        Showing <span x-text="(currentPage - 1) * itemsPerPage + 1"></span> to 
+                                        <span x-text="Math.min(currentPage * itemsPerPage, filteredUsers.length)"></span> of 
+                                        <span x-text="filteredUsers.length"></span> results
+                                    </div>
+                                    <nav>
+                                        <ul class="pagination pagination-sm mb-0">
+                                            <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
+                                                <a class="page-link" href="#" @click.prevent="goToPage(currentPage - 1)">Previous</a>
+                                            </li>
+                                            <template x-for="page in visiblePages" :key="page">
+                                                <li class="page-item" :class="{ 'active': page === currentPage }">
+                                                    <a class="page-link" href="#" @click.prevent="goToPage(page)" x-text="page"></a>
+                                                </li>
+                                            </template>
+                                            <li class="page-item" :class="{ 'disabled': currentPage === totalPages }">
+                                                <a class="page-link" href="#" @click.prevent="goToPage(currentPage + 1)">Next</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+
+            <!-- Footer -->
+            <footer class="admin-footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="mb-0 text-muted">© 2024 Modern Bootstrap Admin Template</p>
+                        </div>
+                        <div class="col-md-6 text-md-end">
+                            <p class="mb-0 text-muted">Built with Bootstrap 5.3.7</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div> <!-- /.admin-wrapper -->
+    </div>
+
+    <!-- User Modal (Add/Edit) -->
+    <div class="modal fade" id="userModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form x-data="userForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" x-model="form.firstName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" x-model="form.lastName" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" x-model="form.email" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Role</label>
+                                <select class="form-select" x-model="form.role" required>
+                                    <option value="">Select Role</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="user">User</option>
+                                    <option value="moderator">Moderator</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Status</label>
+                                <select class="form-select" x-model="form.status" required>
+                                    <option value="">Select Status</option>
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                    <option value="pending">Pending</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Phone</label>
+                                <input type="tel" class="form-control" x-model="form.phone">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary" @click="saveUser()">Save User</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Import Modal -->
+    <div class="modal fade" id="importModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Import Users</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Upload CSV File</label>
+                        <input type="file" class="form-control" accept=".csv">
+                        <div class="form-text">Upload a CSV file with columns: name, email, role, status</div>
+                    </div>
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle me-2"></i>
+                        <strong>CSV Format:</strong> name, email, role, status<br>
+                        <small>Example: John Doe, john@example.com, user, active</small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Import Users</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="/scripts/main.js"></script>
+    <script type="module">
+        // User Management Components
+        document.addEventListener('alpine:init', () => {
+            // Sample user data
+            const sampleUsers = [
+                { id: 1, name: 'John Doe', email: 'john@example.com', role: 'admin', status: 'active', lastActive: '2 minutes ago', avatar: '/assets/images/avatar-placeholder.svg' },
+                { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'user', status: 'active', lastActive: '1 hour ago', avatar: '/assets/images/avatar-placeholder.svg' },
+                { id: 3, name: 'Mike Johnson', email: 'mike@example.com', role: 'moderator', status: 'pending', lastActive: '1 day ago', avatar: '/assets/images/avatar-placeholder.svg' },
+                { id: 4, name: 'Sarah Wilson', email: 'sarah@example.com', role: 'user', status: 'active', lastActive: '5 minutes ago', avatar: '/assets/images/avatar-placeholder.svg' },
+                { id: 5, name: 'Bob Brown', email: 'bob@example.com', role: 'user', status: 'inactive', lastActive: '1 week ago', avatar: '/assets/images/avatar-placeholder.svg' },
+                { id: 6, name: 'Alice Davis', email: 'alice@example.com', role: 'admin', status: 'active', lastActive: '30 minutes ago', avatar: '/assets/images/avatar-placeholder.svg' },
+                { id: 7, name: 'Tom Miller', email: 'tom@example.com', role: 'user', status: 'active', lastActive: '3 hours ago', avatar: '/assets/images/avatar-placeholder.svg' },
+                { id: 8, name: 'Lisa Garcia', email: 'lisa@example.com', role: 'moderator', status: 'active', lastActive: '1 hour ago', avatar: '/assets/images/avatar-placeholder.svg' }
+            ];
+
+            // User Table Component
+            Alpine.data('userTable', () => ({
+                users: sampleUsers,
+                filteredUsers: sampleUsers,
+                selectedUsers: [],
+                searchQuery: '',
+                statusFilter: '',
+                roleFilter: '',
+                sortField: 'name',
+                sortDirection: 'asc',
+                currentPage: 1,
+                itemsPerPage: 5,
+
+                init() {
+                    this.filterUsers();
+                },
+
+                filterUsers() {
+                    this.filteredUsers = this.users.filter(user => {
+                        const matchesSearch = user.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+                                            user.email.toLowerCase().includes(this.searchQuery.toLowerCase());
+                        const matchesStatus = !this.statusFilter || user.status === this.statusFilter;
+                        const matchesRole = !this.roleFilter || user.role === this.roleFilter;
+                        return matchesSearch && matchesStatus && matchesRole;
+                    });
+                    this.sortUsers();
+                    this.currentPage = 1;
+                },
+
+                sortBy(field) {
+                    if (this.sortField === field) {
+                        this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+                    } else {
+                        this.sortField = field;
+                        this.sortDirection = 'asc';
+                    }
+                    this.sortUsers();
+                },
+
+                sortUsers() {
+                    this.filteredUsers.sort((a, b) => {
+                        let aVal = a[this.sortField];
+                        let bVal = b[this.sortField];
+                        
+                        if (typeof aVal === 'string') {
+                            aVal = aVal.toLowerCase();
+                            bVal = bVal.toLowerCase();
+                        }
+                        
+                        if (this.sortDirection === 'asc') {
+                            return aVal > bVal ? 1 : -1;
+                        } else {
+                            return aVal < bVal ? 1 : -1;
+                        }
+                    });
+                },
+
+                get paginatedUsers() {
+                    const start = (this.currentPage - 1) * this.itemsPerPage;
+                    const end = start + this.itemsPerPage;
+                    return this.filteredUsers.slice(start, end);
+                },
+
+                get totalPages() {
+                    return Math.ceil(this.filteredUsers.length / this.itemsPerPage);
+                },
+
+                get visiblePages() {
+                    const delta = 2;
+                    const range = [];
+                    const rangeWithDots = [];
+                    
+                    for (let i = Math.max(2, this.currentPage - delta);
+                         i <= Math.min(this.totalPages - 1, this.currentPage + delta);
+                         i++) {
+                        range.push(i);
+                    }
+                    
+                    if (this.currentPage - delta > 2) {
+                        rangeWithDots.push(1, '...');
+                    } else {
+                        rangeWithDots.push(1);
+                    }
+                    
+                    rangeWithDots.push(...range);
+                    
+                    if (this.currentPage + delta < this.totalPages - 1) {
+                        rangeWithDots.push('...', this.totalPages);
+                    } else {
+                        rangeWithDots.push(this.totalPages);
+                    }
+                    
+                    return rangeWithDots.filter((v, i, a) => a.indexOf(v) === i && v <= this.totalPages);
+                },
+
+                goToPage(page) {
+                    if (page >= 1 && page <= this.totalPages) {
+                        this.currentPage = page;
+                    }
+                },
+
+                toggleAll(checked) {
+                    if (checked) {
+                        this.selectedUsers = this.paginatedUsers.map(user => user.id);
+                    } else {
+                        this.selectedUsers = [];
+                    }
+                },
+
+                bulkAction(action) {
+                    alert(`${action} action for ${this.selectedUsers.length} users`);
+                    this.selectedUsers = [];
+                },
+
+                editUser(user) {
+                    alert(`Edit user: ${user.name}`);
+                },
+
+                viewUser(user) {
+                    alert(`View user profile: ${user.name}`);
+                },
+
+                deleteUser(user) {
+                    if (confirm(`Are you sure you want to delete ${user.name}?`)) {
+                        this.users = this.users.filter(u => u.id !== user.id);
+                        this.filterUsers();
+                    }
+                }
+            }));
+
+            // User Form Component
+            Alpine.data('userForm', () => ({
+                form: {
+                    firstName: '',
+                    lastName: '',
+                    email: '',
+                    role: '',
+                    status: '',
+                    phone: ''
+                },
+
+                saveUser() {
+                    alert('User saved successfully!');
+                    // Reset form
+                    this.form = {
+                        firstName: '',
+                        lastName: '',
+                        email: '',
+                        role: '',
+                        status: '',
+                        phone: ''
+                    };
+                }
+            }));
+        });
+
+        // Export function
+        function exportUsers() {
+            alert('Exporting users to CSV...');
+        }
+    </script>
+</body>
+</html> 

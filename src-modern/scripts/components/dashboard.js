@@ -426,7 +426,20 @@ export class DashboardManager {
                       ]
                   }
               }
-          }
+          },
+          responsive: [{
+              breakpoint: 768,
+              options: {
+                  chart: {
+                      height: 300
+                  },
+                  dataLabels: {
+                      style: {
+                          fontSize: '10px'
+                      }
+                  }
+              }
+          }]
       };
 
       const chart = new ApexCharts(document.querySelector("#salesByLocationChart"), options);

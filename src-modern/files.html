@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Manager - Modern Bootstrap Admin</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Advanced file management system with cloud storage and collaboration">
+    <meta name="keywords" content="bootstrap, admin, dashboard, files, documents, storage, upload">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></head>
+
+<body data-page="files" class="files-page">
+    <!-- Admin App Container -->
+    <div class="admin-app">
+        <div class="admin-wrapper" id="admin-wrapper">
+            
+            <!-- Header -->
+            <header class="admin-header">
+                <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+                    <div class="container-fluid">
+                        <!-- Logo/Brand -->
+                        <a class="navbar-brand d-flex align-items-center" href="/">
+                            <img src="/assets/images/logo.svg" alt="Logo" height="32" class="d-inline-block align-text-top me-2">
+                            <h1 class="h4 mb-0 fw-bold text-primary">Metis</h1>
+                        </a>
+
+                        <!-- Search Bar with Alpine.js -->
+                        <div class="search-container flex-grow-1 mx-4" x-data="searchComponent">
+                            <div class="position-relative">
+                                <input type="search" 
+                                       class="form-control" 
+                                       placeholder="Search... (Ctrl+K)"
+                                       x-model="query"
+                                       @input="search()"
+                                       data-search-input
+                                       aria-label="Search">
+                                <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3"></i>
+                                
+                                <!-- Search Results Dropdown -->
+                                <div x-show="results.length > 0" 
+                                     x-transition:enter="transition ease-out duration-100"
+                                     x-transition:enter-start="opacity-0 scale-95"
+                                     x-transition:enter-end="opacity-100 scale-100"
+                                     class="position-absolute top-100 start-0 w-100 bg-white border rounded-2 shadow-lg mt-1 z-3">
+                                    <template x-for="result in results" :key="result.title">
+                                        <a :href="result.url" class="d-block px-3 py-2 text-decoration-none text-dark border-bottom">
+                                            <div class="d-flex align-items-center">
+                                                <i class="bi bi-file-text me-2 text-muted"></i>
+                                                <span x-text="result.title"></span>
+                                                <small class="ms-auto text-muted" x-text="result.type"></small>
+                                            </div>
+                                        </a>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Side Icons -->
+                        <div class="navbar-nav flex-row">
+                            <!-- Theme Toggle with Alpine.js -->
+                            <div x-data="themeSwitch">
+                                <button class="btn btn-outline-secondary me-2" 
+                                        type="button" 
+                                        @click="toggle()"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        title="Toggle theme">
+                                    <i class="bi bi-sun-fill" x-show="currentTheme === 'light'"></i>
+                                    <i class="bi bi-moon-fill" x-show="currentTheme === 'dark'"></i>
+                                </button>
+                            </div>
+
+                            <!-- Fullscreen Toggle -->
+                            <button class="btn btn-outline-secondary me-2" 
+                                    type="button" 
+                                    data-fullscreen-toggle
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom"
+                                    title="Toggle fullscreen">
+                                <i class="bi bi-arrows-fullscreen icon-hover"></i>
+                            </button>
+
+                            <!-- Notifications -->
+                            <div class="dropdown me-2">
+                                <button class="btn btn-outline-secondary position-relative" 
+                                        type="button" 
+                                        data-bs-toggle="dropdown" 
+                                        aria-expanded="false">
+                                    <i class="bi bi-bell"></i>
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        3
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><h6 class="dropdown-header">Notifications</h6></li>
+                                    <li><a class="dropdown-item" href="#">New user registered</a></li>
+                                    <li><a class="dropdown-item" href="#">Server status update</a></li>
+                                    <li><a class="dropdown-item" href="#">New message received</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-center" href="#">View all notifications</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- User Menu -->
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary d-flex align-items-center" 
+                                        type="button" 
+                                        data-bs-toggle="dropdown" 
+                                        aria-expanded="false">
+                                    <img src="/assets/images/avatar-placeholder.svg" 
+                                         alt="User Avatar" 
+                                         width="24" 
+                                         height="24" 
+                                         class="rounded-circle me-2">
+                                    <span class="d-none d-md-inline">John Doe</span>
+                                    <i class="bi bi-chevron-down ms-1"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+
+            <!-- Sidebar -->
+            <aside class="admin-sidebar" id="admin-sidebar">
+                <div class="sidebar-content">
+                    <nav class="sidebar-nav">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">
+                                    <i class="bi bi-speedometer2"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/analytics">
+                                    <i class="bi bi-graph-up"></i>
+                                    <span>Analytics</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/users.html">
+                                    <i class="bi bi-people"></i>
+                                    <span>Users</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/products">
+                                    <i class="bi bi-box"></i>
+                                    <span>Products</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/orders">
+                                    <i class="bi bi-bag-check"></i>
+                                    <span>Orders</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/forms.html">
+                                    <i class="bi bi-ui-checks-grid"></i>
+                                    <span>Forms</span>
+                                    <span class="badge bg-success rounded-pill ms-auto">New</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/reports">
+                                    <i class="bi bi-file-earmark-text"></i>
+                                    <span>Reports</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/messages">
+                                    <i class="bi bi-chat-dots"></i>
+                                    <span>Messages</span>
+                                    <span class="badge bg-danger rounded-pill ms-auto">3</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/calendar">
+                                    <i class="bi bi-calendar-event"></i>
+                                    <span>Calendar</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/files">
+                                    <i class="bi bi-folder2-open"></i>
+                                    <span>Files</span>
+                                    <span class="badge bg-primary rounded-pill ms-auto">Active</span>
+                                </a>
+                            </li>
+                            <li class="nav-item mt-3">
+                                <small class="text-muted px-3 text-uppercase fw-bold">Admin</small>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/settings">
+                                    <i class="bi bi-gear"></i>
+                                    <span>Settings</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/security">
+                                    <i class="bi bi-shield-check"></i>
+                                    <span>Security</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/help">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>Help & Support</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Floating Hamburger Menu -->
+            <button class="hamburger-menu" 
+                    type="button" 
+                    data-sidebar-toggle
+                    aria-label="Toggle sidebar">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <!-- Main Content -->
+            <main class="admin-main">
+                <div class="container-fluid p-4 p-lg-4">
+                    
+                    <!-- Page Header -->
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h1 class="h3 mb-0">File Manager</h1>
+                            <p class="text-muted mb-0">Organize, share, and manage your files</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-outline-secondary d-lg-none" @click="toggleSidebar()">
+                                <i class="bi bi-folder me-2"></i>Folders
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary" @click="createFolder()">
+                                <i class="bi bi-folder-plus me-2"></i>New Folder
+                            </button>
+                            <button type="button" class="btn btn-primary" @click="uploadFile()">
+                                <i class="bi bi-cloud-upload me-2"></i>Upload
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Files Container -->
+                    <div x-data="filesComponent" x-init="init()" class="files-layout">
+                        <div class="row g-6 h-100">
+                            
+                            <!-- Files Sidebar -->
+                            <div class="col-lg-3 files-sidebar" :class="{ 'show': sidebarVisible }">
+                                
+                                <!-- Files Header -->
+                                <div class="sidebar-section">
+                                    <h5><i class="bi bi-folder2-open me-2"></i>My Files</h5>
+                                </div>
+                                
+                                <!-- Storage Info -->
+                                <div class="storage-info">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="mb-0">Storage Used</h6>
+                                        <span class="small" x-text="`${storageUsed}GB of ${storageTotal}GB`"></span>
+                                    </div>
+                                    <div class="storage-bar">
+                                        <div class="storage-progress" :style="`width: ${storagePercentage}%`"></div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <small x-text="`${storageRemaining}GB remaining`"></small>
+                                    </div>
+                                </div>
+
+                                <!-- Quick Access -->
+                                <div class="sidebar-section">
+                                    <h6 class="fw-bold mb-3">Quick Access</h6>
+                                    <div class="list-group list-group-flush">
+                                        <template x-for="item in quickAccess" :key="item.name">
+                                            <a href="#" class="list-group-item list-group-item-action border-0 px-0 py-2" @click="navigateToQuickAccess(item)">
+                                                <i :class="item.icon" class="me-2"></i>
+                                                <span x-text="item.name"></span>
+                                                <span class="badge bg-light text-dark ms-auto" x-text="item.count"></span>
+                                            </a>
+                                        </template>
+                                    </div>
+                                </div>
+
+                                <!-- Folders -->
+                                <div class="sidebar-section">
+                                    <h6 class="fw-bold mb-3">My Folders</h6>
+                                    <div class="folder-list">
+                                        <template x-for="folder in folders" :key="folder.id">
+                                            <div class="folder-item mb-2" @click="openFolder(folder)">
+                                                <div class="d-flex align-items-center">
+                                                    <i class="bi bi-folder-fill text-primary me-2"></i>
+                                                    <div class="flex-grow-1">
+                                                        <div class="fw-medium" x-text="folder.name"></div>
+                                                        <small class="text-muted" x-text="`${folder.fileCount} files`"></small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+
+                                <!-- Recent Files -->
+                                <div class="sidebar-section flex-grow-1">
+                                    <h6 class="fw-bold mb-3">Recent Files</h6>
+                                    <div class="recent-files">
+                                        <template x-for="file in recentFiles" :key="file.id">
+                                            <div class="recent-file-item" @click="openFile(file)">
+                                                <div :class="`file-icon ${file.type}`" style="width: 32px; height: 32px; margin-right: 0.75rem; margin-bottom: 0; font-size: 1rem;">
+                                                    <i :class="file.icon"></i>
+                                                </div>
+                                                <div class="flex-grow-1 min-width-0">
+                                                    <div class="fw-medium text-truncate" x-text="file.name"></div>
+                                                    <small class="text-muted" x-text="file.modifiedDate"></small>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Files Main Area -->
+                            <div class="col-lg-9 files-main">
+                                
+                                <!-- Files Main Header -->
+                                <div class="files-main-header">
+                                    <!-- Breadcrumb Navigation -->
+                                    <nav aria-label="breadcrumb" class="mb-3">
+                                        <ol class="breadcrumb mb-0">
+                                            <template x-for="(crumb, index) in breadcrumbs" :key="index">
+                                                <li class="breadcrumb-item" :class="{ 'active': index === breadcrumbs.length - 1 }">
+                                                    <a href="#" x-text="crumb.name" @click.prevent="navigateToBreadcrumb(index)" x-show="index < breadcrumbs.length - 1"></a>
+                                                    <span x-text="crumb.name" x-show="index === breadcrumbs.length - 1"></span>
+                                                </li>
+                                            </template>
+                                        </ol>
+                                    </nav>
+
+                                    <!-- Toolbar -->
+                                    <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="view-toggle">
+                                            <button class="view-btn" :class="{ 'active': viewMode === 'grid' }" @click="setViewMode('grid')">
+                                                <i class="bi bi-grid-3x3-gap"></i>
+                                            </button>
+                                            <button class="view-btn" :class="{ 'active': viewMode === 'list' }" @click="setViewMode('list')">
+                                                <i class="bi bi-list-ul"></i>
+                                            </button>
+                                        </div>
+                                        <select class="form-select form-select-sm" style="width: auto;" x-model="sortBy" @change="sortFiles()">
+                                            <option value="name">Sort by Name</option>
+                                            <option value="date">Sort by Date</option>
+                                            <option value="size">Sort by Size</option>
+                                            <option value="type">Sort by Type</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-outline-secondary" @click="refreshFiles()">
+                                            <i class="bi bi-arrow-clockwise"></i>
+                                        </button>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                                <i class="bi bi-three-dots"></i>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#" @click="selectAll()">
+                                                    <i class="bi bi-check-all me-2"></i>Select All
+                                                </a></li>
+                                                <li><a class="dropdown-item" href="#" @click="downloadSelected()">
+                                                    <i class="bi bi-download me-2"></i>Download Selected
+                                                </a></li>
+                                                <li><a class="dropdown-item" href="#" @click="deleteSelected()">
+                                                    <i class="bi bi-trash me-2"></i>Delete Selected
+                                                </a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <!-- Files Grid/List -->
+                                <div x-show="currentFiles.length === 0 && !showUploadZone" class="text-center py-5">
+                                    <i class="bi bi-folder2-open fs-1 text-muted mb-3"></i>
+                                    <h5 class="text-muted">This folder is empty</h5>
+                                    <p class="text-muted">Upload your first file or create a new folder</p>
+                                    <button class="btn btn-primary" @click="uploadFile()">
+                                        <i class="bi bi-cloud-upload me-2"></i>Upload Files
+                                    </button>
+                                </div>
+
+                                <!-- Upload Zone -->
+                                <div x-show="showUploadZone" class="upload-zone mb-4" @click="uploadFile()">
+                                    <i class="bi bi-cloud-upload fs-1 text-muted mb-3"></i>
+                                    <h5 class="text-muted">Drop files here to upload</h5>
+                                    <p class="text-muted">or click to browse files</p>
+                                </div>
+
+                                <!-- Grid View -->
+                                <div x-show="viewMode === 'grid' && currentFiles.length > 0" class="file-grid">
+                                    <template x-for="file in currentFiles" :key="file.id">
+                                        <div class="file-item" :class="{ 'selected': selectedFiles.includes(file.id) }" @click="selectFile(file)" @dblclick="openFile(file)">
+                                            <div :class="`file-icon ${file.type}`">
+                                                <i :class="file.icon"></i>
+                                            </div>
+                                            <div class="file-name fw-medium text-truncate" x-text="file.name"></div>
+                                            <div class="file-size" x-text="file.size"></div>
+                                            <div class="file-date" x-text="file.modifiedDate"></div>
+                                        </div>
+                                    </template>
+                                </div>
+
+                                <!-- List View -->
+                                <div x-show="viewMode === 'list' && currentFiles.length > 0" class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 40px;">
+                                                    <input type="checkbox" class="form-check-input" @change="toggleSelectAll()">
+                                                </th>
+                                                <th>Name</th>
+                                                <th>Size</th>
+                                                <th>Modified</th>
+                                                <th>Type</th>
+                                                <th style="width: 100px;">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <template x-for="file in currentFiles" :key="file.id">
+                                                <tr :class="{ 'table-active': selectedFiles.includes(file.id) }">
+                                                    <td>
+                                                        <input type="checkbox" class="form-check-input" :checked="selectedFiles.includes(file.id)" @change="toggleFileSelection(file.id)">
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <div :class="`file-icon ${file.type}`" style="width: 32px; height: 32px; margin-right: 0.75rem; margin-bottom: 0; font-size: 1rem;">
+                                                                <i :class="file.icon"></i>
+                                                            </div>
+                                                            <span class="fw-medium" x-text="file.name"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td x-text="file.size"></td>
+                                                    <td x-text="file.modifiedDate"></td>
+                                                    <td>
+                                                        <span class="badge bg-light text-dark" x-text="file.typeLabel"></span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown">
+                                                                <i class="bi bi-three-dots"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item" href="#" @click="downloadFile(file)">
+                                                                    <i class="bi bi-download me-2"></i>Download
+                                                                </a></li>
+                                                                <li><a class="dropdown-item" href="#" @click="shareFile(file)">
+                                                                    <i class="bi bi-share me-2"></i>Share
+                                                                </a></li>
+                                                                <li><a class="dropdown-item" href="#" @click="renameFile(file)">
+                                                                    <i class="bi bi-pencil me-2"></i>Rename
+                                                                </a></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" @click="deleteFile(file)">
+                                                                    <i class="bi bi-trash me-2"></i>Delete
+                                                                </a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </template>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+
+            <!-- Footer -->
+            <footer class="admin-footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="mb-0 text-muted">© 2025 Modern Bootstrap Admin Template</p>
+                        </div>
+                        <div class="col-md-6 text-md-end">
+                            <p class="mb-0 text-muted">Built with Bootstrap 5.3.7</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div> <!-- /.admin-wrapper -->
+    </div>
+
+    <!-- Page-specific Component -->
+    <script type="module" src="./scripts/components/files.js"></script>
+
+    <!-- Main App Script -->
+    <script type="module" src="./scripts/main.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggleButton = document.querySelector('[data-sidebar-toggle]');
+        const wrapper = document.getElementById('admin-wrapper');
+
+        if (toggleButton && wrapper) {
+          const isCollapsed = localStorage.getItem('sidebar-collapsed') === 'true';
+          if (isCollapsed) {
+            wrapper.classList.add('sidebar-collapsed');
+            toggleButton.classList.add('is-active');
+          }
+
+          toggleButton.addEventListener('click', () => {
+            const isCurrentlyCollapsed = wrapper.classList.contains('sidebar-collapsed');
+            
+            if (isCurrentlyCollapsed) {
+              wrapper.classList.remove('sidebar-collapsed');
+              toggleButton.classList.remove('is-active');
+              localStorage.setItem('sidebar-collapsed', 'false');
+            } else {
+              wrapper.classList.add('sidebar-collapsed');
+              toggleButton.classList.add('is-active');
+              localStorage.setItem('sidebar-collapsed', 'true');
+            }
+          });
+        }
+      });
+    </script>
+</body>
+</html>

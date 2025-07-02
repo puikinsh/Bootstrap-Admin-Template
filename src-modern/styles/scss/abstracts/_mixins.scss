@@ -2,6 +2,9 @@
 // Custom Mixins
 // ==========================================================================
 
+// Import Bootstrap functions and mixins for use in our custom mixins
+@import "~bootstrap/scss/mixins";
+
 // Smooth transitions
 @mixin transition($property: all, $duration: 0.3s, $timing: ease) {
   transition: $property $duration $timing;
@@ -15,5 +18,305 @@
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   } @else if $level == 3 {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+}
+
+// Responsive breakpoints mixin (reuse Bootstrap's)
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// Common component mixins
+@mixin stats-card-hover() {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    
+    [data-bs-theme="dark"] & {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+@mixin stats-icon($size: 48px, $size-lg: 52px) {
+  width: $size;
+  height: $size;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  
+  @include media-breakpoint-up(lg) {
+    width: $size-lg;
+    height: $size-lg;
+    font-size: 1.35rem;
+  }
+}
+
+@mixin status-badge() {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  text-transform: capitalize;
+}
+
+@mixin role-badge() {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--bs-border-radius-sm);
+}
+
+// Card styling mixin
+@mixin admin-card() {
+  border: 1px solid var(--bs-border-color);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.2s ease-in-out;
+  
+  @include media-breakpoint-up(lg) {
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    
+    &:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      
+      [data-bs-theme="dark"] & {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
+}
+
+@mixin admin-card-header() {
+  background-color: var(--bs-secondary-bg);
+  border-bottom: 1px solid var(--bs-border-color);
+  border-radius: 12px 12px 0 0 !important;
+  
+  @include media-breakpoint-up(lg) {
+    border-radius: 16px 16px 0 0 !important;
+    padding: 1.25rem 1.5rem;
+  }
+}
+
+// Page layout mixins
+@mixin page-layout($min-height: calc(100vh - 160px), $min-height-lg: calc(100vh - 140px)) {
+  min-height: $min-height;
+  
+  @include media-breakpoint-up(lg) {
+    min-height: $min-height-lg;
+  }
+}
+
+@mixin page-sidebar() {
+  background: var(--bs-secondary-bg);
+  border-right: 1px solid var(--bs-border-color);
+  padding: 1.5rem 0;
+}
+
+@mixin page-nav-link() {
+  color: var(--bs-secondary-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0;
+  border: none;
+  background: transparent;
+  transition: all 0.2s ease-in-out;
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  text-align: left;
+  
+  &:hover, &:focus {
+    background: var(--bs-secondary-bg-subtle);
+    color: var(--bs-emphasis-color);
+  }
+  
+  &.active {
+    background: var(--bs-primary);
+    color: var(--bs-white);
+    font-weight: 500;
+    
+    &:hover, &:focus {
+      background: var(--bs-primary);
+      color: var(--bs-white);
+    }
+  }
+}
+
+// Product/Order status mixins
+@mixin product-status-badges() {
+  .stock-badge {
+    @include status-badge();
+  }
+  
+  .low-stock {
+    background-color: var(--bs-warning-bg-subtle);
+    color: var(--bs-warning-text-emphasis);
+    border: 1px solid var(--bs-warning-border-subtle);
+  }
+  
+  .out-of-stock {
+    background-color: var(--bs-danger-bg-subtle);
+    color: var(--bs-danger-text-emphasis);
+    border: 1px solid var(--bs-danger-border-subtle);
+  }
+  
+  .in-stock {
+    background-color: var(--bs-primary-bg-subtle);
+    color: var(--bs-primary-text-emphasis);
+    border: 1px solid var(--bs-primary-border-subtle);
+  }
+}
+
+@mixin order-status-badges() {
+  .order-status {
+    @include status-badge();
+  }
+  
+  .status-pending {
+    background-color: var(--bs-warning-bg-subtle);
+    color: var(--bs-warning-text-emphasis);
+    border: 1px solid var(--bs-warning-border-subtle);
+  }
+  
+  .status-processing {
+    background-color: var(--bs-info-bg-subtle);
+    color: var(--bs-info-text-emphasis);
+    border: 1px solid var(--bs-info-border-subtle);
+  }
+  
+  .status-shipped {
+    background-color: var(--bs-primary-bg-subtle);
+    color: var(--bs-primary-text-emphasis);
+    border: 1px solid var(--bs-primary-border-subtle);
+  }
+  
+  .status-delivered {
+    background-color: var(--bs-success-bg-subtle);
+    color: var(--bs-success-text-emphasis);
+    border: 1px solid var(--bs-success-border-subtle);
+  }
+  
+  .status-cancelled {
+    background-color: var(--bs-danger-bg-subtle);
+    color: var(--bs-danger-text-emphasis);
+    border: 1px solid var(--bs-danger-border-subtle);
+  }
+}
+
+// Chart container mixin
+@mixin chart-container($height: 300px, $height-lg: 350px) {
+  position: relative;
+  height: $height;
+  
+  @include media-breakpoint-up(lg) {
+    height: $height-lg;
+  }
+  
+  .apexcharts-canvas {
+    max-width: 100%;
+    overflow: hidden;
+  }
+}
+
+// Progress ring mixin
+@mixin progress-ring($size: 60px) {
+  width: $size;
+  height: $size;
+  
+  circle {
+    fill: none;
+    stroke-width: 4;
+    stroke-linecap: round;
+  }
+  
+  .background {
+    stroke: var(--bs-border-color);
+  }
+  
+  .progress {
+    stroke: var(--bs-primary);
+    stroke-dasharray: 0 100;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dasharray 0.5s ease;
+  }
+}
+
+// Hamburger menu mixin
+@mixin hamburger-menu() {
+  position: fixed;
+  top: 0.75rem;
+  left: 216px;
+  z-index: 1050;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--bs-secondary-color);
+  transition: all 0.2s ease-in-out;
+  border-radius: 6px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    color: var(--bs-emphasis-color);
+    background-color: var(--bs-secondary-bg-subtle);
+  }
+  
+  @include media-breakpoint-down(lg) {
+    left: 1rem;
+    top: 0.75rem;
+  }
+}
+
+// Utility mixins
+@mixin text-truncate() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin button-hover-lift() {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+}
+
+@mixin fade-in-animation($duration: 0.3s) {
+  opacity: 0;
+  animation: fadeIn $duration ease-in-out forwards;
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 } 

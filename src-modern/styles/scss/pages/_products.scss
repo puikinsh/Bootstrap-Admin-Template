@@ -1,0 +1,112 @@
+// ==========================================================================
+// Products Page Styles
+// ==========================================================================
+
+// Product management specific styles
+.product-management {
+  .stats-card {
+    @include stats-card-hover();
+  }
+
+  .stats-icon {
+    @include stats-icon();
+  }
+
+  @include product-status-badges();
+
+  .product-image {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--bs-border-color);
+  }
+
+  .product-card {
+    @include admin-card();
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: 2px solid transparent;
+
+    &:hover {
+      border-color: var(--bs-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.15);
+    }
+
+    &.selected {
+      border-color: var(--bs-primary);
+      background-color: var(--bs-primary-bg-subtle);
+    }
+  }
+
+  .chart-container {
+    @include chart-container(250px, 300px);
+  }
+
+  .inventory-alert {
+    background-color: var(--bs-warning-bg-subtle);
+    border: 1px solid var(--bs-warning-border-subtle);
+    border-radius: var(--bs-border-radius);
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    
+    .alert-icon {
+      color: var(--bs-warning-text-emphasis);
+    }
+  }
+
+  .product-actions {
+    .dropdown-toggle {
+      border: none;
+      background: none;
+      color: var(--bs-secondary-color);
+      
+      &:hover {
+        color: var(--bs-emphasis-color);
+      }
+    }
+  }
+
+  .bulk-actions-bar {
+    background: var(--bs-primary-bg-subtle);
+    border: 1px solid var(--bs-primary-border-subtle);
+    border-radius: var(--bs-border-radius);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+
+    &.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .product-filter {
+    background: var(--bs-secondary-bg);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--bs-border-color);
+  }
+
+  .category-badge {
+    @include role-badge();
+    background-color: var(--bs-info-bg-subtle);
+    color: var(--bs-info-text-emphasis);
+    border: 1px solid var(--bs-info-border-subtle);
+  }
+
+  .price-tag {
+    font-weight: 600;
+    color: var(--bs-success);
+  }
+
+  .sku-code {
+    font-family: monospace;
+    font-size: 0.875rem;
+    color: var(--bs-secondary-color);
+  }
+}

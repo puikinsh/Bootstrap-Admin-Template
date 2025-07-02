@@ -4,22 +4,32 @@
 
 export class SidebarManager {
   constructor() {
-    this.sidebar = document.getElementById('admin-sidebar');
     this.wrapper = document.getElementById('admin-wrapper');
-    this.isCollapsed = false;
+    this.toggleButton = document.querySelector('[data-sidebar-toggle]');
+    
+    // If essential elements aren't found, do nothing.
+    if (!this.wrapper || !this.toggleButton) {
+      console.warn('SidebarManager: Essential elements (wrapper or toggle button) not found. Manager will be inactive.');
+      return;
+    }
+
     this.init();
   }
 
   init() {
-    // Set initial state from localStorage
-    const storedState = localStorage.getItem('sidebar-collapsed');
-    if (storedState === 'true') {
-      this.collapse();
+    // Set initial state from localStorage on page load.
+    const isCollapsed = localStorage.getItem('sidebar-collapsed') === 'true';
+    if (isCollapsed) {
+      this.wrapper.classList.add('sidebar-collapsed');
+      this.toggleButton.classList.add('is-active');
     }
   }
 
   toggle() {
-    if (this.isCollapsed) {
+    // The DOM is the single source of truth.
+    const isCurrentlyCollapsed = this.wrapper.classList.contains('sidebar-collapsed');
+
+    if (isCurrentlyCollapsed) {
       this.expand();
     } else {
       this.collapse();
@@ -27,14 +37,14 @@ export class SidebarManager {
   }
 
   collapse() {
-    this.wrapper?.classList.add('sidebar-collapsed');
-    this.isCollapsed = true;
+    this.wrapper.classList.add('sidebar-collapsed');
+    this.toggleButton.classList.add('is-active');
     localStorage.setItem('sidebar-collapsed', 'true');
   }
 
   expand() {
-    this.wrapper?.classList.remove('sidebar-collapsed');
-    this.isCollapsed = false;
+    this.wrapper.classList.remove('sidebar-collapsed');
+    this.toggleButton.classList.remove('is-active');
     localStorage.setItem('sidebar-collapsed', 'false');
   }
 } 

@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security & Authentication - Modern Bootstrap Admin</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Security settings, authentication, and access control management">
+    <meta name="keywords" content="bootstrap, admin, dashboard, security, authentication, 2FA, access control">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles for Security -->
+    <style>
+        .security-layout {
+            min-height: calc(100vh - 160px);
+        }
+        
+        @media (min-width: 992px) {
+            .security-layout {
+                min-height: calc(100vh - 140px);
+            }
+        }
+        
+        .security-sidebar {
+            background: #f8f9fa;
+            border-right: 1px solid #e9ecef;
+            padding: 1.5rem 0;
+        }
+        
+        .security-nav .nav-link {
+            color: #6c757d;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0;
+            border: none;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+        
+        .security-nav .nav-link:hover {
+            background: #e9ecef;
+            color: #495057;
+        }
+        
+        .security-nav .nav-link.active {
+            background: #dc3545;
+            color: white;
+            position: relative;
+        }
+        
+        .security-nav .nav-link.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #b02a37;
+        }
+        
+        .security-content {
+            padding: 2rem;
+        }
+        
+        .security-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #dc3545;
+        }
+        
+        .security-section h5 {
+            color: #374151;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .security-section p {
+            color: #6c757d;
+            margin-bottom: 1.5rem;
+        }
+        
+        .security-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .security-item:last-child {
+            border-bottom: none;
+        }
+        
+        .security-info h6 {
+            margin: 0 0 0.25rem 0;
+            font-weight: 500;
+        }
+        
+        .security-info small {
+            color: #6c757d;
+        }
+        
+        .security-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .security-status.enabled {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+        }
+        
+        .security-status.disabled {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+        
+        .security-status.warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+        }
+        
+        .activity-item {
+            padding: 1rem;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .activity-icon.success {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+        }
+        
+        .activity-icon.warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+        }
+        
+        .activity-icon.danger {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+        
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            margin: 1rem 0;
+        }
+        
+        .backup-code {
+            font-family: 'Courier New', monospace;
+            background: #f8f9fa;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            border: 1px solid #e9ecef;
+        }
+        
+        .session-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hamburger-menu {
+            position: fixed;
+            top: 0.75rem;
+            left: 216px;
+            z-index: 1050;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            color: #6c757d;
+            transition: all 0.2s ease-in-out;
+            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hamburger-menu:hover {
+            color: #495057;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        @media (max-width: 991.98px) {
+            .hamburger-menu {
+                left: 1rem;
+                top: 0.75rem;
+            }
+            
+            .security-sidebar {
+                position: absolute;
+                left: -100%;
+                width: 300px;
+                z-index: 1040;
+                transition: left 0.3s ease;
+                height: 100%;
+            }
+            
+            .security-sidebar.show {
+                left: 0;
+            }
+        }
+        
+        .admin-wrapper.sidebar-collapsed .hamburger-menu {
+            left: 1rem;
+        }
+        
+        .admin-main {
+            margin-bottom: 20px;
+        }
+        
+        .password-strength {
+            height: 4px;
+            background: #e9ecef;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        
+        .password-strength-bar {
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        
+        .password-strength-bar.weak {
+            background: #ef4444;
+            width: 25%;
+        }
+        
+        .password-strength-bar.fair {
+            background: #f59e0b;
+            width: 50%;
+        }
+        
+        .password-strength-bar.good {
+            background: #10b981;
+            width: 75%;
+        }
+        
+        .password-strength-bar.strong {
+            background: #22c55e;
+            width: 100%;
+        }
+        
+        /* Enhanced Toggle Switches */
+        .form-check-input {
+            width: 3rem !important;
+            height: 1.5rem !important;
+            border-radius: 0.75rem !important;
+            background-color: #e9ecef !important;
+            border: none !important;
+            position: relative !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .form-check-input:checked {
+            background-color: #198754 !important;
+            border-color: #198754 !important;
+        }
+        
+        .form-check-input:focus {
+            border-color: #198754 !important;
+            outline: 0 !important;
+            box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25) !important;
+        }
+        
+        .form-check-input::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 1.25rem;
+            height: 1.25rem;
+            background-color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .form-check-input:checked::before {
+            transform: translateX(1.5rem);
+        }
+        
+        /* Toggle switch container spacing */
+        .form-check.form-switch {
+            min-height: 2rem;
+            padding-left: 4rem !important;
+            margin-bottom: 0;
+        }
+        
+        .form-check.form-switch .form-check-input {
+            margin-left: -4rem !important;
+            margin-top: 0.25rem;
+        }
+        
+        /* Dark theme toggle switches */
+        [data-bs-theme="dark"] .form-check-input {
+            background-color: #495057 !important;
+        }
+        
+        [data-bs-theme="dark"] .form-check-input:checked {
+            background-color: #198754 !important;
+        }
+        
+        [data-bs-theme="dark"] .form-check-input::before {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+
+<body data-page="security" class="security-page">
+    <!-- Admin App Container -->
+    <div class="admin-app">
+        <div class="admin-wrapper" id="admin-wrapper">
+            
+            <!-- Header -->
+            <header class="admin-header">
+                <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+                    <div class="container-fluid">
+                        <!-- Logo/Brand -->
+                        <a class="navbar-brand d-flex align-items-center" href="/">
+                            <img src="/assets/images/logo.svg" alt="Logo" height="32" class="d-inline-block align-text-top me-2">
+                            <h1 class="h4 mb-0 fw-bold text-primary">Metis</h1>
+                        </a>
+
+                        <!-- Search Bar with Alpine.js -->
+                        <div class="search-container flex-grow-1 mx-4" x-data="searchComponent">
+                            <div class="position-relative">
+                                <input type="search" 
+                                       class="form-control" 
+                                       placeholder="Search... (Ctrl+K)"
+                                       x-model="query"
+                                       @input="search()"
+                                       data-search-input
+                                       aria-label="Search">
+                                <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3"></i>
+                                
+                                <!-- Search Results Dropdown -->
+                                <div x-show="results.length > 0" 
+                                     x-transition:enter="transition ease-out duration-100"
+                                     x-transition:enter-start="opacity-0 scale-95"
+                                     x-transition:enter-end="opacity-100 scale-100"
+                                     class="position-absolute top-100 start-0 w-100 bg-white border rounded-2 shadow-lg mt-1 z-3">
+                                    <template x-for="result in results" :key="result.title">
+                                        <a :href="result.url" class="d-block px-3 py-2 text-decoration-none text-dark border-bottom">
+                                            <div class="d-flex align-items-center">
+                                                <i class="bi bi-file-text me-2 text-muted"></i>
+                                                <span x-text="result.title"></span>
+                                                <small class="ms-auto text-muted" x-text="result.type"></small>
+                                            </div>
+                                        </a>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Side Icons -->
+                        <div class="navbar-nav flex-row">
+                            <!-- Theme Toggle with Alpine.js -->
+                            <div x-data="themeSwitch">
+                                <button class="btn btn-outline-secondary me-2" 
+                                        type="button" 
+                                        @click="toggle()"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        title="Toggle theme">
+                                    <i class="bi bi-sun-fill" x-show="currentTheme === 'light'"></i>
+                                    <i class="bi bi-moon-fill" x-show="currentTheme === 'dark'"></i>
+                                </button>
+                            </div>
+
+                            <!-- Fullscreen Toggle -->
+                            <button class="btn btn-outline-secondary me-2" 
+                                    type="button" 
+                                    data-fullscreen-toggle
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom"
+                                    title="Toggle fullscreen">
+                                <i class="bi bi-arrows-fullscreen icon-hover"></i>
+                            </button>
+
+                            <!-- Notifications -->
+                            <div class="dropdown me-2">
+                                <button class="btn btn-outline-secondary position-relative" 
+                                        type="button" 
+                                        data-bs-toggle="dropdown" 
+                                        aria-expanded="false">
+                                    <i class="bi bi-bell"></i>
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        3
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><h6 class="dropdown-header">Notifications</h6></li>
+                                    <li><a class="dropdown-item" href="#">New user registered</a></li>
+                                    <li><a class="dropdown-item" href="#">Server status update</a></li>
+                                    <li><a class="dropdown-item" href="#">New message received</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-center" href="#">View all notifications</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- User Menu -->
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary d-flex align-items-center" 
+                                        type="button" 
+                                        data-bs-toggle="dropdown" 
+                                        aria-expanded="false">
+                                    <img src="/assets/images/avatar-placeholder.svg" 
+                                         alt="User Avatar" 
+                                         width="24" 
+                                         height="24" 
+                                         class="rounded-circle me-2">
+                                    <span class="d-none d-md-inline">John Doe</span>
+                                    <i class="bi bi-chevron-down ms-1"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+
+            <!-- Sidebar -->
+            <aside class="admin-sidebar" id="admin-sidebar">
+                <div class="sidebar-content">
+                    <nav class="sidebar-nav">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">
+                                    <i class="bi bi-speedometer2"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/analytics">
+                                    <i class="bi bi-graph-up"></i>
+                                    <span>Analytics</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/users.html">
+                                    <i class="bi bi-people"></i>
+                                    <span>Users</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/products">
+                                    <i class="bi bi-box"></i>
+                                    <span>Products</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/orders">
+                                    <i class="bi bi-bag-check"></i>
+                                    <span>Orders</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/forms.html">
+                                    <i class="bi bi-ui-checks-grid"></i>
+                                    <span>Forms</span>
+                                    <span class="badge bg-success rounded-pill ms-auto">New</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/reports">
+                                    <i class="bi bi-file-earmark-text"></i>
+                                    <span>Reports</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/messages">
+                                    <i class="bi bi-chat-dots"></i>
+                                    <span>Messages</span>
+                                    <span class="badge bg-danger rounded-pill ms-auto">3</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/calendar">
+                                    <i class="bi bi-calendar-event"></i>
+                                    <span>Calendar</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/files">
+                                    <i class="bi bi-folder2-open"></i>
+                                    <span>Files</span>
+                                </a>
+                            </li>
+                            <li class="nav-item mt-3">
+                                <small class="text-muted px-3 text-uppercase fw-bold">Admin</small>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/settings">
+                                    <i class="bi bi-gear"></i>
+                                    <span>Settings</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/security">
+                                    <i class="bi bi-shield-check"></i>
+                                    <span>Security</span>
+                                    <span class="badge bg-primary rounded-pill ms-auto">Active</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/help">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>Help & Support</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Floating Hamburger Menu -->
+            <button class="hamburger-menu" 
+                    type="button" 
+                    data-sidebar-toggle
+                    aria-label="Toggle sidebar">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <!-- Main Content -->
+            <main class="admin-main">
+                <div class="container-fluid p-4 p-lg-4">
+                    
+                    <!-- Page Header -->
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h1 class="h3 mb-0">Security & Authentication</h1>
+                            <p class="text-muted mb-0">Manage your account security and access controls</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-outline-danger" @click="viewSecurityLog()">
+                                <i class="bi bi-shield-exclamation me-2"></i>Security Log
+                            </button>
+                            <button type="button" class="btn btn-danger" @click="emergencyLockdown()">
+                                <i class="bi bi-lock-fill me-2"></i>Emergency Lockdown
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Security Container -->
+                    <div x-data="securityComponent" x-init="init()" class="security-layout">
+                        <div class="row g-6">
+                            
+                            <!-- Security Navigation Sidebar -->
+                            <div class="col-lg-3 security-sidebar" :class="{ 'show': sidebarVisible }">
+                                <nav class="security-nav nav nav-pills flex-column">
+                                    <template x-for="section in sections" :key="section.id">
+                                        <a class="nav-link" 
+                                           :class="{ 'active': activeSection === section.id }"
+                                           href="#"
+                                           @click="setActiveSection(section.id)">
+                                            <i :class="section.icon" class="me-2"></i>
+                                            <span x-text="section.name"></span>
+                                        </a>
+                                    </template>
+                                </nav>
+                            </div>
+
+                            <!-- Security Content -->
+                            <div class="col-lg-9 security-content">
+                                
+                                <!-- Account Security -->
+                                <div x-show="activeSection === 'account'" class="security-section">
+                                    <h5>Account Security</h5>
+                                    <p>Manage your account security settings and password requirements</p>
+                                    
+                                    <div class="security-item">
+                                        <div class="security-info">
+                                            <h6>Password</h6>
+                                            <small>Last changed 45 days ago</small>
+                                        </div>
+                                        <button class="btn btn-outline-primary btn-sm" @click="changePassword()">
+                                            Change Password
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="security-item">
+                                        <div class="security-info">
+                                            <h6>Account Recovery Email</h6>
+                                            <small x-text="securityData.recoveryEmail"></small>
+                                        </div>
+                                        <button class="btn btn-outline-secondary btn-sm" @click="updateRecoveryEmail()">
+                                            Update
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="security-item">
+                                        <div class="security-info">
+                                            <h6>Account Lockout Protection</h6>
+                                            <small>Automatically lock account after failed login attempts</small>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" x-model="securityData.lockoutProtection">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Two-Factor Authentication -->
+                                <div x-show="activeSection === 'twofactor'" class="security-section">
+                                    <h5>Two-Factor Authentication</h5>
+                                    <p>Add an extra layer of security to your account</p>
+                                    
+                                    <div class="security-item">
+                                        <div class="security-info">
+                                            <h6>Authenticator App</h6>
+                                            <small>Use an authenticator app to generate verification codes</small>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="security-status" :class="securityData.twoFactor.app ? 'enabled' : 'disabled'" x-text="securityData.twoFactor.app ? 'Enabled' : 'Disabled'"></span>
+                                            <button class="btn btn-outline-primary btn-sm" @click="setupAuthenticatorApp()">
+                                                <span x-show="!securityData.twoFactor.app">Setup</span>
+                                                <span x-show="securityData.twoFactor.app">Manage</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="security-item">
+                                        <div class="security-info">
+                                            <h6>SMS Verification</h6>
+                                            <small>Receive verification codes via text message</small>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="security-status" :class="securityData.twoFactor.sms ? 'enabled' : 'disabled'" x-text="securityData.twoFactor.sms ? 'Enabled' : 'Disabled'"></span>
+                                            <button class="btn btn-outline-primary btn-sm" @click="setupSMSVerification()">
+                                                <span x-show="!securityData.twoFactor.sms">Setup</span>
+                                                <span x-show="securityData.twoFactor.sms">Manage</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="security-item">
+                                        <div class="security-info">
+                                            <h6>Backup Codes</h6>
+                                            <small>Generate backup codes for account recovery</small>
+                                        </div>
+                                        <button class="btn btn-outline-secondary btn-sm" @click="generateBackupCodes()">
+                                            Generate Codes
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Sessions Management -->
+                                <div x-show="activeSection === 'sessions'" class="security-section">
+                                    <h5>Active Sessions</h5>
+                                    <p>Manage and monitor your active login sessions</p>
+                                    
+                                    <template x-for="session in activeSessions" :key="session.id">
+                                        <div class="session-item">
+                                            <div class="d-flex justify-content-between align-items-start">
+                                                <div class="flex-grow-1">
+                                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                                        <i :class="session.deviceIcon" class="text-muted"></i>
+                                                        <strong x-text="session.device"></strong>
+                                                        <span class="badge bg-success ms-auto" x-show="session.current">Current</span>
+                                                    </div>
+                                                    <div class="small text-muted">
+                                                        <div><i class="bi bi-geo-alt me-1"></i><span x-text="session.location"></span></div>
+                                                        <div><i class="bi bi-clock me-1"></i>Last active: <span x-text="session.lastActive"></span></div>
+                                                        <div><i class="bi bi-wifi me-1"></i>IP: <span x-text="session.ip"></span></div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-outline-danger btn-sm" 
+                                                        @click="terminateSession(session.id)" 
+                                                        x-show="!session.current">
+                                                    Terminate
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    
+                                    <div class="mt-3">
+                                        <button class="btn btn-danger" @click="terminateAllSessions()">
+                                            <i class="bi bi-power me-2"></i>Terminate All Other Sessions
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Privacy Controls -->
+                                <div x-show="activeSection === 'privacy'" class="security-section">
+                                    <h5>Privacy Controls</h5>
+                                    <p>Control your privacy settings and data visibility</p>
+                                    
+                                    <div class="security-item">
+                                        <div class="security-info">
+                                            <h6>Profile Visibility</h6>
+                                            <small>Control who can view your profile information</small>
+                                        </div>
+                                        <select class="form-select" style="width: auto;" x-model="securityData.privacy.profileVisibility">
+                                            <option value="public">Public</option>
+                                            <option value="team">Team Members Only</option>
+                                            <option value="private">Private</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="security-item">
+                                        <div class="security-info">
+                                            <h6>Activity Status</h6>
+                                            <small>Show when you're online to other users</small>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" x-model="securityData.privacy.showActivity">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="security-item">
+                                        <div class="security-info">
+                                            <h6>Data Collection</h6>
+                                            <small>Allow collection of usage data for analytics</small>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" x-model="securityData.privacy.dataCollection">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Security Activity -->
+                                <div x-show="activeSection === 'activity'" class="security-section">
+                                    <h5>Recent Security Activity</h5>
+                                    <p>Monitor recent security events and login attempts</p>
+                                    
+                                    <template x-for="activity in securityActivity" :key="activity.id">
+                                        <div class="activity-item">
+                                            <div :class="`activity-icon ${activity.type}`">
+                                                <i :class="activity.icon"></i>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h6 class="mb-1" x-text="activity.title"></h6>
+                                                <small class="text-muted" x-text="activity.description"></small>
+                                                <div class="small text-muted mt-1">
+                                                    <i class="bi bi-clock me-1"></i><span x-text="activity.timestamp"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    
+                                    <div class="text-center mt-3">
+                                        <button class="btn btn-outline-secondary" @click="loadMoreActivity()">
+                                            Load More Activity
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+
+            <!-- Footer -->
+            <footer class="admin-footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="mb-0 text-muted">© 2025 Modern Bootstrap Admin Template</p>
+                        </div>
+                        <div class="col-md-6 text-md-end">
+                            <p class="mb-0 text-muted">Built with Bootstrap 5.3.7</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div> <!-- /.admin-wrapper -->
+    </div>
+
+    <!-- Page-specific Component -->
+    <script type="module" src="./scripts/components/security.js"></script>
+
+    <!-- Main App Script -->
+    <script type="module" src="./scripts/main.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggleButton = document.querySelector('[data-sidebar-toggle]');
+        const wrapper = document.getElementById('admin-wrapper');
+
+        if (toggleButton && wrapper) {
+          const isCollapsed = localStorage.getItem('sidebar-collapsed') === 'true';
+          if (isCollapsed) {
+            wrapper.classList.add('sidebar-collapsed');
+            toggleButton.classList.add('is-active');
+          }
+
+          toggleButton.addEventListener('click', () => {
+            const isCurrentlyCollapsed = wrapper.classList.contains('sidebar-collapsed');
+            
+            if (isCurrentlyCollapsed) {
+              wrapper.classList.remove('sidebar-collapsed');
+              toggleButton.classList.remove('is-active');
+              localStorage.setItem('sidebar-collapsed', 'false');
+            } else {
+              wrapper.classList.add('sidebar-collapsed');
+              toggleButton.classList.add('is-active');
+              localStorage.setItem('sidebar-collapsed', 'true');
+            }
+          });
+        }
+      });
+    </script>
+</body>
+</html>

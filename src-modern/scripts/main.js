@@ -21,7 +21,6 @@ import {
 
 // Import our custom modules
 import { ThemeManager } from './utils/theme-manager.js';
-import { SidebarManager } from './components/sidebar.js';
 import { DashboardManager } from './components/dashboard.js';
 import { NotificationManager } from './utils/notifications.js';
 import { iconManager } from './utils/icon-manager.js';
@@ -31,6 +30,11 @@ import Alpine from 'alpinejs';
 
 // Import styles (Bootstrap Icons are included in SCSS)
 import '../styles/scss/main.scss';
+
+// Import user components
+// import { UsersComponent } from './components/users.js';
+// import { AnalyticsComponent } from './components/analytics.js';
+// import { FormsComponent } from './components/forms.js';
 
 // Application Class
 class AdminApp {
@@ -53,7 +57,6 @@ class AdminApp {
 
       // Initialize core managers
       this.themeManager = new ThemeManager();
-      this.sidebarManager = new SidebarManager();
       this.notificationManager = new NotificationManager();
       this.iconManager = iconManager;
 
@@ -143,28 +146,155 @@ class AdminApp {
       case 'dashboard':
         this.components.set('dashboard', new DashboardManager());
         break;
+      case 'users':
+        await this.initUsersPage();
+        break;
+      case 'analytics':
+        await this.initAnalyticsPage();
+        break;
       case 'forms':
-        // Forms page specific initialization
         await this.initFormsPage();
         break;
+      case 'products':
+        await this.initProductsPage();
+        break;
+      case 'orders':
+        await this.initOrdersPage();
+        break;
+      case 'reports':
+        await this.initReportsPage();
+        break;
+      case 'messages':
+        await this.initMessagesPage();
+        break;
+      case 'calendar':
+        await this.initCalendarPage();
+        break;
+      case 'settings':
+        await this.initSettingsPage();
+        break;
+      case 'security':
+        await this.initSecurityPage();
+        break;
+      case 'files':
+        await this.initFilesPage();
+        break;
+      case 'help':
+        await this.initHelpPage();
+        break;
       // Add more page-specific initializations here
+      default:
+        console.log('Page-specific components loading complete');
     }
   }
 
   // Initialize forms page
   async initFormsPage() {
     try {
-      const { formComponents, formManager } = await import('./components/forms.js');
-      
-      // Register form components with Alpine.js
-      Object.entries(formComponents).forEach(([name, component]) => {
-        Alpine.data(name, component);
-      });
-
-      this.components.set('formManager', formManager);
-      console.log('📝 Forms page initialized successfully');
+      // Dynamically load the forms component script (it self-registers with Alpine)
+      await import('./components/forms.js');
+      console.log('📝 Forms page script loaded successfully');
     } catch (error) {
       console.warn('Forms components not available:', error);
+    }
+  }
+
+  async initUsersPage() {
+    try {
+      await import('./components/users.js');
+      console.log('👥 Users page script loaded successfully');
+    } catch (error) {
+      console.error('Failed to load users page script:', error);
+    }
+  }
+
+  async initAnalyticsPage() {
+    try {
+      await import('./components/analytics.js');
+      console.log('📊 Analytics page script loaded successfully');
+    } catch (error) {
+      console.error('Failed to load analytics page script:', error);
+    }
+  }
+
+  async initProductsPage() {
+    try {
+      await import('./components/products.js');
+      console.log('📦 Products page script loaded successfully');
+    } catch (error) {
+      console.error('Failed to load products page script:', error);
+    }
+  }
+
+  async initOrdersPage() {
+    try {
+      await import('./components/orders.js');
+      console.log('🛒 Orders page script loaded successfully');
+    } catch (error) {
+      console.error('Failed to load orders page script:', error);
+    }
+  }
+
+  async initReportsPage() {
+    try {
+      await import('./components/reports.js');
+      console.log('📊 Reports page script loaded successfully');
+    } catch (error) {
+      console.error('Failed to load reports page script:', error);
+    }
+  }
+
+  async initMessagesPage() {
+    try {
+      await import('./components/messages.js');
+      console.log('💬 Messages page script loaded successfully');
+    } catch (error) {
+      console.error('Failed to load messages page script:', error);
+    }
+  }
+
+  async initCalendarPage() {
+    try {
+      await import('./components/calendar.js');
+      console.log('📅 Calendar page script loaded successfully');
+    } catch (error) {
+      console.error('Failed to load calendar page script:', error);
+    }
+  }
+
+  async initSettingsPage() {
+    try {
+      await import('./components/settings.js');
+      console.log('⚙️ Settings page script loaded successfully');
+    } catch (error) {
+      console.error('Failed to load settings page script:', error);
+    }
+  }
+
+  async initSecurityPage() {
+    try {
+      await import('./components/security.js');
+      console.log('🔒 Security page script loaded successfully');
+    } catch (error) {
+      console.error('Failed to load security page script:', error);
+    }
+  }
+
+  async initFilesPage() {
+    try {
+      await import('./components/files.js');
+      console.log('📁 Files page script loaded successfully');
+    } catch (error) {
+      console.error('Failed to load files page script:', error);
+    }
+  }
+
+  async initHelpPage() {
+    try {
+      await import('./components/help.js');
+      console.log('❓ Help page script loaded successfully');
+    } catch (error) {
+      console.error('Failed to load help page script:', error);
     }
   }
 
@@ -174,13 +304,6 @@ class AdminApp {
     document.addEventListener('click', (e) => {
       if (e.target.matches('[data-theme-toggle]')) {
         this.themeManager.toggleTheme();
-      }
-    });
-
-    // Sidebar toggle
-    document.addEventListener('click', (e) => {
-      if (e.target.matches('[data-sidebar-toggle]')) {
-        this.sidebarManager.toggle();
       }
     });
 
@@ -207,12 +330,6 @@ class AdminApp {
       if (searchInput) {
         searchInput.focus();
       }
-    }
-
-    // Ctrl/Cmd + \ for sidebar toggle
-    if ((event.ctrlKey || event.metaKey) && event.key === '\\') {
-      event.preventDefault();
-      this.sidebarManager.toggle();
     }
   }
 

@@ -1,0 +1,51 @@
+/* === Hamburger Menu === */
+.hamburger-menu {
+    position: fixed;
+    top: 0.75rem;
+    left: 216px; 
+    z-index: 1050;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: #6c757d;
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 6px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hamburger-menu:hover {
+    color: #495057;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.hamburger-menu:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.hamburger-menu:active {
+    transform: scale(0.95);
+}
+
+.hamburger-menu i {
+    font-size: 1.2rem;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Rotate icon when active */
+.hamburger-menu.is-active i {
+    transform: rotate(180deg);
+}
+
+/* Responsive positioning for mobile */
+@media (max-width: 991.98px) {
+    .hamburger-menu {
+        left: 1rem;
+        top: 0.75rem;
+    }
+} 

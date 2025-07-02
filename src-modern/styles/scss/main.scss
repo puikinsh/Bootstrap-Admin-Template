@@ -9,6 +9,7 @@
 // 2. Include our custom variables and overrides (before Bootstrap variables)
 @import "abstracts/variables";
 @import "abstracts/mixins";
+@import "abstracts/utilities";
 
 // 3. Include Bootstrap variables and maps
 @import "~bootstrap/scss/variables";
@@ -71,10 +72,24 @@
 @import "components/modals";
 @import "components/charts";
 @import "components/icons";
+@import "components/hamburger";
+@import "components/header-buttons";
+@import "components/toggle-switches";
 
 @import "pages/dashboard";
 @import "pages/login";
 @import "pages/errors";
+@import "pages/users";
+@import "pages/products";
+@import "pages/orders";
+@import "pages/reports";
+@import "pages/messages";
+@import "pages/calendar";
+@import "pages/files";
+@import "pages/analytics";
+@import "pages/settings";
+@import "pages/security";
+@import "pages/help";
 
 // 8. Include theme variants
 @import "themes/dark";

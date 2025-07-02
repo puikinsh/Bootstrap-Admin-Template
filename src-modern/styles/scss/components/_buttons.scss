@@ -1,0 +1,375 @@
+// ==========================================================================
+// Button Components - Enhanced Bootstrap 5 Button Styling
+// ==========================================================================
+
+// Primary Button Fixes - Ensure proper contrast and colors
+.btn-primary {
+  color: #ffffff !important;
+  background-color: #{$primary};
+  border-color: #{$primary};
+  
+  &:hover {
+    color: #ffffff !important;
+    background-color: darken($primary, 8%);
+    border-color: darken($primary, 8%);
+  }
+  
+  &:focus,
+  &.focus {
+    color: #ffffff !important;
+    background-color: darken($primary, 8%);
+    border-color: darken($primary, 8%);
+    box-shadow: 0 0 0 0.2rem rgba($primary, 0.25);
+  }
+  
+  &:active,
+  &.active,
+  .show > &.dropdown-toggle {
+    color: #ffffff !important;
+    background-color: darken($primary, 10%);
+    border-color: darken($primary, 10%);
+  }
+  
+  &:disabled,
+  &.disabled {
+    color: #ffffff !important;
+    background-color: #{$primary};
+    border-color: #{$primary};
+    opacity: 0.65;
+  }
+}
+
+// Outline Primary Button
+.btn-outline-primary {
+  color: #{$primary};
+  border-color: #{$primary};
+  
+  &:hover {
+    color: #ffffff !important;
+    background-color: #{$primary};
+    border-color: #{$primary};
+  }
+  
+  &:focus,
+  &.focus {
+    box-shadow: 0 0 0 0.2rem rgba($primary, 0.25);
+  }
+  
+  &:active,
+  &.active,
+  .show > &.dropdown-toggle {
+    color: #ffffff !important;
+    background-color: #{$primary};
+    border-color: #{$primary};
+  }
+  
+  &:disabled,
+  &.disabled {
+    color: #{$primary};
+    background-color: transparent;
+  }
+}
+
+// Secondary Button - Ensure proper contrast
+.btn-secondary {
+  color: #ffffff !important;
+  background-color: #{$secondary};
+  border-color: #{$secondary};
+  
+  &:hover {
+    color: #ffffff !important;
+    background-color: darken($secondary, 8%);
+    border-color: darken($secondary, 8%);
+  }
+  
+  &:focus,
+  &.focus {
+    color: #ffffff !important;
+    background-color: darken($secondary, 8%);
+    border-color: darken($secondary, 8%);
+    box-shadow: 0 0 0 0.2rem rgba($secondary, 0.25);
+  }
+  
+  &:active,
+  &.active,
+  .show > &.dropdown-toggle {
+    color: #ffffff !important;
+    background-color: darken($secondary, 10%);
+    border-color: darken($secondary, 10%);
+  }
+}
+
+// Success Button
+.btn-success {
+  color: #ffffff !important;
+  background-color: #{$success};
+  border-color: #{$success};
+  
+  &:hover {
+    color: #ffffff !important;
+    background-color: darken($success, 8%);
+    border-color: darken($success, 8%);
+  }
+  
+  &:focus,
+  &.focus {
+    color: #ffffff !important;
+    background-color: darken($success, 8%);
+    border-color: darken($success, 8%);
+    box-shadow: 0 0 0 0.2rem rgba($success, 0.25);
+  }
+  
+  &:active,
+  &.active,
+  .show > &.dropdown-toggle {
+    color: #ffffff !important;
+    background-color: darken($success, 10%);
+    border-color: darken($success, 10%);
+  }
+}
+
+// Danger Button
+.btn-danger {
+  color: #ffffff !important;
+  background-color: #{$danger};
+  border-color: #{$danger};
+  
+  &:hover {
+    color: #ffffff !important;
+    background-color: darken($danger, 8%);
+    border-color: darken($danger, 8%);
+  }
+  
+  &:focus,
+  &.focus {
+    color: #ffffff !important;
+    background-color: darken($danger, 8%);
+    border-color: darken($danger, 8%);
+    box-shadow: 0 0 0 0.2rem rgba($danger, 0.25);
+  }
+  
+  &:active,
+  &.active,
+  .show > &.dropdown-toggle {
+    color: #ffffff !important;
+    background-color: darken($danger, 10%);
+    border-color: darken($danger, 10%);
+  }
+}
+
+// Warning Button
+.btn-warning {
+  color: #000000 !important;
+  background-color: #{$warning};
+  border-color: #{$warning};
+  
+  &:hover {
+    color: #000000 !important;
+    background-color: darken($warning, 8%);
+    border-color: darken($warning, 8%);
+  }
+  
+  &:focus,
+  &.focus {
+    color: #000000 !important;
+    background-color: darken($warning, 8%);
+    border-color: darken($warning, 8%);
+    box-shadow: 0 0 0 0.2rem rgba($warning, 0.25);
+  }
+  
+  &:active,
+  &.active,
+  .show > &.dropdown-toggle {
+    color: #000000 !important;
+    background-color: darken($warning, 10%);
+    border-color: darken($warning, 10%);
+  }
+}
+
+// Info Button
+.btn-info {
+  color: #ffffff !important;
+  background-color: #{$info};
+  border-color: #{$info};
+  
+  &:hover {
+    color: #ffffff !important;
+    background-color: darken($info, 8%);
+    border-color: darken($info, 8%);
+  }
+  
+  &:focus,
+  &.focus {
+    color: #ffffff !important;
+    background-color: darken($info, 8%);
+    border-color: darken($info, 8%);
+    box-shadow: 0 0 0 0.2rem rgba($info, 0.25);
+  }
+  
+  &:active,
+  &.active,
+  .show > &.dropdown-toggle {
+    color: #ffffff !important;
+    background-color: darken($info, 10%);
+    border-color: darken($info, 10%);
+  }
+}
+
+// Light Button
+.btn-light {
+  color: #000000 !important;
+  background-color: #{$light};
+  border-color: #{$light};
+  
+  &:hover {
+    color: #000000 !important;
+    background-color: darken($light, 8%);
+    border-color: darken($light, 8%);
+  }
+  
+  &:focus,
+  &.focus {
+    color: #000000 !important;
+    background-color: darken($light, 8%);
+    border-color: darken($light, 8%);
+    box-shadow: 0 0 0 0.2rem rgba($light, 0.25);
+  }
+  
+  &:active,
+  &.active,
+  .show > &.dropdown-toggle {
+    color: #000000 !important;
+    background-color: darken($light, 10%);
+    border-color: darken($light, 10%);
+  }
+}
+
+// Dark Button
+.btn-dark {
+  color: #ffffff !important;
+  background-color: #{$dark};
+  border-color: #{$dark};
+  
+  &:hover {
+    color: #ffffff !important;
+    background-color: lighten($dark, 8%);
+    border-color: lighten($dark, 8%);
+  }
+  
+  &:focus,
+  &.focus {
+    color: #ffffff !important;
+    background-color: lighten($dark, 8%);
+    border-color: lighten($dark, 8%);
+    box-shadow: 0 0 0 0.2rem rgba($dark, 0.25);
+  }
+  
+  &:active,
+  &.active,
+  .show > &.dropdown-toggle {
+    color: #ffffff !important;
+    background-color: lighten($dark, 10%);
+    border-color: lighten($dark, 10%);
+  }
+}
+
+// Enhanced Button Styling
+.btn {
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  border-radius: var(--border-radius-sm);
+  
+  // Remove text decoration on hover for all buttons
+  &:hover {
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  }
+  
+  &:active,
+  &.active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+  }
+  
+  &:focus,
+  &.focus {
+    outline: none;
+  }
+  
+  // Icon spacing
+  i {
+    &:first-child:not(:last-child) {
+      margin-right: 0.5rem;
+    }
+    
+    &:last-child:not(:first-child) {
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+// Button sizes
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: var(--border-radius-sm);
+}
+
+.btn-lg {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  border-radius: var(--border-radius);
+}
+
+// Floating Action Button
+.btn-floating {
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// Button Groups
+.btn-group {
+  .btn {
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+// Dark theme adjustments
+[data-bs-theme="dark"] {
+  .btn-light {
+    color: #000000 !important;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+    
+    &:hover {
+      color: #000000 !important;
+      background-color: #e9ecef;
+      border-color: #e9ecef;
+    }
+  }
+  
+  .btn-outline-secondary {
+    color: #adb5bd;
+    border-color: #6c757d;
+    
+    &:hover {
+      color: #ffffff !important;
+      background-color: #6c757d;
+      border-color: #6c757d;
+    }
+  }
+}

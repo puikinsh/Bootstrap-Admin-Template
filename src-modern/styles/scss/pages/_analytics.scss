@@ -1,0 +1,427 @@
+// ==========================================================================
+// Analytics Page Styles
+// ==========================================================================
+
+// Analytics page specific styles
+.analytics-page {
+  .stats-card {
+    @include stats-card-hover();
+  }
+
+  .stats-icon {
+    @include stats-icon();
+  }
+
+  .chart-container {
+    @include chart-container(300px, 350px);
+  }
+
+  .metric-card {
+    @include admin-card();
+    text-align: center;
+    padding: 2rem;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .metric-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 1rem;
+
+      &.revenue {
+        background-color: var(--bs-success-bg-subtle);
+        color: var(--bs-success);
+      }
+
+      &.users {
+        background-color: var(--bs-primary-bg-subtle);
+        color: var(--bs-primary);
+      }
+
+      &.sessions {
+        background-color: var(--bs-info-bg-subtle);
+        color: var(--bs-info);
+      }
+
+      &.bounce-rate {
+        background-color: var(--bs-warning-bg-subtle);
+        color: var(--bs-warning);
+      }
+    }
+
+    .metric-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--bs-emphasis-color);
+    }
+
+    .metric-label {
+      color: var(--bs-secondary-color);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .metric-change {
+      font-size: 0.875rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+
+      &.positive {
+        color: var(--bs-success);
+      }
+
+      &.negative {
+        color: var(--bs-danger);
+      }
+
+      &.neutral {
+        color: var(--bs-secondary-color);
+      }
+    }
+  }
+
+  .analytics-filters {
+    background: var(--bs-secondary-bg);
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+
+    .filter-group {
+      display: flex;
+      gap: 1rem;
+      align-items: end;
+      flex-wrap: wrap;
+
+      @include media-breakpoint-down(md) {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .filter-item {
+        flex: 1;
+        min-width: 200px;
+
+        .form-label {
+          font-weight: 500;
+          color: var(--bs-emphasis-color);
+        }
+      }
+
+      .filter-actions {
+        display: flex;
+        gap: 0.5rem;
+
+        .btn {
+          @include button-hover-lift();
+        }
+      }
+    }
+  }
+
+  .chart-card {
+    @include admin-card();
+    margin-bottom: 2rem;
+
+    .chart-header {
+      @include admin-card-header();
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .chart-title {
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .chart-actions {
+        display: flex;
+        gap: 0.5rem;
+
+        .btn {
+          font-size: 0.875rem;
+          padding: 0.375rem 0.75rem;
+        }
+      }
+    }
+
+    .chart-body {
+      padding: 1.5rem;
+
+      @include media-breakpoint-up(lg) {
+        padding: 2rem;
+      }
+    }
+  }
+
+  .traffic-sources {
+    .source-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--bs-border-color);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .source-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .source-icon {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.25rem;
+
+          &.google {
+            background-color: var(--bs-danger-bg-subtle);
+            color: var(--bs-danger);
+          }
+
+          &.facebook {
+            background-color: var(--bs-primary-bg-subtle);
+            color: var(--bs-primary);
+          }
+
+          &.twitter {
+            background-color: var(--bs-info-bg-subtle);
+            color: var(--bs-info);
+          }
+
+          &.direct {
+            background-color: var(--bs-success-bg-subtle);
+            color: var(--bs-success);
+          }
+
+          &.other {
+            background-color: var(--bs-secondary-bg-subtle);
+            color: var(--bs-secondary);
+          }
+        }
+
+        .source-details {
+          .source-name {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+          }
+
+          .source-type {
+            color: var(--bs-secondary-color);
+            font-size: 0.875rem;
+            margin: 0;
+          }
+        }
+      }
+
+      .source-stats {
+        text-align: right;
+
+        .source-visitors {
+          font-weight: 600;
+          margin-bottom: 0.25rem;
+        }
+
+        .source-percentage {
+          color: var(--bs-secondary-color);
+          font-size: 0.875rem;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  .real-time-stats {
+    background: var(--bs-dark);
+    color: var(--bs-light);
+    border-radius: var(--bs-border-radius);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+
+    .real-time-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+
+      .live-indicator {
+        width: 8px;
+        height: 8px;
+        background: var(--bs-success);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+
+      .real-time-title {
+        font-weight: 600;
+        margin: 0;
+      }
+    }
+
+    .real-time-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+
+      .metric-item {
+        text-align: center;
+
+        .metric-number {
+          font-size: 2rem;
+          font-weight: 700;
+          color: var(--bs-success);
+          margin-bottom: 0.25rem;
+        }
+
+        .metric-desc {
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 0.875rem;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  .top-pages {
+    .page-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--bs-border-color);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .page-info {
+        flex: 1;
+        min-width: 0;
+
+        .page-title {
+          font-weight: 500;
+          margin-bottom: 0.25rem;
+          @include text-truncate();
+        }
+
+        .page-url {
+          color: var(--bs-secondary-color);
+          font-size: 0.875rem;
+          font-family: monospace;
+          margin: 0;
+          @include text-truncate();
+        }
+      }
+
+      .page-stats {
+        flex-shrink: 0;
+        text-align: right;
+
+        .page-views {
+          font-weight: 600;
+          margin-bottom: 0.25rem;
+        }
+
+        .page-bounce {
+          color: var(--bs-secondary-color);
+          font-size: 0.875rem;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  .conversion-funnel {
+    .funnel-step {
+      position: relative;
+      background: var(--bs-primary-bg-subtle);
+      border: 1px solid var(--bs-primary-border-subtle);
+      border-radius: var(--bs-border-radius);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid var(--bs-primary-border-subtle);
+      }
+
+      &:last-child::after {
+        display: none;
+      }
+
+      .step-title {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--bs-primary-text-emphasis);
+      }
+
+      .step-count {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--bs-primary);
+        margin-bottom: 0.25rem;
+      }
+
+      .step-rate {
+        color: var(--bs-primary-text-emphasis);
+        font-size: 0.875rem;
+        margin: 0;
+      }
+    }
+  }
+
+  .export-options {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+    .export-btn {
+      @include button-hover-lift();
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }
+}
+
+// Animations
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

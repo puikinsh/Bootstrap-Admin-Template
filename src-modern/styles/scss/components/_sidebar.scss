@@ -1,0 +1,32 @@
+.admin-sidebar {
+    width: $sidebar-width;
+    z-index: 1040; 
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.admin-main {
+    transition: margin-left 0.3s ease-in-out;
+    margin-left: $sidebar-width;
+}
+
+// Collapsed State
+&.sidebar-collapsed {
+    .admin-sidebar {
+        margin-left: -$sidebar-width;
+    }
+
+    .admin-main {
+        margin-left: 0;
+    }
+
+    .hamburger-menu {
+        left: 1rem;
+    }
+}
+
+// Mobile view
+@media (max-width: 991.98px) {
+    .admin-sidebar {
+        // ... existing code ...
+    }
+} 

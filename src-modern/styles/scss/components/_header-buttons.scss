@@ -1,0 +1,29 @@
+// ===========================================================================
+// Header Action Buttons - refine appearance
+// ===========================================================================
+
+.admin-header {
+  .btn-outline-secondary {
+    border: none !important; // remove border
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    color: var(--bs-body-color);
+    transition: background-color 0.15s ease-in-out;
+
+    &:hover,
+    &:focus {
+      background-color: rgba(var(--bs-secondary-rgb), 0.08);
+      color: var(--bs-body-color);
+    }
+
+    &:active,
+    &.active {
+      background-color: rgba(var(--bs-secondary-rgb), 0.15);
+      color: var(--bs-body-color);
+    }
+
+    .badge {
+      transform: translate(-75%, -50%) !important; // shift closer horizontally
+    }
+  }
+} 

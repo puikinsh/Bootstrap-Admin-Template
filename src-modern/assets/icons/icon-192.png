@@ -1,1 +1,12 @@
- 
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- PWA Icon 192x192 -->
+  <circle cx="96" cy="96" r="96" fill="url(#pwaGradient)"/>
+  <path d="M48 144V48h24l12 36 12-36h24v96h-18V78l-9 30h-12l-9-30v66H48z" fill="white" font-weight="700"/>
+  
+  <defs>
+    <linearGradient id="pwaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg> 

@@ -19,9 +19,13 @@
     <!-- Preload critical fonts -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
+    
+    <!-- ApexCharts CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
+    <!-- Styles now in SCSS files -->
 
-<body data-page="users">
+<body data-page="users" class="user-management">
     <!-- Admin App Container -->
     <div class="admin-app">
         <div class="admin-wrapper" id="admin-wrapper">
@@ -31,45 +35,109 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
                     <div class="container-fluid">
                         <!-- Logo/Brand -->
-                        <a class="navbar-brand me-3 d-flex align-items-center" href="/">
+                        <a class="navbar-brand d-flex align-items-center" href="/">
                             <img src="/assets/images/logo.svg" alt="Logo" height="32" class="d-inline-block align-text-top me-2">
                             <h1 class="h4 mb-0 fw-bold text-primary">Metis</h1>
                         </a>
 
-                        <!-- Sidebar Toggle -->
-                        <button class="btn btn-outline-secondary me-3" 
-                                type="button" 
-                                data-sidebar-toggle
-                                aria-label="Toggle sidebar">
-                            <i class="bi bi-list"></i>
-                        </button>
-
-                        <!-- Search Bar -->
+                        <!-- Search Bar with Alpine.js -->
                         <div class="search-container flex-grow-1 mx-4" x-data="searchComponent">
                             <div class="position-relative">
                                 <input type="search" 
                                        class="form-control" 
-                                       placeholder="Search users..."
+                                       placeholder="Search... (Ctrl+K)"
                                        x-model="query"
                                        @input="search()"
-                                       data-search-input>
+                                       data-search-input
+                                       aria-label="Search">
                                 <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3"></i>
+                                
+                                <!-- Search Results Dropdown -->
+                                <div x-show="results.length > 0" 
+                                     x-transition:enter="transition ease-out duration-100"
+                                     x-transition:enter-start="opacity-0 scale-95"
+                                     x-transition:enter-end="opacity-100 scale-100"
+                                     class="position-absolute top-100 start-0 w-100 bg-white border rounded-2 shadow-lg mt-1 z-3">
+                                    <template x-for="result in results" :key="result.title">
+                                        <a :href="result.url" class="d-block px-3 py-2 text-decoration-none text-dark border-bottom">
+                                            <div class="d-flex align-items-center">
+                                                <i class="bi bi-file-text me-2 text-muted"></i>
+                                                <span x-text="result.title"></span>
+                                                <small class="ms-auto text-muted" x-text="result.type"></small>
+                                            </div>
+                                        </a>
+                                    </template>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Right Navigation -->
+                        <!-- Right Side Icons -->
                         <div class="navbar-nav flex-row">
+                            <!-- Theme Toggle with Alpine.js -->
                             <div x-data="themeSwitch">
                                 <button class="btn btn-outline-secondary me-2" 
                                         type="button" 
-                                        @click="toggle()">
+                                        @click="toggle()"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        title="Toggle theme">
                                     <i class="bi bi-sun-fill" x-show="currentTheme === 'light'"></i>
                                     <i class="bi bi-moon-fill" x-show="currentTheme === 'dark'"></i>
                                 </button>
                             </div>
-                            <a class="btn btn-outline-primary" href="/index.html">
-                                <i class="bi bi-speedometer2 me-2"></i>Dashboard
-                            </a>
+
+                            <!-- Fullscreen Toggle -->
+                            <button class="btn btn-outline-secondary me-2" 
+                                    type="button" 
+                                    data-fullscreen-toggle
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom"
+                                    title="Toggle fullscreen">
+                                <i class="bi bi-arrows-fullscreen icon-hover"></i>
+                            </button>
+
+                            <!-- Notifications -->
+                            <div class="dropdown me-2">
+                                <button class="btn btn-outline-secondary position-relative" 
+                                        type="button" 
+                                        data-bs-toggle="dropdown" 
+                                        aria-expanded="false">
+                                    <i class="bi bi-bell"></i>
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        3
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><h6 class="dropdown-header">Notifications</h6></li>
+                                    <li><a class="dropdown-item" href="#">New user registered</a></li>
+                                    <li><a class="dropdown-item" href="#">Server status update</a></li>
+                                    <li><a class="dropdown-item" href="#">New message received</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-center" href="#">View all notifications</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- User Menu -->
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary d-flex align-items-center" 
+                                        type="button" 
+                                        data-bs-toggle="dropdown" 
+                                        aria-expanded="false">
+                                    <img src="/assets/images/avatar-placeholder.svg" 
+                                         alt="User Avatar" 
+                                         width="24" 
+                                         height="24" 
+                                         class="rounded-circle me-2">
+                                    <span class="d-none d-md-inline">John Doe</span>
+                                    <i class="bi bi-chevron-down ms-1"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </nav>
@@ -169,12 +237,20 @@
                 </div>
             </aside>
 
+            <!-- Floating Hamburger Menu -->
+            <button class="hamburger-menu" 
+                    type="button" 
+                    data-sidebar-toggle
+                    aria-label="Toggle sidebar">
+                <i class="bi bi-list"></i>
+            </button>
+
             <!-- Main Content -->
             <main class="admin-main">
-                <div class="container-fluid p-4">
+                <div class="container-fluid p-4 p-lg-5">
                     
                     <!-- Page Header -->
-                    <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4 mb-lg-5 mb-xl-6">
                         <div>
                             <h1 class="h3 mb-0">User Management</h1>
                             <p class="text-muted mb-0">Manage users, roles, and permissions</p>
@@ -183,7 +259,7 @@
                             <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#importModal">
                                 <i class="bi bi-upload me-2"></i>Import Users
                             </button>
-                            <button type="button" class="btn btn-outline-secondary" onclick="exportUsers()">
+                            <button type="button" class="btn btn-outline-secondary" @click="exportUsers()">
                                 <i class="bi bi-download me-2"></i>Export
                             </button>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userModal">
@@ -192,136 +268,332 @@
                         </div>
                     </div>
 
-                    <!-- Stats Cards -->
-                    <div class="row g-4 mb-4">
-                        <div class="col-xl-3 col-lg-6">
-                            <div class="card stats-card">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div class="stats-icon bg-primary bg-opacity-10 text-primary me-3">
-                                            <i class="bi bi-people"></i>
+                    <!-- Users Management Container -->
+                    <div x-data="userTable" x-init="init()">
+                        
+                        <!-- User Stats Widgets -->
+                        <div class="row g-4 g-lg-5 g-xl-6 mb-5 mb-lg-5 mb-xl-6">
+                            <div class="col-xl-3 col-lg-6">
+                                <div class="card stats-card">
+                                    <div class="card-body p-3 p-lg-4">
+                                        <div class="d-flex align-items-center">
+                                            <div class="stats-icon bg-primary bg-opacity-10 text-primary me-3">
+                                                <i class="bi bi-people-fill"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-0 text-muted">Total Users</h6>
+                                                <h3 class="mb-0" x-text="stats.total"></h3>
+                                                <small class="text-success">
+                                                    <i class="bi bi-arrow-up"></i> +12% from last month
+                                                </small>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <h6 class="mb-0 text-muted">Total Users</h6>
-                                            <h3 class="mb-0">2,847</h3>
-                                            <small class="text-success"><i class="bi bi-arrow-up"></i> +12.5%</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6">
+                                <div class="card stats-card">
+                                    <div class="card-body p-3 p-lg-4">
+                                        <div class="d-flex align-items-center">
+                                            <div class="stats-icon bg-success bg-opacity-10 text-success me-3">
+                                                <i class="bi bi-person-check-fill"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-0 text-muted">Active Users</h6>
+                                                <h3 class="mb-0" x-text="stats.active"></h3>
+                                                <small class="text-success">
+                                                    <i class="bi bi-arrow-up"></i> +8% from last week
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6">
+                                <div class="card stats-card">
+                                    <div class="card-body p-3 p-lg-4">
+                                        <div class="d-flex align-items-center">
+                                            <div class="stats-icon bg-info bg-opacity-10 text-info me-3">
+                                                <i class="bi bi-person-plus-fill"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-0 text-muted">New This Month</h6>
+                                                <h3 class="mb-0" x-text="stats.newThisMonth"></h3>
+                                                <small class="text-success">
+                                                    <i class="bi bi-arrow-up"></i> +15% growth
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6">
+                                <div class="card stats-card">
+                                    <div class="card-body p-3 p-lg-4">
+                                        <div class="d-flex align-items-center">
+                                            <div id="activeUserChart" style="min-height: 40px; width: 50px;"></div>
+                                            <div class="ms-3">
+                                                <h6 class="mb-0 text-muted">Active Rate</h6>
+                                                <h3 class="mb-0" x-text="`${Math.round(stats.activePercentage)}%`"></h3>
+                                                <small class="text-muted">
+                                                    <i class="bi bi-clock"></i> Last 24h
+                                                </small>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-lg-6">
-                            <div class="card stats-card">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div class="stats-icon bg-success bg-opacity-10 text-success me-3">
-                                            <i class="bi bi-person-check"></i>
-                                        </div>
-                                        <div>
-                                            <h6 class="mb-0 text-muted">Active Users</h6>
-                                            <h3 class="mb-0">2,234</h3>
-                                            <small class="text-success"><i class="bi bi-arrow-up"></i> +8.3%</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-6">
-                            <div class="card stats-card">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div class="stats-icon bg-warning bg-opacity-10 text-warning me-3">
-                                            <i class="bi bi-person-exclamation"></i>
-                                        </div>
-                                        <div>
-                                            <h6 class="mb-0 text-muted">Pending</h6>
-                                            <h3 class="mb-0">156</h3>
-                                            <small class="text-warning"><i class="bi bi-dash"></i> 0.0%</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-6">
-                            <div class="card stats-card">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div class="stats-icon bg-info bg-opacity-10 text-info me-3">
-                                            <i class="bi bi-person-plus"></i>
-                                        </div>
-                                        <div>
-                                            <h6 class="mb-0 text-muted">New This Month</h6>
-                                            <h3 class="mb-0">87</h3>
-                                            <small class="text-success"><i class="bi bi-arrow-up"></i> +23.1%</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Users Table -->
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <h5 class="card-title mb-0">Users Directory</h5>
+                        <!-- Enhanced Analytics Widgets Row -->
+                        <div class="row g-4 g-lg-5 g-xl-6 mb-5 mb-lg-5 mb-xl-6">
+                            <!-- User Growth Chart -->
+                            <div class="col-lg-8">
+                                <div class="card h-100">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title mb-0">User Registration Trends</h5>
+                                        <div class="btn-group btn-group-sm" role="group">
+                                            <input type="radio" class="btn-check" name="growthPeriod" id="growth7d" autocomplete="off" checked>
+                                            <label class="btn btn-outline-secondary" for="growth7d">7D</label>
+                                            <input type="radio" class="btn-check" name="growthPeriod" id="growth30d" autocomplete="off">
+                                            <label class="btn btn-outline-secondary" for="growth30d">30D</label>
+                                            <input type="radio" class="btn-check" name="growthPeriod" id="growth90d" autocomplete="off">
+                                            <label class="btn btn-outline-secondary" for="growth90d">90D</label>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-3 p-lg-4">
+                                        <div id="userGrowthChart" style="width: 100%; overflow: hidden;"></div>
+                                    </div>
                                 </div>
-                                <div class="col-auto">
-                                    <div class="d-flex gap-2" x-data="userTable">
-                                        <!-- Search -->
-                                        <div class="position-relative">
-                                            <input type="search" 
-                                                   class="form-control form-control-sm" 
-                                                   placeholder="Search users..."
-                                                   x-model="searchQuery"
-                                                   @input="filterUsers()"
-                                                   style="width: 200px;">
-                                            <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-2 text-muted"></i>
+                            </div>
+
+                            <!-- Role & Department Distribution -->
+                            <div class="col-lg-4">
+                                <div class="card h-100">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">User Distribution</h5>
+                                    </div>
+                                    <div class="card-body p-3 p-lg-4">
+                                        <!-- Role Distribution -->
+                                        <div class="mb-4">
+                                            <h6 class="text-muted mb-3">By Role</h6>
+                                            <div id="roleDistributionChart"></div>
                                         </div>
                                         
-                                        <!-- Status Filter -->
-                                        <select class="form-select form-select-sm" 
-                                                x-model="statusFilter" 
-                                                @change="filterUsers()"
-                                                style="width: 150px;">
-                                            <option value="">All Status</option>
-                                            <option value="active">Active</option>
-                                            <option value="inactive">Inactive</option>
-                                            <option value="pending">Pending</option>
-                                        </select>
-                                        
-                                        <!-- Role Filter -->
-                                        <select class="form-select form-select-sm" 
-                                                x-model="roleFilter" 
-                                                @change="filterUsers()"
-                                                style="width: 150px;">
-                                            <option value="">All Roles</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="user">User</option>
-                                            <option value="moderator">Moderator</option>
-                                        </select>
+                                        <!-- Department Breakdown -->
+                                        <div>
+                                            <h6 class="text-muted mb-3">By Department</h6>
+                                            <template x-for="dept in departmentStats" :key="dept.name">
+                                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                                    <span class="small" x-text="dept.name"></span>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="progress me-2" style="width: 60px; height: 6px;">
+                                                            <div class="progress-bar" 
+                                                                 :style="`width: ${dept.percentage}%; background-color: ${dept.color}`"></div>
+                                                        </div>
+                                                        <span class="small text-muted" x-text="dept.count"></span>
+                                                    </div>
+                                                </div>
+                                            </template>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body p-0">
-                            <div x-data="userTable">
-                                <!-- Bulk Actions Bar -->
-                                <div class="bulk-actions-bar p-3 bg-light border-bottom" x-show="selectedUsers.length > 0" x-transition>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="text-muted">
-                                            <span x-text="selectedUsers.length"></span> user(s) selected
-                                        </span>
+
+                        <!-- Activity & Alerts Row -->
+                        <div class="row g-4 g-lg-5 g-xl-6 mb-5 mb-lg-5 mb-xl-6">
+                            <!-- Recent User Activity -->
+                            <div class="col-lg-6">
+                                <div class="card h-100">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title mb-0">Recent Activity</h5>
+                                        <button class="btn btn-sm btn-outline-secondary">
+                                            <i class="bi bi-arrow-clockwise"></i>
+                                        </button>
+                                    </div>
+                                    <div class="card-body p-0">
+                                        <div class="activity-feed" style="max-height: 350px; overflow-y: auto;">
+                                            <template x-for="activity in recentActivities" :key="activity.id">
+                                                <div class="d-flex p-3 border-bottom">
+                                                    <div class="flex-shrink-0 me-3">
+                                                        <div class="activity-icon" 
+                                                             :class="`bg-${activity.type === 'login' ? 'success' : activity.type === 'logout' ? 'secondary' : activity.type === 'register' ? 'primary' : 'warning'} bg-opacity-10`">
+                                                            <i :class="`bi bi-${activity.icon} text-${activity.type === 'login' ? 'success' : activity.type === 'logout' ? 'secondary' : activity.type === 'register' ? 'primary' : 'warning'}`"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <div class="d-flex justify-content-between">
+                                                            <p class="mb-1 small">
+                                                                <strong x-text="activity.user"></strong> 
+                                                                <span x-text="activity.action"></span>
+                                                            </p>
+                                                            <small class="text-muted" x-text="activity.time"></small>
+                                                        </div>
+                                                        <small class="text-muted" x-text="activity.details"></small>
+                                                    </div>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- System Alerts & Quick Actions -->
+                            <div class="col-lg-6">
+                                <div class="row g-4 g-lg-4 h-100">
+                                    <!-- System Alerts -->
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                <h5 class="card-title mb-0">System Alerts</h5>
+                                                <span class="badge bg-danger rounded-pill" x-text="systemAlerts.length"></span>
+                                            </div>
+                                            <div class="card-body p-0">
+                                                <template x-for="alert in systemAlerts.slice(0, 3)" :key="alert.id">
+                                                    <div class="alert mb-0 border-0 border-start-0 rounded-0" 
+                                                         :class="`alert-${alert.type}`">
+                                                        <div class="d-flex justify-content-between align-items-start">
+                                                            <div>
+                                                                <h6 class="alert-heading mb-1" x-text="alert.title"></h6>
+                                                                <p class="mb-0 small" x-text="alert.message"></p>
+                                                            </div>
+                                                            <small class="text-muted" x-text="alert.time"></small>
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                                <template x-if="systemAlerts.length === 0">
+                                                    <div class="text-center p-4 text-muted">
+                                                        <i class="bi bi-check-circle-fill text-success fs-1"></i>
+                                                        <p class="mb-0 mt-2">All systems operational</p>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Quick Actions -->
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title mb-0">Quick Actions</h5>
+                                            </div>
+                                            <div class="card-body p-3 p-lg-4">
+                                                <div class="row g-2 g-lg-3">
+                                                    <div class="col-6">
+                                                        <button class="btn btn-outline-primary btn-sm w-100" 
+                                                                data-bs-toggle="modal" data-bs-target="#userModal">
+                                                            <i class="bi bi-person-plus me-1"></i>
+                                                            Add User
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <button class="btn btn-outline-info btn-sm w-100"
+                                                                data-bs-toggle="modal" data-bs-target="#importModal">
+                                                            <i class="bi bi-upload me-1"></i>
+                                                            Import
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <button class="btn btn-outline-success btn-sm w-100"
+                                                                @click="exportUsers()">
+                                                            <i class="bi bi-download me-1"></i>
+                                                            Export
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <button class="btn btn-outline-warning btn-sm w-100"
+                                                                @click="sendBulkInvites()">
+                                                            <i class="bi bi-envelope me-1"></i>
+                                                            Invites
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button class="btn btn-outline-secondary btn-sm w-100"
+                                                                @click="generateReport()">
+                                                            <i class="bi bi-file-earmark-text me-1"></i>
+                                                            Generate Report
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Users Table -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h5 class="card-title mb-0">Users Directory</h5>
+                                    </div>
+                                    <div class="col-auto">
                                         <div class="d-flex gap-2">
-                                            <button class="btn btn-sm btn-outline-secondary" @click="bulkAction('activate')">
+                                            <!-- Search -->
+                                            <div class="position-relative">
+                                                <input type="search" 
+                                                       class="form-control form-control-sm" 
+                                                       placeholder="Search users..."
+                                                       x-model="searchQuery"
+                                                       @input="filterUsers()"
+                                                       style="width: 200px;">
+                                                <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-2 text-muted"></i>
+                                            </div>
+                                            
+                                            <!-- Status Filter -->
+                                            <select class="form-select form-select-sm" 
+                                                    x-model="statusFilter" 
+                                                    @change="filterUsers()"
+                                                    style="width: 150px;">
+                                                <option value="">All Status</option>
+                                                <option value="active">Active</option>
+                                                <option value="inactive">Inactive</option>
+                                                <option value="pending">Pending</option>
+                                            </select>
+                                            
+                                            <!-- Role Filter -->
+                                            <select class="form-select form-select-sm" 
+                                                    x-model="roleFilter" 
+                                                    @change="filterUsers()"
+                                                    style="width: 150px;">
+                                                <option value="">All Roles</option>
+                                                <option value="admin">Admin</option>
+                                                <option value="user">User</option>
+                                                <option value="moderator">Moderator</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <!-- Bulk Actions Bar -->
+                                <div class="bulk-actions-bar p-3 bg-primary bg-opacity-10 border-bottom border-primary border-opacity-25" 
+                                     x-show="selectedUsers.length > 0" 
+                                     x-transition:enter="transition ease-out duration-200"
+                                     x-transition:enter-start="opacity-0 transform translate-y-2"
+                                     x-transition:enter-end="opacity-100 transform translate-y-0">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                            <span class="fw-medium text-primary">
+                                                <span x-text="selectedUsers.length"></span> user<span x-show="selectedUsers.length !== 1">s</span> selected
+                                            </span>
+                                        </div>
+                                        <div class="d-flex gap-2">
+                                            <button class="btn btn-sm btn-success" @click="bulkAction('activate')">
                                                 <i class="bi bi-check-circle me-1"></i>Activate
                                             </button>
-                                            <button class="btn btn-sm btn-outline-secondary" @click="bulkAction('deactivate')">
+                                            <button class="btn btn-sm btn-warning" @click="bulkAction('deactivate')">
                                                 <i class="bi bi-x-circle me-1"></i>Deactivate
                                             </button>
-                                            <button class="btn btn-sm btn-outline-danger" @click="bulkAction('delete')">
+                                            <button class="btn btn-sm btn-danger" @click="bulkAction('delete')">
                                                 <i class="bi bi-trash me-1"></i>Delete
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary" @click="selectedUsers = []" title="Clear selection">
+                                                <i class="bi bi-x-lg"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -334,7 +606,7 @@
                                             <tr>
                                                 <th style="width: 40px;">
                                                     <input type="checkbox" 
-                                                           class="form-check-input" 
+                                                           class="form-check-input user-select-checkbox" 
                                                            @change="toggleAll($event.target.checked)"
                                                            :checked="selectedUsers.length === filteredUsers.length && filteredUsers.length > 0">
                                                 </th>
@@ -360,10 +632,10 @@
                                         </thead>
                                         <tbody>
                                             <template x-for="user in paginatedUsers" :key="user.id">
-                                                <tr>
+                                                <tr :class="{ 'selected': selectedUsers.includes(user.id) }">
                                                     <td>
                                                         <input type="checkbox" 
-                                                               class="form-check-input" 
+                                                               class="form-check-input user-select-checkbox" 
                                                                :value="user.id"
                                                                x-model="selectedUsers">
                                                     </td>
@@ -452,7 +724,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        
+                    </div> <!-- End Users Management Container -->
 
                 </div>
             </main>
@@ -462,7 +735,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-6">
-                            <p class="mb-0 text-muted">© 2024 Modern Bootstrap Admin Template</p>
+                            <p class="mb-0 text-muted">© 2025 Modern Bootstrap Admin Template</p>
                         </div>
                         <div class="col-md-6 text-md-end">
                             <p class="mb-0 text-muted">Built with Bootstrap 5.3.7</p>
@@ -558,183 +831,41 @@
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script type="module" src="/scripts/main.js"></script>
-    <script type="module">
-        // User Management Components
-        document.addEventListener('alpine:init', () => {
-            // Sample user data
-            const sampleUsers = [
-                { id: 1, name: 'John Doe', email: 'john@example.com', role: 'admin', status: 'active', lastActive: '2 minutes ago', avatar: '/assets/images/avatar-placeholder.svg' },
-                { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'user', status: 'active', lastActive: '1 hour ago', avatar: '/assets/images/avatar-placeholder.svg' },
-                { id: 3, name: 'Mike Johnson', email: 'mike@example.com', role: 'moderator', status: 'pending', lastActive: '1 day ago', avatar: '/assets/images/avatar-placeholder.svg' },
-                { id: 4, name: 'Sarah Wilson', email: 'sarah@example.com', role: 'user', status: 'active', lastActive: '5 minutes ago', avatar: '/assets/images/avatar-placeholder.svg' },
-                { id: 5, name: 'Bob Brown', email: 'bob@example.com', role: 'user', status: 'inactive', lastActive: '1 week ago', avatar: '/assets/images/avatar-placeholder.svg' },
-                { id: 6, name: 'Alice Davis', email: 'alice@example.com', role: 'admin', status: 'active', lastActive: '30 minutes ago', avatar: '/assets/images/avatar-placeholder.svg' },
-                { id: 7, name: 'Tom Miller', email: 'tom@example.com', role: 'user', status: 'active', lastActive: '3 hours ago', avatar: '/assets/images/avatar-placeholder.svg' },
-                { id: 8, name: 'Lisa Garcia', email: 'lisa@example.com', role: 'moderator', status: 'active', lastActive: '1 hour ago', avatar: '/assets/images/avatar-placeholder.svg' }
-            ];
+    <!-- Page-specific Component -->
+    <script type="module" src="./scripts/components/users.js"></script>
 
-            // User Table Component
-            Alpine.data('userTable', () => ({
-                users: sampleUsers,
-                filteredUsers: sampleUsers,
-                selectedUsers: [],
-                searchQuery: '',
-                statusFilter: '',
-                roleFilter: '',
-                sortField: 'name',
-                sortDirection: 'asc',
-                currentPage: 1,
-                itemsPerPage: 5,
+    <!-- Main App Script -->
+    <script type="module" src="./scripts/main.js"></script>
 
-                init() {
-                    this.filterUsers();
-                },
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggleButton = document.querySelector('[data-sidebar-toggle]');
+        const wrapper = document.getElementById('admin-wrapper');
 
-                filterUsers() {
-                    this.filteredUsers = this.users.filter(user => {
-                        const matchesSearch = user.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-                                            user.email.toLowerCase().includes(this.searchQuery.toLowerCase());
-                        const matchesStatus = !this.statusFilter || user.status === this.statusFilter;
-                        const matchesRole = !this.roleFilter || user.role === this.roleFilter;
-                        return matchesSearch && matchesStatus && matchesRole;
-                    });
-                    this.sortUsers();
-                    this.currentPage = 1;
-                },
+        if (toggleButton && wrapper) {
+          // Set initial state from localStorage
+          const isCollapsed = localStorage.getItem('sidebar-collapsed') === 'true';
+          if (isCollapsed) {
+            wrapper.classList.add('sidebar-collapsed');
+            toggleButton.classList.add('is-active');
+          }
 
-                sortBy(field) {
-                    if (this.sortField === field) {
-                        this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
-                    } else {
-                        this.sortField = field;
-                        this.sortDirection = 'asc';
-                    }
-                    this.sortUsers();
-                },
-
-                sortUsers() {
-                    this.filteredUsers.sort((a, b) => {
-                        let aVal = a[this.sortField];
-                        let bVal = b[this.sortField];
-                        
-                        if (typeof aVal === 'string') {
-                            aVal = aVal.toLowerCase();
-                            bVal = bVal.toLowerCase();
-                        }
-                        
-                        if (this.sortDirection === 'asc') {
-                            return aVal > bVal ? 1 : -1;
-                        } else {
-                            return aVal < bVal ? 1 : -1;
-                        }
-                    });
-                },
-
-                get paginatedUsers() {
-                    const start = (this.currentPage - 1) * this.itemsPerPage;
-                    const end = start + this.itemsPerPage;
-                    return this.filteredUsers.slice(start, end);
-                },
-
-                get totalPages() {
-                    return Math.ceil(this.filteredUsers.length / this.itemsPerPage);
-                },
-
-                get visiblePages() {
-                    const delta = 2;
-                    const range = [];
-                    const rangeWithDots = [];
-                    
-                    for (let i = Math.max(2, this.currentPage - delta);
-                         i <= Math.min(this.totalPages - 1, this.currentPage + delta);
-                         i++) {
-                        range.push(i);
-                    }
-                    
-                    if (this.currentPage - delta > 2) {
-                        rangeWithDots.push(1, '...');
-                    } else {
-                        rangeWithDots.push(1);
-                    }
-                    
-                    rangeWithDots.push(...range);
-                    
-                    if (this.currentPage + delta < this.totalPages - 1) {
-                        rangeWithDots.push('...', this.totalPages);
-                    } else {
-                        rangeWithDots.push(this.totalPages);
-                    }
-                    
-                    return rangeWithDots.filter((v, i, a) => a.indexOf(v) === i && v <= this.totalPages);
-                },
-
-                goToPage(page) {
-                    if (page >= 1 && page <= this.totalPages) {
-                        this.currentPage = page;
-                    }
-                },
-
-                toggleAll(checked) {
-                    if (checked) {
-                        this.selectedUsers = this.paginatedUsers.map(user => user.id);
-                    } else {
-                        this.selectedUsers = [];
-                    }
-                },
-
-                bulkAction(action) {
-                    alert(`${action} action for ${this.selectedUsers.length} users`);
-                    this.selectedUsers = [];
-                },
-
-                editUser(user) {
-                    alert(`Edit user: ${user.name}`);
-                },
-
-                viewUser(user) {
-                    alert(`View user profile: ${user.name}`);
-                },
-
-                deleteUser(user) {
-                    if (confirm(`Are you sure you want to delete ${user.name}?`)) {
-                        this.users = this.users.filter(u => u.id !== user.id);
-                        this.filterUsers();
-                    }
-                }
-            }));
-
-            // User Form Component
-            Alpine.data('userForm', () => ({
-                form: {
-                    firstName: '',
-                    lastName: '',
-                    email: '',
-                    role: '',
-                    status: '',
-                    phone: ''
-                },
-
-                saveUser() {
-                    alert('User saved successfully!');
-                    // Reset form
-                    this.form = {
-                        firstName: '',
-                        lastName: '',
-                        email: '',
-                        role: '',
-                        status: '',
-                        phone: ''
-                    };
-                }
-            }));
-        });
-
-        // Export function
-        function exportUsers() {
-            alert('Exporting users to CSV...');
+          // Attach click listener
+          toggleButton.addEventListener('click', () => {
+            const isCurrentlyCollapsed = wrapper.classList.contains('sidebar-collapsed');
+            
+            if (isCurrentlyCollapsed) {
+              wrapper.classList.remove('sidebar-collapsed');
+              toggleButton.classList.remove('is-active');
+              localStorage.setItem('sidebar-collapsed', 'false');
+            } else {
+              wrapper.classList.add('sidebar-collapsed');
+              toggleButton.classList.add('is-active');
+              localStorage.setItem('sidebar-collapsed', 'true');
+            }
+          });
         }
+      });
     </script>
 </body>
 </html> 

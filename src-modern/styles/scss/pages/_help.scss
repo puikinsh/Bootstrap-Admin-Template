@@ -5,25 +5,172 @@
 // Help page specific layout and styling
 .help-page {
   .help-layout {
-    @include page-layout();
+    min-height: calc(100vh - var(--header-height) - var(--footer-height) - 2rem);
   }
 
   .help-sidebar {
-    @include page-sidebar();
+    background: var(--bs-body-bg);
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--border-radius-lg);
+    padding: 0;
+    height: fit-content;
   }
 
   .help-nav {
+    padding: 1rem;
+
     .nav-link {
-      @include page-nav-link();
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: var(--border-radius);
+      text-decoration: none;
+      color: var(--bs-body-color);
+      transition: all var(--transition-fast);
+      border: 1px solid transparent;
+
+      &:hover {
+        background: rgba(var(--bs-primary-rgb), 0.1);
+        color: var(--bs-primary);
+        border-color: rgba(var(--bs-primary-rgb), 0.2);
+      }
+
+      &.active {
+        background: var(--bs-primary);
+        color: white;
+        border-color: var(--bs-primary);
+      }
+
+      i {
+        font-size: 1rem;
+        width: 20px;
+      }
     }
   }
 
   .help-section {
+    // No default styles - sections are shown/hidden via Alpine.js
+  }
+
+  // Article cards for help content
+  .article-card {
     background: var(--bs-body-bg);
-    border-radius: var(--bs-border-radius);
-    padding: 2rem;
-    margin-bottom: 2rem;
     border: 1px solid var(--bs-border-color);
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--box-shadow-lg);
+      border-color: rgba(var(--bs-primary-rgb), 0.3);
+    }
+
+    .article-meta {
+      font-size: 0.875rem;
+      color: var(--bs-secondary);
+
+      .rating-stars {
+        color: #fbbf24;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  // Contact cards
+  .contact-card {
+    background: var(--bs-body-bg);
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    text-align: center;
+    height: 100%;
+    transition: all var(--transition-base);
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--box-shadow-lg);
+    }
+
+    .contact-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 1rem;
+
+      i {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  // Status indicators
+  .status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.5rem;
+
+    &.status-operational {
+      background-color: var(--bs-success);
+    }
+
+    &.status-maintenance {
+      background-color: var(--bs-warning);
+    }
+
+    &.status-down {
+      background-color: var(--bs-danger);
+    }
+  }
+
+  // Video thumbnail
+  .video-thumbnail {
+    position: relative;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      transform: scale(1.02);
+    }
+
+    .video-play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--bs-primary);
+      transition: all var(--transition-fast);
+
+      &:hover {
+        background: white;
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+    }
+  }
+
+  // Search highlight
+  .search-highlight {
+    background-color: yellow;
+    padding: 0.1rem 0.2rem;
+    border-radius: 2px;
   }
 
   .faq-search {
@@ -56,55 +203,67 @@
   .faq-item {
     background: var(--bs-body-bg);
     border: 1px solid var(--bs-border-color);
-    border-radius: var(--bs-border-radius);
+    border-radius: var(--border-radius);
     margin-bottom: 1rem;
     overflow: hidden;
-    transition: all 0.2s ease-in-out;
+    transition: all var(--transition-fast);
 
     &:hover {
       border-color: var(--bs-primary);
-      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.15);
+      box-shadow: var(--box-shadow);
     }
 
     .faq-question {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.25rem 1.5rem;
-      cursor: pointer;
-      background: var(--bs-light);
-      border: none;
+      display: block;
       width: 100%;
+      padding: 1.25rem 1.5rem;
+      background: var(--bs-body-bg);
+      border: none;
       text-align: left;
       font-weight: 500;
-      color: var(--bs-emphasis-color);
-      transition: all 0.2s ease-in-out;
+      color: var(--bs-body-color);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      position: relative;
 
       &:hover {
-        background: var(--bs-primary-bg-subtle);
+        background: rgba(var(--bs-primary-rgb), 0.05);
       }
 
-      .question-text {
-        flex: 1;
-        margin: 0;
-      }
-
-      .question-icon {
-        flex-shrink: 0;
-        transition: transform 0.2s ease-in-out;
+      &.active {
+        background: rgba(var(--bs-primary-rgb), 0.1);
         color: var(--bs-primary);
-        font-size: 1.25rem;
       }
 
-      &[aria-expanded="true"] .question-icon {
-        transform: rotate(180deg);
+      &::after {
+        content: "+";
+        position: absolute;
+        right: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.25rem;
+        font-weight: bold;
+        transition: transform var(--transition-fast);
+      }
+
+      &.active::after {
+        content: "−";
+        transform: translateY(-50%) rotate(180deg);
       }
     }
 
     .faq-answer {
-      padding: 1.5rem;
-      border-top: 1px solid var(--bs-border-color);
-      background: var(--bs-body-bg);
+      padding: 0 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: all var(--transition-fast);
+      border-top: 1px solid transparent;
+
+      &.show {
+        max-height: 500px;
+        padding: 1.5rem;
+        border-top-color: var(--bs-border-color);
+      }
 
       p {
         margin-bottom: 1rem;
@@ -112,25 +271,6 @@
 
         &:last-child {
           margin-bottom: 0;
-        }
-      }
-
-      .answer-actions {
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px solid var(--bs-border-color);
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-
-        .helpful-text {
-          color: var(--bs-secondary-color);
-          font-size: 0.875rem;
-          margin: 0;
-        }
-
-        .btn {
-          font-size: 0.875rem;
         }
       }
     }

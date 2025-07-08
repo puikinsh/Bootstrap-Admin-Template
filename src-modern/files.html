@@ -244,28 +244,30 @@
             <main class="admin-main">
                 <div class="container-fluid p-4 p-lg-4">
                     
-                    <!-- Page Header -->
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div>
-                            <h1 class="h3 mb-0">File Manager</h1>
-                            <p class="text-muted mb-0">Organize, share, and manage your files</p>
+                    <!-- Files Container with Header -->
+                    <div x-data="filesComponent" x-init="init()">
+                        <!-- Page Header -->
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <h1 class="h3 mb-0">File Manager</h1>
+                                <p class="text-muted mb-0">Organize, share, and manage your files</p>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button type="button" class="btn btn-outline-secondary d-lg-none" @click="toggleSidebar()">
+                                    <i class="bi bi-folder me-2"></i>Folders
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary" @click="createFolder()">
+                                    <i class="bi bi-folder-plus me-2"></i>New Folder
+                                </button>
+                                <button type="button" class="btn btn-primary" @click="uploadFile()">
+                                    <i class="bi bi-cloud-upload me-2"></i>Upload
+                                </button>
+                            </div>
                         </div>
-                        <div class="d-flex gap-2">
-                            <button type="button" class="btn btn-outline-secondary d-lg-none" @click="toggleSidebar()">
-                                <i class="bi bi-folder me-2"></i>Folders
-                            </button>
-                            <button type="button" class="btn btn-outline-secondary" @click="createFolder()">
-                                <i class="bi bi-folder-plus me-2"></i>New Folder
-                            </button>
-                            <button type="button" class="btn btn-primary" @click="uploadFile()">
-                                <i class="bi bi-cloud-upload me-2"></i>Upload
-                            </button>
-                        </div>
-                    </div>
 
-                    <!-- Files Container -->
-                    <div x-data="filesComponent" x-init="init()" class="files-layout">
-                        <div class="row g-6 h-100">
+                        <!-- Files Layout -->
+                        <div class="files-layout">
+                        <div class="row g-3 h-100">
                             
                             <!-- Files Sidebar -->
                             <div class="col-lg-3 files-sidebar" :class="{ 'show': sidebarVisible }">
@@ -327,7 +329,7 @@
                                     <div class="recent-files">
                                         <template x-for="file in recentFiles" :key="file.id">
                                             <div class="recent-file-item" @click="openFile(file)">
-                                                <div :class="`file-icon ${file.type}`" style="width: 32px; height: 32px; margin-right: 0.75rem; margin-bottom: 0; font-size: 1rem;">
+                                                <div :class="`file-icon ${file.type}`">
                                                     <i :class="file.icon"></i>
                                                 </div>
                                                 <div class="flex-grow-1 min-width-0">
@@ -454,7 +456,7 @@
                                                     </td>
                                                     <td>
                                                         <div class="d-flex align-items-center">
-                                                            <div :class="`file-icon ${file.type}`" style="width: 32px; height: 32px; margin-right: 0.75rem; margin-bottom: 0; font-size: 1rem;">
+                                                            <div :class="`file-icon ${file.type}`" class="me-3">
                                                                 <i :class="file.icon"></i>
                                                             </div>
                                                             <span class="fw-medium" x-text="file.name"></span>
@@ -463,7 +465,7 @@
                                                     <td x-text="file.size"></td>
                                                     <td x-text="file.modifiedDate"></td>
                                                     <td>
-                                                        <span class="badge bg-light text-dark" x-text="file.typeLabel"></span>
+                                                        <span class="badge" x-text="file.typeLabel"></span>
                                                     </td>
                                                     <td>
                                                         <div class="dropdown">
@@ -495,6 +497,7 @@
 
                             </div>
 
+                        </div>
                         </div>
                     </div>
 

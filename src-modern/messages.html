@@ -264,183 +264,212 @@
                     </div>
 
                     <!-- Messages Container -->
-                    <div x-data="messagesComponent" x-init="init()" class="messages-layout messages-container">
-                        <div class="row g-0 h-100">
+                    <div x-data="messagesComponent" x-init="init()" class="messages-container">
+                        <div class="messages-layout">
                             
                             <!-- Conversations Sidebar -->
-                            <div class="col-lg-4 conversations-sidebar" :class="{ 'show': sidebarVisible }">
-                                <div class="p-3 border-bottom">
-                                    <div class="position-relative">
-                                        <input type="search" 
-                                               class="form-control form-control-sm" 
-                                               placeholder="Search conversations..."
-                                               x-model="searchQuery"
-                                               @input="filterConversations()">
-                                        <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-2 text-muted"></i>
+                            <div class="messages-sidebar" :class="{ 'mobile-show': sidebarVisible }">
+                                <!-- Sidebar Header -->
+                                <div class="messages-header">
+                                    <h5 class="header-title mb-0">Messages</h5>
+                                    <div class="d-flex gap-2 mt-3">
+                                        <div class="search-container flex-grow-1">
+                                            <input type="search" 
+                                                   class="form-control" 
+                                                   placeholder="Search conversations..."
+                                                   x-model="searchQuery"
+                                                   @input="filterConversations()">
+                                            <i class="bi bi-search search-icon"></i>
+                                        </div>
+                                        <button class="btn btn-primary btn-sm" @click="newConversation()" title="New Message">
+                                            <i class="bi bi-plus-lg"></i>
+                                        </button>
                                     </div>
                                 </div>
                                 
+                                <!-- Conversations List -->
                                 <div class="conversations-list">
                                     <template x-for="conversation in filteredConversations" :key="conversation.id">
-                                        <div class="conversation-item" 
-                                             :class="{ 
-                                                 'active': selectedConversation?.id === conversation.id,
-                                                 'unread': conversation.unread > 0 
-                                             }"
-                                             @click="selectConversation(conversation)">
-                                            <div class="d-flex align-items-start">
-                                                <div class="position-relative me-3">
-                                                    <img :src="conversation.avatar" 
-                                                         class="rounded-circle" 
-                                                         width="48" 
-                                                         height="48"
-                                                         :alt="conversation.name">
-                                                    <div class="online-status" x-show="conversation.online"></div>
+                                        <a href="#" class="conversation-item" 
+                                           :class="{ 
+                                               'active': selectedConversation?.id === conversation.id,
+                                               'unread': conversation.unread > 0 
+                                           }"
+                                           @click.prevent="selectConversation(conversation)">
+                                            <div class="conversation-avatar">
+                                                <img :src="conversation.avatar" 
+                                                     :alt="conversation.name"
+                                                     :class="{ 'online': conversation.online }">
+                                                <div class="online-indicator" x-show="conversation.online"></div>
+                                            </div>
+                                            <div class="conversation-info">
+                                                <div class="conversation-header">
+                                                    <h6 class="conversation-name" x-text="conversation.name"></h6>
+                                                    <span class="conversation-time" x-text="conversation.lastMessageTime"></span>
                                                 </div>
-                                                <div class="flex-grow-1 min-width-0">
-                                                    <div class="d-flex justify-content-between align-items-start">
-                                                        <h6 class="mb-1 fw-medium" x-text="conversation.name"></h6>
-                                                        <small class="text-muted" x-text="conversation.lastMessageTime"></small>
-                                                    </div>
-                                                    <p class="mb-1 text-muted small text-truncate" x-text="conversation.lastMessage"></p>
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <span class="badge bg-light text-dark small" x-text="conversation.type"></span>
-                                                        <span class="badge bg-danger rounded-pill" 
-                                                              x-show="conversation.unread > 0" 
-                                                              x-text="conversation.unread"></span>
-                                                    </div>
+                                                <p class="conversation-preview" x-text="conversation.lastMessage"></p>
+                                                <div class="conversation-footer">
+                                                    <span class="conversation-type" x-text="conversation.type"></span>
+                                                    <span class="unread-badge" 
+                                                          x-show="conversation.unread > 0" 
+                                                          x-text="conversation.unread"></span>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     </template>
+                                    
+                                    <!-- Empty state for conversations -->
+                                    <div x-show="filteredConversations.length === 0" class="empty-conversations">
+                                        <i class="bi bi-chat-dots"></i>
+                                        <p>No conversations found</p>
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- Chat Area -->
-                            <div class="col-lg-8">
-                                <div class="chat-area" x-show="selectedConversation">
+                            <div class="chat-area">
+                                <!-- Active Chat -->
+                                <div class="active-chat" x-show="selectedConversation">
                                     <!-- Chat Header -->
                                     <div class="chat-header">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="d-flex align-items-center">
-                                                <div class="position-relative me-3">
-                                                    <img :src="selectedConversation?.avatar" 
-                                                         class="rounded-circle" 
-                                                         width="40" 
-                                                         height="40"
-                                                         :alt="selectedConversation?.name">
-                                                    <div class="online-status" x-show="selectedConversation?.online"></div>
-                                                </div>
-                                                <div>
-                                                    <h6 class="mb-0" x-text="selectedConversation?.name"></h6>
-                                                    <small class="text-muted">
-                                                        <span x-show="selectedConversation?.online" class="text-success">● Online</span>
-                                                        <span x-show="!selectedConversation?.online" x-text="`Last seen ${selectedConversation?.lastSeen}`"></span>
-                                                    </small>
-                                                </div>
+                                        <div class="chat-user-info">
+                                            <button class="btn btn-link d-lg-none me-2 p-0" @click="sidebarVisible = !sidebarVisible">
+                                                <i class="bi bi-arrow-left fs-5"></i>
+                                            </button>
+                                            <div class="chat-avatar-container">
+                                                <img :src="selectedConversation?.avatar" 
+                                                     class="chat-avatar"
+                                                     :alt="selectedConversation?.name">
+                                                <div class="online-indicator" x-show="selectedConversation?.online"></div>
                                             </div>
-                                            <div class="d-flex gap-2">
-                                                <button class="btn btn-sm btn-outline-secondary" @click="videoCall()">
-                                                    <i class="bi bi-camera-video"></i>
+                                            <div class="chat-details">
+                                                <h6 class="chat-name" x-text="selectedConversation?.name"></h6>
+                                                <p class="chat-status" x-show="selectedConversation?.online">● Online</p>
+                                                <p class="chat-status" x-show="!selectedConversation?.online" x-text="`Last seen ${selectedConversation?.lastSeen}`"></p>
+                                            </div>
+                                        </div>
+                                        <div class="chat-actions">
+                                            <button class="btn" @click="videoCall()" title="Video Call">
+                                                <i class="bi bi-camera-video"></i>
+                                            </button>
+                                            <button class="btn" @click="voiceCall()" title="Voice Call">
+                                                <i class="bi bi-telephone"></i>
+                                            </button>
+                                            <div class="dropdown">
+                                                <button class="btn dropdown-toggle" data-bs-toggle="dropdown" title="More Options">
+                                                    <i class="bi bi-three-dots-vertical"></i>
                                                 </button>
-                                                <button class="btn btn-sm btn-outline-secondary" @click="voiceCall()">
-                                                    <i class="bi bi-telephone"></i>
-                                                </button>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" 
-                                                            type="button" 
-                                                            data-bs-toggle="dropdown">
-                                                        <i class="bi bi-three-dots"></i>
-                                                    </button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" href="#" @click="muteConversation()">
-                                                            <i class="bi bi-bell-slash me-2"></i>Mute
-                                                        </a></li>
-                                                        <li><a class="dropdown-item" href="#" @click="archiveConversation()">
-                                                            <i class="bi bi-archive me-2"></i>Archive
-                                                        </a></li>
-                                                        <li><a class="dropdown-item" href="#" @click="deleteConversation()">
-                                                            <i class="bi bi-trash me-2"></i>Delete
-                                                        </a></li>
-                                                    </ul>
-                                                </div>
+                                                <ul class="dropdown-menu dropdown-menu-end">
+                                                    <li><a class="dropdown-item" href="#" @click.prevent="muteConversation()">
+                                                        <i class="bi bi-bell-slash me-2"></i>Mute notifications
+                                                    </a></li>
+                                                    <li><a class="dropdown-item" href="#" @click.prevent="archiveConversation()">
+                                                        <i class="bi bi-archive me-2"></i>Archive chat
+                                                    </a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a class="dropdown-item text-danger" href="#" @click.prevent="deleteConversation()">
+                                                        <i class="bi bi-trash me-2"></i>Delete chat
+                                                    </a></li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- Messages -->
+                                    <!-- Messages Area -->
                                     <div class="chat-messages" id="chatMessages">
-                                        <template x-for="message in currentMessages" :key="message.id">
-                                            <div class="message" :class="{ 'sent': message.sent }">
-                                                <img x-show="!message.sent" 
-                                                     :src="selectedConversation?.avatar" 
-                                                     class="message-avatar" 
-                                                     :alt="selectedConversation?.name">
-                                                <div class="message-content">
-                                                    <div x-text="message.text"></div>
-                                                    <div class="message-time" x-text="message.time"></div>
+                                        <!-- Date Separator -->
+                                        <div class="date-separator">
+                                            <span class="date-label">Today</span>
+                                        </div>
+                                        
+                                        <!-- Messages -->
+                                        <div class="message-group">
+                                            <template x-for="message in currentMessages" :key="message.id">
+                                                <div class="message" :class="{ 'own-message': message.sent }">
+                                                    <img x-show="!message.sent" 
+                                                         :src="selectedConversation?.avatar" 
+                                                         class="message-avatar" 
+                                                         :alt="selectedConversation?.name">
+                                                    <div class="message-bubble">
+                                                        <div class="message-content">
+                                                            <p x-text="message.text"></p>
+                                                        </div>
+                                                        <div class="message-info">
+                                                            <span class="message-time" x-text="message.time"></span>
+                                                            <span x-show="message.sent" class="message-status">
+                                                                <i class="bi bi-check-all" x-show="message.read"></i>
+                                                                <i class="bi bi-check" x-show="!message.read"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </template>
+                                            </template>
+                                        </div>
                                         
                                         <!-- Typing Indicator -->
-                                        <div class="message" x-show="isTyping">
+                                        <div class="typing-indicator" x-show="isTyping">
                                             <img :src="selectedConversation?.avatar" 
-                                                 class="message-avatar" 
+                                                 class="typing-avatar" 
                                                  :alt="selectedConversation?.name">
-                                            <div class="typing-indicator">
+                                            <div class="typing-content">
                                                 <div class="typing-dots">
-                                                    <div class="typing-dot"></div>
-                                                    <div class="typing-dot"></div>
-                                                    <div class="typing-dot"></div>
+                                                    <div class="dot"></div>
+                                                    <div class="dot"></div>
+                                                    <div class="dot"></div>
                                                 </div>
-                                                <span class="ms-2 small text-muted">typing...</span>
+                                                <span class="typing-text">typing...</span>
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- Message Input -->
                                     <div class="chat-input">
-                                        <div class="d-flex align-items-end gap-2">
-                                            <button class="btn btn-outline-secondary" @click="toggleAttachment()">
-                                                <i class="bi bi-paperclip"></i>
-                                            </button>
-                                            <div class="flex-grow-1 position-relative">
+                                        <div class="input-container">
+                                            <div class="input-actions">
+                                                <button class="btn" @click="toggleAttachment()" title="Attach file">
+                                                    <i class="bi bi-paperclip"></i>
+                                                </button>
+                                            </div>
+                                            <div class="message-input">
                                                 <textarea class="form-control" 
                                                           placeholder="Type a message..." 
                                                           rows="1"
                                                           x-model="newMessage"
                                                           @keydown.enter.prevent="sendMessage()"
-                                                          @input="handleTyping()"
+                                                          @input="handleTyping(); autoResize($event)"
                                                           style="resize: none;"></textarea>
-                                                <div class="emoji-picker" x-show="showEmojiPicker">
-                                                    <div class="emoji-grid">
-                                                        <template x-for="emoji in emojis" :key="emoji">
-                                                            <button class="emoji-btn" @click="addEmoji(emoji)" x-text="emoji"></button>
-                                                        </template>
-                                                    </div>
-                                                </div>
                                             </div>
-                                            <button class="btn btn-outline-secondary" @click="toggleEmojiPicker()">
-                                                <i class="bi bi-emoji-smile"></i>
-                                            </button>
-                                            <button class="btn btn-primary" @click="sendMessage()" :disabled="!newMessage.trim()">
-                                                <i class="bi bi-send"></i>
-                                            </button>
+                                            <div class="input-actions">
+                                                <button class="btn" @click="toggleEmojiPicker()" title="Add emoji">
+                                                    <i class="bi bi-emoji-smile"></i>
+                                                </button>
+                                                <button class="btn btn-primary" @click="sendMessage()" :disabled="!newMessage.trim()" title="Send message">
+                                                    <i class="bi bi-send"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Emoji Picker -->
+                                        <div class="emoji-picker" x-show="showEmojiPicker" x-transition>
+                                            <div class="emoji-grid">
+                                                <template x-for="emoji in emojis" :key="emoji">
+                                                    <button class="emoji-btn" @click="addEmoji(emoji)" x-text="emoji"></button>
+                                                </template>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- No Conversation Selected -->
-                                <div class="empty-state" x-show="!selectedConversation">
-                                    <div class="text-center">
-                                        <i class="bi bi-chat-dots fs-1 text-muted mb-3"></i>
-                                        <h5 class="text-muted">Select a conversation to start messaging</h5>
-                                        <p class="text-muted">Choose from your existing conversations or start a new one</p>
-                                        <button class="btn btn-primary" @click="newConversation()">
-                                            <i class="bi bi-plus-lg me-2"></i>New Message
-                                        </button>
+                                <!-- Empty Chat State -->
+                                <div class="empty-chat" x-show="!selectedConversation">
+                                    <div class="empty-icon">
+                                        <i class="bi bi-chat-dots"></i>
                                     </div>
+                                    <h5 class="empty-text">Select a conversation to start messaging</h5>
+                                    <p class="text-muted mb-4">Choose from your existing conversations or start a new one</p>
+                                    <button class="btn btn-primary" @click="newConversation()">
+                                        <i class="bi bi-plus-lg me-2"></i>Start New Conversation
+                                    </button>
                                 </div>
                             </div>
 

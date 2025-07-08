@@ -454,85 +454,318 @@ document.addEventListener('alpine:init', () => {
 
     // File Actions
     openFile(file) {
-      this.showNotification(`Opening ${file.name}`, 'info');
+      if (typeof Swal !== 'undefined') {
+        Swal.fire({
+          title: `Opening ${file.name}`,
+          html: `
+            <div class="text-start">
+              <p><strong>📁 File:</strong> ${file.name}</p>
+              <p><strong>📏 Size:</strong> ${file.size}</p>
+              <p><strong>📅 Modified:</strong> ${file.modifiedDate}</p>
+              <p><strong>📂 Folder:</strong> ${file.folder}</p>
+              <p><strong>🏷️ Type:</strong> ${file.typeLabel}</p>
+            </div>
+          `,
+          icon: 'info',
+          showCancelButton: true,
+          confirmButtonText: 'Open',
+          cancelButtonText: 'Close',
+          confirmButtonColor: 'var(--bs-primary)'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.showNotification(`Opening ${file.name} in default application...`, 'success');
+          }
+        });
+      } else {
+        this.showNotification(`Opening ${file.name}`, 'info');
+      }
     },
 
     downloadFile(file) {
-      this.showNotification(`Downloading ${file.name}...`, 'success');
+      this.showNotification(`📥 Downloading ${file.name}...`, 'success');
+      // Simulate download progress
+      setTimeout(() => {
+        this.showNotification(`✅ ${file.name} downloaded successfully!`, 'success');
+      }, 2000);
     },
 
     downloadSelected() {
       if (this.selectedFiles.length === 0) {
-        this.showNotification('No files selected', 'warning');
+        this.showNotification('❌ No files selected', 'warning');
         return;
       }
-      this.showNotification(`Downloading ${this.selectedFiles.length} files...`, 'success');
+      
+      if (typeof Swal !== 'undefined') {
+        Swal.fire({
+          title: 'Download Selected Files',
+          text: `Download ${this.selectedFiles.length} selected files as a ZIP archive?`,
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonText: 'Download ZIP',
+          cancelButtonText: 'Cancel',
+          confirmButtonColor: 'var(--bs-primary)'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.showNotification(`📦 Creating ZIP archive with ${this.selectedFiles.length} files...`, 'success');
+            setTimeout(() => {
+              this.showNotification(`✅ ZIP archive downloaded successfully!`, 'success');
+            }, 3000);
+          }
+        });
+      } else {
+        this.showNotification(`Downloading ${this.selectedFiles.length} files...`, 'success');
+      }
     },
 
     shareFile(file) {
-      this.showNotification('Share dialog would open here', 'info');
+      if (typeof Swal !== 'undefined') {
+        Swal.fire({
+          title: `Share ${file.name}`,
+          html: `
+            <div class="text-start">
+              <div class="mb-3">
+                <label class="form-label">Share with:</label>
+                <input type="email" class="form-control" placeholder="Enter email address..." id="shareEmail">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Permissions:</label>
+                <select class="form-select" id="sharePermissions">
+                  <option value="view">View only</option>
+                  <option value="edit">Can edit</option>
+                  <option value="download">Can download</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Share link:</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" value="https://files.app/share/${file.id}" readonly>
+                  <button class="btn btn-outline-secondary" type="button" onclick="navigator.clipboard.writeText('https://files.app/share/${file.id}')">Copy</button>
+                </div>
+              </div>
+            </div>
+          `,
+          showCancelButton: true,
+          confirmButtonText: 'Send Invite',
+          cancelButtonText: 'Close',
+          confirmButtonColor: 'var(--bs-primary)'
+        });
+      } else {
+        this.showNotification('Share dialog would open here', 'info');
+      }
     },
 
     renameFile(file) {
-      const newName = prompt('Enter new file name:', file.name);
-      if (newName && newName !== file.name) {
-        file.name = newName;
-        this.showNotification('File renamed successfully', 'success');
+      if (typeof Swal !== 'undefined') {
+        Swal.fire({
+          title: 'Rename File',
+          input: 'text',
+          inputValue: file.name,
+          inputPlaceholder: 'Enter new file name...',
+          showCancelButton: true,
+          confirmButtonText: 'Rename',
+          cancelButtonText: 'Cancel',
+          confirmButtonColor: 'var(--bs-primary)',
+          inputValidator: (value) => {
+            if (!value || value.trim() === '') {
+              return 'Please enter a valid file name';
+            }
+            if (value === file.name) {
+              return 'Please enter a different name';
+            }
+          }
+        }).then((result) => {
+          if (result.isConfirmed && result.value) {
+            const oldName = file.name;
+            file.name = result.value.trim();
+            this.showNotification(`📝 "${oldName}" renamed to "${file.name}"`, 'success');
+          }
+        });
+      } else {
+        const newName = prompt('Enter new file name:', file.name);
+        if (newName && newName !== file.name) {
+          file.name = newName;
+          this.showNotification('File renamed successfully', 'success');
+        }
       }
     },
 
     deleteFile(file) {
-      if (confirm(`Are you sure you want to delete "${file.name}"?`)) {
-        const index = this.currentFiles.findIndex(f => f.id === file.id);
-        if (index > -1) {
-          this.currentFiles.splice(index, 1);
+      if (typeof Swal !== 'undefined') {
+        Swal.fire({
+          title: 'Delete File',
+          text: `Are you sure you want to delete "${file.name}"? This action cannot be undone.`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Delete',
+          cancelButtonText: 'Cancel',
+          confirmButtonColor: 'var(--bs-danger)',
+          cancelButtonColor: 'var(--bs-secondary)'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.performFileDelete(file);
+            this.showNotification(`🗑️ "${file.name}" moved to trash`, 'success');
+          }
+        });
+      } else {
+        if (confirm(`Are you sure you want to delete "${file.name}"?`)) {
+          this.performFileDelete(file);
+          this.showNotification('File deleted successfully', 'success');
         }
-        
-        const allIndex = this.allFiles.findIndex(f => f.id === file.id);
-        if (allIndex > -1) {
-          this.allFiles.splice(allIndex, 1);
-        }
-        
-        this.selectedFiles = this.selectedFiles.filter(id => id !== file.id);
-        this.showNotification('File deleted successfully', 'success');
       }
+    },
+
+    performFileDelete(file) {
+      const index = this.currentFiles.findIndex(f => f.id === file.id);
+      if (index > -1) {
+        this.currentFiles.splice(index, 1);
+      }
+      
+      const allIndex = this.allFiles.findIndex(f => f.id === file.id);
+      if (allIndex > -1) {
+        this.allFiles.splice(allIndex, 1);
+      }
+      
+      this.selectedFiles = this.selectedFiles.filter(id => id !== file.id);
     },
 
     deleteSelected() {
       if (this.selectedFiles.length === 0) {
-        this.showNotification('No files selected', 'warning');
+        this.showNotification('❌ No files selected', 'warning');
         return;
       }
       
-      if (confirm(`Are you sure you want to delete ${this.selectedFiles.length} files?`)) {
-        this.currentFiles = this.currentFiles.filter(f => !this.selectedFiles.includes(f.id));
-        this.allFiles = this.allFiles.filter(f => !this.selectedFiles.includes(f.id));
-        this.selectedFiles = [];
-        this.showNotification('Files deleted successfully', 'success');
+      if (typeof Swal !== 'undefined') {
+        Swal.fire({
+          title: 'Delete Selected Files',
+          text: `Are you sure you want to delete ${this.selectedFiles.length} selected files? This action cannot be undone.`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Delete All',
+          cancelButtonText: 'Cancel',
+          confirmButtonColor: 'var(--bs-danger)',
+          cancelButtonColor: 'var(--bs-secondary)'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            const deletedCount = this.selectedFiles.length;
+            this.currentFiles = this.currentFiles.filter(f => !this.selectedFiles.includes(f.id));
+            this.allFiles = this.allFiles.filter(f => !this.selectedFiles.includes(f.id));
+            this.selectedFiles = [];
+            this.showNotification(`🗑️ ${deletedCount} files moved to trash`, 'success');
+          }
+        });
+      } else {
+        if (confirm(`Are you sure you want to delete ${this.selectedFiles.length} files?`)) {
+          this.currentFiles = this.currentFiles.filter(f => !this.selectedFiles.includes(f.id));
+          this.allFiles = this.allFiles.filter(f => !this.selectedFiles.includes(f.id));
+          this.selectedFiles = [];
+          this.showNotification('Files deleted successfully', 'success');
+        }
       }
     },
 
     // File Management
     uploadFile() {
-      this.showNotification('File upload dialog would open here', 'info');
+      if (typeof Swal !== 'undefined') {
+        Swal.fire({
+          title: 'Upload Files',
+          html: `
+            <div class="text-start">
+              <div class="mb-3">
+                <label class="form-label">Select files to upload:</label>
+                <input type="file" class="form-control" multiple accept="*/*" id="fileUpload">
+              </div>
+              <div class="mb-3">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="overwriteFiles">
+                  <label class="form-check-label" for="overwriteFiles">
+                    Overwrite existing files
+                  </label>
+                </div>
+              </div>
+              <div class="upload-preview d-none">
+                <h6>Files to upload:</h6>
+                <ul id="fileList" class="list-unstyled"></ul>
+              </div>
+            </div>
+          `,
+          showCancelButton: true,
+          confirmButtonText: 'Upload',
+          cancelButtonText: 'Cancel',
+          confirmButtonColor: 'var(--bs-primary)',
+          preConfirm: () => {
+            const fileInput = document.getElementById('fileUpload');
+            if (fileInput.files.length === 0) {
+              Swal.showValidationMessage('Please select at least one file');
+              return false;
+            }
+            return Array.from(fileInput.files);
+          }
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.showNotification(`☁️ Uploading ${result.value.length} files...`, 'success');
+            setTimeout(() => {
+              this.showNotification(`✅ ${result.value.length} files uploaded successfully!`, 'success');
+            }, 2500);
+          }
+        });
+      } else {
+        this.showNotification('File upload dialog would open here', 'info');
+      }
     },
 
     createFolder() {
-      const folderName = prompt('Enter folder name:');
-      if (folderName) {
-        const newFolder = {
-          id: this.folders.length + 1,
-          name: folderName,
-          fileCount: 0,
-          icon: 'bi-folder-fill'
-        };
-        this.folders.push(newFolder);
-        this.showNotification(`Folder "${folderName}" created successfully`, 'success');
+      if (typeof Swal !== 'undefined') {
+        Swal.fire({
+          title: 'Create New Folder',
+          input: 'text',
+          inputPlaceholder: 'Enter folder name...',
+          showCancelButton: true,
+          confirmButtonText: 'Create',
+          cancelButtonText: 'Cancel',
+          confirmButtonColor: 'var(--bs-primary)',
+          inputValidator: (value) => {
+            if (!value || value.trim() === '') {
+              return 'Please enter a folder name';
+            }
+            if (this.folders.some(f => f.name.toLowerCase() === value.toLowerCase())) {
+              return 'A folder with this name already exists';
+            }
+          }
+        }).then((result) => {
+          if (result.isConfirmed && result.value) {
+            const newFolder = {
+              id: this.folders.length + 1,
+              name: result.value.trim(),
+              fileCount: 0,
+              icon: 'bi-folder-fill'
+            };
+            this.folders.push(newFolder);
+            this.showNotification(`📁 Folder "${newFolder.name}" created successfully`, 'success');
+          }
+        });
+      } else {
+        const folderName = prompt('Enter folder name:');
+        if (folderName) {
+          const newFolder = {
+            id: this.folders.length + 1,
+            name: folderName,
+            fileCount: 0,
+            icon: 'bi-folder-fill'
+          };
+          this.folders.push(newFolder);
+          this.showNotification(`Folder "${folderName}" created successfully`, 'success');
+        }
       }
     },
 
     refreshFiles() {
-      this.showNotification('Files refreshed', 'success');
+      this.showNotification('🔄 Refreshing files...', 'info');
+      // Simulate refresh
+      setTimeout(() => {
+        this.loadSampleData();
+        this.sortFiles();
+        this.showNotification('✅ Files refreshed successfully!', 'success');
+      }, 1000);
     },
 
     showNotification(message, type = 'info') {
@@ -554,9 +787,23 @@ document.addEventListener('alpine:init', () => {
   // Search component for header
   Alpine.data('searchComponent', () => ({
     query: '',
+    results: [],
     
     search() {
       console.log('Searching for:', this.query);
+      // Clear results or populate with search results
+      if (this.query.length > 2) {
+        // Mock search results for demo
+        this.results = [
+          { title: 'Calendar Events', url: '/calendar', type: 'Page' },
+          { title: 'File Manager', url: '/files', type: 'Page' },
+          { title: 'User Settings', url: '/settings', type: 'Page' }
+        ].filter(item => 
+          item.title.toLowerCase().includes(this.query.toLowerCase())
+        );
+      } else {
+        this.results = [];
+      }
     }
   }));
 

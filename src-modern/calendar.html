@@ -244,51 +244,74 @@
             <main class="admin-main">
                 <div class="container-fluid p-4 p-lg-4">
                     
-                    <!-- Page Header -->
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div>
-                            <h1 class="h3 mb-0">Calendar</h1>
-                            <p class="text-muted mb-0">Schedule and manage your events</p>
+                    <!-- Calendar Container with Header -->
+                    <div x-data="calendarComponent" x-init="init()">
+                        <!-- Page Header -->
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <h1 class="h3 mb-0">Calendar</h1>
+                                <p class="text-muted mb-0">Schedule and manage your events</p>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button type="button" class="btn btn-outline-secondary d-lg-none" @click="toggleSidebar()">
+                                    <i class="bi bi-calendar3 me-2"></i>Mini Calendar
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary" @click="exportCalendar()">
+                                    <i class="bi bi-download me-2"></i>Export
+                                </button>
+                                <button type="button" class="btn btn-primary" @click="addEvent()">
+                                    <i class="bi bi-plus-lg me-2"></i>Add Event
+                                </button>
+                            </div>
                         </div>
-                        <div class="d-flex gap-2">
-                            <button type="button" class="btn btn-outline-secondary d-lg-none" @click="toggleSidebar()">
-                                <i class="bi bi-calendar3 me-2"></i>Mini Calendar
-                            </button>
-                            <button type="button" class="btn btn-outline-secondary" @click="exportCalendar()">
-                                <i class="bi bi-download me-2"></i>Export
-                            </button>
-                            <button type="button" class="btn btn-primary" @click="addEvent()">
-                                <i class="bi bi-plus-lg me-2"></i>Add Event
-                            </button>
-                        </div>
-                    </div>
 
-                    <!-- Calendar Container -->
-                    <div x-data="calendarComponent" x-init="init()" class="calendar-layout">
-                        <div class="row g-6 h-100">
+                        <!-- Calendar Container -->
+                        <div class="calendar-container">
+                        <div class="calendar-layout">
                             
                             <!-- Calendar Sidebar -->
-                            <div class="col-lg-3 calendar-sidebar" :class="{ 'show': sidebarVisible }">
+                            <div class="calendar-sidebar" :class="{ 'mobile-show': sidebarVisible }">
+                                <!-- Sidebar Header -->
+                                <div class="calendar-sidebar-header">
+                                    <h5 class="sidebar-title mb-0">Calendar</h5>
+                                    <button class="btn btn-primary btn-sm" @click="addEvent()" title="Add Event">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
+                                </div>
                                 
                                 <!-- Mini Calendar -->
-                                <div class="mini-calendar mb-4">
+                                <div class="mini-calendar">
                                     <div class="mini-calendar-header">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <button class="btn btn-sm text-white" @click="previousMonth()">
+                                            <button class="btn btn-sm btn-outline-secondary" @click="previousMonth()">
                                                 <i class="bi bi-chevron-left"></i>
                                             </button>
-                                            <span x-text="currentMonthYear"></span>
-                                            <button class="btn btn-sm text-white" @click="nextMonth()">
+                                            <h6 class="mb-0 fw-semibold" x-text="currentMonthYear"></h6>
+                                            <button class="btn btn-sm btn-outline-secondary" @click="nextMonth()">
                                                 <i class="bi bi-chevron-right"></i>
                                             </button>
                                         </div>
                                     </div>
+                                    
+                                    <!-- Mini Calendar Days Header -->
+                                    <div class="mini-calendar-weekdays">
+                                        <div class="weekday">S</div>
+                                        <div class="weekday">M</div>
+                                        <div class="weekday">T</div>
+                                        <div class="weekday">W</div>
+                                        <div class="weekday">T</div>
+                                        <div class="weekday">F</div>
+                                        <div class="weekday">S</div>
+                                    </div>
+                                    
                                     <div class="mini-calendar-grid">
                                         <template x-for="day in miniCalendarDays" :key="day.date">
                                             <div class="mini-calendar-day" 
                                                  :class="{ 
                                                      'today': day.isToday, 
-                                                     'other-month': day.isOtherMonth 
+                                                     'other-month': day.isOtherMonth,
+                                                     'selected': day.isSelected,
+                                                     'has-events': day.hasEvents
                                                  }"
                                                  @click="selectDate(day.date)"
                                                  x-text="day.day"></div>
@@ -296,197 +319,245 @@
                                     </div>
                                 </div>
 
-                                <!-- Event Filters -->
-                                <div class="mb-4">
-                                    <h6 class="fw-bold mb-3">Event Types</h6>
-                                    <div class="calendar-legend">
-                                        <label class="legend-item">
-                                            <input type="checkbox" x-model="visibleTypes" value="event" class="me-2">
-                                            <span class="event-badge" style="background: #6366f1;"></span>
-                                            Events
+                                <!-- Event Categories -->
+                                <div class="event-categories">
+                                    <h6 class="category-title">Event Categories</h6>
+                                    <div class="category-list">
+                                        <label class="category-item">
+                                            <input type="checkbox" x-model="visibleTypes" value="event" class="form-check-input">
+                                            <span class="category-color" style="background: var(--bs-primary);"></span>
+                                            <span class="category-name">Events</span>
+                                            <span class="category-count" x-text="getCategoryCount('event')"></span>
                                         </label>
-                                        <label class="legend-item">
-                                            <input type="checkbox" x-model="visibleTypes" value="meeting" class="me-2">
-                                            <span class="event-badge" style="background: #10b981;"></span>
-                                            Meetings
+                                        <label class="category-item">
+                                            <input type="checkbox" x-model="visibleTypes" value="meeting" class="form-check-input">
+                                            <span class="category-color" style="background: var(--bs-success);"></span>
+                                            <span class="category-name">Meetings</span>
+                                            <span class="category-count" x-text="getCategoryCount('meeting')"></span>
                                         </label>
-                                        <label class="legend-item">
-                                            <input type="checkbox" x-model="visibleTypes" value="task" class="me-2">
-                                            <span class="event-badge" style="background: #f59e0b;"></span>
-                                            Tasks
+                                        <label class="category-item">
+                                            <input type="checkbox" x-model="visibleTypes" value="task" class="form-check-input">
+                                            <span class="category-color" style="background: var(--bs-warning);"></span>
+                                            <span class="category-name">Tasks</span>
+                                            <span class="category-count" x-text="getCategoryCount('task')"></span>
                                         </label>
-                                        <label class="legend-item">
-                                            <input type="checkbox" x-model="visibleTypes" value="reminder" class="me-2">
-                                            <span class="event-badge" style="background: #8b5cf6;"></span>
-                                            Reminders
+                                        <label class="category-item">
+                                            <input type="checkbox" x-model="visibleTypes" value="reminder" class="form-check-input">
+                                            <span class="category-color" style="background: #8b5cf6;"></span>
+                                            <span class="category-name">Reminders</span>
+                                            <span class="category-count" x-text="getCategoryCount('reminder')"></span>
                                         </label>
-                                        <label class="legend-item">
-                                            <input type="checkbox" x-model="visibleTypes" value="deadline" class="me-2">
-                                            <span class="event-badge" style="background: #ef4444;"></span>
-                                            Deadlines
+                                        <label class="category-item">
+                                            <input type="checkbox" x-model="visibleTypes" value="deadline" class="form-check-input">
+                                            <span class="category-color" style="background: var(--bs-danger);"></span>
+                                            <span class="category-name">Deadlines</span>
+                                            <span class="category-count" x-text="getCategoryCount('deadline')"></span>
                                         </label>
                                     </div>
                                 </div>
 
                                 <!-- Upcoming Events -->
-                                <div>
-                                    <h6 class="fw-bold mb-3">Upcoming Events</h6>
-                                    <div class="upcoming-events">
-                                        <template x-for="event in upcomingEvents" :key="event.id">
-                                            <div class="event-item" @click="viewEvent(event)">
-                                                <div class="event-time" x-text="event.timeStr"></div>
-                                                <div class="event-title" x-text="event.title"></div>
-                                                <div class="small text-muted" x-text="event.description"></div>
+                                <div class="upcoming-events">
+                                    <h6 class="upcoming-title">Upcoming Events</h6>
+                                    <div class="upcoming-list">
+                                        <template x-for="event in upcomingEvents.slice(0, 5)" :key="event.id">
+                                            <div class="upcoming-item" @click="viewEvent(event)">
+                                                <div class="upcoming-time">
+                                                    <span class="time" x-text="event.timeStr"></span>
+                                                    <span class="date" x-text="event.dateStr"></span>
+                                                </div>
+                                                <div class="upcoming-content">
+                                                    <h6 class="upcoming-event-title" x-text="event.title"></h6>
+                                                    <p class="upcoming-description" x-text="event.description"></p>
+                                                </div>
+                                                <div class="upcoming-indicator" :style="`background: ${getCategoryColor(event.type)}`"></div>
                                             </div>
                                         </template>
+                                        
+                                        <!-- Empty state -->
+                                        <div x-show="upcomingEvents.length === 0" class="upcoming-empty">
+                                            <i class="bi bi-calendar-check"></i>
+                                            <p>No upcoming events</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Calendar Main -->
-                            <div class="col-lg-9 calendar-main">
+                            <!-- Calendar Main Area -->
+                            <div class="calendar-main">
                                 
-                                <!-- Calendar Navigation -->
-                                <div class="calendar-nav">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <button class="btn btn-outline-secondary" @click="previousPeriod()">
-                                            <i class="bi bi-chevron-left"></i>
+                                <!-- Calendar Header -->
+                                <div class="calendar-header">
+                                    <div class="calendar-nav-left">
+                                        <button class="btn btn-link d-lg-none me-2 p-0" @click="sidebarVisible = !sidebarVisible">
+                                            <i class="bi bi-list fs-5"></i>
                                         </button>
-                                        <h4 class="mb-0" x-text="currentPeriodTitle"></h4>
-                                        <button class="btn btn-outline-secondary" @click="nextPeriod()">
-                                            <i class="bi bi-chevron-right"></i>
-                                        </button>
-                                        <button class="btn btn-outline-primary" @click="goToToday()">Today</button>
+                                        <div class="calendar-nav-controls">
+                                            <button class="btn btn-outline-secondary" @click="previousPeriod()">
+                                                <i class="bi bi-chevron-left"></i>
+                                            </button>
+                                            <button class="btn btn-outline-primary" @click="goToToday()">Today</button>
+                                            <button class="btn btn-outline-secondary" @click="nextPeriod()">
+                                                <i class="bi bi-chevron-right"></i>
+                                            </button>
+                                        </div>
+                                        <h3 class="calendar-title" x-text="currentPeriodTitle"></h3>
                                     </div>
                                     
-                                    <div class="view-switcher">
-                                        <button class="view-btn" :class="{ 'active': currentView === 'month' }" @click="switchView('month')">Month</button>
-                                        <button class="view-btn" :class="{ 'active': currentView === 'week' }" @click="switchView('week')">Week</button>
-                                        <button class="view-btn" :class="{ 'active': currentView === 'day' }" @click="switchView('day')">Day</button>
-                                    </div>
-                                </div>
-
-                                <!-- Calendar Grid -->
-                                <div x-show="currentView === 'month'">
-                                    <div class="calendar-header">
-                                        <div class="calendar-header-day">Sun</div>
-                                        <div class="calendar-header-day">Mon</div>
-                                        <div class="calendar-header-day">Tue</div>
-                                        <div class="calendar-header-day">Wed</div>
-                                        <div class="calendar-header-day">Thu</div>
-                                        <div class="calendar-header-day">Fri</div>
-                                        <div class="calendar-header-day">Sat</div>
-                                    </div>
-                                    <div class="calendar-grid">
-                                        <template x-for="day in calendarDays" :key="day.date">
-                                            <div class="calendar-day" 
-                                                 :class="{ 
-                                                     'today': day.isToday, 
-                                                     'other-month': day.isOtherMonth,
-                                                     'selected': day.isSelected
-                                                 }"
-                                                 @click="selectDay(day)">
-                                                <div class="day-number" x-text="day.day"></div>
-                                                <template x-for="event in day.events" :key="event.id">
-                                                    <div class="event" 
-                                                         :class="event.type"
-                                                         @click.stop="viewEvent(event)"
-                                                         x-text="event.title"></div>
-                                                </template>
-                                            </div>
-                                        </template>
-                                    </div>
-                                </div>
-
-                                <!-- Week View -->
-                                <div x-show="currentView === 'week'">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered">
-                                                    <thead>
-                                                        <tr>
-                                                            <th style="width: 80px;">Time</th>
-                                                            <template x-for="day in weekDays" :key="day.date">
-                                                                <th class="text-center">
-                                                                    <div x-text="day.dayName"></div>
-                                                                    <small x-text="day.dayNumber"></small>
-                                                                </th>
-                                                            </template>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <template x-for="hour in hours" :key="hour">
-                                                            <tr>
-                                                                <td class="text-center text-muted small" x-text="hour"></td>
-                                                                <template x-for="day in weekDays" :key="`${day.date}-${hour}`">
-                                                                    <td class="position-relative" style="height: 60px; cursor: pointer;" @click="addEventAtTime(day.date, hour)">
-                                                                        <template x-for="event in getEventsForDate(day.date)" :key="event.id">
-                                                                            <div x-show="eventMatchesHour(event, hour)"
-                                                                                 class="position-absolute w-100 px-1" 
-                                                                                 style="top: 2px; left: 2px; right: 2px;">
-                                                                                <div class="badge w-100 text-start" 
-                                                                                     :class="getBadgeClass(event.type)"
-                                                                                     @click.stop="viewEvent(event)"
-                                                                                     x-text="event.title"></div>
-                                                                            </div>
-                                                                        </template>
-                                                                    </td>
-                                                                </template>
-                                                            </tr>
-                                                        </template>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                    <div class="calendar-nav-right">
+                                        <div class="view-switcher">
+                                            <button class="view-btn" :class="{ 'active': currentView === 'month' }" @click="switchView('month')">
+                                                <i class="bi bi-calendar3 me-1"></i>Month
+                                            </button>
+                                            <button class="view-btn" :class="{ 'active': currentView === 'week' }" @click="switchView('week')">
+                                                <i class="bi bi-calendar2-week me-1"></i>Week
+                                            </button>
+                                            <button class="view-btn" :class="{ 'active': currentView === 'day' }" @click="switchView('day')">
+                                                <i class="bi bi-calendar-day me-1"></i>Day
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Day View -->
-                                <div x-show="currentView === 'day'">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="card">
-                                                <div class="card-header bg-primary text-white text-center">
-                                                    <h5 class="mb-0" x-text="selectedDayTitle"></h5>
-                                                    <small x-text="selectedDayDate"></small>
-                                                </div>
-                                                <div class="card-body p-0">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-bordered mb-0">
-                                                            <tbody>
-                                                                <template x-for="hour in hours" :key="hour">
-                                                                    <tr>
-                                                                        <td class="text-center text-muted small" style="width: 80px;" x-text="hour"></td>
-                                                                        <td class="position-relative" style="height: 60px; cursor: pointer;" @click="addEventAtTime(selectedDay, hour)">
-                                                                            <template x-for="event in getEventsForDate(selectedDay)" :key="event.id">
-                                                                                <div x-show="eventMatchesHour(event, hour)"
-                                                                                     class="position-absolute w-100 px-2" 
-                                                                                     style="top: 4px; left: 4px; right: 4px;">
-                                                                                    <div class="alert mb-0 py-1" 
-                                                                                         :class="getAlertClass(event.type)"
-                                                                                         @click.stop="viewEvent(event)">
-                                                                                        <strong x-text="event.time"></strong> - <span x-text="event.title"></span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </template>
-                                                                            <!-- Current time indicator -->
-                                                                            <div x-show="isCurrentHour(hour) && isToday(selectedDay)" 
-                                                                                 class="position-absolute bg-danger" 
-                                                                                 style="left: 0; right: 0; height: 2px; top: 50%; z-index: 10;"></div>
-                                                                        </td>
-                                                                    </tr>
-                                                                </template>
-                                                            </tbody>
-                                                        </table>
+                                <!-- Calendar Content -->
+                                <div class="calendar-content">
+                                    
+                                    <!-- Month View -->
+                                    <div x-show="currentView === 'month'" class="month-view">
+                                        <!-- Month Grid Header -->
+                                        <div class="month-header">
+                                            <div class="month-header-day">Sunday</div>
+                                            <div class="month-header-day">Monday</div>
+                                            <div class="month-header-day">Tuesday</div>
+                                            <div class="month-header-day">Wednesday</div>
+                                            <div class="month-header-day">Thursday</div>
+                                            <div class="month-header-day">Friday</div>
+                                            <div class="month-header-day">Saturday</div>
+                                        </div>
+                                        
+                                        <!-- Month Grid -->
+                                        <div class="month-grid">
+                                            <template x-for="day in calendarDays" :key="day.date">
+                                                <div class="month-day" 
+                                                     :class="{ 
+                                                         'today': day.isToday, 
+                                                         'other-month': day.isOtherMonth,
+                                                         'selected': day.isSelected,
+                                                         'has-events': day.events && day.events.length > 0
+                                                     }"
+                                                     @click="selectDay(day)"
+                                                     @dblclick="addEventForDay(day)">
+                                                    <div class="day-number" x-text="day.day"></div>
+                                                    <div class="day-events">
+                                                        <template x-for="(event, index) in day.events?.slice(0, 3)" :key="event.id">
+                                                            <div class="day-event" 
+                                                                 :class="`event-${event.type}`"
+                                                                 @click.stop="viewEvent(event)"
+                                                                 :title="event.title + ' - ' + event.time">
+                                                                <span class="event-title" x-text="event.title"></span>
+                                                            </div>
+                                                        </template>
+                                                        <div x-show="day.events && day.events.length > 3" 
+                                                             class="more-events"
+                                                             @click.stop="showMoreEvents(day)"
+                                                             x-text="`+${day.events.length - 3} more`"></div>
                                                     </div>
                                                 </div>
+                                            </template>
+                                        </div>
+                                    </div>
+
+                                    <!-- Week View -->
+                                    <div x-show="currentView === 'week'" class="week-view">
+                                        <!-- Week Header -->
+                                        <div class="week-header">
+                                            <div class="time-column">Time</div>
+                                            <template x-for="day in weekDays" :key="day.date">
+                                                <div class="week-day-header" :class="{ 'today': day.isToday }">
+                                                    <div class="day-name" x-text="day.dayName"></div>
+                                                    <div class="day-number" x-text="day.dayNumber"></div>
+                                                </div>
+                                            </template>
+                                        </div>
+                                        
+                                        <!-- Week Grid -->
+                                        <div class="week-grid">
+                                            <div class="time-slots">
+                                                <template x-for="hour in hours" :key="hour">
+                                                    <div class="time-slot" x-text="hour"></div>
+                                                </template>
+                                            </div>
+                                            <div class="week-days">
+                                                <template x-for="day in weekDays" :key="day.date">
+                                                    <div class="week-day-column" :class="{ 'today': day.isToday }">
+                                                        <template x-for="hour in hours" :key="hour">
+                                                            <div class="hour-slot" 
+                                                                 @click="addEventAtTime(day.date, hour)"
+                                                                 @dblclick="addEventAtTime(day.date, hour)">
+                                                                <template x-for="event in getEventsForDateTime(day.date, hour)" :key="event.id">
+                                                                    <div class="week-event" 
+                                                                         :class="`event-${event.type}`"
+                                                                         @click.stop="viewEvent(event)"
+                                                                         :title="event.title + ' - ' + event.time">
+                                                                        <div class="event-time" x-text="event.time"></div>
+                                                                        <div class="event-title" x-text="event.title"></div>
+                                                                    </div>
+                                                                </template>
+                                                            </div>
+                                                        </template>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Day View -->
+                                    <div x-show="currentView === 'day'" class="day-view">
+                                        <div class="day-view-header">
+                                            <div class="day-info">
+                                                <h4 class="day-title" x-text="selectedDayTitle"></h4>
+                                                <p class="day-date" x-text="selectedDayDate"></p>
+                                            </div>
+                                            <div class="day-stats">
+                                                <div class="stat-item">
+                                                    <span class="stat-value" x-text="getDayEventCount(selectedDay)"></span>
+                                                    <span class="stat-label">Events</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="day-schedule">
+                                            <div class="schedule-times">
+                                                <template x-for="hour in hours" :key="hour">
+                                                    <div class="schedule-time" x-text="hour"></div>
+                                                </template>
+                                            </div>
+                                            <div class="schedule-events">
+                                                <template x-for="hour in hours" :key="hour">
+                                                    <div class="schedule-hour" 
+                                                         @click="addEventAtTime(selectedDay, hour)"
+                                                         @dblclick="addEventAtTime(selectedDay, hour)">
+                                                        <template x-for="event in getEventsForDateTime(selectedDay, hour)" :key="event.id">
+                                                            <div class="schedule-event" 
+                                                                 :class="`event-${event.type}`"
+                                                                 @click.stop="viewEvent(event)">
+                                                                <div class="event-time" x-text="event.time"></div>
+                                                                <div class="event-title" x-text="event.title"></div>
+                                                                <div class="event-description" x-text="event.description"></div>
+                                                            </div>
+                                                        </template>
+                                                        
+                                                        <!-- Current time indicator -->
+                                                        <div x-show="isCurrentHour(hour) && isToday(selectedDay)" 
+                                                             class="current-time-indicator"></div>
+                                                    </div>
+                                                </template>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
+                        </div>
                         </div>
                     </div>
 
@@ -495,86 +566,199 @@
 
             <!-- Add Event Modal -->
             <div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="addEventModalLabel">Add New Event</h5>
+                        <div class="modal-header border-0 pb-0">
+                            <div>
+                                <h5 class="modal-title fw-bold" id="addEventModalLabel">
+                                    <i class="bi bi-calendar-plus me-2 text-primary"></i>Add New Event
+                                </h5>
+                                <p class="text-muted mb-0 small">Create a new calendar event with all the details</p>
+                            </div>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body" x-data="addEventModal" x-init="init()">
+                        <div class="modal-body pt-2" x-data="addEventModal" x-init="init()">
                             <form @submit.prevent="submitEvent()">
-                                <div class="mb-3">
-                                    <label for="eventTitle" class="form-label">Event Title *</label>
-                                    <input type="text" class="form-control" id="eventTitle" x-model="eventData.title" required>
+                                <!-- Event Title -->
+                                <div class="mb-4">
+                                    <label for="eventTitle" class="form-label fw-semibold">
+                                        <i class="bi bi-pencil me-1"></i>Event Title *
+                                    </label>
+                                    <input type="text" 
+                                           class="form-control form-control-lg" 
+                                           id="eventTitle" 
+                                           x-model="eventData.title" 
+                                           placeholder="Enter event title..."
+                                           required>
                                 </div>
-                                
-                                <div class="mb-3">
-                                    <label for="eventType" class="form-label">Event Type</label>
-                                    <select class="form-select" id="eventType" x-model="eventData.type">
-                                        <option value="event">Event</option>
-                                        <option value="meeting">Meeting</option>
-                                        <option value="task">Task</option>
-                                        <option value="reminder">Reminder</option>
-                                        <option value="deadline">Deadline</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="row">
+
+                                <!-- Event Type & Priority -->
+                                <div class="row mb-4">
                                     <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="eventDate" class="form-label">Date *</label>
-                                            <input type="date" class="form-control" id="eventDate" x-model="eventData.date" required>
-                                        </div>
+                                        <label for="eventType" class="form-label fw-semibold">
+                                            <i class="bi bi-tag me-1"></i>Event Type
+                                        </label>
+                                        <select class="form-select" id="eventType" x-model="eventData.type">
+                                            <option value="event">📅 Event</option>
+                                            <option value="meeting">🤝 Meeting</option>
+                                            <option value="task">✅ Task</option>
+                                            <option value="reminder">🔔 Reminder</option>
+                                            <option value="deadline">⚠️ Deadline</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="eventTime" class="form-label">Time *</label>
-                                            <input type="time" class="form-control" id="eventTime" x-model="eventData.time" required>
-                                        </div>
+                                        <label for="eventPriority" class="form-label fw-semibold">
+                                            <i class="bi bi-flag me-1"></i>Priority
+                                        </label>
+                                        <select class="form-select" id="eventPriority" x-model="eventData.priority">
+                                            <template x-for="priority in priorityOptions" :key="priority.value">
+                                                <option :value="priority.value" x-text="priority.label"></option>
+                                            </template>
+                                        </select>
                                     </div>
                                 </div>
                                 
-                                <div class="mb-3">
-                                    <label for="eventDescription" class="form-label">Description</label>
-                                    <textarea class="form-control" id="eventDescription" rows="3" x-model="eventData.description" placeholder="Enter event description..."></textarea>
+                                <!-- Date & Time -->
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <label for="eventDate" class="form-label fw-semibold">
+                                            <i class="bi bi-calendar-event me-1"></i>Date *
+                                        </label>
+                                        <input type="date" class="form-control" id="eventDate" x-model="eventData.date" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="eventTime" class="form-label fw-semibold">
+                                            <i class="bi bi-clock me-1"></i>Start Time *
+                                        </label>
+                                        <input type="time" class="form-control" id="eventTime" x-model="eventData.time" required>
+                                    </div>
+                                </div>
+
+                                <!-- Duration & Location -->
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <label for="eventDuration" class="form-label fw-semibold">
+                                            <i class="bi bi-hourglass-split me-1"></i>Duration
+                                        </label>
+                                        <select class="form-select" id="eventDuration" x-model="eventData.duration">
+                                            <option value="15">15 minutes</option>
+                                            <option value="30">30 minutes</option>
+                                            <option value="45">45 minutes</option>
+                                            <option value="60">1 hour</option>
+                                            <option value="90">1.5 hours</option>
+                                            <option value="120">2 hours</option>
+                                            <option value="180">3 hours</option>
+                                            <option value="240">4 hours</option>
+                                            <option value="480">All day</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="eventLocation" class="form-label fw-semibold">
+                                            <i class="bi bi-geo-alt me-1"></i>Location
+                                        </label>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               id="eventLocation" 
+                                               x-model="eventData.location" 
+                                               placeholder="Conference room, address, or link...">
+                                    </div>
                                 </div>
                                 
-                                <div class="mb-3">
-                                    <label for="eventDuration" class="form-label">Duration</label>
-                                    <select class="form-select" id="eventDuration" x-model="eventData.duration">
-                                        <option value="30">30 minutes</option>
-                                        <option value="60" selected>1 hour</option>
-                                        <option value="90">1.5 hours</option>
-                                        <option value="120">2 hours</option>
-                                        <option value="180">3 hours</option>
-                                        <option value="240">4 hours</option>
-                                        <option value="480">All day</option>
+                                <!-- Description -->
+                                <div class="mb-4">
+                                    <label for="eventDescription" class="form-label fw-semibold">
+                                        <i class="bi bi-card-text me-1"></i>Description
+                                    </label>
+                                    <textarea class="form-control" 
+                                              id="eventDescription" 
+                                              rows="3" 
+                                              x-model="eventData.description" 
+                                              placeholder="Add event details, agenda, or notes..."></textarea>
+                                </div>
+
+                                <!-- Attendees -->
+                                <div class="mb-4">
+                                    <label for="eventAttendees" class="form-label fw-semibold">
+                                        <i class="bi bi-people me-1"></i>Attendees
+                                    </label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="eventAttendees" 
+                                           x-model="eventData.attendees" 
+                                           placeholder="Enter email addresses separated by commas...">
+                                    <div class="form-text">Separate multiple email addresses with commas</div>
+                                </div>
+
+                                <!-- Reminders -->
+                                <div class="mb-4">
+                                    <label class="form-label fw-semibold">
+                                        <i class="bi bi-bell me-1"></i>Reminders
+                                    </label>
+                                    <select class="form-select" x-model="eventData.reminders" multiple>
+                                        <template x-for="reminder in reminderOptions" :key="reminder.value">
+                                            <option :value="reminder.value" x-text="reminder.label"></option>
+                                        </template>
                                     </select>
+                                    <div class="form-text">Hold Ctrl/Cmd to select multiple reminders</div>
                                 </div>
                                 
-                                <div class="mb-3">
-                                    <div class="form-check">
+                                <!-- Recurring Options -->
+                                <div class="mb-4">
+                                    <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" id="eventRecurring" x-model="eventData.recurring">
-                                        <label class="form-check-label" for="eventRecurring">
-                                            Recurring event
+                                        <label class="form-check-label fw-semibold" for="eventRecurring">
+                                            <i class="bi bi-arrow-repeat me-1"></i>Recurring Event
                                         </label>
                                     </div>
                                 </div>
                                 
-                                <div x-show="eventData.recurring" class="mb-3">
-                                    <label for="eventRecurrence" class="form-label">Repeat</label>
+                                <div x-show="eventData.recurring" 
+                                     x-transition:enter="transition ease-out duration-200"
+                                     x-transition:enter-start="opacity-0 transform scale-95"
+                                     x-transition:enter-end="opacity-100 transform scale-100"
+                                     class="mb-4">
+                                    <label for="eventRecurrence" class="form-label fw-semibold">Repeat Pattern</label>
                                     <select class="form-select" id="eventRecurrence" x-model="eventData.recurrence">
                                         <option value="daily">Daily</option>
                                         <option value="weekly">Weekly</option>
+                                        <option value="biweekly">Every 2 weeks</option>
                                         <option value="monthly">Monthly</option>
                                         <option value="yearly">Yearly</option>
                                     </select>
                                 </div>
+
+                                <!-- Event Preview -->
+                                <div class="alert alert-light border" x-show="eventData.title">
+                                    <h6 class="alert-heading">
+                                        <i class="bi bi-eye me-1"></i>Event Preview
+                                    </h6>
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <span class="badge" 
+                                              :style="`background: ${getTypeColor(eventData.type)}; color: white;`"
+                                              x-text="eventData.type.charAt(0).toUpperCase() + eventData.type.slice(1)"></span>
+                                        <strong x-text="eventData.title || 'Event Title'"></strong>
+                                    </div>
+                                    <small class="text-muted">
+                                        <i class="bi bi-calendar-date me-1"></i>
+                                        <span x-text="new Date(eventData.date || new Date()).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })"></span>
+                                        at 
+                                        <span x-text="eventData.time || '09:00'"></span>
+                                        (<span x-text="getDurationLabel(eventData.duration)"></span>)
+                                        <span x-show="eventData.location" class="ms-2">
+                                            <i class="bi bi-geo-alt me-1"></i>
+                                            <span x-text="eventData.location"></span>
+                                        </span>
+                                    </small>
+                                </div>
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary" @click="submitEvent()">Save Event</button>
+                        <div class="modal-footer border-0 pt-0">
+                            <button type="button" class="btn btn-outline-secondary" @click="closeModal()">
+                                <i class="bi bi-x-lg me-1"></i>Cancel
+                            </button>
+                            <button type="button" class="btn btn-primary px-4" @click="submitEvent()">
+                                <i class="bi bi-check-lg me-1"></i>Create Event
+                            </button>
                         </div>
                     </div>
                 </div>

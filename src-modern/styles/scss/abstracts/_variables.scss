@@ -114,6 +114,13 @@ $input-border-radius: $border-radius-sm;
 $input-padding-y: 0.75rem;
 $input-padding-x: 1rem;
 
+// Dark theme variables
+$dark-bg: $gray-900;
+$dark-color: $gray-100;
+$dark-text-muted: $gray-400;
+$dark-border-color: $gray-700;
+$dark-primary: $primary;
+
 // Custom CSS Properties for runtime theming
 :root {
   --sidebar-width: #{$sidebar-width};

@@ -402,6 +402,13 @@ document.addEventListener('alpine:init', () => {
       console.log('User is typing...');
     },
 
+    autoResize(event) {
+      const textarea = event.target;
+      textarea.style.height = 'auto';
+      const newHeight = Math.min(textarea.scrollHeight, 120);
+      textarea.style.height = newHeight + 'px';
+    },
+
     toggleSidebar() {
       this.sidebarVisible = !this.sidebarVisible;
     },

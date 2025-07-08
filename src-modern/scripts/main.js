@@ -309,7 +309,9 @@ class AdminApp {
 
     // Full screen toggle
     document.addEventListener('click', (e) => {
-      if (e.target.matches('[data-fullscreen-toggle]')) {
+      const fullscreenButton = e.target.closest('[data-fullscreen-toggle]');
+      if (fullscreenButton) {
+        e.preventDefault();
         this.toggleFullscreen();
       }
     });

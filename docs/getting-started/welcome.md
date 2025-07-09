@@ -88,7 +88,7 @@ Ready to start building with Metis? Here's what you need to know:
 - [Quick Start Guide](quick-start.md) - Set up Metis in minutes
 - [System Requirements](requirements.md) - Prerequisites and dependencies
 - [Installation](installation.md) - Detailed setup instructions
-- [Template Structure](../overview/structure.md) - Understanding the codebase
+- [Template Overview](../overview/introduction.md) - Understanding the template
 
 ## Community and Support
 

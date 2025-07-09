@@ -1,53 +1,76 @@
-# Metis Bootstrap 5 Admin Template
+# Metis - Bootstrap 5 Admin Template Documentation
 
 A modern, responsive admin dashboard template built with Bootstrap 5.3.7, featuring dark/light themes, Alpine.js reactivity, and comprehensive UI components.
 
-## Quick Links
+## Quick Navigation
 
 - [Getting Started](getting-started/welcome.md)
 - [Installation Guide](getting-started/installation.md)
-- [Template Overview](overview/features.md)
-- [Components](components/elements.md)
-- [Customization](customization/theming.md)
-- [API Reference](reference/api.md)
+- [Quick Start](getting-started/quick-start.md)
+- [Template Overview](overview/introduction.md)
+- [Features](overview/features.md)
 
-## Features at a Glance
+## About This Template
 
-- **Modern Stack**: Bootstrap 5.3.7, Alpine.js, Vite
-- **Responsive Design**: Mobile-first approach
-- **Dark/Light Themes**: Persistent theme switching
-- **PWA Ready**: Progressive Web App support
-- **Rich Components**: 21 pages, 8 UI element showcases
-- **Performance**: Optimized builds and lazy loading
-- **Developer Friendly**: Clean code, ES6+ modules
+Metis is a modern Bootstrap 5 admin dashboard template that provides:
 
-## Getting Started
+- **Modern Technology Stack**: Bootstrap 5.3.7, Alpine.js, Vite, SCSS
+- **Responsive Design**: Mobile-first approach with clean, modern UI
+- **Dark/Light Themes**: Persistent theme switching with smooth transitions
+- **Rich Dashboard Pages**: 15+ pre-built pages including analytics, user management, and more
+- **Developer Experience**: Hot reload, component architecture, modern build pipeline
+
+## Template Structure
+
+```
+src-modern/              # Main template files
+├── assets/             # Static assets (icons, images)
+├── scripts/            # JavaScript modules
+├── styles/scss/        # SCSS stylesheets
+├── index.html          # Main dashboard
+├── analytics.html      # Analytics dashboard
+├── users.html          # User management
+├── products.html       # Product management
+├── orders.html         # Order management
+├── messages.html       # Messaging interface
+├── calendar.html       # Calendar page
+├── files.html          # File manager
+├── reports.html        # Reports dashboard
+├── settings.html       # Settings page
+├── security.html       # Security settings
+├── help.html           # Help & support
+└── elements*.html      # UI element examples
+```
+
+## Quick Start
 
 ```bash
-# Clone or download the template
+# Clone the repository
 git clone https://github.com/puikinsh/Bootstrap-Admin-Template.git
 
 # Navigate to the project
-cd Bootstrap-Admin-Template/src-modern
+cd Bootstrap-Admin-Template
 
-# Install dependencies (if using npm)
+# Install dependencies
 npm install
 
 # Start development server
 npm run dev
 ```
 
+Visit `http://localhost:3000` to see the template in action.
+
 ## Browser Support
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers (iOS Safari, Chrome Mobile)
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
+- Mobile browsers (iOS Safari 14+, Chrome Mobile 90+)
 
 ## License
 
-This template is released under the MIT License. See [LICENSE](LICENSE) for details.
+This template is released under the MIT License. See [LICENSE.md](../LICENSE.md) for details.
 
 ---
 

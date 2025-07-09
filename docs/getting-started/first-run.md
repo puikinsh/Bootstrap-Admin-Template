@@ -331,23 +331,23 @@ Chart.register(CategoryScale, LinearScale, BarElement);
 After completing your first run:
 
 ### Immediate Actions
-1. **[Template Structure](../overview/structure.md)** - Understand the codebase
-2. **[Customization Guide](../customization/branding.md)** - Make it your own
-3. **[Development Setup](../development/local.md)** - Advanced development
+1. **[Template Overview](../overview/introduction.md)** - Understand the template
+2. **[Features Overview](../overview/features.md)** - Explore available features
+3. **[Quick Start Guide](quick-start.md)** - Get started quickly
 
 ### Long-term Planning
-1. **[Architecture Overview](../overview/architecture.md)** - Technical deep dive
-2. **[Component Library](../components/overview.md)** - Available components
-3. **[Integration Guide](../integration/apis.md)** - Connect your backend
+1. **[Requirements Guide](requirements.md)** - Technical requirements
+2. **[Installation Guide](installation.md)** - Complete setup process
+3. **[Template Features](../overview/features.md)** - Explore all capabilities
 
 ## Getting Help
 
 If you encounter issues during your first run:
 
 ### Documentation
-- **[Troubleshooting](../troubleshooting/common-issues.md)** - Common problems and solutions
-- **[FAQ](../troubleshooting/faq.md)** - Frequently asked questions
-- **[Browser Support](../overview/browser-support.md)** - Compatibility information
+- **[Installation Guide](installation.md)** - Complete setup instructions
+- **[Requirements](requirements.md)** - System requirements and compatibility
+- **[Quick Start](quick-start.md)** - Get up and running quickly
 
 ### Community Support
 - **GitHub Issues** - Report bugs and feature requests
@@ -374,4 +374,4 @@ Before proceeding to customization:
 
 ---
 
-**First run complete!** You're now ready to start customizing Metis for your specific needs. Continue to [Template Structure](../overview/structure.md) to understand how the template is organized.
+**First run complete!** You're now ready to start customizing Metis for your specific needs. Continue to [Template Overview](../overview/introduction.md) to understand how the template is organized.

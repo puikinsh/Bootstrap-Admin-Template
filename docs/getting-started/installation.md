@@ -357,9 +357,8 @@ chmod 644 assets/images/*
 After successful installation:
 
 1. **[First Run](first-run.md)**: Complete the initial setup
-2. **[Template Structure](../overview/structure.md)**: Understand the codebase
-3. **[Customization](../customization/branding.md)**: Personalize the template
-4. **[Development](../development/local.md)**: Set up development environment
+2. **[Features Overview](../overview/features.md)**: Explore template features
+3. **[Introduction](../overview/introduction.md)**: Learn about the template architecture
 
 ## Getting Help
 
@@ -367,8 +366,8 @@ If you encounter issues during installation:
 
 ### Documentation
 - **[System Requirements](requirements.md)**: Check prerequisites
-- **[Troubleshooting](../troubleshooting/installation.md)**: Common problems
-- **[FAQ](../troubleshooting/faq.md)**: Frequently asked questions
+- **[Quick Start Guide](quick-start.md)**: Get up and running quickly
+- **[Welcome Guide](welcome.md)**: Introduction to the template
 
 ### Community Resources
 - **GitHub Issues**: Report bugs and get help

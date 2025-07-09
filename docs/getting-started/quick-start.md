@@ -187,18 +187,17 @@ Now that you have Metis running, here's what to do next:
 
 ### 2. Read the Documentation
 - [Template Overview](../overview/features.md) - Comprehensive feature list
-- [Layout System](../layout/layout-system.md) - Understanding the structure
-- [Components](../components/overview.md) - Available UI components
+- [Template Introduction](../overview/introduction.md) - Understanding the template architecture
 
 ### 3. Start Customizing
-- [Theming Guide](../theming/themes.md) - Customize colors and styling
-- [Component Styling](../customization/components.md) - Modify component appearance
-- [Logo & Branding](../customization/branding.md) - Add your brand identity
+- Review the customization examples in this guide
+- Modify the SCSS variables in `styles/scss/abstracts/_variables.scss`
+- Update logo files in `assets/images/` directory
 
 ### 4. Build Your Application
-- [Development Guide](../development/local.md) - Set up development environment
-- [Component Creation](../development/components.md) - Add new components
-- [API Integration](../api/rest.md) - Connect to your backend
+- Set up your development environment using the build tools
+- Create new components following the existing patterns
+- Integrate with your backend APIs using the provided examples
 
 ## Common First Steps
 
@@ -228,10 +227,10 @@ Now that you have Metis running, here's what to do next:
 - **Layout issues**: Review responsive breakpoints and CSS
 
 ### Getting Help
-- Check the [Troubleshooting](../troubleshooting/faq.md) section
-- Review [Common Issues](../troubleshooting/installation.md)
-- Refer to the [FAQ](../troubleshooting/faq.md)
+- Review the documentation files in the `docs/` directory
+- Check the template's built-in examples and comments
+- Refer to Bootstrap 5 documentation for framework-specific questions
 
 ---
 
-**Congratulations!** You now have Metis running and ready for customization. Continue to the [System Requirements](requirements.md) to learn about technical prerequisites, or jump to [Template Structure](../overview/structure.md) to understand the codebase organization.
+**Congratulations!** You now have Metis running and ready for customization. Continue to the [System Requirements](requirements.md) to learn about technical prerequisites, or explore the [Template Overview](../overview/features.md) to understand the available features.

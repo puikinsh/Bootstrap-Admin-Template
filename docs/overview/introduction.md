@@ -367,19 +367,19 @@ $font-family-base: 'Your Font', sans-serif;
 After understanding the template overview:
 
 ### Development Path
-1. **[Architecture Deep Dive](architecture.md)** - Technical architecture
-2. **[Component Library](../components/overview.md)** - Available components
-3. **[Customization Guide](../customization/branding.md)** - Personalization
+1. **[Welcome Guide](../getting-started/welcome.md)** - Getting started
+2. **[Requirements](../getting-started/requirements.md)** - System requirements
+3. **[Installation](../getting-started/installation.md)** - Setup instructions
 
-### Integration Path
-1. **[API Integration](../integration/apis.md)** - Backend connectivity
-2. **[Authentication](../integration/auth.md)** - User management
-3. **[Deployment](../deployment/overview.md)** - Production setup
+### Quick Start Path
+1. **[Quick Start](../getting-started/quick-start.md)** - Quick setup guide
+2. **[First Run](../getting-started/first-run.md)** - Initial configuration
+3. **[Template Features](features.md)** - Explore functionality
 
-### Advanced Topics
-1. **[Performance Optimization](../advanced/performance.md)** - Speed improvements
-2. **[Security](../advanced/security.md)** - Security best practices
-3. **[Testing](../advanced/testing.md)** - Quality assurance
+### Available Resources
+1. **[Template Features](features.md)** - Detailed feature overview
+2. **[Getting Started](../getting-started/welcome.md)** - Begin your journey
+3. **[Requirements](../getting-started/requirements.md)** - Prerequisites
 
 ---
 

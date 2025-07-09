@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support - Modern Bootstrap Admin</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Get help, find documentation, and access support resources for the admin dashboard">
+    <meta name="keywords" content="bootstrap, admin, dashboard, help, support, documentation, FAQ, contact">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></head>
+
+<body data-page="help" class="help-page">
+    <!-- Admin App Container -->
+    <div class="admin-app">
+        <div class="admin-wrapper" id="admin-wrapper">
+            
+            <!-- Header -->
+            <header class="admin-header">
+                <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+                    <div class="container-fluid">
+                        <!-- Logo/Brand -->
+                        <a class="navbar-brand d-flex align-items-center" href="/">
+                            <img src="/assets/images/logo.svg" alt="Logo" height="32" class="d-inline-block align-text-top me-2">
+                            <h1 class="h4 mb-0 fw-bold text-primary">Metis</h1>
+                        </a>
+
+                        <!-- Search Bar with Alpine.js -->
+                        <div class="search-container flex-grow-1 mx-4" x-data="searchComponent">
+                            <div class="position-relative">
+                                <input type="search" 
+                                       class="form-control" 
+                                       placeholder="Search... (Ctrl+K)"
+                                       x-model="query"
+                                       @input="search()"
+                                       data-search-input
+                                       aria-label="Search">
+                                <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-3"></i>
+                                
+                                <!-- Search Results Dropdown -->
+                                <div x-show="results.length > 0" 
+                                     x-transition:enter="transition ease-out duration-100"
+                                     x-transition:enter-start="opacity-0 scale-95"
+                                     x-transition:enter-end="opacity-100 scale-100"
+                                     class="position-absolute top-100 start-0 w-100 bg-white border rounded-2 shadow-lg mt-1 z-3">
+                                    <template x-for="result in results" :key="result.title">
+                                        <a :href="result.url" class="d-block px-3 py-2 text-decoration-none text-dark border-bottom">
+                                            <div class="d-flex align-items-center">
+                                                <i class="bi bi-file-text me-2 text-muted"></i>
+                                                <span x-text="result.title"></span>
+                                                <small class="ms-auto text-muted" x-text="result.type"></small>
+                                            </div>
+                                        </a>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Side Icons -->
+                        <div class="navbar-nav flex-row">
+                            <!-- Theme Toggle with Alpine.js -->
+                            <div x-data="themeSwitch">
+                                <button class="btn btn-outline-secondary me-2" 
+                                        type="button" 
+                                        @click="toggle()"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        title="Toggle theme">
+                                    <i class="bi bi-sun-fill" x-show="currentTheme === 'light'"></i>
+                                    <i class="bi bi-moon-fill" x-show="currentTheme === 'dark'"></i>
+                                </button>
+                            </div>
+
+                            <!-- Fullscreen Toggle -->
+                            <button class="btn btn-outline-secondary me-2" 
+                                    type="button" 
+                                    data-fullscreen-toggle
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom"
+                                    title="Toggle fullscreen">
+                                <i class="bi bi-arrows-fullscreen icon-hover"></i>
+                            </button>
+
+                            <!-- Notifications -->
+                            <div class="dropdown me-2">
+                                <button class="btn btn-outline-secondary position-relative" 
+                                        type="button" 
+                                        data-bs-toggle="dropdown" 
+                                        aria-expanded="false">
+                                    <i class="bi bi-bell"></i>
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        3
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><h6 class="dropdown-header">Notifications</h6></li>
+                                    <li><a class="dropdown-item" href="#">New user registered</a></li>
+                                    <li><a class="dropdown-item" href="#">Server status update</a></li>
+                                    <li><a class="dropdown-item" href="#">New message received</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-center" href="#">View all notifications</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- User Menu -->
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary d-flex align-items-center" 
+                                        type="button" 
+                                        data-bs-toggle="dropdown" 
+                                        aria-expanded="false">
+                                    <img src="/assets/images/avatar-placeholder.svg" 
+                                         alt="User Avatar" 
+                                         width="24" 
+                                         height="24" 
+                                         class="rounded-circle me-2">
+                                    <span class="d-none d-md-inline">John Doe</span>
+                                    <i class="bi bi-chevron-down ms-1"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+
+            <!-- Sidebar -->
+            <aside class="admin-sidebar">
+                <div class="sidebar-content">
+                    <nav class="sidebar-nav">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/index.html">
+                                    <i class="bi bi-speedometer2"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/analytics.html">
+                                    <i class="bi bi-graph-up"></i>
+                                    <span>Analytics</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/users.html">
+                                    <i class="bi bi-people"></i>
+                                    <span>Users</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/products.html">
+                                    <i class="bi bi-box"></i>
+                                    <span>Products</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/orders.html">
+                                    <i class="bi bi-cart"></i>
+                                    <span>Orders</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/forms.html">
+                                    <i class="bi bi-ui-checks"></i>
+                                    <span>Forms</span>
+                                    <span class="badge bg-success rounded-pill ms-auto">New</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#elementsSubmenu" aria-expanded="false">
+                                    <i class="bi bi-puzzle"></i>
+                                    <span>Elements</span>
+                                    <span class="badge bg-primary rounded-pill me-2">New</span>
+                                    <i class="bi bi-chevron-down ms-auto"></i>
+                                </a>
+                                <div class="collapse" id="elementsSubmenu">
+                                    <ul class="nav nav-submenu">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/elements">
+                                                <i class="bi bi-grid"></i>
+                                                <span>Overview</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/elements-buttons.html">
+                                                <i class="bi bi-square"></i>
+                                                <span>Buttons</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/elements-alerts.html">
+                                                <i class="bi bi-exclamation-triangle"></i>
+                                                <span>Alerts</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/elements-badges.html">
+                                                <i class="bi bi-award"></i>
+                                                <span>Badges</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/elements-cards.html">
+                                                <i class="bi bi-card-text"></i>
+                                                <span>Cards</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/elements-modals.html">
+                                                <i class="bi bi-window"></i>
+                                                <span>Modals</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/elements-forms.html">
+                                                <i class="bi bi-ui-checks"></i>
+                                                <span>Forms</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/elements-tables.html">
+                                                <i class="bi bi-table"></i>
+                                                <span>Tables</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/reports.html">
+                                    <i class="bi bi-file-earmark-text"></i>
+                                    <span>Reports</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/messages.html">
+                                    <i class="bi bi-chat-dots"></i>
+                                    <span>Messages</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/calendar.html">
+                                    <i class="bi bi-calendar"></i>
+                                    <span>Calendar</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/files.html">
+                                    <i class="bi bi-folder"></i>
+                                    <span>Files</span>
+                                </a>
+                            </li>
+                            <li class="nav-item mt-3">
+                                <small class="text-muted px-3 text-uppercase fw-bold">Admin</small>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/settings.html">
+                                    <i class="bi bi-gear"></i>
+                                    <span>Settings</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/security.html">
+                                    <i class="bi bi-shield-check"></i>
+                                    <span>Security</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/help.html">
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>Help & Support</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Floating Hamburger Menu -->
+            <button class="hamburger-menu" 
+                    type="button" 
+                    data-sidebar-toggle
+                    aria-label="Toggle sidebar">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <!-- Main Content -->
+            <main class="admin-main">
+                <div class="container-fluid p-4 p-lg-5">
+                    
+                    <!-- Help Container -->
+                    <div x-data="helpComponent" x-init="init()" class="help-layout">
+                        
+                        <!-- Page Header -->
+                        <div class="d-flex justify-content-between align-items-center mb-4 mb-lg-5 mb-xl-6">
+                            <div>
+                                <h1 class="h3 mb-0">Help & Support</h1>
+                                <p class="text-muted mb-0">Get help, find documentation, and contact support</p>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button type="button" class="btn btn-outline-secondary" @click="downloadGuide()">
+                                    <i class="bi bi-download me-2"></i>User Guide
+                                </button>
+                                <button type="button" class="btn btn-primary" @click="setActiveSection('contact')">
+                                    <i class="bi bi-headset me-2"></i>Contact Support
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="row g-6">
+                            
+                            <!-- Help Navigation Sidebar -->
+                            <div class="col-lg-3 help-sidebar">
+                                <nav class="help-nav nav nav-pills flex-column">
+                                    <template x-for="section in sections" :key="section.id">
+                                        <a class="nav-link" 
+                                           :class="{ 'active': activeSection === section.id }"
+                                           href="#"
+                                           @click="setActiveSection(section.id)">
+                                            <i :class="section.icon" class="me-2"></i>
+                                            <span x-text="section.name"></span>
+                                        </a>
+                                    </template>
+                                    
+                                </nav>
+                            </div>
+
+                            <!-- Help Content -->
+                            <div class="col-lg-9 help-content">
+                                
+                                <!-- Getting Started -->
+                                <div x-show="activeSection === 'getting-started'" class="help-section" style="display: block;">
+                                    <h5 class="mb-4">Getting Started</h5>
+                                    
+                                    <div class="row g-4">
+                                        <div class="col-md-6">
+                                            <div class="article-card">
+                                                <h6 class="mb-2">Quick Start Guide</h6>
+                                                <p class="text-muted mb-3">Learn the basics of navigating and using the admin dashboard</p>
+                                                <div class="article-meta mb-3">
+                                                    <span class="rating-stars">★★★★★</span>
+                                                    <span class="text-muted">5 min read</span>
+                                                </div>
+                                                <a href="#" class="btn btn-outline-primary btn-sm" @click="openArticle('quick-start')">Read Article</a>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="article-card">
+                                                <h6 class="mb-2">Dashboard Overview</h6>
+                                                <p class="text-muted mb-3">Understand the main dashboard features and widgets</p>
+                                                <div class="article-meta mb-3">
+                                                    <span class="rating-stars">★★★★☆</span>
+                                                    <span class="text-muted">3 min read</span>
+                                                </div>
+                                                <a href="#" class="btn btn-outline-primary btn-sm" @click="openArticle('dashboard-overview')">Read Article</a>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="article-card">
+                                                <h6 class="mb-2">User Management</h6>
+                                                <p class="text-muted mb-3">How to add, edit, and manage user accounts</p>
+                                                <div class="article-meta mb-3">
+                                                    <span class="rating-stars">★★★★★</span>
+                                                    <span class="text-muted">8 min read</span>
+                                                </div>
+                                                <a href="#" class="btn btn-outline-primary btn-sm" @click="openArticle('user-management')">Read Article</a>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="video-thumbnail" @click="playVideo('intro-video')">
+                                                <img src="https://via.placeholder.com/300x180/6366f1/ffffff?text=Video+Tutorial" class="img-fluid" alt="Intro Video">
+                                                <div class="video-play-button">
+                                                    <i class="bi bi-play-fill"></i>
+                                                </div>
+                                            </div>
+                                            <h6 class="mt-3 mb-2">Platform Introduction</h6>
+                                            <p class="text-muted mb-0">5-minute video walkthrough of the platform</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- FAQ -->
+                                <div x-show="activeSection === 'faq'" class="help-section">
+                                    <h5 class="mb-4">Frequently Asked Questions</h5>
+                                    
+                                    <div class="mb-4">
+                                        <input type="text" class="form-control" placeholder="Search FAQ..." x-model="faqSearch" @input="filterFAQ()">
+                                    </div>
+                                    
+                                    <div class="faq-list">
+                                        <template x-for="(faq, index) in filteredFAQ" :key="index">
+                                            <div class="faq-item">
+                                                <button class="faq-question" 
+                                                        :class="{ 'active': faq.open }"
+                                                        @click="toggleFAQ(index)"
+                                                        x-html="highlightText(faq.question, faqSearch)">
+                                                </button>
+                                                <div class="faq-answer" :class="{ 'show': faq.open }" x-html="highlightText(faq.answer, faqSearch)">
+                                                </div>
+                                            </div>
+                                        </template>
+                                        
+                                        <!-- Fallback FAQ content -->
+                                        <div class="faq-item" style="display: block;">
+                                            <button class="faq-question" onclick="this.nextElementSibling.classList.toggle('show')">
+                                                How do I reset my password?
+                                            </button>
+                                            <div class="faq-answer">
+                                                You can reset your password by clicking on the "Forgot Password" link on the login page. Enter your email address and follow the instructions sent to your email.
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="faq-item" style="display: block;">
+                                            <button class="faq-question" onclick="this.nextElementSibling.classList.toggle('show')">
+                                                How do I add new users to the system?
+                                            </button>
+                                            <div class="faq-answer">
+                                                Navigate to the Users page from the sidebar, click the "Add User" button, fill in the required information, and assign appropriate roles and permissions.
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="faq-item" style="display: block;">
+                                            <button class="faq-question" onclick="this.nextElementSibling.classList.toggle('show')">
+                                                Can I export data from the dashboard?
+                                            </button>
+                                            <div class="faq-answer">
+                                                Yes, most pages include export functionality. Look for the "Export" button or dropdown menu to download data in various formats including CSV, Excel, and PDF.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Documentation -->
+                                <div x-show="activeSection === 'documentation'" class="help-section">
+                                    <h5 class="mb-4">Documentation</h5>
+                                    
+                                    <div class="row g-4">
+                                        <div class="col-lg-4">
+                                            <div class="list-group">
+                                                <template x-for="category in docCategories" :key="category.id">
+                                                    <a href="#" class="list-group-item list-group-item-action"
+                                                       :class="{ 'active': selectedDocCategory === category.id }"
+                                                       @click="selectDocCategory(category.id)">
+                                                        <i :class="category.icon" class="me-2"></i>
+                                                        <span x-text="category.name"></span>
+                                                        <span class="badge bg-secondary ms-auto" x-text="category.count"></span>
+                                                    </a>
+                                                </template>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-lg-8">
+                                            <template x-for="doc in selectedDocs" :key="doc.id">
+                                                <div class="article-card">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h6 class="mb-0" x-text="doc.title"></h6>
+                                                        <span class="badge bg-primary" x-text="doc.type"></span>
+                                                    </div>
+                                                    <p class="text-muted mb-3" x-text="doc.description"></p>
+                                                    <div class="article-meta mb-3">
+                                                        <span x-text="`Updated ${doc.lastUpdated}`"></span>
+                                                        <span class="mx-2">•</span>
+                                                        <span x-text="`${doc.readTime} min read`"></span>
+                                                    </div>
+                                                    <a href="#" class="btn btn-outline-primary btn-sm" @click="openDoc(doc.id)">View Documentation</a>
+                                                </div>
+                                            </template>
+                                            
+                                            <!-- Fallback documentation articles (only shown when Alpine.js fails) -->
+                                            <div class="fallback-docs" style="display: none;">
+                                            
+                                            <!-- Fallback documentation articles -->
+                                            <div id="docs-getting-started" class="docs-category-content">
+                                                <div class="article-card">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h6 class="mb-0">Quick Start Guide</h6>
+                                                        <span class="badge bg-primary">Guide</span>
+                                                    </div>
+                                                    <p class="text-muted mb-3">Get up and running with the admin dashboard in 5 minutes</p>
+                                                    <div class="article-meta mb-3">
+                                                        <span>Updated Jan 15, 2032</span>
+                                                        <span class="mx-2">•</span>
+                                                        <span>5 min read</span>
+                                                    </div>
+                                                    <a href="#" class="btn btn-outline-primary btn-sm">View Documentation</a>
+                                                </div>
+                                                
+                                                <div class="article-card">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h6 class="mb-0">Dashboard Overview</h6>
+                                                        <span class="badge bg-primary">Tutorial</span>
+                                                    </div>
+                                                    <p class="text-muted mb-3">Understanding the main dashboard interface and navigation</p>
+                                                    <div class="article-meta mb-3">
+                                                        <span>Updated Jan 12, 2032</span>
+                                                        <span class="mx-2">•</span>
+                                                        <span>8 min read</span>
+                                                    </div>
+                                                    <a href="#" class="btn btn-outline-primary btn-sm">View Documentation</a>
+                                                </div>
+                                                
+                                                <div class="article-card">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h6 class="mb-0">First Login Setup</h6>
+                                                        <span class="badge bg-primary">Guide</span>
+                                                    </div>
+                                                    <p class="text-muted mb-3">Complete your profile and configure initial settings</p>
+                                                    <div class="article-meta mb-3">
+                                                        <span>Updated Jan 10, 2032</span>
+                                                        <span class="mx-2">•</span>
+                                                        <span>6 min read</span>
+                                                    </div>
+                                                    <a href="#" class="btn btn-outline-primary btn-sm">View Documentation</a>
+                                                </div>
+                                            </div>
+                                            
+                                            <div id="docs-user-management" class="docs-category-content" style="display: none;">
+                                                <div class="article-card">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h6 class="mb-0">Adding New Users</h6>
+                                                        <span class="badge bg-primary">Tutorial</span>
+                                                    </div>
+                                                    <p class="text-muted mb-3">Step-by-step guide to adding users to your organization</p>
+                                                    <div class="article-meta mb-3">
+                                                        <span>Updated Jan 18, 2032</span>
+                                                        <span class="mx-2">•</span>
+                                                        <span>7 min read</span>
+                                                    </div>
+                                                    <a href="#" class="btn btn-outline-primary btn-sm">View Documentation</a>
+                                                </div>
+                                                
+                                                <div class="article-card">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h6 class="mb-0">User Roles & Permissions</h6>
+                                                        <span class="badge bg-primary">Guide</span>
+                                                    </div>
+                                                    <p class="text-muted mb-3">Configure roles and manage user permissions effectively</p>
+                                                    <div class="article-meta mb-3">
+                                                        <span>Updated Jan 16, 2032</span>
+                                                        <span class="mx-2">•</span>
+                                                        <span>12 min read</span>
+                                                    </div>
+                                                    <a href="#" class="btn btn-outline-primary btn-sm">View Documentation</a>
+                                                </div>
+                                            </div>
+                                            
+                                            <div id="docs-analytics" class="docs-category-content" style="display: none;">
+                                                <div class="article-card">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h6 class="mb-0">Creating Custom Reports</h6>
+                                                        <span class="badge bg-primary">Tutorial</span>
+                                                    </div>
+                                                    <p class="text-muted mb-3">Build and customize reports to meet your specific needs</p>
+                                                    <div class="article-meta mb-3">
+                                                        <span>Updated Jan 20, 2032</span>
+                                                        <span class="mx-2">•</span>
+                                                        <span>15 min read</span>
+                                                    </div>
+                                                    <a href="#" class="btn btn-outline-primary btn-sm">View Documentation</a>
+                                                </div>
+                                                
+                                                <div class="article-card">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h6 class="mb-0">Data Visualization Guide</h6>
+                                                        <span class="badge bg-primary">Guide</span>
+                                                    </div>
+                                                    <p class="text-muted mb-3">Understanding charts, graphs, and dashboard widgets</p>
+                                                    <div class="article-meta mb-3">
+                                                        <span>Updated Jan 14, 2032</span>
+                                                        <span class="mx-2">•</span>
+                                                        <span>10 min read</span>
+                                                    </div>
+                                                    <a href="#" class="btn btn-outline-primary btn-sm">View Documentation</a>
+                                                </div>
+                                            </div>
+                                            
+                                            <div id="docs-security" class="docs-category-content" style="display: none;">
+                                                <div class="article-card">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h6 class="mb-0">Two-Factor Authentication Setup</h6>
+                                                        <span class="badge bg-primary">Guide</span>
+                                                    </div>
+                                                    <p class="text-muted mb-3">Secure your account with two-factor authentication</p>
+                                                    <div class="article-meta mb-3">
+                                                        <span>Updated Jan 22, 2032</span>
+                                                        <span class="mx-2">•</span>
+                                                        <span>8 min read</span>
+                                                    </div>
+                                                    <a href="#" class="btn btn-outline-primary btn-sm">View Documentation</a>
+                                                </div>
+                                                
+                                                <div class="article-card">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h6 class="mb-0">Password Security Best Practices</h6>
+                                                        <span class="badge bg-primary">Guide</span>
+                                                    </div>
+                                                    <p class="text-muted mb-3">Learn how to create and manage secure passwords</p>
+                                                    <div class="article-meta mb-3">
+                                                        <span>Updated Jan 19, 2032</span>
+                                                        <span class="mx-2">•</span>
+                                                        <span>6 min read</span>
+                                                    </div>
+                                                    <a href="#" class="btn btn-outline-primary btn-sm">View Documentation</a>
+                                                </div>
+                                            </div>
+                                            
+                                            <div id="docs-integrations" class="docs-category-content" style="display: none;">
+                                                <div class="article-card">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h6 class="mb-0">Third-Party Integrations</h6>
+                                                        <span class="badge bg-primary">Guide</span>
+                                                    </div>
+                                                    <p class="text-muted mb-3">Connect with popular services and applications</p>
+                                                    <div class="article-meta mb-3">
+                                                        <span>Updated Jan 25, 2032</span>
+                                                        <span class="mx-2">•</span>
+                                                        <span>12 min read</span>
+                                                    </div>
+                                                    <a href="#" class="btn btn-outline-primary btn-sm">View Documentation</a>
+                                                </div>
+                                                
+                                                <div class="article-card">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h6 class="mb-0">Webhook Configuration</h6>
+                                                        <span class="badge bg-primary">Tutorial</span>
+                                                    </div>
+                                                    <p class="text-muted mb-3">Set up webhooks for real-time data synchronization</p>
+                                                    <div class="article-meta mb-3">
+                                                        <span>Updated Jan 23, 2032</span>
+                                                        <span class="mx-2">•</span>
+                                                        <span>10 min read</span>
+                                                    </div>
+                                                    <a href="#" class="btn btn-outline-primary btn-sm">View Documentation</a>
+                                                </div>
+                                            </div>
+                                            
+                                            <div id="docs-api" class="docs-category-content" style="display: none;">
+                                                <div class="article-card">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h6 class="mb-0">API Authentication</h6>
+                                                        <span class="badge bg-primary">Reference</span>
+                                                    </div>
+                                                    <p class="text-muted mb-3">Learn how to authenticate with our REST API</p>
+                                                    <div class="article-meta mb-3">
+                                                        <span>Updated Jan 28, 2032</span>
+                                                        <span class="mx-2">•</span>
+                                                        <span>5 min read</span>
+                                                    </div>
+                                                    <a href="#" class="btn btn-outline-primary btn-sm">View Documentation</a>
+                                                </div>
+                                                
+                                                <div class="article-card">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h6 class="mb-0">API Endpoints Reference</h6>
+                                                        <span class="badge bg-primary">Reference</span>
+                                                    </div>
+                                                    <p class="text-muted mb-3">Complete reference for all available API endpoints</p>
+                                                    <div class="article-meta mb-3">
+                                                        <span>Updated Jan 26, 2032</span>
+                                                        <span class="mx-2">•</span>
+                                                        <span>20 min read</span>
+                                                    </div>
+                                                    <a href="#" class="btn btn-outline-primary btn-sm">View Documentation</a>
+                                                </div>
+                                            </div>
+                                            
+                                            <div id="docs-troubleshooting" class="docs-category-content" style="display: none;">
+                                                <div class="article-card">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h6 class="mb-0">Common Issues & Solutions</h6>
+                                                        <span class="badge bg-primary">Guide</span>
+                                                    </div>
+                                                    <p class="text-muted mb-3">Quick solutions to frequently encountered problems</p>
+                                                    <div class="article-meta mb-3">
+                                                        <span>Updated Jan 30, 2032</span>
+                                                        <span class="mx-2">•</span>
+                                                        <span>15 min read</span>
+                                                    </div>
+                                                    <a href="#" class="btn btn-outline-primary btn-sm">View Documentation</a>
+                                                </div>
+                                                
+                                                <div class="article-card">
+                                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                                        <h6 class="mb-0">Performance Optimization</h6>
+                                                        <span class="badge bg-primary">Guide</span>
+                                                    </div>
+                                                    <p class="text-muted mb-3">Tips to improve dashboard performance and load times</p>
+                                                    <div class="article-meta mb-3">
+                                                        <span>Updated Jan 27, 2032</span>
+                                                        <span class="mx-2">•</span>
+                                                        <span>8 min read</span>
+                                                    </div>
+                                                    <a href="#" class="btn btn-outline-primary btn-sm">View Documentation</a>
+                                                </div>
+                                            </div>
+                                            </div> <!-- /.fallback-docs -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Contact Support -->
+                                <div x-show="activeSection === 'contact'" class="help-section">
+                                    <h5 class="mb-4">Contact Support</h5>
+                                    
+                                    <div class="row g-4 mb-5">
+                                        <div class="col-md-4">
+                                            <div class="contact-card">
+                                                <div class="contact-icon bg-primary bg-opacity-10 text-primary">
+                                                    <i class="bi bi-chat-dots"></i>
+                                                </div>
+                                                <h6 class="mb-2">Live Chat</h6>
+                                                <p class="text-muted mb-3">Chat with our support team in real-time</p>
+                                                <div class="mb-3">
+                                                    <span class="status-indicator status-operational"></span>
+                                                    <small class="text-success">Online</small>
+                                                </div>
+                                                <button class="btn btn-primary btn-sm" @click="startLiveChat()">Start Chat</button>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-4">
+                                            <div class="contact-card">
+                                                <div class="contact-icon bg-success bg-opacity-10 text-success">
+                                                    <i class="bi bi-envelope"></i>
+                                                </div>
+                                                <h6 class="mb-2">Email Support</h6>
+                                                <p class="text-muted mb-3">Send us an email and we'll respond within 24 hours</p>
+                                                <div class="mb-3">
+                                                    <span class="status-indicator status-operational"></span>
+                                                    <small class="text-success">Available</small>
+                                                </div>
+                                                <button class="btn btn-success btn-sm" @click="openEmailForm()">Send Email</button>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-4">
+                                            <div class="contact-card">
+                                                <div class="contact-icon bg-warning bg-opacity-10 text-warning">
+                                                    <i class="bi bi-telephone"></i>
+                                                </div>
+                                                <h6 class="mb-2">Phone Support</h6>
+                                                <p class="text-muted mb-3">Call us for urgent technical issues</p>
+                                                <div class="mb-3">
+                                                    <span class="status-indicator status-maintenance"></span>
+                                                    <small class="text-warning">Limited Hours</small>
+                                                </div>
+                                                <button class="btn btn-warning btn-sm" @click="showPhoneInfo()">View Number</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Support Ticket Form -->
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h6 class="mb-0">Submit a Support Ticket</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <form @submit.prevent="submitTicket()">
+                                                        <div class="row g-3">
+                                                            <div class="col-md-6">
+                                                                <label class="form-label">Your Name</label>
+                                                                <input type="text" class="form-control" x-model="supportTicket.name" required>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label class="form-label">Email Address</label>
+                                                                <input type="email" class="form-control" x-model="supportTicket.email" required>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label class="form-label">Priority</label>
+                                                                <select class="form-select" x-model="supportTicket.priority" required>
+                                                                    <option value="">Select Priority</option>
+                                                                    <option value="low">Low - General Question</option>
+                                                                    <option value="medium">Medium - Feature Issue</option>
+                                                                    <option value="high">High - System Problem</option>
+                                                                    <option value="urgent">Urgent - Critical Issue</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label class="form-label">Category</label>
+                                                                <select class="form-select" x-model="supportTicket.category" required>
+                                                                    <option value="">Select Category</option>
+                                                                    <option value="technical">Technical Issue</option>
+                                                                    <option value="billing">Billing & Account</option>
+                                                                    <option value="feature">Feature Request</option>
+                                                                    <option value="bug">Bug Report</option>
+                                                                    <option value="other">Other</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <label class="form-label">Subject</label>
+                                                                <input type="text" class="form-control" x-model="supportTicket.subject" required>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <label class="form-label">Description</label>
+                                                                <textarea class="form-control" rows="5" x-model="supportTicket.description" placeholder="Please describe your issue in detail..." required></textarea>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <label class="form-label">Attachments (Optional)</label>
+                                                                <input type="file" class="form-control" multiple accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+                                                                <small class="text-muted">Max 5 files, 10MB each</small>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <button type="submit" class="btn btn-primary" :disabled="submittingTicket">
+                                                                    <span x-show="!submittingTicket">Submit Ticket</span>
+                                                                    <span x-show="submittingTicket">
+                                                                        <i class="bi bi-hourglass me-2"></i>Submitting...
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-lg-4">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h6 class="mb-0">System Status</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <template x-for="service in systemStatus" :key="service.name">
+                                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                                            <span x-text="service.name"></span>
+                                                            <div>
+                                                                <span class="status-indicator" :class="'status-' + service.status"></span>
+                                                                <small x-text="service.statusText" :class="'text-' + (service.status === 'operational' ? 'success' : service.status === 'maintenance' ? 'warning' : 'danger')"></small>
+                                                            </div>
+                                                        </div>
+                                                    </template>
+                                                    <hr>
+                                                    <a href="#" class="btn btn-outline-secondary btn-sm w-100" @click="viewSystemStatus()">View Full Status</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Feature Requests -->
+                                <div x-show="activeSection === 'features'" class="help-section">
+                                    <h5 class="mb-4">Feature Requests</h5>
+                                    
+                                    <div class="feature-request-form mb-4">
+                                        <h6 class="mb-3">Submit a Feature Request</h6>
+                                        <form @submit.prevent="submitFeatureRequest()">
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Feature Title</label>
+                                                    <input type="text" class="form-control" x-model="featureRequest.title" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Category</label>
+                                                    <select class="form-select" x-model="featureRequest.category" required>
+                                                        <option value="">Select Category</option>
+                                                        <option value="ui">User Interface</option>
+                                                        <option value="analytics">Analytics</option>
+                                                        <option value="reporting">Reporting</option>
+                                                        <option value="integration">Integration</option>
+                                                        <option value="performance">Performance</option>
+                                                        <option value="other">Other</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-12">
+                                                    <label class="form-label">Description</label>
+                                                    <textarea class="form-control" rows="4" x-model="featureRequest.description" placeholder="Describe the feature and how it would benefit users..." required></textarea>
+                                                </div>
+                                                <div class="col-12">
+                                                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    
+                                    <!-- Popular Feature Requests -->
+                                    <h6 class="mb-3">Popular Requests</h6>
+                                    <div class="row g-3">
+                                        <template x-for="request in popularRequests" :key="request.id">
+                                            <div class="col-12">
+                                                <div class="article-card">
+                                                    <div class="d-flex justify-content-between align-items-start">
+                                                        <div class="flex-grow-1">
+                                                            <h6 class="mb-2" x-text="request.title"></h6>
+                                                            <p class="text-muted mb-2" x-text="request.description"></p>
+                                                            <div class="article-meta">
+                                                                <span class="badge bg-primary" x-text="request.category"></span>
+                                                                <span class="mx-2">•</span>
+                                                                <span x-text="`${request.votes} votes`"></span>
+                                                                <span class="mx-2">•</span>
+                                                                <span x-text="request.status"></span>
+                                                            </div>
+                                                        </div>
+                                                        <button class="btn btn-outline-primary btn-sm" @click="voteFeature(request.id)" :disabled="request.voted">
+                                                            <i class="bi bi-heart" :class="{ 'bi-heart-fill': request.voted }"></i>
+                                                            <span x-text="request.voted ? 'Voted' : 'Vote'"></span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Page-specific Component -->
+    <script type="module" src="./scripts/components/help.js"></script>
+    
+    <!-- Vite Script -->
+    <script type="module" src="/scripts/main.js"></script>
+    
+    <!-- Sidebar Toggle Script -->
+    <script>
+      // Fallback navigation function
+      function showSection(sectionId) {
+        // Hide all sections
+        const sections = document.querySelectorAll('.help-section');
+        sections.forEach(section => {
+          section.style.display = 'none';
+        });
+        
+        // Show selected section
+        const targetSection = document.querySelector(`[x-show="activeSection === '${sectionId}'"]`);
+        if (targetSection) {
+          targetSection.style.display = 'block';
+        }
+        
+        // Update navigation
+        const navLinks = document.querySelectorAll('.fallback-nav .nav-link');
+        navLinks.forEach(link => link.classList.remove('active'));
+        event.target.closest('.nav-link').classList.add('active');
+      }
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        // Ensure Getting Started section is visible by default
+        setTimeout(() => {
+          const gettingStartedSection = document.querySelector(`[x-show="activeSection === 'getting-started'"]`);
+          if (gettingStartedSection) {
+            gettingStartedSection.style.display = 'block';
+          }
+        }, 100);
+        
+        const toggleButton = document.querySelector('[data-sidebar-toggle]');
+        const wrapper = document.getElementById('admin-wrapper');
+        
+        if (toggleButton && wrapper) {
+          // Set initial state from localStorage
+          const isCollapsed = localStorage.getItem('sidebar-collapsed') === 'true';
+          if (isCollapsed) {
+            wrapper.classList.add('sidebar-collapsed');
+            toggleButton.classList.add('is-active');
+          } else {
+            wrapper.classList.remove('sidebar-collapsed');
+            toggleButton.classList.remove('is-active');
+          }
+
+          // Attach click listener
+          toggleButton.addEventListener('click', () => {
+            const isCurrentlyCollapsed = wrapper.classList.contains('sidebar-collapsed');
+            
+            if (isCurrentlyCollapsed) {
+              wrapper.classList.remove('sidebar-collapsed');
+              toggleButton.classList.remove('is-active');
+              localStorage.setItem('sidebar-collapsed', 'false');
+            } else {
+              wrapper.classList.add('sidebar-collapsed');
+              toggleButton.classList.add('is-active');
+              localStorage.setItem('sidebar-collapsed', 'true');
+            }
+          });
+        }
+      });
+      
+      // Show fallback content if Alpine.js doesn't load
+      setTimeout(() => {
+        // Check if Alpine.js is working by looking for x-data elements that have been processed
+        const alpineElements = document.querySelectorAll('[x-data]');
+        let alpineWorking = false;
+        
+        alpineElements.forEach(el => {
+          if (el.__x) { // Alpine.js adds __x property to processed elements
+            alpineWorking = true;
+          }
+        });
+        
+        if (!alpineWorking) {
+          console.log('Alpine.js not detected, showing fallback documentation');
+          const fallbackDocs = document.querySelector('.fallback-docs');
+          if (fallbackDocs) {
+            fallbackDocs.style.display = 'block';
+          }
+        }
+      }, 1000);
+      
+      // Documentation category switching functionality
+      function showDocCategory(categoryId, activeElement) {
+        // Hide all documentation category content
+        const allDocs = document.querySelectorAll('.docs-category-content');
+        allDocs.forEach(doc => {
+          doc.style.display = 'none';
+        });
+        
+        // Show selected category content
+        const selectedDoc = document.getElementById('docs-' + categoryId);
+        if (selectedDoc) {
+          selectedDoc.style.display = 'block';
+        }
+        
+        // Update active state in navigation
+        const allNavItems = document.querySelectorAll('.list-group-item');
+        allNavItems.forEach(item => {
+          item.classList.remove('active');
+        });
+        
+        if (activeElement) {
+          activeElement.classList.add('active');
+        }
+        
+        console.log('Switched to documentation category:', categoryId);
+      }
+      
+      // Fallback FAQ toggle functionality
+      function toggleFAQ(element) {
+        const answer = element.nextElementSibling;
+        const isOpen = element.classList.contains('active');
+        
+        if (isOpen) {
+          element.classList.remove('active');
+          answer.classList.remove('show');
+        } else {
+          element.classList.add('active');
+          answer.classList.add('show');
+        }
+      }
+      
+      // Add click listeners to FAQ questions for fallback functionality
+      document.querySelectorAll('.faq-question').forEach(question => {
+        if (!question.hasAttribute('@click')) {
+          question.addEventListener('click', function() {
+            toggleFAQ(this);
+          });
+        }
+      });
+    </script>
+</body>
+</html>

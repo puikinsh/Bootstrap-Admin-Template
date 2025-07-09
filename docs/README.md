@@ -9,6 +9,9 @@ A modern, responsive admin dashboard template built with Bootstrap 5.3.7, featur
 - [Quick Start](getting-started/quick-start.md)
 - [Template Overview](overview/introduction.md)
 - [Features](overview/features.md)
+- [Customization](customization/styling.md)
+- [API Reference](api/javascript.md)
+- [Deployment](deployment/production.md)
 
 ## About This Template
 
@@ -59,6 +62,28 @@ npm run dev
 ```
 
 Visit `http://localhost:3000` to see the template in action.
+
+## Documentation Structure
+
+### Getting Started
+- [Welcome](getting-started/welcome.md) - Introduction to Metis
+- [System Requirements](getting-started/requirements.md) - Prerequisites and system requirements
+- [Installation](getting-started/installation.md) - Complete installation guide
+- [Quick Start](getting-started/quick-start.md) - Get up and running quickly
+- [First Run](getting-started/first-run.md) - Initial setup and configuration
+
+### Template Overview
+- [Introduction](overview/introduction.md) - Template architecture and structure
+- [Features](overview/features.md) - Comprehensive feature overview
+
+### Customization
+- [Styling Guide](customization/styling.md) - Complete SCSS customization guide
+
+### API Reference
+- [JavaScript API](api/javascript.md) - JavaScript components and utilities
+
+### Deployment
+- [Production Deployment](deployment/production.md) - Deploy to production environments
 
 ## Browser Support
 

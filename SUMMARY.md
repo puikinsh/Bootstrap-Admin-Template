@@ -1,0 +1,18 @@
+# Table of contents
+
+* [Metis - Modern Bootstrap 5 Admin Dashboard Template](README.md)
+* [\{%= name %\}](.verb.md)
+* [Metis Bootstrap 5 Admin Template](docs/README.md)
+  * [Summary](docs/SUMMARY.md)
+  * [getting-started](docs/getting-started/README.md)
+    * [First Run Guide](docs/getting-started/first-run.md)
+    * [Installation Guide](docs/getting-started/installation.md)
+    * [Quick Start Guide](docs/getting-started/quick-start.md)
+    * [System Requirements](docs/getting-started/requirements.md)
+    * [Welcome to Metis](docs/getting-started/welcome.md)
+  * [overview](docs/overview/README.md)
+    * [Template Features](docs/overview/features.md)
+    * [Template Overview](docs/overview/introduction.md)
+* [Changelog](CHANGELOG.md)
+* [LICENSE.tmpl](license.tmpl.md)
+* [LICENSE](LICENSE.md)

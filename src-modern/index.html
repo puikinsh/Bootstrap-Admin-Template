@@ -197,10 +197,70 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/forms.html">
-                                <i class="bi bi-ui-checks-grid"></i>
+                                <i class="bi bi-ui-checks"></i>
                                 <span>Forms</span>
                                 <span class="badge bg-success rounded-pill ms-auto">New</span>
                             </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#elementsSubmenu" aria-expanded="false">
+                                <i class="bi bi-puzzle"></i>
+                                <span>Elements</span>
+                                <span class="badge bg-primary rounded-pill me-2">New</span>
+                                <i class="bi bi-chevron-down ms-auto"></i>
+                            </a>
+                            <div class="collapse" id="elementsSubmenu">
+                                <ul class="nav nav-submenu">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/elements">
+                                            <i class="bi bi-grid"></i>
+                                            <span>Overview</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/elements-buttons.html">
+                                            <i class="bi bi-square"></i>
+                                            <span>Buttons</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/elements-alerts.html">
+                                            <i class="bi bi-exclamation-triangle"></i>
+                                            <span>Alerts</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/elements-badges.html">
+                                            <i class="bi bi-award"></i>
+                                            <span>Badges</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/elements-cards.html">
+                                            <i class="bi bi-card-text"></i>
+                                            <span>Cards</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/elements-modals.html">
+                                            <i class="bi bi-window"></i>
+                                            <span>Modals</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/elements-forms.html">
+                                            <i class="bi bi-ui-checks"></i>
+                                            <span>Forms</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/elements-tables.html">
+                                            <i class="bi bi-table"></i>
+                                            <span>Tables</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/reports">
@@ -544,47 +604,6 @@
         <div id="toast-container"></div>
     </div>
 
-    <!-- Floating Action Button -->
-    <div class="position-fixed bottom-0 end-0 p-4" style="z-index: 10">
-        <div class="dropdown dropup">
-            <button class="btn btn-primary btn-lg rounded-circle shadow-lg" 
-                    type="button" 
-                    data-bs-toggle="dropdown" 
-                    aria-expanded="false"
-                    data-bs-placement="top"
-                    title="Quick Actions">
-                <i class="bi bi-plus-lg"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li>
-                    <a class="dropdown-item" href="#" onclick="window.AdminApp.notificationManager.info('New user action triggered')">
-                        <i class="bi bi-person-plus me-2"></i>Add User
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="#" onclick="window.AdminApp.notificationManager.info('New product action triggered')">
-                        <i class="bi bi-box me-2"></i>Add Product
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="#" onclick="window.AdminApp.notificationManager.info('New order action triggered')">
-                        <i class="bi bi-bag-plus me-2"></i>New Order
-                    </a>
-                </li>
-                <li><hr class="dropdown-divider"></li>
-                <li>
-                    <a class="dropdown-item" href="#" x-data="iconDemo" @click="switchProvider('lucide')" onclick="window.AdminApp.notificationManager.success('Switched to Lucide icons!')">
-                        <i class="bi bi-palette me-2"></i>Switch to Lucide Icons
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="#" x-data="iconDemo" @click="switchProvider('bootstrap')" onclick="window.AdminApp.notificationManager.success('Switched to Bootstrap icons!')">
-                        <i class="bi bi-bootstrap me-2"></i>Switch to Bootstrap Icons
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
 
     <!-- Icon Demo Modal -->
     <div class="modal fade" id="iconDemoModal" tabindex="-1">

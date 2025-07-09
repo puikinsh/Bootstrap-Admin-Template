@@ -1,5 +1,0 @@
-{
-    "modifier": "alert-info",
-    "message": "This alert was assembled from a partial and YAML data fron in './src/data/`",
-    "strong": "External data example."
-}

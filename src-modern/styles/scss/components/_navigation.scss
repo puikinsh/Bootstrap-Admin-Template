@@ -35,7 +35,104 @@
         
         &:hover {
           background-color: var(--bs-primary);
+          color: white;
           transform: none;
+        }
+      }
+      
+      // Expandable menu styling
+      &[data-bs-toggle="collapse"] {
+        .bi-chevron-down {
+          transition: transform 0.2s ease;
+        }
+        
+        &[aria-expanded="true"] {
+          .bi-chevron-down {
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+  }
+  
+  // Submenu styling
+  .nav-submenu {
+    background-color: rgba(var(--bs-secondary-rgb), 0.05);
+    border-radius: var(--border-radius-sm);
+    margin: 0.25rem 0;
+    padding: 0.25rem 0;
+    width: 100%;
+    display: block !important;
+    
+    // Override Bootstrap nav defaults that might cause multi-column layout
+    &.nav {
+      display: block !important;
+      flex-direction: column !important;
+      flex-wrap: nowrap !important;
+    }
+    
+    .nav-item {
+      width: 100% !important;
+      margin-bottom: 0;
+      flex: none !important;
+      display: block !important;
+    }
+    
+    .nav-link {
+      padding: 0.4rem 1rem 0.4rem 2.25rem !important;
+      margin-bottom: 0 !important;
+      font-size: 0.85rem !important;
+      display: flex !important;
+      align-items: center !important;
+      width: 100% !important;
+      white-space: nowrap !important;
+      border-radius: var(--border-radius-sm) !important;
+      transition: all 0.2s ease !important;
+      text-decoration: none !important;
+      border: none !important;
+      
+      i {
+        width: 1rem;
+        margin-right: 0.5rem;
+        font-size: 0.8rem;
+        opacity: 0.7;
+        flex-shrink: 0;
+      }
+      
+      span {
+        flex-grow: 1;
+        text-align: left;
+      }
+      
+      &:hover {
+        background-color: rgba(var(--bs-primary-rgb), 0.08);
+        transform: translateX(2px);
+        color: var(--bs-primary);
+        
+        i {
+          opacity: 1;
+        }
+      }
+      
+      &.active {
+        background-color: rgba(var(--bs-primary-rgb), 0.15);
+        color: var(--bs-primary);
+        font-weight: 500;
+        
+        i {
+          opacity: 1;
+        }
+        
+        // Fix readability issue when active item is hovered
+        &:hover {
+          background-color: var(--bs-primary);
+          color: white;
+          transform: translateX(2px);
+          
+          i {
+            opacity: 1;
+            color: white;
+          }
         }
       }
     }
@@ -93,6 +190,10 @@
             display: none;
           }
           
+          .bi-chevron-down {
+            display: none;
+          }
+          
           i {
             margin-right: 0;
             font-size: 1.1rem;
@@ -103,6 +204,16 @@
           small {
             display: none;
           }
+        }
+        
+        // Hide submenu in collapsed state
+        .collapse {
+          display: none !important;
+        }
+        
+        // Disable submenu toggle functionality in collapsed state
+        .nav-link[data-bs-toggle="collapse"] {
+          pointer-events: none;
         }
       }
     }
@@ -121,6 +232,19 @@
     
     &.show {
       transform: translateX(0);
+    }
+    
+    // Ensure submenu items are properly sized on mobile
+    .nav-submenu {
+      .nav-link {
+        padding: 0.5rem 1rem 0.5rem 2rem !important;
+        font-size: 0.9rem !important;
+        
+        i {
+          width: 1.2rem !important;
+          margin-right: 0.6rem !important;
+        }
+      }
     }
   }
   

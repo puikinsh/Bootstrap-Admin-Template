@@ -74,6 +74,9 @@ class AdminApp {
 
       // Setup global event listeners
       this.setupEventListeners();
+      
+      // Initialize navigation
+      this.initNavigation();
 
       // Initialize tooltips and popovers globally
       this.initTooltipsAndPopovers();
@@ -181,6 +184,9 @@ class AdminApp {
         break;
       case 'help':
         await this.initHelpPage();
+        break;
+      case 'elements':
+        await this.initElementsPage();
         break;
       // Add more page-specific initializations here
       default:
@@ -298,6 +304,15 @@ class AdminApp {
     }
   }
 
+  async initElementsPage() {
+    try {
+      await import('./components/elements.js');
+      console.log('🧩 Elements page script loaded successfully');
+    } catch (error) {
+      console.error('Failed to load elements page script:', error);
+    }
+  }
+
   // Setup global event listeners
   setupEventListeners() {
     // Theme toggle
@@ -351,6 +366,64 @@ class AdminApp {
   // Get component instance
   getComponent(name) {
     return this.components.get(name);
+  }
+
+  // Initialize navigation functionality
+  initNavigation() {
+    // Handle submenu state persistence
+    const currentPage = window.location.pathname;
+    const elementsPages = [
+      '/elements', '/elements-buttons.html', '/elements-alerts.html', 
+      '/elements-badges.html', '/elements-cards.html', '/elements-modals.html',
+      '/elements-forms.html', '/elements-tables.html'
+    ];
+    
+    // Check if current page is an Elements page
+    const isElementsPage = elementsPages.some(page => currentPage.includes(page.replace('.html', '')));
+    
+    if (isElementsPage) {
+      // Expand Elements submenu on Elements pages
+      const elementsSubmenu = document.getElementById('elementsSubmenu');
+      const elementsToggle = document.querySelector('[data-bs-target="#elementsSubmenu"]');
+      
+      if (elementsSubmenu && elementsToggle) {
+        elementsSubmenu.classList.add('show');
+        elementsToggle.setAttribute('aria-expanded', 'true');
+        
+        // Mark current page as active in submenu
+        const activeSubmenuLink = document.querySelector(`.nav-submenu a[href="${currentPage}"]`);
+        if (activeSubmenuLink) {
+          activeSubmenuLink.classList.add('active');
+        }
+      }
+    }
+    
+    // Handle submenu toggle persistence
+    document.addEventListener('click', (e) => {
+      const toggleButton = e.target.closest('[data-bs-toggle="collapse"]');
+      if (toggleButton) {
+        const targetId = toggleButton.getAttribute('data-bs-target');
+        const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+        
+        // Store submenu state
+        localStorage.setItem(`submenu-${targetId}`, (!isExpanded).toString());
+      }
+    });
+    
+    // Restore submenu states from localStorage
+    const submenuToggles = document.querySelectorAll('[data-bs-toggle="collapse"]');
+    submenuToggles.forEach(toggle => {
+      const targetId = toggle.getAttribute('data-bs-target');
+      const savedState = localStorage.getItem(`submenu-${targetId}`);
+      
+      if (savedState === 'true' && !isElementsPage) {
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.classList.add('show');
+          toggle.setAttribute('aria-expanded', 'true');
+        }
+      }
+    });
   }
 
   // Initialize Alpine.js

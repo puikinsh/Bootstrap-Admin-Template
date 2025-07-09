@@ -1,0 +1,489 @@
+// ==========================================================================
+// Elements Page Styles
+// ==========================================================================
+
+.elements-page {
+  // Element card styling
+  .element-card {
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.75rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-color: var(--bs-primary);
+    }
+    
+    .element-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--bs-primary-bg-subtle);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--bs-primary);
+      
+      i {
+        font-size: 1.5rem;
+      }
+    }
+    
+    .element-preview {
+      background: var(--bs-gray-50);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      // Ensure preview content is properly styled
+      .btn {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.5rem;
+      }
+      
+      .alert {
+        font-size: 0.8rem;
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      
+      .badge {
+        font-size: 0.7rem;
+      }
+      
+      .card {
+        font-size: 0.8rem;
+        
+        .card-body {
+          padding: 0.75rem;
+        }
+      }
+      
+      .table {
+        font-size: 0.8rem;
+        margin-bottom: 0;
+        
+        td, th {
+          padding: 0.5rem;
+          border-color: var(--bs-border-color);
+        }
+      }
+      
+      .nav-tabs {
+        font-size: 0.8rem;
+        border-bottom: 1px solid var(--bs-border-color);
+        
+        .nav-link {
+          padding: 0.5rem 1rem;
+          border-color: var(--bs-border-color);
+          
+          &.active {
+            border-color: var(--bs-border-color) var(--bs-border-color) var(--bs-white);
+          }
+        }
+      }
+      
+      .pagination {
+        font-size: 0.8rem;
+        margin-bottom: 0;
+        
+        .page-link {
+          padding: 0.375rem 0.75rem;
+        }
+      }
+      
+      .progress {
+        height: 6px;
+        background-color: var(--bs-gray-200);
+        
+        .progress-bar {
+          border-radius: 3px;
+        }
+      }
+      
+      .spinner-border {
+        width: 1rem;
+        height: 1rem;
+        border-width: 0.1em;
+      }
+    }
+    
+    .element-preview-small {
+      max-width: 200px;
+      font-size: 0.75rem;
+      
+      .btn {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.4rem;
+      }
+      
+      .alert {
+        font-size: 0.7rem;
+        padding: 0.375rem;
+      }
+      
+      .badge {
+        font-size: 0.6rem;
+      }
+    }
+  }
+  
+  // List view table styling
+  .table {
+    .element-preview-small {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      background: var(--bs-gray-50);
+      border-radius: 0.375rem;
+      padding: 0.5rem;
+    }
+  }
+  
+  // Filter section styling
+  .input-group {
+    .input-group-text {
+      background: var(--bs-gray-50);
+      border-color: var(--bs-border-color);
+    }
+  }
+  
+  // Empty state styling
+  .text-center {
+    i.fs-1 {
+      font-size: 3rem !important;
+      opacity: 0.5;
+    }
+  }
+  
+  // Category badges
+  .badge {
+    &.bg-light {
+      color: var(--bs-gray-700) !important;
+      background-color: var(--bs-gray-200) !important;
+    }
+  }
+  
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    .element-card {
+      .element-preview {
+        min-height: 60px;
+        padding: 0.75rem;
+      }
+    }
+  }
+}
+
+// Dark theme adjustments
+[data-bs-theme="dark"] {
+  .elements-page {
+    .element-card {
+      background: var(--bs-dark);
+      border-color: var(--bs-border-color);
+      
+      &:hover {
+        border-color: var(--bs-primary);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+      
+      .element-icon {
+        background: var(--bs-primary-bg-subtle);
+      }
+      
+      .element-preview {
+        background: var(--bs-gray-900);
+        
+        .alert {
+          background: var(--bs-gray-800);
+          border-color: var(--bs-gray-700);
+        }
+        
+        .card {
+          background: var(--bs-gray-800);
+          border-color: var(--bs-gray-700);
+        }
+        
+        .table {
+          th, td {
+            border-color: var(--bs-gray-700);
+          }
+        }
+        
+        .nav-tabs {
+          border-color: var(--bs-gray-700);
+          
+          .nav-link {
+            border-color: var(--bs-gray-700);
+            
+            &.active {
+              background: var(--bs-dark);
+              border-color: var(--bs-gray-700) var(--bs-gray-700) var(--bs-dark);
+            }
+          }
+        }
+        
+        .progress {
+          background-color: var(--bs-gray-800);
+        }
+      }
+    }
+    
+    .input-group {
+      .input-group-text {
+        background: var(--bs-gray-800);
+        border-color: var(--bs-gray-700);
+      }
+    }
+    
+    .table {
+      .element-preview-small {
+        background: var(--bs-gray-900);
+      }
+    }
+    
+    // Code block styling remains the same in dark mode since it's already dark
+    .element-code-block {
+      background: #1e1e1e;
+      border-color: #444;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+// Component-specific preview styles
+.element-preview {
+  // Button previews
+  .btn-group {
+    .btn {
+      margin: 0;
+    }
+  }
+  
+  // Form previews
+  .form-control,
+  .form-select {
+    font-size: 0.8rem;
+    padding: 0.375rem 0.75rem;
+  }
+  
+  .form-check {
+    font-size: 0.8rem;
+    
+    .form-check-input {
+      margin-top: 0.1rem;
+    }
+  }
+  
+  // Modal previews (when shown)
+  .modal-dialog {
+    position: relative;
+    margin: 0;
+    max-width: 250px;
+    
+    .modal-content {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+  }
+  
+  // Dropdown previews
+  .dropdown {
+    .dropdown-menu {
+      position: static;
+      display: block;
+      float: none;
+      width: auto;
+      margin-top: 0.5rem;
+      border: 1px solid var(--bs-border-color);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  // Tooltip styles (when visible)
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    opacity: 1;
+    
+    .tooltip-inner {
+      font-size: 0.7rem;
+      padding: 0.25rem 0.5rem;
+    }
+  }
+  
+  // Ensure proper spacing
+  > *:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+}
+
+// Animation for card interactions
+@keyframes elementCardHover {
+  0% {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// Utility classes for elements
+.element-preview-container {
+  background: var(--bs-light);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.element-code-block {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.875rem;
+  overflow-x: auto;
+  line-height: 1.6;
+  border: 1px solid #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  
+  pre {
+    margin: 0;
+    white-space: pre-wrap;
+    font-family: inherit;
+    
+    code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-size: inherit;
+      font-family: inherit;
+    }
+  }
+  
+  // Syntax highlighting colors (VS Code Dark theme inspired)
+  .hljs-tag {
+    color: #569cd6; // Light blue for HTML tags
+  }
+  
+  .hljs-name {
+    color: #569cd6; // Light blue for tag names
+  }
+  
+  .hljs-attr {
+    color: #9cdcfe; // Light cyan for attributes
+  }
+  
+  .hljs-string {
+    color: #ce9178; // Light orange for strings
+  }
+  
+  .hljs-keyword {
+    color: #c586c0; // Light purple for keywords
+  }
+  
+  .hljs-comment {
+    color: #6a9955; // Green for comments
+    font-style: italic;
+  }
+  
+  .hljs-number {
+    color: #b5cea8; // Light green for numbers
+  }
+  
+  .hljs-built_in {
+    color: #4ec9b0; // Teal for built-in functions
+  }
+  
+  .hljs-class {
+    color: #4ec9b0; // Teal for classes
+  }
+  
+  .hljs-title {
+    color: #dcdcaa; // Light yellow for titles
+  }
+  
+  .hljs-variable {
+    color: #9cdcfe; // Light cyan for variables
+  }
+  
+  .hljs-literal {
+    color: #569cd6; // Light blue for literals
+  }
+  
+  .hljs-text {
+    color: #d4d4d4; // Default text color
+  }
+  
+  // Custom syntax highlighting for HTML classes and attributes
+  .class-name {
+    color: #4ec9b0;
+    font-weight: 500;
+  }
+  
+  .attribute-name {
+    color: #9cdcfe;
+  }
+  
+  .attribute-value {
+    color: #ce9178;
+  }
+  
+  .tag-name {
+    color: #569cd6;
+  }
+  
+  .bracket {
+    color: #808080;
+  }
+  
+  .equals {
+    color: #d4d4d4;
+  }
+  
+  // Line numbers for code editor feel
+  .line-number {
+    color: #858585;
+    font-size: 0.8em;
+    margin-right: 1em;
+    opacity: 0.7;
+    user-select: none;
+    display: inline-block;
+    width: 2em;
+    text-align: right;
+  }
+}
+
+// Responsive grid adjustments
+@media (max-width: 576px) {
+  .elements-page {
+    .element-card {
+      .element-icon {
+        width: 40px;
+        height: 40px;
+        
+        i {
+          font-size: 1.25rem;
+        }
+      }
+      
+      .element-preview {
+        padding: 0.75rem;
+        min-height: 60px;
+      }
+    }
+  }
+}

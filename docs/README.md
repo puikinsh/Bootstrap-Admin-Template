@@ -25,10 +25,10 @@ A modern, responsive admin dashboard template built with Bootstrap 5.3.7, featur
 
 ```bash
 # Clone or download the template
-git clone https://github.com/your-repo/metis-bootstrap-5
+git clone https://github.com/puikinsh/Bootstrap-Admin-Template.git
 
 # Navigate to the project
-cd metis-bootstrap-5/src-modern
+cd Bootstrap-Admin-Template/src-modern
 
 # Install dependencies (if using npm)
 npm install
@@ -51,6 +51,6 @@ This template is released under the MIT License. See [LICENSE](LICENSE) for deta
 
 ---
 
-**Version**: 1.0.0  
-**Last Updated**: January 2024  
+**Version**: 3.0.0  
+**Last Updated**: July 2025  
 **Bootstrap Version**: 5.3.7

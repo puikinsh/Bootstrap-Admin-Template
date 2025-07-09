@@ -107,7 +107,7 @@ Metis is actively maintained with regular updates, bug fixes, and new features.
 
 ## Version Information
 
-- **Current Version**: 1.0.0
+- **Current Version**: 3.0.0
 - **Bootstrap Version**: 5.3.7
-- **Release Date**: January 2024
+- **Release Date**: July 2025
 - **Compatibility**: Modern browsers (Chrome, Firefox, Safari, Edge)

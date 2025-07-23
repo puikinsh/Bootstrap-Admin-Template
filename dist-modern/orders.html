@@ -3,29 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Management - Modern Bootstrap Admin</title>
+    <title>Order Management - Modern Bootstrap Admin</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Advanced user management with data tables, CRUD operations, and bulk actions">
-    <meta name="keywords" content="bootstrap, admin, dashboard, users, data tables, CRUD">
+    <meta name="description" content="Comprehensive order management with tracking, fulfillment, and analytics">
+    <meta name="keywords" content="bootstrap, admin, dashboard, orders, e-commerce, tracking">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon-CvUZKS4z.svg">
+    <link rel="icon" type="image/png" href="./assets/favicon-B_cwPWBd.png">
     
     <!-- PWA Manifest -->
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="./assets/manifest-DTaoG9pG.json">
     
     <!-- Preload critical fonts -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- ApexCharts CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    
-    <!-- Styles now in SCSS files -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>  <script type="module" crossorigin src="./assets/main-BPhDq89w.js"></script>
+  <script type="module" crossorigin src="./assets/orders-BCZLXwp9.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main-D9K-blpF.css">
+</head>
 
-<body data-page="users" class="user-management">
+<body data-page="orders" class="order-management">
     <!-- Admin App Container -->
     <div class="admin-app">
         <div class="admin-wrapper" id="admin-wrapper">
@@ -36,7 +37,7 @@
                     <div class="container-fluid">
                         <!-- Logo/Brand -->
                         <a class="navbar-brand d-flex align-items-center" href="./index.html">
-                            <img src="/assets/images/logo.svg" alt="Logo" height="32" class="d-inline-block align-text-top me-2">
+                            <img src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3c!--%20Background%20circle%20for%20the%20M%20--%3e%3ccircle%20cx='16'%20cy='16'%20r='16'%20fill='url(%23logoGradient)'/%3e%3c!--%20Centered%20Letter%20M%20--%3e%3cpath%20d='M10%2024V8h2.5l2.5%206.5L17.5%208H20v16h-2V12.5L16.5%2020h-1L14%2012.5V24H10z'%20fill='white'%20font-weight='700'/%3e%3c!--%20Gradient%20definition%20--%3e%3cdefs%3e%3clinearGradient%20id='logoGradient'%20x1='0%25'%20y1='0%25'%20x2='100%25'%20y2='100%25'%3e%3cstop%20offset='0%25'%20style='stop-color:%236366f1;stop-opacity:1'%20/%3e%3cstop%20offset='100%25'%20style='stop-color:%238b5cf6;stop-opacity:1'%20/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e" alt="Logo" height="32" class="d-inline-block align-text-top me-2">
                             <h1 class="h4 mb-0 fw-bold text-primary">Metis</h1>
                         </a>
 
@@ -123,7 +124,7 @@
                                         type="button" 
                                         data-bs-toggle="dropdown" 
                                         aria-expanded="false">
-                                    <img src="/assets/images/avatar-placeholder.svg" 
+                                    <img src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3c!--%20Background%20circle%20--%3e%3ccircle%20cx='16'%20cy='16'%20r='16'%20fill='url(%23avatarGradient)'/%3e%3c!--%20Person%20silhouette%20--%3e%3cg%20fill='white'%20opacity='0.9'%3e%3c!--%20Head%20--%3e%3ccircle%20cx='16'%20cy='12'%20r='5'/%3e%3c!--%20Body%20--%3e%3cpath%20d='M16%2018c-5.5%200-10%202.5-10%207v1h20v-1c0-4.5-4.5-7-10-7z'/%3e%3c/g%3e%3c!--%20Subtle%20border%20--%3e%3ccircle%20cx='16'%20cy='16'%20r='15.5'%20fill='none'%20stroke='rgba(255,255,255,0.2)'%20stroke-width='1'/%3e%3c!--%20Gradient%20definition%20--%3e%3cdefs%3e%3clinearGradient%20id='avatarGradient'%20x1='0%25'%20y1='0%25'%20x2='100%25'%20y2='100%25'%3e%3cstop%20offset='0%25'%20style='stop-color:%236b7280;stop-opacity:1'%20/%3e%3cstop%20offset='100%25'%20style='stop-color:%234b5563;stop-opacity:1'%20/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e" 
                                          alt="User Avatar" 
                                          width="24" 
                                          height="24" 
@@ -161,10 +162,9 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="./users.html">
+                                <a class="nav-link" href="./users.html">
                                     <i class="bi bi-people"></i>
                                     <span>Users</span>
-                                    <span class="badge bg-primary rounded-pill ms-auto">Active</span>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -174,9 +174,10 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="./orders.html">
+                                <a class="nav-link active" href="./orders.html">
                                     <i class="bi bi-bag-check"></i>
                                     <span>Orders</span>
+                                    <span class="badge bg-primary rounded-pill ms-auto">Active</span>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -310,38 +311,38 @@
                 <div class="container-fluid p-4 p-lg-5">
                     
                     <!-- Page Header -->
-                    <div class="d-flex justify-content-between align-items-center mb-4 mb-lg-5 mb-xl-6">
+                    <div class="d-flex justify-content-between align-items-center mb-4 mb-lg-5">
                         <div>
-                            <h1 class="h3 mb-0">User Management</h1>
-                            <p class="text-muted mb-0">Manage users, roles, and permissions</p>
+                            <h1 class="h3 mb-0">Order Management</h1>
+                            <p class="text-muted mb-0">Track orders, manage fulfillment, and analyze sales</p>
                         </div>
                         <div class="d-flex gap-2">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#importModal">
-                                <i class="bi bi-upload me-2"></i>Import Users
-                            </button>
-                            <button type="button" class="btn btn-outline-secondary" @click="exportUsers()">
+                            <button type="button" class="btn btn-outline-secondary" @click="exportOrders()">
                                 <i class="bi bi-download me-2"></i>Export
                             </button>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userModal">
-                                <i class="bi bi-person-plus me-2"></i>Add User
+                            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#bulkUpdateModal">
+                                <i class="bi bi-arrow-repeat me-2"></i>Bulk Update
+                            </button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal">
+                                <i class="bi bi-plus-lg me-2"></i>New Order
                             </button>
                         </div>
                     </div>
 
-                    <!-- Users Management Container -->
-                    <div x-data="userTable" x-init="init()">
+                    <!-- Order Management Container -->
+                    <div x-data="orderTable" x-init="init()">
                         
-                        <!-- User Stats Widgets -->
-                        <div class="row g-4 g-lg-5 g-xl-6 mb-5 mb-lg-5 mb-xl-6">
+                        <!-- Order Stats Widgets -->
+                        <div class="row g-4 g-lg-5 mb-5">
                             <div class="col-xl-3 col-lg-6">
                                 <div class="card stats-card">
                                     <div class="card-body p-3 p-lg-4">
                                         <div class="d-flex align-items-center">
                                             <div class="stats-icon bg-primary bg-opacity-10 text-primary me-3">
-                                                <i class="bi bi-people-fill"></i>
+                                                <i class="bi bi-bag-check"></i>
                                             </div>
                                             <div>
-                                                <h6 class="mb-0 text-muted">Total Users</h6>
+                                                <h6 class="mb-0 text-muted">Total Orders</h6>
                                                 <h3 class="mb-0" x-text="stats.total"></h3>
                                                 <small class="text-success">
                                                     <i class="bi bi-arrow-up"></i> +12% from last month
@@ -355,14 +356,14 @@
                                 <div class="card stats-card">
                                     <div class="card-body p-3 p-lg-4">
                                         <div class="d-flex align-items-center">
-                                            <div class="stats-icon bg-success bg-opacity-10 text-success me-3">
-                                                <i class="bi bi-person-check-fill"></i>
+                                            <div class="stats-icon bg-warning bg-opacity-10 text-warning me-3">
+                                                <i class="bi bi-clock"></i>
                                             </div>
                                             <div>
-                                                <h6 class="mb-0 text-muted">Active Users</h6>
-                                                <h3 class="mb-0" x-text="stats.active"></h3>
-                                                <small class="text-success">
-                                                    <i class="bi bi-arrow-up"></i> +8% from last week
+                                                <h6 class="mb-0 text-muted">Pending</h6>
+                                                <h3 class="mb-0" x-text="stats.pending"></h3>
+                                                <small class="text-warning">
+                                                    <i class="bi bi-exclamation-circle"></i> Needs attention
                                                 </small>
                                             </div>
                                         </div>
@@ -374,13 +375,13 @@
                                     <div class="card-body p-3 p-lg-4">
                                         <div class="d-flex align-items-center">
                                             <div class="stats-icon bg-info bg-opacity-10 text-info me-3">
-                                                <i class="bi bi-person-plus-fill"></i>
+                                                <i class="bi bi-truck"></i>
                                             </div>
                                             <div>
-                                                <h6 class="mb-0 text-muted">New This Month</h6>
-                                                <h3 class="mb-0" x-text="stats.newThisMonth"></h3>
-                                                <small class="text-success">
-                                                    <i class="bi bi-arrow-up"></i> +15% growth
+                                                <h6 class="mb-0 text-muted">Shipped</h6>
+                                                <h3 class="mb-0" x-text="stats.shipped"></h3>
+                                                <small class="text-info">
+                                                    <i class="bi bi-arrow-right"></i> In transit
                                                 </small>
                                             </div>
                                         </div>
@@ -391,12 +392,14 @@
                                 <div class="card stats-card">
                                     <div class="card-body p-3 p-lg-4">
                                         <div class="d-flex align-items-center">
-                                            <div id="activeUserChart" style="min-height: 40px; width: 50px;"></div>
-                                            <div class="ms-3">
-                                                <h6 class="mb-0 text-muted">Active Rate</h6>
-                                                <h3 class="mb-0" x-text="`${Math.round(stats.activePercentage)}%`"></h3>
-                                                <small class="text-muted">
-                                                    <i class="bi bi-clock"></i> Last 24h
+                                            <div class="stats-icon bg-success bg-opacity-10 text-success me-3">
+                                                <i class="bi bi-currency-dollar"></i>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-0 text-muted">Revenue</h6>
+                                                <h3 class="mb-0" x-text="`$${stats.revenue.toLocaleString()}`"></h3>
+                                                <small class="text-success">
+                                                    <i class="bi bi-arrow-up"></i> +8% from last week
                                                 </small>
                                             </div>
                                         </div>
@@ -405,53 +408,43 @@
                             </div>
                         </div>
 
-                        <!-- Enhanced Analytics Widgets Row -->
-                        <div class="row g-4 g-lg-5 g-xl-6 mb-5 mb-lg-5 mb-xl-6">
-                            <!-- User Growth Chart -->
+                        <!-- Charts Row -->
+                        <div class="row g-4 g-lg-5 mb-5">
+                            <!-- Order Trends Chart -->
                             <div class="col-lg-8">
                                 <div class="card h-100">
                                     <div class="card-header d-flex justify-content-between align-items-center">
-                                        <h5 class="card-title mb-0">User Registration Trends</h5>
+                                        <h5 class="card-title mb-0">Order Trends</h5>
                                         <div class="btn-group btn-group-sm" role="group">
-                                            <input type="radio" class="btn-check" name="growthPeriod" id="growth7d" autocomplete="off" checked>
-                                            <label class="btn btn-outline-secondary" for="growth7d">7D</label>
-                                            <input type="radio" class="btn-check" name="growthPeriod" id="growth30d" autocomplete="off">
-                                            <label class="btn btn-outline-secondary" for="growth30d">30D</label>
-                                            <input type="radio" class="btn-check" name="growthPeriod" id="growth90d" autocomplete="off">
-                                            <label class="btn btn-outline-secondary" for="growth90d">90D</label>
+                                            <input type="radio" class="btn-check" name="trendsPeriod" id="trends7d" autocomplete="off" checked>
+                                            <label class="btn btn-outline-secondary" for="trends7d">7D</label>
+                                            <input type="radio" class="btn-check" name="trendsPeriod" id="trends30d" autocomplete="off">
+                                            <label class="btn btn-outline-secondary" for="trends30d">30D</label>
+                                            <input type="radio" class="btn-check" name="trendsPeriod" id="trends90d" autocomplete="off">
+                                            <label class="btn btn-outline-secondary" for="trends90d">90D</label>
                                         </div>
                                     </div>
                                     <div class="card-body p-3 p-lg-4">
-                                        <div id="userGrowthChart" style="width: 100%; overflow: hidden;"></div>
+                                        <div id="orderTrendsChart" style="height: 300px;"></div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Role & Department Distribution -->
+                            <!-- Order Status Distribution -->
                             <div class="col-lg-4">
                                 <div class="card h-100">
                                     <div class="card-header">
-                                        <h5 class="card-title mb-0">User Distribution</h5>
+                                        <h5 class="card-title mb-0">Order Status</h5>
                                     </div>
                                     <div class="card-body p-3 p-lg-4">
-                                        <!-- Role Distribution -->
-                                        <div class="mb-4">
-                                            <h6 class="text-muted mb-3">By Role</h6>
-                                            <div id="roleDistributionChart"></div>
-                                        </div>
-                                        
-                                        <!-- Department Breakdown -->
-                                        <div>
-                                            <h6 class="text-muted mb-3">By Department</h6>
-                                            <template x-for="dept in departmentStats" :key="dept.name">
+                                        <div id="statusChart" style="height: 200px;"></div>
+                                        <div class="mt-3">
+                                            <template x-for="status in statusStats" :key="status.name">
                                                 <div class="d-flex justify-content-between align-items-center mb-2">
-                                                    <span class="small" x-text="dept.name"></span>
+                                                    <span class="small" x-text="status.name"></span>
                                                     <div class="d-flex align-items-center">
-                                                        <div class="progress me-2" style="width: 60px; height: 6px;">
-                                                            <div class="progress-bar" 
-                                                                 :style="`width: ${dept.percentage}%; background-color: ${dept.color}`"></div>
-                                                        </div>
-                                                        <span class="small text-muted" x-text="dept.count"></span>
+                                                        <span class="small text-muted me-2" x-text="`${status.percentage}%`"></span>
+                                                        <span class="small fw-medium" x-text="status.count"></span>
                                                     </div>
                                                 </div>
                                             </template>
@@ -461,134 +454,12 @@
                             </div>
                         </div>
 
-                        <!-- Activity & Alerts Row -->
-                        <div class="row g-4 g-lg-5 g-xl-6 mb-5 mb-lg-5 mb-xl-6">
-                            <!-- Recent User Activity -->
-                            <div class="col-lg-6">
-                                <div class="card h-100">
-                                    <div class="card-header d-flex justify-content-between align-items-center">
-                                        <h5 class="card-title mb-0">Recent Activity</h5>
-                                        <button class="btn btn-sm btn-outline-secondary">
-                                            <i class="bi bi-arrow-clockwise"></i>
-                                        </button>
-                                    </div>
-                                    <div class="card-body p-0">
-                                        <div class="activity-feed" style="max-height: 350px; overflow-y: auto;">
-                                            <template x-for="activity in recentActivities" :key="activity.id">
-                                                <div class="d-flex p-3 border-bottom">
-                                                    <div class="flex-shrink-0 me-3">
-                                                        <div class="activity-icon" 
-                                                             :class="`bg-${activity.type === 'login' ? 'success' : activity.type === 'logout' ? 'secondary' : activity.type === 'register' ? 'primary' : 'warning'} bg-opacity-10`">
-                                                            <i :class="`bi bi-${activity.icon} text-${activity.type === 'login' ? 'success' : activity.type === 'logout' ? 'secondary' : activity.type === 'register' ? 'primary' : 'warning'}`"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        <div class="d-flex justify-content-between">
-                                                            <p class="mb-1 small">
-                                                                <strong x-text="activity.user"></strong> 
-                                                                <span x-text="activity.action"></span>
-                                                            </p>
-                                                            <small class="text-muted" x-text="activity.time"></small>
-                                                        </div>
-                                                        <small class="text-muted" x-text="activity.details"></small>
-                                                    </div>
-                                                </div>
-                                            </template>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- System Alerts & Quick Actions -->
-                            <div class="col-lg-6">
-                                <div class="row g-4 g-lg-4 h-100">
-                                    <!-- System Alerts -->
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <div class="card-header d-flex justify-content-between align-items-center">
-                                                <h5 class="card-title mb-0">System Alerts</h5>
-                                                <span class="badge bg-danger rounded-pill" x-text="systemAlerts.length"></span>
-                                            </div>
-                                            <div class="card-body p-0">
-                                                <template x-for="alert in systemAlerts.slice(0, 3)" :key="alert.id">
-                                                    <div class="alert mb-0 border-0 border-start-0 rounded-0" 
-                                                         :class="`alert-${alert.type}`">
-                                                        <div class="d-flex justify-content-between align-items-start">
-                                                            <div>
-                                                                <h6 class="alert-heading mb-1" x-text="alert.title"></h6>
-                                                                <p class="mb-0 small" x-text="alert.message"></p>
-                                                            </div>
-                                                            <small class="text-muted" x-text="alert.time"></small>
-                                                        </div>
-                                                    </div>
-                                                </template>
-                                                <template x-if="systemAlerts.length === 0">
-                                                    <div class="text-center p-4 text-muted">
-                                                        <i class="bi bi-check-circle-fill text-success fs-1"></i>
-                                                        <p class="mb-0 mt-2">All systems operational</p>
-                                                    </div>
-                                                </template>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Quick Actions -->
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5 class="card-title mb-0">Quick Actions</h5>
-                                            </div>
-                                            <div class="card-body p-3 p-lg-4">
-                                                <div class="row g-2 g-lg-3">
-                                                    <div class="col-6">
-                                                        <button class="btn btn-outline-primary btn-sm w-100" 
-                                                                data-bs-toggle="modal" data-bs-target="#userModal">
-                                                            <i class="bi bi-person-plus me-1"></i>
-                                                            Add User
-                                                        </button>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <button class="btn btn-outline-info btn-sm w-100"
-                                                                data-bs-toggle="modal" data-bs-target="#importModal">
-                                                            <i class="bi bi-upload me-1"></i>
-                                                            Import
-                                                        </button>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <button class="btn btn-outline-success btn-sm w-100"
-                                                                @click="exportUsers()">
-                                                            <i class="bi bi-download me-1"></i>
-                                                            Export
-                                                        </button>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <button class="btn btn-outline-warning btn-sm w-100"
-                                                                @click="sendBulkInvites()">
-                                                            <i class="bi bi-envelope me-1"></i>
-                                                            Invites
-                                                        </button>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <button class="btn btn-outline-secondary btn-sm w-100"
-                                                                @click="generateReport()">
-                                                            <i class="bi bi-file-earmark-text me-1"></i>
-                                                            Generate Report
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Users Table -->
+                        <!-- Orders Table -->
                         <div class="card">
                             <div class="card-header">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <h5 class="card-title mb-0">Users Directory</h5>
+                                        <h5 class="card-title mb-0">Orders</h5>
                                     </div>
                                     <div class="col-auto">
                                         <div class="d-flex gap-2">
@@ -596,9 +467,9 @@
                                             <div class="position-relative">
                                                 <input type="search" 
                                                        class="form-control form-control-sm" 
-                                                       placeholder="Search users..."
+                                                       placeholder="Search orders..."
                                                        x-model="searchQuery"
-                                                       @input="filterUsers()"
+                                                       @input="filterOrders()"
                                                        style="width: 200px;">
                                                 <i class="bi bi-search position-absolute top-50 end-0 translate-middle-y me-2 text-muted"></i>
                                             </div>
@@ -606,23 +477,25 @@
                                             <!-- Status Filter -->
                                             <select class="form-select form-select-sm" 
                                                     x-model="statusFilter" 
-                                                    @change="filterUsers()"
+                                                    @change="filterOrders()"
                                                     style="width: 150px;">
                                                 <option value="">All Status</option>
-                                                <option value="active">Active</option>
-                                                <option value="inactive">Inactive</option>
                                                 <option value="pending">Pending</option>
+                                                <option value="processing">Processing</option>
+                                                <option value="shipped">Shipped</option>
+                                                <option value="delivered">Delivered</option>
+                                                <option value="cancelled">Cancelled</option>
                                             </select>
                                             
-                                            <!-- Role Filter -->
+                                            <!-- Date Range -->
                                             <select class="form-select form-select-sm" 
-                                                    x-model="roleFilter" 
-                                                    @change="filterUsers()"
+                                                    x-model="dateFilter" 
+                                                    @change="filterOrders()"
                                                     style="width: 150px;">
-                                                <option value="">All Roles</option>
-                                                <option value="admin">Admin</option>
-                                                <option value="user">User</option>
-                                                <option value="moderator">Moderator</option>
+                                                <option value="">All Dates</option>
+                                                <option value="today">Today</option>
+                                                <option value="week">This Week</option>
+                                                <option value="month">This Month</option>
                                             </select>
                                         </div>
                                     </div>
@@ -630,30 +503,20 @@
                             </div>
                             <div class="card-body p-0">
                                 <!-- Bulk Actions Bar -->
-                                <div class="bulk-actions-bar p-3 bg-primary bg-opacity-10 border-bottom border-primary border-opacity-25" 
-                                     x-show="selectedUsers.length > 0" 
-                                     x-transition:enter="transition ease-out duration-200"
-                                     x-transition:enter-start="opacity-0 transform translate-y-2"
-                                     x-transition:enter-end="opacity-100 transform translate-y-0">
+                                <div class="bulk-actions-bar p-3 bg-light border-bottom" x-show="selectedOrders.length > 0" x-transition>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-check-circle-fill text-primary me-2"></i>
-                                            <span class="fw-medium text-primary">
-                                                <span x-text="selectedUsers.length"></span> user<span x-show="selectedUsers.length !== 1">s</span> selected
-                                            </span>
-                                        </div>
+                                        <span class="text-muted">
+                                            <span x-text="selectedOrders.length"></span> order(s) selected
+                                        </span>
                                         <div class="d-flex gap-2">
-                                            <button class="btn btn-sm btn-success" @click="bulkAction('activate')">
-                                                <i class="bi bi-check-circle me-1"></i>Activate
+                                            <button class="btn btn-sm btn-outline-secondary" @click="bulkAction('processing')">
+                                                <i class="bi bi-arrow-clockwise me-1"></i>Mark Processing
                                             </button>
-                                            <button class="btn btn-sm btn-warning" @click="bulkAction('deactivate')">
-                                                <i class="bi bi-x-circle me-1"></i>Deactivate
+                                            <button class="btn btn-sm btn-outline-info" @click="bulkAction('shipped')">
+                                                <i class="bi bi-truck me-1"></i>Mark Shipped
                                             </button>
-                                            <button class="btn btn-sm btn-danger" @click="bulkAction('delete')">
-                                                <i class="bi bi-trash me-1"></i>Delete
-                                            </button>
-                                            <button class="btn btn-sm btn-outline-secondary" @click="selectedUsers = []" title="Clear selection">
-                                                <i class="bi bi-x-lg"></i>
+                                            <button class="btn btn-sm btn-outline-success" @click="bulkAction('delivered')">
+                                                <i class="bi bi-check-circle me-1"></i>Mark Delivered
                                             </button>
                                         </div>
                                     </div>
@@ -666,72 +529,62 @@
                                             <tr>
                                                 <th style="width: 40px;">
                                                     <input type="checkbox" 
-                                                           class="form-check-input user-select-checkbox" 
+                                                           class="form-check-input" 
                                                            @change="toggleAll($event.target.checked)"
-                                                           :checked="selectedUsers.length === filteredUsers.length && filteredUsers.length > 0">
+                                                           :checked="selectedOrders.length === filteredOrders.length && filteredOrders.length > 0">
                                                 </th>
-                                                <th @click="sortBy('name')" class="sortable">
-                                                    Name 
-                                                    <i class="bi bi-arrow-up" x-show="sortField === 'name' && sortDirection === 'asc'"></i>
-                                                    <i class="bi bi-arrow-down" x-show="sortField === 'name' && sortDirection === 'desc'"></i>
-                                                </th>
-                                                <th @click="sortBy('email')" class="sortable">
-                                                    Email
-                                                    <i class="bi bi-arrow-up" x-show="sortField === 'email' && sortDirection === 'asc'"></i>
-                                                    <i class="bi bi-arrow-down" x-show="sortField === 'email' && sortDirection === 'desc'"></i>
-                                                </th>
-                                                <th>Role</th>
+                                                <th @click="sortBy('orderNumber')" class="sortable">Order #</th>
+                                                <th>Customer</th>
+                                                <th>Items</th>
+                                                <th @click="sortBy('total')" class="sortable">Total</th>
                                                 <th>Status</th>
-                                                <th @click="sortBy('lastActive')" class="sortable">
-                                                    Last Active
-                                                    <i class="bi bi-arrow-up" x-show="sortField === 'lastActive' && sortDirection === 'asc'"></i>
-                                                    <i class="bi bi-arrow-down" x-show="sortField === 'lastActive' && sortDirection === 'desc'"></i>
-                                                </th>
+                                                <th @click="sortBy('orderDate')" class="sortable">Date</th>
                                                 <th style="width: 120px;">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <template x-for="user in paginatedUsers" :key="user.id">
-                                                <tr :class="{ 'selected': selectedUsers.includes(user.id) }">
+                                            <template x-for="order in paginatedOrders" :key="order.id">
+                                                <tr>
                                                     <td>
                                                         <input type="checkbox" 
-                                                               class="form-check-input user-select-checkbox" 
-                                                               :value="user.id"
-                                                               x-model="selectedUsers">
+                                                               class="form-check-input" 
+                                                               :value="order.id"
+                                                               x-model="selectedOrders">
                                                     </td>
                                                     <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <img :src="user.avatar" 
-                                                                 class="rounded-circle me-2" 
-                                                                 width="32" 
-                                                                 height="32"
-                                                                 :alt="user.name">
+                                                        <div class="fw-medium" x-text="order.orderNumber"></div>
+                                                        <small class="text-muted" x-text="'ID: ' + order.id"></small>
+                                                    </td>
+                                                    <td>
+                                                        <div class="order-customer">
+                                                            <img :src="order.customer.avatar" 
+                                                                 class="customer-avatar" 
+                                                                 :alt="order.customer.name">
                                                             <div>
-                                                                <div class="fw-medium" x-text="user.name"></div>
-                                                                <small class="text-muted" x-text="'ID: ' + user.id"></small>
+                                                                <div class="fw-medium" x-text="order.customer.name"></div>
+                                                                <small class="text-muted" x-text="order.customer.email"></small>
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td x-text="user.email"></td>
                                                     <td>
-                                                        <span class="badge" 
-                                                              :class="{
-                                                                  'bg-danger': user.role === 'admin',
-                                                                  'bg-primary': user.role === 'user', 
-                                                                  'bg-warning': user.role === 'moderator'
-                                                              }"
-                                                              x-text="user.role"></span>
+                                                        <div class="order-items">
+                                                            <div x-text="order.itemCount + ' item' + (order.itemCount > 1 ? 's' : '')"></div>
+                                                            <small class="text-muted" x-text="order.items[0].name + (order.itemCount > 1 ? ' +' + (order.itemCount - 1) + ' more' : '')"></small>
+                                                        </div>
                                                     </td>
+                                                    <td class="fw-medium" x-text="`$${order.total}`"></td>
                                                     <td>
-                                                        <span class="badge" 
+                                                        <span class="order-status" 
                                                               :class="{
-                                                                  'bg-success': user.status === 'active',
-                                                                  'bg-secondary': user.status === 'inactive',
-                                                                  'bg-warning': user.status === 'pending'
+                                                                  'status-pending': order.status === 'pending',
+                                                                  'status-processing': order.status === 'processing',
+                                                                  'status-shipped': order.status === 'shipped',
+                                                                  'status-delivered': order.status === 'delivered',
+                                                                  'status-cancelled': order.status === 'cancelled'
                                                               }"
-                                                              x-text="user.status"></span>
+                                                              x-text="order.status.charAt(0).toUpperCase() + order.status.slice(1)"></span>
                                                     </td>
-                                                    <td x-text="user.lastActive"></td>
+                                                    <td x-text="order.orderDate"></td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm btn-outline-secondary dropdown-toggle" 
@@ -740,15 +593,18 @@
                                                                 <i class="bi bi-three-dots"></i>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#" @click="editUser(user)">
-                                                                    <i class="bi bi-pencil me-2"></i>Edit
+                                                                <li><a class="dropdown-item" href="#" @click="viewOrder(order)">
+                                                                    <i class="bi bi-eye me-2"></i>View Details
                                                                 </a></li>
-                                                                <li><a class="dropdown-item" href="#" @click="viewUser(user)">
-                                                                    <i class="bi bi-eye me-2"></i>View Profile
+                                                                <li><a class="dropdown-item" href="#" @click="trackOrder(order)">
+                                                                    <i class="bi bi-truck me-2"></i>Track Order
+                                                                </a></li>
+                                                                <li><a class="dropdown-item" href="#" @click="printInvoice(order)">
+                                                                    <i class="bi bi-printer me-2"></i>Print Invoice
                                                                 </a></li>
                                                                 <li><hr class="dropdown-divider"></li>
-                                                                <li><a class="dropdown-item text-danger" href="#" @click="deleteUser(user)">
-                                                                    <i class="bi bi-trash me-2"></i>Delete
+                                                                <li><a class="dropdown-item text-danger" href="#" @click="cancelOrder(order)">
+                                                                    <i class="bi bi-x-circle me-2"></i>Cancel Order
                                                                 </a></li>
                                                             </ul>
                                                         </div>
@@ -763,17 +619,17 @@
                                 <div class="d-flex justify-content-between align-items-center p-3">
                                     <div class="text-muted">
                                         Showing <span x-text="(currentPage - 1) * itemsPerPage + 1"></span> to 
-                                        <span x-text="Math.min(currentPage * itemsPerPage, filteredUsers.length)"></span> of 
-                                        <span x-text="filteredUsers.length"></span> results
+                                        <span x-text="Math.min(currentPage * itemsPerPage, filteredOrders.length)"></span> of 
+                                        <span x-text="filteredOrders.length"></span> results
                                     </div>
                                     <nav>
                                         <ul class="pagination pagination-sm mb-0">
                                             <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
                                                 <a class="page-link" href="#" @click.prevent="goToPage(currentPage - 1)">Previous</a>
                                             </li>
-                                            <template x-for="page in visiblePages" :key="page">
+                                            <template x-for="(page, index) in visiblePages" :key="`page-${index}`">
                                                 <li class="page-item" :class="{ 'active': page === currentPage }">
-                                                    <a class="page-link" href="#" @click.prevent="goToPage(page)" x-text="page"></a>
+                                                    <a class="page-link" href="#" @click.prevent="page !== '...' && goToPage(page)" x-text="page"></a>
                                                 </li>
                                             </template>
                                             <li class="page-item" :class="{ 'disabled': currentPage === totalPages }">
@@ -785,7 +641,7 @@
                             </div>
                         </div>
                         
-                    </div> <!-- End Users Management Container -->
+                    </div> <!-- End Order Management Container -->
 
                 </div>
             </main>
@@ -807,95 +663,122 @@
         </div> <!-- /.admin-wrapper -->
     </div>
 
-    <!-- User Modal (Add/Edit) -->
-    <div class="modal fade" id="userModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
+    <!-- Order Details Modal -->
+    <div class="modal fade" id="orderModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add New User</h5>
+                    <h5 class="modal-title">Order Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form x-data="userForm">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label">First Name</label>
-                                <input type="text" class="form-control" x-model="form.firstName" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Last Name</label>
-                                <input type="text" class="form-control" x-model="form.lastName" required>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control" x-model="form.email" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Role</label>
-                                <select class="form-select" x-model="form.role" required>
-                                    <option value="">Select Role</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="user">User</option>
-                                    <option value="moderator">Moderator</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Status</label>
-                                <select class="form-select" x-model="form.status" required>
-                                    <option value="">Select Status</option>
-                                    <option value="active">Active</option>
-                                    <option value="inactive">Inactive</option>
-                                    <option value="pending">Pending</option>
-                                </select>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label">Phone</label>
-                                <input type="tel" class="form-control" x-model="form.phone">
+                    <div class="row">
+                        <!-- Order Information -->
+                        <div class="col-lg-8">
+                            <h6 class="mb-3">Order Items</h6>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Sample Product</td>
+                                            <td>2</td>
+                                            <td>$49.99</td>
+                                            <td>$99.98</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="3">Total:</th>
+                                            <th>$99.98</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary" @click="saveUser()">Save User</button>
+                        
+                        <!-- Order Timeline -->
+                        <div class="col-lg-4">
+                            <h6 class="mb-3">Order Timeline</h6>
+                            <div class="order-timeline">
+                                <div class="timeline-item completed">
+                                    <div class="fw-medium">Order Placed</div>
+                                    <small class="text-muted">Jan 15, 2025 at 10:30 AM</small>
+                                </div>
+                                <div class="timeline-item completed">
+                                    <div class="fw-medium">Payment Confirmed</div>
+                                    <small class="text-muted">Jan 15, 2025 at 10:32 AM</small>
+                                </div>
+                                <div class="timeline-item active">
+                                    <div class="fw-medium">Processing</div>
+                                    <small class="text-muted">Jan 16, 2025 at 9:15 AM</small>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="fw-medium">Shipped</div>
+                                    <small class="text-muted">Pending</small>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="fw-medium">Delivered</div>
+                                    <small class="text-muted">Pending</small>
+                                </div>
+                            </div>
                         </div>
-                    </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Update Status</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Import Modal -->
-    <div class="modal fade" id="importModal" tabindex="-1">
+    <!-- Bulk Update Modal -->
+    <div class="modal fade" id="bulkUpdateModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Import Users</h5>
+                    <h5 class="modal-title">Bulk Update Orders</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label class="form-label">Upload CSV File</label>
-                        <input type="file" class="form-control" accept=".csv">
-                        <div class="form-text">Upload a CSV file with columns: name, email, role, status</div>
+                        <label class="form-label">Update Status</label>
+                        <select class="form-select">
+                            <option value="">Select new status</option>
+                            <option value="processing">Processing</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
                     </div>
-                    <div class="alert alert-info">
-                        <i class="bi bi-info-circle me-2"></i>
-                        <strong>CSV Format:</strong> name, email, role, status<br>
-                        <small>Example: John Doe, john@example.com, user, active</small>
+                    <div class="mb-3">
+                        <label class="form-label">Filter Orders</label>
+                        <select class="form-select">
+                            <option value="">All orders</option>
+                            <option value="pending">Only pending orders</option>
+                            <option value="processing">Only processing orders</option>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Import Users</button>
+                    <button type="button" class="btn btn-primary">Update Orders</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Page-specific Component -->
-    <script type="module" src="./scripts/components/users.js"></script>
 
     <!-- Main App Script -->
-    <script type="module" src="./scripts/main.js"></script>
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -903,14 +786,12 @@
         const wrapper = document.getElementById('admin-wrapper');
 
         if (toggleButton && wrapper) {
-          // Set initial state from localStorage
           const isCollapsed = localStorage.getItem('sidebar-collapsed') === 'true';
           if (isCollapsed) {
             wrapper.classList.add('sidebar-collapsed');
             toggleButton.classList.add('is-active');
           }
 
-          // Attach click listener
           toggleButton.addEventListener('click', () => {
             const isCurrentlyCollapsed = wrapper.classList.contains('sidebar-collapsed');
             
@@ -928,4 +809,4 @@
       });
     </script>
 </body>
-</html> 
+</html>

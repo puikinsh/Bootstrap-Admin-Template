@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buttons - Bootstrap 5 Elements</title>
+    <title>Alerts - Bootstrap 5 Elements</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Bootstrap 5 button examples - styles, sizes, states, and variations">
-    <meta name="keywords" content="bootstrap, buttons, primary, secondary, success, danger, warning, info">
+    <meta name="description" content="Bootstrap 5 alert examples - contextual feedback messages for user actions">
+    <meta name="keywords" content="bootstrap, alerts, notifications, feedback, primary, success, danger, warning">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon-CvUZKS4z.svg">
+    <link rel="icon" type="image/png" href="./assets/favicon-B_cwPWBd.png">
     
     <!-- PWA Manifest -->
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="./assets/manifest-DTaoG9pG.json">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -52,25 +52,27 @@
         .token.attr-value .token.string {
             background: linear-gradient(transparent 0%, transparent 100%);
         }
-        
+
         /* Fix unreadable active+hover sidebar navigation */
         .nav-submenu .nav-link.active:hover {
             background-color: var(--bs-primary) !important;
             color: white !important;
             transform: translateX(2px) !important;
         }
-        
+
         .nav-submenu .nav-link.active:hover i {
             opacity: 1 !important;
             color: white !important;
         }
-        
+
         .sidebar-nav .nav .nav-link.active:hover {
             background-color: var(--bs-primary) !important;
             color: white !important;
             transform: none !important;
         }
     </style>
+  <script type="module" crossorigin src="./assets/main-BPhDq89w.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main-D9K-blpF.css">
 </head>
 
 <body data-page="elements" class="elements-page">
@@ -82,7 +84,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
                     <div class="container-fluid">
                         <a class="navbar-brand d-flex align-items-center" href="./index.html">
-                            <img src="/assets/images/logo.svg" alt="Logo" height="32" class="d-inline-block align-text-top me-2">
+                            <img src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3c!--%20Background%20circle%20for%20the%20M%20--%3e%3ccircle%20cx='16'%20cy='16'%20r='16'%20fill='url(%23logoGradient)'/%3e%3c!--%20Centered%20Letter%20M%20--%3e%3cpath%20d='M10%2024V8h2.5l2.5%206.5L17.5%208H20v16h-2V12.5L16.5%2020h-1L14%2012.5V24H10z'%20fill='white'%20font-weight='700'/%3e%3c!--%20Gradient%20definition%20--%3e%3cdefs%3e%3clinearGradient%20id='logoGradient'%20x1='0%25'%20y1='0%25'%20x2='100%25'%20y2='100%25'%3e%3cstop%20offset='0%25'%20style='stop-color:%236366f1;stop-opacity:1'%20/%3e%3cstop%20offset='100%25'%20style='stop-color:%238b5cf6;stop-opacity:1'%20/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e" alt="Logo" height="32" class="d-inline-block align-text-top me-2">
                             <h1 class="h4 mb-0 fw-bold text-primary">Metis</h1>
                         </a>
 
@@ -105,7 +107,7 @@
                             </button>
                             <div class="dropdown">
                                 <button class="btn btn-outline-secondary d-flex align-items-center" data-bs-toggle="dropdown">
-                                    <img src="/assets/images/avatar-placeholder.svg" width="24" height="24" class="rounded-circle me-2">
+                                    <img src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3c!--%20Background%20circle%20--%3e%3ccircle%20cx='16'%20cy='16'%20r='16'%20fill='url(%23avatarGradient)'/%3e%3c!--%20Person%20silhouette%20--%3e%3cg%20fill='white'%20opacity='0.9'%3e%3c!--%20Head%20--%3e%3ccircle%20cx='16'%20cy='12'%20r='5'/%3e%3c!--%20Body%20--%3e%3cpath%20d='M16%2018c-5.5%200-10%202.5-10%207v1h20v-1c0-4.5-4.5-7-10-7z'/%3e%3c/g%3e%3c!--%20Subtle%20border%20--%3e%3ccircle%20cx='16'%20cy='16'%20r='15.5'%20fill='none'%20stroke='rgba(255,255,255,0.2)'%20stroke-width='1'/%3e%3c!--%20Gradient%20definition%20--%3e%3cdefs%3e%3clinearGradient%20id='avatarGradient'%20x1='0%25'%20y1='0%25'%20x2='100%25'%20y2='100%25'%3e%3cstop%20offset='0%25'%20style='stop-color:%236b7280;stop-opacity:1'%20/%3e%3cstop%20offset='100%25'%20style='stop-color:%234b5563;stop-opacity:1'%20/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e" width="24" height="24" class="rounded-circle me-2">
                                     <span class="d-none d-md-inline">John Doe</span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -172,13 +174,13 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="./elements-buttons.html">
+                                            <a class="nav-link" href="./elements-buttons.html">
                                                 <i class="bi bi-square"></i>
                                                 <span>Buttons</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="./elements-alerts.html">
+                                            <a class="nav-link active" href="./elements-alerts.html">
                                                 <i class="bi bi-exclamation-triangle"></i>
                                                 <span>Alerts</span>
                                             </a>
@@ -286,15 +288,15 @@
                     <nav aria-label="breadcrumb" class="mb-4">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="./elements.html">Elements</a></li>
-                            <li class="breadcrumb-item active">Buttons</li>
+                            <li class="breadcrumb-item active">Alerts</li>
                         </ol>
                     </nav>
 
                     <!-- Page Header -->
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <div>
-                            <h1 class="h3 mb-0">Buttons</h1>
-                            <p class="text-muted mb-0">Bootstrap button styles, sizes, and states</p>
+                            <h1 class="h3 mb-0">Alerts</h1>
+                            <p class="text-muted mb-0">Contextual feedback messages for user actions</p>
                         </div>
                         <div class="d-flex gap-2">
                             <button class="btn btn-outline-secondary" onclick="window.history.back()">
@@ -306,171 +308,54 @@
                         </div>
                     </div>
 
-                    <!-- Button Examples -->
+                    <!-- Alert Examples -->
                     <div class="row g-4">
                         
-                        <!-- Basic Button Styles -->
+                        <!-- Basic Alerts -->
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title mb-0">Basic Button Styles</h5>
+                                    <h5 class="card-title mb-0">Basic Alerts</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="element-preview-container">
-                                        <button type="button" class="btn btn-primary me-2 mb-2">Primary</button>
-                                        <button type="button" class="btn btn-secondary me-2 mb-2">Secondary</button>
-                                        <button type="button" class="btn btn-success me-2 mb-2">Success</button>
-                                        <button type="button" class="btn btn-danger me-2 mb-2">Danger</button>
-                                        <button type="button" class="btn btn-warning me-2 mb-2">Warning</button>
-                                        <button type="button" class="btn btn-info me-2 mb-2">Info</button>
-                                        <button type="button" class="btn btn-light me-2 mb-2">Light</button>
-                                        <button type="button" class="btn btn-dark me-2 mb-2">Dark</button>
-                                        <button type="button" class="btn btn-link me-2 mb-2">Link</button>
-                                    </div>
-                                    <div class="element-code-block">
-                                        <pre><code class="language-html">&lt;button type="button" class="btn btn-primary"&gt;Primary&lt;/button&gt;
-&lt;button type="button" class="btn btn-secondary"&gt;Secondary&lt;/button&gt;
-&lt;button type="button" class="btn btn-success"&gt;Success&lt;/button&gt;
-&lt;button type="button" class="btn btn-danger"&gt;Danger&lt;/button&gt;
-&lt;button type="button" class="btn btn-warning"&gt;Warning&lt;/button&gt;
-&lt;button type="button" class="btn btn-info"&gt;Info&lt;/button&gt;
-&lt;button type="button" class="btn btn-light"&gt;Light&lt;/button&gt;
-&lt;button type="button" class="btn btn-dark"&gt;Dark&lt;/button&gt;
-&lt;button type="button" class="btn btn-link"&gt;Link&lt;/button&gt;</code></pre>
-                                    </div>
-                                    <button class="btn btn-sm btn-outline-secondary" onclick="copyCode(this)">
-                                        <i class="bi bi-clipboard me-2"></i>Copy Code
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Outline Buttons -->
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title mb-0">Outline Buttons</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="element-preview-container">
-                                        <button type="button" class="btn btn-outline-primary me-2 mb-2">Primary</button>
-                                        <button type="button" class="btn btn-outline-secondary me-2 mb-2">Secondary</button>
-                                        <button type="button" class="btn btn-outline-success me-2 mb-2">Success</button>
-                                        <button type="button" class="btn btn-outline-danger me-2 mb-2">Danger</button>
-                                        <button type="button" class="btn btn-outline-warning me-2 mb-2">Warning</button>
-                                        <button type="button" class="btn btn-outline-info me-2 mb-2">Info</button>
-                                        <button type="button" class="btn btn-outline-light me-2 mb-2">Light</button>
-                                        <button type="button" class="btn btn-outline-dark me-2 mb-2">Dark</button>
-                                    </div>
-                                    <div class="element-code-block">
-                                        <pre><code class="language-html">&lt;button type="button" class="btn btn-outline-primary"&gt;Primary&lt;/button&gt;
-&lt;button type="button" class="btn btn-outline-secondary"&gt;Secondary&lt;/button&gt;
-&lt;button type="button" class="btn btn-outline-success"&gt;Success&lt;/button&gt;
-&lt;button type="button" class="btn btn-outline-danger"&gt;Danger&lt;/button&gt;
-&lt;button type="button" class="btn btn-outline-warning"&gt;Warning&lt;/button&gt;
-&lt;button type="button" class="btn btn-outline-info"&gt;Info&lt;/button&gt;
-&lt;button type="button" class="btn btn-outline-light"&gt;Light&lt;/button&gt;
-&lt;button type="button" class="btn btn-outline-dark"&gt;Dark&lt;/button&gt;</code></pre>
-                                    </div>
-                                    <button class="btn btn-sm btn-outline-secondary" onclick="copyCode(this)">
-                                        <i class="bi bi-clipboard me-2"></i>Copy Code
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Button Sizes -->
-                        <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title mb-0">Button Sizes</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="element-preview-container">
-                                        <button type="button" class="btn btn-primary btn-lg me-2 mb-2">Large button</button>
-                                        <button type="button" class="btn btn-secondary btn-lg me-2 mb-2">Large button</button>
-                                        <br>
-                                        <button type="button" class="btn btn-primary me-2 mb-2">Default button</button>
-                                        <button type="button" class="btn btn-secondary me-2 mb-2">Default button</button>
-                                        <br>
-                                        <button type="button" class="btn btn-primary btn-sm me-2 mb-2">Small button</button>
-                                        <button type="button" class="btn btn-secondary btn-sm me-2 mb-2">Small button</button>
-                                    </div>
-                                    <div class="element-code-block">
-                                        <pre><code class="language-html">&lt;button type="button" class="btn btn-primary btn-lg"&gt;Large button&lt;/button&gt;
-&lt;button type="button" class="btn btn-primary"&gt;Default button&lt;/button&gt;
-&lt;button type="button" class="btn btn-primary btn-sm"&gt;Small button&lt;/button&gt;</code></pre>
-                                    </div>
-                                    <button class="btn btn-sm btn-outline-secondary" onclick="copyCode(this)">
-                                        <i class="bi bi-clipboard me-2"></i>Copy Code
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Button States -->
-                        <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title mb-0">Button States</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="element-preview-container">
-                                        <button type="button" class="btn btn-primary me-2 mb-2">Normal</button>
-                                        <button type="button" class="btn btn-primary active me-2 mb-2">Active</button>
-                                        <button type="button" class="btn btn-primary me-2 mb-2" disabled>Disabled</button>
-                                        <br>
-                                        <button type="button" class="btn btn-primary me-2 mb-2">
-                                            <span class="spinner-border spinner-border-sm me-2"></span>
-                                            Loading...
-                                        </button>
-                                        <button type="button" class="btn btn-success me-2 mb-2">
-                                            <i class="bi bi-check-circle me-2"></i>Success
-                                        </button>
-                                    </div>
-                                    <div class="element-code-block">
-                                        <pre><code class="language-html">&lt;button type="button" class="btn btn-primary"&gt;Normal&lt;/button&gt;
-&lt;button type="button" class="btn btn-primary active"&gt;Active&lt;/button&gt;
-&lt;button type="button" class="btn btn-primary" disabled&gt;Disabled&lt;/button&gt;
-
-&lt;!-- Loading button --&gt;
-&lt;button type="button" class="btn btn-primary"&gt;
-    &lt;span class="spinner-border spinner-border-sm me-2"&gt;&lt;/span&gt;
-    Loading...
-&lt;/button&gt;</code></pre>
-                                    </div>
-                                    <button class="btn btn-sm btn-outline-secondary" onclick="copyCode(this)">
-                                        <i class="bi bi-clipboard me-2"></i>Copy Code
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Button Groups -->
-                        <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title mb-0">Button Groups</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="element-preview-container">
-                                        <div class="btn-group mb-3" role="group">
-                                            <button type="button" class="btn btn-primary">Left</button>
-                                            <button type="button" class="btn btn-primary">Middle</button>
-                                            <button type="button" class="btn btn-primary">Right</button>
+                                        <div class="alert alert-primary" role="alert">
+                                            A simple primary alert—check it out!
                                         </div>
-                                        <br>
-                                        <div class="btn-group" role="group">
-                                            <button type="button" class="btn btn-outline-primary">Left</button>
-                                            <button type="button" class="btn btn-outline-primary">Middle</button>
-                                            <button type="button" class="btn btn-outline-primary">Right</button>
+                                        <div class="alert alert-secondary" role="alert">
+                                            A simple secondary alert—check it out!
+                                        </div>
+                                        <div class="alert alert-success" role="alert">
+                                            A simple success alert—check it out!
+                                        </div>
+                                        <div class="alert alert-danger" role="alert">
+                                            A simple danger alert—check it out!
+                                        </div>
+                                        <div class="alert alert-warning" role="alert">
+                                            A simple warning alert—check it out!
+                                        </div>
+                                        <div class="alert alert-info" role="alert">
+                                            A simple info alert—check it out!
+                                        </div>
+                                        <div class="alert alert-light" role="alert">
+                                            A simple light alert—check it out!
+                                        </div>
+                                        <div class="alert alert-dark" role="alert">
+                                            A simple dark alert—check it out!
                                         </div>
                                     </div>
                                     <div class="element-code-block">
-                                        <pre><code class="language-html">&lt;div class="btn-group" role="group"&gt;
-    &lt;button type="button" class="btn btn-primary"&gt;Left&lt;/button&gt;
-    &lt;button type="button" class="btn btn-primary"&gt;Middle&lt;/button&gt;
-    &lt;button type="button" class="btn btn-primary"&gt;Right&lt;/button&gt;
+                                        <pre><code class="language-html">&lt;div class="alert alert-primary" role="alert"&gt;
+    A simple primary alert—check it out!
+&lt;/div&gt;
+&lt;div class="alert alert-secondary" role="alert"&gt;
+    A simple secondary alert—check it out!
+&lt;/div&gt;
+&lt;div class="alert alert-success" role="alert"&gt;
+    A simple success alert—check it out!
+&lt;/div&gt;
+&lt;div class="alert alert-danger" role="alert"&gt;
+    A simple danger alert—check it out!
 &lt;/div&gt;</code></pre>
                                     </div>
                                     <button class="btn btn-sm btn-outline-secondary" onclick="copyCode(this)">
@@ -480,43 +365,153 @@
                             </div>
                         </div>
 
-                        <!-- Icon Buttons -->
-                        <div class="col-lg-6">
+                        <!-- Alerts with Icons -->
+                        <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title mb-0">Icon Buttons</h5>
+                                    <h5 class="card-title mb-0">Alerts with Icons</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="element-preview-container">
-                                        <button type="button" class="btn btn-primary me-2 mb-2">
-                                            <i class="bi bi-plus-lg me-2"></i>Add New
-                                        </button>
-                                        <button type="button" class="btn btn-success me-2 mb-2">
-                                            <i class="bi bi-check-circle me-2"></i>Save
-                                        </button>
-                                        <button type="button" class="btn btn-danger me-2 mb-2">
-                                            <i class="bi bi-trash me-2"></i>Delete
-                                        </button>
-                                        <br>
-                                        <button type="button" class="btn btn-outline-primary me-2 mb-2">
-                                            <i class="bi bi-download"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-outline-secondary me-2 mb-2">
-                                            <i class="bi bi-share"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-outline-warning me-2 mb-2">
-                                            <i class="bi bi-star"></i>
-                                        </button>
+                                        <div class="alert alert-primary d-flex align-items-center" role="alert">
+                                            <i class="bi bi-info-circle me-2"></i>
+                                            <div>An example alert with an icon</div>
+                                        </div>
+                                        <div class="alert alert-success d-flex align-items-center" role="alert">
+                                            <i class="bi bi-check-circle me-2"></i>
+                                            <div>An example success alert with an icon</div>
+                                        </div>
+                                        <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                            <i class="bi bi-exclamation-triangle me-2"></i>
+                                            <div>An example warning alert with an icon</div>
+                                        </div>
+                                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                            <i class="bi bi-exclamation-octagon me-2"></i>
+                                            <div>An example danger alert with an icon</div>
+                                        </div>
                                     </div>
                                     <div class="element-code-block">
-                                        <pre><code class="language-html">&lt;button type="button" class="btn btn-primary"&gt;
-    &lt;i class="bi bi-plus-lg me-2"&gt;&lt;/i&gt;Add New
-&lt;/button&gt;
+                                        <pre><code class="language-html">&lt;div class="alert alert-primary d-flex align-items-center" role="alert"&gt;
+    &lt;i class="bi bi-info-circle me-2"&gt;&lt;/i&gt;
+    &lt;div&gt;An example alert with an icon&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="alert alert-success d-flex align-items-center" role="alert"&gt;
+    &lt;i class="bi bi-check-circle me-2"&gt;&lt;/i&gt;
+    &lt;div&gt;An example success alert with an icon&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="copyCode(this)">
+                                        <i class="bi bi-clipboard me-2"></i>Copy Code
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
 
-&lt;!-- Icon only buttons --&gt;
-&lt;button type="button" class="btn btn-outline-primary"&gt;
-    &lt;i class="bi bi-download"&gt;&lt;/i&gt;
-&lt;/button&gt;</code></pre>
+                        <!-- Dismissible Alerts -->
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Dismissible Alerts</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="element-preview-container">
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                            <i class="bi bi-info-circle me-2"></i>
+                                            <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            <i class="bi bi-check-circle me-2"></i>
+                                            <strong>Well done!</strong> You successfully read this important alert message.
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    </div>
+                                    <div class="element-code-block">
+                                        <pre><code class="language-html">&lt;div class="alert alert-warning alert-dismissible fade show" role="alert"&gt;
+    &lt;strong&gt;Holy guacamole!&lt;/strong&gt; You should check in on some of those fields below.
+    &lt;button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"&gt;&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="copyCode(this)">
+                                        <i class="bi bi-clipboard me-2"></i>Copy Code
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Alerts with Additional Content -->
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Alerts with Additional Content</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="element-preview-container">
+                                        <div class="alert alert-success" role="alert">
+                                            <h4 class="alert-heading">Well done!</h4>
+                                            <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+                                            <hr>
+                                            <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+                                        </div>
+                                        <div class="alert alert-info" role="alert">
+                                            <h4 class="alert-heading">
+                                                <i class="bi bi-info-circle me-2"></i>
+                                                Information
+                                            </h4>
+                                            <p>This is an info alert with additional content and actions.</p>
+                                            <div class="d-flex gap-2">
+                                                <button class="btn btn-sm btn-info">Learn More</button>
+                                                <button class="btn btn-sm btn-outline-info">Dismiss</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="element-code-block">
+                                        <pre><code class="language-html">&lt;div class="alert alert-success" role="alert"&gt;
+    &lt;h4 class="alert-heading"&gt;Well done!&lt;/h4&gt;
+    &lt;p&gt;Aww yeah, you successfully read this important alert message.&lt;/p&gt;
+    &lt;hr&gt;
+    &lt;p class="mb-0"&gt;Whenever you need to, be sure to use margin utilities.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="copyCode(this)">
+                                        <i class="bi bi-clipboard me-2"></i>Copy Code
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Alert Examples -->
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Live Alert Examples</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="element-preview-container">
+                                        <div id="liveAlertPlaceholder"></div>
+                                        <div class="d-flex gap-2">
+                                            <button type="button" class="btn btn-primary" onclick="showAlert('primary')">Show Primary Alert</button>
+                                            <button type="button" class="btn btn-success" onclick="showAlert('success')">Show Success Alert</button>
+                                            <button type="button" class="btn btn-warning" onclick="showAlert('warning')">Show Warning Alert</button>
+                                            <button type="button" class="btn btn-danger" onclick="showAlert('danger')">Show Danger Alert</button>
+                                        </div>
+                                    </div>
+                                    <div class="element-code-block">
+                                        <pre><code class="language-html">const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+const appendAlert = (message, type) => {
+    const wrapper = document.createElement('div')
+    wrapper.innerHTML = [
+        `&lt;div class="alert alert-${type} alert-dismissible" role="alert"&gt;`,
+        `   &lt;div&gt;${message}&lt;/div&gt;`,
+        '   &lt;button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"&gt;&lt;/button&gt;',
+        '&lt;/div&gt;'
+    ].join('')
+    alertPlaceholder.append(wrapper)
+}</code></pre>
                                     </div>
                                     <button class="btn btn-sm btn-outline-secondary" onclick="copyCode(this)">
                                         <i class="bi bi-clipboard me-2"></i>Copy Code
@@ -547,7 +542,6 @@
     </div>
 
     <!-- Scripts -->
-    <script type="module" src="./scripts/main.js"></script>
     
     <!-- Prism.js for syntax highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
@@ -574,9 +568,31 @@
                 allCode += block.textContent + '\n\n';
             });
             navigator.clipboard.writeText(allCode).then(() => {
-                // Show success notification
                 alert('All code copied to clipboard!');
             });
+        }
+
+        // Live alert functionality
+        const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+        const appendAlert = (message, type) => {
+            const wrapper = document.createElement('div')
+            wrapper.innerHTML = [
+                `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+                `   <div>${message}</div>`,
+                '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+                '</div>'
+            ].join('')
+            alertPlaceholder.append(wrapper)
+        }
+
+        function showAlert(type) {
+            const messages = {
+                'primary': 'This is a primary alert message!',
+                'success': 'Success! Your action was completed.',
+                'warning': 'Warning! Please check your input.',
+                'danger': 'Error! Something went wrong.'
+            };
+            appendAlert(messages[type] || 'Alert message', type);
         }
 
         function initializeSyntaxHighlighting() {

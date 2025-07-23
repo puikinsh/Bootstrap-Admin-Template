@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buttons - Bootstrap 5 Elements</title>
+    <title>Badges - Bootstrap 5 Elements</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Bootstrap 5 button examples - styles, sizes, states, and variations">
-    <meta name="keywords" content="bootstrap, buttons, primary, secondary, success, danger, warning, info">
+    <meta name="description" content="Bootstrap 5 badge examples - small count and labeling components">
+    <meta name="keywords" content="bootstrap, badges, labels, counts, notifications, indicators">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon-CvUZKS4z.svg">
+    <link rel="icon" type="image/png" href="./assets/favicon-B_cwPWBd.png">
     
     <!-- PWA Manifest -->
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="./assets/manifest-DTaoG9pG.json">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -52,25 +52,27 @@
         .token.attr-value .token.string {
             background: linear-gradient(transparent 0%, transparent 100%);
         }
-        
+
         /* Fix unreadable active+hover sidebar navigation */
         .nav-submenu .nav-link.active:hover {
             background-color: var(--bs-primary) !important;
             color: white !important;
             transform: translateX(2px) !important;
         }
-        
+
         .nav-submenu .nav-link.active:hover i {
             opacity: 1 !important;
             color: white !important;
         }
-        
+
         .sidebar-nav .nav .nav-link.active:hover {
             background-color: var(--bs-primary) !important;
             color: white !important;
             transform: none !important;
         }
     </style>
+  <script type="module" crossorigin src="./assets/main-BPhDq89w.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main-D9K-blpF.css">
 </head>
 
 <body data-page="elements" class="elements-page">
@@ -82,7 +84,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
                     <div class="container-fluid">
                         <a class="navbar-brand d-flex align-items-center" href="./index.html">
-                            <img src="/assets/images/logo.svg" alt="Logo" height="32" class="d-inline-block align-text-top me-2">
+                            <img src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3c!--%20Background%20circle%20for%20the%20M%20--%3e%3ccircle%20cx='16'%20cy='16'%20r='16'%20fill='url(%23logoGradient)'/%3e%3c!--%20Centered%20Letter%20M%20--%3e%3cpath%20d='M10%2024V8h2.5l2.5%206.5L17.5%208H20v16h-2V12.5L16.5%2020h-1L14%2012.5V24H10z'%20fill='white'%20font-weight='700'/%3e%3c!--%20Gradient%20definition%20--%3e%3cdefs%3e%3clinearGradient%20id='logoGradient'%20x1='0%25'%20y1='0%25'%20x2='100%25'%20y2='100%25'%3e%3cstop%20offset='0%25'%20style='stop-color:%236366f1;stop-opacity:1'%20/%3e%3cstop%20offset='100%25'%20style='stop-color:%238b5cf6;stop-opacity:1'%20/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e" alt="Logo" height="32" class="d-inline-block align-text-top me-2">
                             <h1 class="h4 mb-0 fw-bold text-primary">Metis</h1>
                         </a>
 
@@ -105,7 +107,7 @@
                             </button>
                             <div class="dropdown">
                                 <button class="btn btn-outline-secondary d-flex align-items-center" data-bs-toggle="dropdown">
-                                    <img src="/assets/images/avatar-placeholder.svg" width="24" height="24" class="rounded-circle me-2">
+                                    <img src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3c!--%20Background%20circle%20--%3e%3ccircle%20cx='16'%20cy='16'%20r='16'%20fill='url(%23avatarGradient)'/%3e%3c!--%20Person%20silhouette%20--%3e%3cg%20fill='white'%20opacity='0.9'%3e%3c!--%20Head%20--%3e%3ccircle%20cx='16'%20cy='12'%20r='5'/%3e%3c!--%20Body%20--%3e%3cpath%20d='M16%2018c-5.5%200-10%202.5-10%207v1h20v-1c0-4.5-4.5-7-10-7z'/%3e%3c/g%3e%3c!--%20Subtle%20border%20--%3e%3ccircle%20cx='16'%20cy='16'%20r='15.5'%20fill='none'%20stroke='rgba(255,255,255,0.2)'%20stroke-width='1'/%3e%3c!--%20Gradient%20definition%20--%3e%3cdefs%3e%3clinearGradient%20id='avatarGradient'%20x1='0%25'%20y1='0%25'%20x2='100%25'%20y2='100%25'%3e%3cstop%20offset='0%25'%20style='stop-color:%236b7280;stop-opacity:1'%20/%3e%3cstop%20offset='100%25'%20style='stop-color:%234b5563;stop-opacity:1'%20/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e" width="24" height="24" class="rounded-circle me-2">
                                     <span class="d-none d-md-inline">John Doe</span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -126,10 +128,16 @@
                     <nav class="sidebar-nav">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="./index.html"><i class="bi bi-speedometer2"></i><span>Dashboard</span></a>
+                                <a class="nav-link" href="./index.html">
+                                    <i class="bi bi-speedometer2"></i>
+                                    <span>Dashboard</span>
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="./analytics.html"><i class="bi bi-graph-up"></i><span>Analytics</span></a>
+                                <a class="nav-link" href="./analytics.html">
+                                    <i class="bi bi-graph-up"></i>
+                                    <span>Analytics</span>
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="./users.html">
@@ -172,7 +180,7 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="./elements-buttons.html">
+                                            <a class="nav-link" href="./elements-buttons.html">
                                                 <i class="bi bi-square"></i>
                                                 <span>Buttons</span>
                                             </a>
@@ -184,7 +192,7 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="./elements-badges.html">
+                                            <a class="nav-link active" href="./elements-badges.html">
                                                 <i class="bi bi-award"></i>
                                                 <span>Badges</span>
                                             </a>
@@ -258,14 +266,8 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="./help.html">
-                                    <i class="bi bi-list-ul"></i>
-                                    <span>Logs</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./help.html">
-                                    <i class="bi bi-cloud-arrow-up"></i>
-                                    <span>Backup</span>
+                                    <i class="bi bi-question-circle"></i>
+                                    <span>Help & Support</span>
                                 </a>
                             </li>
                         </ul>
@@ -286,15 +288,15 @@
                     <nav aria-label="breadcrumb" class="mb-4">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="./elements.html">Elements</a></li>
-                            <li class="breadcrumb-item active">Buttons</li>
+                            <li class="breadcrumb-item active">Badges</li>
                         </ol>
                     </nav>
 
                     <!-- Page Header -->
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <div>
-                            <h1 class="h3 mb-0">Buttons</h1>
-                            <p class="text-muted mb-0">Bootstrap button styles, sizes, and states</p>
+                            <h1 class="h3 mb-0">Badges</h1>
+                            <p class="text-muted mb-0">Small count and labeling components</p>
                         </div>
                         <div class="d-flex gap-2">
                             <button class="btn btn-outline-secondary" onclick="window.history.back()">
@@ -306,37 +308,35 @@
                         </div>
                     </div>
 
-                    <!-- Button Examples -->
+                    <!-- Badge Examples -->
                     <div class="row g-4">
                         
-                        <!-- Basic Button Styles -->
+                        <!-- Basic Badges -->
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title mb-0">Basic Button Styles</h5>
+                                    <h5 class="card-title mb-0">Basic Badges</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="element-preview-container">
-                                        <button type="button" class="btn btn-primary me-2 mb-2">Primary</button>
-                                        <button type="button" class="btn btn-secondary me-2 mb-2">Secondary</button>
-                                        <button type="button" class="btn btn-success me-2 mb-2">Success</button>
-                                        <button type="button" class="btn btn-danger me-2 mb-2">Danger</button>
-                                        <button type="button" class="btn btn-warning me-2 mb-2">Warning</button>
-                                        <button type="button" class="btn btn-info me-2 mb-2">Info</button>
-                                        <button type="button" class="btn btn-light me-2 mb-2">Light</button>
-                                        <button type="button" class="btn btn-dark me-2 mb-2">Dark</button>
-                                        <button type="button" class="btn btn-link me-2 mb-2">Link</button>
+                                        <span class="badge bg-primary me-2 mb-2">Primary</span>
+                                        <span class="badge bg-secondary me-2 mb-2">Secondary</span>
+                                        <span class="badge bg-success me-2 mb-2">Success</span>
+                                        <span class="badge bg-danger me-2 mb-2">Danger</span>
+                                        <span class="badge bg-warning me-2 mb-2">Warning</span>
+                                        <span class="badge bg-info me-2 mb-2">Info</span>
+                                        <span class="badge bg-light text-dark me-2 mb-2">Light</span>
+                                        <span class="badge bg-dark me-2 mb-2">Dark</span>
                                     </div>
                                     <div class="element-code-block">
-                                        <pre><code class="language-html">&lt;button type="button" class="btn btn-primary"&gt;Primary&lt;/button&gt;
-&lt;button type="button" class="btn btn-secondary"&gt;Secondary&lt;/button&gt;
-&lt;button type="button" class="btn btn-success"&gt;Success&lt;/button&gt;
-&lt;button type="button" class="btn btn-danger"&gt;Danger&lt;/button&gt;
-&lt;button type="button" class="btn btn-warning"&gt;Warning&lt;/button&gt;
-&lt;button type="button" class="btn btn-info"&gt;Info&lt;/button&gt;
-&lt;button type="button" class="btn btn-light"&gt;Light&lt;/button&gt;
-&lt;button type="button" class="btn btn-dark"&gt;Dark&lt;/button&gt;
-&lt;button type="button" class="btn btn-link"&gt;Link&lt;/button&gt;</code></pre>
+                                        <pre><code class="language-html">&lt;span class="badge bg-primary"&gt;Primary&lt;/span&gt;
+&lt;span class="badge bg-secondary"&gt;Secondary&lt;/span&gt;
+&lt;span class="badge bg-success"&gt;Success&lt;/span&gt;
+&lt;span class="badge bg-danger"&gt;Danger&lt;/span&gt;
+&lt;span class="badge bg-warning"&gt;Warning&lt;/span&gt;
+&lt;span class="badge bg-info"&gt;Info&lt;/span&gt;
+&lt;span class="badge bg-light text-dark"&gt;Light&lt;/span&gt;
+&lt;span class="badge bg-dark"&gt;Dark&lt;/span&gt;</code></pre>
                                     </div>
                                     <button class="btn btn-sm btn-outline-secondary" onclick="copyCode(this)">
                                         <i class="bi bi-clipboard me-2"></i>Copy Code
@@ -345,61 +345,26 @@
                             </div>
                         </div>
 
-                        <!-- Outline Buttons -->
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title mb-0">Outline Buttons</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="element-preview-container">
-                                        <button type="button" class="btn btn-outline-primary me-2 mb-2">Primary</button>
-                                        <button type="button" class="btn btn-outline-secondary me-2 mb-2">Secondary</button>
-                                        <button type="button" class="btn btn-outline-success me-2 mb-2">Success</button>
-                                        <button type="button" class="btn btn-outline-danger me-2 mb-2">Danger</button>
-                                        <button type="button" class="btn btn-outline-warning me-2 mb-2">Warning</button>
-                                        <button type="button" class="btn btn-outline-info me-2 mb-2">Info</button>
-                                        <button type="button" class="btn btn-outline-light me-2 mb-2">Light</button>
-                                        <button type="button" class="btn btn-outline-dark me-2 mb-2">Dark</button>
-                                    </div>
-                                    <div class="element-code-block">
-                                        <pre><code class="language-html">&lt;button type="button" class="btn btn-outline-primary"&gt;Primary&lt;/button&gt;
-&lt;button type="button" class="btn btn-outline-secondary"&gt;Secondary&lt;/button&gt;
-&lt;button type="button" class="btn btn-outline-success"&gt;Success&lt;/button&gt;
-&lt;button type="button" class="btn btn-outline-danger"&gt;Danger&lt;/button&gt;
-&lt;button type="button" class="btn btn-outline-warning"&gt;Warning&lt;/button&gt;
-&lt;button type="button" class="btn btn-outline-info"&gt;Info&lt;/button&gt;
-&lt;button type="button" class="btn btn-outline-light"&gt;Light&lt;/button&gt;
-&lt;button type="button" class="btn btn-outline-dark"&gt;Dark&lt;/button&gt;</code></pre>
-                                    </div>
-                                    <button class="btn btn-sm btn-outline-secondary" onclick="copyCode(this)">
-                                        <i class="bi bi-clipboard me-2"></i>Copy Code
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Button Sizes -->
+                        <!-- Pill Badges -->
                         <div class="col-lg-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title mb-0">Button Sizes</h5>
+                                    <h5 class="card-title mb-0">Pill Badges</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="element-preview-container">
-                                        <button type="button" class="btn btn-primary btn-lg me-2 mb-2">Large button</button>
-                                        <button type="button" class="btn btn-secondary btn-lg me-2 mb-2">Large button</button>
-                                        <br>
-                                        <button type="button" class="btn btn-primary me-2 mb-2">Default button</button>
-                                        <button type="button" class="btn btn-secondary me-2 mb-2">Default button</button>
-                                        <br>
-                                        <button type="button" class="btn btn-primary btn-sm me-2 mb-2">Small button</button>
-                                        <button type="button" class="btn btn-secondary btn-sm me-2 mb-2">Small button</button>
+                                        <span class="badge rounded-pill bg-primary me-2 mb-2">Primary</span>
+                                        <span class="badge rounded-pill bg-secondary me-2 mb-2">Secondary</span>
+                                        <span class="badge rounded-pill bg-success me-2 mb-2">Success</span>
+                                        <span class="badge rounded-pill bg-danger me-2 mb-2">Danger</span>
+                                        <span class="badge rounded-pill bg-warning me-2 mb-2">Warning</span>
+                                        <span class="badge rounded-pill bg-info me-2 mb-2">Info</span>
                                     </div>
                                     <div class="element-code-block">
-                                        <pre><code class="language-html">&lt;button type="button" class="btn btn-primary btn-lg"&gt;Large button&lt;/button&gt;
-&lt;button type="button" class="btn btn-primary"&gt;Default button&lt;/button&gt;
-&lt;button type="button" class="btn btn-primary btn-sm"&gt;Small button&lt;/button&gt;</code></pre>
+                                        <pre><code class="language-html">&lt;span class="badge rounded-pill bg-primary"&gt;Primary&lt;/span&gt;
+&lt;span class="badge rounded-pill bg-secondary"&gt;Secondary&lt;/span&gt;
+&lt;span class="badge rounded-pill bg-success"&gt;Success&lt;/span&gt;
+&lt;span class="badge rounded-pill bg-danger"&gt;Danger&lt;/span&gt;</code></pre>
                                     </div>
                                     <button class="btn btn-sm btn-outline-secondary" onclick="copyCode(this)">
                                         <i class="bi bi-clipboard me-2"></i>Copy Code
@@ -408,35 +373,75 @@
                             </div>
                         </div>
 
-                        <!-- Button States -->
+                        <!-- Badges with Icons -->
                         <div class="col-lg-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title mb-0">Button States</h5>
+                                    <h5 class="card-title mb-0">Badges with Icons</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="element-preview-container">
-                                        <button type="button" class="btn btn-primary me-2 mb-2">Normal</button>
-                                        <button type="button" class="btn btn-primary active me-2 mb-2">Active</button>
-                                        <button type="button" class="btn btn-primary me-2 mb-2" disabled>Disabled</button>
-                                        <br>
-                                        <button type="button" class="btn btn-primary me-2 mb-2">
-                                            <span class="spinner-border spinner-border-sm me-2"></span>
-                                            Loading...
-                                        </button>
-                                        <button type="button" class="btn btn-success me-2 mb-2">
-                                            <i class="bi bi-check-circle me-2"></i>Success
-                                        </button>
+                                        <span class="badge bg-primary me-2 mb-2">
+                                            <i class="bi bi-star me-1"></i>Featured
+                                        </span>
+                                        <span class="badge bg-success me-2 mb-2">
+                                            <i class="bi bi-check-circle me-1"></i>Verified
+                                        </span>
+                                        <span class="badge bg-warning me-2 mb-2">
+                                            <i class="bi bi-exclamation-triangle me-1"></i>Warning
+                                        </span>
+                                        <span class="badge bg-danger me-2 mb-2">
+                                            <i class="bi bi-x-circle me-1"></i>Error
+                                        </span>
                                     </div>
                                     <div class="element-code-block">
-                                        <pre><code class="language-html">&lt;button type="button" class="btn btn-primary"&gt;Normal&lt;/button&gt;
-&lt;button type="button" class="btn btn-primary active"&gt;Active&lt;/button&gt;
-&lt;button type="button" class="btn btn-primary" disabled&gt;Disabled&lt;/button&gt;
+                                        <pre><code class="language-html">&lt;span class="badge bg-primary"&gt;
+    &lt;i class="bi bi-star me-1"&gt;&lt;/i&gt;Featured
+&lt;/span&gt;
+&lt;span class="badge bg-success"&gt;
+    &lt;i class="bi bi-check-circle me-1"&gt;&lt;/i&gt;Verified
+&lt;/span&gt;</code></pre>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="copyCode(this)">
+                                        <i class="bi bi-clipboard me-2"></i>Copy Code
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
 
-&lt;!-- Loading button --&gt;
-&lt;button type="button" class="btn btn-primary"&gt;
-    &lt;span class="spinner-border spinner-border-sm me-2"&gt;&lt;/span&gt;
-    Loading...
+                        <!-- Positioned Badges -->
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Positioned Badges</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="element-preview-container">
+                                        <button type="button" class="btn btn-primary position-relative me-3 mb-3">
+                                            Inbox
+                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                99+
+                                            </span>
+                                        </button>
+                                        <button type="button" class="btn btn-secondary position-relative me-3 mb-3">
+                                            Profile
+                                            <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                                <span class="visually-hidden">New alerts</span>
+                                            </span>
+                                        </button>
+                                        <div class="position-relative d-inline-block me-3">
+                                            <i class="bi bi-bell fs-4 text-primary"></i>
+                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                3
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="element-code-block">
+                                        <pre><code class="language-html">&lt;button type="button" class="btn btn-primary position-relative"&gt;
+    Inbox
+    &lt;span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"&gt;
+        99+
+    &lt;/span&gt;
 &lt;/button&gt;</code></pre>
                                     </div>
                                     <button class="btn btn-sm btn-outline-secondary" onclick="copyCode(this)">
@@ -446,32 +451,26 @@
                             </div>
                         </div>
 
-                        <!-- Button Groups -->
+                        <!-- Badge Sizes -->
                         <div class="col-lg-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title mb-0">Button Groups</h5>
+                                    <h5 class="card-title mb-0">Badge Sizes</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="element-preview-container">
-                                        <div class="btn-group mb-3" role="group">
-                                            <button type="button" class="btn btn-primary">Left</button>
-                                            <button type="button" class="btn btn-primary">Middle</button>
-                                            <button type="button" class="btn btn-primary">Right</button>
-                                        </div>
+                                        <span class="badge bg-primary me-2 mb-2" style="font-size: 0.6rem;">Small</span>
+                                        <span class="badge bg-primary me-2 mb-2">Default</span>
+                                        <span class="badge bg-primary me-2 mb-2" style="font-size: 1.1rem;">Large</span>
                                         <br>
-                                        <div class="btn-group" role="group">
-                                            <button type="button" class="btn btn-outline-primary">Left</button>
-                                            <button type="button" class="btn btn-outline-primary">Middle</button>
-                                            <button type="button" class="btn btn-outline-primary">Right</button>
-                                        </div>
+                                        <span class="badge rounded-pill bg-success me-2 mb-2" style="font-size: 0.6rem;">Small Pill</span>
+                                        <span class="badge rounded-pill bg-success me-2 mb-2">Default Pill</span>
+                                        <span class="badge rounded-pill bg-success me-2 mb-2" style="font-size: 1.1rem;">Large Pill</span>
                                     </div>
                                     <div class="element-code-block">
-                                        <pre><code class="language-html">&lt;div class="btn-group" role="group"&gt;
-    &lt;button type="button" class="btn btn-primary"&gt;Left&lt;/button&gt;
-    &lt;button type="button" class="btn btn-primary"&gt;Middle&lt;/button&gt;
-    &lt;button type="button" class="btn btn-primary"&gt;Right&lt;/button&gt;
-&lt;/div&gt;</code></pre>
+                                        <pre><code class="language-html">&lt;span class="badge bg-primary" style="font-size: 0.6rem;"&gt;Small&lt;/span&gt;
+&lt;span class="badge bg-primary"&gt;Default&lt;/span&gt;
+&lt;span class="badge bg-primary" style="font-size: 1.1rem;"&gt;Large&lt;/span&gt;</code></pre>
                                     </div>
                                     <button class="btn btn-sm btn-outline-secondary" onclick="copyCode(this)">
                                         <i class="bi bi-clipboard me-2"></i>Copy Code
@@ -480,43 +479,28 @@
                             </div>
                         </div>
 
-                        <!-- Icon Buttons -->
-                        <div class="col-lg-6">
+                        <!-- Headings with Badges -->
+                        <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title mb-0">Icon Buttons</h5>
+                                    <h5 class="card-title mb-0">Headings with Badges</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="element-preview-container">
-                                        <button type="button" class="btn btn-primary me-2 mb-2">
-                                            <i class="bi bi-plus-lg me-2"></i>Add New
-                                        </button>
-                                        <button type="button" class="btn btn-success me-2 mb-2">
-                                            <i class="bi bi-check-circle me-2"></i>Save
-                                        </button>
-                                        <button type="button" class="btn btn-danger me-2 mb-2">
-                                            <i class="bi bi-trash me-2"></i>Delete
-                                        </button>
-                                        <br>
-                                        <button type="button" class="btn btn-outline-primary me-2 mb-2">
-                                            <i class="bi bi-download"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-outline-secondary me-2 mb-2">
-                                            <i class="bi bi-share"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-outline-warning me-2 mb-2">
-                                            <i class="bi bi-star"></i>
-                                        </button>
+                                        <h1>Example heading <span class="badge bg-secondary">New</span></h1>
+                                        <h2>Example heading <span class="badge bg-secondary">New</span></h2>
+                                        <h3>Example heading <span class="badge bg-secondary">New</span></h3>
+                                        <h4>Example heading <span class="badge bg-secondary">New</span></h4>
+                                        <h5>Example heading <span class="badge bg-secondary">New</span></h5>
+                                        <h6>Example heading <span class="badge bg-secondary">New</span></h6>
                                     </div>
                                     <div class="element-code-block">
-                                        <pre><code class="language-html">&lt;button type="button" class="btn btn-primary"&gt;
-    &lt;i class="bi bi-plus-lg me-2"&gt;&lt;/i&gt;Add New
-&lt;/button&gt;
-
-&lt;!-- Icon only buttons --&gt;
-&lt;button type="button" class="btn btn-outline-primary"&gt;
-    &lt;i class="bi bi-download"&gt;&lt;/i&gt;
-&lt;/button&gt;</code></pre>
+                                        <pre><code class="language-html">&lt;h1&gt;Example heading &lt;span class="badge bg-secondary"&gt;New&lt;/span&gt;&lt;/h1&gt;
+&lt;h2&gt;Example heading &lt;span class="badge bg-secondary"&gt;New&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;Example heading &lt;span class="badge bg-secondary"&gt;New&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;Example heading &lt;span class="badge bg-secondary"&gt;New&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;Example heading &lt;span class="badge bg-secondary"&gt;New&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;Example heading &lt;span class="badge bg-secondary"&gt;New&lt;/span&gt;&lt;/h6&gt;</code></pre>
                                     </div>
                                     <button class="btn btn-sm btn-outline-secondary" onclick="copyCode(this)">
                                         <i class="bi bi-clipboard me-2"></i>Copy Code
@@ -547,7 +531,6 @@
     </div>
 
     <!-- Scripts -->
-    <script type="module" src="./scripts/main.js"></script>
     
     <!-- Prism.js for syntax highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
@@ -574,7 +557,6 @@
                 allCode += block.textContent + '\n\n';
             });
             navigator.clipboard.writeText(allCode).then(() => {
-                // Show success notification
                 alert('All code copied to clipboard!');
             });
         }

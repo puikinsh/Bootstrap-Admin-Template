@@ -14,8 +14,8 @@
     <meta property="og:type" content="website">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/assets/favicon-CvUZKS4z.svg">
-    <link rel="icon" type="image/png" href="/assets/favicon-B_cwPWBd.png">
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon-CvUZKS4z.svg">
+    <link rel="icon" type="image/png" href="./assets/favicon-B_cwPWBd.png">
     
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,9 +31,9 @@
     <meta name="theme-color" content="#6366f1">
     
     <!-- PWA Manifest -->
-    <link rel="manifest" href="/assets/manifest-DTaoG9pG.json">
-  <script type="module" crossorigin src="/assets/main-CZpwgpLJ.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-ChihnJyn.css">
+    <link rel="manifest" href="./assets/manifest-DTaoG9pG.json">
+  <script type="module" crossorigin src="./assets/main-BPhDq89w.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main-D9K-blpF.css">
 </head>
 
 <body data-page="dashboard" class="admin-layout">
@@ -54,7 +54,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
                 <div class="container-fluid">
                     <!-- Logo/Brand - Now first on the left -->
-                    <a class="navbar-brand d-flex align-items-center" href="/">
+                    <a class="navbar-brand d-flex align-items-center" href="./index.html">
                         <img src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3c!--%20Background%20circle%20for%20the%20M%20--%3e%3ccircle%20cx='16'%20cy='16'%20r='16'%20fill='url(%23logoGradient)'/%3e%3c!--%20Centered%20Letter%20M%20--%3e%3cpath%20d='M10%2024V8h2.5l2.5%206.5L17.5%208H20v16h-2V12.5L16.5%2020h-1L14%2012.5V24H10z'%20fill='white'%20font-weight='700'/%3e%3c!--%20Gradient%20definition%20--%3e%3cdefs%3e%3clinearGradient%20id='logoGradient'%20x1='0%25'%20y1='0%25'%20x2='100%25'%20y2='100%25'%3e%3cstop%20offset='0%25'%20style='stop-color:%236366f1;stop-opacity:1'%20/%3e%3cstop%20offset='100%25'%20style='stop-color:%238b5cf6;stop-opacity:1'%20/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e" alt="Logo" height="32" class="d-inline-block align-text-top me-2">
                         <h1 class="h4 mb-0 fw-bold text-primary">Metis</h1>
                     </a>
@@ -168,63 +168,123 @@
                 <nav class="sidebar-nav">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="/">
+                            <a class="nav-link active" href="./index.html">
                                 <i class="bi bi-speedometer2"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/analytics">
+                            <a class="nav-link" href="./analytics.html">
                                 <i class="bi bi-graph-up"></i>
                                 <span>Analytics</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/users">
+                            <a class="nav-link" href="./users.html">
                                 <i class="bi bi-people"></i>
                                 <span>Users</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/products">
+                            <a class="nav-link" href="./products.html">
                                 <i class="bi bi-box"></i>
                                 <span>Products</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/orders">
+                            <a class="nav-link" href="./orders.html">
                                 <i class="bi bi-bag-check"></i>
                                 <span>Orders</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/forms.html">
-                                <i class="bi bi-ui-checks-grid"></i>
+                            <a class="nav-link" href="./forms.html">
+                                <i class="bi bi-ui-checks"></i>
                                 <span>Forms</span>
                                 <span class="badge bg-success rounded-pill ms-auto">New</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/reports">
+                            <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#elementsSubmenu" aria-expanded="false">
+                                <i class="bi bi-puzzle"></i>
+                                <span>Elements</span>
+                                <span class="badge bg-primary rounded-pill me-2">New</span>
+                                <i class="bi bi-chevron-down ms-auto"></i>
+                            </a>
+                            <div class="collapse" id="elementsSubmenu">
+                                <ul class="nav nav-submenu">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="./elements.html">
+                                            <i class="bi bi-grid"></i>
+                                            <span>Overview</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="./elements-buttons.html">
+                                            <i class="bi bi-square"></i>
+                                            <span>Buttons</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="./elements-alerts.html">
+                                            <i class="bi bi-exclamation-triangle"></i>
+                                            <span>Alerts</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="./elements-badges.html">
+                                            <i class="bi bi-award"></i>
+                                            <span>Badges</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="./elements-cards.html">
+                                            <i class="bi bi-card-text"></i>
+                                            <span>Cards</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="./elements-modals.html">
+                                            <i class="bi bi-window"></i>
+                                            <span>Modals</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="./elements-forms.html">
+                                            <i class="bi bi-ui-checks"></i>
+                                            <span>Forms</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="./elements-tables.html">
+                                            <i class="bi bi-table"></i>
+                                            <span>Tables</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./reports.html">
                                 <i class="bi bi-file-earmark-text"></i>
                                 <span>Reports</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/messages">
+                            <a class="nav-link" href="./messages.html">
                                 <i class="bi bi-chat-dots"></i>
                                 <span>Messages</span>
                                 <span class="badge bg-danger rounded-pill ms-auto">3</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/calendar">
+                            <a class="nav-link" href="./calendar.html">
                                 <i class="bi bi-calendar-event"></i>
                                 <span>Calendar</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/files">
+                            <a class="nav-link" href="./files.html">
                                 <i class="bi bi-folder2-open"></i>
                                 <span>Files</span>
                             </a>
@@ -233,19 +293,19 @@
                             <small class="text-muted px-3 text-uppercase fw-bold">Admin</small>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/settings">
+                            <a class="nav-link" href="./settings.html">
                                 <i class="bi bi-gear"></i>
                                 <span>Settings</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/security">
+                            <a class="nav-link" href="./security.html">
                                 <i class="bi bi-shield-check"></i>
                                 <span>Security</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/help">
+                            <a class="nav-link" href="./help.html">
                                 <i class="bi bi-question-circle"></i>
                                 <span>Help & Support</span>
                             </a>
@@ -546,47 +606,6 @@
         <div id="toast-container"></div>
     </div>
 
-    <!-- Floating Action Button -->
-    <div class="position-fixed bottom-0 end-0 p-4" style="z-index: 10">
-        <div class="dropdown dropup">
-            <button class="btn btn-primary btn-lg rounded-circle shadow-lg" 
-                    type="button" 
-                    data-bs-toggle="dropdown" 
-                    aria-expanded="false"
-                    data-bs-placement="top"
-                    title="Quick Actions">
-                <i class="bi bi-plus-lg"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li>
-                    <a class="dropdown-item" href="#" onclick="window.AdminApp.notificationManager.info('New user action triggered')">
-                        <i class="bi bi-person-plus me-2"></i>Add User
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="#" onclick="window.AdminApp.notificationManager.info('New product action triggered')">
-                        <i class="bi bi-box me-2"></i>Add Product
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="#" onclick="window.AdminApp.notificationManager.info('New order action triggered')">
-                        <i class="bi bi-bag-plus me-2"></i>New Order
-                    </a>
-                </li>
-                <li><hr class="dropdown-divider"></li>
-                <li>
-                    <a class="dropdown-item" href="#" x-data="iconDemo" @click="switchProvider('lucide')" onclick="window.AdminApp.notificationManager.success('Switched to Lucide icons!')">
-                        <i class="bi bi-palette me-2"></i>Switch to Lucide Icons
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="#" x-data="iconDemo" @click="switchProvider('bootstrap')" onclick="window.AdminApp.notificationManager.success('Switched to Bootstrap icons!')">
-                        <i class="bi bi-bootstrap me-2"></i>Switch to Bootstrap Icons
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
 
     <!-- Icon Demo Modal -->
     <div class="modal fade" id="iconDemoModal" tabindex="-1">

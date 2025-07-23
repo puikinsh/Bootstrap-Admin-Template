@@ -3,25 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootstrap 5 Elements - Modern Bootstrap Admin</title>
+    <title>File Manager - Modern Bootstrap Admin</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Bootstrap 5 basic elements showcase - buttons, alerts, badges, cards, modals and more">
-    <meta name="keywords" content="bootstrap, elements, components, buttons, alerts, badges, cards, modals">
+    <meta name="description" content="Advanced file management system with cloud storage and collaboration">
+    <meta name="keywords" content="bootstrap, admin, dashboard, files, documents, storage, upload">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
-    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon-CvUZKS4z.svg">
+    <link rel="icon" type="image/png" href="./assets/favicon-B_cwPWBd.png">
     
     <!-- PWA Manifest -->
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="./assets/manifest-DTaoG9pG.json">
     
     <!-- Preload critical fonts -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">  <script type="module" crossorigin src="./assets/main-BPhDq89w.js"></script>
+  <script type="module" crossorigin src="./assets/files-ewC4O9a4.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main-D9K-blpF.css">
 </head>
 
-<body data-page="elements" class="elements-page">
+<body data-page="files" class="files-page">
     <!-- Admin App Container -->
     <div class="admin-app">
         <div class="admin-wrapper" id="admin-wrapper">
@@ -32,7 +34,7 @@
                     <div class="container-fluid">
                         <!-- Logo/Brand -->
                         <a class="navbar-brand d-flex align-items-center" href="./index.html">
-                            <img src="/assets/images/logo.svg" alt="Logo" height="32" class="d-inline-block align-text-top me-2">
+                            <img src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3c!--%20Background%20circle%20for%20the%20M%20--%3e%3ccircle%20cx='16'%20cy='16'%20r='16'%20fill='url(%23logoGradient)'/%3e%3c!--%20Centered%20Letter%20M%20--%3e%3cpath%20d='M10%2024V8h2.5l2.5%206.5L17.5%208H20v16h-2V12.5L16.5%2020h-1L14%2012.5V24H10z'%20fill='white'%20font-weight='700'/%3e%3c!--%20Gradient%20definition%20--%3e%3cdefs%3e%3clinearGradient%20id='logoGradient'%20x1='0%25'%20y1='0%25'%20x2='100%25'%20y2='100%25'%3e%3cstop%20offset='0%25'%20style='stop-color:%236366f1;stop-opacity:1'%20/%3e%3cstop%20offset='100%25'%20style='stop-color:%238b5cf6;stop-opacity:1'%20/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e" alt="Logo" height="32" class="d-inline-block align-text-top me-2">
                             <h1 class="h4 mb-0 fw-bold text-primary">Metis</h1>
                         </a>
 
@@ -41,7 +43,7 @@
                             <div class="position-relative">
                                 <input type="search" 
                                        class="form-control" 
-                                       placeholder="Search components... (Ctrl+K)"
+                                       placeholder="Search... (Ctrl+K)"
                                        x-model="query"
                                        @input="search()"
                                        data-search-input
@@ -57,7 +59,7 @@
                                     <template x-for="result in results" :key="result.title">
                                         <a :href="result.url" class="d-block px-3 py-2 text-decoration-none text-dark border-bottom">
                                             <div class="d-flex align-items-center">
-                                                <i class="bi bi-puzzle me-2 text-muted"></i>
+                                                <i class="bi bi-file-text me-2 text-muted"></i>
                                                 <span x-text="result.title"></span>
                                                 <small class="ms-auto text-muted" x-text="result.type"></small>
                                             </div>
@@ -119,7 +121,7 @@
                                         type="button" 
                                         data-bs-toggle="dropdown" 
                                         aria-expanded="false">
-                                    <img src="/assets/images/avatar-placeholder.svg" 
+                                    <img src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3c!--%20Background%20circle%20--%3e%3ccircle%20cx='16'%20cy='16'%20r='16'%20fill='url(%23avatarGradient)'/%3e%3c!--%20Person%20silhouette%20--%3e%3cg%20fill='white'%20opacity='0.9'%3e%3c!--%20Head%20--%3e%3ccircle%20cx='16'%20cy='12'%20r='5'/%3e%3c!--%20Body%20--%3e%3cpath%20d='M16%2018c-5.5%200-10%202.5-10%207v1h20v-1c0-4.5-4.5-7-10-7z'/%3e%3c/g%3e%3c!--%20Subtle%20border%20--%3e%3ccircle%20cx='16'%20cy='16'%20r='15.5'%20fill='none'%20stroke='rgba(255,255,255,0.2)'%20stroke-width='1'/%3e%3c!--%20Gradient%20definition%20--%3e%3cdefs%3e%3clinearGradient%20id='avatarGradient'%20x1='0%25'%20y1='0%25'%20x2='100%25'%20y2='100%25'%3e%3cstop%20offset='0%25'%20style='stop-color:%236b7280;stop-opacity:1'%20/%3e%3cstop%20offset='100%25'%20style='stop-color:%234b5563;stop-opacity:1'%20/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e" 
                                          alt="User Avatar" 
                                          width="24" 
                                          height="24" 
@@ -182,16 +184,16 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="#" data-bs-toggle="collapse" data-bs-target="#elementsSubmenu" aria-expanded="true">
+                                <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#elementsSubmenu" aria-expanded="false">
                                     <i class="bi bi-puzzle"></i>
                                     <span>Elements</span>
                                     <span class="badge bg-primary rounded-pill me-2">New</span>
                                     <i class="bi bi-chevron-down ms-auto"></i>
                                 </a>
-                                <div class="collapse show" id="elementsSubmenu">
+                                <div class="collapse" id="elementsSubmenu">
                                     <ul class="nav nav-submenu">
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="./elements.html">
+                                            <a class="nav-link" href="./elements.html">
                                                 <i class="bi bi-grid"></i>
                                                 <span>Overview</span>
                                             </a>
@@ -261,9 +263,10 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="./files.html">
+                                <a class="nav-link active" href="./files.html">
                                     <i class="bi bi-folder2-open"></i>
                                     <span>Files</span>
+                                    <span class="badge bg-primary rounded-pill ms-auto">Active</span>
                                 </a>
                             </li>
                             <li class="nav-item mt-3">
@@ -304,134 +307,261 @@
             <main class="admin-main">
                 <div class="container-fluid p-4 p-lg-4">
                     
-                    <!-- Elements Container -->
-                    <div x-data="elementsComponent" x-init="init()">
+                    <!-- Files Container with Header -->
+                    <div x-data="filesComponent" x-init="init()">
                         <!-- Page Header -->
-                        <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
                             <div>
-                                <h1 class="h3 mb-0">Bootstrap 5 Elements</h1>
-                                <p class="text-muted mb-0">Comprehensive showcase of Bootstrap 5 components with live examples</p>
+                                <h1 class="h3 mb-0">File Manager</h1>
+                                <p class="text-muted mb-0">Organize, share, and manage your files</p>
                             </div>
                             <div class="d-flex gap-2">
-                                <button type="button" class="btn btn-outline-secondary" @click="toggleView()">
-                                    <i class="bi bi-grid" x-show="viewMode === 'list'"></i>
-                                    <i class="bi bi-list" x-show="viewMode === 'grid'"></i>
-                                    <span x-text="viewMode === 'grid' ? 'List View' : 'Grid View'"></span>
+                                <button type="button" class="btn btn-outline-secondary d-lg-none" @click="toggleSidebar()">
+                                    <i class="bi bi-folder me-2"></i>Folders
                                 </button>
-                                <button type="button" class="btn btn-primary" @click="showAllComponents()">
-                                    <i class="bi bi-eye me-2"></i>View All
+                                <button type="button" class="btn btn-outline-secondary" @click="createFolder()">
+                                    <i class="bi bi-folder-plus me-2"></i>New Folder
+                                </button>
+                                <button type="button" class="btn btn-primary" @click="uploadFile()">
+                                    <i class="bi bi-cloud-upload me-2"></i>Upload
                                 </button>
                             </div>
                         </div>
 
-                        <!-- Component Filter -->
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="bi bi-search"></i></span>
-                                    <input type="text" 
-                                           class="form-control" 
-                                           placeholder="Search components..." 
-                                           x-model="searchQuery"
-                                           @input="filterComponents()">
+                        <!-- Files Layout -->
+                        <div class="files-layout">
+                        <div class="row g-3 h-100">
+                            
+                            <!-- Files Sidebar -->
+                            <div class="col-lg-3 files-sidebar" :class="{ 'show': sidebarVisible }">
+                                
+                                <!-- Files Header -->
+                                <div class="sidebar-section">
+                                    <h5><i class="bi bi-folder2-open me-2"></i>My Files</h5>
+                                </div>
+                                
+                                <!-- Storage Info -->
+                                <div class="storage-info">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="mb-0">Storage Used</h6>
+                                        <span class="small" x-text="`${storageUsed}GB of ${storageTotal}GB`"></span>
+                                    </div>
+                                    <div class="storage-bar">
+                                        <div class="storage-progress" :style="`width: ${storagePercentage}%`"></div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <small x-text="`${storageRemaining}GB remaining`"></small>
+                                    </div>
+                                </div>
+
+                                <!-- Quick Access -->
+                                <div class="sidebar-section">
+                                    <h6 class="fw-bold mb-3">Quick Access</h6>
+                                    <div class="list-group list-group-flush">
+                                        <template x-for="item in quickAccess" :key="item.name">
+                                            <a href="#" class="list-group-item list-group-item-action border-0 px-0 py-2" @click="navigateToQuickAccess(item)">
+                                                <i :class="item.icon" class="me-2"></i>
+                                                <span x-text="item.name"></span>
+                                                <span class="badge bg-light text-dark ms-auto" x-text="item.count"></span>
+                                            </a>
+                                        </template>
+                                    </div>
+                                </div>
+
+                                <!-- Folders -->
+                                <div class="sidebar-section">
+                                    <h6 class="fw-bold mb-3">My Folders</h6>
+                                    <div class="folder-list">
+                                        <template x-for="folder in folders" :key="folder.id">
+                                            <div class="folder-item mb-2" @click="openFolder(folder)">
+                                                <div class="d-flex align-items-center">
+                                                    <i class="bi bi-folder-fill text-primary me-2"></i>
+                                                    <div class="flex-grow-1">
+                                                        <div class="fw-medium" x-text="folder.name"></div>
+                                                        <small class="text-muted" x-text="`${folder.fileCount} files`"></small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+
+                                <!-- Recent Files -->
+                                <div class="sidebar-section flex-grow-1">
+                                    <h6 class="fw-bold mb-3">Recent Files</h6>
+                                    <div class="recent-files">
+                                        <template x-for="file in recentFiles" :key="file.id">
+                                            <div class="recent-file-item" @click="openFile(file)">
+                                                <div :class="`file-icon ${file.type}`">
+                                                    <i :class="file.icon"></i>
+                                                </div>
+                                                <div class="flex-grow-1 min-width-0">
+                                                    <div class="fw-medium text-truncate" x-text="file.name"></div>
+                                                    <small class="text-muted" x-text="file.modifiedDate"></small>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <select class="form-select" x-model="categoryFilter" @change="filterComponents()">
-                                    <option value="">All Categories</option>
-                                    <option value="content">Content</option>
-                                    <option value="forms">Forms</option>
-                                    <option value="components">Components</option>
-                                    <option value="utilities">Utilities</option>
-                                </select>
-                            </div>
-                        </div>
 
-                        <!-- Components Grid -->
-                        <div class="row g-4" x-show="viewMode === 'grid'">
-                            <template x-for="component in filteredComponents" :key="component.id">
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card element-card h-100" @click="navigateToComponent(component)">
-                                        <div class="card-body">
-                                            <div class="d-flex align-items-center mb-3">
-                                                <div class="element-icon me-3">
-                                                    <i :class="component.icon" class="fs-4"></i>
-                                                </div>
-                                                <div>
-                                                    <h5 class="card-title mb-0" x-text="component.title"></h5>
-                                                    <small class="text-muted" x-text="component.category"></small>
-                                                </div>
-                                            </div>
-                                            <p class="card-text text-muted mb-3" x-text="component.description"></p>
-                                            <div class="element-preview" x-html="component.preview"></div>
+                            <!-- Files Main Area -->
+                            <div class="col-lg-9 files-main">
+                                
+                                <!-- Files Main Header -->
+                                <div class="files-main-header">
+                                    <!-- Breadcrumb Navigation -->
+                                    <nav aria-label="breadcrumb" class="mb-3">
+                                        <ol class="breadcrumb mb-0">
+                                            <template x-for="(crumb, index) in breadcrumbs" :key="index">
+                                                <li class="breadcrumb-item" :class="{ 'active': index === breadcrumbs.length - 1 }">
+                                                    <a href="#" x-text="crumb.name" @click.prevent="navigateToBreadcrumb(index)" x-show="index < breadcrumbs.length - 1"></a>
+                                                    <span x-text="crumb.name" x-show="index === breadcrumbs.length - 1"></span>
+                                                </li>
+                                            </template>
+                                        </ol>
+                                    </nav>
+
+                                    <!-- Toolbar -->
+                                    <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="view-toggle">
+                                            <button class="view-btn" :class="{ 'active': viewMode === 'grid' }" @click="setViewMode('grid')">
+                                                <i class="bi bi-grid"></i>
+                                            </button>
+                                            <button class="view-btn" :class="{ 'active': viewMode === 'list' }" @click="setViewMode('list')">
+                                                <i class="bi bi-list-ul"></i>
+                                            </button>
                                         </div>
-                                        <div class="card-footer bg-transparent border-top-0">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <small class="text-muted" x-text="`${component.examples} examples`"></small>
-                                                <i class="bi bi-arrow-right text-primary"></i>
-                                            </div>
+                                        <select class="form-select form-select-sm" style="width: auto;" x-model="sortBy" @change="sortFiles()">
+                                            <option value="name">Sort by Name</option>
+                                            <option value="date">Sort by Date</option>
+                                            <option value="size">Sort by Size</option>
+                                            <option value="type">Sort by Type</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-outline-secondary" @click="refreshFiles()">
+                                            <i class="bi bi-arrow-clockwise"></i>
+                                        </button>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                                <i class="bi bi-three-dots"></i>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#" @click="selectAll()">
+                                                    <i class="bi bi-check-all me-2"></i>Select All
+                                                </a></li>
+                                                <li><a class="dropdown-item" href="#" @click="downloadSelected()">
+                                                    <i class="bi bi-download me-2"></i>Download Selected
+                                                </a></li>
+                                                <li><a class="dropdown-item" href="#" @click="deleteSelected()">
+                                                    <i class="bi bi-trash me-2"></i>Delete Selected
+                                                </a></li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
-                            </template>
-                        </div>
+                                </div>
 
-                        <!-- Components List -->
-                        <div class="card" x-show="viewMode === 'list'">
-                            <div class="card-body">
-                                <div class="table-responsive">
+                                <!-- Files Grid/List -->
+                                <div x-show="currentFiles.length === 0 && !showUploadZone" class="text-center py-5">
+                                    <i class="bi bi-folder2-open fs-1 text-muted mb-3"></i>
+                                    <h5 class="text-muted">This folder is empty</h5>
+                                    <p class="text-muted">Upload your first file or create a new folder</p>
+                                    <button class="btn btn-primary" @click="uploadFile()">
+                                        <i class="bi bi-cloud-upload me-2"></i>Upload Files
+                                    </button>
+                                </div>
+
+                                <!-- Upload Zone -->
+                                <div x-show="showUploadZone" class="upload-zone mb-4" @click="uploadFile()">
+                                    <i class="bi bi-cloud-upload fs-1 text-muted mb-3"></i>
+                                    <h5 class="text-muted">Drop files here to upload</h5>
+                                    <p class="text-muted">or click to browse files</p>
+                                </div>
+
+                                <!-- Grid View -->
+                                <div x-show="viewMode === 'grid' && currentFiles.length > 0" class="file-grid">
+                                    <template x-for="file in currentFiles" :key="file.id">
+                                        <div class="file-item" :class="{ 'selected': selectedFiles.includes(file.id) }" @click="selectFile(file)" @dblclick="openFile(file)">
+                                            <div :class="`file-icon ${file.type}`">
+                                                <i :class="file.icon"></i>
+                                            </div>
+                                            <div class="file-name fw-medium text-truncate" x-text="file.name"></div>
+                                            <div class="file-size" x-text="file.size"></div>
+                                            <div class="file-date" x-text="file.modifiedDate"></div>
+                                        </div>
+                                    </template>
+                                </div>
+
+                                <!-- List View -->
+                                <div x-show="viewMode === 'list' && currentFiles.length > 0" class="table-responsive">
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th>Component</th>
-                                                <th>Category</th>
-                                                <th>Examples</th>
-                                                <th>Preview</th>
-                                                <th>Actions</th>
+                                                <th style="width: 40px;">
+                                                    <input type="checkbox" class="form-check-input" @change="toggleSelectAll()">
+                                                </th>
+                                                <th>Name</th>
+                                                <th>Size</th>
+                                                <th>Modified</th>
+                                                <th>Type</th>
+                                                <th style="width: 100px;">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <template x-for="component in filteredComponents" :key="component.id">
-                                                <tr>
+                                            <template x-for="file in currentFiles" :key="file.id">
+                                                <tr :class="{ 'table-active': selectedFiles.includes(file.id) }">
+                                                    <td>
+                                                        <input type="checkbox" class="form-check-input" :checked="selectedFiles.includes(file.id)" @change="toggleFileSelection(file.id)">
+                                                    </td>
                                                     <td>
                                                         <div class="d-flex align-items-center">
-                                                            <i :class="component.icon" class="me-2"></i>
-                                                            <div>
-                                                                <div class="fw-medium" x-text="component.title"></div>
-                                                                <small class="text-muted" x-text="component.description"></small>
+                                                            <div :class="`file-icon ${file.type}`" class="me-3">
+                                                                <i :class="file.icon"></i>
                                                             </div>
+                                                            <span class="fw-medium" x-text="file.name"></span>
                                                         </div>
                                                     </td>
+                                                    <td x-text="file.size"></td>
+                                                    <td x-text="file.modifiedDate"></td>
                                                     <td>
-                                                        <span class="badge bg-light text-dark" x-text="component.category"></span>
-                                                    </td>
-                                                    <td x-text="component.examples"></td>
-                                                    <td>
-                                                        <div class="element-preview-small" x-html="component.preview"></div>
+                                                        <span class="badge" x-text="file.typeLabel"></span>
                                                     </td>
                                                     <td>
-                                                        <button class="btn btn-sm btn-outline-primary" @click="navigateToComponent(component)">
-                                                            <i class="bi bi-eye me-1"></i>View
-                                                        </button>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown">
+                                                                <i class="bi bi-three-dots"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item" href="#" @click="downloadFile(file)">
+                                                                    <i class="bi bi-download me-2"></i>Download
+                                                                </a></li>
+                                                                <li><a class="dropdown-item" href="#" @click="shareFile(file)">
+                                                                    <i class="bi bi-share me-2"></i>Share
+                                                                </a></li>
+                                                                <li><a class="dropdown-item" href="#" @click="renameFile(file)">
+                                                                    <i class="bi bi-pencil me-2"></i>Rename
+                                                                </a></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" @click="deleteFile(file)">
+                                                                    <i class="bi bi-trash me-2"></i>Delete
+                                                                </a></li>
+                                                            </ul>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             </template>
                                         </tbody>
                                     </table>
                                 </div>
+
                             </div>
-                        </div>
 
-                        <!-- Empty State -->
-                        <div x-show="filteredComponents.length === 0" class="text-center py-5">
-                            <i class="bi bi-search fs-1 text-muted mb-3"></i>
-                            <h5 class="text-muted">No components found</h5>
-                            <p class="text-muted">Try adjusting your search or filter criteria</p>
-                            <button class="btn btn-outline-primary" @click="clearFilters()">
-                                <i class="bi bi-x-circle me-2"></i>Clear Filters
-                            </button>
                         </div>
-
+                        </div>
                     </div>
 
                 </div>
@@ -455,10 +585,8 @@
     </div>
 
     <!-- Page-specific Component -->
-    <script type="module" src="./scripts/components/elements.js"></script>
 
     <!-- Main App Script -->
-    <script type="module" src="./scripts/main.js"></script>
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {

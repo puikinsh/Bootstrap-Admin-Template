@@ -4,6 +4,10 @@
 
 **⚡ Major Version 3.0 Release** - Complete rewrite with Bootstrap 5, modern JavaScript (ES6+), Alpine.js, SCSS, and Vite build system.
 
+![Metis Bootstrap Admin Dashboard](./metis-bootstrap-admin-dashboard.png)
+
+**[🚀 View Live Demo](https://colorlib.com/polygon/metis/)**
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.7-563d7c.svg)](https://getbootstrap.com)
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-green.svg)](https://nodejs.org)
@@ -171,7 +175,7 @@ document.addEventListener('alpine:init', () => {
 - **Tree Shaking** - Only load code you actually use
 - **Code Splitting** - Lazy load components for faster initial loads
 - **Asset Optimization** - Automatic image and CSS optimization
-- **Modern Bundle** - ES6+ for modern browsers, fallbacks for legacy
+- **Modern Bundle** - ES6+ for modern browsers with optimal tree-shaking
 
 ## 🛡️ Browser Support
 
@@ -180,7 +184,7 @@ document.addEventListener('alpine:init', () => {
 - **Safari** 14+
 - **Edge** 90+
 
-*IE11 is not supported. Use v2.x for legacy browser support.*
+*IE11 is not supported.*
 
 ## 📚 Documentation & Resources
 

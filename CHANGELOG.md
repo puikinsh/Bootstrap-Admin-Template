@@ -5,6 +5,55 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0] - 2025-09-29
+
+### 🎉 Enhanced Release - Dependency Updates & Optimization
+
+This release brings the template to the latest standards with updated dependencies, bug fixes, and codebase cleanup.
+
+### ✨ Added
+- **CLAUDE.md** - Comprehensive AI assistant configuration for better development experience
+- **Responsive Chart Handling** - Improved chart overflow protection with responsive breakpoints
+- **Window Resize Handlers** - Charts now properly resize with browser window changes
+
+### 📦 Updated Dependencies
+- **Bootstrap** 5.3.7 → **5.3.8** - Latest Bootstrap framework version
+- **Alpine.js** 3.14.9 → **3.15.0** - Enhanced reactive framework
+- **ApexCharts** 4.7.0 → **5.3.5** - Major version upgrade with new features
+- **Font Awesome** 6.7.2 → **7.0.1** - Major version upgrade with new icons
+- **Vite** 7.0.4 → **7.1.7** - Improved build performance
+- **Sass** 1.89.2 → **1.93.2** - Latest SCSS compiler
+- **ESLint** 9.18.0 → **9.36.0** - Updated linting rules
+- **Prettier** 3.4.2 → **3.6.2** - Improved code formatting
+- **Day.js** 1.11.13 → **1.11.18** - Date utilities update
+- **SweetAlert2** 11.22.1 → **11.23.0** - Enhanced notifications
+- **Lucide** 0.469.0 → **0.544.0** - More icon options
+- **@vitejs/plugin-legacy** 7.0.0 → **7.2.1** - Better browser compatibility
+
+### 🐛 Fixed
+- **Chart Overflow Issue** - Revenue Analytics chart now properly contains itself within card boundaries
+- **ApexCharts Responsive Rendering** - Charts properly resize and redraw on container changes
+- **CSS Overflow Protection** - Added proper overflow handling in chart containers
+
+### 🧹 Removed (Cleanup)
+- **Legacy Configuration Files**
+  - Removed `.babelrc` (obsolete with Vite)
+  - Removed `.jshintrc` (replaced by ESLint)
+  - Removed `.travis.yml` (outdated CI/CD)
+  - Removed `.verb.md` (old documentation generator)
+- **Legacy Directories**
+  - Removed `docs/` directory with outdated Bootstrap 3 documentation
+  - Confirmed removal of old `src/` and `dist/` directories
+- **Gitignore Cleanup**
+  - Removed references to bower_components
+  - Removed grunt-html-validation entries
+  - Cleaned up vendor directory references
+
+### 🔧 Changed
+- **Chart Container Mixin** - Enhanced with better overflow protection and responsive handling
+- **Analytics Component** - Added proper chart cleanup and resize event handlers
+- **Project Structure** - Streamlined to only modern Bootstrap 5 codebase
+
 ## [3.0.0] - 2025-07-08
 
 ### 🚀 Major Release - Complete Modernization

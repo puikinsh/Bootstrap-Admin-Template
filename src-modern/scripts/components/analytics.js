@@ -98,8 +98,38 @@ document.addEventListener('alpine:init', () => {
                 },
                 zoom: {
                     enabled: false
-                }
+                },
+                sparkline: {
+                    enabled: false
+                },
+                redrawOnParentResize: true,
+                redrawOnWindowResize: true
             },
+            responsive: [{
+                breakpoint: 1200,
+                options: {
+                    chart: {
+                        height: 300
+                    },
+                    legend: {
+                        position: 'bottom',
+                        horizontalAlign: 'center'
+                    }
+                }
+            }, {
+                breakpoint: 768,
+                options: {
+                    chart: {
+                        height: 250
+                    },
+                    xaxis: {
+                        labels: {
+                            rotate: -45,
+                            rotateAlways: true
+                        }
+                    }
+                }
+            }],
             dataLabels: {
                 enabled: false
             },
@@ -154,9 +184,28 @@ document.addEventListener('alpine:init', () => {
                 }
             }
         };
-        
-        this.charts.revenue = new ApexCharts(document.querySelector("#revenueChart"), revenueOptions);
-        this.charts.revenue.render();
+
+        const chartElement = document.querySelector("#revenueChart");
+        if (chartElement) {
+            // Clear any existing chart instance
+            if (this.charts.revenue) {
+                this.charts.revenue.destroy();
+            }
+
+            this.charts.revenue = new ApexCharts(chartElement, revenueOptions);
+            this.charts.revenue.render();
+
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                if (this.charts.revenue) {
+                    this.charts.revenue.updateOptions({
+                        chart: {
+                            width: '100%'
+                        }
+                    });
+                }
+            });
+        }
     },
     
     // Traffic sources pie chart

@@ -37,22 +37,15 @@ Thumbs.db
 *.komodoproject
 .komodotools
 
-# grunt-html-validation
-validation-status.json
-validation-report.json
-
 # Vendor packages
 node_modules
-bower_components
-vendor
 
 # General folders and files to ignore
-_gh_pages
 tmp
 temp
 TODO.md
-metis_backup
-google.json
-adsense.hbs
 .tmp
 CLAUDE.md
+
+# Build output (keep for version control)
+# dist-modern/

@@ -394,6 +394,9 @@ export class DashboardManager {
   }
 
   initSalesByLocationChart() {
+      const chartElement = document.querySelector("#salesByLocationChart");
+      if (!chartElement) return;
+
       const options = {
           series: [{
               name: 'Sales',
@@ -401,7 +404,25 @@ export class DashboardManager {
           }],
           chart: {
               type: 'treemap',
-              height: 350
+              height: 350,
+              width: '100%',
+              toolbar: {
+                  show: true,
+                  tools: {
+                      download: true,
+                      selection: false,
+                      zoom: false,
+                      zoomin: false,
+                      zoomout: false,
+                      pan: false,
+                      reset: false
+                  }
+              },
+              events: {
+                  mounted: (chart) => {
+                      chart.windowResizeHandler();
+                  }
+              }
           },
           dataLabels: {
               enabled: true,
@@ -428,6 +449,18 @@ export class DashboardManager {
               }
           },
           responsive: [{
+              breakpoint: 1200,
+              options: {
+                  chart: {
+                      height: 350
+                  },
+                  dataLabels: {
+                      style: {
+                          fontSize: '11px'
+                      }
+                  }
+              }
+          }, {
               breakpoint: 768,
               options: {
                   chart: {
@@ -442,9 +475,22 @@ export class DashboardManager {
           }]
       };
 
-      const chart = new ApexCharts(document.querySelector("#salesByLocationChart"), options);
+      const chart = new ApexCharts(chartElement, options);
       chart.render();
       this.charts.set('salesByLocation', chart);
+
+      // Force resize on window resize for better responsiveness
+      window.addEventListener('resize', () => {
+          if (this.charts.has('salesByLocation')) {
+              setTimeout(() => {
+                  chart.updateOptions({
+                      chart: {
+                          width: '100%'
+                      }
+                  }, false, true);
+              }, 100);
+          }
+      });
   }
 
   populateRecentOrders() {

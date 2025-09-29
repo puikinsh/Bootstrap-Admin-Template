@@ -2,31 +2,33 @@
 
 > A completely modernized, powerful, and free Bootstrap 5 admin dashboard template built with cutting-edge web technologies.
 
-**⚡ Major Version 3.0 Release** - Complete rewrite with Bootstrap 5, modern JavaScript (ES6+), Alpine.js, SCSS, and Vite build system.
+**🎉 Version 3.1.0 Release** - Updated to Bootstrap 5.3.8 with all dependencies upgraded to their latest versions, improved chart handling, and legacy code cleanup.
 
 ![Metis Bootstrap Admin Dashboard](./metis-bootstrap-admin-dashboard.png)
 
 **[🚀 View Live Demo](https://colorlib.com/polygon/metis/)**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.7-563d7c.svg)](https://getbootstrap.com)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.8-563d7c.svg)](https://getbootstrap.com)
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-green.svg)](https://nodejs.org)
 
 ## ✨ Features
 
 ### 🎨 **Modern Design System**
-- **Bootstrap 5.3.7** - Latest version with all modern utilities
+- **Bootstrap 5.3.8** - Latest version with all modern utilities
 - **CSS Custom Properties** - Full theme customization support
 - **Dark/Light Mode** - Seamless theme switching with localStorage persistence
 - **Responsive First** - Mobile-optimized layouts across all devices
 - **Modern Typography** - Inter font family for enhanced readability
 
 ### 🚀 **Advanced Technology Stack**
-- **Alpine.js** - Lightweight reactive framework for modern interactions
+- **Alpine.js 3.15.0** - Lightweight reactive framework for modern interactions
 - **ES6+ JavaScript** - Modern JavaScript with modules and async/await
-- **Vite Build System** - Lightning-fast development and optimized production builds
-- **SCSS Architecture** - Organized, scalable stylesheet structure
-- **Bootstrap Icons** - 1,800+ high-quality SVG icons
+- **Vite 7.1.7** - Lightning-fast development and optimized production builds
+- **SCSS Architecture** - Organized, scalable stylesheet structure with Sass 1.93.2
+- **Bootstrap Icons 1.13.1** - 1,800+ high-quality SVG icons
+- **ApexCharts 5.3.5** - Advanced charting library
+- **Font Awesome 7.0.1** - Additional icon library
 
 ### 📊 **Comprehensive Dashboard Pages**
 - **📈 Analytics Dashboard** - Charts, KPIs, and data visualization
@@ -156,6 +158,17 @@ document.addEventListener('alpine:init', () => {
   }));
 });
 ```
+
+## 🆕 What's New in v3.1.0
+
+### Latest Updates (September 2025)
+- ✅ **Bootstrap 5.3.8** - Latest framework version
+- ✅ **All Dependencies Updated** - Every package upgraded to latest stable version
+- ✅ **ApexCharts 5.3.5** - Major version upgrade with enhanced features
+- ✅ **Font Awesome 7.0.1** - Major version upgrade with new icons
+- ✅ **Chart Overflow Fix** - Improved responsive chart rendering
+- ✅ **Legacy Code Cleanup** - Removed all Bootstrap 3 remnants
+- ✅ **Enhanced Documentation** - Added CLAUDE.md for AI-assisted development
 
 ## 🌟 Key Improvements in v3.0
 

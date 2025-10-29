@@ -45,7 +45,7 @@
     "lucide": "^0.544.0"
   },
   "devDependencies": {
-    "vite": "^7.1.7",
+    "vite": "^7.1.12",
     "sass": "^1.93.2",
     "eslint": "^9.36.0",
     "prettier": "^3.6.2",

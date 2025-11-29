@@ -5,6 +5,53 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.2.0] - 2025-11-29
+
+### 🎉 Maintenance Release - All Dependencies Updated
+
+This release brings all dependencies to their latest versions with improved ESLint configuration for ESLint v9.
+
+### 📦 Updated Production Dependencies
+
+- **Font Awesome** 7.0.1 → **7.1.0** - New icons and improvements
+- **Alpine.js** 3.15.0 → **3.15.2** - Bug fixes and enhancements
+- **ApexCharts** 5.3.5 → **5.3.6** - Chart rendering improvements
+- **Chart.js** 4.5.0 → **4.5.1** - Bug fixes
+- **Day.js** 1.11.18 → **1.11.19** - Date utilities update
+- **SweetAlert2** 11.23.0 → **11.26.3** - Enhanced notification features
+- **Lucide** 0.544.0 → **0.555.0** - More icon options
+
+### 📦 Updated Development Dependencies
+
+- **Vite** 7.1.7 → **7.2.4** - Build performance improvements
+- **Sass** 1.93.2 → **1.94.2** - Latest SCSS compiler
+- **ESLint** 9.36.0 → **9.39.1** - Updated linting rules
+- **Prettier** 3.6.2 → **3.7.2** - Improved code formatting
+- **Autoprefixer** 10.4.20 → **10.4.22** - Better CSS compatibility
+- **PostCSS** 8.5.2 → **8.5.6** - CSS processing updates
+- **Rimraf** 6.0.1 → **6.1.2** - Cleanup utility update
+
+### ✨ Added
+
+- **ESLint v9 Configuration** - New `eslint.config.js` flat config format replacing deprecated `.eslintrc`
+- **@eslint/js** - Added ESLint JavaScript configuration package
+
+### 🐛 Fixed
+
+- **Duplicate Method Error** - Fixed duplicate `changePassword()` method in security component
+- **ESLint Configuration** - Migrated to ESLint v9 flat config format
+
+### 🔧 Changed
+
+- **Lint Script** - Simplified ESLint command in package.json for ESLint v9 compatibility
+- **CLAUDE.md** - Updated dependency versions in documentation
+
+### 🔒 Security
+
+- **0 Vulnerabilities** - All dependencies updated with no known security issues
+
+---
+
 ## [3.1.0] - 2025-09-29
 
 ### 🎉 Enhanced Release - Dependency Updates & Optimization

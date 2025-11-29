@@ -1,7 +1,7 @@
 {
   "name": "bootstrap-admin-template-modern",
   "description": "Modern Bootstrap 5 Admin Template with Vite",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "type": "module",
   "homepage": "https://github.com/puikinsh/Bootstrap-Admin-Template",
   "author": "puikinsh (http://github.com/puikinsh)",
@@ -26,37 +26,38 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint src-modern/",
     "format": "prettier --write .",
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "bootstrap": "^5.3.8",
+    "@fortawesome/fontawesome-free": "^7.1.0",
     "@popperjs/core": "^2.11.8",
+    "alpinejs": "^3.15.2",
+    "apexcharts": "^5.3.6",
+    "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
-    "@fortawesome/fontawesome-free": "^7.0.1",
-    "chart.js": "^4.5.0",
-    "alpinejs": "^3.15.0",
-    "apexcharts": "^5.3.5",
-    "dayjs": "^1.11.18",
-    "sweetalert2": "^11.23.0"
+    "chart.js": "^4.5.1",
+    "dayjs": "^1.11.19",
+    "sweetalert2": "^11.26.3"
   },
   "optionalDependencies": {
-    "lucide": "^0.544.0"
+    "lucide": "^0.555.0"
   },
   "devDependencies": {
-    "vite": "^7.1.12",
-    "sass": "^1.93.2",
-    "eslint": "^9.36.0",
-    "prettier": "^3.6.2",
-    "rimraf": "^6.0.1",
+    "@eslint/js": "^9.39.1",
     "@vitejs/plugin-legacy": "^7.2.1",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.5.2"
+    "autoprefixer": "^10.4.22",
+    "eslint": "^9.39.1",
+    "postcss": "^8.5.6",
+    "prettier": "^3.7.2",
+    "rimraf": "^6.1.2",
+    "sass": "^1.94.2",
+    "vite": "^7.2.4"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not dead"
   ]
-} 
+}

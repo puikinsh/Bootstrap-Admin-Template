@@ -307,15 +307,8 @@ document.addEventListener('alpine:init', () => {
         this.showNotification('All other sessions terminated', 'success');
       }
     },
-    
+
     // Password Management
-    changePassword() {
-      // In a real app, this would open password change modal
-      if (confirm('Open password change dialog?')) {
-        this.showNotification('Password change dialog would open here', 'info');
-      }
-    },
-    
     generatePassword() {
       const length = this.auth.passwordMinLength;
       const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';

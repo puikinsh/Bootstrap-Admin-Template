@@ -2,7 +2,7 @@
 
 > A completely modernized, powerful, and free Bootstrap 5 admin dashboard template built with cutting-edge web technologies.
 
-**🎉 Version 3.1.0 Release** - Updated to Bootstrap 5.3.8 with all dependencies upgraded to their latest versions, improved chart handling, and legacy code cleanup.
+**🎉 Version 3.2.0 Release** - All dependencies updated to latest versions, ESLint v9 configuration, and security improvements.
 
 ![Metis Bootstrap Admin Dashboard](./metis-bootstrap-admin-dashboard.png)
 
@@ -22,13 +22,13 @@
 - **Modern Typography** - Inter font family for enhanced readability
 
 ### 🚀 **Advanced Technology Stack**
-- **Alpine.js 3.15.0** - Lightweight reactive framework for modern interactions
+- **Alpine.js 3.15.2** - Lightweight reactive framework for modern interactions
 - **ES6+ JavaScript** - Modern JavaScript with modules and async/await
-- **Vite 7.1.7** - Lightning-fast development and optimized production builds
-- **SCSS Architecture** - Organized, scalable stylesheet structure with Sass 1.93.2
+- **Vite 7.2.4** - Lightning-fast development and optimized production builds
+- **SCSS Architecture** - Organized, scalable stylesheet structure with Sass 1.94.2
 - **Bootstrap Icons 1.13.1** - 1,800+ high-quality SVG icons
-- **ApexCharts 5.3.5** - Advanced charting library
-- **Font Awesome 7.0.1** - Additional icon library
+- **ApexCharts 5.3.6** - Advanced charting library
+- **Font Awesome 7.1.0** - Additional icon library
 
 ### 📊 **Comprehensive Dashboard Pages**
 - **📈 Analytics Dashboard** - Charts, KPIs, and data visualization
@@ -159,16 +159,17 @@ document.addEventListener('alpine:init', () => {
 });
 ```
 
-## 🆕 What's New in v3.1.0
+## 🆕 What's New in v3.2.0
 
-### Latest Updates (September 2025)
-- ✅ **Bootstrap 5.3.8** - Latest framework version
+### Latest Updates (November 2025)
+
 - ✅ **All Dependencies Updated** - Every package upgraded to latest stable version
-- ✅ **ApexCharts 5.3.5** - Major version upgrade with enhanced features
-- ✅ **Font Awesome 7.0.1** - Major version upgrade with new icons
-- ✅ **Chart Overflow Fix** - Improved responsive chart rendering
-- ✅ **Legacy Code Cleanup** - Removed all Bootstrap 3 remnants
-- ✅ **Enhanced Documentation** - Added CLAUDE.md for AI-assisted development
+- ✅ **ESLint v9 Configuration** - New flat config format for modern linting
+- ✅ **Font Awesome 7.1.0** - Latest icon library with new icons
+- ✅ **Vite 7.2.4** - Improved build performance
+- ✅ **SweetAlert2 11.26.3** - Enhanced notification features
+- ✅ **0 Security Vulnerabilities** - All packages audited and secure
+- ✅ **Bug Fixes** - Fixed duplicate method error in security component
 
 ## 🌟 Key Improvements in v3.0
 

@@ -17,52 +17,79 @@ This guide covers all the UI components available in the Metis Admin Template.
 
 ### Sidebar
 
-The sidebar provides navigation and can be collapsed on smaller screens.
+The sidebar provides navigation and uses Bootstrap's collapse for submenus.
 
 ```html
-<aside class="sidebar" id="sidebar">
-  <div class="sidebar-header">
-    <a href="index.html" class="sidebar-brand">
-      <span class="brand-icon">M</span>
-      <span class="brand-text">Metis</span>
-    </a>
+<aside class="admin-sidebar" id="admin-sidebar">
+  <div class="sidebar-content">
+    <nav class="sidebar-nav">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" href="./index.html">
+            <i class="bi bi-speedometer2"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <!-- More nav items -->
+      </ul>
+    </nav>
   </div>
-  <nav class="sidebar-nav">
-    <!-- Navigation items -->
-  </nav>
 </aside>
 ```
 
-**Alpine.js Integration:**
-```javascript
-Alpine.data('sidebar', () => ({
-  collapsed: false,
-  toggle() {
-    this.collapsed = !this.collapsed;
-  }
-}));
+**Submenu with Collapse:**
+```html
+<li class="nav-item">
+  <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#elementsSubmenu">
+    <i class="bi bi-puzzle"></i>
+    <span>Elements</span>
+    <i class="bi bi-chevron-down ms-auto"></i>
+  </a>
+  <div class="collapse" id="elementsSubmenu">
+    <ul class="nav nav-submenu">
+      <li class="nav-item">
+        <a class="nav-link" href="./elements.html">
+          <i class="bi bi-grid"></i>
+          <span>Overview</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</li>
 ```
 
 ### Header
 
-The header contains search, notifications, and user menu.
+The header contains the brand, search, and user controls.
 
 ```html
-<header class="main-header">
-  <div class="header-left">
-    <button class="sidebar-toggle" @click="toggleSidebar()">
-      <i class="bi bi-list"></i>
-    </button>
-  </div>
-  <div class="header-right">
-    <!-- Search, notifications, user menu -->
-  </div>
+<header class="admin-header">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+    <div class="container-fluid">
+      <!-- Brand -->
+      <a class="navbar-brand d-flex align-items-center" href="./index.html">
+        <img src="/assets/images/logo.svg" alt="Logo" height="32">
+        <h1 class="h4 mb-0 fw-bold text-primary">Metis</h1>
+      </a>
+
+      <!-- Search Bar with Alpine.js -->
+      <div class="search-container flex-grow-1 mx-4" x-data="searchComponent">
+        <input type="search" class="form-control" placeholder="Search... (Ctrl+K)"
+               x-model="query" @input="search()" data-search-input>
+      </div>
+
+      <!-- Right Side Controls -->
+      <div class="navbar-nav flex-row">
+        <!-- Theme toggle, notifications, user menu -->
+      </div>
+    </div>
+  </nav>
 </header>
 ```
 
 ### Cards
 
-Standard card component with optional header, body, and footer.
+Standard Bootstrap 5 card component with custom styling.
 
 ```html
 <div class="card">
@@ -78,11 +105,7 @@ Standard card component with optional header, body, and footer.
 </div>
 ```
 
-**Variants:**
-- `.card-primary` - Primary themed card
-- `.card-success` - Success themed card
-- `.card-warning` - Warning themed card
-- `.card-danger` - Danger themed card
+**Note:** Cards in this template have `border-width: 0` and use `box-shadow` for elevation.
 
 ---
 
@@ -192,45 +215,6 @@ Standard card component with optional header, body, and footer.
 </div>
 ```
 
-### Form Validation with Alpine.js
-
-```html
-<form x-data="formValidation()" @submit.prevent="submit()">
-  <div class="mb-3">
-    <label class="form-label">Email</label>
-    <input
-      type="email"
-      class="form-control"
-      :class="{'is-invalid': errors.email}"
-      x-model="form.email"
-    >
-    <div class="invalid-feedback" x-text="errors.email"></div>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-```
-
-```javascript
-Alpine.data('formValidation', () => ({
-  form: { email: '' },
-  errors: {},
-
-  validate() {
-    this.errors = {};
-    if (!this.form.email) {
-      this.errors.email = 'Email is required';
-    }
-    return Object.keys(this.errors).length === 0;
-  },
-
-  submit() {
-    if (this.validate()) {
-      // Handle form submission
-    }
-  }
-}));
-```
-
 ---
 
 ## Data Display Components
@@ -328,6 +312,18 @@ Alpine.data('formValidation', () => ({
 
 ### Toast Notifications (SweetAlert2)
 
+The template uses a `NotificationManager` class that wraps SweetAlert2:
+
+```javascript
+// Access via the global app instance
+window.AdminApp.notificationManager.success('Operation completed!');
+window.AdminApp.notificationManager.error('Something went wrong');
+window.AdminApp.notificationManager.warning('Please check your input');
+window.AdminApp.notificationManager.info('New update available');
+```
+
+**Direct SweetAlert2 usage:**
+
 ```javascript
 import Swal from 'sweetalert2';
 
@@ -348,8 +344,6 @@ Swal.fire({
   text: "You won't be able to revert this!",
   icon: 'warning',
   showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
   confirmButtonText: 'Yes, delete it!'
 }).then((result) => {
   if (result.isConfirmed) {
@@ -386,22 +380,15 @@ Swal.fire({
 
 ### Tooltips
 
+Tooltips are automatically initialized by `main.js`:
+
 ```html
-<button
-  type="button"
-  class="btn btn-secondary"
-  data-bs-toggle="tooltip"
-  data-bs-placement="top"
-  title="Tooltip text"
->
+<button type="button" class="btn btn-secondary"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Tooltip text">
   Hover me
 </button>
-```
-
-Initialize tooltips in JavaScript:
-```javascript
-const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-[...tooltipTriggerList].forEach(el => new bootstrap.Tooltip(el));
 ```
 
 ---
@@ -413,7 +400,6 @@ const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]
 ```javascript
 import ApexCharts from 'apexcharts';
 
-// Line Chart
 const options = {
   chart: {
     type: 'line',
@@ -444,12 +430,7 @@ const myChart = new Chart(ctx, {
     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [{
       label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        // ...
-      ]
+      data: [12, 19, 3, 5, 2, 3]
     }]
   }
 });
@@ -459,38 +440,34 @@ const myChart = new Chart(ctx, {
 
 ## Alpine.js Components
 
-### Dropdown Component
+### Built-in Components
 
+The template includes these Alpine.js components registered in `main.js`:
+
+**searchComponent** - Global search functionality:
 ```html
-<div x-data="{ open: false }" class="dropdown">
-  <button @click="open = !open" class="btn btn-secondary dropdown-toggle">
-    Dropdown
-  </button>
-  <ul x-show="open" @click.away="open = false" class="dropdown-menu show">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-  </ul>
+<div x-data="searchComponent">
+  <input type="search" x-model="query" @input="search()">
+  <template x-for="result in results">
+    <a :href="result.url" x-text="result.title"></a>
+  </template>
 </div>
 ```
 
-### Accordion Component
-
+**themeSwitch** - Dark/light mode toggle:
 ```html
-<div x-data="{ active: null }">
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button
-        @click="active = active === 1 ? null : 1"
-        class="accordion-button"
-        :class="{ 'collapsed': active !== 1 }"
-      >
-        Section 1
-      </button>
-    </h2>
-    <div x-show="active === 1" class="accordion-collapse">
-      <div class="accordion-body">Content 1</div>
-    </div>
-  </div>
+<div x-data="themeSwitch">
+  <button @click="toggle()">
+    <i class="bi bi-sun-fill" x-show="currentTheme === 'light'"></i>
+    <i class="bi bi-moon-fill" x-show="currentTheme === 'dark'"></i>
+  </button>
+</div>
+```
+
+**statsCounter** - Animated counter:
+```html
+<div x-data="statsCounter(1000, 5)">
+  <span x-text="value"></span>
 </div>
 ```
 
@@ -498,7 +475,7 @@ const myChart = new Chart(ctx, {
 
 ## Icon Usage
 
-### Bootstrap Icons
+### Bootstrap Icons (Primary)
 
 ```html
 <!-- Inline icon -->
@@ -507,19 +484,19 @@ const myChart = new Chart(ctx, {
 <!-- With sizing -->
 <i class="bi bi-house" style="font-size: 2rem;"></i>
 
-<!-- Common icons -->
-<i class="bi bi-person"></i>      <!-- User -->
-<i class="bi bi-gear"></i>        <!-- Settings -->
-<i class="bi bi-bell"></i>        <!-- Notification -->
-<i class="bi bi-search"></i>      <!-- Search -->
-<i class="bi bi-plus-lg"></i>     <!-- Add -->
-<i class="bi bi-pencil"></i>      <!-- Edit -->
-<i class="bi bi-trash"></i>       <!-- Delete -->
-<i class="bi bi-download"></i>    <!-- Download -->
-<i class="bi bi-upload"></i>      <!-- Upload -->
+<!-- Common icons used in template -->
+<i class="bi bi-speedometer2"></i>  <!-- Dashboard -->
+<i class="bi bi-people"></i>        <!-- Users -->
+<i class="bi bi-graph-up"></i>      <!-- Analytics -->
+<i class="bi bi-gear"></i>          <!-- Settings -->
+<i class="bi bi-bell"></i>          <!-- Notifications -->
+<i class="bi bi-search"></i>        <!-- Search -->
+<i class="bi bi-plus-lg"></i>       <!-- Add -->
+<i class="bi bi-pencil"></i>        <!-- Edit -->
+<i class="bi bi-trash"></i>         <!-- Delete -->
 ```
 
-### Font Awesome Icons
+### Font Awesome (Optional)
 
 ```html
 <i class="fa-solid fa-house"></i>
@@ -532,11 +509,11 @@ const myChart = new Chart(ctx, {
 ## Best Practices
 
 1. **Use semantic HTML** - Use appropriate elements for accessibility
-2. **Follow BEM naming** - Keep CSS classes organized and predictable
-3. **Leverage Alpine.js** - Use for interactive components instead of custom JS
+2. **Leverage Bootstrap 5 utilities** - Use utility classes instead of custom CSS
+3. **Use Alpine.js for interactivity** - Keep JavaScript simple and declarative
 4. **Mobile-first approach** - Design for mobile, then scale up
-5. **Accessibility** - Always include ARIA labels and keyboard navigation
-6. **Performance** - Lazy load components and images when possible
+5. **Accessibility** - Include ARIA labels and support keyboard navigation
+6. **Use the page data attribute** - Set `data-page` on body for page-specific JS
 
 ---
 

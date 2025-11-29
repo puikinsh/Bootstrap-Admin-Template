@@ -103,6 +103,7 @@ document.addEventListener('alpine:init', () => {
         try {
           const parsed = JSON.parse(savedSettings);
           // Only merge non-theme settings to avoid overriding current theme
+          // eslint-disable-next-line no-unused-vars
           const { theme, ...otherSettings } = parsed;
           this.settings = { ...this.settings, ...otherSettings };
         } catch (error) {

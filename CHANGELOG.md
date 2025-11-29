@@ -7,9 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.2.0] - 2025-11-29
 
-### 🎉 Maintenance Release - All Dependencies Updated
+### 🎉 Maintenance Release - Dependencies, Build Optimization & DX Improvements
 
-This release brings all dependencies to their latest versions with improved ESLint configuration for ESLint v9.
+This release brings all dependencies to their latest versions, significantly improves build performance through chunk splitting, and enhances developer experience with new configuration files.
+
+### 🚀 Build Performance Improvements
+
+- **Vendor Chunk Splitting** - Main bundle reduced from 993KB to 33KB
+  - `vendor-bootstrap.js` (82KB) - Bootstrap & Popper
+  - `vendor-ui.js` (123KB) - Alpine.js, SweetAlert2, Day.js
+  - `vendor-charts.js` (756KB) - Chart.js, ApexCharts
+- **Better Browser Caching** - Vendor chunks cached separately from app code
+- **Optimized Dependency Pre-bundling** - Faster dev server startup
 
 ### 📦 Updated Production Dependencies
 
@@ -33,18 +42,31 @@ This release brings all dependencies to their latest versions with improved ESLi
 
 ### ✨ Added
 
-- **ESLint v9 Configuration** - New `eslint.config.js` flat config format replacing deprecated `.eslintrc`
-- **@eslint/js** - Added ESLint JavaScript configuration package
+- **`.prettierrc.json`** - Standardized code formatting configuration
+- **`.prettierignore`** - Exclude build artifacts from formatting
+- **`.editorconfig`** - IDE-agnostic coding standards
+- **`postcss.config.js`** - PostCSS/Autoprefixer configuration
+- **`.env.example`** - Environment variable template for easy onboarding
+- **`DEVELOPMENT.md`** - Comprehensive development documentation
+- **ESLint v9 Configuration** - New `eslint.config.js` flat config format
+- **New npm scripts**:
+  - `npm run serve` - Build and preview in one command
+  - `npm run lint:fix` - Auto-fix linting issues
+  - `npm run format:check` - Check formatting without changes
+  - `npm run check` - Run lint + format check
+  - `npm run clean:all` - Deep clean including node_modules
 
 ### 🐛 Fixed
 
-- **Duplicate Method Error** - Fixed duplicate `changePassword()` method in security component
-- **ESLint Configuration** - Migrated to ESLint v9 flat config format
+- **Duplicate Method Error** - Fixed duplicate `changePassword()` in security component
+- **Unused Bootstrap Imports** - Removed unused Alert, Button, Carousel, ScrollSpy imports
+- **ESLint Warnings** - Reduced from 16 to 12 warnings
 
 ### 🔧 Changed
 
-- **Lint Script** - Simplified ESLint command in package.json for ESLint v9 compatibility
-- **CLAUDE.md** - Updated dependency versions in documentation
+- **Vite Configuration** - Cleaner syntax with `__dirname` helper
+- **CLAUDE.md** - Streamlined to quick reference, detailed docs moved to DEVELOPMENT.md
+- **`.gitignore`** - Added environment file patterns, removed CLAUDE.md exclusion
 
 ### 🔒 Security
 

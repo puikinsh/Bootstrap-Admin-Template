@@ -200,7 +200,6 @@ document.addEventListener('alpine:init', () => {
       const year = this.miniCalendarDate.getFullYear();
       const month = this.miniCalendarDate.getMonth();
       const firstDay = new Date(year, month, 1);
-      const lastDay = new Date(year, month + 1, 0);
       const startDate = new Date(firstDay);
       startDate.setDate(startDate.getDate() - firstDay.getDay());
       
@@ -228,7 +227,6 @@ document.addEventListener('alpine:init', () => {
       const year = this.currentDate.getFullYear();
       const month = this.currentDate.getMonth();
       const firstDay = new Date(year, month, 1);
-      const lastDay = new Date(year, month + 1, 0);
       const startDate = new Date(firstDay);
       startDate.setDate(startDate.getDate() - firstDay.getDay());
       

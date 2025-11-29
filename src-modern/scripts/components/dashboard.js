@@ -115,7 +115,7 @@ export class DashboardManager {
         { text: 'Shipped', class: 'bg-info' },
         { text: 'Cancelled', class: 'bg-danger' }
     ];
-    return Array.from({length: 5}, (_, i) => ({
+    return Array.from({length: 5}, () => ({
         id: `#${Math.floor(Math.random() * 9000) + 1000}`,
         customer: customers[Math.floor(Math.random() * customers.length)],
         amount: `$${(Math.random() * 500 + 50).toFixed(2)}`,

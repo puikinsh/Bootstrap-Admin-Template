@@ -427,25 +427,16 @@ document.addEventListener('alpine:init', () => {
       try {
         localStorage.setItem('securitySettings', JSON.stringify(settings));
         this.showNotification('Security settings saved', 'success');
-      } catch (error) {
+      } catch {
         this.showNotification('Failed to save settings', 'error');
       }
     },
     
     // Notifications
     showNotification(message, type = 'info') {
-      // Simple notification system - in a real app you'd use a proper notification library
-      const alertClass = {
-        success: 'alert-success',
-        warning: 'alert-warning',
-        danger: 'alert-danger',
-        error: 'alert-danger',
-        info: 'alert-info'
-      }[type] || 'alert-info';
-      
       console.log(`[${type.toUpperCase()}] ${message}`);
-      
-      // You could also dispatch a custom event here for a global notification system
+
+      // Dispatch a custom event for a global notification system
       document.dispatchEvent(new CustomEvent('showNotification', {
         detail: { message, type }
       }));

@@ -45,7 +45,11 @@ tmp
 temp
 TODO.md
 .tmp
-CLAUDE.md
+
+# Environment files (keep .env.example)
+.env
+.env.local
+.env.*.local
 
 # Build output (keep for version control)
 # dist-modern/

@@ -209,7 +209,7 @@ export class LucideIconManager {
 
       console.info('✨ Lucide icons loaded successfully');
 
-    } catch (error) {
+    } catch {
       console.info('Lucide icons not available, falling back to Bootstrap Icons only');
     }
   }

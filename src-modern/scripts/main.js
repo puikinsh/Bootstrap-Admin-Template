@@ -3,20 +3,16 @@
 // ES6+ Modules with Bootstrap 5
 // ==========================================================================
 
-// Import Bootstrap 5 JavaScript components
-import { 
-  Alert, 
-  Button, 
-  Carousel, 
-  Collapse, 
-  Dropdown, 
-  Modal, 
-  Offcanvas, 
-  Popover, 
-  ScrollSpy, 
-  Tab, 
-  Toast, 
-  Tooltip 
+// Import Bootstrap 5 JavaScript components (only those actively used)
+import {
+  Collapse,
+  Dropdown,
+  Modal,
+  Offcanvas,
+  Popover,
+  Tab,
+  Toast,
+  Tooltip,
 } from 'bootstrap';
 
 // Import our custom modules

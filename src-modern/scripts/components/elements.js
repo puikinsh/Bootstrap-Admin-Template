@@ -273,13 +273,7 @@ document.addEventListener('alpine:init', () => {
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize Bootstrap tooltips
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-    
-    // Restore view mode from localStorage
-    const savedViewMode = localStorage.getItem('elements-view-mode');
-    if (savedViewMode) {
-        // This will be handled by Alpine when it initializes
-    }
+    [...tooltipTriggerList].forEach(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 });
 
 export { elementsData };

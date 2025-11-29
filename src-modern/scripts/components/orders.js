@@ -733,10 +733,9 @@ document.addEventListener('alpine:init', () => {
 
     get visiblePages() {
       if (this.totalPages <= 1) return [1];
-      
+
       const pages = [];
-      const delta = 2;
-      
+
       // Always show first page
       pages.push(1);
       

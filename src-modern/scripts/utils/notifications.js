@@ -223,9 +223,6 @@ export class NotificationManager {
 
   // Progress notification
   async showProgress(title, onProgress) {
-    let currentStep = 0;
-    const totalSteps = 100;
-
     await Swal.fire({
       title: title,
       html: `
@@ -242,7 +239,6 @@ export class NotificationManager {
 
         if (onProgress && typeof onProgress === 'function') {
           onProgress((step, text) => {
-            currentStep = step;
             progressBar.style.width = `${step}%`;
             progressBar.setAttribute('aria-valuenow', step);
             if (text) {

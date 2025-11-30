@@ -1,14 +1,25 @@
 # Enforce Unix newlines
-*.*     text eol=lf
-*.css   text eol=lf
-*.html  text eol=lf
-*.js    text eol=lf
-*.json  text eol=lf
-*.less  text eol=lf
-*.md    text eol=lf
-*.yml   text eol=lf
+* text=auto eol=lf
 
-*.jpg binary
-*.gif binary
-*.png binary
-*.jpeg binary
+# Source files
+*.css    text eol=lf
+*.scss   text eol=lf
+*.html   text eol=lf
+*.js     text eol=lf
+*.mjs    text eol=lf
+*.json   text eol=lf
+*.md     text eol=lf
+*.yml    text eol=lf
+*.yaml   text eol=lf
+*.svg    text eol=lf
+
+# Binary files
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.png    binary
+*.ico    binary
+*.woff   binary
+*.woff2  binary
+*.ttf    binary
+*.eot    binary

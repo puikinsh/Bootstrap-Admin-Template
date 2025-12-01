@@ -480,15 +480,78 @@ class AdminApp {
 
     Alpine.data('iconDemo', () => ({
       currentProvider: 'bootstrap',
-      
+
       switchProvider(provider) {
         this.currentProvider = provider;
         iconManager.switchProvider(provider);
         console.log(`🎨 Switched to ${provider} icons`);
       },
-      
+
       getIcon(iconName) {
         return iconManager.get(iconName);
+      }
+    }));
+
+    // Quick Add Form for Dashboard
+    Alpine.data('quickAddForm', () => ({
+      itemType: 'task',
+      title: '',
+      description: '',
+      priority: 'medium',
+      dateTime: '',
+      assignee: '',
+
+      init() {
+        // Set default date to now
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        this.dateTime = now.toISOString().slice(0, 16);
+      },
+
+      resetForm() {
+        this.itemType = 'task';
+        this.title = '';
+        this.description = '';
+        this.priority = 'medium';
+        this.assignee = '';
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        this.dateTime = now.toISOString().slice(0, 16);
+      },
+
+      saveItem() {
+        if (!this.title.trim()) {
+          window.AdminApp.notificationManager.warning('Please enter a title');
+          return;
+        }
+
+        const item = {
+          type: this.itemType,
+          title: this.title,
+          description: this.description,
+          priority: this.itemType === 'task' ? this.priority : null,
+          dateTime: ['event', 'reminder'].includes(this.itemType) ? this.dateTime : null,
+          assignee: this.itemType === 'task' ? this.assignee : null,
+          createdAt: new Date().toISOString()
+        };
+
+        // In a real app, this would send to an API
+        console.log('New item created:', item);
+
+        // Show success notification with item type
+        const typeLabels = {
+          task: 'Task',
+          note: 'Note',
+          event: 'Event',
+          reminder: 'Reminder'
+        };
+
+        window.AdminApp.notificationManager.success(
+          `${typeLabels[this.itemType]} "${this.title}" created successfully!`
+        );
+
+        // Reset form for next use
+        this.resetForm();
       }
     }));
 

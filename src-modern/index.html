@@ -331,7 +331,7 @@
                         <p class="text-muted mb-0">Welcome back! Here's what's happening.</p>
                     </div>
                     <div class="d-flex gap-2">
-                        <button type="button" class="btn btn-primary">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newItemModal">
                             <i class="bi bi-plus-lg me-2"></i>
                             New Item
                         </button>
@@ -725,5 +725,107 @@
         }
       });
     </script>
+
+    <!-- New Item Modal -->
+    <div class="modal fade" id="newItemModal" tabindex="-1" aria-labelledby="newItemModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title" id="newItemModalLabel">
+                        <i class="bi bi-plus-circle text-primary me-2"></i>
+                        Quick Add
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" x-data="quickAddForm()">
+                    <p class="text-muted small mb-4">Create a new item quickly from the dashboard.</p>
+
+                    <!-- Item Type Selection -->
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">What would you like to add?</label>
+                        <div class="btn-group w-100" role="group">
+                            <button type="button" class="btn btn-outline-primary btn-sm"
+                                    :class="{ 'active': itemType === 'task' }"
+                                    @click="itemType = 'task'">
+                                <i class="bi bi-check2-square"></i> Task
+                            </button>
+                            <button type="button" class="btn btn-outline-success btn-sm"
+                                    :class="{ 'active': itemType === 'note' }"
+                                    @click="itemType = 'note'">
+                                <i class="bi bi-sticky"></i> Note
+                            </button>
+                            <button type="button" class="btn btn-outline-info btn-sm"
+                                    :class="{ 'active': itemType === 'event' }"
+                                    @click="itemType = 'event'">
+                                <i class="bi bi-calendar-event"></i> Event
+                            </button>
+                            <button type="button" class="btn btn-outline-warning btn-sm"
+                                    :class="{ 'active': itemType === 'reminder' }"
+                                    @click="itemType = 'reminder'">
+                                <i class="bi bi-bell"></i> Reminder
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Title -->
+                    <div class="mb-3">
+                        <label for="itemTitle" class="form-label fw-semibold">Title</label>
+                        <input type="text" class="form-control" id="itemTitle" x-model="title"
+                               placeholder="Enter a title..." autofocus>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="mb-3">
+                        <label for="itemDescription" class="form-label fw-semibold">Description</label>
+                        <textarea class="form-control" id="itemDescription" rows="3" x-model="description"
+                                  placeholder="Add some details..."></textarea>
+                    </div>
+
+                    <!-- Priority (shown for tasks) -->
+                    <div class="mb-3" x-show="itemType === 'task'" x-transition>
+                        <label class="form-label fw-semibold d-block">Priority</label>
+                        <div class="btn-group" role="group" aria-label="Priority selection">
+                            <input type="radio" class="btn-check" name="priorityRadio" id="priorityLow" value="low" x-model="priority" autocomplete="off">
+                            <label class="btn btn-outline-success btn-sm" for="priorityLow">
+                                <i class="bi bi-flag"></i> Low
+                            </label>
+                            <input type="radio" class="btn-check" name="priorityRadio" id="priorityMedium" value="medium" x-model="priority" autocomplete="off">
+                            <label class="btn btn-outline-warning btn-sm" for="priorityMedium">
+                                <i class="bi bi-flag-fill"></i> Medium
+                            </label>
+                            <input type="radio" class="btn-check" name="priorityRadio" id="priorityHigh" value="high" x-model="priority" autocomplete="off">
+                            <label class="btn btn-outline-danger btn-sm" for="priorityHigh">
+                                <i class="bi bi-flag-fill"></i> High
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Date (shown for events/reminders) -->
+                    <div class="mb-3" x-show="itemType === 'event' || itemType === 'reminder'" x-transition>
+                        <label for="itemDate" class="form-label fw-semibold">Date & Time</label>
+                        <input type="datetime-local" class="form-control" id="itemDate" x-model="dateTime">
+                    </div>
+
+                    <!-- Assign to (shown for tasks) -->
+                    <div class="mb-3" x-show="itemType === 'task'" x-transition>
+                        <label for="assignTo" class="form-label fw-semibold">Assign to</label>
+                        <select class="form-select" id="assignTo" x-model="assignee">
+                            <option value="">Select team member...</option>
+                            <option value="john">John Doe</option>
+                            <option value="jane">Jane Smith</option>
+                            <option value="mike">Mike Johnson</option>
+                            <option value="sarah">Sarah Williams</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" @click="saveItem()" data-bs-dismiss="modal">
+                        <i class="bi bi-check-lg me-1"></i> Create Item
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html> 

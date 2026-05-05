@@ -2,11 +2,11 @@
 
 > A completely modernized, powerful, and free Bootstrap 5 admin dashboard template built with cutting-edge web technologies.
 
-**🎉 Version 3.4.3 Release** - Lighthouse accessibility pass: AA-compliant color tokens (Indigo/Emerald/Amber/Cyan/Red 700-shade for emphasis), brand & badge & toast contrast fixes, heading-order correction on stats cards, and an accessible name on the icon-only "New Item" button.
+**🎉 Version 3.4.4 Release** - Laptop-density pass (sidebar 280→240px, header 70→64px, button padding halved), wired up 7D/30D/90D period selectors across 7 chart cards, fixed calendar/chart overflow on short viewports, fixed checkboxes/radios bleeding into toggle styling, mobile navbar polish, and dependency bumps (Alpine 3.15.12, ESLint 10.3.0).
 
 ![Metis Bootstrap Admin Dashboard](./metis-bootstrap-admin-dashboard.png)
 
-**[🚀 View Live Demo](https://colorlib.com/polygon/metis/)**
+**[🚀 View Live Demo](https://preview.colorlib.com/theme/metis/)**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.8-563d7c.svg)](https://getbootstrap.com)
@@ -22,7 +22,7 @@
 - **Modern Typography** - Inter font family for enhanced readability
 
 ### 🚀 **Advanced Technology Stack**
-- **Alpine.js 3.15.11** - Lightweight reactive framework for modern interactions
+- **Alpine.js 3.15.12** - Lightweight reactive framework for modern interactions
 - **ES6+ JavaScript** - Modern JavaScript with modules and async/await
 - **Vite 8.0** - Lightning-fast development and optimized production builds (rolldown-powered)
 - **SCSS Architecture** - Organized, scalable stylesheet structure with Sass 1.99
@@ -273,7 +273,7 @@ document.addEventListener('alpine:init', () => {
 
 ## 📚 Documentation & Resources
 
-- **[Live Demo](https://colorlib.com/polygon/metis/)** - See the template in action
+- **[Live Demo](https://preview.colorlib.com/theme/metis/)** - See the template in action
 - **[Component Documentation](./docs/components.md)** - Detailed component guides
 - **[Customization Guide](./docs/customization.md)** - Theme and styling customization
 - **[Deployment Guide](./docs/deployment.md)** - Production deployment instructions

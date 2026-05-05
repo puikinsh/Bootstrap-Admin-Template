@@ -180,15 +180,54 @@ document.addEventListener('alpine:init', () => {
       }
     },
 
+    charts: {},
+
     initCharts() {
       // Prevent multiple chart initializations
       if (this.chartsInitialized) return;
-      
+
       this.initRevenueTrendsChart();
       this.initTopProductsChart();
       this.initCustomerAcquisitionChart();
       this.initRegionSalesChart();
+      this.initPeriodSelector();
       this.chartsInitialized = true;
+    },
+
+    buildDayLabels(count) {
+      const today = new Date();
+      return Array.from({ length: count }, (_, i) => {
+        const d = new Date(today);
+        d.setDate(d.getDate() - (count - 1 - i));
+        return count <= 7
+          ? d.toLocaleDateString('en-US', { weekday: 'short' })
+          : d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      });
+    },
+
+    generateRevenueTrendsData(count) {
+      return {
+        revenue: Array.from({ length: count }, () => Math.floor(Math.random() * 30000) + 25000),
+        profit:  Array.from({ length: count }, () => Math.floor(Math.random() * 9000)  + 7000),
+      };
+    },
+
+    initPeriodSelector() {
+      const map = { revenue7d: 7, revenue30d: 30, revenue90d: 90 };
+      document.querySelectorAll('input[name="revenuePeriod"]').forEach(input => {
+        input.addEventListener('change', (e) => {
+          const count = map[e.target.id];
+          if (!count || !this.charts.revenueTrends) return;
+          const { revenue, profit } = this.generateRevenueTrendsData(count);
+          this.charts.revenueTrends.updateOptions({
+            xaxis: { categories: this.buildDayLabels(count) },
+            series: [
+              { name: 'Revenue', data: revenue },
+              { name: 'Profit',  data: profit  },
+            ],
+          });
+        });
+      });
     },
 
     initRevenueTrendsChart() {
@@ -213,6 +252,7 @@ document.addEventListener('alpine:init', () => {
           chart: {
             type: 'area',
             height: 350,
+            width: '100%',
             toolbar: {
               show: true,
               tools: {
@@ -269,6 +309,17 @@ document.addEventListener('alpine:init', () => {
 
         const chart = new ApexCharts(chartElement, chartData);
         chart.render();
+        this.charts.revenueTrends = chart;
+
+        if ('ResizeObserver' in window) {
+          let raf = 0;
+          new ResizeObserver(() => {
+            cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(() => {
+              chart.updateOptions({ chart: { width: '100%' } }, false, false);
+            });
+          }).observe(chartElement);
+        }
       } catch (error) {
         console.error('Error rendering revenue trends chart:', error);
       }
@@ -289,7 +340,8 @@ document.addEventListener('alpine:init', () => {
           series: this.topProducts.map(product => product.revenue),
           chart: {
             type: 'donut',
-            height: 200
+            height: 200,
+            width: '100%'
           },
           labels: this.topProducts.map(product => product.name),
           colors: ['#6366f1', '#8b5cf6', '#06b6d4', '#10b981', '#f59e0b'],
@@ -341,6 +393,7 @@ document.addEventListener('alpine:init', () => {
           chart: {
             type: 'bar',
             height: 250,
+            width: '100%',
             stacked: true
           },
           colors: ['#6366f1', '#e5e7eb'],
@@ -366,6 +419,16 @@ document.addEventListener('alpine:init', () => {
 
         const chart = new ApexCharts(chartElement, chartData);
         chart.render();
+
+        if ('ResizeObserver' in window) {
+          let raf = 0;
+          new ResizeObserver(() => {
+            cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(() => {
+              chart.updateOptions({ chart: { width: '100%' } }, false, false);
+            });
+          }).observe(chartElement);
+        }
       } catch (error) {
         console.error('Error rendering customer acquisition chart:', error);
       }
@@ -389,7 +452,8 @@ document.addEventListener('alpine:init', () => {
           }],
           chart: {
             type: 'radar',
-            height: 250
+            height: 250,
+            width: '100%'
           },
           colors: ['#6366f1'],
           xaxis: {

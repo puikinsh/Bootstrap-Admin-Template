@@ -2,6 +2,27 @@
 // Form Components - Modern Bootstrap 5 Forms with Advanced Features
 // ==========================================================================
 
+// Form select arrow padding overrides.
+// Bootstrap's default `$form-select-indicator-padding: $form-select-padding-x * 3`
+// produces ~42–48px of right padding for a 16px arrow icon. On narrow selects
+// (col-md-3 State picker, fixed-width 150px filter dropdowns, .form-select-sm),
+// that wastes so much space the option text gets clipped. Tighten per size:
+// arrow keeps a ~6–8px gap from the text on each side, no more.
+.form-select {
+  padding-right: 1.875rem;                    // 30px
+  background-position: right 0.5rem center;
+}
+
+.form-select-sm {
+  padding-right: 1.625rem;                    // 26px
+  background-position: right 0.375rem center;
+}
+
+.form-select-lg {
+  padding-right: 2.25rem;                     // 36px
+  background-position: right 0.75rem center;
+}
+
 // Form Container & Layout
 .form-container {
   background: var(--bs-body-bg);

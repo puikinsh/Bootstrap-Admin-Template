@@ -36,24 +36,26 @@
       border-radius: 0.5rem;
       padding: 1rem;
       min-height: 80px;
+      // Column flex so block-level children (alerts, cards, multi-line groups)
+      // stack vertically as Bootstrap intends. Single inline-block items
+      // (buttons, badges) still center because of align-items / justify-content.
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      
+      gap: 0.5rem;
+
       // Ensure preview content is properly styled
       .btn {
         font-size: 0.8rem;
         padding: 0.25rem 0.5rem;
       }
-      
+
       .alert {
         font-size: 0.8rem;
         padding: 0.5rem;
-        margin-bottom: 0.5rem;
-        
-        &:last-child {
-          margin-bottom: 0;
-        }
+        margin-bottom: 0; // gap on parent handles spacing now
+        width: 100%;      // alerts visually want to span the preview width
       }
       
       .badge {
@@ -359,6 +361,9 @@
   line-height: 1.6;
   border: 1px solid #333;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  // Breathing room before the "Copy Code" button (or any sibling) that
+  // typically follows the code block on the elements demo pages.
+  margin-bottom: 1rem;
   
   pre {
     margin: 0;

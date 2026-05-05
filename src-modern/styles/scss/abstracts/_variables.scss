@@ -78,10 +78,10 @@ $box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0
 $box-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
 
 // Layout Variables
-$sidebar-width: 280px;
-$sidebar-mini-width: 70px;
-$header-height: 70px;
-$footer-height: 60px;
+$sidebar-width: 240px;
+$sidebar-mini-width: 64px;
+$header-height: 64px;
+$footer-height: 56px;
 
 // Transitions
 $transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -107,12 +107,15 @@ $card-border-color: transparent;
 $card-box-shadow: $box-shadow;
 
 $btn-border-radius: $border-radius-sm;
-$btn-padding-y: 0.75rem;
-$btn-padding-x: 1.5rem;
+$btn-padding-y: 0.5rem;     // 8px (was 12px) — closer to Bootstrap default while staying slightly roomier
+$btn-padding-x: 1rem;       // 16px (was 24px)
 
 $input-border-radius: $border-radius-sm;
-$input-padding-y: 0.75rem;
-$input-padding-x: 1rem;
+$input-padding-y: 0.5rem;   // 8px (was 12px) — match button heights for visual consistency
+$input-padding-x: 0.875rem; // 14px (was 16px)
+// NOTE: form-select arrow padding is overridden directly in components/_forms.scss
+// rather than via $form-select-indicator-padding, because the Sass-variable
+// approach was not reliably propagating during dev HMR.
 
 // Dark theme variables
 $dark-bg: $gray-900;

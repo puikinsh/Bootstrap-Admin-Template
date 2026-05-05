@@ -537,13 +537,45 @@ document.addEventListener('alpine:init', () => {
       }
     },
 
+    charts: {},
+
     initCharts() {
       // Prevent multiple chart initializations
       if (this.chartsInitialized) return;
-      
+
       this.initSalesChart();
       this.initCategoryChart();
+      this.initPeriodSelector();
       this.chartsInitialized = true;
+    },
+
+    buildDayLabels(count) {
+      const today = new Date();
+      return Array.from({ length: count }, (_, i) => {
+        const d = new Date(today);
+        d.setDate(d.getDate() - (count - 1 - i));
+        return count <= 7
+          ? d.toLocaleDateString('en-US', { weekday: 'short' })
+          : d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      });
+    },
+
+    generateSalesData(count) {
+      return Array.from({ length: count }, () => Math.floor(Math.random() * 60) + 50);
+    },
+
+    initPeriodSelector() {
+      const map = { sales7d: 7, sales30d: 30, sales90d: 90 };
+      document.querySelectorAll('input[name="salesPeriod"]').forEach(input => {
+        input.addEventListener('change', (e) => {
+          const count = map[e.target.id];
+          if (!count || !this.charts.sales) return;
+          this.charts.sales.updateOptions({
+            xaxis: { categories: this.buildDayLabels(count) },
+            series: [{ name: 'Sales', data: this.generateSalesData(count) }],
+          });
+        });
+      });
     },
 
     initSalesChart() {
@@ -567,6 +599,7 @@ document.addEventListener('alpine:init', () => {
         chart: {
           type: 'area',
           height: 300,
+          width: '100%',
           toolbar: { show: false }
         },
         colors: ['#6366f1'],
@@ -601,6 +634,17 @@ document.addEventListener('alpine:init', () => {
 
         const chart = new ApexCharts(salesChart, salesData);
         chart.render();
+        this.charts.sales = chart;
+
+        if ('ResizeObserver' in window) {
+          let raf = 0;
+          new ResizeObserver(() => {
+            cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(() => {
+              chart.updateOptions({ chart: { width: '100%' } }, false, false);
+            });
+          }).observe(salesChart);
+        }
       } catch (error) {
         console.error('Error rendering sales chart:', error);
       }
@@ -622,7 +666,8 @@ document.addEventListener('alpine:init', () => {
         series: this.categoryStats.map(cat => cat.count),
         chart: {
           type: 'donut',
-          height: 200
+          height: 200,
+          width: '100%'
         },
         labels: this.categoryStats.map(cat => cat.name),
         colors: this.categoryStats.map(cat => cat.color),

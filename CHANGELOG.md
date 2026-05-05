@@ -5,6 +5,56 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.4.4] - 2026-05-05
+
+### Laptop-density pass, calendar/chart overflow fixes, period selector wiring, mobile polish
+
+A wide-ranging release focused on three things: making the template feel right on a 1366×768 laptop instead of just on 4K desktops, fixing several "content is partially hidden" bugs on calendar / charts / page headers, and finally wiring up the time-period buttons (7D/30D/90D) that have been decorative since 3.4.0.
+
+### ✨ Features
+
+- **Time-period selectors are now functional across 7 chart cards.** The `7D` / `30D` / `90D` / `1Y` button groups on Dashboard (Revenue), Analytics (page-level + Revenue Analytics card), Orders (Trends), Products (Sales), Reports (Revenue Trends), and Users (User Growth) regenerate period-appropriate mock data and update each chart's series + x-axis labels via `chart.updateOptions`. Each component now exposes `buildDayLabels(count)` / `buildLabels(count, unit)` helpers that produce real ISO-derived labels (`Mon, Tue, ...` for ≤7 days, `Apr 12, Apr 13, ...` for 30+, `Wk 1–12` for weeks, `Jan, Feb, ...` for months) so the x-axis no longer lies about dates.
+- **Dashboard realtime updater now respects the selected period.** The interval that pushes a new revenue point every N seconds was previously hardcoded to trim to 12 entries with a generic "New" label, which clobbered the user's `7D` selection within seconds. It now reads `this.currentPeriod` and trims/labels accordingly.
+
+### 🐛 Bug fixes
+
+- **Calendar grid was clipping rows on short viewports** — `.month-grid`, `.week-grid`, and `.day-schedule` had `overflow: hidden` combined with `flex: 1`. That combo resolves the grid's `min-height: auto` to `0`, which let the grid compress below its content size and clip its own rows internally — `.calendar-content`'s `overflow: auto` never even saw the overflow. Removed `overflow: hidden` from all three so the grids expand to their full natural height and the parent scrolls them.
+- **Calendar sidebar (events list) was getting clipped** — `.calendar-sidebar` had no overflow rule, but its parent `.calendar-container` has `overflow: hidden` and a fixed viewport-derived height. Added `overflow-y: auto` and `min-height: 0` so the sidebar scrolls independently when content (mini calendar + categories + upcoming events) exceeds the available height.
+- **Revenue Overview & User Growth charts overflowed their cards on initial load** — `initRevenueChart` / `initUserGrowthChart` didn't set `width: '100%'`, so ApexCharts measured the container width once at render time and could end up wider than the final laid-out card (when fonts loaded after render, the scrollbar took width that wasn't anticipated). Added `width: '100%'` to all 17+ chart configs across `dashboard.js`, `products.js`, `analytics.js`, `reports.js`, `orders.js`, `users.js`, and a `ResizeObserver` (with `requestAnimationFrame` debouncing) on every cartesian chart that re-fits via `updateOptions` whenever the container resizes — handles fonts loading late, sidebar toggle, window resize.
+- **Mobile horizontal scroll on Orders / Users / Products / Reports / Settings / Help / Forms / Calendar / etc.** — the page header pattern `<div class="d-flex justify-content-between align-items-center">` doesn't wrap, so on a 375px viewport the title block plus 3 action buttons (`Import` / `Export` / `Add User`) overflowed the container. Added `flex-wrap: wrap` on the header at `< 768px` and `flex-wrap: wrap` on its inner button group, and `overflow-x: clip` + `min-width: 0` on `.admin-main` as a safety net for any other wide descendant. Tables already use `.table-responsive`.
+- **Mobile navbar items wrapping to a second row** — `.navbar > .container-fluid` was using Bootstrap's default `flex-wrap: wrap`, which dropped the right-icon group below the brand/hamburger when their combined width exceeded the viewport. Added `flex-wrap: nowrap` at `<992px`, `margin-left: auto` + `flex-shrink: 0` on `.navbar-nav`, and at `<576px` hide the brand text and shrink button padding so the logo + hamburger + 3 right-side icons all fit on one line.
+- **All `.form-check-input` rendered as toggle pills, not just `.form-switch`** — `_toggle-switches.scss` was targeting bare `.form-check-input` with `!important` width/height/border-radius/`::before` thumb, hitting *every* checkbox AND radio in the project. Plain checkboxes lost their checkmark, plain radios lost their dot — they all became 3rem pill toggles. Scoped every rule to `.form-switch .form-check-input` (and the dark-theme equivalent) so plain inputs fall back to Bootstrap defaults. Added `background-image: none !important` so Bootstrap's built-in switch SVG thumb doesn't double up with the custom `::before`.
+- **`form-select` indicator padding wasted ~42px on a 16px arrow** — Bootstrap's default formula `$form-select-padding-x * 3` produced a comically wide right padding that clipped the selected option text on narrow selects (`col-md-3` State picker, `style="width: 150px"` filter dropdowns, every `.form-select-sm`). Added direct `padding-right` overrides per size: `.form-select` 1.875rem, `.form-select-sm` 1.625rem, `.form-select-lg` 2.25rem.
+- **`.element-preview` was forcing block children side-by-side** — used `display: flex` with default `flex-direction: row`, so two stacked alerts (each with `mb-2` for vertical spacing) ended up jammed horizontally. Switched to `flex-direction: column` with parent `gap: 0.5rem`, plus `width: 100%` on alerts so they span the preview width as Bootstrap intends.
+- **"Add New Event" modal had content flush against the border** — the modal-header used `pb-0` and modal-body used `pt-2`, collapsing vertical breathing room near the top. Removed both overrides and bumped `--bs-modal-padding` from `1rem` → `1.5rem` on `#addEventModal` so header/body/footer all get a uniform 24px inset.
+
+### 🎨 Design polish — laptop density pass
+
+- **Sidebar width: 280px → 240px.** Recovers 40px of horizontal real estate on every page. Nav labels still fit comfortably; verified at `User Management` / `Help & Support` widths.
+- **Header height: 70px → 64px.** Closer to Bootstrap's 56px default but still roomy enough for the navbar's icon buttons. Cascades into `var(--header-height)` calc on calendar / sticky elements.
+- **Button padding: `0.75rem 1.5rem` → `0.5rem 1rem`.** Buttons drop from ~46px tall (Bootstrap-default + 8px) to ~38px — Bootstrap-default-feel without going to `btn-sm`. Affects every button in the template via Sass variables.
+- **Input padding: `0.75rem 1rem` → `0.5rem 0.875rem`.** Inputs match button height for visual consistency.
+- **Spacing utilities tightened at lg/xl breakpoints.** Bulk-migrated 49 utility tokens across 21 HTML files: `*-lg-5` → `*-lg-4` (20px → 16px), `*-xl-6` → `*-xl-5` (24px → 20px). This template uses a custom spacer scale where `*-5` is 1.25rem, not Bootstrap's 3rem default — so the per-instance savings are 4–6px, but compound across page-header margins, grid gutters, and card padding to recover 30–60px vertical and 20–30px horizontal per page on a typical laptop window.
+- **Fullscreen toggle hidden on tablets too.** Was visible at `md+` (≥768px), but iOS Safari on iPad rejects `requestFullscreen` on non-`<video>` elements, so the button was a silent no-op on iPad. Pushed the breakpoint to `lg+` (≥992px) across all 21 pages — desktop only.
+- **Logo & favicon redesigned.** Switched from circular gradient with letter "M" to a rounded-rect background (rx=8 logo / rx=6 favicon) with a refined filled-M letterform. Inner V peak is above center for confident readability, valley floor is wider on the favicon for legibility at 16×16. Same indigo→purple gradient.
+- **Page-header buttons (Import / Export / Add User) feel lighter** as a downstream effect of the global button-padding reduction — three full-text buttons in a row no longer claim the entire row width on smaller laptop viewports.
+- **`<select>` dropdown arrow positioning tightened** — Bootstrap's default arrow gap was ~12px from the right edge with the chunky right padding; now ~6–8px to match the tighter `padding-right`.
+
+### 📦 Dependencies (low-risk patch/minor bumps)
+
+- `alpinejs` 3.15.11 → 3.15.12 (patch)
+- `eslint` 10.2.1 → 10.3.0 (minor)
+- `globals` 17.5.0 → 17.6.0 (minor)
+- `postcss` 8.5.12 → 8.5.14 (patch)
+- `lucide` (optional) 1.11.0 → 1.14.0 (minor)
+- `bootstrap`, `apexcharts`, `sweetalert2`, `dayjs`, `bootstrap-icons`, `vite`, `sass` — already on latest.
+
+### Internal / cleanup
+
+- Added a memory note about Vite's `publicDir` gotcha — `/assets/*` paths are served from `public-assets/`, not `src-modern/assets/`. Editing only `src-modern/` had no visible effect during dev or in builds. Both directories now stay in sync and the gotcha is documented for future sessions.
+
+---
+
 ## [3.4.3] - 2026-04-29
 
 ### Accessibility — Lighthouse contrast & semantics pass

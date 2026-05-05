@@ -90,7 +90,7 @@
                             </div>
 
                             <!-- Fullscreen Toggle -->
-                            <button class="btn btn-outline-secondary me-2" 
+                            <button class="btn btn-outline-secondary me-2 d-none d-lg-inline-block" 
                                     type="button" 
                                     data-fullscreen-toggle
                                     data-bs-toggle="tooltip"
@@ -636,7 +636,7 @@
             <div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                        <div class="modal-header border-0 pb-0">
+                        <div class="modal-header border-0">
                             <div>
                                 <h5 class="modal-title fw-bold" id="addEventModalLabel">
                                     <i class="bi bi-calendar-plus me-2 text-primary"></i>Add New Event
@@ -645,7 +645,7 @@
                             </div>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body pt-2" x-data="addEventModal" x-init="init()">
+                        <div class="modal-body" x-data="addEventModal" x-init="init()">
                             <form @submit.prevent="submitEvent()">
                                 <!-- Event Title -->
                                 <div class="mb-4">

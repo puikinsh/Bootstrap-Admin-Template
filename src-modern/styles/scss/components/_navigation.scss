@@ -411,6 +411,13 @@
 
   // Header adjustments for mobile
   .admin-header {
+    // Keep all navbar items on a single line. Without this, Bootstrap's default
+    // flex-wrap: wrap on .navbar lets the right-icon group spill onto a second
+    // row below the brand/hamburger when widths don't quite fit.
+    .navbar > .container-fluid {
+      flex-wrap: nowrap;
+    }
+
     .navbar-brand {
       h1 {
         font-size: 1.125rem;
@@ -422,17 +429,46 @@
       display: none;
     }
 
-    // Compact header buttons
+    // Right-icon group: tight gap, never shrink, hug the right edge.
+    // (margin-left: auto overrides the navbar's default space-between so the
+    // hamburger can sit immediately next to the brand instead of floating mid-row.)
     .navbar-nav {
       gap: 0.25rem;
+      flex-shrink: 0;
+      margin-left: auto;
     }
   }
 }
 
-// Show search on tablets (md to lg)
+// Show search on tablets (md to lg). On this range the search keeps flex-grow-1
+// and absorbs the free space, so the right-icons still end up at the far right.
 @media (min-width: 768px) and (max-width: 991.98px) {
   .admin-header .search-container {
     display: block;
     max-width: 240px;
+  }
+
+  // Disable the auto-left-margin on the right icons so search can grow into the gap
+  .admin-header .navbar-nav {
+    margin-left: 0;
+  }
+}
+
+// Narrow phones (< sm): drop the brand text "Metis" so the logo, hamburger, and
+// 3 right-side icons all comfortably fit on one row, and shrink button padding.
+@media (max-width: 575.98px) {
+  .admin-header {
+    .navbar-brand .h4 {
+      display: none;
+    }
+
+    .navbar-brand img {
+      margin-right: 0;
+    }
+
+    .navbar-nav .btn {
+      --bs-btn-padding-x: 0.5rem;
+      --bs-btn-padding-y: 0.375rem;
+    }
   }
 }

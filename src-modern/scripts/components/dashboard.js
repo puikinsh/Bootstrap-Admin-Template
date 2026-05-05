@@ -16,6 +16,7 @@ export class DashboardManager {
     this.intervals = new Set();
     this.timeouts = new Set();
     this.cleanupFns = [];
+    this.currentPeriod = { count: 12, unit: 'month' };
     this.data = {
       revenue: [],
       users: [],
@@ -126,6 +127,7 @@ export class DashboardManager {
       chart: {
         type: 'area',
         height: 320,
+        width: '100%',
         toolbar: { show: false },
         zoom: { enabled: false }
       },
@@ -159,6 +161,21 @@ export class DashboardManager {
     const chart = new ApexCharts(el, options);
     chart.render();
     this.charts.set('revenue', chart);
+
+    if ('ResizeObserver' in window) {
+      let raf = 0;
+      const ro = new ResizeObserver(() => {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          chart.updateOptions({ chart: { width: '100%' } }, false, false);
+        });
+      });
+      ro.observe(el);
+      this.cleanupFns.push(() => {
+        cancelAnimationFrame(raf);
+        ro.disconnect();
+      });
+    }
   }
 
   initUserGrowthChart() {
@@ -167,7 +184,7 @@ export class DashboardManager {
 
     const recent = this.data.users.slice(-7);
     const options = {
-      chart: { type: 'bar', height: 280, toolbar: { show: false } },
+      chart: { type: 'bar', height: 280, width: '100%', toolbar: { show: false } },
       series: [{ name: 'New Users', data: recent.map(item => item.newUsers) }],
       xaxis: {
         categories: recent.map(item => `Day ${item.day}`),
@@ -182,6 +199,21 @@ export class DashboardManager {
     const chart = new ApexCharts(el, options);
     chart.render();
     this.charts.set('userGrowth', chart);
+
+    if ('ResizeObserver' in window) {
+      let raf = 0;
+      const ro = new ResizeObserver(() => {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          chart.updateOptions({ chart: { width: '100%' } }, false, false);
+        });
+      });
+      ro.observe(el);
+      this.cleanupFns.push(() => {
+        cancelAnimationFrame(raf);
+        ro.disconnect();
+      });
+    }
   }
 
   initOrderStatusChart() {
@@ -189,7 +221,7 @@ export class DashboardManager {
     if (!el) return;
 
     const options = {
-      chart: { type: 'donut', height: 280 },
+      chart: { type: 'donut', height: 280, width: '100%' },
       series: [
         this.data.orders.completed,
         this.data.orders.processing,
@@ -213,7 +245,7 @@ export class DashboardManager {
     if (!el) return;
 
     const options = {
-      chart: { height: 280, type: 'radialBar' },
+      chart: { height: 280, width: '100%', type: 'radialBar' },
       series: [76],
       colors: ['#20E647'],
       plotOptions: {
@@ -343,15 +375,26 @@ export class DashboardManager {
   updateChartsWithRealTimeData() {
     const revenueChart = this.charts.get('revenue');
     if (revenueChart) {
-      const newRevenue = Math.floor(Math.random() * 50000) + 10000;
-      const newProfit = Math.floor(Math.random() * 20000) + 5000;
-      this.data.revenue.push({ month: 'New', revenue: newRevenue, profit: newProfit });
-      if (this.data.revenue.length > 12) this.data.revenue.shift();
+      const { count, unit } = this.currentPeriod;
+      const labels = this.buildPeriodLabels(count, unit);
+      const nextLabel = labels[labels.length - 1];
+      this.data.revenue.push({
+        month: nextLabel,
+        revenue: Math.floor(Math.random() * 50000) + 10000,
+        profit: Math.floor(Math.random() * 20000) + 5000,
+      });
+      while (this.data.revenue.length > count) this.data.revenue.shift();
 
-      revenueChart.updateSeries([
-        { name: 'Revenue', data: this.data.revenue.map(item => item.revenue) },
-        { name: 'Profit', data: this.data.revenue.map(item => item.profit) }
-      ]);
+      // Re-label all points so the x-axis stays accurate as data scrolls
+      this.data.revenue.forEach((d, i) => { d.month = labels[i]; });
+
+      revenueChart.updateOptions({
+        xaxis: { categories: this.data.revenue.map(d => d.month) },
+        series: [
+          { name: 'Revenue', data: this.data.revenue.map(d => d.revenue) },
+          { name: 'Profit',  data: this.data.revenue.map(d => d.profit)  },
+        ],
+      });
     }
 
     this.updateStatsCards();
@@ -410,18 +453,49 @@ export class DashboardManager {
   }
 
   updateChartPeriod(period) {
-    switch (period) {
-      case '7d': this.loadWeeklyData(); break;
-      case '30d': this.loadMonthlyData(); break;
-      case '90d': this.loadQuarterlyData(); break;
-      case '1y': this.loadYearlyData(); break;
-    }
+    const config = {
+      '7d':  { count: 7,  unit: 'day' },
+      '30d': { count: 30, unit: 'day' },
+      '90d': { count: 90, unit: 'day' },
+      '1y':  { count: 12, unit: 'month' },
+    }[period];
+    if (!config) return;
+
+    this.currentPeriod = config;
+    const { count, unit } = config;
+    const labels = this.buildPeriodLabels(count, unit);
+    this.data.revenue = labels.map(label => ({
+      month: label,
+      revenue: Math.floor(Math.random() * 50000) + 10000,
+      profit: Math.floor(Math.random() * 20000) + 5000,
+    }));
+
+    const chart = this.charts.get('revenue');
+    if (!chart) return;
+    chart.updateOptions({
+      xaxis: { categories: this.data.revenue.map(d => d.month) },
+      series: [
+        { name: 'Revenue', data: this.data.revenue.map(d => d.revenue) },
+        { name: 'Profit',  data: this.data.revenue.map(d => d.profit)  },
+      ],
+    });
   }
 
-  loadWeeklyData() {}
-  loadMonthlyData() {}
-  loadQuarterlyData() {}
-  loadYearlyData() {}
+  buildPeriodLabels(count, unit) {
+    const today = new Date();
+    if (unit === 'day') {
+      return Array.from({ length: count }, (_, i) => {
+        const d = new Date(today);
+        d.setDate(d.getDate() - (count - 1 - i));
+        return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      });
+    }
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return Array.from({ length: count }, (_, i) => {
+      const d = new Date(today.getFullYear(), today.getMonth() - (count - 1 - i), 1);
+      return months[d.getMonth()];
+    });
+  }
 
   exportChart(chartName) {
     const chart = this.charts.get(chartName);

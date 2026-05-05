@@ -7,11 +7,31 @@
   margin-left: var(--sidebar-width);
   min-height: calc(100vh - var(--header-height));
   transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  // Safety net: prevent any overflowing descendant (wide flex rows, long unbroken strings)
+  // from forcing a horizontal scrollbar at the page level on small screens.
+  overflow-x: clip;
+  min-width: 0;
 }
 
 // Mobile: no sidebar margin, full width
 @media (max-width: 991.98px) {
   .admin-main {
     margin-left: 0;
+  }
+}
+
+// Page header pattern: most pages use a justify-between flex with a title block
+// on the left and action buttons on the right. Below md, allow it to wrap so the
+// buttons drop to a new line instead of overflowing the viewport width.
+@media (max-width: 767.98px) {
+  .admin-main .container-fluid > .d-flex.justify-content-between.align-items-center {
+    flex-wrap: wrap;
+    row-gap: 0.75rem;
+
+    // The inner action-button group should also wrap so 3+ buttons can flow onto
+    // multiple lines on narrow screens.
+    > .d-flex {
+      flex-wrap: wrap;
+    }
   }
 }

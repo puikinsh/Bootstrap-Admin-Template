@@ -16,11 +16,43 @@ document.addEventListener('alpine:init', () => {
     sortDirection: 'asc',
     isLoading: false,
 
+    charts: {},
+
     init() {
       this.loadSampleData();
       this.filterUsers();
       this.$nextTick(() => {
         this.initCharts();
+        this.initPeriodSelector();
+      });
+    },
+
+    buildDayLabels(count) {
+      const today = new Date();
+      return Array.from({ length: count }, (_, i) => {
+        const d = new Date(today);
+        d.setDate(d.getDate() - (count - 1 - i));
+        return count <= 7
+          ? d.toLocaleDateString('en-US', { weekday: 'short' })
+          : d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      });
+    },
+
+    generateGrowthData(count) {
+      return Array.from({ length: count }, () => Math.floor(Math.random() * 25) + 3);
+    },
+
+    initPeriodSelector() {
+      const map = { growth7d: 7, growth30d: 30, growth90d: 90 };
+      document.querySelectorAll('input[name="growthPeriod"]').forEach(input => {
+        input.addEventListener('change', (e) => {
+          const count = map[e.target.id];
+          if (!count || !this.charts.userGrowth) return;
+          this.charts.userGrowth.updateOptions({
+            xaxis: { categories: this.buildDayLabels(count) },
+            series: [{ name: 'New Users', data: this.generateGrowthData(count) }],
+          });
+        });
       });
     },
 
@@ -495,6 +527,7 @@ document.addEventListener('alpine:init', () => {
                 chart: {
                     type: 'line',
                     height: 50,
+                    width: '100%',
                     sparkline: { enabled: true }
                 },
                 stroke: { curve: 'smooth', width: 2 },
@@ -568,7 +601,8 @@ document.addEventListener('alpine:init', () => {
                     theme: 'light'
                 }
             };
-            new ApexCharts(userGrowthChartEl, userGrowthOptions).render();
+            this.charts.userGrowth = new ApexCharts(userGrowthChartEl, userGrowthOptions);
+            this.charts.userGrowth.render();
         }
 
         // Role Distribution Chart
@@ -584,7 +618,8 @@ document.addEventListener('alpine:init', () => {
                 series: Object.values(roleCounts),
                 chart: {
                     type: 'donut',
-                    height: 140
+                    height: 140,
+                    width: '100%'
                 },
                 labels: Object.keys(roleCounts),
                 colors: ['#6366f1', '#10b981', '#f59e0b', '#ef4444'],

@@ -598,13 +598,52 @@ document.addEventListener('alpine:init', () => {
       }
     },
 
+    charts: {},
+
     initCharts() {
       // Prevent multiple chart initializations
       if (this.chartsInitialized) return;
-      
+
       this.initOrderTrendsChart();
       this.initStatusChart();
+      this.initPeriodSelector();
       this.chartsInitialized = true;
+    },
+
+    buildDayLabels(count) {
+      const today = new Date();
+      return Array.from({ length: count }, (_, i) => {
+        const d = new Date(today);
+        d.setDate(d.getDate() - (count - 1 - i));
+        return count <= 7
+          ? d.toLocaleDateString('en-US', { weekday: 'short' })
+          : d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      });
+    },
+
+    generateTrendsData(count) {
+      return {
+        orders: Array.from({ length: count }, () => Math.floor(Math.random() * 30) + 8),
+        revenue: Array.from({ length: count }, () => Math.floor(Math.random() * 3500) + 800),
+      };
+    },
+
+    initPeriodSelector() {
+      const map = { trends7d: 7, trends30d: 30, trends90d: 90 };
+      document.querySelectorAll('input[name="trendsPeriod"]').forEach(input => {
+        input.addEventListener('change', (e) => {
+          const count = map[e.target.id];
+          if (!count || !this.charts.orderTrends) return;
+          const { orders, revenue } = this.generateTrendsData(count);
+          this.charts.orderTrends.updateOptions({
+            xaxis: { categories: this.buildDayLabels(count) },
+            series: [
+              { name: 'Orders',  data: orders  },
+              { name: 'Revenue', data: revenue },
+            ],
+          });
+        });
+      });
     },
 
     initOrderTrendsChart() {
@@ -629,6 +668,7 @@ document.addEventListener('alpine:init', () => {
           chart: {
             type: 'area',
             height: 300,
+            width: '100%',
             toolbar: { show: false }
           },
           colors: ['#6366f1', '#10b981'],
@@ -672,6 +712,17 @@ document.addEventListener('alpine:init', () => {
 
         const chart = new ApexCharts(chartElement, trendsData);
         chart.render();
+        this.charts.orderTrends = chart;
+
+        if ('ResizeObserver' in window) {
+          let raf = 0;
+          new ResizeObserver(() => {
+            cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(() => {
+              chart.updateOptions({ chart: { width: '100%' } }, false, false);
+            });
+          }).observe(chartElement);
+        }
       } catch (error) {
         console.error('Error rendering order trends chart:', error);
       }
@@ -692,7 +743,8 @@ document.addEventListener('alpine:init', () => {
           series: this.statusStats.map(stat => stat.count),
           chart: {
             type: 'donut',
-            height: 200
+            height: 200,
+            width: '100%'
           },
           labels: this.statusStats.map(stat => stat.name),
           colors: this.statusStats.map(stat => stat.color),

@@ -1,29 +1,36 @@
 // ==========================================================================
-// Enhanced Toggle Switches - Custom Bootstrap Form Switch Styling
+// Enhanced Toggle Switches — custom styling for .form-switch only.
+//
+// IMPORTANT: every selector in this file MUST be scoped to .form-switch.
+// Targeting bare .form-check-input bleeds into every checkbox AND radio
+// in the project, making them all render as toggle pills (the original
+// bug this file caused). Plain checkboxes/radios use Bootstrap's defaults.
 // ==========================================================================
 
-/* Enhanced Toggle Switches */
-.form-check-input {
+.form-switch .form-check-input {
   width: 3rem !important;
   height: 1.5rem !important;
   border-radius: 0.75rem !important;
   background-color: var(--bs-gray-300) !important;
+  // Suppress Bootstrap's built-in switch SVG so the ::before thumb below
+  // doesn't double up with Bootstrap's painted thumb.
+  background-image: none !important;
   border: none !important;
   position: relative !important;
   cursor: pointer !important;
   transition: all 0.3s ease !important;
-  
+
   &:checked {
     background-color: #{$primary} !important;
     border-color: #{$primary} !important;
   }
-  
+
   &:focus {
     border-color: #{$primary} !important;
     outline: 0 !important;
     box-shadow: 0 0 0 0.25rem rgba($primary, 0.25) !important;
   }
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -36,7 +43,7 @@
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
-  
+
   &:checked::before {
     transform: translateX(1.5rem);
   }
@@ -47,35 +54,33 @@
   min-height: 2rem;
   padding-left: 4rem !important;
   margin-bottom: 0;
-  
+
   .form-check-input {
     margin-left: -4rem !important;
     margin-top: 0.25rem;
   }
 }
 
-/* Dark theme toggle switches */
-[data-bs-theme="dark"] {
-  .form-check-input {
-    background-color: var(--bs-gray-600) !important;
-    
-    &:checked {
-      background-color: #{$primary} !important;
-    }
-    
-    &::before {
-      background-color: var(--bs-gray-100);
-    }
+/* Dark theme — only affect actual switches, not all checks/radios */
+[data-bs-theme="dark"] .form-switch .form-check-input {
+  background-color: var(--bs-gray-600) !important;
+
+  &:checked {
+    background-color: #{$primary} !important;
+  }
+
+  &::before {
+    background-color: var(--bs-gray-100);
   }
 }
 
-/* Different color variants for specific contexts */
+/* Color variants */
 .form-check.form-switch.switch-success {
   .form-check-input:checked {
     background-color: #{$success} !important;
     border-color: #{$success} !important;
   }
-  
+
   .form-check-input:focus {
     border-color: #{$success} !important;
     box-shadow: 0 0 0 0.25rem rgba($success, 0.25) !important;
@@ -87,7 +92,7 @@
     background-color: #{$warning} !important;
     border-color: #{$warning} !important;
   }
-  
+
   .form-check-input:focus {
     border-color: #{$warning} !important;
     box-shadow: 0 0 0 0.25rem rgba($warning, 0.25) !important;
@@ -99,7 +104,7 @@
     background-color: #{$danger} !important;
     border-color: #{$danger} !important;
   }
-  
+
   .form-check-input:focus {
     border-color: #{$danger} !important;
     box-shadow: 0 0 0 0.25rem rgba($danger, 0.25) !important;
@@ -110,19 +115,19 @@
 .form-check.form-switch.switch-sm {
   min-height: 1.5rem;
   padding-left: 3rem !important;
-  
+
   .form-check-input {
     width: 2.25rem !important;
     height: 1.125rem !important;
     margin-left: -3rem !important;
-    
+
     &::before {
       width: 0.875rem;
       height: 0.875rem;
       top: 1px;
       left: 1px;
     }
-    
+
     &:checked::before {
       transform: translateX(1.125rem);
     }
@@ -133,19 +138,19 @@
 .form-check.form-switch.switch-lg {
   min-height: 2.5rem;
   padding-left: 5rem !important;
-  
+
   .form-check-input {
     width: 4rem !important;
     height: 2rem !important;
     margin-left: -5rem !important;
-    
+
     &::before {
       width: 1.75rem;
       height: 1.75rem;
       top: 1px;
       left: 1px;
     }
-    
+
     &:checked::before {
       transform: translateX(2rem);
     }

@@ -1,6 +1,6 @@
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="32" height="32" rx="8" fill="url(#logoGradient)"/>
-  <path d="M8.5 23 V9 L16 17 L23.5 9 V23" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M6 25V7h4l6 7 6-7h4v18h-4V13l-5 6h-2l-5-6v12H6z" fill="white"/>
   <defs>
     <linearGradient id="logoGradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#6366f1"/>

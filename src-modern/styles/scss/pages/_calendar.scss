@@ -37,6 +37,12 @@
     flex-direction: column;
     flex-shrink: 0;
     transition: all var(--transition-base);
+    // Allow the sidebar to scroll independently when its content (mini-calendar
+    // + categories + upcoming events) is taller than the viewport-bound
+    // .calendar-container. Without this the bottom of the upcoming-events list
+    // gets clipped because the parent has overflow: hidden.
+    overflow-y: auto;
+    min-height: 0;
 
     @include media-breakpoint-down(xl) {
       width: 300px;
@@ -395,6 +401,11 @@
     flex-direction: column;
     background: var(--calendar-bg);
     min-width: 0;
+    // Same flex-column gotcha as .calendar-sidebar — without min-height: 0
+    // the inner .calendar-content can't shrink below its grid's intrinsic
+    // height (6 × 80px+), so its overflow: auto never kicks in and the
+    // bottom of the calendar grid gets clipped on short viewports.
+    min-height: 0;
   }
 
   // Calendar header
@@ -469,6 +480,7 @@
     padding: 1.5rem;
     overflow: auto;
     background: var(--calendar-bg);
+    min-height: 0;
   }
 
   // ==========================================================================
@@ -523,8 +535,13 @@
     gap: 1px;
     background: var(--calendar-border);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
-    overflow: hidden;
     flex: 1;
+    // NOTE: do NOT set `overflow: hidden` here. As a flex item, that resolves
+    // min-height: auto → 0 and forces the grid to clip its own rows when
+    // .month-view is shorter than 6 × min-day-height. Letting overflow stay
+    // visible keeps min-height: auto = min-content, so the grid grows to its
+    // full natural height and the parent .calendar-content's overflow: auto
+    // can scroll it on short viewports.
   }
 
   .month-day {
@@ -731,8 +748,10 @@
     gap: 1px;
     background: var(--calendar-border);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
-    overflow: hidden;
     flex: 1;
+    // See note on .month-grid: no overflow: hidden, otherwise the grid clips
+    // its own hour rows on short viewports instead of letting the parent
+    // .calendar-content scroll them.
   }
 
   .time-slots {
@@ -904,7 +923,9 @@
     gap: 1px;
     background: var(--calendar-border);
     border-radius: 0 0 var(--border-radius) var(--border-radius);
-    overflow: hidden;
+    // See note on .month-grid: no overflow: hidden, otherwise the schedule
+    // clips its own hour slots on short viewports instead of letting the
+    // parent .calendar-content scroll them.
   }
 
   .schedule-times {
@@ -1196,4 +1217,10 @@
       }
     }
   }
+}
+
+// Add Event Modal — give header/body/footer extra breathing room so form
+// fields don't sit flush against the modal-content border.
+#addEventModal .modal-content {
+  --bs-modal-padding: 1.5rem;
 }

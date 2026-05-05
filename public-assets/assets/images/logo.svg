@@ -1,15 +1,10 @@
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background circle for the M -->
-  <circle cx="16" cy="16" r="16" fill="url(#logoGradient)"/>
-  
-  <!-- Centered Letter M -->
-  <path d="M10 24V8h2.5l2.5 6.5L17.5 8H20v16h-2V12.5L16.5 20h-1L14 12.5V24H10z" fill="white" font-weight="700"/>
-  
-  <!-- Gradient definition -->
+  <rect width="32" height="32" rx="8" fill="url(#logoGradient)"/>
+  <path d="M6 25V7h4l6 7 6-7h4v18h-4V13l-5 6h-2l-5-6v12H6z" fill="white"/>
   <defs>
-    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    <linearGradient id="logoGradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
     </linearGradient>
   </defs>
-</svg> 
+</svg>

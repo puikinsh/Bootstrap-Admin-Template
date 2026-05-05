@@ -61,9 +61,77 @@ document.addEventListener('alpine:init', () => {
         this.$nextTick(() => {
             this.initCharts();
             this.startRealTimeUpdates();
+            this.initPeriodSelectors();
         });
         const onHide = () => this.destroy();
         window.addEventListener('pagehide', onHide, { once: true });
+    },
+
+    // Build x-axis labels for `count` periods of `unit` ('day', 'week', or 'month')
+    buildLabels(count, unit) {
+        const today = new Date();
+        if (unit === 'day') {
+            return Array.from({ length: count }, (_, i) => {
+                const d = new Date(today);
+                d.setDate(d.getDate() - (count - 1 - i));
+                return count <= 7
+                    ? d.toLocaleDateString('en-US', { weekday: 'short' })
+                    : d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            });
+        }
+        if (unit === 'week') {
+            return Array.from({ length: count }, (_, i) => `Wk ${i + 1}`);
+        }
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return Array.from({ length: count }, (_, i) => {
+            const d = new Date(today.getFullYear(), today.getMonth() - (count - 1 - i), 1);
+            return months[d.getMonth()];
+        });
+    },
+
+    // Generate revenue + profit series of `count` points
+    generateRevenueSeries(count) {
+        return {
+            revenue: Array.from({ length: count }, () => Math.floor(Math.random() * 8000) + 7000),
+            profit:  Array.from({ length: count }, () => Math.floor(Math.random() * 4000) + 2500),
+        };
+    },
+
+    // Update revenue chart for a given period count + unit ('day' or 'month')
+    applyRevenuePeriod(count, unit) {
+        if (!this.charts.revenue) return;
+        const { revenue, profit } = this.generateRevenueSeries(count);
+        this.charts.revenue.updateOptions({
+            xaxis: { categories: this.buildLabels(count, unit) },
+            series: [
+                { name: 'Revenue', data: revenue },
+                { name: 'Profit',  data: profit  },
+            ],
+        });
+    },
+
+    // Wire up the page-level dateRange (Today / 7D / 30D / 90D) and the
+    // per-chart revenueView (Daily / Weekly / Monthly) selectors.
+    initPeriodSelectors() {
+        const dateRangeMap = { today: 1, week: 7, month: 30, quarter: 90 };
+        document.querySelectorAll('input[name="dateRange"]').forEach(input => {
+            input.addEventListener('change', (e) => {
+                const count = dateRangeMap[e.target.id];
+                if (count) this.applyRevenuePeriod(count, 'day');
+            });
+        });
+
+        const revenueViewMap = {
+            'revenue-daily':   { count: 30, unit: 'day'   },
+            'revenue-weekly':  { count: 12, unit: 'week'  },
+            'revenue-monthly': { count: 12, unit: 'month' },
+        };
+        document.querySelectorAll('input[name="revenueView"]').forEach(input => {
+            input.addEventListener('change', (e) => {
+                const cfg = revenueViewMap[e.target.id];
+                if (cfg) this.applyRevenuePeriod(cfg.count, cfg.unit);
+            });
+        });
     },
 
     destroy() {
@@ -109,6 +177,7 @@ document.addEventListener('alpine:init', () => {
             }],
             chart: {
                 height: 350,
+                width: '100%',
                 type: 'area',
                 toolbar: {
                     show: false
@@ -273,6 +342,7 @@ document.addEventListener('alpine:init', () => {
             chart: {
                 type: 'bar',
                 height: 300,
+                width: '100%',
                 toolbar: {
                     show: false
                 }
@@ -324,8 +394,19 @@ document.addEventListener('alpine:init', () => {
             }
         };
         
-        this.charts.behavior = new ApexCharts(document.querySelector("#behaviorChart"), behaviorOptions);
+        const behaviorEl = document.querySelector("#behaviorChart");
+        this.charts.behavior = new ApexCharts(behaviorEl, behaviorOptions);
         this.charts.behavior.render();
+
+        if (behaviorEl && 'ResizeObserver' in window) {
+          let raf = 0;
+          new ResizeObserver(() => {
+            cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(() => {
+              this.charts.behavior?.updateOptions({ chart: { width: '100%' } }, false, false);
+            });
+          }).observe(behaviorEl);
+        }
     },
     
     // Real time visitors chart
@@ -337,6 +418,7 @@ document.addEventListener('alpine:init', () => {
             }],
             chart: {
                 height: 150,
+                width: '100%',
                 type: 'line',
                 animations: {
                     enabled: true,
@@ -398,7 +480,8 @@ document.addEventListener('alpine:init', () => {
             series: [58.6, 22.3, 8.1, 5.4, 5.6],
             chart: {
                 type: 'polarArea',
-                height: 350
+                height: 350,
+                width: '100%'
             },
             labels: ['Chrome', 'Firefox', 'Safari', 'Edge', 'Other'],
             stroke: {

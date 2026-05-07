@@ -2,7 +2,7 @@
 
 > A completely modernized, powerful, and free Bootstrap 5 admin dashboard template built with cutting-edge web technologies.
 
-**🎉 Version 3.4.4 Release** - Laptop-density pass (sidebar 280→240px, header 70→64px, button padding halved), wired up 7D/30D/90D period selectors across 7 chart cards, fixed calendar/chart overflow on short viewports, fixed checkboxes/radios bleeding into toggle styling, mobile navbar polish, and dependency bumps (Alpine 3.15.12, ESLint 10.3.0).
+**🎉 Version 3.4.5 Release** - Patch follow-up to 3.4.4: extends the `width: 100%` fix to form inputs/selects inside the elements showcase previews (long placeholder text was truncated), and restores the form-select arrow-gap padding that was getting clobbered by a shorthand `padding` rule on the same page.
 
 ![Metis Bootstrap Admin Dashboard](./metis-bootstrap-admin-dashboard.png)
 

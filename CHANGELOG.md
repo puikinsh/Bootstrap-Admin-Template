@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.4.5] - 2026-05-07
+
+### Elements showcase — preview-box follow-ups to 3.4.4
+
+Two narrow follow-up fixes on `elements.html`. Both are continuations of fixes that landed in 3.4.4 but didn't fully cover every selector inside `.element-preview`.
+
+### 🐛 Bug fixes
+
+- **Form inputs and selects truncated their placeholder/option text inside `.element-preview`** — 3.4.4 fixed this for `.alert` by adding `width: 100%`, but `.form-control` and `.form-select` had the same problem: the preview wrapper uses `display: flex; flex-direction: column; align-items: center`, which collapses block children to their content width. A `<input placeholder="Enter your name">` rendered ~140px wide and clipped the placeholder mid-word. Extended the `width: 100%` rule to cover `.form-control` and `.form-select` so all preview form controls span the full preview width like Bootstrap intends.
+- **`.form-select` dropdown arrow overlapped the selected option text inside `.element-preview`** — 3.4.4 added `padding-right: 1.875rem` globally in `_forms.scss` to give the chevron room, but `_elements.scss` has a sizing override `.element-preview .form-control, .form-select { padding: 0.375rem 0.75rem }` that uses the `padding` shorthand, which silently overwrites all four sides — including the right-padding fix. Inside the showcase, the chevron was back on top of the option label. Added a scoped `.element-preview .form-select { padding-right: 1.875rem }` immediately after the shorthand so the arrow gap is restored without affecting font-size or vertical padding.
+
+---
+
 ## [3.4.4] - 2026-05-05
 
 ### Laptop-density pass, calendar/chart overflow fixes, period selector wiring, mobile polish

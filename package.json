@@ -54,7 +54,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "autoprefixer": "^10.5.4",
-    "eslint": "^10.8.0",
+    "eslint": "^10.8.1",
     "globals": "^17.9.0",
     "postcss": "^8.5.25",
     "prettier": "^3.9.6",

@@ -43,11 +43,11 @@
   "dependencies": {
     "@fontsource-variable/inter": "^5.3.0",
     "@popperjs/core": "^2.11.8",
-    "alpinejs": "^3.15.12",
+    "alpinejs": "^3.16.3",
     "apexcharts": "^6.7.0",
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
-    "dayjs": "^1.11.21",
+    "dayjs": "^1.11.23",
     "prismjs": "^1.30.0",
     "sweetalert2": "^11.26.25"
   },

@@ -2,7 +2,7 @@
 
 > A completely modernized, powerful, and free Bootstrap 5 admin dashboard template built with cutting-edge web technologies.
 
-**🎉 Version 3.6.0 Release** - Nine new auth and error pages, a rebuilt neutral design system, a validated chart palette, and every dependency current. See the [CHANGELOG](CHANGELOG.md) for the full list.
+**🎉 Version 3.7.0 Release** - Charts are now Chart.js (MIT): every chart rebuilt, re-themed live on light/dark switch, and the chart bundle down from 207 KB to 73 KB gzip. See the [CHANGELOG](CHANGELOG.md) for the full list.
 
 ![Metis Bootstrap Admin Dashboard](./metis-bootstrap-admin-dashboard.png)
 
@@ -272,6 +272,17 @@ document.addEventListener('alpine:init', () => {
   }));
 });
 ```
+
+## 🆕 What's New in v3.7.0
+
+### Charts are Chart.js (MIT)
+
+- ✅ **Chart.js 4.5, MIT-licensed** - All 21 charts across the dashboard, analytics, reports, users, orders and products pages are rendered with [Chart.js](https://www.chartjs.org/) (MIT), plus two MIT plugins: `chartjs-chart-treemap` (Sales by Location) and `chartjs-plugin-zoom` (drag-to-zoom on Reports → Revenue Trends). Nothing in the template carries a commercial or OEM licence, so you can ship it in client and commercial projects.
+- ✅ **Live dark mode for charts** - Switching light/dark re-themes every chart on the page immediately; previously charts kept their old colours until reload.
+- ✅ **One preset** - `scripts/utils/charts.js` holds all chart styling (fonts, gridlines, tooltips, legends) read from the same CSS tokens as the rest of the UI.
+- ✅ **Lighter** - the shared chart chunk dropped from 207 KB to 73 KB gzip.
+
+See the [CHANGELOG](CHANGELOG.md#370---2026-10-01) for the full chart-by-chart list.
 
 ## 🆕 What's New in v3.5.0
 

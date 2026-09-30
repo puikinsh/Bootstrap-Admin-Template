@@ -1,7 +1,7 @@
 {
   "name": "metis-admin-dashboard",
   "description": "Metis — free Bootstrap 5.3 admin dashboard template. 30 pages including auth and error pages, Alpine.js, Chart.js, dark mode, self-hosted fonts and icons. Vite 8, ES modules, no jQuery, zero third-party runtime requests.",
-  "version": "3.6.0",
+  "version": "3.7.0",
   "type": "module",
   "main": "dist-modern/index.html",
   "homepage": "https://github.com/puikinsh/Bootstrap-Admin-Template",

@@ -5,6 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.7.0] - 2026-10-01
+
+### Charts moved to Chart.js (MIT)
+
+From 5.2.0 ApexCharts ships under its own commercial "ApexCharts License", which needs an OEM licence for any product other people use — which is what a free MIT template is for. Every chart is now rendered with **Chart.js 4.5 (MIT)**, and ApexCharts is gone from the dependencies, the bundle, the styles and the docs.
+
+### 🔄 Changed
+
+- **All 21 charts rebuilt on Chart.js**, same data, same pages, same palette:
+  - Dashboard — Revenue Overview (area → `line` + gradient fill), User Growth (`bar`), Order Status (`doughnut`), Storage Status (radialBar → `doughnut` progress ring with centre label), Sales by Location (treemap → `chartjs-chart-treemap`).
+  - Analytics — Revenue Analytics (area → `line`), Traffic Sources (`doughnut`), User Behavior Flow (horizontal `bar` with in-bar values), Real-time Activity (live `line`), Browser Distribution (`polarArea`).
+  - Reports — Revenue Trends (area → `line`, with zoom), Top Products (`doughnut` with slice percentages), Customer Acquisition (stacked `bar` with values), Sales by Region (`radar`).
+  - Users — Active Rate sparkline, User Registration Trends (`bar`), By Role (`doughnut`). Orders — Order Trends (dual-axis `line`), Order Status (`doughnut`). Products — Sales Performance (`line`), Category Distribution (`doughnut`).
+- **`scripts/utils/charts.js`** replaces `utils/apex.js`. It registers only the chart types the template renders, maps the design tokens onto `Chart.defaults` (Inter, muted ticks, dashed horizontal gridlines, rounded bars, panel-styled tooltips) and exposes `createChart()`, which mounts a sized canvas into the existing `<div>` placeholders.
+- **Reports → Revenue Trends zoom** now uses `chartjs-plugin-zoom` (MIT): drag to zoom, Shift+drag to pan, Ctrl/⌘+wheel or pinch, and a **Reset zoom** button in the card header. The rest of the ApexCharts toolbar (SVG/PNG/CSV download menus) is not carried over.
+- **Bundle:** the `vendor-charts` chunk went from 749 KB / 207 KB gzip to 213 KB / 73 KB gzip; all JS together from 325 KB to 206 KB gzip. The zoom plugin (~12 KB gzip) loads only on the reports page.
+
+### 🐛 Fixed
+
+- **Charts follow the theme switch.** Charts used to keep the colours of the mode they were first drawn in until the page was reloaded; they now re-theme as soon as light/dark changes, from any control.
+- **Browser Distribution legend overlapped the footer** — the chart's container had a fixed 250px height under a 350px chart. The inline height is gone.
+- **Charts kept in Alpine state** are now held outside the reactive proxy, which Chart.js instances do not tolerate.
+
+### 🧹 Removed
+
+- `apexcharts`, `utils/apex.js`, every `.apexcharts-*` style rule and the chart-width `ResizeObserver` workarounds (Chart.js resizes with its container on its own, sidebar toggle included).
+- The unused `CHART_RESIZE_DEBOUNCE_MS` constant.
+
 ## [3.6.0] - 2026-09-08
 
 ### Nine new pages, a rebuilt design system, and a validated chart palette

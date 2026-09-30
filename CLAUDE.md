@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Modern Bootstrap 5 Admin Dashboard Template (v3.4.0) using Vite, Alpine.js, Chart.js and SCSS.
+Modern Bootstrap 5 Admin Dashboard Template (v3.7.0) using Vite, Alpine.js, Chart.js and SCSS.
 
 | Directory | Purpose |
 |-----------|---------|

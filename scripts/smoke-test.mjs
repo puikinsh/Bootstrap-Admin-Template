@@ -140,7 +140,10 @@ async function main() {
     // Charts and the lazily-imported highlighter settle a tick after load.
     await tab.waitForTimeout(1200);
 
-    const charts = await tab.locator('.apexcharts-canvas').count();
+    // A chart counts only once Chart.js has actually drawn into its canvas.
+    const charts = await tab.evaluate(
+      () => [...document.querySelectorAll('.chart-canvas-wrap > canvas')].filter((c) => c.width > 0 && c.height > 0).length
+    );
     const highlighted = await tab.locator('code.language-html .token').count();
     const alpineErrors = errors.filter((e) => /alpine/i.test(e)).length;
 

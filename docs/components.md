@@ -442,55 +442,53 @@ Tooltips are automatically initialized by `main.js`:
 
 ## Chart Components
 
-### ApexCharts Integration
+### Chart.js Integration
+
+Charts are Chart.js 4 (MIT). Import from `utils/charts.js`, never from
+`'chart.js'` — that module registers only the chart types this template
+renders and applies the shared theme preset (fonts, gridlines, tooltips, live
+light/dark re-theming).
 
 ```javascript
-import ApexCharts from '../utils/apex.js';
-
-const options = {
-  chart: {
-    type: 'line',
-    height: 350
-  },
-  series: [{
-    name: 'Sales',
-    data: [30, 40, 35, 50, 49, 60, 70]
-  }],
-  xaxis: {
-    categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-  }
-};
-
-const chart = new ApexCharts(document.querySelector('#chart'), options);
-chart.render();
-```
-
-### Bar Chart with ApexCharts
-
-The template ships **only ApexCharts** as of v3.4.0 — Chart.js was removed. Render a bar chart:
-
-```javascript
-// Import from utils/apex.js, never from 'apexcharts' — that module registers
-// only the chart types this template renders. A type that isn't registered
-// there fails silently rather than throwing.
-import ApexCharts from '../utils/apex.js';
+import { createChart, cartesianScales } from '../utils/charts.js';
 import { accent } from '../utils/chart-palette.js';
 
-const options = {
-  chart: { type: 'bar', height: 280, toolbar: { show: false } },
-  series: [{ name: '# of Votes', data: [12, 19, 3, 5, 2, 3] }],
-  xaxis: { categories: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'] },
-  // Never inline a hex: the palette is validated for color-blind separation
-  // and contrast, per theme. Use accent(), categorical(n) or STATUS.*.
-  colors: [accent()],
-  plotOptions: { bar: { borderRadius: 6, columnWidth: '55%' } },
-  dataLabels: { enabled: false }
-};
+const chart = createChart(document.querySelector('#chart'), {
+  type: 'line',
+  data: {
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    datasets: [{ label: 'Sales', data: [30, 40, 35, 50, 49, 60, 70], borderColor: () => accent() }]
+  },
+  options: { scales: cartesianScales() }
+}, { height: 350 });
+```
 
-// IMPORTANT: ApexCharts mounts into a <div>, not <canvas>.
-//   <div id="myChart" style="min-height: 280px;"></div>
-const chart = new ApexCharts(document.querySelector('#myChart'), options);
-chart.render();
+### Bar Chart with Chart.js
+
+```javascript
+import { createChart, cartesianScales } from '../utils/charts.js';
+import { accent } from '../utils/chart-palette.js';
+
+// The container is a plain <div>; createChart() adds the <canvas>.
+//   <div id="myChart"></div>
+const chart = createChart(document.querySelector('#myChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    datasets: [{
+      label: '# of Votes',
+      data: [12, 19, 3, 5, 2, 3],
+      // Never inline a hex: the palette is validated for color-blind separation
+      // and contrast, per theme. Use accent(), categorical(n) or STATUS.*, and
+      // pass it as a function so a theme switch re-resolves it.
+      backgroundColor: () => accent()
+    }]
+  },
+  options: {
+    scales: cartesianScales(),       // rounded bars come from the preset
+    plugins: { legend: { display: false } }
+  }
+}, { height: 280 });
 
 // Always destroy charts when the host component unmounts to avoid leaks:
 //   chart.destroy();

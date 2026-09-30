@@ -1,11 +1,15 @@
 import Alpine from 'alpinejs';
 import Swal from 'sweetalert2';
-import ApexCharts from '../utils/apex.js';
-import { categorical, STATUS } from '../utils/chart-palette.js';
+import { createChart, areaGradient, sliceLabelsPlugin } from '../utils/charts.js';
+import { categorical, STATUS, onFillInk } from '../utils/chart-palette.js';
 import { createSearchComponent } from '../utils/search-component.js';
 
 document.addEventListener('alpine:init', () => {
-  Alpine.data('orderTable', () => ({
+  Alpine.data('orderTable', () => {
+    // Chart instances live outside Alpine's reactive state (see analytics.js).
+    const charts = {};
+
+    return {
     orders: [],
     filteredOrders: [],
     selectedOrders: [],
@@ -415,7 +419,7 @@ document.addEventListener('alpine:init', () => {
         count,
         percentage: Math.round((count / this.orders.length) * 100),
         color: this.getStatusColor(name)
-      }));
+          }));
     },
 
     getStatusColor(status) {
@@ -603,8 +607,6 @@ document.addEventListener('alpine:init', () => {
       }
     },
 
-    charts: {},
-
     initCharts() {
       // Prevent multiple chart initializations
       if (this.chartsInitialized) return;
@@ -638,15 +640,13 @@ document.addEventListener('alpine:init', () => {
       document.querySelectorAll('input[name="trendsPeriod"]').forEach(input => {
         input.addEventListener('change', (e) => {
           const count = map[e.target.id];
-          if (!count || !this.charts.orderTrends) return;
+          const chart = charts.orderTrends;
+          if (!count || !chart) return;
           const { orders, revenue } = this.generateTrendsData(count);
-          this.charts.orderTrends.updateOptions({
-            xaxis: { categories: this.buildDayLabels(count) },
-            series: [
-              { name: 'Orders',  data: orders  },
-              { name: 'Revenue', data: revenue },
-            ],
-          });
+          chart.data.labels = this.buildDayLabels(count);
+          chart.data.datasets[0].data = orders;
+          chart.data.datasets[1].data = revenue;
+          chart.update();
         });
       });
     },
@@ -658,76 +658,50 @@ document.addEventListener('alpine:init', () => {
         return;
       }
 
-      // Clear any existing chart content
-      chartElement.innerHTML = '';
+      const series = (label, data, i, yAxisID) => ({
+        label,
+        data,
+        yAxisID,
+        borderColor: () => categorical(2)[i],
+        backgroundColor: areaGradient(() => categorical(2)[i], 0.5, 0.1),
+        pointBackgroundColor: () => categorical(2)[i],
+        fill: true
+      });
 
       try {
-        const trendsData = {
-          series: [{
-            name: 'Orders',
-            data: [12, 19, 15, 27, 24, 32, 28]
-          }, {
-            name: 'Revenue',
-            data: [1200, 1900, 1500, 2700, 2400, 3200, 2800]
-          }],
-          chart: {
-            type: 'area',
-            height: 300,
-            width: '100%',
-            toolbar: { show: false }
+        charts.orderTrends = createChart(chartElement, {
+          type: 'line',
+          data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            datasets: [
+              series('Orders', [12, 19, 15, 27, 24, 32, 28], 0, 'y'),
+              series('Revenue', [1200, 1900, 1500, 2700, 2400, 3200, 2800], 1, 'y1')
+            ]
           },
-          colors: categorical(2),
-          fill: {
-            type: 'gradient',
-            gradient: {
-              shadeIntensity: 1,
-              opacityFrom: 0.7,
-              opacityTo: 0.3,
-            }
-          },
-          stroke: {
-            curve: 'smooth',
-            width: 2
-          },
-          xaxis: {
-            categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-          },
-          yaxis: [{
-            title: {
-              text: 'Orders'
-            }
-          }, {
-            opposite: true,
-            title: {
-              text: 'Revenue ($)'
-            }
-          }],
-          tooltip: {
-            y: [{
-              formatter: function (val) {
-                return val + " orders"
+          options: {
+            interaction: { mode: 'index', intersect: false },
+            scales: {
+              x: { grid: { display: false }, ticks: { maxRotation: 0, autoSkipPadding: 12 } },
+              // Auto-ranged rather than pinned to zero, so the week's movement reads.
+              y: { grace: '10%', ticks: { maxTicksLimit: 6 }, title: { display: true, text: 'Orders' } },
+              y1: {
+                position: 'right',
+                grace: '10%',
+                grid: { display: false },
+                ticks: { maxTicksLimit: 6 },
+                title: { display: true, text: 'Revenue ($)' }
               }
-            }, {
-              formatter: function (val) {
-                return "$" + val
+            },
+            plugins: {
+              legend: { position: 'bottom' },
+              tooltip: {
+                callbacks: {
+                  label: ctx => (ctx.datasetIndex === 0 ? `${ctx.parsed.y} orders` : `$${ctx.parsed.y}`)
+                }
               }
-            }]
+            }
           }
-        };
-
-        const chart = new ApexCharts(chartElement, trendsData);
-        chart.render();
-        this.charts.orderTrends = chart;
-
-        if ('ResizeObserver' in window) {
-          let raf = 0;
-          new ResizeObserver(() => {
-            cancelAnimationFrame(raf);
-            raf = requestAnimationFrame(() => {
-              chart.updateOptions({ chart: { width: '100%' } }, false, false);
-            });
-          }).observe(chartElement);
-        }
+        }, { height: 300 });
       } catch (error) {
         console.error('Error rendering order trends chart:', error);
       }
@@ -740,40 +714,27 @@ document.addEventListener('alpine:init', () => {
         return;
       }
 
-      // Clear any existing chart content
-      chartElement.innerHTML = '';
-
       try {
-        const chartData = {
-          series: this.statusStats.map(stat => stat.count),
-          chart: {
-            type: 'donut',
-            height: 200,
-            width: '100%'
+        charts.status = createChart(chartElement, {
+          type: 'doughnut',
+          data: {
+            labels: this.statusStats.map(stat => stat.name),
+            datasets: [{
+              label: 'Orders',
+              data: this.statusStats.map(stat => stat.count),
+              backgroundColor: this.statusStats.map(stat => stat.color)
+            }]
           },
-          labels: this.statusStats.map(stat => stat.name),
-          colors: this.statusStats.map(stat => stat.color),
-          plotOptions: {
-            pie: {
-              donut: {
-                size: '70%'
-              }
+          options: {
+            cutout: '70%',
+            plugins: {
+              legend: { display: false },
+              tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.parsed} orders` } },
+              sliceLabels: { color: onFillInk() }
             }
           },
-          legend: {
-            show: false
-          },
-          tooltip: {
-            y: {
-              formatter: function (val) {
-                return val + " orders"
-              }
-            }
-          }
-        };
-
-        const chart = new ApexCharts(chartElement, chartData);
-        chart.render();
+          plugins: [sliceLabelsPlugin]
+        }, { height: 200 });
       } catch (error) {
         console.error('Error rendering status chart:', error);
       }
@@ -836,7 +797,8 @@ document.addEventListener('alpine:init', () => {
         this.currentPage = page;
       }
     }
-  }));
+    };
+  });
 
   // Search component for header
   Alpine.data('searchComponent', createSearchComponent({ getResults: () => [] }));

@@ -11,7 +11,6 @@ export const MOBILE_BREAKPOINT_PX = 992;
 export const RESIZE_DEBOUNCE_MS = 150;
 export const FORM_SUBMIT_FEEDBACK_MS = 300;
 export const FORM_SUBMIT_LONG_FEEDBACK_MS = 1500;
-export const CHART_RESIZE_DEBOUNCE_MS = 100;
 
 // Polling intervals (ms)
 export const REALTIME_FAST_POLL_MS = 1000;

@@ -2,78 +2,25 @@
 // Chart chrome
 // ==========================================================================
 //
-// Series colours come from scripts/utils/chart-palette.js. Everything *around*
-// the data — axis labels, ticks, gridlines, legends, tooltips — is chrome, and
-// is themed here so it does not have to be repeated in ~20 chart configs.
+// Charts are Chart.js <canvas> elements, so axis labels, gridlines, legends
+// and tooltips are painted, not styled here. Their colours and font come from
+// the preset in scripts/utils/charts.js, which reads the same tokens the rest
+// of the UI uses (--ink-*, --surface-panel, --bs-border-color) and re-reads
+// them whenever the colour mode changes. Series colours come from
+// scripts/utils/chart-palette.js.
 //
-// This matters most in dark mode. ApexCharts defaults its text to #373d3f,
-// which is legible on white and effectively invisible on a #18181b panel; the
-// axis labels on every dark-mode chart were unreadable.
+// All that is left for CSS is the box: `createChart()` appends a fixed-height
+// wrapper that Chart.js observes, so the canvas follows the container's width
+// (window resize, sidebar toggle) without overflowing it.
 //
 // ==========================================================================
 
-.apexcharts-canvas {
-  // Axis and data labels
-  .apexcharts-xaxis-label,
-  .apexcharts-yaxis-label,
-  .apexcharts-text.apexcharts-xaxis-title-text,
-  .apexcharts-text.apexcharts-yaxis-title-text {
-    fill: var(--ink-muted);
-    font-family: inherit !important;
-    font-size: 0.75rem;
-  }
+.chart-canvas-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
 
-  // Gridlines and axis rules are the most recessive marks on the chart.
-  .apexcharts-gridline,
-  .apexcharts-grid-borders line {
-    stroke: var(--bs-border-color);
-  }
-
-  .apexcharts-xaxis line,
-  .apexcharts-yaxis line {
-    stroke: var(--bs-border-color);
-  }
-
-  // Legend is HTML, not SVG, so it takes `color` rather than `fill`.
-  .apexcharts-legend-text {
-    color: var(--ink-secondary) !important;
-    font-family: inherit !important;
-    font-size: 0.75rem !important;
-  }
-
-  // The value a radialBar or donut prints in its own centre.
-  .apexcharts-datalabel-label {
-    fill: var(--ink-muted);
-  }
-
-  .apexcharts-datalabel-value {
-    fill: var(--ink-primary);
-  }
-}
-
-// Tooltips ship with a light-only theme; give them the panel surface so they
-// stay readable in dark mode.
-.apexcharts-tooltip.apexcharts-theme-light {
-  background: var(--surface-panel) !important;
-  border: 1px solid var(--bs-border-color) !important;
-  box-shadow: var(--box-shadow-lg) !important;
-  color: var(--ink-primary);
-
-  .apexcharts-tooltip-title {
-    background: var(--surface-sunken) !important;
-    border-bottom: 1px solid var(--bs-border-color) !important;
-    font-family: inherit !important;
-    font-weight: 600;
-  }
-}
-
-.apexcharts-xaxistooltip.apexcharts-theme-light {
-  background: var(--surface-panel) !important;
-  border: 1px solid var(--bs-border-color) !important;
-  color: var(--ink-primary);
-
-  &::before,
-  &::after {
-    border-bottom-color: var(--bs-border-color) !important;
+  > canvas {
+    display: block;
   }
 }

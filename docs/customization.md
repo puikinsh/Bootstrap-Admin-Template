@@ -504,7 +504,7 @@ export default defineConfig({
           if (id.includes('node_modules/bootstrap/') || id.includes('node_modules/@popperjs/core/')) {
             return 'vendor-bootstrap';
           }
-          if (id.includes('node_modules/apexcharts/')) {
+          if (id.includes('node_modules/chart.js/') || id.includes('node_modules/@kurkle/color/') || id.includes('node_modules/chartjs-chart-treemap/')) {
             return 'vendor-charts';
           }
           if (id.includes('node_modules/alpinejs/') || id.includes('node_modules/sweetalert2/')) {

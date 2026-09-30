@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Modern Bootstrap 5 Admin Dashboard Template (v3.4.0) using Vite, Alpine.js, and SCSS.
+Modern Bootstrap 5 Admin Dashboard Template (v3.4.0) using Vite, Alpine.js, Chart.js and SCSS.
 
 | Directory | Purpose |
 |-----------|---------|
@@ -36,7 +36,7 @@ The smoke test needs Playwright, which is deliberately not a dependency:
 | `eslint.config.js` | ESLint v10 flat config |
 | `src-modern/scripts/utils/search-component.js` | Factory for the navbar search Alpine component |
 | `src-modern/scripts/utils/constants.js` | Shared timing/breakpoint constants |
-| `src-modern/scripts/utils/apex.js` | Modular ApexCharts entry — core + only the chart types used |
+| `src-modern/scripts/utils/charts.js` | Chart.js preset — registers only the chart types used, themes `Chart.defaults` from CSS tokens, re-themes live charts on light/dark switch, `createChart()` helper |
 | `src-modern/scripts/utils/prism.js` | Bundled syntax highlighting for the element showcase pages |
 | `scripts/smoke-test.mjs` | Loads all 30 built pages in a browser; fails on errors or external requests |
 | `src-modern/styles/scss/components/_a11y.scss` | Skip-link, reduced-motion, sr-only helpers |
@@ -81,7 +81,7 @@ Alpine.data('componentName', () => ({
 
 - **UI**: Bootstrap 5.3.8, Bootstrap Icons 1.13.1 (subset, see below)
 - **Reactive**: Alpine.js 3.17
-- **Charts**: ApexCharts 7.1 (single chart library — Chart.js was removed in v3.4.0). Colours come from `utils/chart-palette.js`, never inline hexes
+- **Charts**: Chart.js 4.5 (MIT) + `chartjs-chart-treemap` (MIT, dashboard treemap) + `chartjs-plugin-zoom` (MIT, reports page only). Colours come from `utils/chart-palette.js`, never inline hexes
 - **Notifications**: SweetAlert2 11.26.25
 - **Highlighting**: Prism 1.30 (bundled, showcase pages only)
 - **Fonts**: Inter via `@fontsource-variable/inter` (self-hosted)
@@ -89,11 +89,12 @@ Alpine.data('componentName', () => ({
 
 ## Conventions
 
-- **One charting library.** Use ApexCharts. ApexCharts requires a `<div>` container — not `<canvas>`.
-- **Import ApexCharts from `utils/apex.js`, never from `'apexcharts'`.** That module registers only the chart types this template renders. Using a new chart type means adding its module there, or the chart silently fails to render.
+- **One charting library.** Use Chart.js through `createChart(container, config, { height })` from `utils/charts.js`. Page markup keeps a plain `<div>` placeholder; the helper adds the sized wrapper and `<canvas>`.
+- **Import from `utils/charts.js`, never from `'chart.js'`.** That module registers only the chart types this template renders and applies the shared theme preset. A new chart type must be registered there, or Chart.js throws `"xyz" is not a registered controller`.
+- **Palette colours go in as functions** (`borderColor: () => accent()`), so the light/dark re-theme in `utils/charts.js` re-resolves them. **Keep chart instances out of Alpine reactive state** — use a `const charts = {}` in the `Alpine.data()` factory closure; a reactive proxy around a Chart.js instance stalls updates.
 - **No third-party runtime requests.** No CDN `<script>`/`<link>`, no remote fonts or images. `npm run test:build` fails the build if a page requests anything off-origin.
 - **No inline `<script>` or `onclick`.** Use a delegated listener in the page's component keyed off a `data-*` attribute. This keeps the template CSP-compatible and the code lintable — six pages once shipped a silent SyntaxError precisely because the logic sat in inline scripts nobody linted.
-- **Nothing is a global.** Alpine, ApexCharts, Swal and Bootstrap are all ES module imports. ESLint declares no library globals, so a missing import fails `npm run lint`.
+- **Nothing is a global.** Alpine, Chart.js, Swal and Bootstrap are all ES module imports. ESLint declares no library globals, so a missing import fails `npm run lint`.
 - **Register Alpine components under the name the markup calls.** `x-data="contactForm()"` needs `Alpine.data('contactForm', …)`. A mismatch throws on every binding in that scope and is invisible until the page is opened.
 - **Guard `DOMContentLoaded` in page components.** They are dynamically imported and usually resolve after the event has fired — check `document.readyState` first.
 - **No `innerHTML` with interpolation.** Use `createElement` + `textContent`. Toast `action` callbacks must be functions, not strings.

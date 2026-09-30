@@ -34,7 +34,8 @@ updates:
           - bootstrap
           - bootstrap-icons
           - alpinejs
-          - apexcharts
+          - chart.js
+          - chartjs-*
           - sweetalert2
           - prismjs
           - '@popperjs/core'

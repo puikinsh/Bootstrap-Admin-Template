@@ -1,11 +1,16 @@
 import Alpine from 'alpinejs';
 import Swal from 'sweetalert2';
-import ApexCharts from '../utils/apex.js';
-import { categorical, accent, trackFill, surfacePanel } from '../utils/chart-palette.js';
+import zoomPlugin from 'chartjs-plugin-zoom';
+import { createChart, areaGradient, cartesianScales, alpha, barValuesPlugin, sliceLabelsPlugin } from '../utils/charts.js';
+import { categorical, accent, trackFill, surfacePanel, axisInk, onFillInk } from '../utils/chart-palette.js';
 import { createSearchComponent } from '../utils/search-component.js';
 
 document.addEventListener('alpine:init', () => {
-  Alpine.data('reportsComponent', () => ({
+  Alpine.data('reportsComponent', () => {
+    // Chart instances live outside Alpine's reactive state (see analytics.js).
+    const charts = {};
+
+    return {
     // Filter settings
     dateRange: '30d',
     reportType: 'overview',
@@ -183,8 +188,6 @@ document.addEventListener('alpine:init', () => {
       }
     },
 
-    charts: {},
-
     initCharts() {
       // Prevent multiple chart initializations
       if (this.chartsInitialized) return;
@@ -220,15 +223,16 @@ document.addEventListener('alpine:init', () => {
       document.querySelectorAll('input[name="revenuePeriod"]').forEach(input => {
         input.addEventListener('change', (e) => {
           const count = map[e.target.id];
-          if (!count || !this.charts.revenueTrends) return;
+          const chart = charts.revenueTrends;
+          if (!count || !chart) return;
           const { revenue, profit } = this.generateRevenueTrendsData(count);
-          this.charts.revenueTrends.updateOptions({
-            xaxis: { categories: this.buildDayLabels(count) },
-            series: [
-              { name: 'Revenue', data: revenue },
-              { name: 'Profit',  data: profit  },
-            ],
-          });
+          chart.resetZoom('none');
+          const resetButton = document.querySelector('[data-chart-reset-zoom="revenueTrends"]');
+          if (resetButton) resetButton.disabled = true;
+          chart.data.labels = this.buildDayLabels(count);
+          chart.data.datasets[0].data = revenue;
+          chart.data.datasets[1].data = profit;
+          chart.update();
         });
       });
     },
@@ -240,89 +244,60 @@ document.addEventListener('alpine:init', () => {
         return;
       }
 
-      // Clear any existing chart content
-      chartElement.innerHTML = '';
+      const money = val => '$' + Number(val).toLocaleString();
+      const series = (label, data, i) => ({
+        label,
+        data,
+        borderColor: () => categorical(2)[i],
+        backgroundColor: areaGradient(() => categorical(2)[i], 0.5, 0.1),
+        pointBackgroundColor: () => categorical(2)[i],
+        borderWidth: 3,
+        fill: true
+      });
 
       try {
-        const chartData = {
-          series: [{
-            name: 'Revenue',
-            data: [28000, 32000, 35000, 41000, 38000, 45000, 52000]
-          }, {
-            name: 'Profit',
-            data: [8400, 9600, 10500, 12300, 11400, 13500, 15600]
-          }],
-          chart: {
-            type: 'area',
-            height: 350,
-            width: '100%',
-            toolbar: {
-              show: true,
-              tools: {
-                download: true,
-                selection: true,
-                zoom: true,
-                zoomin: true,
-                zoomout: true,
-                pan: true,
-                reset: true
-              }
-            }
-          },
-          colors: categorical(2),
-          fill: {
-            type: 'gradient',
-            gradient: {
-              shadeIntensity: 1,
-              opacityFrom: 0.7,
-              opacityTo: 0.3,
-            }
-          },
-          stroke: {
-            curve: 'smooth',
-            width: 3
-          },
-          xaxis: {
-            categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-            title: {
-              text: 'Days of Week'
-            }
-          },
-          yaxis: {
-            title: {
-              text: 'Amount ($)'
-            },
-            labels: {
-              formatter: function (val) {
-                return "$" + val.toLocaleString()
-              }
-            }
-          },
-          tooltip: {
-            y: {
-              formatter: function (val) {
-                return "$" + val.toLocaleString()
-              }
-            }
-          },
-          legend: {
-            position: 'top'
-          }
+        const resetButton = document.querySelector('[data-chart-reset-zoom="revenueTrends"]');
+        const syncResetButton = ({ chart }) => {
+          if (resetButton) resetButton.disabled = !chart.isZoomedOrPanned();
         };
 
-        const chart = new ApexCharts(chartElement, chartData);
-        chart.render();
-        this.charts.revenueTrends = chart;
+        charts.revenueTrends = createChart(chartElement, {
+          type: 'line',
+          data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            datasets: [
+              series('Revenue', [28000, 32000, 35000, 41000, 38000, 45000, 52000], 0),
+              series('Profit', [8400, 9600, 10500, 12300, 11400, 13500, 15600], 1)
+            ]
+          },
+          options: {
+            interaction: { mode: 'index', intersect: false },
+            scales: cartesianScales({ format: money, title: 'Amount ($)', categoryTitle: 'Days of Week' }),
+            plugins: {
+              legend: { position: 'top' },
+              tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${money(ctx.parsed.y)}` } },
+              // Drag across the chart to zoom into a range, Shift+drag to pan,
+              // Ctrl/⌘+wheel or pinch to zoom. "Reset zoom" appears once zoomed.
+              zoom: {
+                limits: { x: { minRange: 2 } },
+                pan: { enabled: true, mode: 'x', modifierKey: 'shift', onPanComplete: syncResetButton },
+                zoom: {
+                  mode: 'x',
+                  drag: { enabled: true, backgroundColor: alpha(accent(), 0.12), borderColor: alpha(accent(), 0.5), borderWidth: 1 },
+                  wheel: { enabled: true, modifierKey: 'ctrl' },
+                  pinch: { enabled: true },
+                  onZoomComplete: syncResetButton
+                }
+              }
+            }
+          },
+          plugins: [zoomPlugin]
+        }, { height: 350 });
 
-        if ('ResizeObserver' in window) {
-          let raf = 0;
-          new ResizeObserver(() => {
-            cancelAnimationFrame(raf);
-            raf = requestAnimationFrame(() => {
-              chart.updateOptions({ chart: { width: '100%' } }, false, false);
-            });
-          }).observe(chartElement);
-        }
+        resetButton?.addEventListener('click', () => {
+          charts.revenueTrends?.resetZoom();
+          resetButton.disabled = true;
+        });
       } catch (error) {
         console.error('Error rendering revenue trends chart:', error);
       }
@@ -335,40 +310,27 @@ document.addEventListener('alpine:init', () => {
         return;
       }
 
-      // Clear any existing chart content
-      chartElement.innerHTML = '';
-
       try {
-        const chartData = {
-          series: this.topProducts.map(product => product.revenue),
-          chart: {
-            type: 'donut',
-            height: 200,
-            width: '100%'
+        charts.topProducts = createChart(chartElement, {
+          type: 'doughnut',
+          data: {
+            labels: this.topProducts.map(product => product.name),
+            datasets: [{
+              label: 'Revenue',
+              data: this.topProducts.map(product => product.revenue),
+              backgroundColor: ctx => categorical(5)[ctx.dataIndex]
+            }]
           },
-          labels: this.topProducts.map(product => product.name),
-          colors: categorical(5),
-          plotOptions: {
-            pie: {
-              donut: {
-                size: '65%'
-              }
+          options: {
+            cutout: '65%',
+            plugins: {
+              legend: { display: false },
+              tooltip: { callbacks: { label: ctx => `${ctx.label}: $${ctx.parsed}k revenue` } },
+              sliceLabels: { color: onFillInk() }
             }
           },
-          legend: {
-            show: false
-          },
-          tooltip: {
-            y: {
-              formatter: function (val) {
-                return "$" + val + "k revenue"
-              }
-            }
-          }
-        };
-
-        const chart = new ApexCharts(chartElement, chartData);
-        chart.render();
+          plugins: [sliceLabelsPlugin]
+        }, { height: 200 });
       } catch (error) {
         console.error('Error rendering top products chart:', error);
       }
@@ -381,57 +343,37 @@ document.addEventListener('alpine:init', () => {
         return;
       }
 
-      // Clear any existing chart content
-      chartElement.innerHTML = '';
-
       try {
-        const chartData = {
-          series: [{
-            name: 'New Customers',
-            data: [23, 31, 45, 38, 52, 41, 67]
-          }, {
-            name: 'Returning Customers',
-            data: [67, 58, 72, 83, 76, 89, 94]
-          }],
-          chart: {
-            type: 'bar',
-            height: 250,
-            width: '100%',
-            stacked: true
+        charts.customerAcquisition = createChart(chartElement, {
+          type: 'bar',
+          data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            datasets: [{
+              label: 'New Customers',
+              data: [23, 31, 45, 38, 52, 41, 67],
+              backgroundColor: () => accent(),
+              borderRadius: 4,
+              categoryPercentage: 0.55
+            }, {
+              label: 'Returning Customers',
+              data: [67, 58, 72, 83, 76, 89, 94],
+              // The muted remainder of the stack — the track colour, as before.
+              backgroundColor: () => trackFill(),
+              borderRadius: 4,
+              categoryPercentage: 0.55
+            }]
           },
-          colors: [accent(), trackFill()],
-          plotOptions: {
-            bar: {
-              horizontal: false,
-              columnWidth: '55%',
-              borderRadius: 4
+          options: {
+            interaction: { mode: 'index', intersect: false },
+            scales: cartesianScales({ stacked: true, title: 'Customers' }),
+            plugins: {
+              legend: { position: 'top' },
+              // White on the accent segment, muted ink on the track-coloured one.
+              barValues: { color: di => (di === 0 ? onFillInk() : axisInk()) }
             }
           },
-          xaxis: {
-            categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-          },
-          yaxis: {
-            title: {
-              text: 'Customers'
-            }
-          },
-          legend: {
-            position: 'top'
-          }
-        };
-
-        const chart = new ApexCharts(chartElement, chartData);
-        chart.render();
-
-        if ('ResizeObserver' in window) {
-          let raf = 0;
-          new ResizeObserver(() => {
-            cancelAnimationFrame(raf);
-            raf = requestAnimationFrame(() => {
-              chart.updateOptions({ chart: { width: '100%' } }, false, false);
-            });
-          }).observe(chartElement);
-        }
+          plugins: [barValuesPlugin]
+        }, { height: 250 });
       } catch (error) {
         console.error('Error rendering customer acquisition chart:', error);
       }
@@ -444,37 +386,36 @@ document.addEventListener('alpine:init', () => {
         return;
       }
 
-      // Clear any existing chart content
-      chartElement.innerHTML = '';
-
       try {
-        const chartData = {
-          series: [{
-            name: 'Sales',
-            data: [44, 55, 41, 67, 22, 43]
-          }],
-          chart: {
-            type: 'radar',
-            height: 250,
-            width: '100%'
+        charts.regionSales = createChart(chartElement, {
+          type: 'radar',
+          data: {
+            labels: ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania'],
+            datasets: [{
+              label: 'Sales',
+              data: [44, 55, 41, 67, 22, 43],
+              borderColor: () => accent(),
+              backgroundColor: () => alpha(accent(), 0.2),
+              fill: true,
+              tension: 0,
+              pointRadius: 4,
+              pointHoverRadius: 6,
+              pointBackgroundColor: () => accent(),
+              pointBorderColor: () => surfacePanel(),
+              pointBorderWidth: 2
+            }]
           },
-          colors: [accent()],
-          xaxis: {
-            categories: ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania']
-          },
-          yaxis: {
-            tickAmount: 4
-          },
-          markers: {
-            size: 4,
-            colors: [accent()],
-            strokeColor: surfacePanel(),
-            strokeWidth: 2
+          options: {
+            scales: {
+              r: {
+                beginAtZero: true,
+                ticks: { maxTicksLimit: 5, backdropColor: () => alpha(surfacePanel(), 0.8) },
+                pointLabels: { font: { size: 11 } }
+              }
+            },
+            plugins: { legend: { display: false } }
           }
-        };
-
-        const chart = new ApexCharts(chartElement, chartData);
-        chart.render();
+        }, { height: 250 });
       } catch (error) {
         console.error('Error rendering region sales chart:', error);
       }
@@ -484,7 +425,8 @@ document.addEventListener('alpine:init', () => {
       // This would be called when filters change to update chart data
       console.log('Updating charts with new data...');
     }
-  }));
+    };
+  });
 
   // Search component for header
   Alpine.data('searchComponent', createSearchComponent({ getResults: () => [] }));

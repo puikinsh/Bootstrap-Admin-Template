@@ -70,9 +70,10 @@ function isDark() {
  * The categorical sequence for the theme that is active right now.
  *
  * Resolved at call time rather than import time so a page loaded in dark mode
- * gets the dark sequence. Charts are not currently re-rendered when the theme is
- * toggled mid-session, so a chart built in light mode keeps its light colours
- * until the page is reloaded.
+ * gets the dark sequence. To follow a mid-session theme switch as well, pass
+ * the colour to Chart.js as a function (`borderColor: () => accent()`): the
+ * preset in `charts.js` calls `chart.update()` on every theme change, which
+ * re-resolves scriptable options.
  *
  * @param {number} [count] - take the first N in fixed order; omit for all six.
  * @returns {string[]}

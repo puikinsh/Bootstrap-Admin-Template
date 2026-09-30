@@ -1,11 +1,15 @@
 import Alpine from 'alpinejs';
 import Swal from 'sweetalert2';
-import ApexCharts from '../utils/apex.js';
-import { categorical, accent, STATUS } from '../utils/chart-palette.js';
+import { createChart, areaGradient, cartesianScales, sliceLabelsPlugin } from '../utils/charts.js';
+import { categorical, accent, STATUS, onFillInk } from '../utils/chart-palette.js';
 import { createSearchComponent } from '../utils/search-component.js';
 
 document.addEventListener('alpine:init', () => {
-  Alpine.data('productTable', () => ({
+  Alpine.data('productTable', () => {
+    // Chart instances live outside Alpine's reactive state (see analytics.js).
+    const charts = {};
+
+    return {
     products: [],
     filteredProducts: [],
     selectedProducts: [],
@@ -362,7 +366,7 @@ document.addEventListener('alpine:init', () => {
         count,
         percentage: Math.round((count / this.products.length) * 100),
         color: this.getCategoryColor(name)
-      }));
+          }));
     },
 
     getCategoryColor(category) {
@@ -540,8 +544,6 @@ document.addEventListener('alpine:init', () => {
       }
     },
 
-    charts: {},
-
     initCharts() {
       // Prevent multiple chart initializations
       if (this.chartsInitialized) return;
@@ -572,11 +574,11 @@ document.addEventListener('alpine:init', () => {
       document.querySelectorAll('input[name="salesPeriod"]').forEach(input => {
         input.addEventListener('change', (e) => {
           const count = map[e.target.id];
-          if (!count || !this.charts.sales) return;
-          this.charts.sales.updateOptions({
-            xaxis: { categories: this.buildDayLabels(count) },
-            series: [{ name: 'Sales', data: this.generateSalesData(count) }],
-          });
+          const chart = charts.sales;
+          if (!count || !chart) return;
+          chart.data.labels = this.buildDayLabels(count);
+          chart.data.datasets[0].data = this.generateSalesData(count);
+          chart.update();
         });
       });
     },
@@ -588,66 +590,30 @@ document.addEventListener('alpine:init', () => {
         return;
       }
 
-      // Clear any existing chart content
-      salesChart.innerHTML = '';
-
       try {
-
-      // Sample sales data
-      const salesData = {
-        series: [{
-          name: 'Sales',
-          data: [65, 78, 85, 92, 88, 95, 102]
-        }],
-        chart: {
-          type: 'area',
-          height: 300,
-          width: '100%',
-          toolbar: { show: false }
-        },
-        colors: [accent()],
-        fill: {
-          type: 'gradient',
-          gradient: {
-            shadeIntensity: 1,
-            opacityFrom: 0.7,
-            opacityTo: 0.3,
-          }
-        },
-        stroke: {
-          curve: 'smooth',
-          width: 2
-        },
-        xaxis: {
-          categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        },
-        yaxis: {
-          title: {
-            text: 'Sales ($1000s)'
-          }
-        },
-        tooltip: {
-          y: {
-            formatter: function (val) {
-              return "$" + val + "k"
+        charts.sales = createChart(salesChart, {
+          type: 'line',
+          data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            datasets: [{
+              label: 'Sales',
+              data: [65, 78, 85, 92, 88, 95, 102],
+              borderColor: () => accent(),
+              backgroundColor: areaGradient(() => accent(), 0.5, 0.1),
+              pointBackgroundColor: () => accent(),
+              fill: true
+            }]
+          },
+          options: {
+            interaction: { mode: 'index', intersect: false },
+            // Auto-ranged rather than pinned to zero, so the week's movement reads.
+            scales: cartesianScales({ title: 'Sales ($1000s)', beginAtZero: false }),
+            plugins: {
+              legend: { position: 'bottom' },
+              tooltip: { callbacks: { label: ctx => `Sales: $${ctx.parsed.y}k` } }
             }
           }
-        }
-      };
-
-        const chart = new ApexCharts(salesChart, salesData);
-        chart.render();
-        this.charts.sales = chart;
-
-        if ('ResizeObserver' in window) {
-          let raf = 0;
-          new ResizeObserver(() => {
-            cancelAnimationFrame(raf);
-            raf = requestAnimationFrame(() => {
-              chart.updateOptions({ chart: { width: '100%' } }, false, false);
-            });
-          }).observe(salesChart);
-        }
+        }, { height: 300 });
       } catch (error) {
         console.error('Error rendering sales chart:', error);
       }
@@ -660,41 +626,29 @@ document.addEventListener('alpine:init', () => {
         return;
       }
 
-      // Clear any existing chart content
-      categoryChart.innerHTML = '';
-
       try {
-
-      const chartData = {
-        series: this.categoryStats.map(cat => cat.count),
-        chart: {
-          type: 'donut',
-          height: 200,
-          width: '100%'
-        },
-        labels: this.categoryStats.map(cat => cat.name),
-        colors: this.categoryStats.map(cat => cat.color),
-        plotOptions: {
-          pie: {
-            donut: {
-              size: '70%'
+        const stats = this.categoryStats;
+        charts.category = createChart(categoryChart, {
+          type: 'doughnut',
+          data: {
+            labels: stats.map(cat => cat.name),
+            datasets: [{
+              label: 'Products',
+              data: stats.map(cat => cat.count),
+              // Re-resolved on a theme change, so the sequence follows the mode.
+              backgroundColor: ctx => this.getCategoryColor(stats[ctx.dataIndex]?.name.toLowerCase())
+            }]
+          },
+          options: {
+            cutout: '70%',
+            plugins: {
+              legend: { display: false },
+              tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.parsed} products` } },
+              sliceLabels: { color: onFillInk() }
             }
-          }
-        },
-        legend: {
-          show: false
-        },
-        tooltip: {
-          y: {
-            formatter: function (val) {
-              return val + " products"
-            }
-          }
-        }
-      };
-
-        const chart = new ApexCharts(categoryChart, chartData);
-        chart.render();
+          },
+          plugins: [sliceLabelsPlugin]
+        }, { height: 200 });
       } catch (error) {
         console.error('Error rendering category chart:', error);
       }
@@ -757,7 +711,8 @@ document.addEventListener('alpine:init', () => {
         this.currentPage = page;
       }
     }
-  }));
+    };
+  });
 
   // Product form component for modals
   Alpine.data('productForm', () => ({

@@ -325,38 +325,50 @@ Swal.fire({
 });
 ```
 
-### Charts with ApexCharts
+### Charts with Chart.js
 
-The template uses **ApexCharts only** (Chart.js was removed in v3.4.0). ApexCharts mounts into a `<div>` — never `<canvas>`.
+The template uses **Chart.js 4** (MIT) — one charting library, rendered to
+`<canvas>`. Components never import `'chart.js'` directly; they use the shared
+preset in `utils/charts.js`, which:
 
-Import from `utils/apex.js`, **not** from `'apexcharts'`. Since v3.5.0 the
-template uses ApexCharts 7's modular entry points: `utils/apex.js` pulls in
-`apexcharts/core` plus only the chart types this template renders. Importing the
-bare package instead drags in every chart type and feature (boxplot,
-candlestick, violin, sunburst, drilldown, the canvas renderer…) — roughly 56 kB
-gzip of dead weight.
+- registers only the controllers, elements, scales and plugins the template
+  renders (line, bar, doughnut, polarArea, radar and the `chartjs-chart-treemap`
+  controller), so the rest of Chart.js is tree-shaken out. A type that isn't
+  registered there throws `"xyz" is not a registered controller` — register it
+  in `utils/charts.js`;
+- maps the design tokens (`--ink-*`, `--surface-panel`, `--bs-border-color`,
+  the body font) onto `Chart.defaults`: dashed horizontal gridlines, no vertical
+  grid, rounded bars, circular point styles, panel-styled tooltips;
+- re-themes every live chart when `data-bs-theme` changes (light/dark), by
+  re-reading the tokens and calling `chart.update()`.
 
-Rendering a chart type that isn't registered there fails silently, so adding a
-new type means adding its module to `utils/apex.js` too.
+Mount into a plain `<div>`. `createChart()` appends a fixed-height wrapper and a
+`<canvas>` to it, and the chart resizes with its container (window resize and
+sidebar toggle included).
 
 ```html
-<!-- Always a div, with a min-height so the chart has space before render -->
-<div id="myChart" style="min-height: 320px;"></div>
+<div id="myChart"></div>
 ```
 
 ```javascript
-import ApexCharts from '../utils/apex.js';
+import { createChart, areaGradient, cartesianScales } from '../utils/charts.js';
 import { accent } from '../utils/chart-palette.js';
 
-const options = {
-  chart: { type: 'area', height: 350, toolbar: { show: false } },
-  series: [{ name: 'Revenue', data: [31, 40, 28, 51, 42, 109, 100] }],
-  xaxis: { categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] },
-  colors: [accent()]
-};
-
-const chart = new ApexCharts(document.querySelector('#myChart'), options);
-chart.render();
+const chart = createChart(document.querySelector('#myChart'), {
+  type: 'line',
+  data: {
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    datasets: [{
+      label: 'Revenue',
+      data: [31, 40, 28, 51, 42, 109, 100],
+      // Pass palette colours as functions so a theme switch re-resolves them.
+      borderColor: () => accent(),
+      backgroundColor: areaGradient(() => accent()),
+      fill: true
+    }]
+  },
+  options: { scales: cartesianScales() }
+}, { height: 350 });
 ```
 
 **Never inline a hex here.** Use `accent()` for a single series, `categorical(n)`
@@ -365,7 +377,12 @@ lightness band, chroma floor, color-blind separation and contrast against their
 own surface, per theme — a hand-picked substitute silently breaks that, and the
 same series ends up a different color on the next page.
 
-**Cleanup:** track chart instances in your component and call `chart.destroy()` when the host unmounts (or in a `pagehide` handler) so SVG nodes and event listeners don't leak. The `DashboardManager` and `analytics` Alpine component both follow this pattern — copy from there when adding a new chart-heavy page.
+**Alpine components:** keep chart instances out of reactive state — a
+`const charts = {}` in the `Alpine.data()` factory closure, not a `charts: {}`
+property. Wrapping a Chart.js instance in Alpine's reactive proxy makes every
+internal read tracked, which stalls updates and can overflow the stack.
+
+**Cleanup:** call `chart.destroy()` when the host unmounts (or in a `pagehide` handler) so canvases and listeners don't leak. `createChart()` destroys any chart already mounted in the same container, so re-initialising never hits "Canvas is already in use". The `DashboardManager` and `analytics` Alpine component both follow this pattern — copy from there when adding a new chart-heavy page.
 
 ### Search inputs (`searchComponent`)
 
@@ -633,7 +650,7 @@ export default defineConfig({
         // Vite 8 / rolldown requires the function form, not the legacy object form.
         manualChunks(id) {
           if (id.includes('node_modules/bootstrap/')) return 'vendor-bootstrap';
-          if (id.includes('node_modules/apexcharts/')) return 'vendor-charts';
+          if (id.includes('node_modules/chart.js/')) return 'vendor-charts';
           // …
         }
       }

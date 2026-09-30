@@ -1,11 +1,15 @@
 import Alpine from 'alpinejs';
 import { Modal } from 'bootstrap';
-import ApexCharts from '../utils/apex.js';
-import { categorical, accent, axisInk, STATUS } from '../utils/chart-palette.js';
+import { createChart, sparklineOptions } from '../utils/charts.js';
+import { categorical, accent, STATUS } from '../utils/chart-palette.js';
 import { createSearchComponent } from '../utils/search-component.js';
 
 document.addEventListener('alpine:init', () => {
-  Alpine.data('userTable', () => ({
+  Alpine.data('userTable', () => {
+    // Chart instances live outside Alpine's reactive state (see analytics.js).
+    const charts = {};
+
+    return {
     users: [],
     filteredUsers: [],
     selectedUsers: [],
@@ -17,8 +21,6 @@ document.addEventListener('alpine:init', () => {
     sortField: 'name',
     sortDirection: 'asc',
     isLoading: false,
-
-    charts: {},
 
     init() {
       this.loadSampleData();
@@ -49,11 +51,11 @@ document.addEventListener('alpine:init', () => {
       document.querySelectorAll('input[name="growthPeriod"]').forEach(input => {
         input.addEventListener('change', (e) => {
           const count = map[e.target.id];
-          if (!count || !this.charts.userGrowth) return;
-          this.charts.userGrowth.updateOptions({
-            xaxis: { categories: this.buildDayLabels(count) },
-            series: [{ name: 'New Users', data: this.generateGrowthData(count) }],
-          });
+          const chart = charts.userGrowth;
+          if (!count || !chart) return;
+          chart.data.labels = this.buildDayLabels(count);
+          chart.data.datasets[0].data = this.generateGrowthData(count);
+          chart.update();
         });
       });
     },
@@ -517,94 +519,48 @@ document.addEventListener('alpine:init', () => {
     },
     
     initCharts() {
-        // Active Users Chart
+        // Active Users sparkline
         const activeUserChartEl = document.querySelector('#activeUserChart');
         if (activeUserChartEl && !activeUserChartEl.hasAttribute('data-chart-initialized')) {
             activeUserChartEl.setAttribute('data-chart-initialized', 'true');
-            const activeUserOptions = {
-                series: [{
-                    name: 'Active Users',
-                    data: [65, 70, 80, 85, 90, 95, 88]
-                }],
-                chart: {
-                    type: 'line',
-                    height: 50,
-                    width: '100%',
-                    sparkline: { enabled: true }
+            charts.activeUser = createChart(activeUserChartEl, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Active Users',
+                        data: [65, 70, 80, 85, 90, 95, 88],
+                        borderColor: STATUS.success
+                    }]
                 },
-                stroke: { curve: 'smooth', width: 2 },
-                colors: [STATUS.success]
-            };
-            new ApexCharts(activeUserChartEl, activeUserOptions).render();
+                options: sparklineOptions
+            }, { height: 50, label: 'Active users, last 7 days' });
         }
 
         // User Growth Chart
         const userGrowthChartEl = document.querySelector('#userGrowthChart');
         if (userGrowthChartEl && !userGrowthChartEl.hasAttribute('data-chart-initialized')) {
             userGrowthChartEl.setAttribute('data-chart-initialized', 'true');
-            const userGrowthOptions = {
-                series: [{
-                    name: 'New Users',
-                    data: [5, 8, 12, 15, 10, 18, 22]
-                }],
-                chart: {
-                    type: 'bar',
-                    height: 250,
-                    width: '100%',
-                    toolbar: { show: false },
-                    parentHeightOffset: 0,
-                    offsetX: 0,
-                    offsetY: 0,
-                    zoom: {
-                        enabled: false
-                    },
-                    selection: {
-                        enabled: false
-                    }
-                },
-                responsive: [{
-                    breakpoint: 768,
-                    options: {
-                        chart: {
-                            height: 200
-                        }
-                    }
-                }],
-                colors: [accent()],
-                plotOptions: {
-                    bar: {
+            charts.userGrowth = createChart(userGrowthChartEl, {
+                type: 'bar',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'New Users',
+                        data: [5, 8, 12, 15, 10, 18, 22],
+                        backgroundColor: () => accent(),
                         borderRadius: 4,
-                        columnWidth: '50%',
-                        barHeight: '70%',
-                        distributed: false
-                    }
+                        categoryPercentage: 0.5
+                    }]
                 },
-                xaxis: {
-                    categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                    axisBorder: { show: false },
-                    axisTicks: { show: false },
-                    labels: {
-                        style: {
-                            fontSize: '12px',
-                            colors: axisInk()
-                        }
-                    }
-                },
-                yaxis: { 
-                    show: false 
-                },
-                grid: { 
-                    show: false 
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                tooltip: {
-                    theme: 'light'
+                options: {
+                    scales: {
+                        x: { grid: { display: false }, ticks: { maxRotation: 0, autoSkipPadding: 12 } },
+                        y: { display: false, beginAtZero: true }
+                    },
+                    plugins: { legend: { display: false } }
                 }
-            };
-            this.charts.userGrowth = new ApexCharts(userGrowthChartEl, userGrowthOptions);
-            this.charts.userGrowth.render();
+            }, { height: 250, responsiveHeight: [[768, 200]] });
         }
 
         // Role Distribution Chart
@@ -615,43 +571,26 @@ document.addEventListener('alpine:init', () => {
                 acc[user.role] = (acc[user.role] || 0) + 1;
                 return acc;
             }, {});
-            
-            const roleDistributionOptions = {
-                series: Object.values(roleCounts),
-                chart: {
-                    type: 'donut',
-                    height: 140,
-                    width: '100%'
+
+            charts.roleDistribution = createChart(roleDistributionChartEl, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(roleCounts),
+                    datasets: [{
+                        label: 'Users',
+                        data: Object.values(roleCounts),
+                        backgroundColor: ctx => categorical(4)[ctx.dataIndex]
+                    }]
                 },
-                labels: Object.keys(roleCounts),
-                colors: categorical(4),
-                legend: { 
-                    show: false
-                },
-                plotOptions: {
-                    pie: {
-                        donut: {
-                            size: '70%'
-                        }
-                    }
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                tooltip: {
-                    theme: 'light'
-                },
-                responsive: [{
-                    breakpoint: 480,
-                    options: {
-                        chart: { width: 200 }
-                    }
-                }]
-            };
-            new ApexCharts(roleDistributionChartEl, roleDistributionOptions).render();
+                options: {
+                    cutout: '70%',
+                    plugins: { legend: { display: false } }
+                }
+            }, { height: 140 });
         }
     }
-  }));
+    };
+  });
 
   // Search Component for header search
   Alpine.data('searchComponent', createSearchComponent({

@@ -1,10 +1,18 @@
 import Alpine from 'alpinejs';
-import ApexCharts from '../utils/apex.js';
-import { categorical, axisInk, gridLine, onFillInk, SEQUENTIAL_BLUE } from '../utils/chart-palette.js';
+import { createChart, areaGradient, cartesianScales, barValuesPlugin, alpha } from '../utils/charts.js';
+import { categorical, gridLine, onFillInk, SEQUENTIAL_BLUE } from '../utils/chart-palette.js';
 import { REALTIME_FAST_POLL_MS } from '../utils/constants.js';
 
+const formatClock = (ms) => new Date(ms).toLocaleTimeString('en-US', { hour12: false });
+
 document.addEventListener('alpine:init', () => {
-  Alpine.data('analyticsComponent', () => ({
+  Alpine.data('analyticsComponent', () => {
+    // Chart instances live outside Alpine's reactive state: wrapping a Chart.js
+    // instance in a reactive proxy makes every internal read tracked, which
+    // stalls updates and can overflow the stack.
+    const charts = {};
+
+    return {
     // Core data
     metrics: {
         revenue: 124592,
@@ -17,9 +25,6 @@ document.addEventListener('alpine:init', () => {
     realTimeUsers: 1247,
     pageViews: 8452,
     sessions: 2931,
-    
-    // Chart instances
-    charts: {},
     
     // Traffic sources data
     trafficSources: [
@@ -56,7 +61,6 @@ document.addEventListener('alpine:init', () => {
     
     // Cleanup tracking
     _intervals: new Set(),
-    _resizeHandler: null,
 
     // Initialize component
     init() {
@@ -101,15 +105,13 @@ document.addEventListener('alpine:init', () => {
 
     // Update revenue chart for a given period count + unit ('day' or 'month')
     applyRevenuePeriod(count, unit) {
-        if (!this.charts.revenue) return;
+        const chart = charts.revenue;
+        if (!chart) return;
         const { revenue, profit } = this.generateRevenueSeries(count);
-        this.charts.revenue.updateOptions({
-            xaxis: { categories: this.buildLabels(count, unit) },
-            series: [
-                { name: 'Revenue', data: revenue },
-                { name: 'Profit',  data: profit  },
-            ],
-        });
+        chart.data.labels = this.buildLabels(count, unit);
+        chart.data.datasets[0].data = revenue;
+        chart.data.datasets[1].data = profit;
+        chart.update();
     },
 
     // Wire up the page-level dateRange (Today / 7D / 30D / 90D) and the
@@ -139,21 +141,15 @@ document.addEventListener('alpine:init', () => {
     destroy() {
         this._intervals.forEach(id => clearInterval(id));
         this._intervals.clear();
-        if (this._resizeHandler) {
-            window.removeEventListener('resize', this._resizeHandler);
-            this._resizeHandler = null;
-        }
         this.clearExistingCharts();
     },
     
     // Clear existing charts to prevent duplicates
     clearExistingCharts() {
-        Object.keys(this.charts).forEach(chartKey => {
-            if (this.charts[chartKey] && this.charts[chartKey].destroy) {
-                this.charts[chartKey].destroy();
-            }
+        Object.keys(charts).forEach(chartKey => {
+            charts[chartKey]?.destroy();
+            delete charts[chartKey];
         });
-        this.charts = {};
     },
     
     // Initialize all charts
@@ -169,348 +165,159 @@ document.addEventListener('alpine:init', () => {
     
     // Revenue analytics chart
     initRevenueChart() {
-        const revenueOptions = {
-            series: [{
-                name: 'Revenue',
-                data: [8200, 9100, 7800, 10200, 11500, 9800, 12400, 11200, 10800, 13200, 12100, 14200, 13800, 15100]
-            }, {
-                name: 'Profit',
-                data: [3100, 3800, 2900, 4200, 4800, 3900, 5200, 4600, 4200, 5800, 5100, 6200, 5900, 6800]
-            }],
-            chart: {
-                height: 350,
-                width: '100%',
-                type: 'area',
-                toolbar: {
-                    show: false
-                },
-                zoom: {
-                    enabled: false
-                },
-                sparkline: {
-                    enabled: false
-                },
-                redrawOnParentResize: true,
-                redrawOnWindowResize: true
+        const chartElement = document.querySelector("#revenueChart");
+        if (!chartElement) return;
+
+        const labels = ['Jan 1', 'Jan 3', 'Jan 5', 'Jan 7', 'Jan 9', 'Jan 11', 'Jan 13', 'Jan 15', 'Jan 17', 'Jan 19', 'Jan 21', 'Jan 23', 'Jan 25', 'Jan 27'];
+        const series = (label, data, i) => ({
+            label,
+            data,
+            borderColor: () => categorical(2)[i],
+            backgroundColor: areaGradient(() => categorical(2)[i], 0.4, 0.05),
+            pointBackgroundColor: () => categorical(2)[i],
+            fill: true
+        });
+
+        charts.revenue = createChart(chartElement, {
+            type: 'line',
+            data: {
+                labels,
+                datasets: [
+                    series('Revenue', [8200, 9100, 7800, 10200, 11500, 9800, 12400, 11200, 10800, 13200, 12100, 14200, 13800, 15100], 0),
+                    series('Profit', [3100, 3800, 2900, 4200, 4800, 3900, 5200, 4600, 4200, 5800, 5100, 6200, 5900, 6800], 1)
+                ]
             },
-            responsive: [{
-                breakpoint: 1200,
-                options: {
-                    chart: {
-                        height: 300
-                    },
-                    legend: {
-                        position: 'bottom',
-                        horizontalAlign: 'center'
+            options: {
+                interaction: { mode: 'index', intersect: false },
+                scales: cartesianScales({ format: val => '$' + (val / 1000).toFixed(0) + 'K' }),
+                plugins: {
+                    legend: { position: 'top', align: 'end' },
+                    tooltip: {
+                        callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toLocaleString()}` }
                     }
                 }
-            }, {
-                breakpoint: 768,
-                options: {
-                    chart: {
-                        height: 250
-                    },
-                    xaxis: {
-                        labels: {
-                            rotate: -45,
-                            rotateAlways: true
+            }
+        }, { height: 350, responsiveHeight: [[1200, 300], [768, 250]] });
+    },
+    
+    // Traffic sources doughnut chart
+    initTrafficSourcesChart() {
+        const sources = this.trafficSources;
+        charts.trafficSources = createChart(document.querySelector("#trafficSourcesChart"), {
+            type: 'doughnut',
+            data: {
+                labels: sources.map(source => source.name),
+                datasets: [{
+                    label: 'Traffic',
+                    data: sources.map(source => source.percentage),
+                    // Resolved per draw, so the sequence follows the colour mode.
+                    backgroundColor: ctx => categorical(sources.length)[ctx.dataIndex]
+                }]
+            },
+            options: {
+                cutout: '60%',
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: ctx => {
+                                const source = sources[ctx.dataIndex];
+                                return `${ctx.parsed.toFixed(1)}% (${source.visitors.toLocaleString()} visitors)`;
+                            }
                         }
                     }
                 }
-            }],
-            dataLabels: {
-                enabled: false
-            },
-            stroke: {
-                curve: 'smooth',
-                width: 2
-            },
-            colors: categorical(2),
-            fill: {
-                type: 'gradient',
-                gradient: {
-                    shadeIntensity: 1,
-                    opacityFrom: 0.4,
-                    opacityTo: 0.1,
-                    stops: [0, 90, 100]
-                }
-            },
-            xaxis: {
-                categories: ['Jan 1', 'Jan 3', 'Jan 5', 'Jan 7', 'Jan 9', 'Jan 11', 'Jan 13', 'Jan 15', 'Jan 17', 'Jan 19', 'Jan 21', 'Jan 23', 'Jan 25', 'Jan 27'],
-                labels: {
-                    style: {
-                        fontSize: '12px',
-                        colors: axisInk()
-                    }
-                }
-            },
-            yaxis: {
-                labels: {
-                    formatter: function (val) {
-                        return '$' + (val / 1000).toFixed(0) + 'K';
-                    },
-                    style: {
-                        fontSize: '12px',
-                        colors: axisInk()
-                    }
-                }
-            },
-            grid: {
-                borderColor: gridLine(),
-                strokeDashArray: 3
-            },
-            legend: {
-                position: 'top',
-                horizontalAlign: 'right',
-                fontSize: '12px'
-            },
-            tooltip: {
-                y: {
-                    formatter: function (val) {
-                        return '$' + val.toLocaleString();
-                    }
-                }
             }
-        };
-
-        const chartElement = document.querySelector("#revenueChart");
-        if (chartElement) {
-            // Clear any existing chart instance
-            if (this.charts.revenue) {
-                this.charts.revenue.destroy();
-            }
-
-            this.charts.revenue = new ApexCharts(chartElement, revenueOptions);
-            this.charts.revenue.render();
-
-            // Handle window resize (one handler total, replaceable)
-            if (this._resizeHandler) {
-                window.removeEventListener('resize', this._resizeHandler);
-            }
-            this._resizeHandler = () => {
-                if (this.charts.revenue) {
-                    this.charts.revenue.updateOptions({ chart: { width: '100%' } });
-                }
-            };
-            window.addEventListener('resize', this._resizeHandler);
-        }
-    },
-    
-    // Traffic sources pie chart
-    initTrafficSourcesChart() {
-        const trafficOptions = {
-            series: this.trafficSources.map(source => source.percentage),
-            chart: {
-                width: '100%',
-                height: 200,
-                type: 'donut'
-            },
-            labels: this.trafficSources.map(source => source.name),
-            colors: this.trafficSources.map(source => source.color),
-            plotOptions: {
-                pie: {
-                    donut: {
-                        size: '60%'
-                    }
-                }
-            },
-            legend: {
-                show: false
-            },
-            dataLabels: {
-                enabled: false
-            },
-            tooltip: {
-                y: {
-                    formatter: function (val, { seriesIndex }) {
-                        const source = this.trafficSources[seriesIndex];
-                        return `${val.toFixed(1)}% (${source.visitors.toLocaleString()} visitors)`;
-                    }.bind(this)
-                }
-            }
-        };
-        
-        this.charts.trafficSources = new ApexCharts(document.querySelector("#trafficSourcesChart"), trafficOptions);
-        this.charts.trafficSources.render();
+        }, { height: 200 });
     },
     
     // User behavior funnel chart
     initBehaviorChart() {
-        const behaviorOptions = {
-            series: [{
-                name: 'Users',
-                data: [45672, 32148, 18934, 12567, 8234, 4512]
-            }],
-            chart: {
-                type: 'bar',
-                height: 300,
-                width: '100%',
-                toolbar: {
-                    show: false
-                }
+        charts.behavior = createChart(document.querySelector("#behaviorChart"), {
+            type: 'bar',
+            data: {
+                labels: ['Page Views', 'Unique Visitors', 'Engaged Users', 'Add to Cart', 'Checkout Started', 'Purchase'],
+                datasets: [{
+                    label: 'Users',
+                    data: [45672, 32148, 18934, 12567, 8234, 4512],
+                    // One measure at varying magnitude — a single-hue ramp, darkest first.
+                    backgroundColor: [...SEQUENTIAL_BLUE].reverse(),
+                    borderRadius: 4,
+                    categoryPercentage: 0.7,
+                    barPercentage: 0.9
+                }]
             },
-            plotOptions: {
-                bar: {
-                    horizontal: true,
-                    distributed: true,
-                    barHeight: '60%'
-                }
-            },
-            // One measure at varying magnitude — a single-hue ramp, darkest first.
-            colors: [...SEQUENTIAL_BLUE].reverse(),
-            dataLabels: {
-                enabled: true,
-                formatter: function (val) {
-                    return val.toLocaleString();
+            options: {
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: { display: false },
+                        ticks: { callback: val => (val / 1000).toFixed(0) + 'K' }
+                    },
+                    y: { grid: { display: false } }
                 },
-                style: {
-                    colors: [onFillInk()]
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { callbacks: { label: ctx => ctx.parsed.x.toLocaleString() } },
+                    barValues: { color: onFillInk() }
                 }
             },
-            xaxis: {
-                categories: ['Page Views', 'Unique Visitors', 'Engaged Users', 'Add to Cart', 'Checkout Started', 'Purchase'],
-                labels: {
-                    formatter: function (val) {
-                        return (val / 1000).toFixed(0) + 'K';
-                    }
-                }
-            },
-            yaxis: {
-                labels: {
-                    style: {
-                        fontSize: '12px'
-                    }
-                }
-            },
-            grid: {
-                show: false
-            },
-            legend: {
-                show: false
-            },
-            tooltip: {
-                y: {
-                    formatter: function (val) {
-                        return val.toLocaleString();
-                    }
-                }
-            }
-        };
-        
-        const behaviorEl = document.querySelector("#behaviorChart");
-        this.charts.behavior = new ApexCharts(behaviorEl, behaviorOptions);
-        this.charts.behavior.render();
-
-        if (behaviorEl && 'ResizeObserver' in window) {
-          let raf = 0;
-          new ResizeObserver(() => {
-            cancelAnimationFrame(raf);
-            raf = requestAnimationFrame(() => {
-              this.charts.behavior?.updateOptions({ chart: { width: '100%' } }, false, false);
-            });
-          }).observe(behaviorEl);
-        }
+            plugins: [barValuesPlugin]
+        }, { height: 300 });
     },
     
     // Real time visitors chart
     initRealTimeChart() {
-        const realTimeOptions = {
-            series: [{
-                name: 'Users',
-                data: this.generateRealTimeData(30, 1200, 1300)
-            }],
-            chart: {
-                height: 150,
-                width: '100%',
-                type: 'line',
-                animations: {
-                    enabled: true,
-                    easing: 'linear',
-                    dynamicAnimation: {
-                        speed: 1000
-                    }
+        const points = this.generateRealTimeData(30, 1200, 1300);
+        charts.realTime = createChart(document.querySelector("#realTimeChart"), {
+            type: 'line',
+            data: {
+                labels: points.map(([x]) => formatClock(x)),
+                datasets: [{
+                    label: 'Users',
+                    data: points.map(([, y]) => y),
+                    borderColor: () => categorical(3)[2],
+                    pointBackgroundColor: () => categorical(3)[2]
+                }]
+            },
+            options: {
+                interaction: { mode: 'index', intersect: false },
+                scales: {
+                    x: { display: false },
+                    y: { display: false, min: 1000, max: 1500 }
                 },
-                toolbar: {
-                    show: false
-                },
-                zoom: {
-                    enabled: false
-                }
-            },
-            dataLabels: {
-                enabled: false
-            },
-            stroke: {
-                curve: 'smooth',
-                width: 2
-            },
-            colors: [categorical(3)[2]],
-            markers: {
-                size: 0
-            },
-            xaxis: {
-                type: 'datetime',
-                range: 30000,
-                labels: {
-                    show: false
-                },
-                axisBorder: {
-                    show: false
-                }
-            },
-            yaxis: {
-                min: 1000,
-                max: 1500,
-                labels: {
-                    show: false
-                }
-            },
-            grid: {
-                show: false
-            },
-            legend: {
-                show: false
+                plugins: { legend: { display: false } }
             }
-        };
-        
-        this.charts.realTime = new ApexCharts(document.querySelector("#realTimeChart"), realTimeOptions);
-        this.charts.realTime.render();
+        }, { height: 150 });
     },
 
     // Browser usage chart
     initBrowserChart() {
-        const browserOptions = {
-            series: [58.6, 22.3, 8.1, 5.4, 5.6],
-            chart: {
-                type: 'polarArea',
-                height: 350,
-                width: '100%'
+        charts.browser = createChart(document.querySelector("#browserChart"), {
+            type: 'polarArea',
+            data: {
+                labels: ['Chrome', 'Firefox', 'Safari', 'Edge', 'Other'],
+                datasets: [{
+                    label: 'Share',
+                    data: [58.6, 22.3, 8.1, 5.4, 5.6],
+                    backgroundColor: ctx => alpha(categorical(5)[ctx.dataIndex], 0.85)
+                }]
             },
-            labels: ['Chrome', 'Firefox', 'Safari', 'Edge', 'Other'],
-            stroke: {
-                colors: [onFillInk()]
-            },
-            fill: {
-                opacity: 0.85
-            },
-            legend: {
-                position: 'bottom'
-            },
-            responsive: [{
-                breakpoint: 480,
-                options: {
-                    chart: {
-                        width: 200
-                    },
-                    legend: {
-                        position: 'bottom'
+            options: {
+                scales: {
+                    r: {
+                        grid: { color: () => gridLine() },
+                        angleLines: { display: true, color: () => gridLine() },
+                        ticks: { display: false }
                     }
+                },
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.parsed.r}%` } }
                 }
-            }]
-        };
-
-        this.charts.browser = new ApexCharts(document.querySelector("#browserChart"), browserOptions);
-        this.charts.browser.render();
+            }
+        }, { height: 350 });
     },
     
     // Generate data for real-time chart
@@ -538,15 +345,16 @@ document.addEventListener('alpine:init', () => {
     
     // Update real time chart data
     updateRealTimeData() {
-        if (this.charts.realTime) {
+        const chart = charts.realTime;
+        if (chart) {
             const x = new Date().getTime();
             const y = Math.floor(Math.random() * (1300 - 1200 + 1)) + 1200;
-            
-            const series = this.charts.realTime.w.config.series[0].data.slice();
-            series.push([x, y]);
-            series.shift();
-            
-            this.charts.realTime.updateSeries([{ data: series }]);
+
+            chart.data.labels.push(formatClock(x));
+            chart.data.labels.shift();
+            chart.data.datasets[0].data.push(y);
+            chart.data.datasets[0].data.shift();
+            chart.update('none');
         }
     },
     
@@ -591,5 +399,6 @@ document.addEventListener('alpine:init', () => {
         document.body.removeChild(a);
         URL.revokeObjectURL(a.href);
     }
-  }));
-}); 
+    };
+  });
+});

@@ -2,11 +2,10 @@
 // Dashboard Manager - Advanced data visualization and components
 // ==========================================================================
 
-import ApexCharts from '../utils/apex.js';
-import { categorical, accent, STATUS, SEQUENTIAL_BLUE, axisInk, trackFill } from '../utils/chart-palette.js';
+import { createChart, areaGradient, cartesianScales, centerTextPlugin } from '../utils/charts.js';
+import { categorical, accent, STATUS, SEQUENTIAL_BLUE, trackFill, surfacePanel, onFillInk } from '../utils/chart-palette.js';
 import {
   REALTIME_DASHBOARD_POLL_MS,
-  CHART_RESIZE_DEBOUNCE_MS,
   STAT_ANIMATION_DURATION_MS,
   STAT_ANIMATION_STEPS,
 } from '../utils/constants.js';
@@ -124,59 +123,40 @@ export class DashboardManager {
     const el = document.getElementById('revenueChart');
     if (!el) return;
 
-    const options = {
-      chart: {
-        type: 'area',
-        height: 320,
-        width: '100%',
-        toolbar: { show: false },
-        zoom: { enabled: false }
+    const money = value => '$' + Number(value).toLocaleString();
+    const chart = createChart(el, {
+      type: 'line',
+      data: {
+        labels: this.data.revenue.map(item => item.month),
+        datasets: [
+          {
+            label: 'Revenue',
+            data: this.data.revenue.map(item => item.revenue),
+            borderColor: () => categorical(2)[0],
+            backgroundColor: areaGradient(() => categorical(2)[0]),
+            pointBackgroundColor: () => categorical(2)[0],
+            fill: true
+          },
+          {
+            label: 'Profit',
+            data: this.data.revenue.map(item => item.profit),
+            borderColor: () => categorical(2)[1],
+            backgroundColor: areaGradient(() => categorical(2)[1]),
+            pointBackgroundColor: () => categorical(2)[1],
+            fill: true
+          }
+        ]
       },
-      series: [
-        { name: 'Revenue', data: this.data.revenue.map(item => item.revenue) },
-        { name: 'Profit', data: this.data.revenue.map(item => item.profit) }
-      ],
-      xaxis: {
-        categories: this.data.revenue.map(item => item.month),
-        axisBorder: { show: false }
-      },
-      yaxis: {
-        labels: {
-          formatter: value => '$' + value.toLocaleString()
+      options: {
+        interaction: { mode: 'index', intersect: false },
+        scales: cartesianScales({ format: money }),
+        plugins: {
+          legend: { position: 'top' },
+          tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${money(ctx.parsed.y)}` } }
         }
-      },
-      colors: categorical(2),
-      stroke: { curve: 'smooth', width: 2 },
-      fill: {
-        type: 'gradient',
-        gradient: { shadeIntensity: 1, opacityFrom: 0.3, opacityTo: 0.05 }
-      },
-      dataLabels: { enabled: false },
-      legend: { position: 'top' },
-      tooltip: {
-        y: { formatter: value => '$' + value.toLocaleString() }
-      },
-      grid: { borderColor: 'rgba(0,0,0,0.08)', strokeDashArray: 4 }
-    };
-
-    const chart = new ApexCharts(el, options);
-    chart.render();
+      }
+    }, { height: 320 });
     this.charts.set('revenue', chart);
-
-    if ('ResizeObserver' in window) {
-      let raf = 0;
-      const ro = new ResizeObserver(() => {
-        cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(() => {
-          chart.updateOptions({ chart: { width: '100%' } }, false, false);
-        });
-      });
-      ro.observe(el);
-      this.cleanupFns.push(() => {
-        cancelAnimationFrame(raf);
-        ro.disconnect();
-      });
-    }
   }
 
   initUserGrowthChart() {
@@ -184,61 +164,50 @@ export class DashboardManager {
     if (!el) return;
 
     const recent = this.data.users.slice(-7);
-    const options = {
-      chart: { type: 'bar', height: 280, width: '100%', toolbar: { show: false } },
-      series: [{ name: 'New Users', data: recent.map(item => item.newUsers) }],
-      xaxis: {
-        categories: recent.map(item => `Day ${item.day}`),
-        axisBorder: { show: false }
+    const chart = createChart(el, {
+      type: 'bar',
+      data: {
+        labels: recent.map(item => `Day ${item.day}`),
+        datasets: [{
+          label: 'New Users',
+          data: recent.map(item => item.newUsers),
+          backgroundColor: () => accent(),
+          categoryPercentage: 0.6
+        }]
       },
-      colors: [accent()],
-      plotOptions: { bar: { borderRadius: 6, columnWidth: '55%' } },
-      dataLabels: { enabled: false },
-      grid: { borderColor: 'rgba(0,0,0,0.08)', strokeDashArray: 4 }
-    };
-
-    const chart = new ApexCharts(el, options);
-    chart.render();
+      options: {
+        scales: cartesianScales(),
+        plugins: { legend: { display: false } }
+      }
+    }, { height: 280 });
     this.charts.set('userGrowth', chart);
-
-    if ('ResizeObserver' in window) {
-      let raf = 0;
-      const ro = new ResizeObserver(() => {
-        cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(() => {
-          chart.updateOptions({ chart: { width: '100%' } }, false, false);
-        });
-      });
-      ro.observe(el);
-      this.cleanupFns.push(() => {
-        cancelAnimationFrame(raf);
-        ro.disconnect();
-      });
-    }
   }
 
   initOrderStatusChart() {
     const el = document.getElementById('orderStatusChart');
     if (!el) return;
 
-    const options = {
-      chart: { type: 'donut', height: 280, width: '100%' },
-      series: [
-        this.data.orders.completed,
-        this.data.orders.processing,
-        this.data.orders.pending,
-        this.data.orders.cancelled
-      ],
-      labels: ['Completed', 'Processing', 'Pending', 'Cancelled'],
-      // Reserved status colours — these four slices are states, not series.
-      colors: [STATUS.success, STATUS.info, STATUS.warning, STATUS.danger],
-      legend: { position: 'bottom' },
-      dataLabels: { enabled: false },
-      plotOptions: { pie: { donut: { size: '60%' } } }
-    };
-
-    const chart = new ApexCharts(el, options);
-    chart.render();
+    // Reserved status colours — these four slices are states, not series.
+    const colours = [STATUS.success, STATUS.info, STATUS.warning, STATUS.danger];
+    const chart = createChart(el, {
+      type: 'doughnut',
+      data: {
+        labels: ['Completed', 'Processing', 'Pending', 'Cancelled'],
+        datasets: [{
+          data: [
+            this.data.orders.completed,
+            this.data.orders.processing,
+            this.data.orders.pending,
+            this.data.orders.cancelled
+          ],
+          backgroundColor: colours
+        }]
+      },
+      options: {
+        cutout: '60%',
+        plugins: { legend: { position: 'bottom' } }
+      }
+    }, { height: 280 });
     this.charts.set('orderStatus', chart);
   }
 
@@ -246,29 +215,31 @@ export class DashboardManager {
     const el = document.querySelector('#storageStatusChart');
     if (!el) return;
 
-    const options = {
-      chart: { height: 280, width: '100%', type: 'radialBar' },
-      series: [76],
-      // Was an ApexCharts demo config pasted in verbatim: neon green (#20E647)
-      // on a navy hollow (#293450) with a drop-shadowed track and white labels —
-      // a dark-theme gauge dropped onto a white card, matching nothing else.
-      colors: [accent()],
-      plotOptions: {
-        radialBar: {
-          hollow: { margin: 0, size: '70%', background: 'transparent' },
-          track: { background: trackFill(), dropShadow: { enabled: false } },
-          dataLabels: {
-            name: { offsetY: -10, color: axisInk(), fontSize: '12px' },
-            value: { color: axisInk(), fontSize: '28px', fontWeight: 600, show: true }
-          }
+    // Progress ring: the used share in the accent, the remainder as the track.
+    const used = 76;
+    const chart = createChart(el, {
+      type: 'doughnut',
+      data: {
+        labels: ['Used Space', 'Free Space'],
+        datasets: [{
+          data: [used, 100 - used],
+          backgroundColor: ctx => (ctx.dataIndex === 0 ? accent() : trackFill()),
+          hoverBackgroundColor: ctx => (ctx.dataIndex === 0 ? accent() : trackFill()),
+          borderWidth: 0,
+          borderRadius: [{ outerStart: 12, outerEnd: 12, innerStart: 12, innerEnd: 12 }, 0]
+        }]
+      },
+      options: {
+        cutout: '78%',
+        layout: { padding: 24 },
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.parsed}%` } },
+          centerText: { label: 'Used Space', value: `${used}%` }
         }
       },
-      stroke: { lineCap: 'round' },
-      labels: ['Used Space']
-    };
-
-    const chart = new ApexCharts(el, options);
-    chart.render();
+      plugins: [centerTextPlugin]
+    }, { height: 280 });
     this.charts.set('storage', chart);
   }
 
@@ -276,66 +247,46 @@ export class DashboardManager {
     const chartElement = document.querySelector('#salesByLocationChart');
     if (!chartElement) return;
 
-    const options = {
-      series: [{
-        name: 'Sales',
-        data: this.data.salesByLocation.map(c => ({ x: c.name, y: c.value }))
-      }],
-      chart: {
-        type: 'treemap',
-        height: 350,
-        width: '100%',
-        toolbar: {
-          show: true,
-          tools: { download: true, selection: false, zoom: false, zoomin: false, zoomout: false, pan: false, reset: false }
-        },
-        events: {
-          mounted: (chart) => { chart.windowResizeHandler(); }
-        }
+    // Magnitude, so one hue stepped light -> dark. The old ranges were three
+    // unrelated hues (sage, olive, slate-blue) for what is a single measure — a
+    // reader could not tell bigger from smaller.
+    const shade = value => (value > 2000 ? SEQUENTIAL_BLUE[5] : value > 1000 ? SEQUENTIAL_BLUE[3] : SEQUENTIAL_BLUE[1]);
+    const chart = createChart(chartElement, {
+      type: 'treemap',
+      data: {
+        datasets: [{
+          label: 'Sales',
+          tree: this.data.salesByLocation,
+          key: 'value',
+          labels: {
+            display: true,
+            align: 'center',
+            position: 'middle',
+            // Light cells take the darkest step as ink; white would wash out.
+            color: ctx => (ctx.raw && ctx.raw.v <= 1000 ? SEQUENTIAL_BLUE[5] : onFillInk()),
+            font: [{ weight: '600', size: 12 }, { size: 12 }],
+            formatter: ctx => [ctx.raw._data.name, Number(ctx.raw.v).toLocaleString()]
+          },
+          backgroundColor: ctx => (ctx.type === 'data' ? shade(ctx.raw.v) : 'transparent'),
+          borderColor: () => surfacePanel(),
+          borderWidth: 2,
+          borderRadius: 4,
+          spacing: 0
+        }]
       },
-      dataLabels: {
-        enabled: true,
-        style: { fontSize: '12px' },
-        formatter: (text, op) => [text, op.value],
-        offsetY: -4
-      },
-      plotOptions: {
-        treemap: {
-          enableShades: true,
-          shadeIntensity: 0.5,
-          reverseNegativeShade: true,
-          colorScale: {
-            // Magnitude, so one hue stepped light -> dark. The old ranges were
-            // three unrelated hues (sage, olive, slate-blue) for what is a single
-            // measure — a reader could not tell bigger from smaller.
-            ranges: [
-              { from: 0, to: 1000, color: SEQUENTIAL_BLUE[1] },
-              { from: 1001, to: 2000, color: SEQUENTIAL_BLUE[3] },
-              { from: 2001, to: 3000, color: SEQUENTIAL_BLUE[5] }
-            ]
+      options: {
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              title: items => items[0]?.raw?._data?.name ?? '',
+              label: ctx => `Sales: ${Number(ctx.raw.v).toLocaleString()}`
+            }
           }
         }
-      },
-      responsive: [
-        { breakpoint: 1200, options: { chart: { height: 350 }, dataLabels: { style: { fontSize: '11px' } } } },
-        { breakpoint: 768, options: { chart: { height: 300 }, dataLabels: { style: { fontSize: '10px' } } } }
-      ]
-    };
-
-    const chart = new ApexCharts(chartElement, options);
-    chart.render();
+      }
+    }, { height: 350, responsiveHeight: [[768, 300]] });
     this.charts.set('salesByLocation', chart);
-
-    const onResize = () => {
-      if (!this.charts.has('salesByLocation')) return;
-      const t = setTimeout(() => {
-        chart.updateOptions({ chart: { width: '100%' } }, false, true);
-        this.timeouts.delete(t);
-      }, CHART_RESIZE_DEBOUNCE_MS);
-      this.timeouts.add(t);
-    };
-    window.addEventListener('resize', onResize);
-    this.cleanupFns.push(() => window.removeEventListener('resize', onResize));
   }
 
   populateRecentOrders() {
@@ -392,13 +343,7 @@ export class DashboardManager {
       // Re-label all points so the x-axis stays accurate as data scrolls
       this.data.revenue.forEach((d, i) => { d.month = labels[i]; });
 
-      revenueChart.updateOptions({
-        xaxis: { categories: this.data.revenue.map(d => d.month) },
-        series: [
-          { name: 'Revenue', data: this.data.revenue.map(d => d.revenue) },
-          { name: 'Profit',  data: this.data.revenue.map(d => d.profit)  },
-        ],
-      });
+      this.setRevenueData(revenueChart);
     }
 
     this.updateStatsCards();
@@ -476,13 +421,14 @@ export class DashboardManager {
 
     const chart = this.charts.get('revenue');
     if (!chart) return;
-    chart.updateOptions({
-      xaxis: { categories: this.data.revenue.map(d => d.month) },
-      series: [
-        { name: 'Revenue', data: this.data.revenue.map(d => d.revenue) },
-        { name: 'Profit',  data: this.data.revenue.map(d => d.profit)  },
-      ],
-    });
+    this.setRevenueData(chart);
+  }
+
+  setRevenueData(chart) {
+    chart.data.labels = this.data.revenue.map(d => d.month);
+    chart.data.datasets[0].data = this.data.revenue.map(d => d.revenue);
+    chart.data.datasets[1].data = this.data.revenue.map(d => d.profit);
+    chart.update();
   }
 
   buildPeriodLabels(count, unit) {
@@ -503,14 +449,11 @@ export class DashboardManager {
 
   exportChart(chartName) {
     const chart = this.charts.get(chartName);
-    if (chart && typeof chart.dataURI === 'function') {
-      chart.dataURI().then(({ imgURI }) => {
-        const link = document.createElement('a');
-        link.download = `${chartName}-chart.png`;
-        link.href = imgURI;
-        link.click();
-      });
-    }
+    if (!chart) return;
+    const link = document.createElement('a');
+    link.download = `${chartName}-chart.png`;
+    link.href = chart.toBase64Image();
+    link.click();
   }
 
   destroy() {

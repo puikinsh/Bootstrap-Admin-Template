@@ -30,7 +30,7 @@
 - **Vite 8.2** - Lightning-fast development and optimized production builds (rolldown-powered)
 - **SCSS Architecture** - Organized, scalable stylesheet structure with Sass 1.104
 - **Bootstrap Icons 1.13.1** - 1,800+ icons available; build ships only the ~158 actually used
-- **ApexCharts 7.1** - Single charting library, imported per chart type so unused chart types stay out of the bundle
+- **Chart.js 4.5 (MIT)** - Single charting library, rendered to `<canvas>`; only the chart types used are registered, and charts re-theme live when you switch light/dark
 - **Zero third-party runtime requests** - fonts, charts, syntax highlighting and images are all self-hosted, so the template works offline, behind a strict CSP, and without leaking visitor IPs to a CDN
 
 ### 📊 **Comprehensive Dashboard Pages**
@@ -277,9 +277,9 @@ document.addEventListener('alpine:init', () => {
 
 ### Modernization Pass (August 2026)
 
-- ✅ **Zero third-party runtime requests** - The ApexCharts CDN tag (unpinned, unhashed, and loading a *second* copy of the library alongside the bundled one), Prism from cdnjs, Google Fonts, and `flagcdn.com` images are all gone. Fonts, charts, highlighting and images are self-hosted, so the template works offline, behind a strict CSP, and without disclosing visitor IPs to a CDN. The smoke test enforces this.
+- ✅ **Zero third-party runtime requests** - The chart library's CDN tag (unpinned, unhashed, and loading a *second* copy of the library alongside the bundled one), Prism from cdnjs, Google Fonts, and `flagcdn.com` images are all gone. Fonts, charts, highlighting and images are self-hosted, so the template works offline, behind a strict CSP, and without disclosing visitor IPs to a CDN. The smoke test enforces this.
 - ✅ **All security advisories patched** - `postcss` (path traversal), `immutable` (trie overflow + hash-collision DoS), `brace-expansion` (DoS). `npm audit` reports 0, with `overrides` pinning the transitive packages so a fresh resolve can't regress.
-- ✅ **Every dependency current** - ApexCharts 5 → 6 (now imported per chart type, ~56 KB gzip lighter than v6's default entry), Vite 8.2, ESLint 10.8, Sass 1.102. Dropped `lucide` (a 411 KB unfinished icon provider that rendered blank SVGs) and the unused `@vitejs/plugin-legacy`.
+- ✅ **Every dependency current** - Chart library 5 → 6 (now imported per chart type, ~56 KB gzip lighter than v6's default entry), Vite 8.2, ESLint 10.8, Sass 1.102. Dropped `lucide` (a 411 KB unfinished icon provider that rendered blank SVGs) and the unused `@vitejs/plugin-legacy`.
 - ✅ **Broken pages fixed** - Six element pages were shipping a JavaScript SyntaxError that killed their copy buttons, live demos and syntax highlighting. The entire Forms page was inert (its four Alpine components were never registered). `Swal` was used as a global in 7 components without an import — 19 crash sites. All fixed and verified in a real browser.
 - ✅ **Automated smoke test + CI** - `npm run test:build` loads all 30 built pages in headless Chromium and fails on uncaught exceptions, console errors, failed or external requests, or missing charts/highlighting, then drives the auth flows for real (`scripts/auth-interaction-test.mjs`). GitHub Actions runs it on every push plus weekly for fresh advisories.
 - ✅ **No inline JavaScript** - 62 inline `onclick` handlers replaced with delegated `data-*` handlers.
@@ -293,8 +293,8 @@ See the [CHANGELOG](CHANGELOG.md#350---2026-08-03) for full detail, including kn
 - ✅ **Security** - XSS-safe DOM rendering replaces `innerHTML` interpolation in toast/activity feed; inline `onclick` removed from `elements-tables`; `Referrer-Policy` + `X-Content-Type-Options` meta tags added to every page; `localStorage` reads schema-validated; password fields tagged `autocomplete="new-password"`; `console.*` and `debugger` stripped from production bundles
 - ✅ **Accessibility** - Skip-to-main-content link on every page, keyboard focus rings restored (`:focus-visible`), `prefers-reduced-motion` media query, `aria-controls`/`aria-expanded` on the sidebar toggle, sortable table headers gain `role="button"` + `aria-sort` + keyboard handlers, single `<h1>` per page, normalized heading hierarchy
 - ✅ **Performance** - CSS down 20% (~100 KB raw) via Bootstrap-partial cleanup and Bootstrap-Icons subsetting (158 used icons vs. 1,800); `cssCodeSplit`, `cssMinify: lightningcss`, `target: 'es2020'` in Vite config
-- ✅ **Memory leaks fixed** - Dashboard, analytics, and messages components now track intervals/listeners and clean up on `pagehide`; ApexCharts instances `.destroy()`'d
-- ✅ **Single charting library** - `chart.js` removed; dashboard migrated to ApexCharts (saved ~63 KB gzip in `vendor-charts` chunk)
+- ✅ **Memory leaks fixed** - Dashboard, analytics, and messages components now track intervals/listeners and clean up on `pagehide`; chart instances `.destroy()`'d
+- ✅ **Single charting library** - the dashboard's second chart library removed (saved ~63 KB gzip in `vendor-charts` chunk)
 - ✅ **Toolchain** - Vite 7 → 8 (rolldown), ESLint 9 → 10, Lucide 0.469 → 1.11, plus minor bumps across the board (0 vulnerabilities)
 - ✅ **DRY** - 11 duplicated `searchComponent` definitions extracted to a `createSearchComponent` factory; magic numbers hoisted to a `constants.js` module
 - ✅ **Repo hygiene** - `dist-modern/` no longer tracked in git; abandoned dev scripts removed

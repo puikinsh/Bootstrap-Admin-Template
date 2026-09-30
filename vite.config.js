@@ -63,7 +63,14 @@ export default defineConfig({
           if (id.includes('node_modules/bootstrap/') || id.includes('node_modules/@popperjs/core/')) {
             return 'vendor-bootstrap';
           }
-          if (id.includes('node_modules/apexcharts/')) {
+          // Chart.js core + the treemap controller. chartjs-plugin-zoom (and
+          // hammerjs) is left out on purpose: only the reports page uses it,
+          // so it stays in that page's chunk.
+          if (
+            id.includes('node_modules/chart.js/') ||
+            id.includes('node_modules/@kurkle/color/') ||
+            id.includes('node_modules/chartjs-chart-treemap/')
+          ) {
             return 'vendor-charts';
           }
           if (id.includes('node_modules/alpinejs/') || id.includes('node_modules/sweetalert2/')) {
@@ -111,7 +118,7 @@ export default defineConfig({
 
   // Optimize dependencies
   optimizeDeps: {
-    include: ['bootstrap', 'alpinejs', 'apexcharts', 'sweetalert2'],
+    include: ['bootstrap', 'alpinejs', 'chart.js', 'chartjs-chart-treemap', 'chartjs-plugin-zoom', 'sweetalert2'],
   },
 
   esbuild: {

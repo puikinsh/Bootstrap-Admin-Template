@@ -236,16 +236,6 @@
     height: $height-lg;
   }
 
-  .apexcharts-canvas {
-    max-width: 100% !important;
-    overflow: hidden;
-  }
-
-  .apexcharts-svg {
-    max-width: 100% !important;
-    overflow: hidden;
-  }
-
   // Prevent chart overflow on all screen sizes
   > div {
     max-width: 100%;

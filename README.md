@@ -345,6 +345,7 @@ See the [CHANGELOG](CHANGELOG.md#350---2026-08-03) for full detail, including kn
 - **[Component Documentation](./docs/components.md)** - Detailed component guides
 - **[Customization Guide](./docs/customization.md)** - Theme and styling customization
 - **[Deployment Guide](./docs/deployment.md)** - Production deployment instructions
+- [![Deploy to Wasmer](https://img.shields.io/badge/Deploy%20to-Wasmer-171717?logo=wasmer&logoColor=white)](https://wasmer.io/apps/create?github=puikinsh%2FBootstrap-Admin-Template) - Import the repository on Wasmer Edge (build with `npm run build`; the root `Staticfile` points Wasmer at the static output in `dist-modern/`); import your own fork to customize it and redeploy on push
 
 ## 🤝 Contributing
 

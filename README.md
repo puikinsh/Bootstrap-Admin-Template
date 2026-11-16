@@ -30,7 +30,7 @@
 - **Vite 8.2** - Lightning-fast development and optimized production builds (rolldown-powered)
 - **SCSS Architecture** - Organized, scalable stylesheet structure with Sass 1.104
 - **Bootstrap Icons 1.13.1** - 1,800+ icons available; build ships only the ~158 actually used
-- **Chart.js 4.5 (MIT)** - Single charting library, rendered to `<canvas>`; only the chart types used are registered, and charts re-theme live when you switch light/dark
+- **Chart.js 4.6 (MIT)** - Single charting library, rendered to `<canvas>`; only the chart types used are registered, and charts re-theme live when you switch light/dark
 - **Zero third-party runtime requests** - fonts, charts, syntax highlighting and images are all self-hosted, so the template works offline, behind a strict CSP, and without leaking visitor IPs to a CDN
 
 ### 📊 **Comprehensive Dashboard Pages**
@@ -277,7 +277,7 @@ document.addEventListener('alpine:init', () => {
 
 ### Charts are Chart.js (MIT)
 
-- ✅ **Chart.js 4.5, MIT-licensed** - All 21 charts across the dashboard, analytics, reports, users, orders and products pages are rendered with [Chart.js](https://www.chartjs.org/) (MIT), plus two MIT plugins: `chartjs-chart-treemap` (Sales by Location) and `chartjs-plugin-zoom` (drag-to-zoom on Reports → Revenue Trends). Nothing in the template carries a commercial or OEM licence, so you can ship it in client and commercial projects.
+- ✅ **Chart.js 4.6, MIT-licensed** - All 21 charts across the dashboard, analytics, reports, users, orders and products pages are rendered with [Chart.js](https://www.chartjs.org/) (MIT), plus two MIT plugins: `chartjs-chart-treemap` (Sales by Location) and `chartjs-plugin-zoom` (drag-to-zoom on Reports → Revenue Trends). Nothing in the template carries a commercial or OEM licence, so you can ship it in client and commercial projects.
 - ✅ **Live dark mode for charts** - Switching light/dark re-themes every chart on the page immediately; previously charts kept their old colours until reload.
 - ✅ **One preset** - `scripts/utils/charts.js` holds all chart styling (fonts, gridlines, tooltips, legends) read from the same CSS tokens as the rest of the UI.
 - ✅ **Lighter** - the shared chart chunk dropped from 207 KB to 73 KB gzip.

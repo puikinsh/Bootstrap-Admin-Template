@@ -81,7 +81,7 @@ Alpine.data('componentName', () => ({
 
 - **UI**: Bootstrap 5.3.9, Bootstrap Icons 1.13.2 (subset, see below)
 - **Reactive**: Alpine.js 3.17
-- **Charts**: Chart.js 4.5 (MIT) + `chartjs-chart-treemap` (MIT, dashboard treemap) + `chartjs-plugin-zoom` (MIT, reports page only). Colours come from `utils/chart-palette.js`, never inline hexes
+- **Charts**: Chart.js 4.6 (MIT) + `chartjs-chart-treemap` (MIT, dashboard treemap) + `chartjs-plugin-zoom` (MIT, reports page only). Colours come from `utils/chart-palette.js`, never inline hexes
 - **Notifications**: SweetAlert2 11.26.25
 - **Highlighting**: Prism 1.30 (bundled, showcase pages only)
 - **Fonts**: Inter via `@fontsource-variable/inter` (self-hosted)

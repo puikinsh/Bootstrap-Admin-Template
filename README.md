@@ -9,13 +9,13 @@
 **[🚀 View Live Demo](https://preview.colorlib.com/theme/metis/)**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.8-563d7c.svg)](https://getbootstrap.com)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.9-563d7c.svg)](https://getbootstrap.com)
 [![Node.js](https://img.shields.io/badge/Node.js-20.19%2B-green.svg)](https://nodejs.org)
 
 ## ✨ Features
 
 ### 🎨 **Modern Design System**
-- **Bootstrap 5.3.8** - Latest version with all modern utilities
+- **Bootstrap 5.3.9** - Latest version with all modern utilities
 - **CSS Custom Properties** - Full theme customization support
 - **Structure from borders, not shadows** - Static panels are flat; shadows are reserved for things that genuinely float (dropdowns, modals, the mobile sidebar)
 - **One accent, used only for interaction** - Primary actions, the active nav item and focus rings. Semantic colour appears only where it means something

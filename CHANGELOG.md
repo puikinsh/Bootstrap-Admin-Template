@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.7.1] - 2026-11-16
+
+### Maintenance
+
+- **Bootstrap 5.3.8 to 5.3.9.**
+- Every dependency refreshed to latest: Chart.js 4.6, Vite 8.3, Sass 1.108, Alpine.js 3.17.5, Bootstrap Icons 1.13.2, PostCSS, Autoprefixer, ESLint 10.15, Prettier 3.10. `npm audit` is back to 0 vulnerabilities.
+- No visual or behavioural changes: all 30 pages verified in light and dark mode, smoke test and auth interaction suite green.
+
 ## [3.7.0] - 2026-10-01
 
 ### Charts moved to Chart.js (MIT)

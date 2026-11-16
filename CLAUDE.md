@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Modern Bootstrap 5 Admin Dashboard Template (v3.7.1) using Vite, Alpine.js, Chart.js and SCSS.
+Modern Bootstrap 5 Admin Dashboard Template (v3.7.2) using Vite, Alpine.js, Chart.js and SCSS.
 
 | Directory | Purpose |
 |-----------|---------|
-| `src-modern/` | Source files (Bootstrap 5.3.8, ES6+ modules) |
+| `src-modern/` | Source files (Bootstrap 5.3.9, ES6+ modules) |
 | `dist-modern/` | Production build output |
 | `src/`, `dist/` | Legacy Bootstrap 3 code - **do not use** |
 
@@ -79,9 +79,9 @@ Alpine.data('componentName', () => ({
 
 ## Dependencies
 
-- **UI**: Bootstrap 5.3.8, Bootstrap Icons 1.13.1 (subset, see below)
+- **UI**: Bootstrap 5.3.9, Bootstrap Icons 1.13.2 (subset, see below)
 - **Reactive**: Alpine.js 3.17
-- **Charts**: Chart.js 4.5 (MIT) + `chartjs-chart-treemap` (MIT, dashboard treemap) + `chartjs-plugin-zoom` (MIT, reports page only). Colours come from `utils/chart-palette.js`, never inline hexes
+- **Charts**: Chart.js 4.6 (MIT) + `chartjs-chart-treemap` (MIT, dashboard treemap) + `chartjs-plugin-zoom` (MIT, reports page only). Colours come from `utils/chart-palette.js`, never inline hexes
 - **Notifications**: SweetAlert2 11.26.25
 - **Highlighting**: Prism 1.30 (bundled, showcase pages only)
 - **Fonts**: Inter via `@fontsource-variable/inter` (self-hosted)

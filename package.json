@@ -1,7 +1,7 @@
 {
   "name": "metis-admin-dashboard",
   "description": "Metis — free Bootstrap 5.3 admin dashboard template. 30 pages including auth and error pages, Alpine.js, Chart.js, dark mode, self-hosted fonts and icons. Vite 8, ES modules, no jQuery, zero third-party runtime requests.",
-  "version": "3.7.1",
+  "version": "3.7.2",
   "type": "module",
   "main": "dist-modern/index.html",
   "homepage": "https://github.com/puikinsh/Bootstrap-Admin-Template",
@@ -79,10 +79,10 @@
   "dependencies": {
     "@fontsource-variable/inter": "^5.3.0",
     "@popperjs/core": "^2.11.8",
-    "alpinejs": "^3.17.2",
-    "bootstrap": "^5.3.8",
-    "bootstrap-icons": "^1.13.1",
-    "chart.js": "^4.5.1",
+    "alpinejs": "^3.17.5",
+    "bootstrap": "^5.3.9",
+    "bootstrap-icons": "^1.13.2",
+    "chart.js": "^4.6.1",
     "chartjs-chart-treemap": "^4.2.2",
     "chartjs-plugin-zoom": "^2.2.0",
     "prismjs": "^1.30.0",
@@ -90,14 +90,14 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "autoprefixer": "^10.5.5",
-    "eslint": "^10.10.0",
-    "globals": "^17.12.0",
-    "postcss": "^8.5.28",
-    "prettier": "^3.9.6",
-    "rimraf": "^6.1.3",
-    "sass": "^1.104.0",
-    "vite": "^8.2.2"
+    "autoprefixer": "^10.6.2",
+    "eslint": "^10.15.0",
+    "globals": "^17.14.0",
+    "postcss": "^8.5.33",
+    "prettier": "^3.10.1",
+    "rimraf": "^6.1.4",
+    "sass": "^1.108.2",
+    "vite": "^8.3.8"
   },
   "browserslist": [
     "> 1%",

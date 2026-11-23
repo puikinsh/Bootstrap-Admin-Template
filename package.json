@@ -83,7 +83,7 @@
     "bootstrap": "^5.3.9",
     "bootstrap-icons": "^1.13.2",
     "chart.js": "^4.6.1",
-    "chartjs-chart-treemap": "^4.2.2",
+    "chartjs-chart-treemap": "^5.0.2",
     "chartjs-plugin-zoom": "^2.2.0",
     "prismjs": "^1.30.0",
     "sweetalert2": "^11.26.25"
